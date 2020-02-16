@@ -56,9 +56,9 @@ public class Player_Combat_Control : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Alpha1) && !animator.GetBool("isAttacking"))
             {
                 UseNormalAttack();
-                if (collision.gameObject.GetComponent<Health>())
+                if (collision.gameObject.GetComponent<AI_Health>())
                 {
-                    Health enemyHealth = collision.gameObject.GetComponent<Health>();
+                    AI_Health enemyHealth = collision.gameObject.GetComponent<AI_Health>();
                     enemyHealth.GetDamage(currentStats.GetCurrentAttackDamage());
                 }
             }

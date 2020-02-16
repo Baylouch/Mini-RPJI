@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1022811021}
   - component: {fileID: 1022811022}
   m_Layer: 10
-  m_Name: GameObject
+  m_Name: EnvCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -149,9 +149,9 @@ GameObject:
   - component: {fileID: 1760254016403328876}
   - component: {fileID: 1760254016403328867}
   - component: {fileID: 6840171956305247252}
-  - component: {fileID: 8576866051434925494}
   - component: {fileID: 9140438872542910058}
   - component: {fileID: 235761527}
+  - component: {fileID: 2743148443856352679}
   m_Layer: 9
   m_Name: Mole
   m_TagString: Enemy
@@ -199,7 +199,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 1.29}
   m_EdgeRadius: 0
 --- !u!50 &1760254016403328876
 Rigidbody2D:
@@ -263,22 +263,6 @@ MonoBehaviour:
   rangedDamageMax: 10
   speed: 2
   projectileSpeed: 5
---- !u!114 &8576866051434925494
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1760254016403328866}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81ebcaffe0a060045926a04a5573bf66, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealthPoints: 100
-  currentHealthPoints: 100
-  vitalityMultiplier: 10
-  rend: {fileID: 1760254016280018187}
 --- !u!114 &9140438872542910058
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -291,7 +275,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd9aa14811435dd42a59a4c146f73a9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timerBeforeAttack: 1
+  timerBeforeAttack: 2
   attackRange: 1
   attacking: 0
 --- !u!114 &235761527
@@ -306,7 +290,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6eb7822b00982824d8aedaeab1ea328f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextMoveTimer: 1.5
+  nextMoveTimerMin: 1.5
+  nextMoveTimerMax: 2
   movingDuration: 0.45
   followingDistance: 2.5
-  stopFollowingOffset: 0.2
+  stopFollowingOffset: 0.3
+--- !u!114 &2743148443856352679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1760254016403328866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 584138d0415f83a4e940795d2bbd9cd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealthPoints: 100
+  currentHealthPoints: 100
+  vitalityMultiplier: 10
+  deathAnimation: 1
+  rend: {fileID: 1760254016280018187}

@@ -35,25 +35,27 @@ public class AI_Combat_Control : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // If player is in attack range
-        if (Vector3.Distance(transform.position, player.position) <= attackRange)
+        if (player)
         {
-            if (currentTimerBeforeAttack >= 0f) // Test timer before attack
+            // If player is in attack range
+            if (Vector3.Distance(transform.position, player.position) <= attackRange)
             {
-                currentTimerBeforeAttack -= Time.deltaTime;
-            }
-            else if (!attacking) // Now attack
-            {         
-                UseAttack();
-                Health playerHealth = player.gameObject.GetComponent<Health>();
-                if (playerHealth)
+                if (currentTimerBeforeAttack >= 0f && !attacking) // Test timer before attack
                 {
-                    playerHealth.GetDamage(currentStats.GetCurrentAttackDamage());
+                    currentTimerBeforeAttack -= Time.deltaTime;
                 }
-                currentTimerBeforeAttack = timerBeforeAttack;
+                else if (!attacking) // Now attack
+                {
+                    UseAttack();
+                    Player_Health playerHealth = player.gameObject.GetComponent<Player_Health>();
+                    if (playerHealth)
+                    {
+                        playerHealth.GetDamage(currentStats.GetCurrentAttackDamage());
+                    }
+                    currentTimerBeforeAttack = timerBeforeAttack;
+                }
             }
         }
-
     }
 
     private void OnDrawGizmos()

@@ -77,7 +77,7 @@ public class Player_Movement_Control : MonoBehaviour
         }
         else if (Input.GetKey(KeyCode.S))
         {
-            myRb.velocity = new Vector2(0f, -1f) * currentStats.GetSpeed();    
+            myRb.velocity = new Vector2(0f, -1f) * currentStats.GetSpeed();
         }
         else if (Input.GetKey(KeyCode.D))
         {
@@ -85,7 +85,7 @@ public class Player_Movement_Control : MonoBehaviour
         }
         else if (Input.GetKey(KeyCode.Q))
         {
-            myRb.velocity = new Vector2(-1f, 0f) * currentStats.GetSpeed();        
+            myRb.velocity = new Vector2(-1f, 0f) * currentStats.GetSpeed();
         }
         else
         {

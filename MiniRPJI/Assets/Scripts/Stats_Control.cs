@@ -10,6 +10,11 @@ public enum StatsType { STRENGTH, AGILITY, VITALITY, INTELLECT }; // Enum pour d
 
 public class Stats_Control : MonoBehaviour
 {
+    [Header("Experience")]
+    [SerializeField] private int level = 1;
+    [SerializeField] private float NextLevelExperience = 200f;
+    [SerializeField] private float currentExperience = 0f;
+
     [Header("Statistiques")]
     [SerializeField] private int strength = 10;
     [SerializeField] private int agility = 10;
