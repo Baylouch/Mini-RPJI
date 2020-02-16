@@ -6,10 +6,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
-[RequireComponent(typeof(Stats_Control))]
 [RequireComponent(typeof(Collider2D))]
 public class AI_Combat_Control : MonoBehaviour
 {
+    // attack
+    [SerializeField] private int damageMin = 10;
+    [SerializeField] private int damageMax = 15;
+
     // Basic timer for now
     [SerializeField] float timerBeforeAttack;
     float currentTimerBeforeAttack;
@@ -20,14 +23,12 @@ public class AI_Combat_Control : MonoBehaviour
     [SerializeField] bool attacking = false;
 
     Animator animator;
-    Stats_Control currentStats;
     Transform player;
 
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
-        currentStats = GetComponent<Stats_Control>();
         currentTimerBeforeAttack = timerBeforeAttack;
         player = GameObject.FindGameObjectWithTag("Player").transform;
     }
@@ -50,7 +51,8 @@ public class AI_Combat_Control : MonoBehaviour
                     Player_Health playerHealth = player.gameObject.GetComponent<Player_Health>();
                     if (playerHealth)
                     {
-                        playerHealth.GetDamage(currentStats.GetCurrentAttackDamage());
+                        int currAttack = (Random.Range(damageMin, damageMax));
+                        playerHealth.GetDamage(currAttack);
                     }
                     currentTimerBeforeAttack = timerBeforeAttack;
                 }

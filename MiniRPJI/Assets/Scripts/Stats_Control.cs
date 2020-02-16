@@ -1,5 +1,5 @@
 ﻿/* Stats_Control.cs
- Gère les statistiques des entités. Par ex: le taux de vitalité augmentera les points de vies gérés eux dans Health.cs
+ Gère les statistiques du joueur. Par ex: le taux de vitalité augmentera les points de vies gérés eux dans Health.cs
 
 */
 using System.Collections;

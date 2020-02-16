@@ -20,12 +20,6 @@ public class Projectile : MonoBehaviour
     {
         if (collision.gameObject.tag == "Enemy")
         {
-            if (collision.gameObject.GetComponent<Player_Health>())
-            {
-                Player_Health enemyHealth = collision.gameObject.GetComponent<Player_Health>();
-                enemyHealth.GetDamage(projectileDamage);
-                
-            }
             if (collision.gameObject.GetComponent<AI_Health>())
             {
                 AI_Health enemyHealth = collision.gameObject.GetComponent<AI_Health>();
@@ -34,6 +28,14 @@ public class Projectile : MonoBehaviour
             }
             Destroy(gameObject);
         }
+        if (collision.gameObject.tag == "Player")
+        {
+            if (collision.gameObject.GetComponent<Player_Health>())
+            {
+                Player_Health enemyHealth = collision.gameObject.GetComponent<Player_Health>();
+                enemyHealth.GetDamage(projectileDamage);
+            }
+            Destroy(gameObject);
+        }
     }
-
 }

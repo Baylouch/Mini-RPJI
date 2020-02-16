@@ -120,6 +120,56 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &830861359 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1760254016403328866, guid: 6de3dbc3a52adfe4f866ead72e02a6eb,
+    type: 3}
+  m_PrefabInstance: {fileID: 1760254016570368020}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &830861367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 830861359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13faf4bea4634cf48bb88849fb48515a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AutoMove: 0
+  currentlyAutoMove: 0
+  readyForNextMove: 0
+  speed: 2
+  nextMoveTimerMin: 1.5
+  nextMoveTimerMax: 2
+  movingDuration: 0.45
+--- !u!1 &1178330434 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8638072033100263523, guid: 57a880ddc7263eb40a6ab9b1828d1812,
+    type: 3}
+  m_PrefabInstance: {fileID: 2075220772739295832}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1178330442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1178330434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13faf4bea4634cf48bb88849fb48515a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AutoMove: 0
+  currentlyAutoMove: 0
+  readyForNextMove: 0
+  speed: 2
+  nextMoveTimerMin: 1.5
+  nextMoveTimerMax: 2
+  movingDuration: 0.45
 --- !u!1 &1482546701
 GameObject:
   m_ObjectHideFlags: 0
@@ -6179,17 +6229,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8638072032976863754, guid: 57a880ddc7263eb40a6ab9b1828d1812,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 06a287cc97cb64df8a11af10f2352365,
-        type: 3}
-    - target: {fileID: 8985749041302776340, guid: 57a880ddc7263eb40a6ab9b1828d1812,
-        type: 3}
-      propertyPath: deathAnimation
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57a880ddc7263eb40a6ab9b1828d1812, type: 3}

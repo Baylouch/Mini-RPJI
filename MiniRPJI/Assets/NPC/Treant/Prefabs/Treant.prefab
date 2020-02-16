@@ -148,7 +148,6 @@ GameObject:
   - component: {fileID: 8638072033100263532}
   - component: {fileID: 8638072033100263533}
   - component: {fileID: 8638072033100263522}
-  - component: {fileID: 3557871380465189653}
   - component: {fileID: 1248739223840106859}
   - component: {fileID: 8038139238955143286}
   - component: {fileID: 8985749041302776340}
@@ -241,28 +240,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &3557871380465189653
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8638072033100263523}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4730e9c49df7dc46a9302379d03ac8d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  strength: 10
-  agility: 10
-  vitality: 10
-  intellect: 10
-  damageMin: 7
-  damageMax: 12
-  rangedDamageMin: 5
-  rangedDamageMax: 10
-  speed: 2
-  projectileSpeed: 5
 --- !u!114 &1248739223840106859
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -275,6 +252,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd9aa14811435dd42a59a4c146f73a9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageMin: 10
+  damageMax: 15
   timerBeforeAttack: 2
   attackRange: 1
   attacking: 0
@@ -290,6 +269,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6eb7822b00982824d8aedaeab1ea328f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 2
   nextMoveTimerMin: 2
   nextMoveTimerMax: 2.5
   movingDuration: 0.45
@@ -310,5 +290,5 @@ MonoBehaviour:
   maxHealthPoints: 100
   currentHealthPoints: 100
   vitalityMultiplier: 10
-  deathAnimation: 0
+  deathAnimation: 1
   rend: {fileID: 8638072032976863754}

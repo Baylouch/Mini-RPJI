@@ -5,18 +5,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Stats_Control))]
 [RequireComponent(typeof(Animator))]
 public class AI_Health : MonoBehaviour
 {
     [SerializeField] float maxHealthPoints = 100f;
     [SerializeField] float currentHealthPoints = 100f; // To deserialize
-    [SerializeField] float vitalityMultiplier = 10f;
 
     [SerializeField] bool deathAnimation = false;
     bool isDead = false;
+    float deathTiming = 5f; // For fix a bug, sometimes death animation don't play so gameobject isnt destroy
 
-    Stats_Control currentStats;
     Animator animator;
 
     [Tooltip("Let it null if you don't want fading when damage taken.")]
@@ -25,17 +23,23 @@ public class AI_Health : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        currentStats = GetComponent<Stats_Control>();
         animator = GetComponent<Animator>();
 
-        maxHealthPoints = currentStats.GetCurrentStatsByType(StatsType.VITALITY) * vitalityMultiplier;
         currentHealthPoints = maxHealthPoints;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        // Security for dead npcs
+        if (isDead)
+        {
+            deathTiming -= Time.deltaTime;
+            if (deathTiming <= 0f)
+            {
+                Die();
+            }
+        }
     }
 
     // A FadeIn and FadeOut coroutine methods to apply on each sprite who doesnt have "TakeDamage" animation
@@ -81,6 +85,9 @@ public class AI_Health : MonoBehaviour
             isDead = true;
             if (deathAnimation) // Play death animation if there is one
             {
+                animator.SetBool("isMoving", false);
+                animator.SetBool("isAttacking", false);
+                animator.SetBool("normalAttack", false);
                 animator.SetTrigger("isDead");
             }
             else
@@ -98,11 +105,6 @@ public class AI_Health : MonoBehaviour
     // Don't forget to put in every end of death's animations
     public void Die()
     {
-        // Pour que la caméra sur le joueur ne se detruise pas
-        if (gameObject.GetComponentInChildren<Camera>())
-        {
-            gameObject.GetComponentInChildren<Camera>().gameObject.transform.parent = null;
-        }
 
         // Drop objects, golds...
 
