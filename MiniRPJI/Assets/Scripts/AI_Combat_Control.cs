@@ -14,8 +14,14 @@ public class AI_Combat_Control : MonoBehaviour
     [SerializeField] float timerBeforeAttack;
     float currentTimerBeforeAttack;
 
+    // Range for attacking
+    [SerializeField] float attackRange = 1f;
+
+    [SerializeField] bool attacking = false;
+
     Animator animator;
     Stats_Control currentStats;
+    Transform player;
 
     // Start is called before the first frame update
     void Start()
@@ -23,36 +29,42 @@ public class AI_Combat_Control : MonoBehaviour
         animator = GetComponent<Animator>();
         currentStats = GetComponent<Stats_Control>();
         currentTimerBeforeAttack = timerBeforeAttack;
+        player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (currentTimerBeforeAttack > 0f)
+        // If player is in attack range
+        if (Vector3.Distance(transform.position, player.position) <= attackRange)
         {
-            currentTimerBeforeAttack -= Time.deltaTime;
-        }
-    }
-
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Player")
-        {
-            if (currentTimerBeforeAttack <= 0f && !animator.GetBool("isAttacking"))
+            if (currentTimerBeforeAttack >= 0f) // Test timer before attack
             {
+                currentTimerBeforeAttack -= Time.deltaTime;
+            }
+            else if (!attacking) // Now attack
+            {         
                 UseAttack();
-                if (collision.gameObject.GetComponent<Health>())
+                Health playerHealth = player.gameObject.GetComponent<Health>();
+                if (playerHealth)
                 {
-                    Health enemyHealth = collision.gameObject.GetComponent<Health>();
-                    enemyHealth.GetDamage(currentStats.GetCurrentAttackDamage());
-                    currentTimerBeforeAttack = timerBeforeAttack;
+                    playerHealth.GetDamage(currentStats.GetCurrentAttackDamage());
                 }
+                currentTimerBeforeAttack = timerBeforeAttack;
             }
         }
+
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
     }
 
     void UseAttack()
     {
+        attacking = true;
         animator.SetBool("isAttacking", true);
         animator.SetBool("normalAttack", true);
     }
@@ -65,6 +77,11 @@ public class AI_Combat_Control : MonoBehaviour
         if (animator.GetBool("normalAttack"))
         {
             animator.SetBool("normalAttack", false);
+        }
+
+        if (attacking)
+        {
+            attacking = false;
         }
     }
 }
