@@ -5,14 +5,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Stats_Control))]
+[RequireComponent(typeof(Player_Stats))]
 public class Player_Health : MonoBehaviour
 {
-    [SerializeField] float maxHealthPoints = 100f;
     [SerializeField] float currentHealthPoints = 100f; // To deserialize
     [SerializeField] float vitalityMultiplier = 10f;
 
-    Stats_Control currentStats;
+    Player_Stats playerStats;
 
     [Tooltip("Let it null if you don't want fading when damage taken.")]
     [SerializeField]SpriteRenderer rend; 
@@ -20,10 +19,9 @@ public class Player_Health : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        currentStats = GetComponent<Stats_Control>();
+        playerStats = GetComponent<Player_Stats>();
 
-        maxHealthPoints = currentStats.GetCurrentStatsByType(StatsType.VITALITY) * vitalityMultiplier;
-        currentHealthPoints = maxHealthPoints;
+        currentHealthPoints = playerStats.GetStatsByType(StatsType.VITALITY) * vitalityMultiplier;
     }
 
     // Update is called once per frame
@@ -85,5 +83,10 @@ public class Player_Health : MonoBehaviour
         }
 
         Destroy(gameObject);
+    }
+
+    public void SetHealthPoints(int amount)
+    {
+        currentHealthPoints = amount;
     }
 }

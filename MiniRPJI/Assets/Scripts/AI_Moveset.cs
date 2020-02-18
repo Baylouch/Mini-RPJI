@@ -79,6 +79,7 @@ public class AI_Moveset : MonoBehaviour
 
         currentMovingTimer = Random.Range(nextMoveTimerMin, nextMoveTimerMax);
         currentlyAutoMove = false;
+        readyForNextMove = false;
         wayToGo++;
 
         if (myRb.velocity != Vector2.zero)

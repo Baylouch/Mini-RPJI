@@ -6,16 +6,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(AI_Stats))] // To get healthpoints
 public class AI_Health : MonoBehaviour
 {
-    [SerializeField] float maxHealthPoints = 100f;
-    [SerializeField] float currentHealthPoints = 100f; // To deserialize
+    [SerializeField] int currentHealthPoints = 100; // To deserialize
 
     [SerializeField] bool deathAnimation = false;
     bool isDead = false;
     float deathTiming = 5f; // For fix a bug, sometimes death animation don't play so gameobject isnt destroy
 
     Animator animator;
+    AI_Stats ai_stats;
 
     [Tooltip("Let it null if you don't want fading when damage taken.")]
     [SerializeField]SpriteRenderer rend; 
@@ -24,8 +25,9 @@ public class AI_Health : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
+        ai_stats = GetComponent<AI_Stats>();
 
-        currentHealthPoints = maxHealthPoints;
+        currentHealthPoints = ai_stats.GetHealthPoints();
     }
 
     // Update is called once per frame
@@ -73,7 +75,44 @@ public class AI_Health : MonoBehaviour
         StartCoroutine("FadeIn"); // And now reappear
     }
 
-    public void GetDamage(float amount)
+    void PlayDeathAnimation()
+    {
+        // Disable others AI components
+        if (GetComponent<AI_Movement_Control>())
+            GetComponent<AI_Movement_Control>().enabled = false;
+        if (GetComponent<AI_Moveset>())
+            GetComponent<AI_Moveset>().enabled = false;
+        if (GetComponent<AI_Combat_Control>())
+            GetComponent<AI_Combat_Control>().enabled = false;
+        // And collider (fix issue with xp twice a time)
+        if (GetComponent<Collider2D>())
+            GetComponent<Collider2D>().enabled = false;
+
+        // Set all animator parameters to false
+        animator.SetBool("isMoving", false);
+        animator.SetBool("isAttacking", false);
+        animator.SetBool("normalAttack", false);
+
+        // Play animation
+        animator.SetTrigger("isDead");
+    }
+
+    // Don't forget to put in every end of death's animations
+    public void Die()
+    {
+
+        // Drop objects, golds...
+        
+        Destroy(gameObject);
+    }
+
+    // To know in other scripts if current npc is dead
+    public bool IsDead()
+    {
+        return isDead;
+    }
+
+    public void GetDamage(int amount)
     {
         if (isDead)
             return;
@@ -85,34 +124,27 @@ public class AI_Health : MonoBehaviour
             isDead = true;
             if (deathAnimation) // Play death animation if there is one
             {
-                animator.SetBool("isMoving", false);
-                animator.SetBool("isAttacking", false);
-                animator.SetBool("normalAttack", false);
-                animator.SetTrigger("isDead");
+                PlayDeathAnimation();
             }
             else
             {
                 Die();
             }
         }
-            
+
         if (rend)
         {
             StartCoroutine("FadeOut");
         }
     }
 
-    // Don't forget to put in every end of death's animations
-    public void Die()
+    public void SetHealthPoints(int amount)
     {
-
-        // Drop objects, golds...
-
-        Destroy(gameObject);
+        currentHealthPoints = amount;
     }
 
-    public bool IsDead()
+    public void AddHealthPoints(int amount)
     {
-        return isDead;
+        currentHealthPoints += amount;
     }
 }

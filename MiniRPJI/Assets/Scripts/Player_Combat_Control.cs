@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
-[RequireComponent(typeof(Stats_Control))]
+[RequireComponent(typeof(Player_Stats))]
 [RequireComponent(typeof(Collider2D))]
 public class Player_Combat_Control : MonoBehaviour
 {
@@ -15,25 +15,28 @@ public class Player_Combat_Control : MonoBehaviour
     [SerializeField] GameObject projectile;
 
     Animator animator;
-    Stats_Control currentStats;
+    Player_Stats playerStats;
 
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
-        currentStats = GetComponent<Stats_Control>();
+        playerStats = GetComponent<Player_Stats>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1) && !animator.GetBool("isAttacking"))
+        if (!animator.GetBool("isAttacking"))
         {
-            UseNormalAttack();
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2) && !animator.GetBool("isAttacking"))
-        {
-            UseBowAttack();
+            if (Input.GetKeyDown(KeyCode.Alpha1)) // To centralise in Player_Input.cs later
+            {
+                UseNormalAttack();
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha2)) // To centralise in Player_Input.cs later
+            {
+                UseBowAttack();
+            }
         }
     }
 
@@ -49,17 +52,29 @@ public class Player_Combat_Control : MonoBehaviour
         animator.SetBool("bowAttack", true);
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision) // Find other way later
     {
         if (collision.gameObject.tag == "Enemy")
         {
-            if (Input.GetKeyDown(KeyCode.Alpha1) && !animator.GetBool("isAttacking"))
+            if (Input.GetKeyDown(KeyCode.Alpha1) && !animator.GetBool("isAttacking")) // To centralise in Player_Input.cs later
             {
                 UseNormalAttack();
                 if (collision.gameObject.GetComponent<AI_Health>())
                 {
                     AI_Health enemyHealth = collision.gameObject.GetComponent<AI_Health>();
-                    enemyHealth.GetDamage(currentStats.GetCurrentAttackDamage());
+                    enemyHealth.GetDamage(playerStats.GetAttackDamage());
+
+                    // If we kill the enemy
+                    if (enemyHealth.IsDead())
+                    {
+                        // Check if npc got AI_Stats on him
+                        AI_Stats enemyStats = collision.gameObject.GetComponent<AI_Stats>();
+                        if (enemyStats)
+                        {
+                            // If yes add experience to player (to securise later Stats_Control)
+                            playerStats.GetExperience(enemyStats.GetExperienceGain());
+                        }
+                    }
                 }
             }
         }
@@ -84,8 +99,13 @@ public class Player_Combat_Control : MonoBehaviour
     public void Shoot()
     {
         GameObject _projectile = Instantiate(projectile, firePoint.position, firePoint.rotation);
-        _projectile.GetComponent<Rigidbody2D>().velocity = firePoint.up * currentStats.GetProjectileSpeed();
-        _projectile.GetComponent<Projectile>().projectileDamage = currentStats.GetCurrentRangedAttackDamage();
+        Projectile currentProjectileComponent = _projectile.GetComponent<Projectile>();
+
+        if (currentProjectileComponent == null)
+            return; // There is a bug here or a miss by game master. Every projectile must have Projectile.cs attach
+
+        currentProjectileComponent.playerStats = this.playerStats;
+        currentProjectileComponent.projectileDamage = playerStats.GetRangedAttackDamage();
     }
 
     // Use for set firepoint rotation depending of player's movement (as animation's event)

@@ -7,20 +7,19 @@ using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Animator))]
-[RequireComponent(typeof(Stats_Control))]
 public class Player_Movement_Control : MonoBehaviour
 {
+    [SerializeField] float speed = 4;
+
     Rigidbody2D myRb;
     Animator animator;
     Vector2 animatorVector; // To set X,Y values into animator
-    Stats_Control currentStats;
 
     // Start is called before the first frame update
     void Start()
     {
         myRb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        currentStats = GetComponent<Stats_Control>();
 
         animatorVector = new Vector2();
     }
@@ -73,19 +72,19 @@ public class Player_Movement_Control : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Z))
         {
-            myRb.velocity = new Vector2(0f, 1f) * currentStats.GetSpeed();
+            myRb.velocity = new Vector2(0f, 1f) * speed;
         }
         else if (Input.GetKey(KeyCode.S))
         {
-            myRb.velocity = new Vector2(0f, -1f) * currentStats.GetSpeed();
+            myRb.velocity = new Vector2(0f, -1f) * speed;
         }
         else if (Input.GetKey(KeyCode.D))
         {
-            myRb.velocity = new Vector2(1f, 0f) * currentStats.GetSpeed();
+            myRb.velocity = new Vector2(1f, 0f) * speed;
         }
         else if (Input.GetKey(KeyCode.Q))
         {
-            myRb.velocity = new Vector2(-1f, 0f) * currentStats.GetSpeed();
+            myRb.velocity = new Vector2(-1f, 0f) * speed;
         }
         else
         {

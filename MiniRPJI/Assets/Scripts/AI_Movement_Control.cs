@@ -7,7 +7,6 @@ using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Animator))]
-[RequireComponent(typeof(AI_Health))]
 [RequireComponent(typeof(AI_Moveset))]
 public class AI_Movement_Control : MonoBehaviour
 {
@@ -24,7 +23,6 @@ public class AI_Movement_Control : MonoBehaviour
     Rigidbody2D myRb;
     Animator animator;
     Vector2 animatorVector; // To set X,Y values into animator
-    AI_Health ai_health;
     AI_Moveset ai_moveset;
 
     // Start is called before the first frame update
@@ -32,7 +30,6 @@ public class AI_Movement_Control : MonoBehaviour
     {
         myRb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        ai_health = GetComponent<AI_Health>();
         ai_moveset = GetComponent<AI_Moveset>();
 
         animatorVector = new Vector2();
@@ -53,11 +50,6 @@ public class AI_Movement_Control : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (ai_health.IsDead())
-        {
-            return;
-        }
-
         if (!animator.GetBool("isAttacking"))
         {
             SimpleAIMovement();
@@ -109,7 +101,7 @@ public class AI_Movement_Control : MonoBehaviour
                 followingTarget = true; // start following         
                 backToStartPos = false; // we go to undifined position so we need a way to go back to our startpos after that
 
-                // Reset moveset params
+                // Reset ai_moveset params
                 if (ai_moveset.AutoMove)
                     ai_moveset.AutoMove = false;
 
