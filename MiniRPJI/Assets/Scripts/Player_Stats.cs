@@ -1,10 +1,11 @@
 ﻿/* Stats_Control.cs
- Gère les statistiques du joueur. Par ex: le taux de vitalité augmentera les points de vies gérés eux dans Health.cs
+ Gère les statistiques du joueur. Par ex: le taux de vitalité augmentera les points de vies etc
 
 */
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 
 public enum StatsType { STRENGTH, AGILITY, VITALITY, INTELLECT }; // Enum pour différencier les différentes statistiques
 
@@ -24,6 +25,7 @@ public class Player_Stats : MonoBehaviour
     [SerializeField] private int agility = 10;
     [SerializeField] private int vitality = 10;
     [SerializeField] private int intellect = 10;
+    [SerializeField] private int armor = 10;
 
     [Header("Attack")]
     [SerializeField] private int damageMin = 10;
@@ -34,29 +36,32 @@ public class Player_Stats : MonoBehaviour
     [SerializeField] private int rangedDamageMax = 10;
 
     [Header("General")]
-    [SerializeField] private int healthPoints = 100;
+    [SerializeField] private int healthPoints = 100; // Total player healthpoints
+    private int baseHealthPoints = 0; // We need this base for know how much healthpoints without vitality player have (for refreshing stats)
+    private int currentHealthPoints; // Player current healthpoints
 
     private int[] statsTrack; // To keep a track from previous stats when player is upgrading. Usefull until player's validation
     private int currentStatsPoints = 0;
-    private int[] removableStatsPoints; // To know when player can remove points or not (an array for know exaclty what pts can be remove or not)
-    private bool hasStatsPoints = false;
 
-    Player_Health health;
+    private int currentDamageMin;
+    private int currentDamageMax;
+    private int currentRangedDamageMin;
+    private int currentRangedDamageMax;
+
+    private float strengthDiviser = .8f; // .8 Seems good for all numbers to calculation (strength / strengthDiviser)
+    private float agilityDiviser = .87f; // .87 Seems good for all numbers to calculation (agility / agilityDiviser)
+    private int vitalityMultiplier = 2;
+    private float intellectMultiplier = 2;
 
     // Start is called before the first frame update
     void Start()
     {
-        if (GetComponent<Player_Health>())
-            health = GetComponent<Player_Health>();
-
         statsTrack = new int[4];
-        TrackCurrentStats();
+        TrackCurrentStats(); // Get track of current stats at start
+        baseHealthPoints = healthPoints; // first of all before all healthpoints maths
 
-        removableStatsPoints = new int[4];
-        for (int i = 0; i < removableStatsPoints.Length; i++)
-        {
-            removableStatsPoints[i] = 0;
-        }
+        RefreshStats(); // refresh stats
+        SetCurrentHealthPoints(healthPoints); // Set player healthpoints
     }
 
     // Update is called once per frame
@@ -74,7 +79,7 @@ public class Player_Stats : MonoBehaviour
                 {
                     playerStatsUI.gameObject.SetActive(true);
                     // playerStatsUI Must have UI_Player_Stats component !
-                    playerStatsUI.RefreshStatsText(this);
+                    playerStatsUI.RefreshStatsDisplay();
                 }
             }
         }
@@ -84,24 +89,43 @@ public class Player_Stats : MonoBehaviour
     {
         level++;
         // Reset some stats
-        // healthpoints = maxHealthpoints
-        if (health)
-        {
-            health.SetHealthPoints(healthPoints);
-        }
+        // refresh currenthealthpoints to set it to max
+        SetCurrentHealthPoints(healthPoints);
 
         // Give 5 stats points to the player
         currentStatsPoints += 5;
-        NextLevelExperience *= level; // Too change later
+        NextLevelExperience *= 2; // Too change later
 
         if (playerStatsUI)
         {
-            playerStatsUI.RefreshStatsText(this);
+            playerStatsUI.RefreshStatsDisplay();
         }
     }
 
+    public void RefreshStats()
+    {
+        float currentDamageMultiplier = (strength / strengthDiviser);
+        Debug.Log("currentDamageMultiplier = " + currentDamageMultiplier);
+        // Then use mathf methods for got min integer and max integer for the calcul
+        currentDamageMin = (int)Mathf.Min(damageMin + currentDamageMultiplier);
+        currentDamageMax = (int)Mathf.Max(damageMax + currentDamageMultiplier);
+
+        float currentRangedDamageMultiplier = (agility / agilityDiviser);
+        Debug.Log("currentRangedDamageMultiplier = " + currentDamageMultiplier);
+        currentRangedDamageMin = (int)Mathf.Min(rangedDamageMin + currentRangedDamageMultiplier);
+        currentRangedDamageMax = (int)Mathf.Max(rangedDamageMax + currentRangedDamageMultiplier);
+
+        // Vitality maths : works if you add or remove vitality points.
+        if (baseHealthPoints + (vitality * vitalityMultiplier) != healthPoints)
+        {
+            healthPoints = baseHealthPoints + (vitality * vitalityMultiplier);
+        }
+
+        // To deal with intellect later
+    }
+
     // Just for know what stats we got for a needed time (exemple, when player start to put new stats points before validation, if he wants to reset, he can)
-    void TrackCurrentStats()
+    public void TrackCurrentStats()
     {
         statsTrack[0] = GetStatsByType(StatsType.STRENGTH);
         statsTrack[1] = GetStatsByType(StatsType.AGILITY);
@@ -113,6 +137,111 @@ public class Player_Stats : MonoBehaviour
         Debug.Log("current vitality is : " + statsTrack[2]);
         Debug.Log("current intellect is : " + statsTrack[3]);
     }
+
+    public int GetAttackDamage()
+    {
+        int currAttack = (Random.Range(currentDamageMin, currentDamageMax));
+        return currAttack;
+    }
+
+    public int GetRangedAttackDamage()
+    {
+        int currRangedattack = (Random.Range(currentRangedDamageMin, currentRangedDamageMax));
+        return currRangedattack;
+    }
+
+    public void GetExperience(int amount)
+    {
+        int tempCurrentExperience = currentExperience + amount; // Put in a temp variable currentExperience + amount
+        if (tempCurrentExperience >= NextLevelExperience) // Check if it's >= of required experience to lvl up
+        {
+            int tempNextLevelExperience = tempCurrentExperience - NextLevelExperience; // Get the "too much" amount of experience
+            currentExperience = tempNextLevelExperience; // Set the "too much" into currentExperience
+            LevelUp();
+        }
+        else
+        {
+            currentExperience = tempCurrentExperience;
+            if (playerStatsUI)
+            {
+                playerStatsUI.RefreshStatsDisplay();
+            }
+        }
+    }
+
+    // Method use in Player_Health (its the way player taking damage)
+    public void SetCurrentHealthPoints(int newHealthPoints)
+    {
+        currentHealthPoints = newHealthPoints;
+    }
+
+    #region UI_Player_Stats relative methods
+
+    public void AddCurrentStatsPoints(int amount)
+    {
+        currentStatsPoints += amount;
+    }
+
+    public void RemoveCurrentStatsPoints(int amount)
+    {
+        currentStatsPoints -= amount;
+    }
+
+    public void UseTrackForResetStats()
+    {
+        // Reset stats as tracked
+        strength = statsTrack[0];
+        agility = statsTrack[1];
+        vitality = statsTrack[2];
+        intellect = statsTrack[3];
+    }
+
+    public void IncrementStatsByType(StatsType type)
+    {
+        switch(type)
+        {
+            case StatsType.STRENGTH:
+                strength++;
+                break;
+            case StatsType.AGILITY:
+                agility++;
+                break;
+            case StatsType.VITALITY:
+                vitality++;
+                break;
+            case StatsType.INTELLECT:
+                intellect++;
+                break;
+            default:
+                Debug.LogWarning("TYPE ERROR. Player_Stats.cs / + void IncrementStatsByType()");
+                return;
+        }
+    }
+
+    public void DecrementStatsByType(StatsType type)
+    {
+        switch (type)
+        {
+            case StatsType.STRENGTH:
+                strength--;
+                break;
+            case StatsType.AGILITY:
+                agility--;
+                break;
+            case StatsType.VITALITY:
+                vitality--;
+                break;
+            case StatsType.INTELLECT:
+                intellect--;
+                break;
+            default:
+                Debug.LogWarning("TYPE ERROR. Player_Stats.cs / + void IncrementStatsByType()");
+                return;
+        }
+    }
+    #endregion
+
+    #region getters
 
     public int GetStatsByType(StatsType type)
     {
@@ -132,164 +261,24 @@ public class Player_Stats : MonoBehaviour
         }
     }
 
-    public int GetAttackDamage()
+    public int getCurrentMinDamage()
     {
-        int currAttack = (Random.Range(damageMin, damageMax) + (strength / 2));
-        Debug.Log("Dommage infligés : " + currAttack);
-        return currAttack;
+        return currentDamageMin;
     }
 
-    public int GetRangedAttackDamage()
+    public int getCurrentMaxDamage()
     {
-        int currRangedattack = (Random.Range(rangedDamageMin, rangedDamageMax) + (agility / 2));
-        Debug.Log("Dommage a distance infligés : " + currRangedattack);
-        return currRangedattack;
+        return currentDamageMax;
     }
 
-    public void GetExperience(int amount)
+    public int getCurrentRangedMinDamage()
     {
-        int tempCurrentExperience = currentExperience + amount; // Put in a temp variable currentExperience + amount
-        if (tempCurrentExperience >= NextLevelExperience) // Check if it's >= of required experience to lvl up
-        {
-            int tempNextLevelExperience = tempCurrentExperience - NextLevelExperience; // Get the "too much" amount of experience
-            currentExperience = tempNextLevelExperience; // Set the "too much" into currentExperience
-            LevelUp();
-        }
-        else
-        {
-            currentExperience = tempCurrentExperience;
-        }
+        return currentRangedDamageMin;
     }
 
-    #region UI_Methods
-
-    public void StatsValidation()
+    public int getCurrentRangedMaxDamage()
     {
-        // Player has validate so no removable points
-        for (int i = 0; i < removableStatsPoints.Length; i++)
-        {
-            removableStatsPoints[i] = 0;
-        }
-        // track current stats
-        TrackCurrentStats();
-        // refresh UI
-        playerStatsUI.RefreshStatsText(this); // Maybe useless
-    }
-
-    public void StatsCancel()
-    {
-        for (int i = 0; i < removableStatsPoints.Length; i++)
-        {
-            if (removableStatsPoints[i] > 0)
-            {
-                currentStatsPoints += removableStatsPoints[i];
-                removableStatsPoints[i] = 0;
-            }
-        }
-
-        // Reset stats as tracked
-        strength = statsTrack[0];
-        agility = statsTrack[1];
-        vitality = statsTrack[2];
-        intellect = statsTrack[3];
-        // Track stats then refresh UI
-        TrackCurrentStats();
-        playerStatsUI.RefreshStatsText(this);
-    }
-
-    // We can't use StatsType via OnClick from a button UI.
-    // So we use int for choose stats : 0 = strength, 1 = agility, 2 = vitality, 3 = intellect
-    public void AddStatsPoints(int statsType)
-    {
-        if (currentStatsPoints > 0)
-        {
-            switch (statsType)
-            {
-                case 0:
-                    strength++;
-                    removableStatsPoints[0]++;
-                    break;
-                case 1:
-                    agility++;
-                    removableStatsPoints[1]++;
-                    break;
-                case 2:
-                    vitality++;
-                    removableStatsPoints[2]++;
-                    break;
-                case 3:
-                    intellect++;
-                    removableStatsPoints[3]++;
-                    break;
-                default:
-                    Debug.LogWarning("Don't know what stats to upgrade !");
-                    return;
-            }
-
-            currentStatsPoints--;
-
-            // If we're here we're sure we got playerStatsUI not null
-            playerStatsUI.RefreshStatsText(this);
-        }
-
-    }
-
-    public void RemoveStatsPoints(int statsType)
-    {
-        if (statsType == 0)
-        {
-            if (removableStatsPoints[0] > 0)
-            {
-                strength--;
-                removableStatsPoints[0]--;
-                currentStatsPoints++;
-            }
-        }
-        else if (statsType == 1)
-        {
-            if (removableStatsPoints[1] > 0)
-            {
-                agility--;
-                removableStatsPoints[1]--;
-                currentStatsPoints++;
-            }
-        }
-        else if (statsType == 2)
-        {
-            if (removableStatsPoints[2] > 0)
-            {
-                vitality--;
-                removableStatsPoints[2]--;
-                currentStatsPoints++;
-            }
-        }
-        else if (statsType == 3)
-        {
-            if (removableStatsPoints[3] > 0)
-            {
-                intellect--;
-                removableStatsPoints[3]--;
-                currentStatsPoints++;
-            }
-        }
-        else
-        {
-            Debug.LogWarning("Attention la valeur \"" + statsType + "\" n'est pas reconnu ");
-        }
-
-         // If we're here we're sure we got playerStatsUI not null
-         playerStatsUI.RefreshStatsText(this);
-        
-    }
-
-    public int getMinDamage()
-    {
-        return damageMin;
-    }
-
-    public int getMaxDamage()
-    {
-        return damageMax;
+        return currentRangedDamageMax;
     }
 
     public int getCurrentExp()
@@ -310,6 +299,21 @@ public class Player_Stats : MonoBehaviour
     public int getCurrentLevel()
     {
         return level;
+    }
+
+    public int getCurrentHealthPoints()
+    {
+        return currentHealthPoints;
+    }
+
+    public int getHealthPoints()
+    {
+        return healthPoints;
+    }
+
+    public int getArmorPoints()
+    {
+        return armor;
     }
 
     #endregion

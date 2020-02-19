@@ -8,9 +8,6 @@ using UnityEngine;
 [RequireComponent(typeof(Player_Stats))]
 public class Player_Health : MonoBehaviour
 {
-    [SerializeField] float currentHealthPoints = 100f; // To deserialize
-    [SerializeField] float vitalityMultiplier = 10f;
-
     Player_Stats playerStats;
 
     [Tooltip("Let it null if you don't want fading when damage taken.")]
@@ -20,8 +17,6 @@ public class Player_Health : MonoBehaviour
     void Start()
     {
         playerStats = GetComponent<Player_Stats>();
-
-        currentHealthPoints = playerStats.GetStatsByType(StatsType.VITALITY) * vitalityMultiplier;
     }
 
     // Update is called once per frame
@@ -61,19 +56,29 @@ public class Player_Health : MonoBehaviour
         StartCoroutine("FadeIn"); // And now reappear
     }
 
-    public void GetDamage(float amount)
+    public void GetDamage(int amount)
     {
-        currentHealthPoints -= amount;
+        int tempcurrentHealthPoints = playerStats.getCurrentHealthPoints() - amount;
 
-        if (currentHealthPoints <= 0)
+        if (tempcurrentHealthPoints <= 0) // To be sure we never got negative healthpoints
+        {
+            tempcurrentHealthPoints = 0;
+        }
+
+        playerStats.SetCurrentHealthPoints(tempcurrentHealthPoints); // Then set healthpoint
+
+        if (GetComponentInChildren<UI_Player_Stats>()) // If player take damage when he's already in the stats panel
+            GetComponentInChildren<UI_Player_Stats>().RefreshStatsDisplay();
+
+        if (playerStats.getCurrentHealthPoints() <= 0)
             Die();
-
-        if (rend)
+        else if (rend)
         {
             StartCoroutine("FadeOut");
         }
     }
 
+    // TODO Don't destroy gameobject entirely?
     public void Die()
     {
         // Pour que la caméra sur le joueur ne se detruise pas
@@ -83,10 +88,5 @@ public class Player_Health : MonoBehaviour
         }
 
         Destroy(gameObject);
-    }
-
-    public void SetHealthPoints(int amount)
-    {
-        currentHealthPoints = amount;
     }
 }
