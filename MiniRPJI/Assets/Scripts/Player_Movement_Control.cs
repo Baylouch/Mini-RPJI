@@ -10,10 +10,18 @@ using UnityEngine;
 public class Player_Movement_Control : MonoBehaviour
 {
     [SerializeField] float speed = 4;
+    [SerializeField] int maxStraffingStep = 2;
 
     Rigidbody2D myRb;
     Animator animator;
     Vector2 animatorVector; // To set X,Y values into animator
+
+    bool straffing = false;
+    float straffingResetTimer = 2f;
+    float currentStraffingResetTimer;
+    float straffingImpulsionMultiplier = 40f;
+    int currentStraffingStep = 0;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +34,9 @@ public class Player_Movement_Control : MonoBehaviour
 
     void Update()
     {
+        if (straffing)
+            return;
+
         SimpleAnimatorControl();
     }
 
@@ -70,6 +81,77 @@ public class Player_Movement_Control : MonoBehaviour
 
     void SimplePlayerMovement()
     {
+        // Process straffe movement
+        if (Input.GetKey(KeyCode.Mouse0))
+        {
+            if (!straffing) // Say we are straffing now
+                straffing = true;
+                
+            // Reset animator moving condition for not switch direction
+            if (animator.GetBool("isMoving"))
+            {
+                animator.SetBool("isMoving", false);
+            }
+
+            // First of all reset movement
+            if (myRb.velocity != Vector2.zero)
+            {
+                myRb.velocity = Vector2.zero;
+            }
+
+            if (currentStraffingStep >= maxStraffingStep) // if we did the max straffing step
+            {
+                return; // Dont continue !!!!
+            }
+
+            if (Input.GetKeyDown(KeyCode.Z))
+            {
+                myRb.velocity = new Vector2(0f, 1f) * straffingImpulsionMultiplier;
+                currentStraffingStep++;
+            }
+            else if (Input.GetKeyDown(KeyCode.S))
+            {
+                myRb.velocity = new Vector2(0f, -1f) * straffingImpulsionMultiplier;
+                currentStraffingStep++;
+            }
+            else if (Input.GetKeyDown(KeyCode.D))
+            {
+                myRb.velocity = new Vector2(1f, 0f) * straffingImpulsionMultiplier;
+                currentStraffingStep++;
+            }
+            else if (Input.GetKeyDown(KeyCode.Q))
+            {
+                myRb.velocity = new Vector2(-1f, 0f) * straffingImpulsionMultiplier;
+                currentStraffingStep++;
+            }
+
+            if (currentStraffingStep >= maxStraffingStep) // if we did the max straffing step
+            {
+                // Then reset timer before straffing again
+                currentStraffingResetTimer = straffingResetTimer;
+            }
+
+            return;
+        }
+
+        // If we're here we're not straffing anymore
+        if (straffing)
+            straffing = false;
+
+        // Use timer for reset currentStraffingStep
+        if (currentStraffingResetTimer > 0f)
+        {
+            currentStraffingResetTimer -= Time.deltaTime;
+        }
+        else
+        {
+            if (currentStraffingStep != 0)
+                currentStraffingStep = 0;
+        }
+
+
+
+        // Process normal movement
         if (Input.GetKey(KeyCode.Z))
         {
             myRb.velocity = new Vector2(0f, 1f) * speed;

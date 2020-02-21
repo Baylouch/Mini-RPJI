@@ -120,7 +120,7 @@ public class UI_Player_Stats : MonoBehaviour
         nextLevelExp.text = playerStats.getNextLevelExperience().ToString();
 
         // Health and armor panel
-        maxHealthPoints.text = playerStats.getHealthPoints().ToString();
+        maxHealthPoints.text = playerStats.getTotalHealthPoints().ToString();
         currentHealthPoints.text = playerStats.getCurrentHealthPoints().ToString();
         armor.text = playerStats.getArmorPoints().ToString();
 
@@ -165,9 +165,8 @@ public class UI_Player_Stats : MonoBehaviour
         }
         // track current stats
         playerStats.TrackCurrentStats();
-        playerStats.RefreshStats(); // important to put it before RefreshStatsDisplay for avoid text bug 
-        // refresh UI
-        RefreshStatsDisplay();
+        playerStats.RefreshStats();
+
     }
 
     public void StatsCancel()
@@ -183,12 +182,11 @@ public class UI_Player_Stats : MonoBehaviour
 
         // Reset stats as tracked
         playerStats.UseTrackForResetStats();
-        playerStats.RefreshStats();// important to put it before RefreshStatsDisplay for avoid text bug 
+        playerStats.RefreshStats();
 
-        RefreshStatsDisplay();
     }
 
-    // We can't use StatsType via OnClick from a button UI.
+    // We can't use StatsType via OnClick from a UI button.
     // So we use int for choose stats : 0 = strength, 1 = agility, 2 = vitality, 3 = intellect
     public void AddStatsPoints(int statsType)
     {
@@ -218,9 +216,8 @@ public class UI_Player_Stats : MonoBehaviour
             }
 
             playerStats.RemoveCurrentStatsPoints(1);
-            playerStats.RefreshStats();// important to put it before RefreshStatsDisplay for avoid text bug 
+            playerStats.RefreshStats();
 
-            RefreshStatsDisplay();
         }
 
     }
@@ -268,7 +265,6 @@ public class UI_Player_Stats : MonoBehaviour
             Debug.LogWarning("Attention la valeur \"" + statsType + "\" n'est pas reconnu ");
         }
 
-        playerStats.RefreshStats(); // important to put it before RefreshStatsDisplay for avoid text bug
-        RefreshStatsDisplay();
+        playerStats.RefreshStats();
     }
 }

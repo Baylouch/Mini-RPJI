@@ -7,8 +7,13 @@ using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(Collider2D))]
+[RequireComponent(typeof(AI_Health))]
 public class AI_Combat_Control : MonoBehaviour
 {
+    public float chasingDistance = 2.5f; // Used in AI_Movement_Control to know when start chasing
+    [SerializeField] float damagedChasingDistance = 10f;
+    float initialChasingDistance;
+
     // attack
     [SerializeField] private int damageMin = 10;
     [SerializeField] private int damageMax = 15;
@@ -23,23 +28,29 @@ public class AI_Combat_Control : MonoBehaviour
     [SerializeField] bool attacking = false;
 
     Animator animator;
-    Transform player;
+    Transform target;
+    AI_Health ai_health;
 
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
+        ai_health = GetComponent<AI_Health>();
+
+        target = GameObject.FindGameObjectWithTag("Player").transform; // For now we set manually target as player, to change later
+
         currentTimerBeforeAttack = timerBeforeAttack;
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        initialChasingDistance = chasingDistance;
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (player)
+        if (target)
         {
             // If player is in attack range
-            if (Vector3.Distance(transform.position, player.position) <= attackRange)
+            if (Vector3.Distance(transform.position, target.position) <= attackRange)
             {
                 if (currentTimerBeforeAttack >= 0f && !attacking) // Test timer before attack
                 {
@@ -48,7 +59,7 @@ public class AI_Combat_Control : MonoBehaviour
                 else if (!attacking) // Now attack
                 {
                     UseAttack();
-                    Player_Health playerHealth = player.gameObject.GetComponent<Player_Health>();
+                    Player_Health playerHealth = target.gameObject.GetComponent<Player_Health>();
                     if (playerHealth)
                     {
                         int currAttack = (Random.Range(damageMin, damageMax));
@@ -58,12 +69,29 @@ public class AI_Combat_Control : MonoBehaviour
                 }
             }
         }
+
+        if (ai_health.damaged) // If we're damaged we want to upgrade chasing distance
+        {
+            if (chasingDistance != damagedChasingDistance)
+            {
+                chasingDistance = damagedChasingDistance;
+            }
+        }
+        else
+        {
+            if (chasingDistance != initialChasingDistance)
+            {
+                chasingDistance = initialChasingDistance;
+            }
+        }
     }
 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, attackRange);
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, chasingDistance);
     }
 
     void UseAttack()
@@ -87,5 +115,10 @@ public class AI_Combat_Control : MonoBehaviour
         {
             attacking = false;
         }
+    }
+
+    public Transform GetTarget()
+    {
+        return target;
     }
 }

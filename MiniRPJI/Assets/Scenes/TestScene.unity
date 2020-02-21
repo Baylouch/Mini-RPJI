@@ -187,6 +187,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1248739223840106859, guid: 57a880ddc7263eb40a6ab9b1828d1812,
+        type: 3}
+      propertyPath: chasingDistance
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1248739223840106859, guid: 57a880ddc7263eb40a6ab9b1828d1812,
+        type: 3}
+      propertyPath: timerBeforeAttack
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8985749041302776340, guid: 57a880ddc7263eb40a6ab9b1828d1812,
+        type: 3}
+      propertyPath: damagedTimer
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57a880ddc7263eb40a6ab9b1828d1812, type: 3}
 --- !u!1 &13435824 stripped
@@ -295,6 +310,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9140438872542910058, guid: 6de3dbc3a52adfe4f866ead72e02a6eb,
+        type: 3}
+      propertyPath: chasingDistance
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9140438872542910058, guid: 6de3dbc3a52adfe4f866ead72e02a6eb,
+        type: 3}
+      propertyPath: timerBeforeAttack
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2743148443856352679, guid: 6de3dbc3a52adfe4f866ead72e02a6eb,
+        type: 3}
+      propertyPath: damagedTimer
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6de3dbc3a52adfe4f866ead72e02a6eb, type: 3}
@@ -445,6 +475,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1248739223840106859, guid: 57a880ddc7263eb40a6ab9b1828d1812,
+        type: 3}
+      propertyPath: chasingDistance
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1248739223840106859, guid: 57a880ddc7263eb40a6ab9b1828d1812,
+        type: 3}
+      propertyPath: timerBeforeAttack
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8985749041302776340, guid: 57a880ddc7263eb40a6ab9b1828d1812,
+        type: 3}
+      propertyPath: damagedTimer
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57a880ddc7263eb40a6ab9b1828d1812, type: 3}
 --- !u!1 &1083203602 stripped
@@ -593,6 +638,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1248739223840106859, guid: 57a880ddc7263eb40a6ab9b1828d1812,
+        type: 3}
+      propertyPath: chasingDistance
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1248739223840106859, guid: 57a880ddc7263eb40a6ab9b1828d1812,
+        type: 3}
+      propertyPath: timerBeforeAttack
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8985749041302776340, guid: 57a880ddc7263eb40a6ab9b1828d1812,
+        type: 3}
+      propertyPath: damagedTimer
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57a880ddc7263eb40a6ab9b1828d1812, type: 3}
@@ -1889,6 +1949,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1248739223840106859, guid: 57a880ddc7263eb40a6ab9b1828d1812,
+        type: 3}
+      propertyPath: chasingDistance
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1248739223840106859, guid: 57a880ddc7263eb40a6ab9b1828d1812,
+        type: 3}
+      propertyPath: timerBeforeAttack
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8985749041302776340, guid: 57a880ddc7263eb40a6ab9b1828d1812,
+        type: 3}
+      propertyPath: damagedTimer
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57a880ddc7263eb40a6ab9b1828d1812, type: 3}
 --- !u!1 &1666823962 stripped
@@ -1997,6 +2072,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9140438872542910058, guid: 6de3dbc3a52adfe4f866ead72e02a6eb,
+        type: 3}
+      propertyPath: chasingDistance
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9140438872542910058, guid: 6de3dbc3a52adfe4f866ead72e02a6eb,
+        type: 3}
+      propertyPath: timerBeforeAttack
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2743148443856352679, guid: 6de3dbc3a52adfe4f866ead72e02a6eb,
+        type: 3}
+      propertyPath: damagedTimer
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6de3dbc3a52adfe4f866ead72e02a6eb, type: 3}
@@ -6845,6 +6935,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9140438872542910058, guid: 6de3dbc3a52adfe4f866ead72e02a6eb,
+        type: 3}
+      propertyPath: chasingDistance
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9140438872542910058, guid: 6de3dbc3a52adfe4f866ead72e02a6eb,
+        type: 3}
+      propertyPath: timerBeforeAttack
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2743148443856352679, guid: 6de3dbc3a52adfe4f866ead72e02a6eb,
+        type: 3}
+      propertyPath: damagedTimer
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6de3dbc3a52adfe4f866ead72e02a6eb, type: 3}
 --- !u!1001 &2075220772739295832
@@ -6913,6 +7018,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1248739223840106859, guid: 57a880ddc7263eb40a6ab9b1828d1812,
+        type: 3}
+      propertyPath: chasingDistance
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1248739223840106859, guid: 57a880ddc7263eb40a6ab9b1828d1812,
+        type: 3}
+      propertyPath: timerBeforeAttack
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8985749041302776340, guid: 57a880ddc7263eb40a6ab9b1828d1812,
+        type: 3}
+      propertyPath: damagedTimer
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57a880ddc7263eb40a6ab9b1828d1812, type: 3}

@@ -10,6 +10,10 @@ using UnityEngine;
 [RequireComponent(typeof(Collider2D))]
 public class Player_Combat_Control : MonoBehaviour
 {
+    public bool isInCombat = false; // Set in AI_Movement_Control
+    public bool endingCombat = false; // Same as isInCombat
+    [SerializeField] float timerBeforeEndCombat = 5f;
+    float currentTimerBeforeEndCombat;
 
     [SerializeField] Transform firePoint;
     [SerializeField] GameObject projectile;
@@ -27,6 +31,24 @@ public class Player_Combat_Control : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Check if player is in combat
+        if (isInCombat)
+        {
+            if (endingCombat) // If combat is ending start ending timer
+            {
+                if (currentTimerBeforeEndCombat > 0f)
+                {
+                    currentTimerBeforeEndCombat -= Time.deltaTime;
+                }
+                else
+                {
+                    isInCombat = false;
+                    currentTimerBeforeEndCombat = timerBeforeEndCombat;
+                    endingCombat = false;
+                }
+            }
+        }
+
         if (!animator.GetBool("isAttacking"))
         {
             if (Input.GetKeyDown(KeyCode.Alpha1)) // To centralise in Player_Input.cs later
@@ -112,5 +134,10 @@ public class Player_Combat_Control : MonoBehaviour
     public void SetFirePointRotation(float newRotation)
     {
         firePoint.rotation = Quaternion.Euler(new Vector3(0f, 0f, newRotation));
+    }
+
+    public void ResetEndingCombatTimer()
+    {
+        currentTimerBeforeEndCombat = timerBeforeEndCombat;
     }
 }

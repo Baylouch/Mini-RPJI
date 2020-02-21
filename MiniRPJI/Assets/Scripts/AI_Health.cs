@@ -9,6 +9,11 @@ using UnityEngine;
 [RequireComponent(typeof(AI_Stats))] // To get healthpoints
 public class AI_Health : MonoBehaviour
 {
+    // To know when AI just took damage, then we want to upgrade his chasing distance (via AI_Combat_Control)
+    public bool damaged = false;
+    [SerializeField] float damagedTimer = 5f;
+    float currentDamagedTimer;
+
     [SerializeField] int currentHealthPoints = 100; // To deserialize
 
     [SerializeField] bool deathAnimation = false;
@@ -28,6 +33,7 @@ public class AI_Health : MonoBehaviour
         ai_stats = GetComponent<AI_Stats>();
 
         currentHealthPoints = ai_stats.GetHealthPoints();
+        currentDamagedTimer = damagedTimer;
     }
 
     // Update is called once per frame
@@ -41,9 +47,24 @@ public class AI_Health : MonoBehaviour
             {
                 Die();
             }
+            return;
+        }
+
+        if (damaged)
+        {
+            if (currentDamagedTimer > 0f)
+            {
+                currentDamagedTimer -= Time.deltaTime;
+            }
+            else
+            {
+                damaged = false;
+                currentDamagedTimer = damagedTimer;
+            }
         }
     }
 
+    #region fade coroutines
     // A FadeIn and FadeOut coroutine methods to apply on each sprite who doesnt have "TakeDamage" animation
     IEnumerator FadeIn() // Reapear
     {
@@ -74,6 +95,8 @@ public class AI_Health : MonoBehaviour
 
         StartCoroutine("FadeIn"); // And now reappear
     }
+
+    #endregion
 
     void PlayDeathAnimation()
     {
@@ -130,7 +153,11 @@ public class AI_Health : MonoBehaviour
             {
                 Die();
             }
+            return;
         }
+
+        damaged = true;
+        currentDamagedTimer = damagedTimer;
 
         if (rend)
         {

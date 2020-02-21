@@ -5409,6 +5409,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 4
+  maxStraffingStep: 2
 --- !u!114 &1328726039
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5421,6 +5422,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3af97678c698ce746bbcfcbef515e94c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isInCombat: 0
+  endingCombat: 0
+  timerBeforeEndCombat: 5
   firePoint: {fileID: 694868876}
   projectile: {fileID: 6052980135759029977, guid: 77de479917db3204cae1bd43cf852001,
     type: 3}
@@ -5442,14 +5446,16 @@ MonoBehaviour:
   currentExperience: 0
   strength: 10
   agility: 10
-  vitality: 40
+  vitality: 10
   intellect: 10
-  armor: 10
+  armor: 100
+  criticalRate: 3
+  rangedCriticalRate: 5
   damageMin: 12
   damageMax: 15
   rangedDamageMin: 5
   rangedDamageMax: 10
-  healthPoints: 100
+  totalHealthPoints: 100
 --- !u!114 &1328726041
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5462,4 +5468,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81ebcaffe0a060045926a04a5573bf66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthRegenerationTimer: 2
   rend: {fileID: 4973200689339835977}

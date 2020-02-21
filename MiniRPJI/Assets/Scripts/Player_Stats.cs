@@ -11,9 +11,9 @@ public enum StatsType { STRENGTH, AGILITY, VITALITY, INTELLECT }; // Enum pour d
 
 public class Player_Stats : MonoBehaviour
 {
-    // Think about centralize everything here, as healthpoint, armor...
 
-    [SerializeField] private UI_Player_Stats playerStatsUI;
+    public UI_Player_Stats playerStatsUI;
+
     // Experience is for now set in "Projectile.cs" and "Player_Combat_Control.cs"
     [Header("Experience")]
     [SerializeField] private int level = 1;
@@ -26,6 +26,8 @@ public class Player_Stats : MonoBehaviour
     [SerializeField] private int vitality = 10;
     [SerializeField] private int intellect = 10;
     [SerializeField] private int armor = 10;
+    [SerializeField] private float criticalRate = 3f;
+    [SerializeField] private float rangedCriticalRate = 5f;
 
     [Header("Attack")]
     [SerializeField] private int damageMin = 10;
@@ -36,7 +38,7 @@ public class Player_Stats : MonoBehaviour
     [SerializeField] private int rangedDamageMax = 10;
 
     [Header("General")]
-    [SerializeField] private int healthPoints = 100; // Total player healthpoints
+    [SerializeField] private int totalHealthPoints = 100; // Total player healthpoints
     private int baseHealthPoints = 0; // We need this base for know how much healthpoints without vitality player have (for refreshing stats)
     private int currentHealthPoints; // Player current healthpoints
 
@@ -58,10 +60,10 @@ public class Player_Stats : MonoBehaviour
     {
         statsTrack = new int[4];
         TrackCurrentStats(); // Get track of current stats at start
-        baseHealthPoints = healthPoints; // first of all before all healthpoints maths
+        baseHealthPoints = totalHealthPoints; // first of all before all healthpoints maths
 
         RefreshStats(); // refresh stats
-        SetCurrentHealthPoints(healthPoints); // Set player healthpoints
+        SetCurrentHealthPoints(totalHealthPoints); // Set player healthpoints
     }
 
     // Update is called once per frame
@@ -87,41 +89,49 @@ public class Player_Stats : MonoBehaviour
 
     void LevelUp()
     {
-        level++;
-        // Reset some stats
-        // refresh currenthealthpoints to set it to max
-        SetCurrentHealthPoints(healthPoints);
+        level++; // Add a lvl        
+
+        // Set new player stats
+        strength += 2; agility += 2; vitality += 4; intellect += 2; // See StatsBoard sheets for more information
+        damageMin += 2; damageMax += 2; rangedDamageMin += 2; rangedDamageMax += 2;
+        criticalRate += .5f; rangedCriticalRate += .5f;
+        baseHealthPoints += 10; // Basehealthpoints is used for calculation to set player total healthpoints with vitality
+
+        // Get track of the new stats
+        TrackCurrentStats();
 
         // Give 5 stats points to the player
         currentStatsPoints += 5;
-        NextLevelExperience *= 2; // Too change later
+        SetCurrentHealthPoints(totalHealthPoints); // refresh currenthealthpoints to set it to max
+        NextLevelExperience *= 2; // Set next level XP
 
-        if (playerStatsUI)
-        {
-            playerStatsUI.RefreshStatsDisplay();
-        }
+        // Refresh Stats
+        RefreshStats();
     }
 
     public void RefreshStats()
     {
         float currentDamageMultiplier = (strength / strengthDiviser);
-        Debug.Log("currentDamageMultiplier = " + currentDamageMultiplier);
-        // Then use mathf methods for got min integer and max integer for the calcul
+        // Then use mathf methods to get min integer and max integer for the calcul
         currentDamageMin = (int)Mathf.Min(damageMin + currentDamageMultiplier);
         currentDamageMax = (int)Mathf.Max(damageMax + currentDamageMultiplier);
 
         float currentRangedDamageMultiplier = (agility / agilityDiviser);
-        Debug.Log("currentRangedDamageMultiplier = " + currentDamageMultiplier);
         currentRangedDamageMin = (int)Mathf.Min(rangedDamageMin + currentRangedDamageMultiplier);
         currentRangedDamageMax = (int)Mathf.Max(rangedDamageMax + currentRangedDamageMultiplier);
 
         // Vitality maths : works if you add or remove vitality points.
-        if (baseHealthPoints + (vitality * vitalityMultiplier) != healthPoints)
+        if (baseHealthPoints + (vitality * vitalityMultiplier) != totalHealthPoints)
         {
-            healthPoints = baseHealthPoints + (vitality * vitalityMultiplier);
+            totalHealthPoints = baseHealthPoints + (vitality * vitalityMultiplier);
         }
 
         // To deal with intellect later
+
+        if (playerStatsUI)
+        {
+            playerStatsUI.RefreshStatsDisplay();
+        }
     }
 
     // Just for know what stats we got for a needed time (exemple, when player start to put new stats points before validation, if he wants to reset, he can)
@@ -131,23 +141,37 @@ public class Player_Stats : MonoBehaviour
         statsTrack[1] = GetStatsByType(StatsType.AGILITY);
         statsTrack[2] = GetStatsByType(StatsType.VITALITY);
         statsTrack[3] = GetStatsByType(StatsType.INTELLECT);
-
-        Debug.Log("current strength is : " + statsTrack[0]);
-        Debug.Log("current agility is : " + statsTrack[1]);
-        Debug.Log("current vitality is : " + statsTrack[2]);
-        Debug.Log("current intellect is : " + statsTrack[3]);
     }
 
     public int GetAttackDamage()
     {
-        int currAttack = (Random.Range(currentDamageMin, currentDamageMax));
-        return currAttack;
+        float tempCritCondition = Random.Range(0, 100);
+        if (tempCritCondition <= criticalRate) // Do critical strike
+        {
+            int criticalAttack = Mathf.RoundToInt((Random.Range(currentDamageMin, currentDamageMax) * 1.5f));
+            return criticalAttack;
+        }
+        else
+        {
+            int currAttack = (Random.Range(currentDamageMin, currentDamageMax));
+            return currAttack;
+        }
+
     }
 
     public int GetRangedAttackDamage()
     {
-        int currRangedattack = (Random.Range(currentRangedDamageMin, currentRangedDamageMax));
-        return currRangedattack;
+        float tempCritCondition = Random.Range(0, 100);
+        if (tempCritCondition <= rangedCriticalRate)
+        {
+            int criticalRangedAttack = Mathf.RoundToInt((Random.Range(currentRangedDamageMin, currentRangedDamageMax) * 1.5f));
+            return criticalRangedAttack;
+        }
+        else
+        {
+            int currRangedattack = (Random.Range(currentRangedDamageMin, currentRangedDamageMax));
+            return currRangedattack;
+        }
     }
 
     public void GetExperience(int amount)
@@ -235,7 +259,7 @@ public class Player_Stats : MonoBehaviour
                 intellect--;
                 break;
             default:
-                Debug.LogWarning("TYPE ERROR. Player_Stats.cs / + void IncrementStatsByType()");
+                Debug.LogWarning("TYPE ERROR. Player_Stats.cs / + void DecrementStatsByType()");
                 return;
         }
     }
@@ -306,9 +330,9 @@ public class Player_Stats : MonoBehaviour
         return currentHealthPoints;
     }
 
-    public int getHealthPoints()
+    public int getTotalHealthPoints()
     {
-        return healthPoints;
+        return totalHealthPoints;
     }
 
     public int getArmorPoints()
