@@ -50,7 +50,7 @@ public class UI_Player_Stats : MonoBehaviour
             removableStatsPoints[i] = 0;
         }
 
-        // We suppose we have Player_Stats in parent because UI canvas is attach to player and UI_Player_Stats is on the canvas
+        // We suppose we have Player_Stats in parent because player's UI components are children of the player's hierarchy if set correctly
         playerStats = GetComponentInParent<Player_Stats>();
 
         RefreshStatsDisplay();

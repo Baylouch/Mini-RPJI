@@ -198,7 +198,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3604732559267265575}
+      - m_Target: {fileID: 0}
         m_MethodName: AddStatsPoints
         m_Mode: 3
         m_Arguments:
@@ -330,7 +330,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3604732559267265575}
+      - m_Target: {fileID: 0}
         m_MethodName: RemoveStatsPoints
         m_Mode: 3
         m_Arguments:
@@ -462,7 +462,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3604732559267265575}
+      - m_Target: {fileID: 0}
         m_MethodName: AddStatsPoints
         m_Mode: 3
         m_Arguments:
@@ -833,7 +833,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3604732559267265575}
+      - m_Target: {fileID: 0}
         m_MethodName: StatsCancel
         m_Mode: 1
         m_Arguments:
@@ -965,7 +965,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3604732559267265575}
+      - m_Target: {fileID: 0}
         m_MethodName: StatsValidation
         m_Mode: 1
         m_Arguments:
@@ -2149,7 +2149,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3604732559267265575}
+      - m_Target: {fileID: 0}
         m_MethodName: RemoveStatsPoints
         m_Mode: 3
         m_Arguments:
@@ -2764,7 +2764,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3604732559267265575}
+      - m_Target: {fileID: 0}
         m_MethodName: RemoveStatsPoints
         m_Mode: 3
         m_Arguments:
@@ -3602,7 +3602,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3604732559267265575}
+      - m_Target: {fileID: 0}
         m_MethodName: RemoveStatsPoints
         m_Mode: 3
         m_Arguments:
@@ -4051,7 +4051,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3604732559267265575}
+      - m_Target: {fileID: 0}
         m_MethodName: AddStatsPoints
         m_Mode: 3
         m_Arguments:
@@ -4240,7 +4240,6 @@ GameObject:
   - component: {fileID: 1448748110}
   - component: {fileID: 1448748109}
   - component: {fileID: 1448748108}
-  - component: {fileID: 3604732559267265575}
   m_Layer: 5
   m_Name: Player_UI
   m_TagString: Untagged
@@ -4329,42 +4328,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &3604732559267265575
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1448748107}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c34344dc690448742abdae05705deb22, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerLevel: {fileID: 8176337}
-  currentExp: {fileID: 1253122296}
-  nextLevelExp: {fileID: 914622281}
-  maxHealthPoints: {fileID: 1669619926}
-  currentHealthPoints: {fileID: 1693774907}
-  armor: {fileID: 1151899773}
-  primaryMinAttackDamage: {fileID: 707244223}
-  primaryMaxAttackDamage: {fileID: 343762306}
-  secondaryMinAttackDamage: {fileID: 1735003024}
-  secondaryMaxAttackDamage: {fileID: 1153802543}
-  strengthStatsPoints: {fileID: 890863005}
-  agilityStatsPoints: {fileID: 2106910809}
-  vitalityStatsPoints: {fileID: 623761261}
-  intellectStatsPoints: {fileID: 930284327}
-  currentStatsPoints: {fileID: 2000234073}
-  strengthRemoveStatsButton: {fileID: 934285514}
-  agilityRemoveStatsButton: {fileID: 1190154433}
-  vitalityRemoveStatsButton: {fileID: 720933971}
-  intellectRemoveStatsButton: {fileID: 68365069}
-  strengthAddStatsButton: {fileID: 1253927356}
-  agilityAddStatsButton: {fileID: 101223706}
-  vitalityAddStatsButton: {fileID: 1695252611}
-  intellectAddStatsButton: {fileID: 23635606}
-  quitValidation: {fileID: 0}
 --- !u!1 &1484856213
 GameObject:
   m_ObjectHideFlags: 0
@@ -4879,7 +4842,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3604732559267265575}
+      - m_Target: {fileID: 0}
         m_MethodName: AddStatsPoints
         m_Mode: 3
         m_Arguments:
@@ -5440,7 +5403,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4730e9c49df7dc46a9302379d03ac8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerStatsUI: {fileID: 3604732559267265575}
+  playerStatsUI: {fileID: 0}
   level: 1
   NextLevelExperience: 200
   currentExperience: 0
@@ -5448,7 +5411,7 @@ MonoBehaviour:
   agility: 10
   vitality: 10
   intellect: 10
-  armor: 100
+  armor: 10
   criticalRate: 3
   rangedCriticalRate: 5
   damageMin: 12

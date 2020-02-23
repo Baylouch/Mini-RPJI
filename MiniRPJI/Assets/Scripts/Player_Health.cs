@@ -125,7 +125,15 @@ public class Player_Health : MonoBehaviour
 
     public void GetDamage(int amount)
     {
-        int tempcurrentHealthPoints = playerStats.getCurrentHealthPoints() - amount;
+        // For now we proceed an easy armor way. We just / by 9.9 total armor points and use it to get less damage (to change later. or not.)
+        int tempDamageAmount = Mathf.RoundToInt(amount - (playerStats.GetStatsByType(StatsType.ARMOR) / 9.9f));
+
+        if (tempDamageAmount < 0)
+        {
+            tempDamageAmount = 0;
+        }
+
+        int tempcurrentHealthPoints = playerStats.getCurrentHealthPoints() - tempDamageAmount;
 
         if (tempcurrentHealthPoints <= 0) // To be sure we never got negative healthpoints
         {

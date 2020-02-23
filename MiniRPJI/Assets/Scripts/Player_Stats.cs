@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public enum StatsType { STRENGTH, AGILITY, VITALITY, INTELLECT }; // Enum pour différencier les différentes statistiques
+public enum StatsType { STRENGTH, AGILITY, VITALITY, INTELLECT, ARMOR }; // Enum pour différencier les différentes statistiques
 
 public class Player_Stats : MonoBehaviour
 {
@@ -25,7 +25,7 @@ public class Player_Stats : MonoBehaviour
     [SerializeField] private int agility = 10;
     [SerializeField] private int vitality = 10;
     [SerializeField] private int intellect = 10;
-    [SerializeField] private int armor = 10;
+    [SerializeField] private int armor = 10; // Armor is used in Player_Health
     [SerializeField] private float criticalRate = 3f;
     [SerializeField] private float rangedCriticalRate = 5f;
 
@@ -279,6 +279,8 @@ public class Player_Stats : MonoBehaviour
                 return vitality;
             case StatsType.INTELLECT:
                 return intellect;
+            case StatsType.ARMOR:
+                return armor;
             default:
                 Debug.Log("Le type demandé n'est pas reconnu. Stats_Control.cs");
                 return -1;

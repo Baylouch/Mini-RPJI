@@ -19,7 +19,7 @@ public class Player_Movement_Control : MonoBehaviour
     bool straffing = false;
     float straffingResetTimer = 2f;
     float currentStraffingResetTimer;
-    float straffingImpulsionMultiplier = 40f;
+    float straffingImpulsionMultiplier = 70f;
     int currentStraffingStep = 0;
     
 
