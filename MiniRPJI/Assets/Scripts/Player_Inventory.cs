@@ -7,6 +7,8 @@ public enum ArmoryPart { Helm, Armor, Pants, Gloves, Boots }; // Index of parts 
 
 public class Player_Inventory : MonoBehaviour
 {
+    [SerializeField] GameObject inventoryUI;
+
     public GameObject inventorySlotInteractionsUI;
     public GameObject armorySlotIntercationsUI;
     [SerializeField] Button inventoryRemoveButton;
@@ -20,6 +22,8 @@ public class Player_Inventory : MonoBehaviour
 
     [SerializeField] InventorySlot[] inventoryItems;
 
+    Player_Stats playerStats; // MUST BE SET !! Its in parent of player
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,12 +33,40 @@ public class Player_Inventory : MonoBehaviour
         if (inventorySlotInteractionsUI.activeSelf)
             inventorySlotInteractionsUI.SetActive(false);
 
+        if (inventoryUI.activeSelf)
+            inventoryUI.SetActive(false);
+
+        playerStats = GetComponentInParent<Player_Stats>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        // TODO Centralise later ?
+        // Toggle inventoryUI
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            if (!inventoryUI.activeSelf)
+                inventoryUI.SetActive(true);
+            else
+            {
+                // We need to reset slotIntercationsUIs too
+                inventoryRemoveButton.onClick.RemoveAllListeners();
+                equipButton.onClick.RemoveAllListeners();
+                armoryRemoveButton.onClick.RemoveAllListeners();
+                unequipButton.onClick.RemoveAllListeners();
+                currentSlotIndexSet = -1;
 
+                if (armorySlotIntercationsUI.activeSelf)
+                    armorySlotIntercationsUI.SetActive(false);
+
+                if (inventorySlotInteractionsUI.activeSelf)
+                    inventorySlotInteractionsUI.SetActive(false);
+
+                inventoryUI.SetActive(false);
+            }
+                
+        }
     }
 
     // Used for now only in Equip method to clear a bit her code
@@ -54,6 +86,60 @@ public class Player_Inventory : MonoBehaviour
         }
     }
 
+    // TODO FINISH IT
+    // Method to check stats item and display them
+    void CheckItemStats(ItemConfig item)
+    {
+        if (item.strength != 0)
+        {
+            
+        }
+        if (item.agility != 0)
+        {
+            
+        }
+        if (item.vitality != 0)
+        {
+            
+        }
+        if (item.intellect != 0)
+        {
+            
+        }
+        if (item.armor != 0)
+        {
+            
+        }
+        if (item.criticalRate != 0)
+        {
+            
+        }
+        if (item.rangedCriticalRate != 0)
+        {
+            
+        }
+        if (item.damageMin != 0)
+        {
+            
+        }
+        if (item.damageMax != 0)
+        {
+            
+        }
+        if (item.rangedDamageMin != 0)
+        {
+            
+        }
+        if (item.rangedDamageMax != 0)
+        {
+            
+        }
+        if (item.healthpoints != 0)
+        {
+            
+        }
+    }
+
     // False = slots available, true = full
     public bool CheckInventoryIsFull()
     {
@@ -65,33 +151,6 @@ public class Player_Inventory : MonoBehaviour
         // If we're here inventory got no more space
         Debug.Log("No more available slot in Inventory !");
         return true;
-    }
-
-    public void PutNewItem(ItemConfig item)
-    {
-        // Find the first available slot to put item
-        for (int i = 0; i < inventoryItems.Length; i++)
-        {
-            if (inventoryItems[i].item == null)
-            {
-                // set new item in inventory
-                inventoryItems[i].item = item;
-                RefreshInventory();
-                return; // Get out of there
-            }
-        }
-    }
-
-    // To remove and spawn item by inventory index
-    public void RemoveItem(int itemIndex)
-    {
-        if (inventoryItems[itemIndex].item != null)
-        {
-            Instantiate(inventoryItems[itemIndex].item.itemPrefab, GameObject.FindGameObjectWithTag("Player").transform.position, Quaternion.identity);
-            inventoryItems[itemIndex].item = null;
-            RefreshInventory();
-            SetCurrentInventorySlotInteractions(itemIndex);
-        }
     }
 
     // Used on "OnClick" method of every InventorySlot to set button right slot index
@@ -110,7 +169,7 @@ public class Player_Inventory : MonoBehaviour
             if (!inventorySlotInteractionsUI.activeSelf)
                 inventorySlotInteractionsUI.SetActive(true);
         }
-        else // If its equal, player clicked on same item so we want to unshow slotIntercationsUI and reset buttons
+        else // If its equal, player clicked on the same item so we want to unshow slotIntercationsUI and reset buttons
         {
             inventoryRemoveButton.onClick.RemoveAllListeners();
             equipButton.onClick.RemoveAllListeners();
@@ -141,17 +200,48 @@ public class Player_Inventory : MonoBehaviour
             armorySlotIntercationsUI.SetActive(false);
     }
 
+    public void PutNewItem(ItemConfig item)
+    {
+        // Find the first available slot to put item
+        for (int i = 0; i < inventoryItems.Length; i++)
+        {
+            if (inventoryItems[i].item == null)
+            {
+                // set new item in inventory
+                inventoryItems[i].item = item;
+                RefreshInventory();
+                return; // Get out of there
+            }
+        }
+    }
+
+    // To remove and spawn item by inventory index
+    public void RemoveItem(int itemIndex)
+    {
+        if (inventoryItems[itemIndex].item != null)
+        {
+            Instantiate(inventoryItems[itemIndex].item.itemPrefab, GameObject.FindGameObjectWithTag("Player").transform.position, Quaternion.identity);
+            inventoryItems[itemIndex].item = null;
+            RefreshInventory();
+            SetCurrentInventorySlotInteractions(itemIndex);
+        }
+    }
+
     // For remove and spawn item via Armory
     public void RemoveArmoryItem(ItemConfig item)
     {
         for (int i = 0; i < armoryItems.Length; i++)
         {
-            if (armoryItems[i].item.armoryPart == item.armoryPart)
+            if (armoryItems[i].armoryPart == item.armoryPart)
             {
-                Instantiate(item.itemPrefab, GameObject.FindGameObjectWithTag("Player").transform.position, Quaternion.identity);
-                armoryItems[i].item = null;
-                armoryItems[i].RefreshSlot();
-                return;
+                if (armoryItems[i].item != null)
+                {
+                    Instantiate(item.itemPrefab, GameObject.FindGameObjectWithTag("Player").transform.position, Quaternion.identity);
+                    armoryItems[i].item = null;
+                    armoryItems[i].RefreshSlot();
+                    playerStats.RemoveItemStats(item); 
+                    break;
+                }
             }
         }
 
@@ -170,18 +260,14 @@ public class Player_Inventory : MonoBehaviour
                 // Set ArmorySlot
                 if (armoryItems[i].item != null) // If current slot isn't empty, then switch item
                 {
-                    if (!CheckInventoryIsFull()) // If inventory isn't full put current slot item in
-                    {
-                        PutNewItem(armoryItems[i].item);
-                    }
-                    else // Else remove it
-                    {
-                        RemoveArmoryItem(armoryItems[i].item);
-                    }
+                    // Keep a track of current item on the slot (too put it on the same place in inventory of the new object)
+                    ItemConfig tempItemOnSlot = armoryItems[i].item;
                     // Then equip wanted item
                     armoryItems[i].item = item;
                     // And remove it from inventory (dont use RemoveItem(int) method because of instanciation)
                     ClearInventoryCurrentSlot();
+                    // Then put tempItemOnSlot in inventory
+                    PutNewItem(tempItemOnSlot);
                 }
                 else
                 {
@@ -192,6 +278,7 @@ public class Player_Inventory : MonoBehaviour
                     ClearInventoryCurrentSlot();
                 }
                 armoryItems[i].RefreshSlot();
+                playerStats.ApplyItemStats(item);
                 return;
             }
         }
@@ -209,10 +296,12 @@ public class Player_Inventory : MonoBehaviour
                     {
                         PutNewItem(armoryItems[i].item);
                         armoryItems[i].item = null;
+                        playerStats.RemoveItemStats(item);
                     }
                     else // Else you can only remove it.
                     {
                         Debug.Log("No more slots in inventory !!!!");
+                        return;
                     }
                 }
                 else
@@ -225,8 +314,6 @@ public class Player_Inventory : MonoBehaviour
                 if (armorySlotIntercationsUI.activeSelf)
                     armorySlotIntercationsUI.SetActive(false);
             }
-
-
         }
     }
 }

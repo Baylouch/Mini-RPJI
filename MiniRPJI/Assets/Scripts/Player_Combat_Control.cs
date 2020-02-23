@@ -84,7 +84,7 @@ public class Player_Combat_Control : MonoBehaviour
                 if (collision.gameObject.GetComponent<AI_Health>())
                 {
                     AI_Health enemyHealth = collision.gameObject.GetComponent<AI_Health>();
-                    enemyHealth.GetDamage(playerStats.GetAttackDamage());
+                    enemyHealth.GetDamage(GetAttackDamage());
 
                     // If we kill the enemy
                     if (enemyHealth.IsDead())
@@ -99,6 +99,37 @@ public class Player_Combat_Control : MonoBehaviour
                     }
                 }
             }
+        }
+    }
+
+    int GetAttackDamage()
+    {
+        float tempCritCondition = Random.Range(0, 100);
+        if (tempCritCondition <= playerStats.getCriticalRate()) // Do critical strike
+        {
+            int criticalAttack = Mathf.RoundToInt((Random.Range(playerStats.getCurrentMinDamage(), playerStats.getCurrentMaxDamage()) * 1.5f));
+            return criticalAttack;
+        }
+        else
+        {
+            int currAttack = (Random.Range(playerStats.getCurrentMinDamage(), playerStats.getCurrentMaxDamage()));
+            return currAttack;
+        }
+
+    }
+
+    int GetRangedAttackDamage()
+    {
+        float tempCritCondition = Random.Range(0, 100);
+        if (tempCritCondition <= playerStats.getRangedCriticalRate())
+        {
+            int criticalRangedAttack = Mathf.RoundToInt((Random.Range(playerStats.getCurrentRangedMinDamage(), playerStats.getCurrentRangedMaxDamage()) * 1.5f));
+            return criticalRangedAttack;
+        }
+        else
+        {
+            int currRangedattack = (Random.Range(playerStats.getCurrentRangedMinDamage(), playerStats.getCurrentRangedMaxDamage()));
+            return currRangedattack;
         }
     }
 
@@ -127,7 +158,7 @@ public class Player_Combat_Control : MonoBehaviour
             return; // There is a bug here or a miss by game master. Every projectile must have Projectile.cs attach
 
         currentProjectileComponent.playerStats = this.playerStats;
-        currentProjectileComponent.projectileDamage = playerStats.GetRangedAttackDamage();
+        currentProjectileComponent.projectileDamage = GetRangedAttackDamage();
     }
 
     // Use for set firepoint rotation depending of player's movement (as animation's event)

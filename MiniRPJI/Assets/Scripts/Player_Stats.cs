@@ -126,7 +126,7 @@ public class Player_Stats : MonoBehaviour
             totalHealthPoints = baseHealthPoints + (vitality * vitalityMultiplier);
         }
 
-        // To deal with intellect later
+        // TODO deal with intellect later
 
         if (playerStatsUI)
         {
@@ -141,37 +141,6 @@ public class Player_Stats : MonoBehaviour
         statsTrack[1] = GetStatsByType(StatsType.AGILITY);
         statsTrack[2] = GetStatsByType(StatsType.VITALITY);
         statsTrack[3] = GetStatsByType(StatsType.INTELLECT);
-    }
-
-    public int GetAttackDamage()
-    {
-        float tempCritCondition = Random.Range(0, 100);
-        if (tempCritCondition <= criticalRate) // Do critical strike
-        {
-            int criticalAttack = Mathf.RoundToInt((Random.Range(currentDamageMin, currentDamageMax) * 1.5f));
-            return criticalAttack;
-        }
-        else
-        {
-            int currAttack = (Random.Range(currentDamageMin, currentDamageMax));
-            return currAttack;
-        }
-
-    }
-
-    public int GetRangedAttackDamage()
-    {
-        float tempCritCondition = Random.Range(0, 100);
-        if (tempCritCondition <= rangedCriticalRate)
-        {
-            int criticalRangedAttack = Mathf.RoundToInt((Random.Range(currentRangedDamageMin, currentRangedDamageMax) * 1.5f));
-            return criticalRangedAttack;
-        }
-        else
-        {
-            int currRangedattack = (Random.Range(currentRangedDamageMin, currentRangedDamageMax));
-            return currRangedattack;
-        }
     }
 
     public void GetExperience(int amount)
@@ -191,6 +160,121 @@ public class Player_Stats : MonoBehaviour
                 playerStatsUI.RefreshStatsDisplay();
             }
         }
+    }
+
+    // Methods used in Player_Inventory to modify stats by armory item
+    public void ApplyItemStats(ItemConfig item)
+    {
+        if (item.strength != 0)
+        {
+            strength += item.strength;
+        }
+        if (item.agility != 0)
+        {
+            agility += item.agility;
+        }
+        if (item.vitality != 0)
+        {
+            vitality += item.vitality;
+        }
+        if (item.intellect != 0)
+        {
+            intellect += item.intellect;
+        }
+        if (item.armor != 0)
+        {
+            armor += item.armor;
+        }
+        if (item.criticalRate != 0)
+        {
+            criticalRate += item.criticalRate;
+        }
+        if (item.rangedCriticalRate != 0)
+        {
+            rangedCriticalRate += item.rangedCriticalRate;
+        }
+        if (item.damageMin != 0)
+        {
+            damageMin += item.damageMin;
+        }
+        if (item.damageMax != 0)
+        {
+            damageMax += item.damageMax;
+        }
+        if (item.rangedDamageMin != 0)
+        {
+            rangedDamageMin += item.rangedDamageMin;
+        }
+        if (item.rangedDamageMax != 0)
+        {
+            rangedDamageMax += item.rangedDamageMax;
+        }
+        if (item.healthpoints != 0)
+        {
+            baseHealthPoints += item.healthpoints;
+        }
+
+        // Get track of the new stats
+        TrackCurrentStats();
+
+        RefreshStats();
+    }
+
+    public void RemoveItemStats(ItemConfig item)
+    {
+        if (item.strength != 0)
+        {
+            strength -= item.strength;
+        }
+        if (item.agility != 0)
+        {
+            agility -= item.agility;
+        }
+        if (item.vitality != 0)
+        {
+            vitality -= item.vitality;
+        }
+        if (item.intellect != 0)
+        {
+            intellect -= item.intellect;
+        }
+        if (item.armor != 0)
+        {
+            armor -= item.armor;
+        }
+        if (item.criticalRate != 0)
+        {
+            criticalRate -= item.criticalRate;
+        }
+        if (item.rangedCriticalRate != 0)
+        {
+            rangedCriticalRate -= item.rangedCriticalRate;
+        }
+        if (item.damageMin != 0)
+        {
+            damageMin -= item.damageMin;
+        }
+        if (item.damageMax != 0)
+        {
+            damageMax -= item.damageMax;
+        }
+        if (item.rangedDamageMin != 0)
+        {
+            rangedDamageMin -= item.rangedDamageMin;
+        }
+        if (item.rangedDamageMax != 0)
+        {
+            rangedDamageMax -= item.rangedDamageMax;
+        }
+        if (item.healthpoints != 0)
+        {
+            baseHealthPoints -= item.healthpoints;
+        }
+
+        // Get track of the new stats
+        TrackCurrentStats();
+
+        RefreshStats();
     }
 
     // Method use in Player_Health (its the way player taking damage)
@@ -213,7 +297,7 @@ public class Player_Stats : MonoBehaviour
 
     public void UseTrackForResetStats()
     {
-        // Reset stats as tracked
+        // Reset stats as tracked ones
         strength = statsTrack[0];
         agility = statsTrack[1];
         vitality = statsTrack[2];
@@ -342,5 +426,14 @@ public class Player_Stats : MonoBehaviour
         return armor;
     }
 
+    public float getCriticalRate()
+    {
+        return criticalRate;
+    }
+    
+    public float getRangedCriticalRate()
+    {
+        return rangedCriticalRate;
+    }
     #endregion
 }

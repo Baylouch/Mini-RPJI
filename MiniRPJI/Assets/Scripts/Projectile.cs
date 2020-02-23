@@ -10,7 +10,7 @@ public class Projectile : MonoBehaviour
     public int projectileDamage = 5;
     [SerializeField] float projectileSpeed = 5f;
 
-    [SerializeField] float timerBeforeDestroy = 5f;
+    [SerializeField] float timerBeforeDestroy = 3f;
 
     // If its a player's projectile we need to know about Stats_Control to give xp when this projectile make a kill
     [HideInInspector]

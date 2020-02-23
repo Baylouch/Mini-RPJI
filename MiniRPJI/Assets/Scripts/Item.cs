@@ -10,7 +10,6 @@ public class Item : Interactable
     // TODO, show player item stats via UI, then on this UI ask player if he want take this
     public override void Interact()
     {
-        itemConfig.CheckItemStats();
         // Put item in inventory player
         Player_Inventory player_Inventory = FindObjectOfType<Player_Inventory>(); // TODO Change this for a more secure and relative to interacted player way
         if (player_Inventory)

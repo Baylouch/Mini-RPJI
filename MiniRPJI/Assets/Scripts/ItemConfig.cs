@@ -36,7 +36,7 @@ public class ItemConfig : ScriptableObject
     public int agilityRequired;
 
     // Method for check every stats from itemConfig for know what's item stats upgrade
-    public void CheckItemStats()
+    void OldCheckItemStats()
     {
         if (strength != 0)
         {
