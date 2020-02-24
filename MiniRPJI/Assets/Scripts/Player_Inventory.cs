@@ -4,9 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public enum ArmoryPart { Helm, Armor, Pants, Gloves, Boots }; // Index of parts are same in armoryItems
+public enum ItemRarety { Common, Uncommon, Rare, Epic, Legendary }; // All items rarety
 
 public class Player_Inventory : MonoBehaviour
 {
+    // TODO think about move UI things into a new script ? Player_Inventory_UI.cs ??
     [SerializeField] GameObject inventoryUI;
 
     public GameObject inventorySlotInteractionsUI;
@@ -16,7 +18,16 @@ public class Player_Inventory : MonoBehaviour
     [SerializeField] Button equipButton;
     [SerializeField] Button unequipButton;
 
-    int currentSlotIndexSet = -1; // Important to set it -1 because inventory index starts at 0
+    // To display item's stats
+    [SerializeField] GameObject statsItemPanel; // This gameobject prefab must be set 0 width and 0 height on his rectTransform 
+    [SerializeField] GameObject itemName; // Automatictly scaled by Vertical Layout group on statsItemPanel
+    [SerializeField] GameObject statsNameAndPoints; // Same as itemName
+    // statsItemPanel will contains all others UI elements who display item's stats. this is rect of current statsItemPanel display
+    // so just destroy gameobject attach to statsBackgroundPanelRect to remove stats display
+    RectTransform statsBackgroundPanelRect; // To set hierarchy and item's stats stuff
+
+    int currentInventorySlotIndex = -1; // Important to set it -1 because inventory index starts at 0
+    int currentArmorySlotIndex = -1; 
 
     [SerializeField] ArmorySlot[] armoryItems;
 
@@ -55,7 +66,7 @@ public class Player_Inventory : MonoBehaviour
                 equipButton.onClick.RemoveAllListeners();
                 armoryRemoveButton.onClick.RemoveAllListeners();
                 unequipButton.onClick.RemoveAllListeners();
-                currentSlotIndexSet = -1;
+                currentInventorySlotIndex = -1;
 
                 if (armorySlotIntercationsUI.activeSelf)
                     armorySlotIntercationsUI.SetActive(false);
@@ -63,18 +74,22 @@ public class Player_Inventory : MonoBehaviour
                 if (inventorySlotInteractionsUI.activeSelf)
                     inventorySlotInteractionsUI.SetActive(false);
 
+                if (statsBackgroundPanelRect)
+                {
+                    Destroy(statsBackgroundPanelRect.gameObject);
+                }
+
                 inventoryUI.SetActive(false);
-            }
-                
+            }              
         }
     }
 
     // Used for now only in Equip method to clear a bit her code
     void ClearInventoryCurrentSlot()
     {
-        inventoryItems[currentSlotIndexSet].item = null;
+        inventoryItems[currentInventorySlotIndex].item = null;
         RefreshInventory();
-        SetCurrentInventorySlotInteractions(currentSlotIndexSet);
+        SetCurrentInventorySlotInteractions(currentInventorySlotIndex);
     }
 
     void RefreshInventory()
@@ -86,57 +101,148 @@ public class Player_Inventory : MonoBehaviour
         }
     }
 
-    // TODO FINISH IT
-    // Method to check stats item and display them
-    void CheckItemStats(ItemConfig item)
+    // Method to create new Text element in DisplayItemStats(ItemConfig)
+    void CreateItemStatsText(string statsName, float statsPoints)
     {
+        GameObject _statsText = Instantiate(statsNameAndPoints); // Instatiate text element prefab
+        // Check if statsPoints is > or < to 0 for set green or red text
+        if (statsPoints > 0)
+        {
+            _statsText.GetComponent<Text>().text = statsName + ": " + "<color=green>" + statsPoints + "</color>"; // Set text with greend pts
+        }
+        else
+        {
+            _statsText.GetComponent<Text>().text = statsName + ": " + "<color=red>" + statsPoints + "</color>"; // Set text with red pts
+        }
+
+        _statsText.transform.SetParent(statsBackgroundPanelRect.transform); // Set hierarchy
+        _statsText.GetComponent<RectTransform>().localScale = Vector3.one; // Reset scale (idk why but without scale do weird things)
+        // Add 30 to the height of the panel for each new element
+        statsBackgroundPanelRect.sizeDelta = new Vector2(statsBackgroundPanelRect.sizeDelta.x, statsBackgroundPanelRect.sizeDelta.y + 30); 
+    }
+
+    // Method to display item stats on UI (used on buttons configurations methods)
+    void DisplayItemStats(ItemConfig item)
+    {
+        // First of all, instantiate statsItemPanel
+        GameObject statsBackgroundPanel = Instantiate(statsItemPanel); // Create background panel
+        statsBackgroundPanelRect = statsBackgroundPanel.GetComponent<RectTransform>(); // Get current rectransform
+        statsBackgroundPanel.transform.SetParent(this.transform.parent); // Set background panel hierarchy
+        statsBackgroundPanel.GetComponent<RectTransform>().localScale = Vector3.one; // Reset scale
+
+        // Second add item name text and set it
+        GameObject itemName = Instantiate(this.itemName); // Create item name text
+        Text itemNameText = itemName.GetComponent<Text>();
+        // Switch on every rarety to set correct color on item name
+        switch (item.rarety) {
+            case ItemRarety.Common:
+                itemNameText.color = Color.white;
+                break;
+            case ItemRarety.Uncommon:
+                itemNameText.color = Color.blue;
+                break;
+            case ItemRarety.Rare:
+                itemNameText.color = Color.yellow;
+                break;
+            case ItemRarety.Epic:
+                itemNameText.color = Color.magenta;
+                break;
+            case ItemRarety.Legendary:
+                itemNameText.color = Color.cyan; // TODO modify
+                break;
+        }
+        itemName.GetComponent<Text>().text = item.name; // Set item name text
+        itemName.transform.SetParent(statsBackgroundPanel.transform); // Set item name text hierarchy
+        itemName.GetComponent<RectTransform>().localScale = Vector3.one;
+        // Add 50 to panel's height
+        statsBackgroundPanelRect.sizeDelta = new Vector2(statsBackgroundPanelRect.sizeDelta.x, statsBackgroundPanelRect.sizeDelta.y + 30); 
+
+        // Stats are tested in order we want to display them
+
+        if (item.damageMin != 0) // We only check damageMin and rangedDamageMin. If min is set max must be set /!!!!!\ 
+        {
+            GameObject _damageText = Instantiate(statsNameAndPoints);                                                                 
+            if (item.damageMin > 0)
+            {
+                _damageText.GetComponent<Text>().text = "Degats: <color=green>" + item.damageMin + "</color> - <color=green>" + item.damageMax + "</color>"; 
+            }
+            else
+            {
+                _damageText.GetComponent<Text>().text = "Degats: <color=red>" + item.damageMin + "</color> - <color=red>" + item.damageMax + "</color>";
+            }
+            _damageText.transform.SetParent(statsBackgroundPanelRect.transform);
+            _damageText.GetComponent<RectTransform>().localScale = Vector3.one;
+            statsBackgroundPanelRect.sizeDelta = new Vector2(statsBackgroundPanelRect.sizeDelta.x, statsBackgroundPanelRect.sizeDelta.y + 30);
+        }
+        if (item.rangedDamageMin != 0)
+        {
+            GameObject _rangedDamageText = Instantiate(statsNameAndPoints);
+            if (item.rangedDamageMin > 0)
+            {
+                _rangedDamageText.GetComponent<Text>().text = "Dist. Dgt: <color=green>" + item.rangedDamageMin + "</color> - <color=green>" + item.rangedDamageMax + "</color>";
+            }
+            else
+            {
+                _rangedDamageText.GetComponent<Text>().text = "Dist. Dgt: <color=red>" + item.rangedDamageMin + "</color> - <color=red>" + item.rangedDamageMax + "</color>";
+            }
+            _rangedDamageText.transform.SetParent(statsBackgroundPanelRect.transform);
+            _rangedDamageText.GetComponent<RectTransform>().localScale = Vector3.one;
+            statsBackgroundPanelRect.sizeDelta = new Vector2(statsBackgroundPanelRect.sizeDelta.x, statsBackgroundPanelRect.sizeDelta.y + 30);
+        }
+        if (item.healthpoints != 0)
+        {
+            CreateItemStatsText("Vie", item.healthpoints);
+        }
+        if (item.armor != 0)
+        {
+            CreateItemStatsText("Armure", item.armor);
+        }
         if (item.strength != 0)
         {
+            CreateItemStatsText("Force", item.strength);
             
         }
         if (item.agility != 0)
         {
-            
+            CreateItemStatsText("Agilité", item.agility);
         }
         if (item.vitality != 0)
         {
-            
+            CreateItemStatsText("Vitalité", item.vitality);
         }
         if (item.intellect != 0)
         {
-            
-        }
-        if (item.armor != 0)
-        {
-            
+            CreateItemStatsText("Intellect", item.intellect);
         }
         if (item.criticalRate != 0)
         {
-            
+            GameObject _criticalRateText = Instantiate(statsNameAndPoints);
+            if (item.criticalRate > 0)
+            {
+                _criticalRateText.GetComponent<Text>().text = "Crit: <color=green>" + item.criticalRate + "</color>%";
+            }
+            else
+            {
+                _criticalRateText.GetComponent<Text>().text = "Crit: <color=red>" + item.criticalRate + "</color>%";
+            }
+            _criticalRateText.transform.SetParent(statsBackgroundPanelRect.transform);
+            _criticalRateText.GetComponent<RectTransform>().localScale = Vector3.one;
+            statsBackgroundPanelRect.sizeDelta = new Vector2(statsBackgroundPanelRect.sizeDelta.x, statsBackgroundPanelRect.sizeDelta.y + 30);
         }
         if (item.rangedCriticalRate != 0)
         {
-            
-        }
-        if (item.damageMin != 0)
-        {
-            
-        }
-        if (item.damageMax != 0)
-        {
-            
-        }
-        if (item.rangedDamageMin != 0)
-        {
-            
-        }
-        if (item.rangedDamageMax != 0)
-        {
-            
-        }
-        if (item.healthpoints != 0)
-        {
-            
+            GameObject _rangedCriticalRateText = Instantiate(statsNameAndPoints);
+            if (item.rangedCriticalRate > 0)
+            {
+                _rangedCriticalRateText.GetComponent<Text>().text = "Dist. Crit: <color=green>" + item.rangedCriticalRate + "</color>%";
+            }
+            else
+            {
+                _rangedCriticalRateText.GetComponent<Text>().text = "Dist. Crit: <color=red>" + item.rangedCriticalRate + "</color>%";
+            }
+            _rangedCriticalRateText.transform.SetParent(statsBackgroundPanelRect.transform);
+            _rangedCriticalRateText.GetComponent<RectTransform>().localScale = Vector3.one;
+            statsBackgroundPanelRect.sizeDelta = new Vector2(statsBackgroundPanelRect.sizeDelta.x, statsBackgroundPanelRect.sizeDelta.y + 30);
         }
     }
 
@@ -156,48 +262,102 @@ public class Player_Inventory : MonoBehaviour
     // Used on "OnClick" method of every InventorySlot to set button right slot index
     public void SetCurrentInventorySlotInteractions(int indexSlot)
     {
-        if (currentSlotIndexSet != indexSlot)
+        if (currentInventorySlotIndex != indexSlot)
         {
-            inventoryRemoveButton.onClick.RemoveAllListeners(); // Remove previous listeners
-            inventoryRemoveButton.onClick.AddListener(() => RemoveItem(indexSlot)); //  add right method with right index
-
+            // Remove previous listeners
+            armoryRemoveButton.onClick.RemoveAllListeners();
+            unequipButton.onClick.RemoveAllListeners();
+            inventoryRemoveButton.onClick.RemoveAllListeners();
             equipButton.onClick.RemoveAllListeners();
+            //  add right method with right index
+            inventoryRemoveButton.onClick.AddListener(() => RemoveItem(indexSlot));  
             equipButton.onClick.AddListener(() => EquipItem(inventoryItems[indexSlot].item));
 
-            currentSlotIndexSet = indexSlot;
+            currentInventorySlotIndex = indexSlot;
+            currentArmorySlotIndex = -1;
 
             if (!inventorySlotInteractionsUI.activeSelf)
                 inventorySlotInteractionsUI.SetActive(true);
+            if (armorySlotIntercationsUI.activeSelf)
+                armorySlotIntercationsUI.SetActive(false);
+
+            // If we are not displaying yet
+            if (!statsBackgroundPanelRect)
+            {
+                // Display item stats
+                DisplayItemStats(inventoryItems[indexSlot].item);
+            }
+            else // Else we need to destroy before display. Because player want to see another item's stats
+            {
+                Destroy(statsBackgroundPanelRect.gameObject);
+                DisplayItemStats(inventoryItems[indexSlot].item);
+            }
+
         }
         else // If its equal, player clicked on the same item so we want to unshow slotIntercationsUI and reset buttons
         {
             inventoryRemoveButton.onClick.RemoveAllListeners();
             equipButton.onClick.RemoveAllListeners();
 
-            currentSlotIndexSet = -1;
+            currentInventorySlotIndex = -1;
 
             if (inventorySlotInteractionsUI.activeSelf)
                 inventorySlotInteractionsUI.SetActive(false);
+
+            if (statsBackgroundPanelRect)
+            {
+                Destroy(statsBackgroundPanelRect.gameObject);
+            }
         }
     }
 
     // Used on "OnClick" method of every ArmorySlot to set right armory item
     public void SetCurrentArmorySlotInteractions(int indexPart) // Ref to ArmoryPart for know number of each part
     {
-        armoryRemoveButton.onClick.RemoveAllListeners();
-        unequipButton.onClick.RemoveAllListeners();
-
-        if (armoryItems[indexPart].item != null)
+        if (currentArmorySlotIndex != indexPart)
         {
+            inventoryRemoveButton.onClick.RemoveAllListeners();
+            equipButton.onClick.RemoveAllListeners();
+            armoryRemoveButton.onClick.RemoveAllListeners();
+            unequipButton.onClick.RemoveAllListeners();
+
             armoryRemoveButton.onClick.AddListener(() => RemoveArmoryItem(armoryItems[indexPart].item));
             unequipButton.onClick.AddListener(() => UnequipItem(armoryItems[indexPart].item));
-        }
-        
 
-        if (!armorySlotIntercationsUI.activeSelf)
-            armorySlotIntercationsUI.SetActive(true);
-        else
-            armorySlotIntercationsUI.SetActive(false);
+            currentArmorySlotIndex = indexPart;
+
+            if (inventorySlotInteractionsUI.activeSelf)
+                inventorySlotInteractionsUI.SetActive(false);
+            if (!armorySlotIntercationsUI.activeSelf)
+                armorySlotIntercationsUI.SetActive(true);
+
+            // If we are not displaying yet
+            if (!statsBackgroundPanelRect)
+            {
+                // Display item stats
+                DisplayItemStats(armoryItems[indexPart].item);
+            }
+            else // Else we need to destroy before display. Because player want to see another item's stats
+            {
+                Destroy(statsBackgroundPanelRect.gameObject);
+                DisplayItemStats(armoryItems[indexPart].item);
+            }
+        }
+        else // If its equal, player clicked on the same item so we want to unshow slotIntercationsUI and reset buttons
+        {
+            armoryRemoveButton.onClick.RemoveAllListeners();
+            unequipButton.onClick.RemoveAllListeners();
+
+            currentArmorySlotIndex = -1;
+
+            if (armorySlotIntercationsUI.activeSelf)
+                armorySlotIntercationsUI.SetActive(false);
+
+            if (statsBackgroundPanelRect)
+            {
+                Destroy(statsBackgroundPanelRect.gameObject);
+            }
+        }            
     }
 
     public void PutNewItem(ItemConfig item)
@@ -224,6 +384,10 @@ public class Player_Inventory : MonoBehaviour
             inventoryItems[itemIndex].item = null;
             RefreshInventory();
             SetCurrentInventorySlotInteractions(itemIndex);
+            if (statsBackgroundPanelRect)
+            {
+                Destroy(statsBackgroundPanelRect.gameObject);
+            }
         }
     }
 
@@ -248,6 +412,11 @@ public class Player_Inventory : MonoBehaviour
         // If we dont disable gameobject here, error will happened because player still can click on "remove" and will get error
         if (armorySlotIntercationsUI.activeSelf)
             armorySlotIntercationsUI.SetActive(false);
+
+        if (statsBackgroundPanelRect)
+        {
+            Destroy(statsBackgroundPanelRect.gameObject);
+        }
     }
 
     // TODO find how to set armory button UI
@@ -268,6 +437,8 @@ public class Player_Inventory : MonoBehaviour
                     ClearInventoryCurrentSlot();
                     // Then put tempItemOnSlot in inventory
                     PutNewItem(tempItemOnSlot);
+                    // Dont forget to remove old item's stats
+                    playerStats.RemoveItemStats(tempItemOnSlot);
                 }
                 else
                 {
@@ -313,6 +484,10 @@ public class Player_Inventory : MonoBehaviour
                 // If we dont disable gameobject here, error will happened because player still can click on "remove" and will get error
                 if (armorySlotIntercationsUI.activeSelf)
                     armorySlotIntercationsUI.SetActive(false);
+                if (statsBackgroundPanelRect)
+                {
+                    Destroy(statsBackgroundPanelRect.gameObject);
+                }
             }
         }
     }

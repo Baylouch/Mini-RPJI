@@ -14,6 +14,7 @@ public class ItemConfig : ScriptableObject
     public GameObject itemPrefab;
     public Sprite inventoryImage;
     public ArmoryPart armoryPart;
+    public ItemRarety rarety;
 
     public int strength;
     public int agility;
