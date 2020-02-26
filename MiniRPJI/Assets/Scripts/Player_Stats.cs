@@ -17,7 +17,7 @@ public class Player_Stats : MonoBehaviour
     // Experience is for now set in "Projectile.cs" and "Player_Combat_Control.cs"
     [Header("Experience")]
     [SerializeField] private int level = 1;
-    [SerializeField] private int NextLevelExperience = 200;
+    [SerializeField] private int totalLevelExp = 200;
     [SerializeField] private int currentExperience = 0;
 
     [Header("Statistiques")]
@@ -39,8 +39,11 @@ public class Player_Stats : MonoBehaviour
 
     [Header("General")]
     [SerializeField] private int totalHealthPoints = 100; // Total player healthpoints
+    [SerializeField] private int totalManaPoints = 100;
     private int baseHealthPoints = 0; // We need this base for know how much healthpoints without vitality player have (for refreshing stats)
     private int currentHealthPoints; // Player current healthpoints
+    private int baseManaPoints = 0;
+    private int currentManaPoints;
 
     private int[] statsTrack; // To keep a track from previous stats when player is upgrading. Usefull until player's validation
     private int currentStatsPoints = 0;
@@ -52,8 +55,8 @@ public class Player_Stats : MonoBehaviour
 
     private float strengthDiviser = .8f; // .8 Seems good for all numbers to calculation (strength / strengthDiviser)
     private float agilityDiviser = .87f; // .87 Seems good for all numbers to calculation (agility / agilityDiviser)
-    private int vitalityMultiplier = 2;
-    private float intellectMultiplier = 2;
+    private float vitalityMultiplier = 2;
+    private float intellectMultiplier = 1.5f;
 
     // Start is called before the first frame update
     void Start()
@@ -61,9 +64,11 @@ public class Player_Stats : MonoBehaviour
         statsTrack = new int[4];
         TrackCurrentStats(); // Get track of current stats at start
         baseHealthPoints = totalHealthPoints; // first of all before all healthpoints maths
+        baseManaPoints = totalManaPoints;
 
         RefreshStats(); // refresh stats
         SetCurrentHealthPoints(totalHealthPoints); // Set player healthpoints
+        SetCurrentManaPoints(totalManaPoints);
     }
 
     // Update is called once per frame
@@ -96,6 +101,7 @@ public class Player_Stats : MonoBehaviour
         damageMin += 2; damageMax += 2; rangedDamageMin += 2; rangedDamageMax += 2;
         criticalRate += .5f; rangedCriticalRate += .5f;
         baseHealthPoints += 10; // Basehealthpoints is used for calculation to set player total healthpoints with vitality
+        baseManaPoints += 10;
 
         // Get track of the new stats
         TrackCurrentStats();
@@ -103,7 +109,8 @@ public class Player_Stats : MonoBehaviour
         // Give 5 stats points to the player
         currentStatsPoints += 5;
         SetCurrentHealthPoints(totalHealthPoints); // refresh currenthealthpoints to set it to max
-        NextLevelExperience *= 2; // Set next level XP
+        SetCurrentManaPoints(totalManaPoints);
+        totalLevelExp *= 2; // Set next level XP
 
         // Refresh Stats
         RefreshStats();
@@ -123,10 +130,15 @@ public class Player_Stats : MonoBehaviour
         // Vitality maths : works if you add or remove vitality points.
         if (baseHealthPoints + (vitality * vitalityMultiplier) != totalHealthPoints)
         {
-            totalHealthPoints = baseHealthPoints + (vitality * vitalityMultiplier);
+            totalHealthPoints = (int)Mathf.Max(baseHealthPoints + (vitality * vitalityMultiplier));
         }
 
         // TODO deal with intellect later
+        // same as vitality maths
+        if (baseManaPoints + (intellect * intellectMultiplier) != totalManaPoints)
+        {
+            totalManaPoints = (int)Mathf.Max(baseManaPoints + (intellect * intellectMultiplier));
+        }
 
         if (playerStatsUI)
         {
@@ -146,9 +158,9 @@ public class Player_Stats : MonoBehaviour
     public void GetExperience(int amount)
     {
         int tempCurrentExperience = currentExperience + amount; // Put in a temp variable currentExperience + amount
-        if (tempCurrentExperience >= NextLevelExperience) // Check if it's >= of required experience to lvl up
+        if (tempCurrentExperience >= totalLevelExp) // Check if it's >= of required experience to lvl up
         {
-            int tempNextLevelExperience = tempCurrentExperience - NextLevelExperience; // Get the "too much" amount of experience
+            int tempNextLevelExperience = tempCurrentExperience - totalLevelExp; // Get the "too much" amount of experience
             currentExperience = tempNextLevelExperience; // Set the "too much" into currentExperience
             LevelUp();
         }
@@ -283,6 +295,12 @@ public class Player_Stats : MonoBehaviour
         currentHealthPoints = newHealthPoints;
     }
 
+    // For later to use spell
+    public void SetCurrentManaPoints(int newManaPoints)
+    {
+        currentManaPoints = newManaPoints;
+    }
+
     #region UI_Player_Stats relative methods
 
     public void AddCurrentStatsPoints(int amount)
@@ -396,9 +414,9 @@ public class Player_Stats : MonoBehaviour
         return currentExperience;
     }
 
-    public int getNextLevelExperience()
+    public int getTotalExp()
     {
-        return NextLevelExperience;
+        return totalLevelExp;
     }
 
     public int getCurrentStatsPoints()
@@ -435,5 +453,16 @@ public class Player_Stats : MonoBehaviour
     {
         return rangedCriticalRate;
     }
+
+    public int getTotalManaPoints()
+    {
+        return totalManaPoints;
+    }
+
+    public int getCurrentManaPoints()
+    {
+        return currentManaPoints;
+    }
+
     #endregion
 }

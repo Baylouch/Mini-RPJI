@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be76005869d1cba45b9f16d9fdb8cf81, type: 3}
   m_Name: Armor 2
   m_EditorClassIdentifier: 
-  itemName: Armor 2
+  itemName: "Armure de la d\xE9fense de la compagnie lointaine"
   itemPrefab: {fileID: 7228488180593728142, guid: f35c8fb4cdaf822449e6519c9fb65f0c,
     type: 3}
   inventoryImage: {fileID: 21300000, guid: 2f1eaeeaad36ee5469eff7ff158f37ba, type: 3}
   armoryPart: 1
+  rarety: 0
   strength: 0
   agility: 10
   vitality: 5

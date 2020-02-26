@@ -11,6 +11,12 @@ public class ArmorySlot : MonoBehaviour
 
     [SerializeField] Image imageSlot;
     [SerializeField] Color emptySlotColor;
+    Sprite emptySlotSprite; // The sprite when no item is on the slot
+
+    private void Awake()
+    {
+        emptySlotSprite = imageSlot.sprite;
+    }
 
     public void RefreshSlot()
     {
@@ -26,6 +32,7 @@ public class ArmorySlot : MonoBehaviour
         {
             imageSlot.sprite = null;
             imageSlot.color = emptySlotColor;
+            imageSlot.sprite = emptySlotSprite;
             GetComponent<Button>().interactable = false;
         }
     }

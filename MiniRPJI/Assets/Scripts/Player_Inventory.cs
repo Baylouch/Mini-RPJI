@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum ArmoryPart { Helm, Armor, Pants, Gloves, Boots }; // Index of parts are same in armoryItems
+public enum ArmoryPart { Helm, Chest, Pants, Gloves, Boots, Bow }; // Index of parts are same in armoryItems
 public enum ItemRarety { Common, Uncommon, Rare, Epic, Legendary }; // All items rarety
 
 public class Player_Inventory : MonoBehaviour
 {
-    // TODO think about move UI things into a new script ? Player_Inventory_UI.cs ??
     [SerializeField] GameObject inventoryUI;
 
     public GameObject inventorySlotInteractionsUI;
@@ -22,7 +21,7 @@ public class Player_Inventory : MonoBehaviour
     [SerializeField] GameObject statsItemPanel; // This gameobject prefab must be set 0 width and 0 height on his rectTransform 
     [SerializeField] GameObject itemName; // Automatictly scaled by Vertical Layout group on statsItemPanel
     [SerializeField] GameObject statsNameAndPoints; // Same as itemName
-    // statsItemPanel will contains all others UI elements who display item's stats. this is rect of current statsItemPanel display
+    // statsItemPanel will contains all others UI elements who display item's stats. statsBackgroundPanelRect is rect of current statsItemPanel display
     // so just destroy gameobject attach to statsBackgroundPanelRect to remove stats display
     RectTransform statsBackgroundPanelRect; // To set hierarchy and item's stats stuff
 
@@ -151,7 +150,7 @@ public class Player_Inventory : MonoBehaviour
                 itemNameText.color = Color.cyan; // TODO modify
                 break;
         }
-        itemName.GetComponent<Text>().text = item.name; // Set item name text
+        itemName.GetComponent<Text>().text = item.itemName; // Set item name text
         itemName.transform.SetParent(statsBackgroundPanel.transform); // Set item name text hierarchy
         itemName.GetComponent<RectTransform>().localScale = Vector3.one;
         // Add 50 to panel's height

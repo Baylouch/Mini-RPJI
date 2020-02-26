@@ -135,7 +135,7 @@ public class Player_Health : MonoBehaviour
 
         int tempcurrentHealthPoints = playerStats.getCurrentHealthPoints() - tempDamageAmount;
 
-        if (tempcurrentHealthPoints <= 0) // To be sure we never got negative healthpoints
+        if (tempcurrentHealthPoints <= 0) // To be sure we never get negative healthpoints
         {
             tempcurrentHealthPoints = 0;
         }

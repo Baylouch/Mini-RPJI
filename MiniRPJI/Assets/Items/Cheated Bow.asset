@@ -15,9 +15,9 @@ MonoBehaviour:
   itemName: Cheated Bow
   itemPrefab: {fileID: 3135778197736560751, guid: d76c54947da4e2c43a1a5297304e0157,
     type: 3}
-  inventoryImage: {fileID: 21300000, guid: bbf8638a8a75d9c42b93639213c92c9b, type: 3}
-  armoryPart: 4
-  rarety: 3
+  inventoryImage: {fileID: 21300000, guid: 5d7061fc7da05ce44add317708ec7215, type: 3}
+  armoryPart: 5
+  rarety: 4
   strength: 50
   agility: 50
   vitality: 50

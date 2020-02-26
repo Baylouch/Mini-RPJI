@@ -12,6 +12,8 @@ public class UI_Player_Stats : MonoBehaviour
 
     [SerializeField] Text maxHealthPoints;
     [SerializeField] Text currentHealthPoints;
+    [SerializeField] Text maxManaPoints;
+    [SerializeField] Text currentManaPoints;
     [SerializeField] Text armor;
 
     [SerializeField] Text primaryMinAttackDamage;
@@ -117,11 +119,13 @@ public class UI_Player_Stats : MonoBehaviour
         // Experience panel
         playerLevel.text = playerStats.getCurrentLevel().ToString();
         currentExp.text = playerStats.getCurrentExp().ToString();
-        nextLevelExp.text = playerStats.getNextLevelExperience().ToString();
+        nextLevelExp.text = playerStats.getTotalExp().ToString();
 
         // Health and armor panel
         maxHealthPoints.text = playerStats.getTotalHealthPoints().ToString();
         currentHealthPoints.text = playerStats.getCurrentHealthPoints().ToString();
+        maxManaPoints.text = playerStats.getTotalManaPoints().ToString();
+        currentManaPoints.text = playerStats.getCurrentManaPoints().ToString();
         armor.text = playerStats.getArmorPoints().ToString();
 
         // Attack panel

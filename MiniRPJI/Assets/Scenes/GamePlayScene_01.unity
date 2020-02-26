@@ -278,7 +278,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   level: 1
   healthPoints: 100
-  experienceGain: 50
+  experienceGain: 100
 --- !u!114 &830861367
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -318,7 +318,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   level: 1
   healthPoints: 100
-  experienceGain: 50
+  experienceGain: 100
 --- !u!114 &1178330442
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6881,31 +6881,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 812908139, guid: a0c3e0f3307352c45a739aa1f42f4a7e, type: 3}
-      propertyPath: statsItemPanel
-      value: 
-      objectReference: {fileID: 8096435820029390981, guid: 04dba7b46b5cd694c82866750b130e9d,
-        type: 3}
-    - target: {fileID: 812908139, guid: a0c3e0f3307352c45a739aa1f42f4a7e, type: 3}
-      propertyPath: itemName
-      value: 
-      objectReference: {fileID: 8420641754194104172, guid: 5e56e0380cdd38f40940d7cdc7c309fa,
-        type: 3}
-    - target: {fileID: 812908139, guid: a0c3e0f3307352c45a739aa1f42f4a7e, type: 3}
-      propertyPath: statsName
-      value: 
-      objectReference: {fileID: 611026037684066191, guid: 2d2a9f1342b4f974fa80a521e178bff4,
-        type: 3}
-    - target: {fileID: 812908139, guid: a0c3e0f3307352c45a739aa1f42f4a7e, type: 3}
-      propertyPath: statsPoints
-      value: 
-      objectReference: {fileID: 2154432539612678513, guid: 4306446b189b6c14e919da5cdaabfba9,
-        type: 3}
-    - target: {fileID: 812908139, guid: a0c3e0f3307352c45a739aa1f42f4a7e, type: 3}
-      propertyPath: statsNameAndPoints
-      value: 
-      objectReference: {fileID: 358088707896995869, guid: 7b169b5bc734ac1418324a39cdd0d438,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a0c3e0f3307352c45a739aa1f42f4a7e, type: 3}
 --- !u!1001 &9206438509394547143
