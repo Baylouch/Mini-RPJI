@@ -1,10 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class UI_Player : MonoBehaviour
 {
+    public static UI_Player uiPlayerInstance;
+
     [SerializeField] Text currentLevel;
 
     [SerializeField] RectTransform healthLine; // We got rectTransform instead of image because its what we use to decrement health
@@ -22,60 +22,70 @@ public class UI_Player : MonoBehaviour
     [SerializeField] Sprite noCombat; // when player isnt fighting
     [SerializeField] Sprite inCombat; // when player fighting
 
-    // Because its child of player, we can get components by searching in parent
-    Player_Stats playerStats; // To obtain life percentage for healthbar
     Player_Combat_Control player_combat; // To know when player is in combat or not.
+
+    private void Awake()
+    {
+        if (uiPlayerInstance == null)
+        {
+            uiPlayerInstance = this;
+            DontDestroyOnLoad(gameObject); // We make this because its safer for keep Player_Inventory between scenes (who is children of this)
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        playerStats = GetComponentInParent<Player_Stats>();
-        player_combat = GetComponentInParent<Player_Combat_Control>();
+        player_combat = FindObjectOfType<Player_Combat_Control>();
     }
 
     // Update is called once per frame
     void Update()
     {
         // Level
-        if (currentLevel.text != playerStats.getCurrentLevel().ToString())
+        if (currentLevel.text != Player_Stats.stats_instance.getCurrentLevel().ToString())
         {
-            currentLevel.text = playerStats.getCurrentLevel().ToString();
+            currentLevel.text = Player_Stats.stats_instance.getCurrentLevel().ToString();
         }
         // Healthbar
-        if (totalHealthpoints.text != playerStats.getTotalHealthPoints().ToString())
+        if (totalHealthpoints.text != Player_Stats.stats_instance.getTotalHealthPoints().ToString())
         {
-            totalHealthpoints.text = playerStats.getTotalHealthPoints().ToString();
+            totalHealthpoints.text = Player_Stats.stats_instance.getTotalHealthPoints().ToString();
         }
-        if (currentHealthpoints.text != playerStats.getCurrentHealthPoints().ToString())
+        if (currentHealthpoints.text != Player_Stats.stats_instance.getCurrentHealthPoints().ToString())
         {
-            currentHealthpoints.text = playerStats.getCurrentHealthPoints().ToString();
-            healthLine.sizeDelta = new Vector2((playerStats.getCurrentHealthPoints() * 100) / playerStats.getTotalHealthPoints(), healthLine.sizeDelta.y);
+            currentHealthpoints.text = Player_Stats.stats_instance.getCurrentHealthPoints().ToString();
+            healthLine.sizeDelta = new Vector2((Player_Stats.stats_instance.getCurrentHealthPoints() * 100) / Player_Stats.stats_instance.getTotalHealthPoints(), healthLine.sizeDelta.y);
         }
         // Manabar
-        if (totalManapoints.text != playerStats.getTotalManaPoints().ToString())
+        if (totalManapoints.text != Player_Stats.stats_instance.getTotalManaPoints().ToString())
         {
-            totalManapoints.text = playerStats.getTotalManaPoints().ToString();
+            totalManapoints.text = Player_Stats.stats_instance.getTotalManaPoints().ToString();
         }
-        if (currentManapoints.text != playerStats.getCurrentManaPoints().ToString())
+        if (currentManapoints.text != Player_Stats.stats_instance.getCurrentManaPoints().ToString())
         {
-            currentManapoints.text = playerStats.getCurrentManaPoints().ToString();
-            manaLine.sizeDelta = new Vector2((playerStats.getCurrentManaPoints() * 100) / playerStats.getTotalManaPoints(), manaLine.sizeDelta.y);
+            currentManapoints.text = Player_Stats.stats_instance.getCurrentManaPoints().ToString();
+            manaLine.sizeDelta = new Vector2((Player_Stats.stats_instance.getCurrentManaPoints() * 100) / Player_Stats.stats_instance.getTotalManaPoints(), manaLine.sizeDelta.y);
         }
         // Exp bar
-        if (totalExppoints.text != playerStats.getTotalExp().ToString())
+        if (totalExppoints.text != Player_Stats.stats_instance.getTotalLevelExp().ToString())
         {
-            totalExppoints.text = playerStats.getTotalExp().ToString();
+            totalExppoints.text = Player_Stats.stats_instance.getTotalLevelExp().ToString();
         }
-        if (currentExppoints.text != playerStats.getCurrentExp().ToString())
+        if (currentExppoints.text != Player_Stats.stats_instance.getCurrentExp().ToString())
         {
-            currentExppoints.text = playerStats.getCurrentExp().ToString();
-            if (playerStats.getCurrentExp() <= 0) // security if current xp is 0
+            currentExppoints.text = Player_Stats.stats_instance.getCurrentExp().ToString();
+            if (Player_Stats.stats_instance.getCurrentExp() <= 0) // security if current xp is 0
             {
                 expLine.sizeDelta = new Vector2(0f, expLine.sizeDelta.y);
             }
             else
             {
-                expLine.sizeDelta = new Vector2((playerStats.getCurrentExp() * 100) / playerStats.getTotalExp(), expLine.sizeDelta.y);
+                expLine.sizeDelta = new Vector2((Player_Stats.stats_instance.getCurrentExp() * 100) / Player_Stats.stats_instance.getTotalLevelExp(), expLine.sizeDelta.y);
             }
         }
         // In combat icon

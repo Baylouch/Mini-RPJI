@@ -1,8 +1,6 @@
 ﻿/* Player_Control.cs
     Utilisé pour gérer les mouvements du joueur ainsi que les animations
 */
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -30,6 +28,34 @@ public class Player_Movement_Control : MonoBehaviour
         animator = GetComponent<Animator>();
 
         animatorVector = new Vector2();
+
+        if (FindObjectOfType<StartPositionLevel>())
+        {
+            transform.position = FindObjectOfType<StartPositionLevel>().transform.position;
+        }
+        else
+        {
+            Debug.LogWarning("There is no StartPositionLevel in this scenes. MUST BE SET !");
+        }
+    }
+
+    private void OnLevelWasLoaded(int level)
+    {
+        //transform.position = startPosition.position;
+        // TO make sure we acces to the right Player_Movement_Control script and not the one who'll be delete (if player already exist in the scene)
+        // because top hierarchy gameobject is a singleton dontdestroyonload gameobject (Player_Stats)
+        if (Player_Stats.stats_instance.gameObject == this.gameObject)
+        {
+            if (FindObjectOfType<StartPositionLevel>())
+            {
+                transform.position = FindObjectOfType<StartPositionLevel>().transform.position;
+            }
+            else
+            {
+                Debug.LogWarning("There is no StartPositionLevel in this scenes. MUST BE SET !");
+            }
+        }
+        
     }
 
     void Update()

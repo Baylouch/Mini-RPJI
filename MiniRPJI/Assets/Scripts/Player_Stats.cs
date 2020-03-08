@@ -1,16 +1,15 @@
 ﻿/* Stats_Control.cs
  Gère les statistiques du joueur. Par ex: le taux de vitalité augmentera les points de vies etc
-
+ Ce script doit être executé dans les premiers afin d'éviter null reference si le joueur a des objets pré-équipés avant de commencer
 */
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 
-public enum StatsType { STRENGTH, AGILITY, VITALITY, INTELLECT, ARMOR }; // Enum pour différencier les différentes statistiques
+public enum StatsType { STRENGTH, AGILITY, VITALITY, INTELLECT }; // Enum pour différencier les différentes statistiques
 
 public class Player_Stats : MonoBehaviour
 {
+    public static Player_Stats stats_instance;
 
     public UI_Player_Stats playerStatsUI;
 
@@ -18,29 +17,32 @@ public class Player_Stats : MonoBehaviour
     [Header("Experience")]
     [SerializeField] private int level = 1;
     [SerializeField] private int totalLevelExp = 200;
-    [SerializeField] private int currentExperience = 0;
+    [SerializeField] private int currentExp = 0;
 
     [Header("Statistiques")]
-    [SerializeField] private int strength = 10;
-    [SerializeField] private int agility = 10;
-    [SerializeField] private int vitality = 10;
-    [SerializeField] private int intellect = 10;
-    [SerializeField] private int armor = 10; // Armor is used in Player_Health
+    [SerializeField] private int baseStrength = 10; // Used as base to keep track on it for save and load functionnality 
+    [SerializeField] private int baseAgility = 10; // Because if you lvl up, you win base points add.
+    [SerializeField] private int baseVitality = 10; // And if you equip a weapon, its not base points but current points
+    [SerializeField] private int baseIntellect = 10;
     [SerializeField] private float criticalRate = 3f;
     [SerializeField] private float rangedCriticalRate = 5f;
 
-    [Header("Attack")]
-    [SerializeField] private int damageMin = 10;
-    [SerializeField] private int damageMax = 15;
+    // Current stats used in game. Addition of baseStats + weaponStats.
+    private int currentStrength;
+    private int currentAgility;
+    private int currentVitality;
+    private int currentIntellect;
+    private int armor;
 
-    [Header("Ranged Attack")] // To move or delete
-    [SerializeField] private int rangedDamageMin = 5;
-    [SerializeField] private int rangedDamageMax = 10;
+    [Header("Attack")]
+    [SerializeField] private int damageMin = 1;
+    [SerializeField] private int damageMax = 3;
 
     [Header("General")]
     [SerializeField] private int totalHealthPoints = 100; // Total player healthpoints
     [SerializeField] private int totalManaPoints = 100;
-    private int baseHealthPoints = 0; // We need this base for know how much healthpoints without vitality player have (for refreshing stats)
+
+    private int baseHealthPoints = 0; // We need this base for know how much healthpoints (without vitality multiplier) player have (for refreshing stats)
     private int currentHealthPoints; // Player current healthpoints
     private int baseManaPoints = 0;
     private int currentManaPoints;
@@ -53,22 +55,38 @@ public class Player_Stats : MonoBehaviour
     private int currentRangedDamageMin;
     private int currentRangedDamageMax;
 
-    private float strengthDiviser = .8f; // .8 Seems good for all numbers to calculation (strength / strengthDiviser)
-    private float agilityDiviser = .87f; // .87 Seems good for all numbers to calculation (agility / agilityDiviser)
+    private float strenghtMultiplier = .3f; // .3 Seems good for all numbers to calculation (strength * strenghtMultiplier)
+    private float agilityMultiplier = .4f; // .4 Seems good for all numbers to calculation (agility * agilityMultiplier)
     private float vitalityMultiplier = 2;
     private float intellectMultiplier = 1.5f;
+
+    private void Awake()
+    {
+        // Make it singleton
+        if (!stats_instance)
+        {
+            stats_instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
     {
         statsTrack = new int[4];
-        TrackCurrentStats(); // Get track of current stats at start
+
         baseHealthPoints = totalHealthPoints; // first of all before all healthpoints maths
         baseManaPoints = totalManaPoints;
 
-        RefreshStats(); // refresh stats
+        RefreshPlayerStats(); // refresh stats
         SetCurrentHealthPoints(totalHealthPoints); // Set player healthpoints
         SetCurrentManaPoints(totalManaPoints);
+
+        TrackCurrentStats(); // Get track of current stats at start
     }
 
     // Update is called once per frame
@@ -76,18 +94,23 @@ public class Player_Stats : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F)) // To centralise in Player_Input.cs later
         {
-            if (playerStatsUI) // To active/disable playerStatsUI
+            ToggleStatsMenu();
+        }
+    }
+
+    public void ToggleStatsMenu()
+    {
+        if (playerStatsUI) // To active/disable playerStatsUI
+        {
+            if (playerStatsUI.gameObject.activeSelf)
             {
-                if (playerStatsUI.gameObject.activeSelf)
-                {
-                    playerStatsUI.gameObject.SetActive(false);
-                }
-                else
-                {
-                    playerStatsUI.gameObject.SetActive(true);
-                    // playerStatsUI Must have UI_Player_Stats component !
-                    playerStatsUI.RefreshStatsDisplay();
-                }
+                playerStatsUI.gameObject.SetActive(false);
+            }
+            else
+            {
+                playerStatsUI.gameObject.SetActive(true);
+                // playerStatsUI Must have UI_Player_Stats component !
+                playerStatsUI.RefreshStatsDisplay();
             }
         }
     }
@@ -96,12 +119,8 @@ public class Player_Stats : MonoBehaviour
     {
         level++; // Add a lvl        
 
-        // Set new player stats
-        strength += 2; agility += 2; vitality += 4; intellect += 2; // See StatsBoard sheets for more information
-        damageMin += 2; damageMax += 2; rangedDamageMin += 2; rangedDamageMax += 2;
-        criticalRate += .5f; rangedCriticalRate += .5f;
-        baseHealthPoints += 10; // Basehealthpoints is used for calculation to set player total healthpoints with vitality
-        baseManaPoints += 10;
+        // Set new base player stats
+        baseStrength += 2; baseAgility += 2; baseVitality += 4; baseIntellect += 2; // See StatsBoard sheets for more information
 
         // Get track of the new stats
         TrackCurrentStats();
@@ -113,85 +132,27 @@ public class Player_Stats : MonoBehaviour
         totalLevelExp *= 2; // Set next level XP
 
         // Refresh Stats
-        RefreshStats();
+        RefreshPlayerStats();
     }
 
-    public void RefreshStats()
-    {
-        float currentDamageMultiplier = (strength / strengthDiviser);
-        // Then use mathf methods to get min integer and max integer for the calcul
-        currentDamageMin = (int)Mathf.Min(damageMin + currentDamageMultiplier);
-        currentDamageMax = (int)Mathf.Max(damageMax + currentDamageMultiplier);
-
-        float currentRangedDamageMultiplier = (agility / agilityDiviser);
-        currentRangedDamageMin = (int)Mathf.Min(rangedDamageMin + currentRangedDamageMultiplier);
-        currentRangedDamageMax = (int)Mathf.Max(rangedDamageMax + currentRangedDamageMultiplier);
-
-        // Vitality maths : works if you add or remove vitality points.
-        if (baseHealthPoints + (vitality * vitalityMultiplier) != totalHealthPoints)
-        {
-            totalHealthPoints = (int)Mathf.Max(baseHealthPoints + (vitality * vitalityMultiplier));
-        }
-
-        // TODO deal with intellect later
-        // same as vitality maths
-        if (baseManaPoints + (intellect * intellectMultiplier) != totalManaPoints)
-        {
-            totalManaPoints = (int)Mathf.Max(baseManaPoints + (intellect * intellectMultiplier));
-        }
-
-        if (playerStatsUI)
-        {
-            playerStatsUI.RefreshStatsDisplay();
-        }
-    }
-
-    // Just for know what stats we got for a needed time (exemple, when player start to put new stats points before validation, if he wants to reset, he can)
-    public void TrackCurrentStats()
-    {
-        statsTrack[0] = GetStatsByType(StatsType.STRENGTH);
-        statsTrack[1] = GetStatsByType(StatsType.AGILITY);
-        statsTrack[2] = GetStatsByType(StatsType.VITALITY);
-        statsTrack[3] = GetStatsByType(StatsType.INTELLECT);
-    }
-
-    public void GetExperience(int amount)
-    {
-        int tempCurrentExperience = currentExperience + amount; // Put in a temp variable currentExperience + amount
-        if (tempCurrentExperience >= totalLevelExp) // Check if it's >= of required experience to lvl up
-        {
-            int tempNextLevelExperience = tempCurrentExperience - totalLevelExp; // Get the "too much" amount of experience
-            currentExperience = tempNextLevelExperience; // Set the "too much" into currentExperience
-            LevelUp();
-        }
-        else
-        {
-            currentExperience = tempCurrentExperience;
-            if (playerStatsUI)
-            {
-                playerStatsUI.RefreshStatsDisplay();
-            }
-        }
-    }
-
-    // Methods used in Player_Inventory to modify stats by armory item
-    public void ApplyItemStats(ItemConfig item)
+    // Methods used in Refresh Player Stats
+    void ApplyItemStats(EquipmentItem item)
     {
         if (item.strength != 0)
         {
-            strength += item.strength;
+            currentStrength += item.strength;
         }
         if (item.agility != 0)
         {
-            agility += item.agility;
+            currentAgility += item.agility;
         }
         if (item.vitality != 0)
         {
-            vitality += item.vitality;
+            currentVitality += item.vitality;
         }
         if (item.intellect != 0)
         {
-            intellect += item.intellect;
+            currentIntellect += item.intellect;
         }
         if (item.armor != 0)
         {
@@ -213,14 +174,6 @@ public class Player_Stats : MonoBehaviour
         {
             damageMax += item.damageMax;
         }
-        if (item.rangedDamageMin != 0)
-        {
-            rangedDamageMin += item.rangedDamageMin;
-        }
-        if (item.rangedDamageMax != 0)
-        {
-            rangedDamageMax += item.rangedDamageMax;
-        }
         if (item.healthpoints != 0)
         {
             baseHealthPoints += item.healthpoints;
@@ -228,65 +181,85 @@ public class Player_Stats : MonoBehaviour
 
         // Get track of the new stats
         TrackCurrentStats();
-
-        RefreshStats();
     }
 
-    public void RemoveItemStats(ItemConfig item)
+    public void RefreshPlayerStats()
     {
-        if (item.strength != 0)
+        // Refresh current statistiques
+        currentStrength = baseStrength; currentAgility = baseAgility; currentVitality = baseVitality; currentIntellect = baseIntellect;
+        armor = 0;
+        // Now check armory slot for know if there is an item. If yes, apply stats item.
+        // We know there is 6 armory slots because of the enum ArmoryPart. All armory slot got a unique name with this.
+        for (int i = 0; i < 6; i++)
         {
-            strength -= item.strength;
-        }
-        if (item.agility != 0)
-        {
-            agility -= item.agility;
-        }
-        if (item.vitality != 0)
-        {
-            vitality -= item.vitality;
-        }
-        if (item.intellect != 0)
-        {
-            intellect -= item.intellect;
-        }
-        if (item.armor != 0)
-        {
-            armor -= item.armor;
-        }
-        if (item.criticalRate != 0)
-        {
-            criticalRate -= item.criticalRate;
-        }
-        if (item.rangedCriticalRate != 0)
-        {
-            rangedCriticalRate -= item.rangedCriticalRate;
-        }
-        if (item.damageMin != 0)
-        {
-            damageMin -= item.damageMin;
-        }
-        if (item.damageMax != 0)
-        {
-            damageMax -= item.damageMax;
-        }
-        if (item.rangedDamageMin != 0)
-        {
-            rangedDamageMin -= item.rangedDamageMin;
-        }
-        if (item.rangedDamageMax != 0)
-        {
-            rangedDamageMax -= item.rangedDamageMax;
-        }
-        if (item.healthpoints != 0)
-        {
-            baseHealthPoints -= item.healthpoints;
+            if (Player_Inventory.inventory_instance.GetArmorySlotItem(i) != null)
+            {
+                ApplyItemStats(Player_Inventory.inventory_instance.GetArmorySlotItem(i));
+            }
         }
 
-        // Get track of the new stats
-        TrackCurrentStats();
+        float currentDamageMultiplier = (currentStrength * strenghtMultiplier);
+        // Then use mathf methods to get min integer and max integer for the calcul
+        currentDamageMin = (int)Mathf.Round(damageMin + currentDamageMultiplier);
+        currentDamageMax = (int)Mathf.Round(damageMax + currentDamageMultiplier);
 
-        RefreshStats();
+        // Do it only if player got bow equiped. Else player can't use ranged attack anyway
+        if (Player_Inventory.inventory_instance.GetCurrentBow())
+        {
+            float currentRangedDamageMultiplier = (currentAgility * agilityMultiplier);
+            currentRangedDamageMin = (int)Mathf.Round(Player_Inventory.inventory_instance.GetCurrentBow().rangedDamageMin + currentRangedDamageMultiplier);
+            currentRangedDamageMax = (int)Mathf.Round(Player_Inventory.inventory_instance.GetCurrentBow().rangedDamageMax + currentRangedDamageMultiplier);
+        }
+        else
+        {
+            currentRangedDamageMin = 0;
+            currentRangedDamageMax = 0;
+        }
+
+        // Vitality maths : works if you add or remove vitality points.
+        if (baseHealthPoints + (currentVitality * vitalityMultiplier) != totalHealthPoints)
+        {
+            totalHealthPoints = (int)Mathf.Max(baseHealthPoints + (currentVitality * vitalityMultiplier));
+        }
+
+        // same as vitality maths
+        if (baseManaPoints + (currentIntellect * intellectMultiplier) != totalManaPoints)
+        {
+            totalManaPoints = (int)Mathf.Max(baseManaPoints + (currentIntellect * intellectMultiplier));
+        }
+
+        if (playerStatsUI)
+        {
+            playerStatsUI.RefreshStatsDisplay();
+        }
+    }
+
+    // Just for know what stats we got for a needed time (exemple, when player start to put new stats points before validation, if he wants to reset, he can)
+    public void TrackCurrentStats()
+    {
+        statsTrack[0] = GetCurrentStatsByType(StatsType.STRENGTH);
+        statsTrack[1] = GetCurrentStatsByType(StatsType.AGILITY);
+        statsTrack[2] = GetCurrentStatsByType(StatsType.VITALITY);
+        statsTrack[3] = GetCurrentStatsByType(StatsType.INTELLECT);
+    }
+
+    public void AddExperience(int amount)
+    {
+        int tempCurrentExperience = currentExp + amount; // Put in a temp variable currentExperience + amount
+        if (tempCurrentExperience >= totalLevelExp) // Check if it's >= of required experience to lvl up
+        {
+            int tempNextLevelExperience = tempCurrentExperience - totalLevelExp; // Get the "too much" amount of experience
+            currentExp = tempNextLevelExperience; // Set the "too much" into currentExperience
+            LevelUp();
+        }
+        else
+        {
+            currentExp = tempCurrentExperience;
+            if (playerStatsUI)
+            {
+                playerStatsUI.RefreshStatsDisplay();
+            }
+        }
     }
 
     // Method use in Player_Health (its the way player taking damage)
@@ -313,52 +286,52 @@ public class Player_Stats : MonoBehaviour
         currentStatsPoints -= amount;
     }
 
-    public void UseTrackForResetStats()
-    {
-        // Reset stats as tracked ones
-        strength = statsTrack[0];
-        agility = statsTrack[1];
-        vitality = statsTrack[2];
-        intellect = statsTrack[3];
-    }
-
+    // Here, we need to increment baseStats AND currentStats
     public void IncrementStatsByType(StatsType type)
     {
         switch(type)
         {
             case StatsType.STRENGTH:
-                strength++;
+                baseStrength++;
+                currentStrength++;
                 break;
             case StatsType.AGILITY:
-                agility++;
+                baseAgility++;
+                currentAgility++;
                 break;
             case StatsType.VITALITY:
-                vitality++;
+                baseVitality++;
+                currentVitality++;
                 break;
             case StatsType.INTELLECT:
-                intellect++;
+                baseIntellect++;
+                currentIntellect++;
                 break;
             default:
                 Debug.LogWarning("TYPE ERROR. Player_Stats.cs / + void IncrementStatsByType()");
                 return;
         }
     }
-
+    // Here, we need to decrement baseStats AND currentStats
     public void DecrementStatsByType(StatsType type)
     {
         switch (type)
         {
             case StatsType.STRENGTH:
-                strength--;
+                baseStrength--;
+                currentStrength--;
                 break;
             case StatsType.AGILITY:
-                agility--;
+                baseAgility--;
+                currentAgility--;
                 break;
             case StatsType.VITALITY:
-                vitality--;
+                baseVitality--;
+                currentVitality--;
                 break;
             case StatsType.INTELLECT:
-                intellect--;
+                baseIntellect--;
+                currentIntellect--;
                 break;
             default:
                 Debug.LogWarning("TYPE ERROR. Player_Stats.cs / + void DecrementStatsByType()");
@@ -369,20 +342,36 @@ public class Player_Stats : MonoBehaviour
 
     #region getters
 
-    public int GetStatsByType(StatsType type)
+    public int GetCurrentStatsByType(StatsType type)
     {
         switch (type)
         {
             case StatsType.STRENGTH:
-                return strength;
+                return currentStrength;
             case StatsType.AGILITY:
-                return agility;
+                return currentAgility;
             case StatsType.VITALITY:
-                return vitality;
+                return currentVitality;
             case StatsType.INTELLECT:
-                return intellect;
-            case StatsType.ARMOR:
-                return armor;
+                return currentIntellect;
+            default:
+                Debug.Log("Le type demandé n'est pas reconnu. Stats_Control.cs");
+                return -1;
+        }
+    }
+
+    public int GetBaseStatsByType(StatsType type)
+    {
+        switch (type)
+        {
+            case StatsType.STRENGTH:
+                return baseStrength;
+            case StatsType.AGILITY:
+                return baseAgility;
+            case StatsType.VITALITY:
+                return baseVitality;
+            case StatsType.INTELLECT:
+                return baseIntellect;
             default:
                 Debug.Log("Le type demandé n'est pas reconnu. Stats_Control.cs");
                 return -1;
@@ -411,10 +400,10 @@ public class Player_Stats : MonoBehaviour
 
     public int getCurrentExp()
     {
-        return currentExperience;
+        return currentExp;
     }
 
-    public int getTotalExp()
+    public int getTotalLevelExp()
     {
         return totalLevelExp;
     }
@@ -439,7 +428,7 @@ public class Player_Stats : MonoBehaviour
         return totalHealthPoints;
     }
 
-    public int getArmorPoints()
+    public int getArmor()
     {
         return armor;
     }
@@ -463,6 +452,51 @@ public class Player_Stats : MonoBehaviour
     {
         return currentManaPoints;
     }
+
+    #endregion
+
+    #region setters
+    // Next setters are use to LOAD DATA from GameControl.
+    public void SetCurrentLevel(int _level)
+    {
+        level = _level;
+    }
+
+    public void SetTotalLevelExp(int amount)
+    {
+        totalLevelExp = amount;
+    }
+
+    public void SetCurrentLevelExp(int amount)
+    {
+        currentExp = amount;
+    }
+
+    public void SetBaseStatsByType(StatsType type, int statsAmount)
+    {
+        switch(type)
+        {
+            case StatsType.STRENGTH:
+                baseStrength = statsAmount;
+                break;
+            case StatsType.AGILITY:
+                baseAgility = statsAmount;
+                break;
+            case StatsType.VITALITY:
+                baseVitality = statsAmount;
+                break;
+            case StatsType.INTELLECT:
+                baseIntellect = statsAmount;
+                break;
+        }
+    }
+
+    public void SetCurrentStatsPoints(int amount)
+    {
+        currentStatsPoints = amount;
+    }
+
+    // End of "loader setters"
 
     #endregion
 }

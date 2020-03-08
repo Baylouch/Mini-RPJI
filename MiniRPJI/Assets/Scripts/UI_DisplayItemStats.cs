@@ -1,0 +1,205 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class UI_DisplayItemStats : MonoBehaviour
+{
+    // To display item's stats
+    [SerializeField] GameObject statsItemPanel; // This gameobject prefab must be set 0 width and 0 height on his rectTransform 
+    [SerializeField] GameObject itemName; // Automaticaly scaled by Vertical Layout group on statsItemPanel
+    [SerializeField] GameObject statsNameAndPoints; // Same as itemName
+    // statsItemPanel will contains all others UI elements who display item's stats. statsBackgroundPanelRect is rect of current statsItemPanel display
+    // so just destroy gameobject attach to statsBackgroundPanelRect to remove stats display
+    RectTransform statsBackgroundPanelRect; // To set hierarchy and item's stats stuff
+
+    // Method to create new Text element in DisplayItemStats(ItemConfig)
+    void CreateItemStatsText(string statsName, float statsPoints)
+    {
+        GameObject _statsText = Instantiate(statsNameAndPoints); // Instatiate text element prefab
+        // Check if statsPoints is > or < to 0 for set green or red text
+        if (statsPoints > 0)
+        {
+            _statsText.GetComponent<Text>().text = statsName + ": " + "<color=green>" + statsPoints + "</color>"; // Set text with greend pts
+        }
+        else
+        {
+            _statsText.GetComponent<Text>().text = statsName + ": " + "<color=red>" + statsPoints + "</color>"; // Set text with red pts
+        }
+
+        _statsText.transform.SetParent(statsBackgroundPanelRect.transform); // Set hierarchy
+        _statsText.GetComponent<RectTransform>().localScale = Vector3.one; // Reset scale (idk why but without scale do weird things)
+        // Add 30 to the height of the panel for each new element
+        statsBackgroundPanelRect.sizeDelta = new Vector2(statsBackgroundPanelRect.sizeDelta.x, statsBackgroundPanelRect.sizeDelta.y + 30);
+    }
+
+    // Method to display equipment item stats on UI (used on buttons configurations methods)
+    public void DisplayEquipmentItemStats(EquipmentItem item)
+    {
+        // First of all, instantiate statsItemPanel
+        GameObject statsBackgroundPanel = Instantiate(statsItemPanel); // Create background panel
+        statsBackgroundPanelRect = statsBackgroundPanel.GetComponent<RectTransform>(); // Get current rectransform
+        statsBackgroundPanel.transform.SetParent(transform); // Set background panel hierarchy
+        statsBackgroundPanel.GetComponent<RectTransform>().localScale = Vector3.one; // Reset scale
+
+        // Second add item name text and set it
+        GameObject itemName = Instantiate(this.itemName); // Create item name text
+        Text itemNameText = itemName.GetComponent<Text>();
+        // Switch on every rarety to set correct color on item name
+        switch (item.rarety)
+        {
+            case ItemRarety.Common:
+                itemNameText.color = Color.white;
+                break;
+            case ItemRarety.Uncommon:
+                itemNameText.color = Color.blue;
+                break;
+            case ItemRarety.Rare:
+                itemNameText.color = Color.yellow;
+                break;
+            case ItemRarety.Epic:
+                itemNameText.color = Color.magenta;
+                break;
+            case ItemRarety.Legendary:
+                itemNameText.color = Color.cyan; // TODO modify
+                break;
+        }
+        itemName.GetComponent<Text>().text = item.itemName; // Set item name text
+        itemName.transform.SetParent(statsBackgroundPanel.transform); // Set item name text hierarchy
+        itemName.GetComponent<RectTransform>().localScale = Vector3.one;
+        // Add 50 to panel's height
+        statsBackgroundPanelRect.sizeDelta = new Vector2(statsBackgroundPanelRect.sizeDelta.x, statsBackgroundPanelRect.sizeDelta.y + 30);
+
+        // Stats are tested in order we want to display them
+
+        if (item.damageMin != 0) // We only check damageMin and rangedDamageMin. If min is set max must be set /!!!!!\ 
+        {
+            GameObject _damageText = Instantiate(statsNameAndPoints);
+            if (item.damageMin > 0)
+            {
+                _damageText.GetComponent<Text>().text = "Degats: <color=green>" + item.damageMin + "</color> - <color=green>" + item.damageMax + "</color>";
+            }
+            else
+            {
+                _damageText.GetComponent<Text>().text = "Degats: <color=red>" + item.damageMin + "</color> - <color=red>" + item.damageMax + "</color>";
+            }
+            _damageText.transform.SetParent(statsBackgroundPanelRect.transform);
+            _damageText.GetComponent<RectTransform>().localScale = Vector3.one;
+            statsBackgroundPanelRect.sizeDelta = new Vector2(statsBackgroundPanelRect.sizeDelta.x, statsBackgroundPanelRect.sizeDelta.y + 30);
+        }
+        if (item.rangedDamageMin != 0)
+        {
+            GameObject _rangedDamageText = Instantiate(statsNameAndPoints);
+            if (item.rangedDamageMin > 0)
+            {
+                _rangedDamageText.GetComponent<Text>().text = "Dgt Dist: <color=green>" + item.rangedDamageMin + "</color> - <color=green>" + item.rangedDamageMax + "</color>";
+            }
+            else
+            {
+                _rangedDamageText.GetComponent<Text>().text = "Dgt Dist: <color=red>" + item.rangedDamageMin + "</color> - <color=red>" + item.rangedDamageMax + "</color>";
+            }
+            _rangedDamageText.transform.SetParent(statsBackgroundPanelRect.transform);
+            _rangedDamageText.GetComponent<RectTransform>().localScale = Vector3.one;
+            statsBackgroundPanelRect.sizeDelta = new Vector2(statsBackgroundPanelRect.sizeDelta.x, statsBackgroundPanelRect.sizeDelta.y + 30);
+        }
+        if (item.healthpoints != 0)
+        {
+            CreateItemStatsText("Vie", item.healthpoints);
+        }
+        if (item.armor != 0)
+        {
+            CreateItemStatsText("Armure", item.armor);
+        }
+        if (item.strength != 0)
+        {
+            CreateItemStatsText("Force", item.strength);
+
+        }
+        if (item.agility != 0)
+        {
+            CreateItemStatsText("Agilité", item.agility);
+        }
+        if (item.vitality != 0)
+        {
+            CreateItemStatsText("Vitalité", item.vitality);
+        }
+        if (item.intellect != 0)
+        {
+            CreateItemStatsText("Intellect", item.intellect);
+        }
+        if (item.criticalRate != 0)
+        {
+            GameObject _criticalRateText = Instantiate(statsNameAndPoints);
+            if (item.criticalRate > 0)
+            {
+                _criticalRateText.GetComponent<Text>().text = "Crit: <color=green>" + item.criticalRate + "</color>%";
+            }
+            else
+            {
+                _criticalRateText.GetComponent<Text>().text = "Crit: <color=red>" + item.criticalRate + "</color>%";
+            }
+            _criticalRateText.transform.SetParent(statsBackgroundPanelRect.transform);
+            _criticalRateText.GetComponent<RectTransform>().localScale = Vector3.one;
+            statsBackgroundPanelRect.sizeDelta = new Vector2(statsBackgroundPanelRect.sizeDelta.x, statsBackgroundPanelRect.sizeDelta.y + 30);
+        }
+        if (item.rangedCriticalRate != 0)
+        {
+            GameObject _rangedCriticalRateText = Instantiate(statsNameAndPoints);
+            if (item.rangedCriticalRate > 0)
+            {
+                _rangedCriticalRateText.GetComponent<Text>().text = "Crit. Dist: <color=green>" + item.rangedCriticalRate + "</color>%";
+            }
+            else
+            {
+                _rangedCriticalRateText.GetComponent<Text>().text = "Crit. Dist: <color=red>" + item.rangedCriticalRate + "</color>%";
+            }
+            _rangedCriticalRateText.transform.SetParent(statsBackgroundPanelRect.transform);
+            _rangedCriticalRateText.GetComponent<RectTransform>().localScale = Vector3.one;
+            statsBackgroundPanelRect.sizeDelta = new Vector2(statsBackgroundPanelRect.sizeDelta.x, statsBackgroundPanelRect.sizeDelta.y + 30);
+        }
+
+        gameObject.SetActive(true);
+    }
+
+    // Method to display item stats on UI (used on buttons configurations methods)
+    public void DisplayUsableItemStats(UsableItem item)
+    {
+        // First of all, instantiate statsItemPanel
+        GameObject statsBackgroundPanel = Instantiate(statsItemPanel); // Create background panel
+        statsBackgroundPanelRect = statsBackgroundPanel.GetComponent<RectTransform>(); // Get current rectransform
+        statsBackgroundPanel.transform.SetParent(transform); // Set background panel hierarchy
+        statsBackgroundPanel.GetComponent<RectTransform>().localScale = Vector3.one; // Reset scale
+
+        // Second add item name text and set it
+        GameObject itemName = Instantiate(this.itemName); // Create item name text
+        Text itemNameText = itemName.GetComponent<Text>();
+
+        itemName.GetComponent<Text>().text = item.itemName; // Set item name text
+        itemName.transform.SetParent(statsBackgroundPanel.transform); // Set item name text hierarchy
+        itemName.GetComponent<RectTransform>().localScale = Vector3.one;
+        // Add 50 to panel's height
+        statsBackgroundPanelRect.sizeDelta = new Vector2(statsBackgroundPanelRect.sizeDelta.x, statsBackgroundPanelRect.sizeDelta.y + 50);
+
+        if (item.healthRegenerationPoints != 0)
+        {
+            CreateItemStatsText("Vie", item.healthRegenerationPoints);
+        }
+        if (item.manaRegenerationPoints != 0)
+        {
+            CreateItemStatsText("Mana", item.manaRegenerationPoints);
+        }
+
+        gameObject.SetActive(true);
+    }
+
+    public void HideAndReset()
+    {
+        // Destroy all child
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            Destroy(transform.GetChild(i).gameObject);
+        }
+
+        gameObject.SetActive(false);
+    }
+}

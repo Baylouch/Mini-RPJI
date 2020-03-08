@@ -5,8 +5,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum ProjectileType { Normal, Frost, Fire };
+
 [RequireComponent(typeof(Animator))]
-[RequireComponent(typeof(Player_Stats))]
 [RequireComponent(typeof(Collider2D))]
 public class Player_Combat_Control : MonoBehaviour
 {
@@ -16,16 +17,13 @@ public class Player_Combat_Control : MonoBehaviour
     float currentTimerBeforeEndCombat;
 
     [SerializeField] Transform firePoint;
-    [SerializeField] GameObject projectile;
 
     Animator animator;
-    Player_Stats playerStats;
 
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
-        playerStats = GetComponent<Player_Stats>();
     }
 
     // Update is called once per frame
@@ -57,7 +55,10 @@ public class Player_Combat_Control : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.Alpha2)) // To centralise in Player_Input.cs later
             {
-                UseBowAttack();
+                if (Player_Inventory.inventory_instance.GetCurrentBow())
+                    UseBowAttack();
+                else
+                    Debug.Log("No bow equiped");
             }
         }
     }
@@ -94,7 +95,7 @@ public class Player_Combat_Control : MonoBehaviour
                         if (enemyStats)
                         {
                             // If yes add experience to player (to securise later Stats_Control)
-                            playerStats.GetExperience(enemyStats.GetExperienceGain());
+                            Player_Stats.stats_instance.AddExperience(enemyStats.GetExperienceGain());
                         }
                     }
                 }
@@ -105,14 +106,14 @@ public class Player_Combat_Control : MonoBehaviour
     int GetAttackDamage()
     {
         float tempCritCondition = Random.Range(0, 100);
-        if (tempCritCondition <= playerStats.getCriticalRate()) // Do critical strike
+        if (tempCritCondition <= Player_Stats.stats_instance.getCriticalRate()) // Do critical strike
         {
-            int criticalAttack = Mathf.RoundToInt((Random.Range(playerStats.getCurrentMinDamage(), playerStats.getCurrentMaxDamage()) * 1.5f));
+            int criticalAttack = Mathf.RoundToInt((Random.Range(Player_Stats.stats_instance.getCurrentMinDamage(), Player_Stats.stats_instance.getCurrentMaxDamage()) * 1.5f));
             return criticalAttack;
         }
         else
         {
-            int currAttack = (Random.Range(playerStats.getCurrentMinDamage(), playerStats.getCurrentMaxDamage()));
+            int currAttack = (Random.Range(Player_Stats.stats_instance.getCurrentMinDamage(), Player_Stats.stats_instance.getCurrentMaxDamage()));
             return currAttack;
         }
 
@@ -121,14 +122,14 @@ public class Player_Combat_Control : MonoBehaviour
     int GetRangedAttackDamage()
     {
         float tempCritCondition = Random.Range(0, 100);
-        if (tempCritCondition <= playerStats.getRangedCriticalRate())
+        if (tempCritCondition <= Player_Stats.stats_instance.getRangedCriticalRate())
         {
-            int criticalRangedAttack = Mathf.RoundToInt((Random.Range(playerStats.getCurrentRangedMinDamage(), playerStats.getCurrentRangedMaxDamage()) * 1.5f));
+            int criticalRangedAttack = Mathf.RoundToInt((Random.Range(Player_Stats.stats_instance.getCurrentRangedMinDamage(), Player_Stats.stats_instance.getCurrentRangedMaxDamage()) * 1.5f));
             return criticalRangedAttack;
         }
         else
         {
-            int currRangedattack = (Random.Range(playerStats.getCurrentRangedMinDamage(), playerStats.getCurrentRangedMaxDamage()));
+            int currRangedattack = (Random.Range(Player_Stats.stats_instance.getCurrentRangedMinDamage(), Player_Stats.stats_instance.getCurrentRangedMaxDamage()));
             return currRangedattack;
         }
     }
@@ -151,14 +152,16 @@ public class Player_Combat_Control : MonoBehaviour
     // used in each bow attack for launch arrow
     public void Shoot()
     {
-        GameObject _projectile = Instantiate(projectile, firePoint.position, firePoint.rotation);
-        Projectile currentProjectileComponent = _projectile.GetComponent<Projectile>();
+        if (Player_Inventory.inventory_instance.GetCurrentBow()) // IF player got equiped bow
+        {
+            GameObject _projectile = Instantiate(Player_Inventory.inventory_instance.GetCurrentBow().projectile, firePoint.position, firePoint.rotation);
+            Projectile currentProjectileComponent = _projectile.GetComponent<Projectile>();
 
-        if (currentProjectileComponent == null)
-            return; // There is a bug here or a miss by game master. Every projectile must have Projectile.cs attach
+            if (currentProjectileComponent == null)
+                return; // There is a bug here or a miss by game master. Every projectile must have Projectile.cs attach
 
-        currentProjectileComponent.playerStats = this.playerStats;
-        currentProjectileComponent.projectileDamage = GetRangedAttackDamage();
+            currentProjectileComponent.projectileDamage = GetRangedAttackDamage();
+        }
     }
 
     // Use for set firepoint rotation depending of player's movement (as animation's event)

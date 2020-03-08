@@ -2,8 +2,6 @@
 Used on UI Element
 */
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,7 +9,7 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Image))]
 public class InventorySlot : MonoBehaviour
 {
-    public ItemConfig item;
+    public BaseItem item;
 
     public void RefreshSlot()
     {

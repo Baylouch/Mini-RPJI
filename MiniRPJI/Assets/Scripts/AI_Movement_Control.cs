@@ -9,15 +9,22 @@ using UnityEngine;
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(AI_Moveset))]
 [RequireComponent(typeof(AI_Combat_Control))] // To know target and combat relative stuff
+[RequireComponent(typeof(AI_Health))]
 public class AI_Movement_Control : MonoBehaviour
 {
-    [SerializeField] float speed = 2f;
+    public float speed = 2f;
 
     [SerializeField] float stopFollowingOffset = 0.2f;
-    float backToStartPosOffset = .4f; // When npc go back to his startPos, we need a little offset
+    float backToStartPosOffset = 1f; // When npc go back to his startPos, we need a little offset
     bool followingTarget = false; // Are we currently following ?
     Vector3 startPos; // Keep track where we from
     bool backToStartPos = true;
+
+    // Navigation AI (for avoid stuck stuff) really basic
+    Vector3 trackCurrentPos; // To get a track of AI position when following and change it if he stay too long.
+    float trackPosTimer = 1f; // To refresh currentPos
+    float trackCurrentPosTime; // To put Time.time in
+    float stuckOffset = 0.5f; // Because its never EXACLTY the same pos, we need a little offset
 
     Rigidbody2D myRb;
     Animator animator;
@@ -25,6 +32,7 @@ public class AI_Movement_Control : MonoBehaviour
     AI_Moveset ai_moveset;
     AI_Combat_Control ai_combat;
     Player_Combat_Control player_combat; // To use for determine if player is in combat
+
 
     // Start is called before the first frame update
     void Start()
@@ -50,6 +58,7 @@ public class AI_Movement_Control : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+
         if (!animator.GetBool("isAttacking"))
         {
             SimpleAIMovement();
@@ -146,6 +155,7 @@ public class AI_Movement_Control : MonoBehaviour
     {
         followingTarget = true; // start following         
         backToStartPos = false; // we go to undifined position so we need a way to go back to our startpos after that
+        trackCurrentPosTime = Time.time;
 
         // Reset ai_moveset params
         if (ai_moveset.AutoMove)
@@ -192,6 +202,7 @@ public class AI_Movement_Control : MonoBehaviour
     }
 
     // Method for follow a target
+    // See to upgrade : because movement is a bit weird (to see in game)
     void ProcessFollowMovement(Vector3 targetPos)
     {
         Vector3 direction = transform.position - targetPos;
@@ -199,29 +210,39 @@ public class AI_Movement_Control : MonoBehaviour
 
         if (Vector3.Distance(transform.position, targetPos) > stopFollowingOffset) // To limit AI movement when he's close to the player
         {
-            if (direction.y > 0.3f || direction.y < -0.3f) // I found 0.3 seems right for avoid "looping toggle direction bug" ( when there is no offset, npc loop infinitly right and left in a weird way)
+            // TODO FINISH IT : AI must avoid obstacles because it knows when it's blocked.
+            // For now : basic avoiding
+            if (Time.time > trackCurrentPosTime + trackPosTimer) // Track pos timer
             {
-                if (direction.y < 0.2f)
+                if (Vector3.Distance(transform.position, trackCurrentPos) <= stuckOffset) // If distance between current position and tracked one is less than stuckOffset, AI is stuck
                 {
-                    myRb.velocity = new Vector2(0f, 1f) * speed;
-
+                    myRb.velocity = new Vector2(1f, 1f) * speed;
+                    return;
                 }
-                else if (direction.y > 0.2f)
+                else // Else just reset tracked pos and tracked timer
                 {
-                    myRb.velocity = new Vector2(0f, -1f) * speed;
+                    trackCurrentPos = transform.position;
+                    trackCurrentPosTime = Time.time;
+                    return;
                 }
             }
 
-            if (direction.x > 0.3f || direction.x < -0.3f)
+            if (direction.y < -0.2f)
             {
-                if (direction.x < 0.2f)
-                {
-                    myRb.velocity = new Vector2(1f, 0f) * speed;
-                }
-                else if (direction.x > 0.2f)
-                {
-                    myRb.velocity = new Vector2(-1f, 0f) * speed;
-                }
+                myRb.velocity = new Vector2(0f, 1f) * speed;
+            }
+            else if (direction.y > 0.2f)
+            {
+                myRb.velocity = new Vector2(0f, -1f) * speed;
+            }
+
+            else if (direction.x < -0.2f)
+            {
+                myRb.velocity = new Vector2(1f, 0f) * speed;
+            }
+            else if (direction.x > 0.2f)
+            {
+                myRb.velocity = new Vector2(-1f, 0f) * speed;
             }
         }
         else
@@ -230,6 +251,7 @@ public class AI_Movement_Control : MonoBehaviour
                 myRb.velocity = Vector2.zero;
         }
     }
+    
 
     // Security for avoid player stay always in combat
     private void OnDestroy()

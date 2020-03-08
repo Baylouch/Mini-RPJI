@@ -40,8 +40,6 @@ public class UI_Player_Stats : MonoBehaviour
 
     [SerializeField] GameObject quitValidation; // Confirmation if player didnt valid stats before quit stats UI
 
-    Player_Stats playerStats;
-
     private int[] removableStatsPoints; // To know when player can remove points or not (an array for know exaclty what pts can be remove or not)
 
     private void Start()
@@ -52,16 +50,13 @@ public class UI_Player_Stats : MonoBehaviour
             removableStatsPoints[i] = 0;
         }
 
-        // We suppose we have Player_Stats in parent because player's UI components are children of the player's hierarchy if set correctly
-        playerStats = GetComponentInParent<Player_Stats>();
-
         RefreshStatsDisplay();
     }
 
     void RefreshStatsButtons()
     {
         // If we got stats points, we can add in each stats so
-        if (playerStats.getCurrentStatsPoints() > 0)
+        if (Player_Stats.stats_instance.getCurrentStatsPoints() > 0)
         {
             strengthAddStatsButton.gameObject.SetActive(true);
             agilityAddStatsButton.gameObject.SetActive(true);
@@ -76,87 +71,78 @@ public class UI_Player_Stats : MonoBehaviour
             intellectAddStatsButton.gameObject.SetActive(false);
         }
 
-        // Then if we got removable stats points, we need to test each stats for know what we can remove or not
-        if (removableStatsPoints[0] > 0) // strength
+        if (removableStatsPoints != null) // Idk why but if we don't test it, we'll get error at start of the game.
         {
-            strengthRemoveStatsButton.gameObject.SetActive(true);
+            // Then if we got removable stats points, we need to test each stats for know what we can remove or not
+            if (removableStatsPoints[0] > 0) // strength
+            {
+                strengthRemoveStatsButton.gameObject.SetActive(true);
+            }
+            else
+            {
+                strengthRemoveStatsButton.gameObject.SetActive(false);
+            }
+            if (removableStatsPoints[1] > 0) // agility
+            {
+                agilityRemoveStatsButton.gameObject.SetActive(true);
+            }
+            else
+            {
+                agilityRemoveStatsButton.gameObject.SetActive(false);
+            }
+            if (removableStatsPoints[2] > 0) // Vitality
+            {
+                vitalityRemoveStatsButton.gameObject.SetActive(true);
+            }
+            else
+            {
+                vitalityRemoveStatsButton.gameObject.SetActive(false);
+            }
+            if (removableStatsPoints[3] > 0) // Intellect
+            {
+                intellectRemoveStatsButton.gameObject.SetActive(true);
+            }
+            else
+            {
+                intellectRemoveStatsButton.gameObject.SetActive(false);
+            }
         }
-        else
-        {
-            strengthRemoveStatsButton.gameObject.SetActive(false);
-        }
-        if (removableStatsPoints[1] > 0) // agility
-        {
-            agilityRemoveStatsButton.gameObject.SetActive(true);
-        }
-        else
-        {
-            agilityRemoveStatsButton.gameObject.SetActive(false);
-        }
-        if (removableStatsPoints[2] > 0) // Vitality
-        {
-            vitalityRemoveStatsButton.gameObject.SetActive(true);
-        }
-        else
-        {
-            vitalityRemoveStatsButton.gameObject.SetActive(false);
-        }
-        if (removableStatsPoints[3] > 0) // Intellect
-        {
-            intellectRemoveStatsButton.gameObject.SetActive(true);
-        }
-        else
-        {
-            intellectRemoveStatsButton.gameObject.SetActive(false);
-        }
+        
     }
 
     public void RefreshStatsDisplay()
     {
-        if (!playerStats)
+        if (!Player_Stats.stats_instance)
             return;
 
         // Experience panel
-        playerLevel.text = playerStats.getCurrentLevel().ToString();
-        currentExp.text = playerStats.getCurrentExp().ToString();
-        nextLevelExp.text = playerStats.getTotalExp().ToString();
+        playerLevel.text = Player_Stats.stats_instance.getCurrentLevel().ToString();
+        currentExp.text = Player_Stats.stats_instance.getCurrentExp().ToString();
+        nextLevelExp.text = Player_Stats.stats_instance.getTotalLevelExp().ToString();
 
         // Health and armor panel
-        maxHealthPoints.text = playerStats.getTotalHealthPoints().ToString();
-        currentHealthPoints.text = playerStats.getCurrentHealthPoints().ToString();
-        maxManaPoints.text = playerStats.getTotalManaPoints().ToString();
-        currentManaPoints.text = playerStats.getCurrentManaPoints().ToString();
-        armor.text = playerStats.getArmorPoints().ToString();
+        maxHealthPoints.text = Player_Stats.stats_instance.getTotalHealthPoints().ToString();
+        currentHealthPoints.text = Player_Stats.stats_instance.getCurrentHealthPoints().ToString();
+        maxManaPoints.text = Player_Stats.stats_instance.getTotalManaPoints().ToString();
+        currentManaPoints.text = Player_Stats.stats_instance.getCurrentManaPoints().ToString();
+        armor.text = Player_Stats.stats_instance.getArmor().ToString();
 
         // Attack panel
-        primaryMinAttackDamage.text = playerStats.getCurrentMinDamage().ToString();
-        primaryMaxAttackDamage.text = playerStats.getCurrentMaxDamage().ToString();
-        secondaryMinAttackDamage.text = playerStats.getCurrentRangedMinDamage().ToString();
-        secondaryMaxAttackDamage.text = playerStats.getCurrentRangedMaxDamage().ToString();
+        primaryMinAttackDamage.text = Player_Stats.stats_instance.getCurrentMinDamage().ToString();
+        primaryMaxAttackDamage.text = Player_Stats.stats_instance.getCurrentMaxDamage().ToString();
+        secondaryMinAttackDamage.text = Player_Stats.stats_instance.getCurrentRangedMinDamage().ToString();
+        secondaryMaxAttackDamage.text = Player_Stats.stats_instance.getCurrentRangedMaxDamage().ToString();
 
         // Stats panel
-        strengthStatsPoints.text = playerStats.GetStatsByType(StatsType.STRENGTH).ToString();
-        agilityStatsPoints.text = playerStats.GetStatsByType(StatsType.AGILITY).ToString();
-        vitalityStatsPoints.text = playerStats.GetStatsByType(StatsType.VITALITY).ToString();
-        intellectStatsPoints.text = playerStats.GetStatsByType(StatsType.INTELLECT).ToString();
+        strengthStatsPoints.text = Player_Stats.stats_instance.GetCurrentStatsByType(StatsType.STRENGTH).ToString();
+        agilityStatsPoints.text = Player_Stats.stats_instance.GetCurrentStatsByType(StatsType.AGILITY).ToString();
+        vitalityStatsPoints.text = Player_Stats.stats_instance.GetCurrentStatsByType(StatsType.VITALITY).ToString();
+        intellectStatsPoints.text = Player_Stats.stats_instance.GetCurrentStatsByType(StatsType.INTELLECT).ToString();
 
-        currentStatsPoints.text = playerStats.getCurrentStatsPoints().ToString();
+        currentStatsPoints.text = Player_Stats.stats_instance.getCurrentStatsPoints().ToString();
 
         // Refresh stats buttons
         RefreshStatsButtons();
-    }
-
-    // To finish
-    public void ToggleQuitValidation()
-    {
-        if (!quitValidation.activeSelf)
-        {
-            quitValidation.SetActive(true);
-        }
-        else
-        {
-            quitValidation.SetActive(false);
-        }
     }
 
     public void StatsValidation()
@@ -168,8 +154,9 @@ public class UI_Player_Stats : MonoBehaviour
             removableStatsPoints[i] = 0;
         }
         // track current stats
-        playerStats.TrackCurrentStats();
-        playerStats.RefreshStats();
+        Player_Stats.stats_instance.TrackCurrentStats();
+        Player_Stats.stats_instance.RefreshPlayerStats();
+        Player_Stats.stats_instance.ToggleStatsMenu();
 
     }
 
@@ -179,39 +166,39 @@ public class UI_Player_Stats : MonoBehaviour
         {
             if (removableStatsPoints[i] > 0)
             {
-                playerStats.AddCurrentStatsPoints(removableStatsPoints[i]);
+                Player_Stats.stats_instance.AddCurrentStatsPoints(removableStatsPoints[i]);
+                for (int j = 0; j < removableStatsPoints[i]; j++)
+                {
+                    Player_Stats.stats_instance.DecrementStatsByType((StatsType)i); // While its enum, and we were strict on how we code, its ok to use index of an enum
+                }
                 removableStatsPoints[i] = 0;
             }
         }
-
-        // Reset stats as tracked
-        playerStats.UseTrackForResetStats();
-        playerStats.RefreshStats();
-
+        Player_Stats.stats_instance.RefreshPlayerStats();
     }
 
     // We can't use StatsType via OnClick from a UI button.
     // So we use int for choose stats : 0 = strength, 1 = agility, 2 = vitality, 3 = intellect
     public void AddStatsPoints(int statsType)
     {
-        if (playerStats.getCurrentStatsPoints() > 0)
+        if (Player_Stats.stats_instance.getCurrentStatsPoints() > 0)
         {
             switch (statsType)
             {
                 case 0:
-                    playerStats.IncrementStatsByType(StatsType.STRENGTH);
+                    Player_Stats.stats_instance.IncrementStatsByType(StatsType.STRENGTH);
                     removableStatsPoints[0]++;
                     break;
                 case 1:
-                    playerStats.IncrementStatsByType(StatsType.AGILITY);
+                    Player_Stats.stats_instance.IncrementStatsByType(StatsType.AGILITY);
                     removableStatsPoints[1]++;
                     break;
                 case 2:
-                    playerStats.IncrementStatsByType(StatsType.VITALITY);
+                    Player_Stats.stats_instance.IncrementStatsByType(StatsType.VITALITY);
                     removableStatsPoints[2]++;
                     break;
                 case 3:
-                    playerStats.IncrementStatsByType(StatsType.INTELLECT);
+                    Player_Stats.stats_instance.IncrementStatsByType(StatsType.INTELLECT);
                     removableStatsPoints[3]++;
                     break;
                 default:
@@ -219,56 +206,52 @@ public class UI_Player_Stats : MonoBehaviour
                     return;
             }
 
-            playerStats.RemoveCurrentStatsPoints(1);
-            playerStats.RefreshStats();
-
+            Player_Stats.stats_instance.RemoveCurrentStatsPoints(1);
+            Player_Stats.stats_instance.RefreshPlayerStats();
         }
-
     }
 
     public void RemoveStatsPoints(int statsType)
     {
-        if (statsType == 0)
+        switch(statsType)
         {
-            if (removableStatsPoints[0] > 0)
-            {
-                playerStats.DecrementStatsByType(StatsType.STRENGTH);
-                removableStatsPoints[0]--;
-                playerStats.AddCurrentStatsPoints(1);
-            }
-        }
-        else if (statsType == 1)
-        {
-            if (removableStatsPoints[1] > 0)
-            {
-                playerStats.DecrementStatsByType(StatsType.AGILITY);
-                removableStatsPoints[1]--;
-                playerStats.AddCurrentStatsPoints(1);
-            }
-        }
-        else if (statsType == 2)
-        {
-            if (removableStatsPoints[2] > 0)
-            {
-                playerStats.DecrementStatsByType(StatsType.VITALITY);
-                removableStatsPoints[2]--;
-                playerStats.AddCurrentStatsPoints(1);
-            }
-        }
-        else if (statsType == 3)
-        {
-            if (removableStatsPoints[3] > 0)
-            {
-                playerStats.DecrementStatsByType(StatsType.INTELLECT);
-                removableStatsPoints[3]--;
-                playerStats.AddCurrentStatsPoints(1);
-            }
-        }
-        else
-        {
-            Debug.LogWarning("Attention la valeur \"" + statsType + "\" n'est pas reconnu ");
+            case 0:
+                if (removableStatsPoints[0] > 0)
+                {
+                    Player_Stats.stats_instance.DecrementStatsByType(StatsType.STRENGTH);
+                    removableStatsPoints[0]--;
+                    Player_Stats.stats_instance.AddCurrentStatsPoints(1);           
+                }
+                break;
+            case 1:
+                if (removableStatsPoints[1] > 0)
+                {
+                    Player_Stats.stats_instance.DecrementStatsByType(StatsType.AGILITY);
+                    removableStatsPoints[1]--;
+                    Player_Stats.stats_instance.AddCurrentStatsPoints(1);
+                }
+                break;
+            case 2:
+                if (removableStatsPoints[2] > 0)
+                {
+                    Player_Stats.stats_instance.DecrementStatsByType(StatsType.VITALITY);
+                    removableStatsPoints[2]--;
+                    Player_Stats.stats_instance.AddCurrentStatsPoints(1);
+                }
+                break;
+            case 3:
+                if (removableStatsPoints[3] > 0)
+                {
+                    Player_Stats.stats_instance.DecrementStatsByType(StatsType.INTELLECT);
+                    removableStatsPoints[3]--;
+                    Player_Stats.stats_instance.AddCurrentStatsPoints(1);
+                }
+                break;
+            default:
+                Debug.LogWarning("Attention la valeur \"" + statsType + "\" n'est pas reconnu ");
+                return;
         }
 
-        playerStats.RefreshStats();
+        Player_Stats.stats_instance.RefreshPlayerStats();
     }
 }

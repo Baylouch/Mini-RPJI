@@ -14,7 +14,11 @@ public class AI_Health : MonoBehaviour
     [SerializeField] float damagedTimer = 5f;
     float currentDamagedTimer;
 
-    [SerializeField] int currentHealthPoints = 100; // To deserialize
+    [SerializeField] bool slowed = false;
+    [SerializeField] float slowedTimer = 2f;
+    float currentSlowedTimer;
+    float trackSpeedBeforeDivide;
+    bool slowedSet = false;
 
     [SerializeField] bool deathAnimation = false;
     bool isDead = false;
@@ -32,8 +36,8 @@ public class AI_Health : MonoBehaviour
         animator = GetComponent<Animator>();
         ai_stats = GetComponent<AI_Stats>();
 
-        currentHealthPoints = ai_stats.GetHealthPoints();
         currentDamagedTimer = damagedTimer;
+        currentSlowedTimer = slowedTimer;
     }
 
     // Update is called once per frame
@@ -60,6 +64,32 @@ public class AI_Health : MonoBehaviour
             {
                 damaged = false;
                 currentDamagedTimer = damagedTimer;
+            }
+        }
+
+        if (slowed)
+        {
+            if (currentSlowedTimer > 0f)
+            {
+                currentSlowedTimer -= Time.deltaTime;
+                if (!slowedSet)
+                {
+                    GetComponentInChildren<SpriteRenderer>().color = Color.blue;
+                    trackSpeedBeforeDivide = GetComponent<AI_Movement_Control>().speed;
+                    GetComponent<AI_Movement_Control>().speed /= 2;
+                    slowedSet = true;
+                }
+            }
+            else
+            {
+                slowed = false;
+                if (slowedSet)
+                {
+                    GetComponentInChildren<SpriteRenderer>().color = Color.white;
+                    GetComponent<AI_Movement_Control>().speed = trackSpeedBeforeDivide;
+                    slowedSet = false;
+                }
+                currentSlowedTimer = slowedTimer;
             }
         }
     }
@@ -116,6 +146,12 @@ public class AI_Health : MonoBehaviour
         animator.SetBool("isAttacking", false);
         animator.SetBool("normalAttack", false);
 
+        // If AI was moving, stop it
+        if (GetComponent<Rigidbody2D>())
+            if (GetComponent<Rigidbody2D>().velocity != Vector2.zero)
+                GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            
+
         // Play animation
         animator.SetTrigger("isDead");
     }
@@ -123,6 +159,7 @@ public class AI_Health : MonoBehaviour
     // Don't forget to put in every end of death's animations
     public void Die()
     {
+        StopAllCoroutines();
 
         // Drop objects, golds...
         
@@ -140,11 +177,23 @@ public class AI_Health : MonoBehaviour
         if (isDead)
             return;
 
-        currentHealthPoints -= amount;
+        int tempHealthPoints = ai_stats.GetCurrentHealthPoints() - amount;
+        if (tempHealthPoints < 0)
+        {
+            ai_stats.SetCurrentHealthPoints(0);
+        }
+        else
+        {
+            ai_stats.SetCurrentHealthPoints(tempHealthPoints);
+        }
 
-        if (currentHealthPoints <= 0)
+        if (ai_stats.GetCurrentHealthPoints() <= 0)
         {
             isDead = true;
+
+            if (GetComponentInChildren<UI_Enemy>())
+                GetComponentInChildren<UI_Enemy>().gameObject.SetActive(false);
+
             if (deathAnimation) // Play death animation if there is one
             {
                 PlayDeathAnimation();
@@ -165,13 +214,10 @@ public class AI_Health : MonoBehaviour
         }
     }
 
-    public void SetHealthPoints(int amount)
+    // Method use in Projectile.cs for slow enemy (or reset slowing if already is)
+    public void Slowed()
     {
-        currentHealthPoints = amount;
-    }
-
-    public void AddHealthPoints(int amount)
-    {
-        currentHealthPoints += amount;
+        slowed = true;
+        currentSlowedTimer = slowedTimer;
     }
 }

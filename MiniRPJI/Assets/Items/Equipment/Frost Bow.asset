@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 393e3848d7dbdde4d8178f98209fcb90, type: 3}
+  m_Name: Frost Bow
+  m_EditorClassIdentifier: 
+  itemID: 10
+  itemName: Arc de glace
+  itemPrefab: {fileID: 851838038027454283, guid: 63f6009302fe77842acbdc4075a5b689,
+    type: 3}
+  inventoryImage: {fileID: 21300000, guid: ea774cf0f01ce734facf9fa8ab116c2d, type: 3}
+  armoryPart: 5
+  rarety: 3
+  projectile: {fileID: 6052980135759029977, guid: b247c121159f8b24ebd8ded3f1d90b10,
+    type: 3}
+  strength: 15
+  agility: 30
+  vitality: 20
+  intellect: 0
+  armor: 0
+  criticalRate: 0
+  rangedCriticalRate: 5
+  damageMin: 0
+  damageMax: 0
+  rangedDamageMin: 25
+  rangedDamageMax: 40
+  healthpoints: 0
+  levelRequired: 0
+  strenghtRequired: 0
+  agilityRequired: 0

@@ -1,20 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))]
 [RequireComponent(typeof(Rigidbody2D))]
 public class Projectile : MonoBehaviour
 {
     // Damage
-    public int projectileDamage = 5;
+    public int projectileDamage = 0; // Is set in Player_Combat_Control for player
+    [SerializeField] ProjectileType type; // To set projectile effect (frost, fire, nothing..)
+
     [SerializeField] float projectileSpeed = 5f;
-
     [SerializeField] float timerBeforeDestroy = 3f;
-
-    // If its a player's projectile we need to know about Stats_Control to give xp when this projectile make a kill
-    [HideInInspector]
-    public Player_Stats playerStats;
 
     private void Awake()
     {
@@ -35,6 +30,20 @@ public class Projectile : MonoBehaviour
             {
                 AI_Health enemyHealth = collision.gameObject.GetComponent<AI_Health>();
                 enemyHealth.GetDamage(projectileDamage);
+                // Now get projectile type for frost or make enemy in fire 
+                switch (type)
+                {
+                    case ProjectileType.Normal:
+                        // Do nothing
+                        break;
+                    case ProjectileType.Frost:
+                        enemyHealth.Slowed();
+                        break;
+                    case ProjectileType.Fire:
+                        // Do something;
+                        break;
+                }
+
                 // If we kill the enemy
                 if (enemyHealth.IsDead())
                 {
@@ -42,9 +51,9 @@ public class Projectile : MonoBehaviour
                     AI_Stats enemyStats = collision.gameObject.GetComponent<AI_Stats>();
                     if (enemyStats)
                     {
-                        if (playerStats)
+                        if (Player_Stats.stats_instance)
                         {
-                            playerStats.GetExperience(enemyStats.GetExperienceGain());
+                            Player_Stats.stats_instance.AddExperience(enemyStats.GetExperienceGain());
                         }
                     }
                 }

@@ -1,17 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))] // To set as trigger
 public class Item : Interactable
 {
-    public ItemConfig itemConfig;
+    public BaseItem itemConfig;
 
     // TODO, show player item stats via UI, then on this UI ask player if he want take this
     public override void Interact()
     {
         // Put item in inventory player
-        Player_Inventory player_Inventory = FindObjectOfType<Player_Inventory>(); // TODO Change this for a more secure and relative to interacted player way
+        Player_Inventory player_Inventory = Player_Inventory.inventory_instance;
         if (player_Inventory)
         {
             bool isFull = player_Inventory.CheckInventoryIsFull();

@@ -6,13 +6,15 @@ public class AI_Stats : MonoBehaviour
 {
     // Think about centralize all npc stats here as healthpoint, attack, armor
     public int level = 1;
-    [SerializeField] int healthPoints = 100;
+    [SerializeField] int totalHealthPoints = 100;
     [SerializeField] int experienceGain = 50;
+
+    int currentHealthPoints;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        SetCurrentHealthPoints(totalHealthPoints);
     }
 
     // Update is called once per frame
@@ -27,8 +29,18 @@ public class AI_Stats : MonoBehaviour
         return experienceGain;
     }
 
-    public int GetHealthPoints()
+    public int GetTotalHealthPoints()
     {
-        return healthPoints;
+        return totalHealthPoints;
+    }
+
+    public int GetCurrentHealthPoints()
+    {
+        return currentHealthPoints;
+    }
+
+    public void SetCurrentHealthPoints(int newHealthPoints)
+    {
+        currentHealthPoints = newHealthPoints;
     }
 }
