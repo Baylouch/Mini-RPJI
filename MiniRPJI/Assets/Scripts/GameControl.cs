@@ -19,7 +19,7 @@ public class GameControl : MonoBehaviour
             Destroy(gameObject);
         }
 
-        ShowPath();
+        //ShowPath();
     }
 
     public void ShowPath()
@@ -43,7 +43,7 @@ public class GameControl : MonoBehaviour
         data.playerStats.strenght = Player_Stats.stats_instance.GetBaseStatsByType(StatsType.STRENGTH);
         data.playerStats.agility = Player_Stats.stats_instance.GetBaseStatsByType(StatsType.AGILITY);
         data.playerStats.vitality = Player_Stats.stats_instance.GetBaseStatsByType(StatsType.VITALITY);
-        data.playerStats.intellect = Player_Stats.stats_instance.GetBaseStatsByType(StatsType.INTELLECT);
+        data.playerStats.intellect = Player_Stats.stats_instance.GetBaseStatsByType(StatsType.ENERGY);
         data.playerStats.currentStatsPoints = Player_Stats.stats_instance.getCurrentStatsPoints();
 
         // Player Inventory
@@ -98,7 +98,7 @@ public class GameControl : MonoBehaviour
             Player_Stats.stats_instance.SetBaseStatsByType(StatsType.STRENGTH, data.playerStats.strenght);
             Player_Stats.stats_instance.SetBaseStatsByType(StatsType.AGILITY, data.playerStats.agility);
             Player_Stats.stats_instance.SetBaseStatsByType(StatsType.VITALITY, data.playerStats.vitality);
-            Player_Stats.stats_instance.SetBaseStatsByType(StatsType.INTELLECT, data.playerStats.intellect);
+            Player_Stats.stats_instance.SetBaseStatsByType(StatsType.ENERGY, data.playerStats.intellect);
             Player_Stats.stats_instance.SetCurrentStatsPoints(data.playerStats.currentStatsPoints);
 
             // Player Inventory
