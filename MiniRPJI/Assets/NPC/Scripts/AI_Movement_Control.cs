@@ -1,15 +1,12 @@
 ﻿/* Player_Control.cs
     Utilisé pour gérer les mouvements des NPC
 */
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(AI_Moveset))]
 [RequireComponent(typeof(AI_Combat_Control))] // To know target and combat relative stuff
-[RequireComponent(typeof(AI_Health))]
 public class AI_Movement_Control : MonoBehaviour
 {
     public float speed = 2f;
@@ -29,6 +26,7 @@ public class AI_Movement_Control : MonoBehaviour
     Rigidbody2D myRb;
     Animator animator;
     Vector2 animatorVector; // To set X,Y values into animator
+
     AI_Moveset ai_moveset;
     AI_Combat_Control ai_combat;
     Player_Combat_Control player_combat; // To use for determine if player is in combat
@@ -216,7 +214,7 @@ public class AI_Movement_Control : MonoBehaviour
             {
                 if (Vector3.Distance(transform.position, trackCurrentPos) <= stuckOffset) // If distance between current position and tracked one is less than stuckOffset, AI is stuck
                 {
-                    myRb.velocity = new Vector2(1f, 1f) * speed;
+                    myRb.velocity = new Vector2(1f, 1f) * speed * 2;
                     return;
                 }
                 else // Else just reset tracked pos and tracked timer

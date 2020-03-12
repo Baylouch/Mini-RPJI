@@ -36,9 +36,9 @@ public class Player_Health : MonoBehaviour
         {
             Player_Stats.stats_instance.SetCurrentHealthPoints(Player_Stats.stats_instance.getTotalHealthPoints());
             // Then refresh UI via UI_Player instance
-            if (UI_Player.instance.playerStatsUI) // if its not null
+            if (UI_Player.ui_instance.playerStatsUI) // if its not null
             {
-                UI_Player.instance.playerStatsUI.RefreshStatsDisplay();
+                UI_Player.ui_instance.playerStatsUI.RefreshStatsDisplay();
             }
             return;
         }
@@ -79,9 +79,9 @@ public class Player_Health : MonoBehaviour
             }
 
             // Then refresh UI via UI_Player instance
-            if (UI_Player.instance.playerStatsUI) // if its not null
+            if (UI_Player.ui_instance.playerStatsUI) // if its not null
             {
-                UI_Player.instance.playerStatsUI.RefreshStatsDisplay();
+                UI_Player.ui_instance.playerStatsUI.RefreshStatsDisplay();
             }
 
             currentRegenerationTimer = healthRegenerationTimer;
@@ -151,7 +151,7 @@ public class Player_Health : MonoBehaviour
         Player_Stats.stats_instance.SetCurrentHealthPoints(tempcurrentHealthPoints); // Then set healthpoint
 
         // If player take damage when he's already in the stats panel
-        UI_Player.instance.playerStatsUI.RefreshStatsDisplay();
+        UI_Player.ui_instance.playerStatsUI.RefreshStatsDisplay();
 
         if (Player_Stats.stats_instance.getCurrentHealthPoints() <= 0)
             Die();

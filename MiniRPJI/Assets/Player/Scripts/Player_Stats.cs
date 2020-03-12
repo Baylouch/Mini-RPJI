@@ -219,9 +219,9 @@ public class Player_Stats : MonoBehaviour
             totalEnergyPoints = (int)Mathf.Max(baseEnergyPoints + (currentEnergy * energyMultiplier));
         }
 
-        if (UI_Player.instance.playerStatsUI)
+        if (UI_Player.ui_instance.playerStatsUI)
         {
-            UI_Player.instance.playerStatsUI.RefreshStatsDisplay();
+            UI_Player.ui_instance.playerStatsUI.RefreshStatsDisplay();
         }
     }
 
@@ -246,9 +246,9 @@ public class Player_Stats : MonoBehaviour
         else
         {
             currentExp = tempCurrentExperience;
-            if (UI_Player.instance.playerStatsUI)
+            if (UI_Player.ui_instance.playerStatsUI)
             {
-                UI_Player.instance.playerStatsUI.RefreshStatsDisplay();
+                UI_Player.ui_instance.playerStatsUI.RefreshStatsDisplay();
             }
         }
     }

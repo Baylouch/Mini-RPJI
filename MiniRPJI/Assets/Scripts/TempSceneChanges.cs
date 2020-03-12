@@ -12,11 +12,11 @@ public class TempSceneChanges : MonoBehaviour
 
     public void Save()
     {
-        GameControl.control.SavePlayerData();
+        GameDataControl.dataControl_instance.SavePlayerData();
     }
 
     public void Load()
     {
-        GameControl.control.LoadPlayerData();
+        GameDataControl.dataControl_instance.LoadPlayerData();
     }
 }

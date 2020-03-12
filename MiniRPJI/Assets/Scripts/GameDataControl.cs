@@ -3,15 +3,15 @@ using System;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 
-public class GameControl : MonoBehaviour
+public class GameDataControl : MonoBehaviour
 {
-    public static GameControl control;
+    public static GameDataControl dataControl_instance;
 
     private void Awake()
     {
-        if (control == null)
+        if (dataControl_instance == null)
         {
-            control = this;
+            dataControl_instance = this;
             DontDestroyOnLoad(gameObject);
         }
         else
@@ -131,8 +131,8 @@ public class GameControl : MonoBehaviour
             }
 
             // Then refresh all for the right display
-            UI_Player.instance.playerInventoryUI.RefreshInventory();
-            UI_Player.instance.playerInventoryUI.RefreshArmory();
+            UI_Player.ui_instance.playerInventoryUI.RefreshInventory();
+            UI_Player.ui_instance.playerInventoryUI.RefreshArmory();
 
             Player_Stats.stats_instance.RefreshPlayerStats();
         }       

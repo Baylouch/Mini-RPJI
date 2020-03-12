@@ -89,6 +89,8 @@ public class UI_Player_Inventory : MonoBehaviour
             // Hide usebutton if is active
             if (useButton.gameObject.activeSelf)
                 useButton.gameObject.SetActive(false);
+
+            // Detect if its an EquipmentItem or a UsableItem
             if (inventorySlots[indexSlot].item as EquipmentItem)
             {
                 equipButton.onClick.AddListener(() => EquipItem((EquipmentItem)inventorySlots[indexSlot].item));

@@ -46,7 +46,6 @@ public class Player_Inventory : MonoBehaviour
     {
         if (CheckInventoryIsFull()) // If inventory is full return
         {
-            Debug.Log("No more available slot in Inventory !");
             return;
         }
 
@@ -57,7 +56,7 @@ public class Player_Inventory : MonoBehaviour
             {
                 // set new item in inventory
                 inventoryItems[i] = item;
-                UI_Player.instance.playerInventoryUI.RefreshInventory();
+                UI_Player.ui_instance.playerInventoryUI.RefreshInventory();
                 return; // Get out of there
             }
         }
@@ -90,10 +89,10 @@ public class Player_Inventory : MonoBehaviour
         return null;
     }
 
-    // used in GameControl.cs to load inventory items
+    // Used to set inventory item (GameControl.cs)
     public void SetInventoryIndex(int inventoryIndex, int _itemID)
     {
-        // Next is used in game control to remove items. Because item's IDs will never be NEGATIVE
+        // Next condition is used to remove item in the inventoryIndex slot. Because item's IDs will never be NEGATIVE
         if (_itemID == -1)
         {
             inventoryItems[inventoryIndex] = null;
@@ -102,7 +101,7 @@ public class Player_Inventory : MonoBehaviour
         inventoryItems[inventoryIndex] = itemDataBase.GetItemById(_itemID);
     }
 
-    // used in GameControl.cs to load armory items
+    // used to set armory item (GameControl.cs)
     public void SetArmoryIndex(int armoryIndex, int _itemID)
     {
         if (_itemID == -1)

@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 
-[RequireComponent(typeof(Collider2D))] // To set as trigger
 public class Item : Interactable
 {
     public BaseItem itemConfig;
@@ -9,14 +8,13 @@ public class Item : Interactable
     public override void Interact()
     {
         // Put item in inventory player
-        Player_Inventory player_Inventory = Player_Inventory.inventory_instance;
-        if (player_Inventory)
+        if (Player_Inventory.inventory_instance)
         {
-            bool isFull = player_Inventory.CheckInventoryIsFull();
+            bool isFull = Player_Inventory.inventory_instance.CheckInventoryIsFull();
             if (isFull)
                 return;
 
-            player_Inventory.GetNewItem(itemConfig);
+            Player_Inventory.inventory_instance.GetNewItem(itemConfig);
             Destroy(gameObject);
         }
     }
