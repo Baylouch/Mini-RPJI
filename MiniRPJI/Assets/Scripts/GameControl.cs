@@ -57,9 +57,9 @@ public class GameControl : MonoBehaviour
         // Then if there is an item in the current slot, get his ID into inventoryItems data.
         for (int i = 0; i < Player_Inventory.inventorySlotsNumb; i++) 
         {
-            if (Player_Inventory.inventory_instance.GetInventorySlotItem(i) != null)
+            if (Player_Inventory.inventory_instance.GetInventoryItem(i) != null)
             {
-                data.playerInventory.inventoryItems[i] = Player_Inventory.inventory_instance.GetInventorySlotItem(i).itemID;
+                data.playerInventory.inventoryItems[i] = Player_Inventory.inventory_instance.GetInventoryItem(i).itemID;
             }
         }
 
@@ -72,9 +72,9 @@ public class GameControl : MonoBehaviour
 
         for (int i = 0; i < Player_Inventory.armorySlotsNumb; i++)
         {
-            if (Player_Inventory.inventory_instance.GetArmorySlotItem(i) != null)
+            if (Player_Inventory.inventory_instance.GetArmoryItem(i) != null)
             {
-                data.playerInventory.armoryItems[i] = Player_Inventory.inventory_instance.GetArmorySlotItem(i).itemID;
+                data.playerInventory.armoryItems[i] = Player_Inventory.inventory_instance.GetArmoryItem(i).itemID;
             }
         }
 
@@ -105,12 +105,12 @@ public class GameControl : MonoBehaviour
             // Remove all item in inventory to not have unsaved item.
             for (int i = 0; i < Player_Inventory.inventorySlotsNumb; i++)
             {
-                Player_Inventory.inventory_instance.RemoveItem(i, false);
+                Player_Inventory.inventory_instance.SetInventoryIndex(i, -1);
             }
             // Same for armory slots
             for (int i = 0; i < Player_Inventory.armorySlotsNumb; i++)
             {
-                Player_Inventory.inventory_instance.RemoveArmoryItem(i, false);
+                Player_Inventory.inventory_instance.SetArmoryIndex(i, -1);
             }
 
             // And now set registered item into their slots.
@@ -118,7 +118,7 @@ public class GameControl : MonoBehaviour
             {
                 if (data.playerInventory.inventoryItems[i] != -1) // If we set this, there is an item ID in
                 {
-                    Player_Inventory.inventory_instance.SetInventorySlots(i, data.playerInventory.inventoryItems[i]);
+                    Player_Inventory.inventory_instance.SetInventoryIndex(i, data.playerInventory.inventoryItems[i]);
                 }
             }
             
@@ -126,13 +126,13 @@ public class GameControl : MonoBehaviour
             {
                 if (data.playerInventory.armoryItems[i] != -1) // If we set this, there is an item ID in
                 {
-                    Player_Inventory.inventory_instance.SetArmorySlots(i, data.playerInventory.armoryItems[i]);
+                    Player_Inventory.inventory_instance.SetArmoryIndex(i, data.playerInventory.armoryItems[i]);
                 }
             }
 
             // Then refresh all for the right display
-            Player_Inventory.inventory_instance.RefreshInventory();
-            Player_Inventory.inventory_instance.RefreshArmory();
+            UI_Player.instance.playerInventoryUI.RefreshInventory();
+            UI_Player.instance.playerInventoryUI.RefreshArmory();
 
             Player_Stats.stats_instance.RefreshPlayerStats();
         }       

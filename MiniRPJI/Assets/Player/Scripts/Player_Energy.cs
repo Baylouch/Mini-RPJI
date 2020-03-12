@@ -20,9 +20,9 @@ public class Player_Energy : MonoBehaviour
         {
             Player_Stats.stats_instance.SetCurrentEnergyPoints(Player_Stats.stats_instance.getTotalEnergyPoints());
             // Then refresh UI via playerStats class
-            if (UI_Player.uiPlayerInstance.playerStatsUI) // if its not null
+            if (UI_Player.instance.playerStatsUI) // if its not null
             {
-                UI_Player.uiPlayerInstance.playerStatsUI.RefreshStatsDisplay();
+                UI_Player.instance.playerStatsUI.RefreshStatsDisplay();
             }
             return;
         }
@@ -55,9 +55,9 @@ public class Player_Energy : MonoBehaviour
             }
 
             // Then refresh UI via playerStats class
-            if (UI_Player.uiPlayerInstance.playerStatsUI) // if its not null
+            if (UI_Player.instance.playerStatsUI) // if its not null
             {
-                UI_Player.uiPlayerInstance.playerStatsUI.RefreshStatsDisplay();
+                UI_Player.instance.playerStatsUI.RefreshStatsDisplay();
             }
 
             currentRegenerationTimer = energyRegenerationTimer;

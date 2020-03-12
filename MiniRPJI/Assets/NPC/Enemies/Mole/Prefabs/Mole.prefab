@@ -855,10 +855,18 @@ MonoBehaviour:
   dropZone: {fileID: 2071292717}
   itemsDropable:
   - {fileID: 11400000, guid: f896568763a318444a41d36d90b3f4b7, type: 2}
-  - {fileID: 11400000, guid: 373ed2d27c89f874784e34ab7cd2ff74, type: 2}
-  - {fileID: 11400000, guid: 23f9245c7c8ab8e499a69468559315b9, type: 2}
+  - {fileID: 11400000, guid: 062590433f4fac549bd5ad7e77b16f82, type: 2}
+  - {fileID: 11400000, guid: a208934ce0452a74a9c4894ab815c06a, type: 2}
+  - {fileID: 11400000, guid: 39cb8b320858a684c9311e3fe9df0c65, type: 2}
+  - {fileID: 11400000, guid: 8135354e4658cd640b61c78696c475b4, type: 2}
+  - {fileID: 11400000, guid: 9865a6f352d12004791cf3e40ca48fe0, type: 2}
+  - {fileID: 11400000, guid: da90c1b7fc5104f429c3656d7f8788e5, type: 2}
   dropRate:
-  - 100
-  - 80
-  - 60
+  - 50
+  - 50
+  - 50
+  - 50
+  - 50
+  - 50
+  - 50
   maxItemDropable: 2

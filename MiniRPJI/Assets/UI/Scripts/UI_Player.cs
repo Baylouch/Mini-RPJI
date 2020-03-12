@@ -6,17 +6,16 @@
  * */
 
 using UnityEngine;
-using UnityEngine.UI;
 
 public class UI_Player : MonoBehaviour
 {
-    public static UI_Player uiPlayerInstance; // We singleton it to keep it between scene and acces it easily. It's the top hierarchy of Player UI
+    public static UI_Player instance; // We singleton it to keep it between scene and acces it easily. It's the top hierarchy of Player UI
 
     private void Awake()
     {
-        if (uiPlayerInstance == null)
+        if (instance == null)
         {
-            uiPlayerInstance = this;
+            instance = this;
             DontDestroyOnLoad(gameObject); 
         }
         else
@@ -26,12 +25,42 @@ public class UI_Player : MonoBehaviour
     }
     
     public UI_Player_Stats playerStatsUI;
+    public UI_Player_Inventory playerInventoryUI;
+
+    private void Start()
+    {
+        if(playerInventoryUI.gameObject.activeSelf)
+        {
+            playerInventoryUI.gameObject.SetActive(false);
+        }
+        if (playerStatsUI.gameObject.activeSelf)
+        {
+            playerStatsUI.gameObject.SetActive(false);
+        }
+    }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.F)) // To centralise in Player_Input.cs later
         {
             ToggleStatsMenu();
+        }
+        // Toggle inventoryUI
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            ToggleInventoryMenu();
+        }
+    }
+
+    public void ToggleInventoryMenu()
+    {
+        if (!playerInventoryUI.gameObject.activeSelf)
+        {
+            playerInventoryUI.gameObject.SetActive(true);
+        }
+        else
+        {
+            playerInventoryUI.gameObject.SetActive(false);
         }
     }
 

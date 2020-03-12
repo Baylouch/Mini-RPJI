@@ -178,9 +178,9 @@ public class Player_Stats : MonoBehaviour
         // We know there is 6 armory slots because of the enum ArmoryPart. All armory slot got a unique name with this.
         for (int i = 0; i < 6; i++)
         {
-            if (Player_Inventory.inventory_instance.GetArmorySlotItem(i) != null)
+            if (Player_Inventory.inventory_instance.GetArmoryItem(i) != null)
             {
-                ApplyItemStats(Player_Inventory.inventory_instance.GetArmorySlotItem(i));
+                ApplyItemStats(Player_Inventory.inventory_instance.GetArmoryItem(i));
             }
         }
 
@@ -219,9 +219,9 @@ public class Player_Stats : MonoBehaviour
             totalEnergyPoints = (int)Mathf.Max(baseEnergyPoints + (currentEnergy * energyMultiplier));
         }
 
-        if (UI_Player.uiPlayerInstance.playerStatsUI)
+        if (UI_Player.instance.playerStatsUI)
         {
-            UI_Player.uiPlayerInstance.playerStatsUI.RefreshStatsDisplay();
+            UI_Player.instance.playerStatsUI.RefreshStatsDisplay();
         }
     }
 
@@ -246,9 +246,9 @@ public class Player_Stats : MonoBehaviour
         else
         {
             currentExp = tempCurrentExperience;
-            if (UI_Player.uiPlayerInstance.playerStatsUI)
+            if (UI_Player.instance.playerStatsUI)
             {
-                UI_Player.uiPlayerInstance.playerStatsUI.RefreshStatsDisplay();
+                UI_Player.instance.playerStatsUI.RefreshStatsDisplay();
             }
         }
     }

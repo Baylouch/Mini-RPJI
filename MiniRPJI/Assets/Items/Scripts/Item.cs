@@ -16,7 +16,7 @@ public class Item : Interactable
             if (isFull)
                 return;
 
-            player_Inventory.PutNewItem(itemConfig);
+            player_Inventory.GetNewItem(itemConfig);
             Destroy(gameObject);
         }
     }
