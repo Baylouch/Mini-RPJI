@@ -15,9 +15,11 @@ MonoBehaviour:
   itemID: 1
   itemName: Chemise d'apprenti
   itemDescription: 
+  itemSellPrice: 0
   itemPrefab: {fileID: 6105507112566103775, guid: 5b0990b01e9377340b8b0de20b0397b4,
     type: 3}
   inventoryImage: {fileID: 21300000, guid: 2f1eaeeaad36ee5469eff7ff158f37ba, type: 3}
+  stackableItem: 0
   armoryPart: 1
   rarety: 0
   projectile: {fileID: 0}

@@ -1,15 +1,18 @@
 ﻿/* Stats_Control.cs
  Gère les statistiques du joueur. Par ex: le taux de vitalité augmentera les points de vies etc
  Ce script doit être executé dans les premiers afin d'éviter null reference si le joueur a des objets pré-équipés avant de commencer
+ Permet l'accès aux éléments Player_Energy et Player_Health pour les autres scripts
 */
 using UnityEngine;
 
 
 public enum StatsType { STRENGTH, AGILITY, VITALITY, ENERGY }; // Enum pour différencier les différentes statistiques
 
+[RequireComponent(typeof(Player_Energy))]
+[RequireComponent(typeof(Player_Health))]
 public class Player_Stats : MonoBehaviour
 {
-    public static Player_Stats stats_instance;
+    public static Player_Stats stats_instance; // Singleton + persistent
 
     // Experience is for now set in "Projectile.cs" and "Player_Combat_Control.cs"
     [Header("Experience")]
@@ -36,15 +39,6 @@ public class Player_Stats : MonoBehaviour
     [SerializeField] private int damageMin = 1;
     [SerializeField] private int damageMax = 3;
 
-    [Header("General")]
-    [SerializeField] private int totalHealthPoints = 100; // Total player healthpoints
-    [SerializeField] private int totalEnergyPoints = 100;
-
-    private int baseHealthPoints = 0; // We need this base for know how much healthpoints (without vitality multiplier) player have (for refreshing stats)
-    private int currentHealthPoints; // Player current healthpoints
-    private int baseEnergyPoints = 0;
-    private int currentEnergyPoints;
-
     private int tempItemHealthPoints = 0; // If an item give us healthpoints, we need a temp variable to be reset each time we enter in RefreshPlayerStats()
     // then add to the total healthpoints after vitality calculation
 
@@ -67,6 +61,9 @@ public class Player_Stats : MonoBehaviour
     private float energyMultiplier = 1f;
     private float armorMultiplier = .05f; // Used in Player_Health to reduce damage taken
 
+    public Player_Energy playerEnergy;
+    public Player_Health playerHealth;
+
     private void Awake()
     {
         // Make it singleton
@@ -86,12 +83,18 @@ public class Player_Stats : MonoBehaviour
     {
         statsTrack = new int[4];
 
-        baseHealthPoints = totalHealthPoints; // first of all before all healthpoints maths
-        baseEnergyPoints = totalEnergyPoints;
+        if (GetComponent<Player_Energy>())
+        {
+            playerEnergy = GetComponent<Player_Energy>();
+        }
+            
+        if (GetComponent<Player_Health>())
+        {
+            playerHealth = GetComponent<Player_Health>();
+
+        }
 
         RefreshPlayerStats(); // refresh stats
-        SetCurrentHealthPoints(totalHealthPoints); // Set player healthpoints
-        SetCurrentEnergyPoints(totalEnergyPoints);
 
         TrackCurrentStats(); // Get track of current stats at start
     }
@@ -109,8 +112,8 @@ public class Player_Stats : MonoBehaviour
 
         // Give 5 stats points to the player
         currentStatsPoints += 5;
-        SetCurrentHealthPoints(totalHealthPoints); // refresh currenthealthpoints to set it to max
-        SetCurrentEnergyPoints(totalEnergyPoints);
+        playerHealth.SetCurrentHealthPoints(playerHealth.GetTotalHealthPoints()); // refresh currenthealthpoints to set it to max
+        playerEnergy.SetCurrentEnergyPoints(playerEnergy.GetTotalEnergyPoints());
         totalLevelExp *= 2; // Set next level XP
 
         // Refresh Stats
@@ -206,17 +209,17 @@ public class Player_Stats : MonoBehaviour
         }
 
         // Vitality maths : works if you add or remove vitality points.
-        if (baseHealthPoints + (currentVitality * vitalityMultiplier) != totalHealthPoints)
+        if (playerHealth.GetBaseHealthPoints() + (currentVitality * vitalityMultiplier) != playerHealth.GetTotalHealthPoints())
         {
-            totalHealthPoints = (int)Mathf.Max(baseHealthPoints + (currentVitality * vitalityMultiplier));
+            playerHealth.SetTotalHealthPoints((int)Mathf.Max(playerHealth.GetBaseHealthPoints() + (currentVitality * vitalityMultiplier)));
         }
 
-        totalHealthPoints += tempItemHealthPoints;
+        playerHealth.SetTotalHealthPoints(playerHealth.GetTotalHealthPoints() + tempItemHealthPoints);
 
         // same as vitality maths
-        if (baseEnergyPoints + (currentEnergy * energyMultiplier) != totalEnergyPoints)
+        if (playerEnergy.GetBaseEnergyPoints() + (currentEnergy * energyMultiplier) != playerEnergy.GetTotalEnergyPoints())
         {
-            totalEnergyPoints = (int)Mathf.Max(baseEnergyPoints + (currentEnergy * energyMultiplier));
+            playerEnergy.SetTotalEnergyPoints((int)Mathf.Max(playerEnergy.GetBaseEnergyPoints() + (currentEnergy * energyMultiplier)));
         }
 
         if (UI_Player.ui_instance.playerStatsUI)
@@ -251,32 +254,6 @@ public class Player_Stats : MonoBehaviour
                 UI_Player.ui_instance.playerStatsUI.RefreshStatsDisplay();
             }
         }
-    }
-
-    // Method use in Player_Health (its the way player taking damage)
-    public void SetCurrentHealthPoints(int newHealthPoints)
-    {
-        if (newHealthPoints < 0)
-        {
-            currentHealthPoints = 0;
-        }
-        else
-        {
-            currentHealthPoints = newHealthPoints;
-        }        
-    }
-
-    // For use Shoot()
-    public void SetCurrentEnergyPoints(int newEnergyPoints)
-    {
-        if (newEnergyPoints < 0)
-        {
-            currentEnergyPoints = 0;
-        }
-        else
-        {
-            currentEnergyPoints = newEnergyPoints;
-        }       
     }
 
     #region UI_Player_Stats relative methods
@@ -423,16 +400,6 @@ public class Player_Stats : MonoBehaviour
         return level;
     }
 
-    public int getCurrentHealthPoints()
-    {
-        return currentHealthPoints;
-    }
-
-    public int getTotalHealthPoints()
-    {
-        return totalHealthPoints;
-    }
-
     public int getArmor()
     {
         return armor;
@@ -451,16 +418,6 @@ public class Player_Stats : MonoBehaviour
     public float getRangedCriticalRate()
     {
         return rangedCriticalRate;
-    }
-
-    public int getTotalEnergyPoints()
-    {
-        return totalEnergyPoints;
-    }
-
-    public int getCurrentEnergyPoints()
-    {
-        return currentEnergyPoints;
     }
 
     #endregion

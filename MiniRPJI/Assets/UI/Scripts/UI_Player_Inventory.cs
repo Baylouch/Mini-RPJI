@@ -209,7 +209,33 @@ public class UI_Player_Inventory : MonoBehaviour
                 Instantiate(Player_Inventory.inventory_instance.GetInventoryItem(itemIndex).itemPrefab, Player_Inventory.inventory_instance.transform.position, Quaternion.identity);
             }
 
-            Player_Inventory.inventory_instance.SetInventoryIndex(itemIndex, -1);
+            // If its an item quest linked to quest we have, decrement current quest objective because we remove this item.
+            if (Player_Inventory.inventory_instance.GetInventoryItem(itemIndex) as QuestItem)
+            {
+                QuestItem questItem = (QuestItem)Player_Inventory.inventory_instance.GetInventoryItem(itemIndex);
+                if (Player_Quest_Control.quest_instance.GetQuestWithID(questItem.questID))
+                {
+                    questItem.DecrementLinkedQuest();
+                }
+            }
+
+            if (inventorySlots[currentInventorySlotIndex].item.stackableItem)
+            {
+                if (inventorySlots[currentInventorySlotIndex].itemNumb >= 1)
+                {
+                    inventorySlots[currentInventorySlotIndex].itemNumb--;
+                }
+
+                if (inventorySlots[currentInventorySlotIndex].itemNumb < 1)
+                {
+                    Player_Inventory.inventory_instance.SetInventoryIndex(itemIndex, -1);
+                }
+            }
+            else
+            {
+                Player_Inventory.inventory_instance.SetInventoryIndex(itemIndex, -1);
+            }
+
             RefreshInventory();
 
             // we must check if currentInventorySlotIndex == itemIndex before else we'll set wrong informations
@@ -296,7 +322,7 @@ public class UI_Player_Inventory : MonoBehaviour
     {
         if (Player_Inventory.inventory_instance.GetArmoryItem(armoryIndex) != null) // If slot isn't empty, then continue
         {
-            if (!Player_Inventory.inventory_instance.CheckInventoryIsFull()) // If inventory isn't full put current helmslot item in
+            if (!Player_Inventory.inventory_instance.CheckInventoryIsFull()) // If inventory isn't full put current armoryslot item in
             {
                 Player_Inventory.inventory_instance.GetNewItem(armorySlots[armoryIndex].item); // Put item in inventory
                 Player_Inventory.inventory_instance.SetArmoryIndex(armoryIndex, -1); // Remove it from armory items
@@ -328,9 +354,27 @@ public class UI_Player_Inventory : MonoBehaviour
     public void UseItem(UsableItem item)
     {
         item.Use();
-        if (item.used)
+
+        if (inventorySlots[currentInventorySlotIndex].item.stackableItem)
         {
-            RemoveItem(currentInventorySlotIndex, false);
+            if (inventorySlots[currentInventorySlotIndex].itemNumb > 1)
+            {
+                inventorySlots[currentInventorySlotIndex].itemNumb--;
+                RefreshInventory();
+
+                return;
+            }
         }
+
+        RemoveItem(currentInventorySlotIndex, false);
+        
+    }
+
+    // Method used in Player_Inventory to increment stackable item numb in the slot.
+    public InventorySlot GetInventorySlotByIndex(int indexSlot)
+    {
+        if (inventorySlots[indexSlot] != null)
+            return inventorySlots[indexSlot];
+        return null;
     }
 }

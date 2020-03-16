@@ -133,10 +133,10 @@ public class UI_Player_Stats : MonoBehaviour
         nextLevelExp.text = Player_Stats.stats_instance.getTotalLevelExp().ToString();
 
         // Health and armor panel
-        maxHealthPoints.text = Player_Stats.stats_instance.getTotalHealthPoints().ToString();
-        currentHealthPoints.text = Player_Stats.stats_instance.getCurrentHealthPoints().ToString();
-        maxEnergyPoints.text = Player_Stats.stats_instance.getTotalEnergyPoints().ToString();
-        currentEnergyPoints.text = Player_Stats.stats_instance.getCurrentEnergyPoints().ToString();
+        maxHealthPoints.text = Player_Stats.stats_instance.playerHealth.GetTotalHealthPoints().ToString();
+        currentHealthPoints.text = Player_Stats.stats_instance.playerHealth.GetCurrentHealthPoints().ToString();
+        maxEnergyPoints.text = Player_Stats.stats_instance.playerEnergy.GetTotalEnergyPoints().ToString();
+        currentEnergyPoints.text = Player_Stats.stats_instance.playerEnergy.GetCurrentEnergyPoints().ToString();
         armor.text = Player_Stats.stats_instance.getArmor().ToString();
 
         // Attack panel

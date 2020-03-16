@@ -8,6 +8,7 @@ public enum ProjectileType { Normal, Frost, Fire };
 
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(Collider2D))]
+[RequireComponent(typeof(Player_Stats))]
 public class Player_Combat_Control : MonoBehaviour
 {
     public bool isInCombat = false; // Set in AI_Movement_Control
@@ -57,7 +58,7 @@ public class Player_Combat_Control : MonoBehaviour
             {
                 if (Player_Inventory.inventory_instance.GetCurrentBow())
                 {
-                    if (Player_Stats.stats_instance.getCurrentEnergyPoints() > energyNeededForShoot)
+                    if (Player_Stats.stats_instance.playerEnergy.GetCurrentEnergyPoints() >= energyNeededForShoot)
                     {
                         UseBowAttack();
                     }
@@ -167,7 +168,8 @@ public class Player_Combat_Control : MonoBehaviour
 
             currentProjectileComponent.projectileDamage = GetRangedAttackDamage();
 
-            Player_Stats.stats_instance.SetCurrentEnergyPoints(Mathf.RoundToInt(Player_Stats.stats_instance.getCurrentEnergyPoints() - energyNeededForShoot));           
+            // Use energy
+            Player_Stats.stats_instance.playerEnergy.SetCurrentEnergyPoints(Player_Stats.stats_instance.playerEnergy.GetCurrentEnergyPoints() - energyNeededForShoot);           
         }
     }
 

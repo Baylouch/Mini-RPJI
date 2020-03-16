@@ -11,8 +11,6 @@ public class UsableItem : BaseItem
     public int healthRegenerationPoints;
     public int energyRegenerationPoints;
 
-    public bool used = false;
-
     // For now we assume using an item will change something on player's stats.
     public void Use()
     {
@@ -20,42 +18,40 @@ public class UsableItem : BaseItem
         {
             if (healthRegenerationPoints != 0)
             {
-                if (Player_Stats.stats_instance.getCurrentHealthPoints() >= Player_Stats.stats_instance.getTotalHealthPoints())
+                if (Player_Stats.stats_instance.playerHealth.GetCurrentHealthPoints() >= Player_Stats.stats_instance.playerHealth.GetTotalHealthPoints())
                 {
                     return;
                 }
 
-                int tempHealth = Player_Stats.stats_instance.getCurrentHealthPoints() + healthRegenerationPoints;
-                if (tempHealth > Player_Stats.stats_instance.getTotalHealthPoints())
+                int tempHealth = Player_Stats.stats_instance.playerHealth.GetCurrentHealthPoints() + healthRegenerationPoints;
+                if (tempHealth > Player_Stats.stats_instance.playerHealth.GetTotalHealthPoints())
                 {
-                    Player_Stats.stats_instance.SetCurrentHealthPoints(Player_Stats.stats_instance.getTotalHealthPoints());
+                    Player_Stats.stats_instance.playerHealth.SetCurrentHealthPoints(Player_Stats.stats_instance.playerHealth.GetTotalHealthPoints());
                 }
                 else
                 {
-                    Player_Stats.stats_instance.SetCurrentHealthPoints(tempHealth);
+                    Player_Stats.stats_instance.playerHealth.SetCurrentHealthPoints(tempHealth);
                 }
 
-                used = true;
             }
 
             if (energyRegenerationPoints != 0)
             {
-                if (Player_Stats.stats_instance.getCurrentEnergyPoints() >= Player_Stats.stats_instance.getTotalEnergyPoints())
+                if (Player_Stats.stats_instance.playerEnergy.GetCurrentEnergyPoints() >= Player_Stats.stats_instance.playerEnergy.GetTotalEnergyPoints())
                 {
                     return;
                 }
 
-                int tempMana = Player_Stats.stats_instance.getCurrentEnergyPoints() + energyRegenerationPoints;
-                if (tempMana > Player_Stats.stats_instance.getTotalEnergyPoints())
+                int tempEnergy = Player_Stats.stats_instance.playerEnergy.GetCurrentEnergyPoints() + energyRegenerationPoints;
+                if (tempEnergy > Player_Stats.stats_instance.playerEnergy.GetTotalEnergyPoints())
                 {
-                    Player_Stats.stats_instance.SetCurrentEnergyPoints(Player_Stats.stats_instance.getTotalEnergyPoints());
+                    Player_Stats.stats_instance.playerEnergy.SetCurrentEnergyPoints(Player_Stats.stats_instance.playerEnergy.GetTotalEnergyPoints());
                 }
                 else
                 {
-                    Player_Stats.stats_instance.SetCurrentEnergyPoints(tempMana);
+                    Player_Stats.stats_instance.playerEnergy.SetCurrentEnergyPoints(tempEnergy);
                 }
 
-                used = true;
             }
         }
     }

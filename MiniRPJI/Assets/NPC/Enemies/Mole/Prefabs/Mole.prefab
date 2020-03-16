@@ -214,7 +214,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.4}
+  m_Offset: {x: -0.020409584, y: -0.5238781}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -225,7 +225,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.7791805, y: 0.26166916}
   m_EdgeRadius: 0
 --- !u!1 &1474752084
 GameObject:
@@ -760,7 +760,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd9aa14811435dd42a59a4c146f73a9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chasingDistance: 5.3
+  chasingDistance: 6.5
   damagedChasingDistance: 25
   damageMin: 7
   damageMax: 12
@@ -784,7 +784,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6eb7822b00982824d8aedaeab1ea328f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
+  speed: 2.5
   stopFollowingOffset: 2.5
 --- !u!114 &2743148443856352679
 MonoBehaviour:
@@ -856,21 +856,21 @@ MonoBehaviour:
   dropZone: {fileID: 2071292717}
   itemsDropable:
   - {fileID: 11400000, guid: f896568763a318444a41d36d90b3f4b7, type: 2}
-  - {fileID: 11400000, guid: 062590433f4fac549bd5ad7e77b16f82, type: 2}
-  - {fileID: 11400000, guid: a208934ce0452a74a9c4894ab815c06a, type: 2}
-  - {fileID: 11400000, guid: 39cb8b320858a684c9311e3fe9df0c65, type: 2}
-  - {fileID: 11400000, guid: 8135354e4658cd640b61c78696c475b4, type: 2}
-  - {fileID: 11400000, guid: 9865a6f352d12004791cf3e40ca48fe0, type: 2}
-  - {fileID: 11400000, guid: da90c1b7fc5104f429c3656d7f8788e5, type: 2}
+  - {fileID: 11400000, guid: 75e60a327ff05f04f8d97d0dfaf6de3e, type: 2}
+  - {fileID: 11400000, guid: 96641f4a6ed09ae40830c291500c500e, type: 2}
+  - {fileID: 11400000, guid: 23f9245c7c8ab8e499a69468559315b9, type: 2}
+  - {fileID: 11400000, guid: 373ed2d27c89f874784e34ab7cd2ff74, type: 2}
+  - {fileID: 11400000, guid: 48f3281e35eeb574abc7efeb88ef8b10, type: 2}
+  - {fileID: 11400000, guid: f0d6aff31319c6e48a6d91e59207e297, type: 2}
   dropRate:
-  - 50
-  - 50
-  - 50
-  - 50
-  - 50
-  - 50
-  - 50
-  maxItemDropable: 2
+  - 30
+  - 15
+  - 9
+  - 9
+  - 9
+  - 9
+  - 40
+  maxItemDropable: 3
 --- !u!114 &659459721
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -883,4 +883,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0183d7279441bd4cad16fb38a60bbbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  questID: 0
+  questID: 1

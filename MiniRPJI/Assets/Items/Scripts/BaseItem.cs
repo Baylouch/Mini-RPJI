@@ -16,4 +16,6 @@ public class BaseItem : ScriptableObject
 
     public GameObject itemPrefab;
     public Sprite inventoryImage;
+
+    public bool stackableItem; // If you can stack it in inventory. (Potions, quests items...)
 }

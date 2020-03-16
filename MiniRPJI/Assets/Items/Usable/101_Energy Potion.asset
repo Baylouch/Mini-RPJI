@@ -19,6 +19,7 @@ MonoBehaviour:
   itemPrefab: {fileID: 1031920270776230509, guid: e12500d377f8996438e66b6133ac7f26,
     type: 3}
   inventoryImage: {fileID: 21300000, guid: 805736230f06ac449a72b0ecb951e522, type: 3}
+  stackableItem: 1
   healthRegenerationPoints: 0
   energyRegenerationPoints: 50
-  used: 1
+  used: 0

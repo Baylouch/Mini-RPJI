@@ -8,6 +8,24 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Player_Combat_Control))] // To know when we can regenerate health or not (with IsInCombat variable)
 public class Player_Health : MonoBehaviour
 {
+    [SerializeField] private int totalHealthPoints = 100; // Total player healthpoints
+    public int GetTotalHealthPoints()
+    {
+        return totalHealthPoints;
+    }
+
+    private int baseHealthPoints = 0; // We need this base for know how much healthpoints (without vitality multiplier) player have (for refreshing stats)
+    public int GetBaseHealthPoints()
+    {
+        return baseHealthPoints;
+    }
+
+    private int currentHealthPoints; // Player current healthpoints
+    public int GetCurrentHealthPoints()
+    {
+        return currentHealthPoints;
+    }
+
     [SerializeField] float healthRegenerationTimer = 2f;
     float currentRegenerationTimer;
     float regenerationMultiplier = 0.01f; // We regenerate 0.01% of our total health
@@ -23,6 +41,9 @@ public class Player_Health : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        baseHealthPoints = totalHealthPoints;
+        SetCurrentHealthPoints(totalHealthPoints); // Set player healthpoints
+
         player_combat = GetComponent<Player_Combat_Control>();
 
         currentRegenerationTimer = healthRegenerationTimer;
@@ -32,9 +53,9 @@ public class Player_Health : MonoBehaviour
     void Update()
     {
         // Just a security if player decrement vitality points for exemple.
-        if (Player_Stats.stats_instance.getCurrentHealthPoints() > Player_Stats.stats_instance.getTotalHealthPoints())
+        if (currentHealthPoints > totalHealthPoints)
         {
-            Player_Stats.stats_instance.SetCurrentHealthPoints(Player_Stats.stats_instance.getTotalHealthPoints());
+            SetCurrentHealthPoints(totalHealthPoints);
             // Then refresh UI via UI_Player instance
             if (UI_Player.ui_instance.playerStatsUI) // if its not null
             {
@@ -57,7 +78,7 @@ public class Player_Health : MonoBehaviour
     void RegenerateHealth()
     {
         // If player got max healthpoints, just return.
-        if (Player_Stats.stats_instance.getCurrentHealthPoints() >= Player_Stats.stats_instance.getTotalHealthPoints())
+        if (currentHealthPoints >= totalHealthPoints)
         {
             return;
         }
@@ -68,14 +89,14 @@ public class Player_Health : MonoBehaviour
         }
         else
         {
-            float tempHealth = Player_Stats.stats_instance.getCurrentHealthPoints() + Player_Stats.stats_instance.getTotalHealthPoints() * regenerationMultiplier; // Get the temp healthpoints
-            if (tempHealth > Player_Stats.stats_instance.getTotalHealthPoints()) // If player got more than total health points
+            float tempHealth = currentHealthPoints + totalHealthPoints * regenerationMultiplier; // Get the temp healthpoints
+            if (tempHealth > totalHealthPoints) // If player got more than total health points
             {
-                Player_Stats.stats_instance.SetCurrentHealthPoints(Player_Stats.stats_instance.getTotalHealthPoints()); // set healthpoints to total
+                SetCurrentHealthPoints(totalHealthPoints); // set healthpoints to total
             }
             else
             {
-                Player_Stats.stats_instance.SetCurrentHealthPoints((int)tempHealth); // else set by temp healthpoints
+                SetCurrentHealthPoints((int)tempHealth); // else set by temp healthpoints
             }
 
             // Then refresh UI via UI_Player instance
@@ -123,6 +144,25 @@ public class Player_Health : MonoBehaviour
 
     #endregion
 
+    public void SetCurrentHealthPoints(float newHealthPoints)
+    {
+        int tempHealth = Mathf.RoundToInt(newHealthPoints);
+
+        if (newHealthPoints < 0)
+        {
+            currentHealthPoints = 0;
+        }
+        else
+        {
+            currentHealthPoints = tempHealth;
+        }
+    }
+
+    public void SetTotalHealthPoints(int newTotal)
+    {
+        totalHealthPoints = newTotal;
+    }
+
     public void GetDamage(int amount)
     {
         // Reduction of damage amount by % depending of our armor.
@@ -146,14 +186,14 @@ public class Player_Health : MonoBehaviour
             _damagedText.GetComponent<Text>().text = amount.ToString();
         }
 
-        int tempcurrentHealthPoints = Mathf.RoundToInt(Player_Stats.stats_instance.getCurrentHealthPoints() - tempDamageAmount);
+        float afterDamageHealthPoints = currentHealthPoints - tempDamageAmount;
 
-        Player_Stats.stats_instance.SetCurrentHealthPoints(tempcurrentHealthPoints); // Then set healthpoint
+        SetCurrentHealthPoints(afterDamageHealthPoints); // Then set healthpoint
 
         // If player take damage when he's already in the stats panel
         UI_Player.ui_instance.playerStatsUI.RefreshStatsDisplay();
 
-        if (Player_Stats.stats_instance.getCurrentHealthPoints() <= 0)
+        if (currentHealthPoints <= 0)
             Die();
         else if (rend)
         {

@@ -37,24 +37,24 @@ public class UI_Player_Profil : MonoBehaviour
             currentLevel.text = Player_Stats.stats_instance.getCurrentLevel().ToString();
         }
         // Healthbar
-        if (totalHealthpoints.text != Player_Stats.stats_instance.getTotalHealthPoints().ToString())
+        if (totalHealthpoints.text != Player_Stats.stats_instance.playerHealth.GetTotalHealthPoints().ToString())
         {
-            totalHealthpoints.text = Player_Stats.stats_instance.getTotalHealthPoints().ToString();
+            totalHealthpoints.text = Player_Stats.stats_instance.playerHealth.GetTotalHealthPoints().ToString();
         }
-        if (currentHealthpoints.text != Player_Stats.stats_instance.getCurrentHealthPoints().ToString())
+        if (currentHealthpoints.text != Player_Stats.stats_instance.playerHealth.GetCurrentHealthPoints().ToString())
         {
-            currentHealthpoints.text = Player_Stats.stats_instance.getCurrentHealthPoints().ToString();
-            healthLine.sizeDelta = new Vector2((Player_Stats.stats_instance.getCurrentHealthPoints() * 100) / Player_Stats.stats_instance.getTotalHealthPoints(), healthLine.sizeDelta.y);
+            currentHealthpoints.text = Player_Stats.stats_instance.playerHealth.GetCurrentHealthPoints().ToString();
+            healthLine.sizeDelta = new Vector2((Player_Stats.stats_instance.playerHealth.GetCurrentHealthPoints() * 100) / Player_Stats.stats_instance.playerHealth.GetTotalHealthPoints(), healthLine.sizeDelta.y);
         }
         // Manabar
-        if (totalEnergypoints.text != Player_Stats.stats_instance.getTotalEnergyPoints().ToString())
+        if (totalEnergypoints.text != Player_Stats.stats_instance.playerEnergy.GetTotalEnergyPoints().ToString())
         {
-            totalEnergypoints.text = Player_Stats.stats_instance.getTotalEnergyPoints().ToString();
+            totalEnergypoints.text = Player_Stats.stats_instance.playerEnergy.GetTotalEnergyPoints().ToString();
         }
-        if (currentEnergypoints.text != Player_Stats.stats_instance.getCurrentEnergyPoints().ToString())
+        if (currentEnergypoints.text != Player_Stats.stats_instance.playerEnergy.GetCurrentEnergyPoints().ToString())
         {
-            currentEnergypoints.text = Player_Stats.stats_instance.getCurrentEnergyPoints().ToString();
-            energyLine.sizeDelta = new Vector2((Player_Stats.stats_instance.getCurrentEnergyPoints() * 100) / Player_Stats.stats_instance.getTotalEnergyPoints(), energyLine.sizeDelta.y);
+            currentEnergypoints.text = Player_Stats.stats_instance.playerEnergy.GetCurrentEnergyPoints().ToString();
+            energyLine.sizeDelta = new Vector2((Player_Stats.stats_instance.playerEnergy.GetCurrentEnergyPoints() * 100) / Player_Stats.stats_instance.playerEnergy.GetTotalEnergyPoints(), energyLine.sizeDelta.y);
         }
         // Exp bar
         if (totalExppoints.text != Player_Stats.stats_instance.getTotalLevelExp().ToString())

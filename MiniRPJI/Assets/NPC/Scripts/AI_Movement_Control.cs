@@ -12,7 +12,7 @@ public class AI_Movement_Control : MonoBehaviour
     public float speed = 2f;
 
     [SerializeField] float stopFollowingOffset = 0.2f;
-    float backToStartPosOffset = 1f; // When npc go back to his startPos, we need a little offset
+    float backToStartPosOffset = 2.5f; // When npc go back to his startPos, we need a little offset
     bool followingTarget = false; // Are we currently following ?
     Vector3 startPos; // Keep track where we from
     bool backToStartPos = true;
@@ -56,7 +56,6 @@ public class AI_Movement_Control : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-
         if (!animator.GetBool("isAttacking"))
         {
             SimpleAIMovement();
@@ -136,11 +135,12 @@ public class AI_Movement_Control : MonoBehaviour
         else // Else let's go  back to the startpos
         {
             ProcessFollowMovement(startPos);
+            Debug.Log("Processing back to start position");
 
             if (Vector3.Distance(transform.position, startPos) <= backToStartPosOffset)
             {
                 backToStartPos = true;
-
+                Debug.Log("On start pos");
                 if (myRb.velocity != Vector2.zero) // Make sure we stop the npc to his startpos
                 {
                     myRb.velocity = Vector2.zero;

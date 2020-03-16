@@ -14,9 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemID: 100
   itemName: Potion de vie
+  itemDescription: 
+  itemSellPrice: 0
   itemPrefab: {fileID: 4777377678443712558, guid: 77774df01c1197f48bf16b089903d93d,
     type: 3}
   inventoryImage: {fileID: 21300000, guid: e52ea25af699fd445b7046374f81a5b9, type: 3}
+  stackableItem: 1
   healthRegenerationPoints: 50
-  manaRegenerationPoints: 0
+  energyRegenerationPoints: 0
   used: 0

@@ -2,6 +2,24 @@
 
 public class Player_Energy : MonoBehaviour
 {
+    [SerializeField] private int totalEnergyPoints = 100; // This is the total energy points (item boost and energy stats included)
+    public int GetTotalEnergyPoints()
+    {
+        return totalEnergyPoints;
+    }
+
+    private int baseEnergyPoints = 0; // Its the base points without item bost and energy stats points
+    public int GetBaseEnergyPoints()
+    {
+        return baseEnergyPoints;
+    }
+
+    private int currentEnergyPoints;
+    public int GetCurrentEnergyPoints()
+    {
+        return currentEnergyPoints;
+    }
+
     [SerializeField] float energyRegenerationTimer = 2f;
     float currentRegenerationTimer;
     float regenerationMultiplier = 0.15f; // We regenerate 15% of our total energy
@@ -9,6 +27,8 @@ public class Player_Energy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        baseEnergyPoints = totalEnergyPoints;
+        SetCurrentEnergyPoints(totalEnergyPoints);
         currentRegenerationTimer = energyRegenerationTimer;
     }
 
@@ -16,9 +36,9 @@ public class Player_Energy : MonoBehaviour
     void Update()
     {
         // Just a security if player decrement energy points for exemple.
-        if (Player_Stats.stats_instance.getCurrentEnergyPoints() > Player_Stats.stats_instance.getTotalEnergyPoints())
+        if (currentEnergyPoints > totalEnergyPoints)
         {
-            Player_Stats.stats_instance.SetCurrentEnergyPoints(Player_Stats.stats_instance.getTotalEnergyPoints());
+            SetCurrentEnergyPoints(totalEnergyPoints);
             // Then refresh UI via playerStats class
             if (UI_Player.ui_instance.playerStatsUI) // if its not null
             {
@@ -33,7 +53,7 @@ public class Player_Energy : MonoBehaviour
     void RegenerateEnergy()
     {
         // If player got max healthpoints, just return.
-        if (Player_Stats.stats_instance.getCurrentEnergyPoints() >= Player_Stats.stats_instance.getTotalEnergyPoints())
+        if (currentEnergyPoints >= totalEnergyPoints)
         {
             return;
         }
@@ -44,14 +64,14 @@ public class Player_Energy : MonoBehaviour
         }
         else
         {
-            float tempEnergy = Player_Stats.stats_instance.getCurrentEnergyPoints() + Player_Stats.stats_instance.getTotalEnergyPoints() * regenerationMultiplier; // Get the temp healthpoints
-            if (tempEnergy > Player_Stats.stats_instance.getTotalEnergyPoints()) // If player got more than total health points
+            float tempEnergy = currentEnergyPoints + totalEnergyPoints * regenerationMultiplier; // Get the temp healthpoints
+            if (tempEnergy > totalEnergyPoints) // If player got more than total health points
             {
-                Player_Stats.stats_instance.SetCurrentEnergyPoints(Player_Stats.stats_instance.getTotalEnergyPoints()); // set healthpoints to total
+                SetCurrentEnergyPoints(totalEnergyPoints); // set healthpoints to total
             }
             else
             {
-                Player_Stats.stats_instance.SetCurrentEnergyPoints((int)tempEnergy); // else set by temp healthpoints
+                SetCurrentEnergyPoints((int)tempEnergy); // else set by temp healthpoints
             }
 
             // Then refresh UI via playerStats class
@@ -62,5 +82,24 @@ public class Player_Energy : MonoBehaviour
 
             currentRegenerationTimer = energyRegenerationTimer;
         }
+    }
+
+    public void SetCurrentEnergyPoints(float newEnergyPoints)
+    {
+        int tempEnergy = Mathf.RoundToInt(newEnergyPoints);
+
+        if (tempEnergy < 0)
+        {
+            currentEnergyPoints = 0;
+        }
+        else
+        {
+            currentEnergyPoints = tempEnergy;
+        }
+    }
+
+    public void SetTotalEnergyPoints(int newTotal)
+    {
+        totalEnergyPoints = newTotal;
     }
 }

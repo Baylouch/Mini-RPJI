@@ -28,6 +28,20 @@ public class Player_Inventory : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        // Give to the player 5 health potions
+        // TODO see if next line get wrong when loading data
+        GetNewItem(itemDataBase.GetItemById(100));
+        GetNewItem(itemDataBase.GetItemById(100));
+        GetNewItem(itemDataBase.GetItemById(100));
+        GetNewItem(itemDataBase.GetItemById(100));
+        GetNewItem(itemDataBase.GetItemById(100));
+
+        UI_Player.ui_instance.playerInventoryUI.RefreshInventory();
+        UI_Player.ui_instance.playerInventoryUI.RefreshArmory();
+    }
+
     // TODO Modify after split Player_Inventory with UI_Player_Inventory (to check THIS array of item?).
     // False = slots available, true = full
     public bool CheckInventoryIsFull()
@@ -48,6 +62,33 @@ public class Player_Inventory : MonoBehaviour
         {
             return;
         }
+        
+        // Check if its a quest item
+        if (item as QuestItem)
+        {
+            QuestItem questItem = (QuestItem)item;
+            // Check if we got the quest linked to the item.
+            if (Player_Quest_Control.quest_instance.GetQuestWithID(questItem.questID))
+            {
+                questItem.IncrementLinkedQuest();
+            }
+        }
+
+        if (item.stackableItem) // Check if you can stack item in inventory
+        {
+            for (int i = 0; i < inventoryItems.Length; i++) // Check in every items
+            {
+                if (inventoryItems[i] != null)
+                {
+                    if (inventoryItems[i] == item) // If its the same item than stackable one increment it
+                    {
+                        UI_Player.ui_instance.playerInventoryUI.GetInventorySlotByIndex(i).itemNumb++;
+                        UI_Player.ui_instance.playerInventoryUI.RefreshInventory();
+                        return; // dont continue
+                    }
+                }
+            }
+        }
 
         // Find the first available slot to put item
         for (int i = 0; i < inventoryItems.Length; i++)
@@ -56,6 +97,9 @@ public class Player_Inventory : MonoBehaviour
             {
                 // set new item in inventory
                 inventoryItems[i] = item;
+                // We need to check if its a stackable item here too.
+                if (item.stackableItem)
+                    UI_Player.ui_instance.playerInventoryUI.GetInventorySlotByIndex(i).itemNumb++;
                 UI_Player.ui_instance.playerInventoryUI.RefreshInventory();
                 return; // Get out of there
             }

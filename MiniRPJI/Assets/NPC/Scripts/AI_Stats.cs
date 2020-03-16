@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class AI_Stats : MonoBehaviour
 {
@@ -15,12 +13,6 @@ public class AI_Stats : MonoBehaviour
     void Start()
     {
         SetCurrentHealthPoints(totalHealthPoints);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     // For now just retourn experienceGain as experience gain. Later think about some maths
