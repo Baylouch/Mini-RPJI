@@ -42,7 +42,7 @@ public class ItemDroper : MonoBehaviour
                     if (Player_Quest_Control.quest_instance)
                     {
                         QuestItem questItem = (QuestItem)itemsDropable[i];
-                        if (Player_Quest_Control.quest_instance.GetQuestWithID(questItem.questID))
+                        if (Player_Quest_Control.quest_instance.GetPlayerQuestByID(questItem.questID))
                         {
                             GameObject droppedItem = Instantiate(itemsDropable[i].itemPrefab, dropPose, Quaternion.identity);
                             if (parentGameObject)

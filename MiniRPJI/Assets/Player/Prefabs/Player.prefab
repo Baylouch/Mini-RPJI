@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 44865198}
   - component: {fileID: 44865199}
   m_Layer: 8
-  m_Name: Player_Quest
+  m_Name: Player_Quests
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -43,13 +43,71 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ece1d8a6e49bfa540ba831a0eb5ecffb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  quests:
+  questDataBase: {fileID: 11400000, guid: 155e243f54dbdd345a20e18a244e439f, type: 2}
+  playerQuests:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+--- !u!1 &196583244
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 196583245}
+  - component: {fileID: 196583246}
+  m_Layer: 8
+  m_Name: Env_Collider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &196583245
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 196583244}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5217473946670395640}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &196583246
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 196583244}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.01808548, y: -0.6984045}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.7468071, y: 0.40319097}
+  m_EdgeRadius: 0
 --- !u!1 &805558577
 GameObject:
   m_ObjectHideFlags: 0
@@ -455,7 +513,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5217473946670395640}
-  - component: {fileID: 1681779022288907470}
   - component: {fileID: 253237965}
   - component: {fileID: 3989481840696752571}
   - component: {fileID: 8135678737734394875}
@@ -488,35 +545,10 @@ Transform:
   - {fileID: 805558578}
   - {fileID: 1763630530}
   - {fileID: 44865198}
+  - {fileID: 196583245}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &1681779022288907470
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7874364025698239459}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.01808548, y: -0.6984045}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.7468071, y: 0.40319097}
-  m_EdgeRadius: 0
 --- !u!70 &253237965
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -586,8 +618,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
-  dashSpeed: 50
-  dashTime: 0.07
+  dashSpeed: 58
+  dashTime: 0.05
   energyNeedToDash: 8
 --- !u!114 &2250115526518171777
 MonoBehaviour:
@@ -629,7 +661,6 @@ MonoBehaviour:
   rangedCriticalRate: 5
   damageMin: 1
   damageMax: 3
-  totalHealthPoints: 80
   playerEnergy: {fileID: 0}
   playerHealth: {fileID: 0}
 --- !u!114 &6777473535734216677
@@ -644,6 +675,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81ebcaffe0a060045926a04a5573bf66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  totalHealthPoints: 100
   healthRegenerationTimer: 2
   damageText: {fileID: 1463897701562130290, guid: cf441b61ed43ef44b9cae0f5013038a2,
     type: 3}

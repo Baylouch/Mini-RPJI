@@ -4,6 +4,8 @@ public class Item : Interactable
 {
     public BaseItem itemConfig;
 
+    bool used = false;
+
     // TODO, show player item stats via UI, then on this UI ask player if he want take this
     public override void Interact()
     {
@@ -14,8 +16,12 @@ public class Item : Interactable
             if (isFull)
                 return;
 
-            Player_Inventory.inventory_instance.GetNewItem(itemConfig);
-            Destroy(gameObject);
+            if (!used)
+            {
+                used = true;
+                Player_Inventory.inventory_instance.GetNewItem(itemConfig);
+                Destroy(gameObject);
+            }
         }
     }
 

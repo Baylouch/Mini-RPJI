@@ -1,6 +1,6 @@
 ﻿/* ItemDataBase.cs
  
-Must contain all item in the game (EquipmentItem and UsableItem for now)
+Must contain all item in the game (EquipmentItem, QuestItem and UsableItem for now)
 each of them must have an unique ID !
 
 It's used to save and load inventory data.

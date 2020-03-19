@@ -32,9 +32,9 @@ public class UI_Player_Quest : MonoBehaviour
         {
             if (Player_Quest_Control.quest_instance)
             {
-                if (Player_Quest_Control.quest_instance.GetQuestWithIndex(i) != null) // If we have a quest on this button index we can set sprite only
+                if (Player_Quest_Control.quest_instance.GetPlayerQuestByIndex(i) != null) // If we have a quest on this button index we can set sprite only
                 {
-                    questsButtons[i].GetComponent<Image>().sprite = Player_Quest_Control.quest_instance.GetQuestWithIndex(i).questSprite;
+                    questsButtons[i].GetComponent<Image>().sprite = Player_Quest_Control.quest_instance.GetPlayerQuestByIndex(i).questConfig.questSprite;
                     questsButtons[i].GetComponent<Image>().color = Color.white;
                 }
             }
@@ -66,23 +66,23 @@ public class UI_Player_Quest : MonoBehaviour
         if (Player_Quest_Control.questSlotsNumb - 1 < questIndex)
             return;
 
-        if (Player_Quest_Control.quest_instance.GetQuestWithIndex(questIndex) != null)
+        if (Player_Quest_Control.quest_instance.GetPlayerQuestByIndex(questIndex) != null)
         {
-            questTitle.text = Player_Quest_Control.quest_instance.GetQuestWithIndex(questIndex).questTitle;
-            questDescription.text = Player_Quest_Control.quest_instance.GetQuestWithIndex(questIndex).questDescription;
+            questTitle.text = Player_Quest_Control.quest_instance.GetPlayerQuestByIndex(questIndex).questConfig.questTitle;
+            questDescription.text = Player_Quest_Control.quest_instance.GetPlayerQuestByIndex(questIndex).questConfig.questDescription;
 
             // If sprite isnt already set, set it.
-            if (questsButtons[questIndex].GetComponent<Image>().sprite != Player_Quest_Control.quest_instance.GetQuestWithIndex(questIndex).questSprite)
+            if (questsButtons[questIndex].GetComponent<Image>().sprite != Player_Quest_Control.quest_instance.GetPlayerQuestByIndex(questIndex).questConfig.questSprite)
             {
-                questsButtons[questIndex].GetComponent<Image>().sprite = Player_Quest_Control.quest_instance.GetQuestWithIndex(questIndex).questSprite;
+                questsButtons[questIndex].GetComponent<Image>().sprite = Player_Quest_Control.quest_instance.GetPlayerQuestByIndex(questIndex).questConfig.questSprite;
                 questsButtons[questIndex].GetComponent<Image>().color = Color.white;
             }
 
-            if (!Player_Quest_Control.quest_instance.GetQuestWithIndex(questIndex).accomplished)
+            if (!Player_Quest_Control.quest_instance.GetPlayerQuestByIndex(questIndex).IsQuestAccomplished())
             {
                 objective.text = "Objectif ";
-                questObjective.text = Player_Quest_Control.quest_instance.GetQuestWithIndex(questIndex).questObjective.ToString();
-                currentQuestObjective.text = Player_Quest_Control.quest_instance.GetQuestWithIndex(questIndex).currentQuestObjective.ToString();
+                questObjective.text = Player_Quest_Control.quest_instance.GetPlayerQuestByIndex(questIndex).questConfig.totalQuestObjective.ToString();
+                currentQuestObjective.text = Player_Quest_Control.quest_instance.GetPlayerQuestByIndex(questIndex).currentQuestObjective.ToString();
                 // Because we disable them when objective is accomplished, we need to enable them when it's not.
                 for (int i = 0; i < objective.transform.childCount; i++)
                 {

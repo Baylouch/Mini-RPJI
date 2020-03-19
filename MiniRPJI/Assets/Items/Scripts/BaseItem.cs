@@ -10,7 +10,7 @@ public class BaseItem : ScriptableObject
     public int itemID; // Unique on every item to get it in itemDataBase
 
     public string itemName;
-    public string itemDescription;
+    [TextArea]public string itemDescription;
 
     public float itemSellPrice;
 

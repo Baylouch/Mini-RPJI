@@ -5,6 +5,8 @@ public class UI_Player_Profil : MonoBehaviour
 {
     [SerializeField] Text currentLevel;
 
+    [SerializeField] Button statsAvailable;
+
     [SerializeField] RectTransform healthLine; // We got rectTransform instead of image because its what we use to decrement health
     [SerializeField] RectTransform energyLine;
     [SerializeField] RectTransform expLine;
@@ -35,6 +37,21 @@ public class UI_Player_Profil : MonoBehaviour
         if (currentLevel.text != Player_Stats.stats_instance.getCurrentLevel().ToString())
         {
             currentLevel.text = Player_Stats.stats_instance.getCurrentLevel().ToString();
+        }
+        // Stats available button
+        if (Player_Stats.stats_instance.getCurrentStatsPoints() > 0)
+        {
+            if (!statsAvailable.gameObject.activeSelf)
+            {
+                statsAvailable.gameObject.SetActive(true);
+            }
+        }
+        else
+        {
+            if (statsAvailable.gameObject.activeSelf)
+            {
+                statsAvailable.gameObject.SetActive(false);
+            }
         }
         // Healthbar
         if (totalHealthpoints.text != Player_Stats.stats_instance.playerHealth.GetTotalHealthPoints().ToString())

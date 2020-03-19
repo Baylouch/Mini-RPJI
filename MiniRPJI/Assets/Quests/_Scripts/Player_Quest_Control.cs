@@ -15,54 +15,72 @@ public class Player_Quest_Control : MonoBehaviour
         }
     }
 
+    [SerializeField] QuestDataBase questDataBase;
+
     public const int questSlotsNumb = 6; // Max quest by act
-    [SerializeField] QuestConfig[] quests; // To setup 6 index
+    [SerializeField] Player_Quest[] playerQuests; // To setup 6 index
 
     private void Start()
     {
-        for (int i = 0; i < quests.Length; i++)
+        for (int i = 0; i < playerQuests.Length; i++)
         {
-            if (quests[i] != null)
+            if (playerQuests[i] != null)
             {
-                UI_Player.ui_instance.playerQuestUI.SetupButton(quests[i].questIndexLog);
+                UI_Player.ui_instance.playerQuestUI.SetupButton(i);
+            }
+        }
+    }
+    
+    // TODO DELETE
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            if (playerQuests[0] != null)
+            {
+                playerQuests[0].currentQuestObjective++;
+                Debug.Log(playerQuests[0].currentQuestObjective);
             }
         }
     }
 
-    public void GetNewQuest(QuestConfig quest)
+    public void GetNewQuest(int _questID)
     {
         // Check if slot is empty
-        if (quests[quest.questIndexLog] == null)
+        if (playerQuests[questDataBase.GetQuestByID(_questID).questIndexLog] == null)
         {
             // Set new quest
-            quests[quest.questIndexLog] = quest;
+            Player_Quest _tempPlayerQuest = gameObject.AddComponent(typeof(Player_Quest)) as Player_Quest;
+            _tempPlayerQuest.questConfig = questDataBase.GetQuestByID(_questID);
 
-            UI_Player.ui_instance.playerQuestUI.DisplayQuest(quest.questIndexLog);
-            UI_Player.ui_instance.playerQuestUI.SetupButton(quest.questIndexLog);
+            playerQuests[questDataBase.GetQuestByID(_questID).questIndexLog] = _tempPlayerQuest;
+            
+
+            UI_Player.ui_instance.playerQuestUI.DisplayQuest(questDataBase.GetQuestByID(_questID).questIndexLog);
+            UI_Player.ui_instance.playerQuestUI.SetupButton(questDataBase.GetQuestByID(_questID).questIndexLog);
         }
-        else
+        else // It must never go this part.
         {
             Debug.Log("You already are on the quest. Or on quest using this index atleast.");
         }
     }
 
     // To find a quest by INDEX NOT by its ID
-    public QuestConfig GetQuestWithIndex(int questIndex)
+    public Player_Quest GetPlayerQuestByIndex(int questIndex)
     {
-        if (quests[questIndex] != null)
-            return quests[questIndex];
+        if (playerQuests[questIndex] != null)
+            return playerQuests[questIndex];
         return null;
     }
 
-    // To find a quest we have by its ID !
-    public QuestConfig GetQuestWithID(int _questID)
+    public Player_Quest GetPlayerQuestByID(int _questID)
     {
-        for (int i = 0; i < quests.Length; i++)
+        for (int i = 0; i < playerQuests.Length; i++)
         {
-            if (quests[i] != null)
+            if (playerQuests[i] != null)
             {
-                if (quests[i].questID == _questID)
-                    return quests[i];
+                if (playerQuests[i].questConfig.questID == _questID)
+                    return playerQuests[i];
             }
         }
 
@@ -72,30 +90,31 @@ public class Player_Quest_Control : MonoBehaviour
     // Method used in QuestGiver to valide a quest
     public void ValideQuest(int _questIndex, Vector3 rewardSpawnPos)
     {
-        if (quests[_questIndex].accomplished)
+        if (playerQuests[_questIndex].IsQuestAccomplished())
         {
             // Check if quest got a reward
-            if (quests[_questIndex].questReward != null)
+            if (playerQuests[_questIndex].questConfig.questReward != null)
             {
-                GameObject _reward = Instantiate(quests[_questIndex].questReward, rewardSpawnPos, Quaternion.identity);
+                GameObject _reward = Instantiate(playerQuests[_questIndex].questConfig.questReward, rewardSpawnPos, Quaternion.identity);
                 _reward.transform.parent = GameObject.Find("Items").transform;
             }
             // Check if quest got xp amount
-            if (quests[_questIndex].xpAmount > 0)
+            if (playerQuests[_questIndex].questConfig.xpAmount > 0)
             {
                 if (Player_Stats.stats_instance)
                 {
-                    Player_Stats.stats_instance.AddExperience(quests[_questIndex].xpAmount);
+                    Player_Stats.stats_instance.AddExperience(playerQuests[_questIndex].questConfig.xpAmount);
                 }
             }
 
             // Player rewarded, now we need to delete everything used by the quest into the world. No more use for these.
-            RemoveAccomplishedQuestStuffInScene(quests[_questIndex].questID);
+            RemoveAccomplishedQuestStuffInScene(playerQuests[_questIndex].questConfig.questID);
 
             // Now we can set questDone to true and delete it from our quest log (quests array)
-            quests[_questIndex].questDone = true;
-            quests[_questIndex].playerIsOnThisQuest = false;
-            quests[_questIndex] = null;
+            playerQuests[_questIndex].questConfig.questDone = true;
+
+            Destroy(playerQuests[_questIndex]);
+            playerQuests[_questIndex] = null;
 
             UI_Player.ui_instance.playerQuestUI.DisplayQuest(_questIndex);
         }
@@ -115,6 +134,7 @@ public class Player_Quest_Control : MonoBehaviour
                     if (_questID == questItem.questID)
                     {
                         Player_Inventory.inventory_instance.SetInventoryIndex(i, -1); // Delete item.
+                        UI_Player.ui_instance.playerInventoryUI.RefreshInventory();
                     }
                 }
             }

@@ -10,31 +10,31 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 393e3848d7dbdde4d8178f98209fcb90, type: 3}
-  m_Name: 5_Start Bow
+  m_Name: 12_Nice Bow
   m_EditorClassIdentifier: 
-  itemID: 5
-  itemName: Arc d'apprenti
-  itemDescription: L'arc est fait de bois fragile.
+  itemID: 12
+  itemName: Nice Bow
+  itemDescription: Arc de pro
   itemSellPrice: 0
-  itemPrefab: {fileID: 4019101185777562141, guid: 79efe668507cf7f4ab3f34866358491f,
+  itemPrefab: {fileID: 325822532064869438, guid: deebe093a5d98a34d9826157c20f40a7,
     type: 3}
   inventoryImage: {fileID: 21300000, guid: 5d7061fc7da05ce44add317708ec7215, type: 3}
   stackableItem: 0
   armoryPart: 5
-  rarety: 0
-  projectile: {fileID: 6052980135759029977, guid: 77de479917db3204cae1bd43cf852001,
+  rarety: 3
+  projectile: {fileID: 6052980135759029977, guid: b247c121159f8b24ebd8ded3f1d90b10,
     type: 3}
-  strength: 0
-  agility: 3
-  vitality: 1
-  energy: 5
-  armor: 0
+  strength: 55
+  agility: 55
+  vitality: 55
+  energy: 55
+  armor: 20
   criticalRate: 0
-  rangedCriticalRate: 0
+  rangedCriticalRate: 5
   damageMin: 0
   damageMax: 0
-  rangedDamageMin: 3
-  rangedDamageMax: 6
+  rangedDamageMin: 25
+  rangedDamageMax: 55
   healthpoints: 0
   levelRequired: 1
   strenghtRequired: 0

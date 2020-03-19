@@ -5,11 +5,14 @@
 public class Projectile : MonoBehaviour
 {
     // Damage
-    public int projectileDamage = 0; // Is set in Player_Combat_Control for player. Randomized for AI values between -2 and +2
-    [SerializeField] ProjectileType type; // To set projectile effect (frost, fire, nothing..)
+    //[HideInInspector]
+    public int projectileDamage = 0; // Is set in Player_Combat_Control for player. Is set in AI_Combat_Control for AI
+    public ProjectileType projectileType; // To set projectile effect (frost, fire, nothing..)
 
     [SerializeField] float projectileSpeed = 5f;
     [SerializeField] float timerBeforeDestroy = 3f;
+
+    [SerializeField] GameObject impactEffect;
 
     private void Awake()
     {
@@ -31,7 +34,7 @@ public class Projectile : MonoBehaviour
                 AI_Health enemyHealth = collision.gameObject.GetComponent<AI_Health>();
                 enemyHealth.GetDamage(projectileDamage);
                 // Now get projectile type for frost or make enemy in fire 
-                switch (type)
+                switch (projectileType)
                 {
                     case ProjectileType.Normal:
                         // Do nothing
@@ -59,6 +62,13 @@ public class Projectile : MonoBehaviour
                 }
 
             }
+            
+            if (impactEffect)
+            {
+                GameObject _impact = Instantiate(impactEffect, transform.position, Quaternion.identity);
+                Destroy(_impact, .5f);
+            }
+
             Destroy(gameObject);
         }
 
@@ -69,6 +79,13 @@ public class Projectile : MonoBehaviour
                 Player_Health playerHealth = collision.gameObject.GetComponent<Player_Health>();
                 playerHealth.GetDamage(Random.Range((projectileDamage - 2), (projectileDamage + 2)));
             }
+
+            if (impactEffect)
+            {
+                GameObject _impact = Instantiate(impactEffect, transform.position, Quaternion.identity);
+                Destroy(_impact, .5f);
+            }
+
             Destroy(gameObject);
         }
     }

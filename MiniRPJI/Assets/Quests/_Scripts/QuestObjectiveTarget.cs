@@ -14,24 +14,18 @@ public class QuestObjectiveTarget : MonoBehaviour
         if (Player_Quest_Control.quest_instance) // If there is a quest control in game
         {
             // Check if player got the quest linked
-            if (Player_Quest_Control.quest_instance.GetQuestWithID(questID))
+            if (Player_Quest_Control.quest_instance.GetPlayerQuestByID(questID))
             {
                 // Check if quest isnt accomplished yet
-                if (!Player_Quest_Control.quest_instance.GetQuestWithID(questID).accomplished)
+                if (!Player_Quest_Control.quest_instance.GetPlayerQuestByID(questID).IsQuestAccomplished())
                 {
-                    if (Player_Quest_Control.quest_instance.GetQuestWithID(questID).currentQuestObjective < Player_Quest_Control.quest_instance.GetQuestWithID(questID).questObjective)
-                    {
-                        // Then we increment current quest objective
-                        Player_Quest_Control.quest_instance.GetQuestWithID(questID).currentQuestObjective++;
+                    // Then we increment current quest objective
+                    Player_Quest_Control.quest_instance.GetPlayerQuestByID(questID).currentQuestObjective++;
 
-                        if (Player_Quest_Control.quest_instance.GetQuestWithID(questID).currentQuestObjective >= Player_Quest_Control.quest_instance.GetQuestWithID(questID).questObjective)
-                        {
-                            Player_Quest_Control.quest_instance.GetQuestWithID(questID).accomplished = true;
-                        }
-                        // Refresh Quest UI if displayed
-                        if (UI_Player.ui_instance.playerQuestUI && UI_Player.ui_instance.playerQuestUI.gameObject.activeSelf)
-                            UI_Player.ui_instance.playerQuestUI.DisplayQuest(Player_Quest_Control.quest_instance.GetQuestWithID(questID).questIndexLog);
-                    }                    
+                    // Refresh Quest UI if displayed
+                    if (UI_Player.ui_instance.playerQuestUI && UI_Player.ui_instance.playerQuestUI.gameObject.activeSelf)
+                        UI_Player.ui_instance.playerQuestUI.DisplayQuest(Player_Quest_Control.quest_instance.GetPlayerQuestByID(questID).questConfig.questIndexLog);
+                                
                 }
             }
         }

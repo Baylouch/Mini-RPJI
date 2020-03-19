@@ -15,6 +15,8 @@ public class Player_Inventory : MonoBehaviour
     [SerializeField] EquipmentItem[] armoryItems;  
     [SerializeField] BaseItem[] inventoryItems;
 
+    [SerializeField] int playerMoney;
+
     private void Awake()
     {
         // Make this singleton
@@ -68,7 +70,7 @@ public class Player_Inventory : MonoBehaviour
         {
             QuestItem questItem = (QuestItem)item;
             // Check if we got the quest linked to the item.
-            if (Player_Quest_Control.quest_instance.GetQuestWithID(questItem.questID))
+            if (Player_Quest_Control.quest_instance.GetPlayerQuestByID(questItem.questID))
             {
                 questItem.IncrementLinkedQuest();
             }
@@ -154,5 +156,16 @@ public class Player_Inventory : MonoBehaviour
         }
 
         armoryItems[armoryIndex] = (EquipmentItem)itemDataBase.GetItemById(_itemID);
+    }
+
+    public int GetPlayerMoney()
+    {
+        return playerMoney;
+    }
+
+    // you can put negative amount to decrease money, or a positive amount to increase it
+    public void SetPlayerMoney(int amount)
+    {
+        playerMoney += amount;
     }
 }

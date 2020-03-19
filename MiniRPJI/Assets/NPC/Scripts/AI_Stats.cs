@@ -2,10 +2,17 @@
 
 public class AI_Stats : MonoBehaviour
 {
-    // Think about centralize all npc stats here as healthpoint, attack, armor
     [SerializeField] int level = 1;
-    [SerializeField] int totalHealthPoints = 100;
+    [SerializeField] int totalHealthPoints = 50;
     [SerializeField] int experienceGain = 50;
+
+    // attack
+    [SerializeField] private int damageMin = 7;
+    [SerializeField] private int damageMax = 12;
+
+    // Projectile damage
+    [SerializeField] private int projectileDamageMin = 8;
+    [SerializeField] private int projectileDamageMax= 10;
 
     int currentHealthPoints;
 
@@ -39,5 +46,25 @@ public class AI_Stats : MonoBehaviour
     public int GetLevel()
     {
         return level;
+    }
+
+    public int GetDamageMin()
+    {
+        return damageMin;
+    }
+
+    public int GetDamageMax()
+    {
+        return damageMax;
+    }
+
+    public int GetProjectileDamageMin()
+    {
+        return projectileDamageMin;
+    }
+
+    public int GetProjectileDamageMax()
+    {
+        return projectileDamageMax;
     }
 }

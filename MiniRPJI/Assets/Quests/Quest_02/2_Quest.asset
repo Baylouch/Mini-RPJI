@@ -19,10 +19,7 @@ MonoBehaviour:
     substance \xE9trange inconnue qui agirait sur le syst\xE8me nerveux. \nIl faudrait
     que vous me rameniez 5 oeils d'\xE9cureils pour que je continue mes analyses."
   questSprite: {fileID: 21300000, guid: 4461c87bad5222349b14c22b26d43b95, type: 3}
-  questObjective: 5
-  currentQuestObjective: 0
-  playerIsOnThisQuest: 0
-  accomplished: 0
+  totalQuestObjective: 10
   questDone: 0
   questReward: {fileID: 0}
   xpAmount: 600

@@ -19,6 +19,7 @@ public class Player_Stats : MonoBehaviour
     [SerializeField] private int level = 1;
     [SerializeField] private int totalLevelExp = 200;
     [SerializeField] private int currentExp = 0;
+    [SerializeField] private GameObject levelUpEffect;
 
     [Header("Statistiques")]
     [SerializeField] private int baseStrength = 10; // Used as base to keep track on it for save and load functionnality 
@@ -118,6 +119,14 @@ public class Player_Stats : MonoBehaviour
 
         // Refresh Stats
         RefreshPlayerStats();
+
+        // Effects
+        if (levelUpEffect)
+        {
+            GameObject effect = Instantiate(levelUpEffect, transform.position, Quaternion.identity);
+            effect.transform.SetParent(transform);
+            Destroy(effect, 1f);
+        }
     }
 
     // Methods used in Refresh Player Stats

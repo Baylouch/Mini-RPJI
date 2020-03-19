@@ -12,6 +12,9 @@ public class Player_Movement_Control : MonoBehaviour
     [SerializeField] float dashSpeed = 40f;
     [SerializeField] float dashTime = .2f;
     [SerializeField] float energyNeedToDash = 8f;
+    [SerializeField] GameObject dashEffect;
+
+    GameObject currentDashEffect;
 
     float startDashTime;
     bool isDashing = false;
@@ -59,6 +62,7 @@ public class Player_Movement_Control : MonoBehaviour
     void Update()
     {
         SimpleAnimatorControl();
+
     }
 
     // Update is called once per frame
@@ -170,22 +174,105 @@ public class Player_Movement_Control : MonoBehaviour
             {
                 case 1:
                     myRb.velocity = new Vector2(0f, 1f) * dashSpeed;
+
+                    if (!currentDashEffect)
+                    {
+                        currentDashEffect = CreateDashEffect(-270, 90, -90);
+                    }
+                    else
+                    {
+                        if (currentDashEffect.transform.parent == transform)
+                        {
+                            currentDashEffect.transform.position = new Vector3(transform.position.x, transform.position.y - .5f, 0f);
+                        }
+                        else // If we're here, the last currentDashEffect was moved to "Effects". So we can set it with a new currentDashEffect
+                        {
+                            currentDashEffect = CreateDashEffect(-270, 90, -90);
+                        }
+                    }
                     break;
                 case 2:
                     myRb.velocity = new Vector2(0f, -1f) * dashSpeed;
+
+                    if (!currentDashEffect)
+                    {
+                        currentDashEffect = CreateDashEffect(-90, 0, 0);
+                    }
+                    else
+                    {
+                        if (currentDashEffect.transform.parent == transform)
+                        {
+                            currentDashEffect.transform.position = new Vector3(transform.position.x, transform.position.y + .5f, 0f);
+                        }
+                        else // If we're here, the last currentDashEffect was moved to "Effects". So we can set it with a new currentDashEffect
+                        {
+                            currentDashEffect = CreateDashEffect(-90, 0, 0);
+                        }
+                    }
                     break;
                 case 3:
                     myRb.velocity = new Vector2(1f, 0f) * dashSpeed;
+
+                    if (!currentDashEffect)
+                    {
+                        currentDashEffect = CreateDashEffect(-180, 90, -90);                   
+                    }
+                    else
+                    {
+                        if (currentDashEffect.transform.parent == transform)
+                        {
+                            currentDashEffect.transform.position = new Vector3(transform.position.x - .5f, transform.position.y - .5f, 0f);
+                        }
+                        else // If we're here, the last currentDashEffect was moved to "Effects". So we can set it with a new currentDashEffect
+                        {
+                            currentDashEffect = CreateDashEffect(-180, 90, -90);
+                        }
+                    }
                     break;
                 case 4:
                     myRb.velocity = new Vector2(-1f, 0f) * dashSpeed;
+
+                    if (!currentDashEffect)
+                    {
+                        currentDashEffect = CreateDashEffect(-180, 270, -270);
+                    }
+                    else
+                    {
+                        if (currentDashEffect.transform.parent == transform)
+                        {
+                            currentDashEffect.transform.position = new Vector3(transform.position.x + .5f, transform.position.y - .5f, 0f);
+                        }
+                        else // If we're here, the last currentDashEffect was moved to "Effects". So we can set it with a new currentDashEffect
+                        {
+                            currentDashEffect = CreateDashEffect(-180, 270, -270);
+                        }
+                    }
                     break;
             }
         }
         else
         {
+            currentDashEffect.transform.parent = GameObject.Find("Effects").transform;
             isDashing = false;
             dashTime = startDashTime;
         }
+    }
+
+    GameObject CreateDashEffect(float xRotation, float yRotation, float zRotation)
+    {
+        if (dashEffect)
+        {
+            GameObject tempDashEffect = Instantiate(dashEffect, transform.position, Quaternion.identity);
+
+            tempDashEffect.transform.SetParent(transform);
+            tempDashEffect.transform.localScale = Vector3.one;
+            tempDashEffect.transform.rotation = Quaternion.Euler(xRotation, yRotation, zRotation);
+
+            Destroy(tempDashEffect, .6f);
+
+            return tempDashEffect;
+        }
+
+        return null;
     }
 }

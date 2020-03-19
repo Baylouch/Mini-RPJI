@@ -11,6 +11,7 @@ public class UI_Player_Inventory : MonoBehaviour
     [SerializeField] Button equipButton;
     [SerializeField] Button unequipButton;
     [SerializeField] Button useButton;
+    // TODO implement sell button for armory and inventory
 
     [SerializeField] UI_DisplayItemStats itemStatsDisplay; // Must have UI_DisplayItemStats on it
 
@@ -89,11 +90,16 @@ public class UI_Player_Inventory : MonoBehaviour
             // Hide usebutton if is active
             if (useButton.gameObject.activeSelf)
                 useButton.gameObject.SetActive(false);
+            if (equipButton.gameObject.activeSelf)
+                equipButton.gameObject.SetActive(false);
 
             // Detect if its an EquipmentItem or a UsableItem
             if (inventorySlots[indexSlot].item as EquipmentItem)
             {
                 equipButton.onClick.AddListener(() => EquipItem((EquipmentItem)inventorySlots[indexSlot].item));
+
+                if (!equipButton.gameObject.activeSelf)
+                    equipButton.gameObject.SetActive(true);
             }
             if (inventorySlots[indexSlot].item as UsableItem)
             {
@@ -116,17 +122,21 @@ public class UI_Player_Inventory : MonoBehaviour
             {
                 // Display item stats
                 if (inventorySlots[indexSlot].item as EquipmentItem)
-                    itemStatsDisplay.DisplayEquipmentItemStats((EquipmentItem)inventorySlots[indexSlot].item);
+                    itemStatsDisplay.DisplayItemStats((EquipmentItem)inventorySlots[indexSlot].item);
                 else if (inventorySlots[indexSlot].item as UsableItem)
-                    itemStatsDisplay.DisplayUsableItemStats((UsableItem)inventorySlots[indexSlot].item);
+                    itemStatsDisplay.DisplayItemStats((UsableItem)inventorySlots[indexSlot].item);
+                else if (inventorySlots[indexSlot].item as QuestItem)
+                    itemStatsDisplay.DisplayItemStats((QuestItem)inventorySlots[indexSlot].item);
             }
             else // Else we need to reset before display. Because player want to see another item's stats
             {
                 itemStatsDisplay.HideAndReset();
                 if (inventorySlots[indexSlot].item as EquipmentItem)
-                    itemStatsDisplay.DisplayEquipmentItemStats((EquipmentItem)inventorySlots[indexSlot].item);
+                    itemStatsDisplay.DisplayItemStats((EquipmentItem)inventorySlots[indexSlot].item);
                 else if (inventorySlots[indexSlot].item as UsableItem)
-                    itemStatsDisplay.DisplayUsableItemStats((UsableItem)inventorySlots[indexSlot].item);
+                    itemStatsDisplay.DisplayItemStats((UsableItem)inventorySlots[indexSlot].item);
+                else if (inventorySlots[indexSlot].item as QuestItem)
+                    itemStatsDisplay.DisplayItemStats((QuestItem)inventorySlots[indexSlot].item);
             }
 
         }
@@ -173,12 +183,12 @@ public class UI_Player_Inventory : MonoBehaviour
             if (!itemStatsDisplay)
             {
                 // Display item stats
-                itemStatsDisplay.DisplayEquipmentItemStats(armorySlots[indexPart].item);
+                itemStatsDisplay.DisplayItemStats(armorySlots[indexPart].item);
             }
             else // Else we need to destroy before display. Because player want to see another item's stats
             {
                 itemStatsDisplay.HideAndReset();
-                itemStatsDisplay.DisplayEquipmentItemStats(armorySlots[indexPart].item);
+                itemStatsDisplay.DisplayItemStats(armorySlots[indexPart].item);
             }
         }
         else // If its equal, player clicked on the same item so we want to unshow slotIntercationsUI and reset buttons
@@ -213,7 +223,7 @@ public class UI_Player_Inventory : MonoBehaviour
             if (Player_Inventory.inventory_instance.GetInventoryItem(itemIndex) as QuestItem)
             {
                 QuestItem questItem = (QuestItem)Player_Inventory.inventory_instance.GetInventoryItem(itemIndex);
-                if (Player_Quest_Control.quest_instance.GetQuestWithID(questItem.questID))
+                if (Player_Quest_Control.quest_instance.GetPlayerQuestByID(questItem.questID))
                 {
                     questItem.DecrementLinkedQuest();
                 }

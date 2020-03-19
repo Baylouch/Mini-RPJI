@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemID: 100
   itemName: Potion de vie
-  itemDescription: 
+  itemDescription: Restaure des points de vie
   itemSellPrice: 0
   itemPrefab: {fileID: 4777377678443712558, guid: 77774df01c1197f48bf16b089903d93d,
     type: 3}
@@ -22,4 +22,3 @@ MonoBehaviour:
   stackableItem: 1
   healthRegenerationPoints: 50
   energyRegenerationPoints: 0
-  used: 0

@@ -1,22 +1,18 @@
 ﻿/* Combat_Control.cs
 Utilisé pour gérer les combats
 */
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(Collider2D))]
 [RequireComponent(typeof(AI_Health))]
+[RequireComponent(typeof(AI_Stats))]
 public class AI_Combat_Control : MonoBehaviour
 {
     public float chasingDistance = 2.5f; // Used in AI_Movement_Control to know when start chasing
     [SerializeField] float damagedChasingDistance = 10f;
     float initialChasingDistance;
-
-    // attack
-    [SerializeField] private int damageMin = 10;
-    [SerializeField] private int damageMax = 15;
 
     // if projectile set, enemy can distance attack
     [SerializeField] private GameObject projectile;
@@ -37,6 +33,7 @@ public class AI_Combat_Control : MonoBehaviour
     Animator animator;
     Transform target;
     AI_Health ai_health;
+    AI_Stats ai_stats;
 
     private void OnDrawGizmos()
     {
@@ -53,6 +50,7 @@ public class AI_Combat_Control : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         ai_health = GetComponent<AI_Health>();
+        ai_stats = GetComponent<AI_Stats>();
 
         target = GameObject.FindGameObjectWithTag("Player").transform; // For now we set manually target as player, to change later
 
@@ -80,8 +78,7 @@ public class AI_Combat_Control : MonoBehaviour
                     Player_Health playerHealth = target.gameObject.GetComponent<Player_Health>();
                     if (playerHealth)
                     {
-                        int currAttack = (Random.Range(damageMin, damageMax));
-                        playerHealth.GetDamage(currAttack);
+                        playerHealth.GetDamage(GetAttackDamage());
                     }
                     currentTimerBeforeAttack = timerBeforeAttack;
                 }
@@ -145,8 +142,7 @@ public class AI_Combat_Control : MonoBehaviour
                 Player_Health playerHealth = target.gameObject.GetComponent<Player_Health>();
                 if (playerHealth)
                 {
-                    int currAttack = (Random.Range(damageMin, damageMax));
-                    playerHealth.GetDamage(currAttack);
+                    playerHealth.GetDamage(GetAttackDamage());
                 }
                 currentTimerBeforeAttack = timerBeforeAttack;
             }
@@ -167,9 +163,23 @@ public class AI_Combat_Control : MonoBehaviour
         animator.SetBool("rangedAttack", true);
     }
 
+    int GetAttackDamage()
+    {
+        return Random.Range(ai_stats.GetDamageMin(), ai_stats.GetDamageMax());
+    }
+
+    int GetProjectileDamage()
+    {
+        return Random.Range(ai_stats.GetProjectileDamageMin(), ai_stats.GetProjectileDamageMax());
+    }
+
     public void Shoot()
     {
         GameObject _projectile = Instantiate(projectile, firePoint.position, firePoint.rotation);
+        Projectile proj = _projectile.GetComponent<Projectile>();
+
+        if (proj != null)
+            proj.projectileDamage = GetProjectileDamage();
     }
 
     // To use in each event in animations attack
