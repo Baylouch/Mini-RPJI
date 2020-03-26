@@ -8,8 +8,7 @@ public class QuestObjectiveTarget : MonoBehaviour
 {
     public int questID = 0; // To know the quest ID (not index) of the script acces to.
 
-    // We use OnDestroy method when quest link to this script is set with "KillObjective" to increment quest's objective.
-    private void OnDestroy()
+    public void IncrementQuestObjective()
     {
         if (Player_Quest_Control.quest_instance) // If there is a quest control in game
         {

@@ -15,9 +15,9 @@ MonoBehaviour:
   questID: 0
   questIndexLog: 0
   questTitle: L'arbre mort
-  questDescription: "Bonjour jeune aventurier, pourriez-vous m'aider ?\nJ'ai besoin
-    de la s\xE8ve d'un arbre mort se trouvant en dehors du village. Prenez garde,
-    il y a des monstres sur la route..."
+  questDescription: "Bonjour aventurier, pourriez-vous m'aider ?\nJ'ai besoin de la
+    s\xE8ve d'un arbre mort se trouvant en dehors du village. Prenez garde, il y a
+    des monstres sur la route..."
   questSprite: {fileID: 21300000, guid: db07cc93e21f1457d9a1364618027fbb, type: 3}
   totalQuestObjective: 1
   questDone: 0

@@ -15,7 +15,7 @@ MonoBehaviour:
   itemID: 0
   itemName: Petit casque
   itemDescription: 
-  itemSellPrice: 0
+  itemSellPrice: 20
   itemPrefab: {fileID: 4916301973116470330, guid: 17bcec922aaa11d4e9f8b1fcbbbd1c2a,
     type: 3}
   inventoryImage: {fileID: 21300000, guid: fd6e4fc32c78509458fc45ea4a478ba8, type: 3}

@@ -30,16 +30,37 @@ public class Player_Quest_Control : MonoBehaviour
             }
         }
     }
-    
-    // TODO DELETE
-    private void Update()
+
+    void RemoveAccomplishedQuestStuffInScene(int _questID)
     {
-        if (Input.GetKeyDown(KeyCode.G))
+        // Check if player got quest item link to this quest in his inventory. Then delete it.
+        for (int i = 0; i < Player_Inventory.inventorySlotsNumb; i++)
         {
-            if (playerQuests[0] != null)
+            if (Player_Inventory.inventory_instance.GetInventoryItem(i)) // If there is item in this inventory slot
             {
-                playerQuests[0].currentQuestObjective++;
-                Debug.Log(playerQuests[0].currentQuestObjective);
+                if (Player_Inventory.inventory_instance.GetInventoryItem(i) as QuestItem) // If item is QuestItem
+                {
+                    // Check if its link to the quest ID.
+                    QuestItem questItem = (QuestItem)Player_Inventory.inventory_instance.GetInventoryItem(i);
+                    if (_questID == questItem.questID)
+                    {
+                        Player_Inventory.inventory_instance.SetInventoryIndex(i, -1); // Delete item.
+                        UI_Player.ui_instance.playerInventoryUI.RefreshInventory();
+                    }
+                }
+            }
+        }
+
+        // Check if they're QuestObjectiveTarget.cs link to this quest in the scene (if its a killing quest). Thene delete it
+        if (FindObjectsOfType<QuestObjectiveTarget>().Length > 0)
+        {
+            QuestObjectiveTarget[] questObjectiveTargets = FindObjectsOfType<QuestObjectiveTarget>();
+            for (int i = 0; i < questObjectiveTargets.Length; i++)
+            {
+                if (_questID == questObjectiveTargets[i].questID)
+                {
+                    Destroy(questObjectiveTargets[i]);
+                }
             }
         }
     }
@@ -118,39 +139,15 @@ public class Player_Quest_Control : MonoBehaviour
 
             UI_Player.ui_instance.playerQuestUI.DisplayQuest(_questIndex);
         }
-    }
+    }   
 
-    void RemoveAccomplishedQuestStuffInScene(int _questID)
+    // Method used for load data from GameDataControl.
+    public void RemoveQuestByIndex(int questIndex)
     {
-        // Check if player got quest item link to this quest in his inventory. Then delete it.
-        for (int i = 0; i < Player_Inventory.inventorySlotsNumb; i++)
+        if (playerQuests[questIndex] != null)
         {
-            if (Player_Inventory.inventory_instance.GetInventoryItem(i)) // If there is item in this inventory slot
-            {
-                if (Player_Inventory.inventory_instance.GetInventoryItem(i) as QuestItem) // If item is QuestItem
-                {
-                    // Check if its link to the quest ID.
-                    QuestItem questItem = (QuestItem)Player_Inventory.inventory_instance.GetInventoryItem(i);
-                    if (_questID == questItem.questID)
-                    {
-                        Player_Inventory.inventory_instance.SetInventoryIndex(i, -1); // Delete item.
-                        UI_Player.ui_instance.playerInventoryUI.RefreshInventory();
-                    }
-                }
-            }
-        }
-
-        // Check if they're QuestObjectiveTarget.cs link to this quest in the scene (if its a killing quest). Thene delete it
-        if (FindObjectsOfType<QuestObjectiveTarget>().Length > 0)
-        {
-            QuestObjectiveTarget[] questObjectiveTargets = FindObjectsOfType<QuestObjectiveTarget>();
-            for (int i = 0; i < questObjectiveTargets.Length; i++)
-            {
-                if (_questID == questObjectiveTargets[i].questID)
-                {
-                    Destroy(questObjectiveTargets[i]);
-                }
-            }
+            Destroy(playerQuests[questIndex]);
+            playerQuests[questIndex] = null;
         }
     }
 }

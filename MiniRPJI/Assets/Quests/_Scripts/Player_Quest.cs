@@ -13,12 +13,6 @@ public class Player_Quest : MonoBehaviour
 
     public int currentQuestObjective;
 
-    // TODO maybe delete because useless ?
-    public bool IsAlreadyOnTheQuest(QuestConfig _questConfig)
-    {
-        return questConfig.questID == _questConfig.questID;
-    }
-
     public bool IsQuestAccomplished()
     {
         return currentQuestObjective >= questConfig.totalQuestObjective;

@@ -15,7 +15,7 @@ MonoBehaviour:
   itemID: 2
   itemName: Pantalon d'apprenti
   itemDescription: 
-  itemSellPrice: 0
+  itemSellPrice: 25
   itemPrefab: {fileID: 7290006494410735304, guid: 6c58cf90d0d71f44b9d2a1b6ee9f5555,
     type: 3}
   inventoryImage: {fileID: 21300000, guid: b8fb302c5768e334ca82005f50e58121, type: 3}

@@ -15,7 +15,7 @@ MonoBehaviour:
   itemID: 5
   itemName: Arc d'apprenti
   itemDescription: L'arc est fait de bois fragile.
-  itemSellPrice: 0
+  itemSellPrice: 40
   itemPrefab: {fileID: 4019101185777562141, guid: 79efe668507cf7f4ab3f34866358491f,
     type: 3}
   inventoryImage: {fileID: 21300000, guid: 5d7061fc7da05ce44add317708ec7215, type: 3}

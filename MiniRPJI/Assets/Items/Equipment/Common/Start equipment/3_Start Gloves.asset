@@ -15,9 +15,11 @@ MonoBehaviour:
   itemID: 3
   itemName: Gants d'apprenti
   itemDescription: 
+  itemSellPrice: 15
   itemPrefab: {fileID: 1724247864129913130, guid: e844d7dd3bef667488cb5b47b1a5745d,
     type: 3}
   inventoryImage: {fileID: 21300000, guid: d4f5634edede200468fc1ccf30e6f3a1, type: 3}
+  stackableItem: 0
   armoryPart: 3
   rarety: 0
   projectile: {fileID: 0}

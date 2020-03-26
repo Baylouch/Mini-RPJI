@@ -251,6 +251,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemDataBase: {fileID: 11400000, guid: c0a50cc56091f1f468bd20c3dd70faaf, type: 2}
+  playerMoney: 0
   armoryItems:
   - {fileID: 0}
   - {fileID: 0}
@@ -621,6 +622,8 @@ MonoBehaviour:
   dashSpeed: 58
   dashTime: 0.05
   energyNeedToDash: 8
+  dashEffect: {fileID: 4724881586850035680, guid: e07c23c7ffe1cab4491b81ccc09840b7,
+    type: 3}
 --- !u!114 &2250115526518171777
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -653,6 +656,8 @@ MonoBehaviour:
   level: 1
   totalLevelExp: 200
   currentExp: 0
+  levelUpEffect: {fileID: 3402109832164330582, guid: d2a296293b407df4192745e16ae7630d,
+    type: 3}
   baseStrength: 10
   baseAgility: 10
   baseVitality: 10
