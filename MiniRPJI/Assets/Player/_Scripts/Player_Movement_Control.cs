@@ -32,31 +32,7 @@ public class Player_Movement_Control : MonoBehaviour
 
         startDashTime = dashTime;
 
-        if (FindObjectOfType<StartPositionLevel>())
-        {
-            transform.position = FindObjectOfType<StartPositionLevel>().transform.position;
-        }
-        else
-        {
-            Debug.LogWarning("There is no StartPositionLevel in this scenes. MUST BE SET !");
-        }
-    }
-
-    void OnLevelWasLoaded(int level)
-    {
-        // TO make sure we acces to the right Player_Movement_Control script and not the one who'll be delete (if player already exist in the scene)
-        // because top hierarchy gameobject is a singleton dontdestroyonload gameobject (Player_Stats)
-        if (Player_Stats.stats_instance.gameObject == this.gameObject)
-        {
-            if (FindObjectOfType<StartPositionLevel>())
-            {
-                transform.position = FindObjectOfType<StartPositionLevel>().transform.position;
-            }
-            else
-            {
-                Debug.LogWarning("There is no StartPositionLevel in this scenes. MUST BE SET !");
-            }
-        }      
+        SetPlayerPosition(0);
     }
 
     void Update()
@@ -273,5 +249,25 @@ public class Player_Movement_Control : MonoBehaviour
         }
 
         return null;
+    }
+
+    public void SetPlayerPosition(int teleportIndex)
+    {
+        // First of all, set velocity to 0
+        if (myRb.velocity != Vector2.zero)
+            myRb.velocity = Vector2.zero;
+
+        Teleport_Position_Level[] levelTps = FindObjectsOfType<Teleport_Position_Level>();
+
+        for (int i = 0; i < levelTps.Length; i++)
+        {
+            if (levelTps[i].levelFromBuildIndex == teleportIndex)
+            {
+                transform.position = levelTps[i].transform.position;
+                return;
+            }
+        }
+
+        Debug.LogWarning("There is no Teleport_Position_Level set for this teleportation index in this scene. MUST BE SET !");
     }
 }

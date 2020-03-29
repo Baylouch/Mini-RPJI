@@ -21,11 +21,7 @@ public class QuestGiver : Interactable
 
     [SerializeField] private Transform rewardPosition;
 
-    [SerializeField] private bool isIntercating = false;
-
     [SerializeField] [TextArea] private string endDialogue;
-
-    private Transform player;
 
     [Header("UI elements")]
     [SerializeField] GameObject dialoguePanel;
@@ -37,6 +33,8 @@ public class QuestGiver : Interactable
 
     private void Start()
     {
+        interactionType = PlayerInteractionType.QuestGiver;
+
         UnActiveUI();
 
         // Le cas du bouton refuser est spécial : Il utilisera "UnInteract" a chaque fois, et comme la méthode ne reçoit pas de paramètres,
@@ -44,33 +42,63 @@ public class QuestGiver : Interactable
         refuseButton.onClick.AddListener(UnInteract);
     }
 
-    private void Update()
+
+    public override void UnInteract()
     {
-        // Security if player go to far from QuestGiver, we need to unset all.
-        if (player)
-        {
-            if (Vector3.Distance(transform.position, player.position) > 5f)
-            {
-                UnInteract();
-            }
-        }
+        base.UnInteract();
+
+        UnActiveUI();
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    public override void Interact()
     {
-        if (collision.gameObject.tag == "Player")
+        base.Interact();
+
+        for (int i = 0; i < questsToGive.Length; i++)
         {
-            if (Input.GetKeyDown(KeyCode.E))
+            // Si le joueur a déjà fait la quête
+            if (questsToGive[i].questDone)
             {
-                if (!isIntercating)
+                continue; // Move to the next quest
+            }
+
+            // Si le joueur a déjà cette quête
+            if (Player_Quest_Control.quest_instance.GetPlayerQuestByID(questsToGive[i].questID))
+            {
+                // On verifie si il a terminé l'objectif
+                if (Player_Quest_Control.quest_instance.GetPlayerQuestByID(questsToGive[i].questID).IsQuestAccomplished())
                 {
-                    player = collision.gameObject.transform;
-                    Interact();
-                }                    
+                    // Si oui on valide la quête
+                    SetPreRewardUI(i);
+
+                    return;
+                }
                 else
-                    UnInteract();
+                {
+                    // Sinon on lui demande de revenir quand il aura terminé
+                    SetQuestInProgressUI();
+
+                    return;
+                }
+            }
+            else // Sinon le joueur n'a pas cette quête
+            {
+                // On verifie qu'il n'a pas de quête se trouvant au meme index log
+                if (Player_Quest_Control.quest_instance.GetPlayerQuestByIndex(questsToGive[i].questIndexLog) == null)
+                {
+                    SetNewQuestUI(i);
+
+                    return;
+                }
+                else
+                {
+                    // Sinon on dit au joueur qu'il doit effectuer la quête se trouvant à l'index log avant (ce cas ne devrait pas arriver)
+                }
             }
         }
+
+        // Si le joueur a fait toutes les quêtes qu'il y avait, affiche "endDialogue"
+        SetEndDialogueUI();
     }
 
     void UnActiveUI()
@@ -161,64 +189,6 @@ public class QuestGiver : Interactable
         validationButton.onClick.AddListener(UnInteract);
         if (!validationButton.gameObject.activeSelf)
             validationButton.gameObject.SetActive(true);
-    }
-
-    void UnInteract()
-    {
-        UnActiveUI();
-        player = null;
-        isIntercating = false;
-    }
-
-    public override void Interact()
-    {
-        isIntercating = true;
-
-        for (int i = 0; i < questsToGive.Length; i++)
-        {
-            // Si le joueur a déjà fait la quête
-            if (questsToGive[i].questDone)
-            {
-                continue; // Move to the next quest
-            }
-
-            // Si le joueur a déjà cette quête
-            if (Player_Quest_Control.quest_instance.GetPlayerQuestByID(questsToGive[i].questID))
-            {
-                // On verifie si il a terminé l'objectif
-                if (Player_Quest_Control.quest_instance.GetPlayerQuestByID(questsToGive[i].questID).IsQuestAccomplished())
-                {
-                    // Si oui on valide la quête
-                    SetPreRewardUI(i);
-
-                    return;
-                }
-                else
-                {
-                    // Sinon on lui demande de revenir quand il aura terminé
-                    SetQuestInProgressUI();
-
-                    return;
-                }
-            }
-            else // Sinon le joueur n'a pas cette quête
-            {
-                // On verifie qu'il n'a pas de quête se trouvant au meme index log
-                if (Player_Quest_Control.quest_instance.GetPlayerQuestByIndex(questsToGive[i].questIndexLog) == null)
-                {
-                    SetNewQuestUI(i);
-
-                    return;
-                }         
-                else
-                {
-                    // Sinon on dit au joueur qu'il doit effectuer la quête se trouvant à l'index log avant (ce cas ne devrait pas arriver)
-                }
-            }
-        }
-
-        // Si le joueur a fait toutes les quêtes qu'il y avait, affiche "endDialogue"
-        SetEndDialogueUI();
     }
 
     public void AcceptQuest(int questID)

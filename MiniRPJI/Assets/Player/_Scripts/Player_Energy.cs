@@ -13,6 +13,10 @@ public class Player_Energy : MonoBehaviour
     {
         return baseEnergyPoints;
     }
+    public void SetBaseEnergyPoints(int amount)
+    {
+        baseEnergyPoints = amount;
+    }
 
     private int currentEnergyPoints;
     public int GetCurrentEnergyPoints()
@@ -27,7 +31,6 @@ public class Player_Energy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        baseEnergyPoints = totalEnergyPoints;
         SetCurrentEnergyPoints(totalEnergyPoints);
         currentRegenerationTimer = energyRegenerationTimer;
     }

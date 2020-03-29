@@ -7,7 +7,7 @@
 
 using UnityEngine;
 
-public class PlayerDataSetter : MonoBehaviour
+public class Player_Data_Setter : MonoBehaviour
 {
     public int dataToSet;
 
@@ -28,9 +28,9 @@ public class PlayerDataSetter : MonoBehaviour
         if (!canSet)
             return;
 
-        if (Level_Controller.instance)
+        if (Scenes_Control.instance)
         {
-            if (Level_Controller.instance.GetCurrentSceneBuildIndex() > 2) // If we're in a playable level.
+            if (Scenes_Control.instance.GetCurrentSceneBuildIndex() >= 3) // If we're in a playable level.
             {
                 // Check if you find all player's components to set data.
                 if (Player_Stats.stats_instance)
@@ -40,11 +40,11 @@ public class PlayerDataSetter : MonoBehaviour
                         if (Player_Quest_Control.quest_instance)
                         {
                             // Now set data
-                            if (GameDataControl.dataControl_instance)
+                            if (Game_Data_Control.data_instance)
                             {
-                                if (GameDataControl.dataControl_instance.GetLoadData(dataToSet) != null)
+                                if (Game_Data_Control.data_instance.GetLoadData(dataToSet) != null)
                                 {
-                                    GameDataControl.dataControl_instance.LoadPlayerData(dataToSet);
+                                    Game_Data_Control.data_instance.LoadPlayerData(dataToSet);
 
                                     Destroy(gameObject);
                                 }

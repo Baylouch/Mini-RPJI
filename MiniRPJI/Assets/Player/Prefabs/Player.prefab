@@ -251,7 +251,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemDataBase: {fileID: 11400000, guid: c0a50cc56091f1f468bd20c3dd70faaf, type: 2}
-  playerMoney: 0
+  playerGold: 0
   armoryItems:
   - {fileID: 0}
   - {fileID: 0}
@@ -355,7 +355,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -522,6 +522,7 @@ GameObject:
   - component: {fileID: 7751749420711559548}
   - component: {fileID: 6777473535734216677}
   - component: {fileID: 882769571}
+  - component: {fileID: 1337840066}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -700,3 +701,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   totalEnergyPoints: 100
   energyRegenerationTimer: 2
+--- !u!114 &1337840066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7874364025698239459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a04901a982dfce144ad484a99b54118b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

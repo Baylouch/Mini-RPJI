@@ -52,12 +52,17 @@ public class AI_Combat_Control : MonoBehaviour
         ai_health = GetComponent<AI_Health>();
         ai_stats = GetComponent<AI_Stats>();
 
-        target = GameObject.FindGameObjectWithTag("Player").transform; // For now we set manually target as player, to change later
-
         currentTimerBeforeAttack = timerBeforeAttack;
         currentTimerBeforeShoot = timerBeforeShoot;
         initialChasingDistance = chasingDistance;
+    }
 
+    private void OnEnable()
+    {
+        if (GameObject.FindGameObjectWithTag("Player"))
+        {
+            target = GameObject.FindGameObjectWithTag("Player").transform;
+        }
     }
 
     // Update is called once per frame

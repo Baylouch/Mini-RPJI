@@ -19,6 +19,10 @@ public class Player_Health : MonoBehaviour
     {
         return baseHealthPoints;
     }
+    public void SetBaseHealthPoints(int amount)
+    {
+        baseHealthPoints = amount;
+    }
 
     private int currentHealthPoints; // Player current healthpoints
     public int GetCurrentHealthPoints()
@@ -41,7 +45,6 @@ public class Player_Health : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        baseHealthPoints = totalHealthPoints;
         SetCurrentHealthPoints(totalHealthPoints); // Set player healthpoints
 
         player_combat = GetComponent<Player_Combat_Control>();

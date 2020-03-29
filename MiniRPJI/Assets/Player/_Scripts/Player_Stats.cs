@@ -1,4 +1,4 @@
-﻿/* Stats_Control.cs
+﻿/* Player_Stats.cs
  Gère les statistiques du joueur. Par ex: le taux de vitalité augmentera les points de vies etc
  Ce script doit être executé dans les premiers afin d'éviter null reference si le joueur a des objets pré-équipés avant de commencer
  Permet l'accès aux éléments Player_Energy et Player_Health pour les autres scripts
@@ -62,6 +62,7 @@ public class Player_Stats : MonoBehaviour
     private float energyMultiplier = 1f;
     private float armorMultiplier = .10f; // Used in Player_Health to reduce damage taken
 
+    // TODO hideininspector
     public Player_Energy playerEnergy;
     public Player_Health playerHealth;
 
@@ -87,11 +88,13 @@ public class Player_Stats : MonoBehaviour
         if (GetComponent<Player_Energy>())
         {
             playerEnergy = GetComponent<Player_Energy>();
+            playerEnergy.SetBaseEnergyPoints(playerEnergy.GetTotalEnergyPoints());
         }
             
         if (GetComponent<Player_Health>())
         {
             playerHealth = GetComponent<Player_Health>();
+            playerHealth.SetBaseHealthPoints(playerHealth.GetTotalHealthPoints());
 
         }
 

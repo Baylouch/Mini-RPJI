@@ -16,16 +16,14 @@ public class ItemSeller : Interactable
 
     [SerializeField] [TextArea] string dialogue;
 
-    [SerializeField] private bool isIntercating = false;
-
     SellableSlot[] slots;
 
     UI_DisplayItemStats itemStatsDisplay; // Must have UI_DisplayItemStats on it
 
-    private Transform player;
-
     private void Start()
     {
+        interactionType = PlayerInteractionType.ItemSeller;
+
         textDialogue.text = dialogue;
         backButton.onClick.AddListener(UnInteract);
         okButton.onClick.AddListener(SetUIInventory);
@@ -43,33 +41,20 @@ public class ItemSeller : Interactable
         UnActiveUI();
     }
 
-    private void Update()
+    public override void Interact()
     {
-        // Security if player go to far from QuestGiver, we need to unset all.
-        if (player)
-        {
-            if (Vector3.Distance(transform.position, player.position) > 5f)
-            {
-                UnInteract();
-            }
-        }
+        base.Interact();
+
+        itemStatsDisplay = FindObjectOfType<UI_DisplayItemStats>();
+
+        SetUIDialogue();
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    public override void UnInteract()
     {
-        if (collision.gameObject.tag == "Player")
-        {
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                if (!isIntercating)
-                {
-                    player = collision.gameObject.transform;
-                    Interact();
-                }
-                else
-                    UnInteract();
-            }
-        }
+        base.UnInteract();
+        itemStatsDisplay.HideAndReset();
+        UnActiveUI();
     }
 
     void UnActiveUI()
@@ -137,22 +122,6 @@ public class ItemSeller : Interactable
                 slots[i].RefreshSlot();
             }
         }
-    }
-
-    public override void Interact()
-    {
-        isIntercating = true;
-
-        itemStatsDisplay = FindObjectOfType<UI_DisplayItemStats>();
-
-        SetUIDialogue();
-    }
-
-    public void UnInteract()
-    {
-        isIntercating = false;
-        player = null;
-        UnActiveUI();
     }
 
     // Method used on every item seller slots to configure each when player click on it.

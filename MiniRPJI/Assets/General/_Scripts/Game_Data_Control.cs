@@ -3,15 +3,15 @@ using System;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 
-public class GameDataControl : MonoBehaviour
+public class Game_Data_Control : MonoBehaviour
 {
-    public static GameDataControl dataControl_instance;
+    public static Game_Data_Control data_instance;
 
     private void Awake()
     {
-        if (dataControl_instance == null)
+        if (data_instance == null)
         {
-            dataControl_instance = this;
+            data_instance = this;
             DontDestroyOnLoad(gameObject);
         }
         else

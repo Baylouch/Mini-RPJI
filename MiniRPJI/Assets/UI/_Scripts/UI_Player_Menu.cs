@@ -41,7 +41,7 @@ public class UI_Player_Menu : MonoBehaviour
     void InstantiatePlayerDataSetter(int saveIndex)
     {
         GameObject _playerData = Instantiate(playerDataToSet);
-        _playerData.GetComponent<PlayerDataSetter>().dataToSet = saveIndex;
+        _playerData.GetComponent<Player_Data_Setter>().dataToSet = saveIndex;
     }
 
     public void ContinueGame()
@@ -55,22 +55,22 @@ public class UI_Player_Menu : MonoBehaviour
 
         for (int i = 0; i < saveSlots.Length; i++)
         {
-            if (GameDataControl.dataControl_instance)
+            if (Game_Data_Control.data_instance)
             {
                 int x = i;
                 // Change button style if there is a save.
                 // and add a listener on each for save the game. Add a confirmation UI if there is already a save on the slot.
                 // "Etes-vous sûr de vouloir écraser les données ?" Oui / Non.
-                if (GameDataControl.dataControl_instance.GetLoadData(i) != null)
+                if (Game_Data_Control.data_instance.GetLoadData(i) != null)
                 {                    
-                    PlayerData currentData = GameDataControl.dataControl_instance.GetLoadData(i);
+                    PlayerData currentData = Game_Data_Control.data_instance.GetLoadData(i);
                     saveSlots[i].SetDataButton(currentData.playerStats.level, currentData.playerInventory.gold);
                     saveSlots[i].GetComponent<Button>().onClick.AddListener(() => DisplaySaveConfirmationWindow(x));                  
                 }
                 else
                 {
                     saveSlots[i].SetNoDataButton();
-                    saveSlots[i].GetComponent<Button>().onClick.AddListener(() => GameDataControl.dataControl_instance.SavePlayerData(x));
+                    saveSlots[i].GetComponent<Button>().onClick.AddListener(() => Game_Data_Control.data_instance.SavePlayerData(x));
                     saveSlots[i].GetComponent<Button>().onClick.AddListener(HideAndResetSaveSlots);
                 }
             }
@@ -83,13 +83,13 @@ public class UI_Player_Menu : MonoBehaviour
 
         for (int i = 0; i < saveSlots.Length; i++)
         {
-            if (GameDataControl.dataControl_instance)
+            if (Game_Data_Control.data_instance)
             {
                 int x = i;
 
-                if (GameDataControl.dataControl_instance.GetLoadData(i) != null)
+                if (Game_Data_Control.data_instance.GetLoadData(i) != null)
                 {
-                    PlayerData currentData = GameDataControl.dataControl_instance.GetLoadData(i);
+                    PlayerData currentData = Game_Data_Control.data_instance.GetLoadData(i);
                     saveSlots[i].SetDataButton(currentData.playerStats.level, currentData.playerInventory.gold);
                     saveSlots[i].GetComponent<Button>().onClick.AddListener(() => DisplayLoadConfirmationWindow(x));
                 }
@@ -113,9 +113,9 @@ public class UI_Player_Menu : MonoBehaviour
 
         confirmationText.text = "Quitter le jeu ?";
 
-        if (Level_Controller.instance)
+        if (Scenes_Control.instance)
         {
-            validationButton.onClick.AddListener(() => Level_Controller.instance.ChangeLevel("Level_Menu"));
+            validationButton.onClick.AddListener(() => Scenes_Control.instance.ChangeLevel("Start_Menu"));
            
         }
     }
@@ -128,7 +128,7 @@ public class UI_Player_Menu : MonoBehaviour
         confirmationUI.SetActive(true);
 
         confirmationText.text = "Ecraser les données ?";
-        validationButton.onClick.AddListener(() => GameDataControl.dataControl_instance.SavePlayerData(saveIndex));
+        validationButton.onClick.AddListener(() => Game_Data_Control.data_instance.SavePlayerData(saveIndex));
         validationButton.onClick.AddListener(HideAndResetSaveSlots);
         validationButton.onClick.AddListener(HideConfirmationWindow);
     }
@@ -142,10 +142,11 @@ public class UI_Player_Menu : MonoBehaviour
 
         confirmationText.text = "Charger les données ?";
 
-        if (Level_Controller.instance)
+        if (Scenes_Control.instance)
         {
             validationButton.onClick.AddListener(() => InstantiatePlayerDataSetter(saveIndex));
-            validationButton.onClick.AddListener(() => Level_Controller.instance.ChangeLevel("Level_1"));
+            validationButton.onClick.AddListener(() => Scenes_Control.instance.LoadGameLevels());
+
         }
         else
         {

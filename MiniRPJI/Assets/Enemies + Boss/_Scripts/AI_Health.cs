@@ -170,9 +170,9 @@ public class AI_Health : MonoBehaviour
             GetComponent<ItemDroper>().DropItems();
         }
 
-        if (GetComponent<QuestObjectiveTarget>())
+        if (GetComponent<Quest_Objective_Target>())
         {
-            GetComponent<QuestObjectiveTarget>().IncrementQuestObjective();
+            GetComponent<Quest_Objective_Target>().IncrementQuestObjective();
         }
         
         Destroy(gameObject);

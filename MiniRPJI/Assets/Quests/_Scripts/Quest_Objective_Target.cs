@@ -4,7 +4,7 @@
  */
 using UnityEngine;
 
-public class QuestObjectiveTarget : MonoBehaviour
+public class Quest_Objective_Target : MonoBehaviour
 {
     public int questID = 0; // To know the quest ID (not index) of the script acces to.
 

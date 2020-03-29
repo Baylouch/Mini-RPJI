@@ -7,7 +7,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Load_Controller : MonoBehaviour
+public class Load_Menu_Controller : MonoBehaviour
 {
     [SerializeField] Load_Button[] loadButtons;
 
@@ -24,16 +24,16 @@ public class Load_Controller : MonoBehaviour
         HideConfirmationWindow();
 
 
-        if (GameDataControl.dataControl_instance)
+        if (Game_Data_Control.data_instance)
         {
             // all is ok
             // Setup buttons
             for (int i = 0; i < loadButtons.Length; i++)
             {
-                if (GameDataControl.dataControl_instance.GetLoadData(i) != null)
+                if (Game_Data_Control.data_instance.GetLoadData(i) != null)
                 {
                     int x = i; // We need to do like this to pass a loop parameter to a button listener. Because of an issue with Unity.
-                    PlayerData currentData = GameDataControl.dataControl_instance.GetLoadData(i);
+                    PlayerData currentData = Game_Data_Control.data_instance.GetLoadData(i);
                     loadButtons[i].SetDataButton(currentData.playerStats.level, currentData.playerInventory.gold);
                     loadButtons[i].GetComponent<Button>().onClick.AddListener(() => DisplayConfirmationWindow(x));
                 }
@@ -52,14 +52,14 @@ public class Load_Controller : MonoBehaviour
     void InstantiatePlayerDataSetter(int saveIndex)
     {
         GameObject _playerData = Instantiate(playerDataToSet);
-        _playerData.GetComponent<PlayerDataSetter>().dataToSet = saveIndex;
+        _playerData.GetComponent<Player_Data_Setter>().dataToSet = saveIndex;
     }
 
     public void BackToMenu()
     {
-        if (Level_Controller.instance)
+        if (Scenes_Control.instance)
         {
-            Level_Controller.instance.ChangeLevel("Level_Menu");
+            Scenes_Control.instance.ChangeLevel("Start_Menu");
         }
         else
         {
@@ -74,17 +74,17 @@ public class Load_Controller : MonoBehaviour
 
         confirmationUI.SetActive(true);
 
-        if (Level_Controller.instance)
+        if (Scenes_Control.instance)
         {
             loadSlotButton.onClick.AddListener(() => InstantiatePlayerDataSetter(saveIndex));
-            loadSlotButton.onClick.AddListener(() => Level_Controller.instance.ChangeLevel("Level_1"));
+            loadSlotButton.onClick.AddListener(() => Scenes_Control.instance.LoadGameLevels());
         }
         else
         {
             Debug.Log("No Level Controller !");
         }
 
-        deleteSlotButton.onClick.AddListener(() => GameDataControl.dataControl_instance.RemoveData(saveIndex));
+        deleteSlotButton.onClick.AddListener(() => Game_Data_Control.data_instance.RemoveData(saveIndex));
         deleteSlotButton.onClick.AddListener(() => loadButtons[saveIndex].SetNoDataButton());
         deleteSlotButton.onClick.AddListener(() => loadButtons[saveIndex].GetComponent<Button>().onClick.RemoveAllListeners());
         deleteSlotButton.onClick.AddListener(HideConfirmationWindow);

@@ -52,9 +52,9 @@ public class Player_Quest_Control : MonoBehaviour
         }
 
         // Check if they're QuestObjectiveTarget.cs link to this quest in the scene (if its a killing quest). Thene delete it
-        if (FindObjectsOfType<QuestObjectiveTarget>().Length > 0)
+        if (FindObjectsOfType<Quest_Objective_Target>().Length > 0)
         {
-            QuestObjectiveTarget[] questObjectiveTargets = FindObjectsOfType<QuestObjectiveTarget>();
+            Quest_Objective_Target[] questObjectiveTargets = FindObjectsOfType<Quest_Objective_Target>();
             for (int i = 0; i < questObjectiveTargets.Length; i++)
             {
                 if (_questID == questObjectiveTargets[i].questID)

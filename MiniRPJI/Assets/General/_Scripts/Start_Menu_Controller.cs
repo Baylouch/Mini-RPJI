@@ -5,7 +5,7 @@
 
 using UnityEngine;
 
-public class Menu_Controller : MonoBehaviour
+public class Start_Menu_Controller : MonoBehaviour
 {
 
     // Security for if player back to the menu from the game
@@ -20,25 +20,22 @@ public class Menu_Controller : MonoBehaviour
 
     public void StartGame()
     {
-        if (Level_Controller.instance)
+        if (Scenes_Control.instance)
         {
-            Level_Controller.instance.ChangeLevel("Level_1");
+            Scenes_Control.instance.LoadGameLevels();
         }
     }
 
-    public void LoadGame()
+    public void LoadMenu()
     {
-        if (Level_Controller.instance)
+        if (Scenes_Control.instance)
         {
-            Level_Controller.instance.ChangeLevel("Level_Load");
+            Scenes_Control.instance.ChangeLevel("Load_Menu");
         }
     }
 
     public void QuitGame()
     {
-        if (Level_Controller.instance)
-        {
-            Application.Quit();
-        }
+        Application.Quit();       
     }
 }
