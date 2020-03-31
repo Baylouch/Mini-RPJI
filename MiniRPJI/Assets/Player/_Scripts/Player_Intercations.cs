@@ -13,6 +13,8 @@ public class Player_Intercations : MonoBehaviour
 {
     UI_Player_Interactions interactionUI;
 
+    Interactable interactableThing;
+
     bool interactionSet = false;
     bool isInteracting;
 
@@ -29,6 +31,45 @@ public class Player_Intercations : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (interactionSet)
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                if (interactableThing)
+                {
+                    if (!interactableThing.GetIsInteracting())
+                    {
+                        switch (interactableThing.interactionType)
+                        {
+                            case PlayerInteractionType.Item:
+                                Item item = interactableThing.GetComponent<Item>();
+                                item.Interact();
+                                break;
+                            case PlayerInteractionType.ItemSeller:
+                                ItemSeller itemSeller = interactableThing.GetComponent<ItemSeller>();
+                                itemSeller.Interact();
+                                break;
+                            case PlayerInteractionType.QuestGiver:
+                                QuestGiver questGiver = interactableThing.GetComponent<QuestGiver>();
+                                questGiver.Interact();
+                                break;
+                            case PlayerInteractionType.SubZoneTrigger:
+                                Sub_Zone_Trigger subZoneTrigger = interactableThing.GetComponent<Sub_Zone_Trigger>();
+                                subZoneTrigger.Interact();
+                                break;
+                        }
+                    }
+
+                    interactionUI.ResetInteractionUI();
+                    interactableThing = null;
+                    interactionSet = false;
+                }
+            }
+        }
+    }
+
     // TODO Test all type of interactable to display an adaptable UI.
     // "Appuie sur E pour ramasser cet objet", "Appuie sur E pour parler avec ...".
     private void OnTriggerStay2D(Collider2D collision)
@@ -38,38 +79,9 @@ public class Player_Intercations : MonoBehaviour
             if (!interactionSet)
             {
                 interactionUI.SetInteractionUI("Appuie sur E pour intéragir");
+                interactableThing = collision.GetComponent<Interactable>();
                 interactionSet = true;
             }
-
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                if (!collision.GetComponent<Interactable>().GetIsInteracting())
-                {
-                    switch (collision.GetComponent<Interactable>().interactionType)
-                    {
-                        case PlayerInteractionType.Item:
-                            Item item = collision.GetComponent<Item>();
-                            item.Interact();
-                            break;
-                        case PlayerInteractionType.ItemSeller:
-                            ItemSeller itemSeller = collision.GetComponent<ItemSeller>();
-                            itemSeller.Interact();
-                            break;
-                        case PlayerInteractionType.QuestGiver:
-                            QuestGiver questGiver = collision.GetComponent<QuestGiver>();
-                            questGiver.Interact();
-                            break;
-                        case PlayerInteractionType.SubZoneTrigger:
-                            Sub_Zone_Trigger subZoneTrigger = collision.GetComponent<Sub_Zone_Trigger>();
-                            subZoneTrigger.Interact();
-                            break;
-                    }
-                }
-
-                interactionUI.ResetInteractionUI();
-                interactionSet = false;
-            }               
-            
         }
     }
 
@@ -96,6 +108,7 @@ public class Player_Intercations : MonoBehaviour
             }
 
             interactionUI.ResetInteractionUI();
+            interactableThing = null;
             interactionSet = false;
         }
     }

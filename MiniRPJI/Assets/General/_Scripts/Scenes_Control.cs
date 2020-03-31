@@ -77,9 +77,8 @@ public class Scenes_Control : MonoBehaviour
             while (!asyncLoad.isDone)
             {
                 // Display current loading
-                currentLoadBar.SetLoadingBar(asyncLoad.progress);
-                currentLoadBar.SetLoadingText(asyncLoad.progress);
-                Debug.Log("!");
+                currentLoadBar.SetLoadingBar(asyncLoad.progress * 100);
+                currentLoadBar.SetLoadingText(asyncLoad.progress * 100);
 
                 yield return null;
             }

@@ -7,7 +7,7 @@ using UnityEngine;
 [RequireComponent(typeof(RectTransform))]
 public class FloatingText : MonoBehaviour
 {
-    [SerializeField] float floatSpeed = .02f;
+    [SerializeField] float floatingSpeed = .5f;
     [SerializeField] float timerToDestroy = .5f;
 
     RectTransform myRect;
@@ -15,11 +15,7 @@ public class FloatingText : MonoBehaviour
     private void Start()
     {
         myRect = GetComponent<RectTransform>();
+        GetComponent<Rigidbody2D>().velocity = new Vector2(0f, floatingSpeed);
         Destroy(gameObject, timerToDestroy);
-    }
-
-    private void Update()
-    {
-        myRect.position = new Vector3(myRect.position.x, myRect.position.y + floatSpeed, myRect.position.z);
     }
 }

@@ -38,11 +38,7 @@ public class Player_Movement_Control : MonoBehaviour
     void Update()
     {
         SimpleAnimatorControl();
-    }
 
-    // Update is called once per frame
-    void FixedUpdate()
-    {
         if (Input.GetKey(KeyCode.LeftShift))
         {
             if (Input.GetKeyDown(KeyCode.Mouse0))
@@ -53,11 +49,15 @@ public class Player_Movement_Control : MonoBehaviour
                     {
                         isDashing = true;
                         Player_Stats.stats_instance.playerEnergy.SetCurrentEnergyPoints(Player_Stats.stats_instance.playerEnergy.GetCurrentEnergyPoints() - energyNeedToDash);
-                    }                    
-                }             
+                    }
+                }
             }
         }
+    }
 
+    // Update is called once per frame
+    void FixedUpdate()
+    {
         if (isDashing)
         {
             ProcessDash();

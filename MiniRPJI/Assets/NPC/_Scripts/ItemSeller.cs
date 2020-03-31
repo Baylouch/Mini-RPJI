@@ -53,7 +53,10 @@ public class ItemSeller : Interactable
     public override void UnInteract()
     {
         base.UnInteract();
-        itemStatsDisplay.HideAndReset();
+
+        if (itemStatsDisplay)
+            itemStatsDisplay.HideAndReset();
+
         UnActiveUI();
     }
 

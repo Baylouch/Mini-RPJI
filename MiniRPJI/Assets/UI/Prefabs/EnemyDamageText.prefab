@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1463897701562130301}
   - component: {fileID: 1463897701562130300}
   - component: {fileID: -5704336547249423328}
+  - component: {fileID: 1266929176842038561}
   m_Layer: 0
   m_Name: EnemyDamageText
   m_TagString: Untagged
@@ -92,5 +93,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1af97b787ea705c439df15fade1df5fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  floatSpeed: 0.02
+  floatingSpeed: 1.2
   timerToDestroy: 0.7
+--- !u!50 &1266929176842038561
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1463897701562130290}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 5

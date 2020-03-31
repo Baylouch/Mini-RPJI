@@ -20,6 +20,7 @@ public class Player_Combat_Control : MonoBehaviour
     [SerializeField] float energyNeededForShoot;
 
     Animator animator;
+    AI_Health currentEnemy;
 
     // Start is called before the first frame update
     void Start()
@@ -53,6 +54,23 @@ public class Player_Combat_Control : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Alpha1)) // To centralise in Player_Input.cs later
             {
                 UseNormalAttack();
+                if (currentEnemy)
+                {
+                    currentEnemy.GetDamage(GetAttackDamage());
+
+                    // If we kill the enemy
+                    if (currentEnemy.IsDead())
+                    {
+                        // Check if npc got AI_Stats on him
+                        AI_Stats enemyStats = currentEnemy.gameObject.GetComponent<AI_Stats>();
+                        if (enemyStats)
+                        {
+                            // If yes add experience to player (to securise later Stats_Control)
+                            Player_Stats.stats_instance.AddExperience(enemyStats.GetExperienceGain());
+                            currentEnemy = null;
+                        }
+                    }
+                }
             }
             if (Input.GetKeyDown(KeyCode.Alpha2)) // To centralise in Player_Input.cs later
             {
@@ -68,7 +86,7 @@ public class Player_Combat_Control : MonoBehaviour
             }
         }
     }
-
+    
     void UseNormalAttack()
     {
         animator.SetBool("isAttacking", true);
@@ -85,28 +103,27 @@ public class Player_Combat_Control : MonoBehaviour
     {
         if (collision.gameObject.tag == "Enemy")
         {
-            if (Input.GetKeyDown(KeyCode.Alpha1) && !animator.GetBool("isAttacking")) // To centralise in Player_Input.cs later
+            if (!currentEnemy)
             {
-                UseNormalAttack();
-                if (collision.gameObject.GetComponent<AI_Health>())
-                {
-                    AI_Health enemyHealth = collision.gameObject.GetComponent<AI_Health>();
-                    enemyHealth.GetDamage(GetAttackDamage());
-
-                    // If we kill the enemy
-                    if (enemyHealth.IsDead())
-                    {
-                        // Check if npc got AI_Stats on him
-                        AI_Stats enemyStats = collision.gameObject.GetComponent<AI_Stats>();
-                        if (enemyStats)
-                        {
-                            // If yes add experience to player (to securise later Stats_Control)
-                            Player_Stats.stats_instance.AddExperience(enemyStats.GetExperienceGain());
-                        }
-                    }
-                }
+                currentEnemy = collision.gameObject.GetComponent<AI_Health>();
             }
         }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Enemy")
+        {
+            if (currentEnemy)
+            {
+                if (currentEnemy == collision.gameObject.GetComponent<AI_Health>())
+                {
+                    // Security because of adding xp when enemy dies
+                    if (!currentEnemy.IsDead())
+                        currentEnemy = null;
+                }
+            }
+        }        
     }
 
     int GetAttackDamage()
