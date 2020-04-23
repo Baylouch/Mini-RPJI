@@ -13,7 +13,9 @@ public class Scenes_Control : MonoBehaviour
 {
     public static Scenes_Control instance;
 
-    public const int totalGameLevels = 6; // All game levels (including Player_Level)
+    public const int totalGameLevels = 4; // All game levels (including Player_Level)
+
+    public const int startGameLevelsBuildIndex = 4; // Because of scenes organisation in build settings, we got our first level at index 4 (previous are menus)
 
     private void Awake()
     {
@@ -44,7 +46,7 @@ public class Scenes_Control : MonoBehaviour
     IEnumerator LoadGameLevelsAsync()
     {
         // First of all, load transition level single mode
-        AsyncOperation asyncTransitionLoad = SceneManager.LoadSceneAsync(2, LoadSceneMode.Single);
+        AsyncOperation asyncTransitionLoad = SceneManager.LoadSceneAsync("Level_Transition", LoadSceneMode.Single);
 
         while (!asyncTransitionLoad.isDone)
         {
@@ -62,15 +64,15 @@ public class Scenes_Control : MonoBehaviour
 
         // Before loading scene, we make sure we havnt already got a player in scenes.
         // (usefull when player want to load a game from a game level.
-        if (Player_Stats.stats_instance)
-            Destroy(Player_Stats.stats_instance.gameObject);
-        if (UI_Player.ui_instance)
-            Destroy(UI_Player.ui_instance.gameObject);
+        if (Player_Stats.instance)
+            Destroy(Player_Stats.instance.gameObject);
+        if (UI_Player.instance)
+            Destroy(UI_Player.instance.gameObject);
 
         // Then start to load levels
-        // We know build index of each scenes. So game levels will start index 3 (to be changed because of adding a "Level_Options" later).
+        // We know build index of each scenes. So game levels will start index 4
         // we need to load all levels so we'll do a loop to async load all level.
-        for (int i = 3; i < SceneManager.sceneCountInBuildSettings; i++)
+        for (int i = startGameLevelsBuildIndex; i < SceneManager.sceneCountInBuildSettings; i++)
         {
             AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(i, LoadSceneMode.Additive);
 
@@ -92,6 +94,9 @@ public class Scenes_Control : MonoBehaviour
             totalLoadBar.SetLoadingText((levelsLoad / totalGameLevels) * 100);
             levelsLoad++;
 
+            currentLoadBar.SetLoadingBar(0);
+            currentLoadBar.SetLoadingText(0);
+
         }
 
         Debug.Log("Levels loaded.");
@@ -109,31 +114,40 @@ public class Scenes_Control : MonoBehaviour
     IEnumerator StartGameWhenLevelsLoaded()
     {
         // Unload transition scene
-        AsyncOperation unloadTransition = SceneManager.UnloadSceneAsync(2);
+        AsyncOperation unloadTransition = SceneManager.UnloadSceneAsync("Level_Transition");
 
         while (!unloadTransition.isDone)
         {
             yield return null;
         }
 
-        SceneManager.SetActiveScene(SceneManager.GetSceneByName("Player_Level"));
-
+        // Set active player
         Scene playerLevel = SceneManager.GetSceneByName("Player_Level");
         GameObject[] roots = playerLevel.GetRootGameObjects();
         roots[0].SetActive(true);
         roots[1].SetActive(true);
 
+        // Set active level 1
         Scene level_1 = SceneManager.GetSceneByName("Level_1");
         GameObject root = level_1.GetRootGameObjects()[0];
         root.SetActive(true);
+
+        SceneManager.SetActiveScene(SceneManager.GetSceneByName("Level_1"));
+
+        // Because we use this to switch into game levels
+        if (Music_Manager.instance)
+        {
+            Music_Manager.instance.ToggleGameOrMenuMusics(true);
+        }
+
     }
 
     // Method to switch player into another game level.
     // for exemple from level_1 to level_1_sublevel_1
-    public void SwitchPlayerLevel(int levelFromBuildIndex, int levelToGoBuildIndex)
+    public void SwitchPlayerLevel(int levelToGoBuildIndex)
     {
         // Disable level from where you come
-        Scene levelFrom = SceneManager.GetSceneByBuildIndex(levelFromBuildIndex);
+        Scene levelFrom = SceneManager.GetActiveScene();
         GameObject rootLevelFrom = levelFrom.GetRootGameObjects()[0]; // Because there is only one root gameobject per game level.
         rootLevelFrom.SetActive(false);
 
@@ -142,16 +156,35 @@ public class Scenes_Control : MonoBehaviour
         GameObject rootLevelToGo = levelToGo.GetRootGameObjects()[0];
         rootLevelToGo.SetActive(true);
 
+        SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(levelToGoBuildIndex));
+
         // Set player position
-        FindObjectOfType<Player_Movement_Control>().SetPlayerPosition(levelFromBuildIndex);
+        FindObjectOfType<Player_Movement>().SetPlayerPosition(levelFrom.buildIndex);
     }
 
+    // TODO find a way to move player to level 1 start position when needed. (In UI_GameOver for exemple.)
+    public void SwitchToLevel1Start()
+    {
+        Scene levelFrom = SceneManager.GetActiveScene();
+        GameObject rootLevelFrom = levelFrom.GetRootGameObjects()[0]; // Because there is only one root gameobject per game level.
+        rootLevelFrom.SetActive(false);
+
+        Scene startScene = SceneManager.GetSceneByName("Level_1");
+        GameObject rootStartScene = startScene.GetRootGameObjects()[0];
+        rootStartScene.SetActive(true);
+
+        SceneManager.SetActiveScene(SceneManager.GetSceneByName("Level_1"));
+
+    }
 
     // Used in Menu_Controller to simply change level
     public void ChangeLevel(int levelIndex)
     {
         if (levelIndex < SceneManager.sceneCountInBuildSettings)
         {
+            if (Music_Manager.instance)
+                Music_Manager.instance.ToggleGameOrMenuMusics(false); // Because we use this only in menus or for back to menus from games level
+
             SceneManager.LoadScene(levelIndex);
         }
         else
@@ -164,6 +197,9 @@ public class Scenes_Control : MonoBehaviour
     {
         if (SceneManager.GetSceneByName(levelName) != null)
         {
+            if (Music_Manager.instance)
+                Music_Manager.instance.ToggleGameOrMenuMusics(false);
+
             SceneManager.LoadScene(levelName);
         }
         else
@@ -173,8 +209,10 @@ public class Scenes_Control : MonoBehaviour
     }
 
     public int GetCurrentSceneBuildIndex()
-    {
+    {        
         Scene currentScene = SceneManager.GetActiveScene();
         return currentScene.buildIndex;
     }
+
+
 }

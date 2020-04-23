@@ -15,7 +15,7 @@ public class QuestConfig : ScriptableObject
     public int totalQuestObjective; // if Player_Quest.currentQuestObjective == totalQuestObjective, then the quest is accomplished
 
     public bool questDone; // To set true in QuestGiver.cs when questReward is give
-    public GameObject questReward;
+    public BaseItem questReward;
 
     public int xpAmount;
 }

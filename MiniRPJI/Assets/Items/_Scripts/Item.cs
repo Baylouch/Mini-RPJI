@@ -1,4 +1,6 @@
-﻿public class Item : Interactable
+﻿using UnityEngine;
+
+public class Item : Interactable
 {
     public BaseItem itemConfig;
 
@@ -9,20 +11,27 @@
         interactionType = PlayerInteractionType.Item;
     }
 
-    // TODO, show player item stats via UI, then on this UI ask player if he want take this
     public override void Interact()
     {
-        // Put item in inventory player
-        if (Player_Inventory.inventory_instance)
+        // We need to verify if itemConfig is set. If not, its an error.
+        if (itemConfig == null)
         {
-            bool isFull = Player_Inventory.inventory_instance.CheckInventoryIsFull();
+            Debug.LogError("itemConfig isnt set !");
+            return;
+        }
+
+        // Put item in inventory player
+        if (Player_Inventory.instance)
+        {
+            bool isFull = Player_Inventory.instance.CheckInventoryIsFull();
             if (isFull)
                 return;
 
             if (!used)
             {
                 used = true;
-                Player_Inventory.inventory_instance.GetNewItem(itemConfig);
+                Player_Inventory.instance.GetNewItem(itemConfig);
+                Sound_Manager.instance.PlaySound(Sound_Manager.instance.asset.itemPickup);
                 Destroy(gameObject);
             }
         }

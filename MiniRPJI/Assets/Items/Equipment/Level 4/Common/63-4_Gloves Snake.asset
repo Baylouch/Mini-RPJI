@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 393e3848d7dbdde4d8178f98209fcb90, type: 3}
+  m_Name: 63-4_Gloves Snake
+  m_EditorClassIdentifier: 
+  itemID: 63
+  itemName: Gants du serpent
+  itemDescription: 
+  itemSellPrice: 45
+  itemPrefab: {fileID: 1724247864129913130, guid: e844d7dd3bef667488cb5b47b1a5745d,
+    type: 3}
+  prefabImage: {fileID: 21300000, guid: d4f5634edede200468fc1ccf30e6f3a1, type: 3}
+  inventoryImage: {fileID: 21300000, guid: d4f5634edede200468fc1ccf30e6f3a1, type: 3}
+  stackableItem: 0
+  armoryPart: 3
+  rarety: 0
+  projectile: {fileID: 0}
+  strength: 1
+  agility: 0
+  vitality: 6
+  energy: 0
+  armor: 20
+  criticalRate: 0
+  rangedCriticalRate: 0
+  healthpoints: 5
+  damageMin: 5
+  damageMax: 7
+  rangedDamageMin: 0
+  rangedDamageMax: 0
+  levelRequired: 4
+  strenghtRequired: 0
+  agilityRequired: 0

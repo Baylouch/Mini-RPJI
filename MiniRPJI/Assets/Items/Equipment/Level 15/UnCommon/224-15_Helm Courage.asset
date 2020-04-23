@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 393e3848d7dbdde4d8178f98209fcb90, type: 3}
+  m_Name: 224-15_Helm Courage
+  m_EditorClassIdentifier: 
+  itemID: 224
+  itemName: Casque de courage
+  itemDescription: 
+  itemSellPrice: 250
+  itemPrefab: {fileID: 4916301973116470330, guid: 17bcec922aaa11d4e9f8b1fcbbbd1c2a,
+    type: 3}
+  prefabImage: {fileID: 21300000, guid: fd6e4fc32c78509458fc45ea4a478ba8, type: 3}
+  inventoryImage: {fileID: 21300000, guid: fd6e4fc32c78509458fc45ea4a478ba8, type: 3}
+  stackableItem: 0
+  armoryPart: 0
+  rarety: 1
+  projectile: {fileID: 0}
+  strength: 5
+  agility: 15
+  vitality: 5
+  energy: 8
+  armor: 130
+  criticalRate: 0
+  rangedCriticalRate: 0
+  healthpoints: 75
+  damageMin: 0
+  damageMax: 0
+  rangedDamageMin: 0
+  rangedDamageMax: 0
+  levelRequired: 15
+  strenghtRequired: 0
+  agilityRequired: 0

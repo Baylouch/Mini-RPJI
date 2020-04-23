@@ -195,7 +195,7 @@ public class UI_DisplayItemStats : MonoBehaviour
         {
             GameObject _statsText = Instantiate(statsNameAndPoints); // Instatiate text element prefab
                                                                      // Check if statsPoints is > or < to 0 for set green or red text
-            if (Player_Stats.stats_instance.getCurrentLevel() >= item.levelRequired)
+            if (Player_Stats.instance.GetCurrentLevel() >= item.levelRequired)
             {
                 _statsText.GetComponent<Text>().text = "Niveau requis : <color=green>" + item.levelRequired + "</color>"; // Set text with greend pts
             }

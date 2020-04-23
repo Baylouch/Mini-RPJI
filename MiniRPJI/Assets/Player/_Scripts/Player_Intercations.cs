@@ -1,12 +1,13 @@
 ﻿/* Player_Intercations.cs :
- * Centralise les interactions possible du joueur. Par exemple
- * si le joueur peut ramasser un objet, ce script affiche une fenetre : Appuie sur e pour intéragir.
+ * Centralise les interactions possible du joueur. 
+ * Par exemple :
+ * Si le joueur peut ramasser un objet, ce script affiche une fenetre : Appuie sur e pour intéragir.
  * 
  * */
 
 using UnityEngine;
 
-public enum PlayerInteractionType { Item, QuestGiver, ItemSeller, SubZoneTrigger }
+public enum PlayerInteractionType { Item, QuestGiver, ItemSeller, SubZoneTrigger, None } // None added because of null issue for undefined interaction type.
 
 [RequireComponent(typeof(Collider2D))]
 public class Player_Intercations : MonoBehaviour
@@ -31,6 +32,9 @@ public class Player_Intercations : MonoBehaviour
         }
     }
 
+    // The way interactableThing is used here was because i tought it needed to get the final type of Interactable to use the right
+    // Interact() method and not the one from Interactable script. After days, i added the None, and realize you can use the "final" Interact() method
+    // even if you got the object as a "Interactable" and not "Item" for instance.
     private void Update()
     {
         if (interactionSet)
@@ -58,6 +62,9 @@ public class Player_Intercations : MonoBehaviour
                             case PlayerInteractionType.SubZoneTrigger:
                                 Sub_Zone_Trigger subZoneTrigger = interactableThing.GetComponent<Sub_Zone_Trigger>();
                                 subZoneTrigger.Interact();
+                                break;
+                            default:
+                                interactableThing.Interact();
                                 break;
                         }
                     }
@@ -104,6 +111,9 @@ public class Player_Intercations : MonoBehaviour
                     break;
                 case PlayerInteractionType.SubZoneTrigger:
                     // Dosnt require to use Uninteract method.
+                    break;
+                default:
+                    // Do nothing
                     break;
             }
 

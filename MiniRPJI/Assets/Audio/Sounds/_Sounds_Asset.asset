@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54568ba74328a8940bfb6a12f689edb2, type: 3}
+  m_Name: _Sounds_Asset
+  m_EditorClassIdentifier: 
+  gameOver:
+  - {fileID: 8300000, guid: 7637bf5f09d2cad44a2ba717ade9a033, type: 3}
+  - {fileID: 8300000, guid: 0dfc9a2c34dc57c4ca4f224cec90b2a7, type: 3}
+  - {fileID: 8300000, guid: 0520e29d0a06c834e89392b804ed5507, type: 3}
+  - {fileID: 8300000, guid: 28769c4058a2b7e42ad078bd22f9ce3a, type: 3}
+  - {fileID: 8300000, guid: eac905cb994b0b44dadfc737125721f3, type: 3}
+  toggleUI: {fileID: 8300000, guid: 6d1f7404048995d419d6bca4d37b3126, type: 3}
+  itemEquip: {fileID: 8300000, guid: ffe95bb8650c84c4fbfbc953c71bb7dc, type: 3}
+  itemUnequip: {fileID: 8300000, guid: 4606d89adfcc4b34f93efd4701173460, type: 3}
+  itemTrash: {fileID: 8300000, guid: a3ea7c25551fd0941949398a13c75a4a, type: 3}
+  itemPickup: {fileID: 8300000, guid: f57b5e2c9c4367d42a81d00ecde1f4f3, type: 3}
+  sell: {fileID: 8300000, guid: 00f262f73b34aee4da71b05dd97bc24c, type: 3}
+  buy: {fileID: 8300000, guid: 7d1e8c6dff8f88f4ab5def6d2e351621, type: 3}
+  potUse: {fileID: 8300000, guid: f68baaebb3f333c45bdd7c42ee27f6b2, type: 3}
+  questAchievement: {fileID: 8300000, guid: a273d2fa1e205be42b8707e795d213d8, type: 3}
+  punchNoHit: {fileID: 8300000, guid: 5cbbbc11b40c4a74e8f43963cbda7079, type: 3}
+  punchHit: {fileID: 8300000, guid: 2c054da20ca0c0446839818216192f54, type: 3}
+  bowAttackNormal: {fileID: 8300000, guid: e33e58839c2fa7f4191b618e183f2a11, type: 3}
+  bowAttackNormalImpact: {fileID: 8300000, guid: 09c4acdb130de4845b8eb54f58fd7d00,
+    type: 3}
+  levelUp: {fileID: 8300000, guid: 991205d00bce2ea48a2b16d920de924b, type: 3}
+  monsterAttack1: {fileID: 8300000, guid: 39b08bd2b51e75b479f47245cf9f2737, type: 3}
+  monsterAttack2: {fileID: 8300000, guid: 02c8b56eda7e02049a068db63cd5e239, type: 3}
+  monsterAttack3: {fileID: 8300000, guid: 312bb2e05e07b5543acad02167ab015b, type: 3}
+  monsterAttack4: {fileID: 8300000, guid: e968ba30a9173be4ea937eabac3c5377, type: 3}
+  monsterAttack5: {fileID: 8300000, guid: 26bba2cda0e68a940858ed6f2d8aac1b, type: 3}
+  monsterAttack6: {fileID: 8300000, guid: 0bde002ad017b20488728f9bcbd338bc, type: 3}
+  monsterAttack7: {fileID: 8300000, guid: 8e3300988e4bfb64ea21f6dd3dc0ceee, type: 3}
+  bigMonsterAttack1: {fileID: 8300000, guid: 72cd5a255af4fbb43a790ab066f99db7, type: 3}
+  bigMonsterAttack2: {fileID: 8300000, guid: 47f857e8c9c35744ea7cecd09dd1a176, type: 3}
+  bigMonsterAttack3: {fileID: 8300000, guid: 6006cca71d88dd34f9d6d816a4125e03, type: 3}
+  bigMonsterAttack4: {fileID: 8300000, guid: b5b8c5ecafda424478b7b03f408802fe, type: 3}
+  ghostMonsterAttack1: {fileID: 8300000, guid: 7ae81ecca759f6b499eed9e16115f910, type: 3}
+  ghostMonsterAttack2: {fileID: 8300000, guid: 6859ea8bf52ace643af826d4854994d5, type: 3}
+  ghostMonsterAttack3: {fileID: 8300000, guid: 8d2bc378fe5dc7345b2cbefbb2d4d0da, type: 3}
+  ghostMonsterAttack4: {fileID: 8300000, guid: 0c5e0617455b980478612f7a8d1aa007, type: 3}
+  ghostMonsterAttack5: {fileID: 8300000, guid: ce2e17525c56dbf4ab27cfd575df5b32, type: 3}

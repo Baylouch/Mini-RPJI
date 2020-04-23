@@ -9,13 +9,13 @@ using UnityEngine;
 
 public class UI_Player : MonoBehaviour
 {
-    public static UI_Player ui_instance; // We singleton it to keep it between scene and acces it easily. It's the top hierarchy of Player UI
+    public static UI_Player instance; // We singleton it to keep it between scene and acces it easily. It's the top hierarchy of Player UI
 
     private void Awake()
     {
-        if (ui_instance == null)
+        if (instance == null)
         {
-            ui_instance = this;
+            instance = this;
             DontDestroyOnLoad(gameObject);
         }
         else
@@ -28,6 +28,7 @@ public class UI_Player : MonoBehaviour
     public UI_Player_Inventory playerInventoryUI;
     public UI_Player_Quest playerQuestUI;
     public UI_Player_Menu playerMenu; // To pause the game, save, load, quit...
+    public UI_GameOver gameOverUI;
 
     private void Start()
     {
@@ -41,7 +42,12 @@ public class UI_Player : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F)) // To centralise in Player_Input.cs later
+        if (gameOverUI.gameObject.activeSelf)
+        {
+            return;
+        }
+
+        if (Input.GetKeyDown(KeyCode.I)) // To centralise in Player_Input.cs later
         {
             ToggleStatsMenu();
         }
@@ -62,6 +68,10 @@ public class UI_Player : MonoBehaviour
 
     void HideAllMenus()
     {
+        if (gameOverUI.gameObject.activeSelf)
+        {
+            gameOverUI.gameObject.SetActive(false);
+        }
         if (playerInventoryUI.gameObject.activeSelf)
         {
             playerInventoryUI.gameObject.SetActive(false);
@@ -93,6 +103,11 @@ public class UI_Player : MonoBehaviour
             {
                 playerMenu.gameObject.SetActive(false);
             }
+
+            if (Sound_Manager.instance)
+            {
+                Sound_Manager.instance.PlaySound(Sound_Manager.instance.asset.toggleUI);
+            }
         }
     }
 
@@ -117,6 +132,11 @@ public class UI_Player : MonoBehaviour
             {
                 playerQuestUI.gameObject.SetActive(false);
             }
+
+            if (Sound_Manager.instance)
+            {
+                Sound_Manager.instance.PlaySound(Sound_Manager.instance.asset.toggleUI);
+            }
         }
     }
 
@@ -131,6 +151,11 @@ public class UI_Player : MonoBehaviour
             else
             {
                 playerInventoryUI.gameObject.SetActive(false);
+            }
+
+            if (Sound_Manager.instance)
+            {
+                Sound_Manager.instance.PlaySound(Sound_Manager.instance.asset.toggleUI);
             }
         }
     }
@@ -156,6 +181,11 @@ public class UI_Player : MonoBehaviour
             else
             {
                 playerStatsUI.gameObject.SetActive(false);
+            }
+
+            if (Sound_Manager.instance)
+            {
+                Sound_Manager.instance.PlaySound(Sound_Manager.instance.asset.toggleUI);
             }
         }
     }

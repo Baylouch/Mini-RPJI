@@ -12,7 +12,9 @@ public enum StatsType { STRENGTH, AGILITY, VITALITY, ENERGY }; // Enum pour diff
 [RequireComponent(typeof(Player_Health))]
 public class Player_Stats : MonoBehaviour
 {
-    public static Player_Stats stats_instance; // Singleton + persistent
+    public static Player_Stats instance; // Singleton + persistent
+
+    public const int level_max = 15;
 
     // Experience is for now set in "Projectile.cs" and "Player_Combat_Control.cs"
     [Header("Experience")]
@@ -69,9 +71,9 @@ public class Player_Stats : MonoBehaviour
     private void Awake()
     {
         // Make it singleton
-        if (!stats_instance)
+        if (!instance)
         {
-            stats_instance = this;
+            instance = this;
             DontDestroyOnLoad(gameObject);
         }
         else
@@ -103,8 +105,70 @@ public class Player_Stats : MonoBehaviour
         TrackCurrentStats(); // Get track of current stats at start      
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha5))
+            LevelUp();
+    }
+
+    void SetLevelXP()
+    {
+        switch (level)
+        {
+            case 1:
+                totalLevelExp = 400;
+                break;
+            case 2:
+                totalLevelExp = 800;
+                break;
+            case 3:
+                totalLevelExp = 1600;
+                break;
+            case 4:
+                totalLevelExp = 3200;
+                break;
+            case 5:
+                totalLevelExp = 5100;
+                break;
+            case 6:
+                totalLevelExp = 7500;
+                break;
+            case 7:
+                totalLevelExp = 10400;
+                break;
+            case 8:
+                totalLevelExp = 14000;
+                break;
+            case 9:
+                totalLevelExp = 18500;
+                break;
+            case 10:
+                totalLevelExp = 24400;
+                break;
+            case 11:
+                totalLevelExp = 31000;
+                break;
+            case 12:
+                totalLevelExp = 39500;
+                break;
+            case 13:
+                totalLevelExp = 50000;
+                break;
+            case 14:
+                totalLevelExp = 75000;
+                break;
+            case 15: // level_max
+                totalLevelExp = 0;
+                break;
+
+        }
+    }
+
     void LevelUp()
     {
+        if (level >= level_max)
+            return;
+
         level++; // Add a lvl        
 
         // Set new base player stats
@@ -119,7 +183,7 @@ public class Player_Stats : MonoBehaviour
         playerHealth.SetCurrentHealthPoints(playerHealth.GetTotalHealthPoints()); // refresh currenthealthpoints to set it to max
         playerEnergy.SetCurrentEnergyPoints(playerEnergy.GetTotalEnergyPoints());
 
-        totalLevelExp *= 2; // Set next level XP
+        SetLevelXP();
 
         // Refresh Stats
         RefreshPlayerStats();
@@ -131,6 +195,8 @@ public class Player_Stats : MonoBehaviour
             effect.transform.SetParent(transform);
             Destroy(effect, 1f);
         }
+
+        Sound_Manager.instance.PlaySound(Sound_Manager.instance.asset.levelUp);
     }
 
     // Methods used in Refresh Player Stats
@@ -194,9 +260,9 @@ public class Player_Stats : MonoBehaviour
         // We know there is 6 armory slots because of the enum ArmoryPart. All armory slot got a unique name with this.
         for (int i = 0; i < 6; i++)
         {
-            if (Player_Inventory.inventory_instance.GetArmoryItem(i) != null)
+            if (Player_Inventory.instance.GetArmoryItem(i) != null)
             {
-                ApplyItemStats(Player_Inventory.inventory_instance.GetArmoryItem(i));
+                ApplyItemStats(Player_Inventory.instance.GetArmoryItem(i));
             }
         }
 
@@ -209,11 +275,11 @@ public class Player_Stats : MonoBehaviour
         currentDamageMax += tempItemDamageMax;
 
         // Do it only if player got bow equiped. Else player can't use ranged attack anyway
-        if (Player_Inventory.inventory_instance.GetCurrentBow())
+        if (Player_Inventory.instance.GetCurrentBow())
         {
             float currentRangedDamageMultiplier = (currentAgility * agilityMultiplier);
-            currentRangedDamageMin = (int)Mathf.Round(Player_Inventory.inventory_instance.GetCurrentBow().rangedDamageMin + currentRangedDamageMultiplier);
-            currentRangedDamageMax = (int)Mathf.Round(Player_Inventory.inventory_instance.GetCurrentBow().rangedDamageMax + currentRangedDamageMultiplier);
+            currentRangedDamageMin = (int)Mathf.Round(Player_Inventory.instance.GetCurrentBow().rangedDamageMin + currentRangedDamageMultiplier);
+            currentRangedDamageMax = (int)Mathf.Round(Player_Inventory.instance.GetCurrentBow().rangedDamageMax + currentRangedDamageMultiplier);
         }
         else
         {
@@ -235,9 +301,9 @@ public class Player_Stats : MonoBehaviour
             playerEnergy.SetTotalEnergyPoints((int)Mathf.Max(playerEnergy.GetBaseEnergyPoints() + (currentEnergy * energyMultiplier)));
         }
 
-        if (UI_Player.ui_instance.playerStatsUI)
+        if (UI_Player.instance.playerStatsUI)
         {
-            UI_Player.ui_instance.playerStatsUI.RefreshStatsDisplay();
+            UI_Player.instance.playerStatsUI.RefreshStatsDisplay();
         }
     }
 
@@ -252,6 +318,9 @@ public class Player_Stats : MonoBehaviour
 
     public void AddExperience(int amount)
     {
+        if (level >= level_max)
+            return;
+
         int tempCurrentExperience = currentExp + amount; // Put in a temp variable currentExperience + amount
         if (tempCurrentExperience >= totalLevelExp) // Check if it's >= of required experience to lvl up
         {
@@ -262,9 +331,9 @@ public class Player_Stats : MonoBehaviour
         else
         {
             currentExp = tempCurrentExperience;
-            if (UI_Player.ui_instance.playerStatsUI)
+            if (UI_Player.instance.playerStatsUI)
             {
-                UI_Player.ui_instance.playerStatsUI.RefreshStatsDisplay();
+                UI_Player.instance.playerStatsUI.RefreshStatsDisplay();
             }
         }
     }
@@ -373,62 +442,62 @@ public class Player_Stats : MonoBehaviour
         }
     }
 
-    public int getCurrentMinDamage()
+    public int GetCurrentMinDamage()
     {
         return currentDamageMin;
     }
 
-    public int getCurrentMaxDamage()
+    public int GetCurrentMaxDamage()
     {
         return currentDamageMax;
     }
 
-    public int getCurrentRangedMinDamage()
+    public int GetCurrentRangedMinDamage()
     {
         return currentRangedDamageMin;
     }
 
-    public int getCurrentRangedMaxDamage()
+    public int GetCurrentRangedMaxDamage()
     {
         return currentRangedDamageMax;
     }
 
-    public int getCurrentExp()
+    public int GetCurrentExp()
     {
         return currentExp;
     }
 
-    public int getTotalLevelExp()
+    public int GetTotalLevelExp()
     {
         return totalLevelExp;
     }
 
-    public int getCurrentStatsPoints()
+    public int GetCurrentStatsPoints()
     {
         return currentStatsPoints;
     }
 
-    public int getCurrentLevel()
+    public int GetCurrentLevel()
     {
         return level;
     }
 
-    public int getArmor()
+    public int GetArmor()
     {
         return armor;
     }
 
-    public float getArmorMultiplier() // For Player_Health to deal with damage taken
+    public float GetArmorMultiplier() // For Player_Health to deal with damage taken
     {
         return armorMultiplier;
     }
 
-    public float getCriticalRate()
+    public float GetCriticalRate()
     {
         return criticalRate;
     }
     
-    public float getRangedCriticalRate()
+    public float GetRangedCriticalRate()
     {
         return rangedCriticalRate;
     }

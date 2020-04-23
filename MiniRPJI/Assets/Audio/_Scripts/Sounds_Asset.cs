@@ -1,0 +1,33 @@
+﻿/* Sounds_Asset.cs (ScriptableObject)
+ * Permet d'obtenir d'un moyen rapide la plupart des sons utilisés dans le jeu pour les jouer dans Sound_Manager.cs
+ * (exlus: sons des ennemies)
+ * 
+ * */
+using UnityEngine;
+
+[CreateAssetMenu(fileName = "Sounds_Asset", menuName = "ScriptableObjects/SoundsAsset", order = 1)]
+public class Sounds_Asset : ScriptableObject
+{
+    [Header("General")]
+    public AudioClip[] gameOver;
+
+    [Header("UI")]
+    public AudioClip toggleUI;
+
+    [Header("Items")]
+    public AudioClip itemEquip;
+    public AudioClip itemUnequip;
+    public AudioClip itemTrash;
+    public AudioClip itemPickup;
+    public AudioClip sell;
+    public AudioClip buy;
+    public AudioClip potUse;
+    public AudioClip questAchievement;
+
+    [Header("Player")]
+    public AudioClip punchNoHit;
+    public AudioClip punchHit;
+    public AudioClip bowAttackNormal;
+    public AudioClip bowAttackNormalImpact;
+    public AudioClip levelUp;
+}

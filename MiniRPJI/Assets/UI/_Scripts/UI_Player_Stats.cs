@@ -55,7 +55,7 @@ public class UI_Player_Stats : MonoBehaviour
     void RefreshStatsButtons()
     {
         // If we got stats points, we can add in each stats so
-        if (Player_Stats.stats_instance.getCurrentStatsPoints() > 0)
+        if (Player_Stats.instance.GetCurrentStatsPoints() > 0)
         {
             strengthAddStatsButton.gameObject.SetActive(true);
             agilityAddStatsButton.gameObject.SetActive(true);
@@ -124,34 +124,34 @@ public class UI_Player_Stats : MonoBehaviour
 
     public void RefreshStatsDisplay()
     {
-        if (!Player_Stats.stats_instance)
+        if (!Player_Stats.instance)
             return;
 
         // Experience panel
-        playerLevel.text = Player_Stats.stats_instance.getCurrentLevel().ToString();
-        currentExp.text = Player_Stats.stats_instance.getCurrentExp().ToString();
-        nextLevelExp.text = Player_Stats.stats_instance.getTotalLevelExp().ToString();
+        playerLevel.text = Player_Stats.instance.GetCurrentLevel().ToString();
+        currentExp.text = Player_Stats.instance.GetCurrentExp().ToString();
+        nextLevelExp.text = Player_Stats.instance.GetTotalLevelExp().ToString();
 
         // Health and armor panel
-        maxHealthPoints.text = Player_Stats.stats_instance.playerHealth.GetTotalHealthPoints().ToString();
-        currentHealthPoints.text = Player_Stats.stats_instance.playerHealth.GetCurrentHealthPoints().ToString();
-        maxEnergyPoints.text = Player_Stats.stats_instance.playerEnergy.GetTotalEnergyPoints().ToString();
-        currentEnergyPoints.text = Player_Stats.stats_instance.playerEnergy.GetCurrentEnergyPoints().ToString();
-        armor.text = Player_Stats.stats_instance.getArmor().ToString();
+        maxHealthPoints.text = Player_Stats.instance.playerHealth.GetTotalHealthPoints().ToString();
+        currentHealthPoints.text = Player_Stats.instance.playerHealth.GetCurrentHealthPoints().ToString();
+        maxEnergyPoints.text = Player_Stats.instance.playerEnergy.GetTotalEnergyPoints().ToString();
+        currentEnergyPoints.text = Player_Stats.instance.playerEnergy.GetCurrentEnergyPoints().ToString();
+        armor.text = Player_Stats.instance.GetArmor().ToString();
 
         // Attack panel
-        primaryMinAttackDamage.text = Player_Stats.stats_instance.getCurrentMinDamage().ToString();
-        primaryMaxAttackDamage.text = Player_Stats.stats_instance.getCurrentMaxDamage().ToString();
-        secondaryMinAttackDamage.text = Player_Stats.stats_instance.getCurrentRangedMinDamage().ToString();
-        secondaryMaxAttackDamage.text = Player_Stats.stats_instance.getCurrentRangedMaxDamage().ToString();
+        primaryMinAttackDamage.text = Player_Stats.instance.GetCurrentMinDamage().ToString();
+        primaryMaxAttackDamage.text = Player_Stats.instance.GetCurrentMaxDamage().ToString();
+        secondaryMinAttackDamage.text = Player_Stats.instance.GetCurrentRangedMinDamage().ToString();
+        secondaryMaxAttackDamage.text = Player_Stats.instance.GetCurrentRangedMaxDamage().ToString();
 
         // Stats panel
-        strengthStatsPoints.text = Player_Stats.stats_instance.GetCurrentStatsByType(StatsType.STRENGTH).ToString();
-        agilityStatsPoints.text = Player_Stats.stats_instance.GetCurrentStatsByType(StatsType.AGILITY).ToString();
-        vitalityStatsPoints.text = Player_Stats.stats_instance.GetCurrentStatsByType(StatsType.VITALITY).ToString();
-        intellectStatsPoints.text = Player_Stats.stats_instance.GetCurrentStatsByType(StatsType.ENERGY).ToString();
+        strengthStatsPoints.text = Player_Stats.instance.GetCurrentStatsByType(StatsType.STRENGTH).ToString();
+        agilityStatsPoints.text = Player_Stats.instance.GetCurrentStatsByType(StatsType.AGILITY).ToString();
+        vitalityStatsPoints.text = Player_Stats.instance.GetCurrentStatsByType(StatsType.VITALITY).ToString();
+        intellectStatsPoints.text = Player_Stats.instance.GetCurrentStatsByType(StatsType.ENERGY).ToString();
 
-        currentStatsPoints.text = Player_Stats.stats_instance.getCurrentStatsPoints().ToString();
+        currentStatsPoints.text = Player_Stats.instance.GetCurrentStatsPoints().ToString();
 
         // Refresh stats buttons
         RefreshStatsButtons();
@@ -170,8 +170,8 @@ public class UI_Player_Stats : MonoBehaviour
         statsValidation.gameObject.SetActive(false);
 
         // track current stats
-        Player_Stats.stats_instance.TrackCurrentStats();
-        Player_Stats.stats_instance.RefreshPlayerStats();
+        Player_Stats.instance.TrackCurrentStats();
+        Player_Stats.instance.RefreshPlayerStats();
     }
 
     public void StatsCancel()
@@ -180,10 +180,10 @@ public class UI_Player_Stats : MonoBehaviour
         {
             if (removableStatsPoints[i] > 0)
             {
-                Player_Stats.stats_instance.AddCurrentStatsPoints(removableStatsPoints[i]);
+                Player_Stats.instance.AddCurrentStatsPoints(removableStatsPoints[i]);
                 for (int j = 0; j < removableStatsPoints[i]; j++)
                 {
-                    Player_Stats.stats_instance.DecrementStatsByType((StatsType)i); // While its enum, and we were strict on how we code, its ok to use index of an enum
+                    Player_Stats.instance.DecrementStatsByType((StatsType)i); // While its enum, and we were strict on how we code, its ok to use index of an enum
                 }
                 removableStatsPoints[i] = 0;
             }
@@ -191,31 +191,31 @@ public class UI_Player_Stats : MonoBehaviour
         // Hide validation&cancel buttons
         statsValidation.gameObject.SetActive(false);
         statsCancel.gameObject.SetActive(false);
-        Player_Stats.stats_instance.RefreshPlayerStats();
+        Player_Stats.instance.RefreshPlayerStats();
     }
 
     // We can't use StatsType via OnClick from a UI button.
     // So we use int for choose stats : 0 = strength, 1 = agility, 2 = vitality, 3 = intellect
     public void AddStatsPoints(int statsType)
     {
-        if (Player_Stats.stats_instance.getCurrentStatsPoints() > 0)
+        if (Player_Stats.instance.GetCurrentStatsPoints() > 0)
         {
             switch (statsType)
             {
                 case 0:
-                    Player_Stats.stats_instance.IncrementStatsByType(StatsType.STRENGTH);
+                    Player_Stats.instance.IncrementStatsByType(StatsType.STRENGTH);
                     removableStatsPoints[0]++;
                     break;
                 case 1:
-                    Player_Stats.stats_instance.IncrementStatsByType(StatsType.AGILITY);
+                    Player_Stats.instance.IncrementStatsByType(StatsType.AGILITY);
                     removableStatsPoints[1]++;
                     break;
                 case 2:
-                    Player_Stats.stats_instance.IncrementStatsByType(StatsType.VITALITY);
+                    Player_Stats.instance.IncrementStatsByType(StatsType.VITALITY);
                     removableStatsPoints[2]++;
                     break;
                 case 3:
-                    Player_Stats.stats_instance.IncrementStatsByType(StatsType.ENERGY);
+                    Player_Stats.instance.IncrementStatsByType(StatsType.ENERGY);
                     removableStatsPoints[3]++;
                     break;
                 default:
@@ -223,8 +223,8 @@ public class UI_Player_Stats : MonoBehaviour
                     return;
             }
 
-            Player_Stats.stats_instance.RemoveCurrentStatsPoints(1);
-            Player_Stats.stats_instance.RefreshPlayerStats();
+            Player_Stats.instance.RemoveCurrentStatsPoints(1);
+            Player_Stats.instance.RefreshPlayerStats();
         }
     }
 
@@ -235,33 +235,33 @@ public class UI_Player_Stats : MonoBehaviour
             case 0:
                 if (removableStatsPoints[0] > 0)
                 {
-                    Player_Stats.stats_instance.DecrementStatsByType(StatsType.STRENGTH);
+                    Player_Stats.instance.DecrementStatsByType(StatsType.STRENGTH);
                     removableStatsPoints[0]--;
-                    Player_Stats.stats_instance.AddCurrentStatsPoints(1);           
+                    Player_Stats.instance.AddCurrentStatsPoints(1);           
                 }
                 break;
             case 1:
                 if (removableStatsPoints[1] > 0)
                 {
-                    Player_Stats.stats_instance.DecrementStatsByType(StatsType.AGILITY);
+                    Player_Stats.instance.DecrementStatsByType(StatsType.AGILITY);
                     removableStatsPoints[1]--;
-                    Player_Stats.stats_instance.AddCurrentStatsPoints(1);
+                    Player_Stats.instance.AddCurrentStatsPoints(1);
                 }
                 break;
             case 2:
                 if (removableStatsPoints[2] > 0)
                 {
-                    Player_Stats.stats_instance.DecrementStatsByType(StatsType.VITALITY);
+                    Player_Stats.instance.DecrementStatsByType(StatsType.VITALITY);
                     removableStatsPoints[2]--;
-                    Player_Stats.stats_instance.AddCurrentStatsPoints(1);
+                    Player_Stats.instance.AddCurrentStatsPoints(1);
                 }
                 break;
             case 3:
                 if (removableStatsPoints[3] > 0)
                 {
-                    Player_Stats.stats_instance.DecrementStatsByType(StatsType.ENERGY);
+                    Player_Stats.instance.DecrementStatsByType(StatsType.ENERGY);
                     removableStatsPoints[3]--;
-                    Player_Stats.stats_instance.AddCurrentStatsPoints(1);
+                    Player_Stats.instance.AddCurrentStatsPoints(1);
                 }
                 break;
             default:
@@ -269,6 +269,6 @@ public class UI_Player_Stats : MonoBehaviour
                 return;
         }
 
-        Player_Stats.stats_instance.RefreshPlayerStats();
+        Player_Stats.instance.RefreshPlayerStats();
     }
 }

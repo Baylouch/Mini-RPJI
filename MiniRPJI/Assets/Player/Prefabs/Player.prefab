@@ -260,10 +260,10 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 11400000, guid: 62ec09eeddc87ee48b5f7b60be8a651f, type: 2}
   inventoryItems:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 79fd20c56fe16974d8c92f5ad2689db9, type: 2}
+  - {fileID: 11400000, guid: 2fa0d419a2cbeb040964f7dc397e1473, type: 2}
+  - {fileID: 11400000, guid: 9865a6f352d12004791cf3e40ca48fe0, type: 2}
+  - {fileID: 11400000, guid: 39cb8b320858a684c9311e3fe9df0c65, type: 2}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -681,7 +681,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81ebcaffe0a060045926a04a5573bf66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalHealthPoints: 100
+  totalHealthPoints: 80
   healthRegenerationTimer: 2
   damageText: {fileID: 1463897701562130290, guid: cf441b61ed43ef44b9cae0f5013038a2,
     type: 3}
@@ -699,7 +699,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8346c52c7b25a944aa1690a01c213ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalEnergyPoints: 100
+  totalEnergyPoints: 85
   energyRegenerationTimer: 2
 --- !u!114 &1337840066
 MonoBehaviour:

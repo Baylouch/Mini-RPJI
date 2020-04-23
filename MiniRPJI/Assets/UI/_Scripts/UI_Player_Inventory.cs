@@ -3,15 +3,15 @@ using UnityEngine.UI;
 
 public class UI_Player_Inventory : MonoBehaviour
 {
-    [SerializeField] GameObject inventorySlotInteractionsUI;
-    [SerializeField] GameObject armorySlotIntercationsUI;
+    [SerializeField] GameObject inventorySlotInteractionsUI; // Inventory interactions ui (bottom left of the bottom window in player's inventory. Use - Equip - Sell - Delete buttons)
+    [SerializeField] GameObject armorySlotIntercationsUI; // Armory interactions ui (bottom left of the top window in player's inventory. Unequip - Sell - Delete buttons)
 
+    // Inventory's buttons for player interactions
     [SerializeField] Button inventoryRemoveButton;
     [SerializeField] Button armoryRemoveButton;
     [SerializeField] Button equipButton;
     [SerializeField] Button unequipButton;
     [SerializeField] Button useButton;
-
     [SerializeField] Button sellInventoryButton;
     [SerializeField] Button sellArmoryButton;
 
@@ -22,13 +22,14 @@ public class UI_Player_Inventory : MonoBehaviour
     int currentInventorySlotIndex = -1; // Important to set it -1 because inventory index starts at 0
     int currentArmorySlotIndex = -1;
 
-    [SerializeField] ArmorySlot[] armorySlots;
+    [SerializeField] ArmorySlot[] armorySlots; // Contains all armory's slots
 
-    [SerializeField] InventorySlot[] inventorySlots;
+    [SerializeField] InventorySlot[] inventorySlots; // Contains all inventory's slots
 
     // Start is called before the first frame update
     void Start()
     {
+        // Check if interactions are disable when game start
         if (armorySlotIntercationsUI.activeSelf)
             armorySlotIntercationsUI.SetActive(false);
 
@@ -38,11 +39,12 @@ public class UI_Player_Inventory : MonoBehaviour
 
     private void Update()
     {
-        if (Player_Inventory.inventory_instance)
+        // Update playerTextmoney.
+        if (Player_Inventory.instance)
         {
-            if (Player_Inventory.inventory_instance.GetPlayerGold().ToString() != playerMoneyText.text)
+            if (Player_Inventory.instance.GetPlayerGold().ToString() != playerMoneyText.text)
             {
-                playerMoneyText.text = Player_Inventory.inventory_instance.GetPlayerGold().ToString();
+                playerMoneyText.text = Player_Inventory.instance.GetPlayerGold().ToString();
             }
         }
     }
@@ -52,21 +54,25 @@ public class UI_Player_Inventory : MonoBehaviour
         // Reset all buttons
         RemoveAllButtonsListeners();
 
+        // Reset slots index to not have a pre-set one when player re open inventory
         currentInventorySlotIndex = -1;
         currentArmorySlotIndex = -1;
 
+        // Disable interactions UI
         if (armorySlotIntercationsUI.activeSelf)
             armorySlotIntercationsUI.SetActive(false);
 
         if (inventorySlotInteractionsUI.activeSelf)
             inventorySlotInteractionsUI.SetActive(false);
 
+        // Hide and reset stats displayer
         if (itemStatsDisplay)
         {
             itemStatsDisplay.HideAndReset();
         }
     }
 
+    // Method to remove all buttons listeners.
     void RemoveAllButtonsListeners()
     {
         inventoryRemoveButton.onClick.RemoveAllListeners();
@@ -77,21 +83,23 @@ public class UI_Player_Inventory : MonoBehaviour
         sellArmoryButton.onClick.RemoveAllListeners();
     }
 
+    // Method to quickly refresh inventory
     public void RefreshInventory()
     {
         for (int i = 0; i < inventorySlots.Length; i++)
         {
             // Refresh inventory item
-            inventorySlots[i].item = Player_Inventory.inventory_instance.GetInventoryItem(i);
+            inventorySlots[i].item = Player_Inventory.instance.GetInventoryItem(i);
             inventorySlots[i].RefreshSlot();
         }
     }
 
+    // Method to quickly refresh armory
     public void RefreshArmory()
     {
         for (int i = 0; i < armorySlots.Length; i++)
         {
-            armorySlots[i].item = Player_Inventory.inventory_instance.GetArmoryItem(i);
+            armorySlots[i].item = Player_Inventory.instance.GetArmoryItem(i);
             armorySlots[i].RefreshSlot();
         }
     }
@@ -104,10 +112,11 @@ public class UI_Player_Inventory : MonoBehaviour
             // Remove previous listeners
             RemoveAllButtonsListeners();
 
-            //  add right method with right index
+            // add right method with right index
+            // every items can be removed. So we dont need to particulary check for removebutton
             inventoryRemoveButton.onClick.AddListener(() => RemoveItem(indexSlot, true));
 
-            // Hide usebutton if is active
+            // Instead of remove buttons, others need to be disabled because not every items can be used, sell or equip.
             if (useButton.gameObject.activeSelf)
                 useButton.gameObject.SetActive(false);
             if (equipButton.gameObject.activeSelf)
@@ -115,7 +124,7 @@ public class UI_Player_Inventory : MonoBehaviour
             if (sellInventoryButton.gameObject.activeSelf)
                 sellInventoryButton.gameObject.SetActive(false);
 
-            // Detect if its an EquipmentItem or a UsableItem
+            // Detect if its an EquipmentItem
             if (inventorySlots[indexSlot].item as EquipmentItem)
             {
                 equipButton.onClick.AddListener(() => EquipItem((EquipmentItem)inventorySlots[indexSlot].item));
@@ -123,6 +132,7 @@ public class UI_Player_Inventory : MonoBehaviour
                 if (!equipButton.gameObject.activeSelf)
                     equipButton.gameObject.SetActive(true);
             }
+            // Detect if its a UsableItem
             if (inventorySlots[indexSlot].item as UsableItem)
             {
                 useButton.onClick.AddListener(() => UseItem((UsableItem)inventorySlots[indexSlot].item));
@@ -131,7 +141,7 @@ public class UI_Player_Inventory : MonoBehaviour
                     useButton.gameObject.SetActive(true);
             }
 
-            // Set sell button
+            // Set sell button if the item price is > than 0
             if (inventorySlots[indexSlot].item.itemSellPrice > 0)
             {
                 sellInventoryButton.onClick.AddListener(() => SellItem(indexSlot));
@@ -140,15 +150,17 @@ public class UI_Player_Inventory : MonoBehaviour
                     sellInventoryButton.gameObject.SetActive(true);
             }
 
+            // Set currentInventorySlotIndex with the right indexSlot. It'll be used if player click on the same index, so we can hide it.
             currentInventorySlotIndex = indexSlot;
             currentArmorySlotIndex = -1;
 
+            // Enable inventory interactions because its now set. Then disable armory interactions because player cant work on these 2 simultaneously
             if (!inventorySlotInteractionsUI.activeSelf)
                 inventorySlotInteractionsUI.SetActive(true);
             if (armorySlotIntercationsUI.activeSelf)
                 armorySlotIntercationsUI.SetActive(false);
 
-            // If we are not displaying yet
+            // If we are not displaying stats yet 
             if (!itemStatsDisplay)
             {
                 // Display item stats
@@ -162,6 +174,7 @@ public class UI_Player_Inventory : MonoBehaviour
             else // Else we need to reset before display. Because player want to see another item's stats
             {
                 itemStatsDisplay.HideAndReset();
+
                 if (inventorySlots[indexSlot].item as EquipmentItem)
                     itemStatsDisplay.DisplayItemStats((EquipmentItem)inventorySlots[indexSlot].item);
                 else if (inventorySlots[indexSlot].item as UsableItem)
@@ -171,7 +184,7 @@ public class UI_Player_Inventory : MonoBehaviour
             }
 
         }
-        else // If its equal, player clicked on the same item so we want to unshow slotIntercationsUI and reset buttons
+        else // If currentInventorySlotIndex == indexSlot, player clicked on the same item so we want to unshow slotIntercationsUI and reset buttons
         {
             RemoveAllButtonsListeners();
 
@@ -242,27 +255,39 @@ public class UI_Player_Inventory : MonoBehaviour
         }
     }
 
-    // To remove and spawn item by inventory index
+    // To remove and spawn item via inventory index
     public void RemoveItem(int itemIndex, bool instantiateItem)
     {
-        if (Player_Inventory.inventory_instance.GetInventoryItem(itemIndex) != null)
+        // First check if there is an item (it must be because of logic when interactions UI appear but its safer to check)
+        if (Player_Inventory.instance.GetInventoryItem(itemIndex) != null)
         {
-            if (instantiateItem)
+            if (instantiateItem) // If we want to instantiate the item
             {
-                // We need can instantiate on Player Inventory instance position
-                Instantiate(Player_Inventory.inventory_instance.GetInventoryItem(itemIndex).itemPrefab, Player_Inventory.inventory_instance.transform.position, Quaternion.identity);
+                // We can instantiate on Player Inventory instance position (because its the player position)
+                GameObject itemGO = Instantiate(Player_Inventory.instance.GetInventoryItem(itemIndex).itemPrefab, Player_Inventory.instance.transform.position, Quaternion.identity);
+
+                itemGO.GetComponent<SpriteRenderer>().sprite = Player_Inventory.instance.GetInventoryItem(itemIndex).prefabImage;
+                itemGO.GetComponent<Item>().itemConfig = Player_Inventory.instance.GetInventoryItem(itemIndex);
+
+                if (GameObject.Find("Items"))
+                {
+                    itemGO.transform.parent = GameObject.Find("Items").transform;
+                }
+
+                Sound_Manager.instance.PlaySound(Sound_Manager.instance.asset.itemTrash);
             }
 
-            // If its an item quest linked to quest we have, decrement current quest objective because we remove this item.
-            if (Player_Inventory.inventory_instance.GetInventoryItem(itemIndex) as QuestItem)
+            // If its an item quest linked to quest we have, decrement current quest objective because we removed this item.
+            if (Player_Inventory.instance.GetInventoryItem(itemIndex) as QuestItem)
             {
-                QuestItem questItem = (QuestItem)Player_Inventory.inventory_instance.GetInventoryItem(itemIndex);
-                if (Player_Quest_Control.quest_instance.GetPlayerQuestByID(questItem.questID))
+                QuestItem questItem = (QuestItem)Player_Inventory.instance.GetInventoryItem(itemIndex);
+                if (Player_Quest_Control.instance.GetPlayerQuestByID(questItem.questID))
                 {
                     questItem.DecrementLinkedQuest();
                 }
             }
 
+            // If its a stackable item, decrement it or delete it.
             if (inventorySlots[currentInventorySlotIndex].item.stackableItem)
             {
                 if (inventorySlots[currentInventorySlotIndex].itemNumb >= 1)
@@ -272,12 +297,12 @@ public class UI_Player_Inventory : MonoBehaviour
 
                 if (inventorySlots[currentInventorySlotIndex].itemNumb < 1)
                 {
-                    Player_Inventory.inventory_instance.SetInventoryIndex(itemIndex, -1);
+                    Player_Inventory.instance.SetInventoryIndex(itemIndex, -1);
                 }
             }
             else
             {
-                Player_Inventory.inventory_instance.SetInventoryIndex(itemIndex, -1);
+                Player_Inventory.instance.SetInventoryIndex(itemIndex, -1);
             }
 
             RefreshInventory();
@@ -293,23 +318,33 @@ public class UI_Player_Inventory : MonoBehaviour
         }
     }
 
-    // For remove and spawn item via Armory
+    // For remove and spawn item via Armory index. Same method as RemoveItem but we refresh player stats because its an equiped item.
     public void RemoveArmoryItem(int armoryIndex, bool instantiateItem)
     {
-        if (Player_Inventory.inventory_instance.GetArmoryItem(armoryIndex) != null)
+        if (Player_Inventory.instance.GetArmoryItem(armoryIndex) != null)
         {
             if (instantiateItem)
             {
-                Instantiate(Player_Inventory.inventory_instance.GetArmoryItem(armoryIndex).itemPrefab, Player_Inventory.inventory_instance.transform.position, Quaternion.identity);
+                GameObject itemGO = Instantiate(Player_Inventory.instance.GetArmoryItem(armoryIndex).itemPrefab, Player_Inventory.instance.transform.position, Quaternion.identity);
+
+                itemGO.GetComponent<SpriteRenderer>().sprite = Player_Inventory.instance.GetArmoryItem(armoryIndex).prefabImage;
+                itemGO.GetComponent<Item>().itemConfig = Player_Inventory.instance.GetArmoryItem(armoryIndex);
+
+                if (GameObject.Find("Items"))
+                {
+                    itemGO.transform.parent = GameObject.Find("Items").transform;
+                }
+
+                Sound_Manager.instance.PlaySound(Sound_Manager.instance.asset.itemTrash);
             }
 
-            Player_Inventory.inventory_instance.SetArmoryIndex(armoryIndex, -1);
+            Player_Inventory.instance.SetArmoryIndex(armoryIndex, -1);
             RefreshArmory();
 
             if (currentArmorySlotIndex == armoryIndex)
                 SetCurrentArmorySlotInteractions(armoryIndex);
 
-            Player_Stats.stats_instance.RefreshPlayerStats();
+            Player_Stats.instance.RefreshPlayerStats();
 
             // If we dont disable gameobject here, error will happened when loading data. Because of clearing all items before load saved ones.
             if (armorySlotIntercationsUI.activeSelf)
@@ -322,10 +357,12 @@ public class UI_Player_Inventory : MonoBehaviour
         }
     }
 
+    // Method to equip a player on armory slot
     public void EquipItem(EquipmentItem item)
     {
-        if (item.levelRequired > Player_Stats.stats_instance.getCurrentLevel())
+        if (item.levelRequired > Player_Stats.instance.GetCurrentLevel())
         {
+            // TODO Display an UI ?
             Debug.Log("You have not the level required for this item.");
             return;
         }
@@ -335,42 +372,53 @@ public class UI_Player_Inventory : MonoBehaviour
             if (armorySlots[i].armoryPart == item.armoryPart) // Find the right slot
             {
                 // Set ArmorySlot
-                if (Player_Inventory.inventory_instance.GetArmoryItem(i) != null) // If current slot isn't empty, then switch item
+                if (Player_Inventory.instance.GetArmoryItem(i) != null) // If current slot isn't empty, then switch item
                 {
                     // Keep a track of current item on the slot (too put it on the same place in inventory)
-                    EquipmentItem tempItemOnSlot = Player_Inventory.inventory_instance.GetArmoryItem(i);
+                    EquipmentItem tempItemOnSlot = Player_Inventory.instance.GetArmoryItem(i);
                     // Then equip wanted item
-                    Player_Inventory.inventory_instance.SetArmoryIndex(i, item.itemID);
+                    Player_Inventory.instance.SetArmoryIndex(i, item.itemID);
                     // And remove it from inventory (without instantiation) 
                     // /!\ CAREFULL HERE WE NEED TO USE currentInventorySlotIndex to know current index in inventory item /!\
                     RemoveItem(currentInventorySlotIndex, false);
                     // Then put tempItemOnSlot in inventory
-                    Player_Inventory.inventory_instance.GetNewItem(tempItemOnSlot);
+                    Player_Inventory.instance.GetNewItem(tempItemOnSlot);
                 }
                 else
                 {
                     // Else slot is alreay empty so just equip
-                    Player_Inventory.inventory_instance.SetArmoryIndex(i, item.itemID);
+                    Player_Inventory.instance.SetArmoryIndex(i, item.itemID);
                     // And remove it from inventory (without instantiation)
                     RemoveItem(currentInventorySlotIndex, false);
                 }
 
+                if (Sound_Manager.instance)
+                {
+                    Sound_Manager.instance.PlaySound(Sound_Manager.instance.asset.itemEquip);
+                }
+
                 RefreshArmory();
-                Player_Stats.stats_instance.RefreshPlayerStats();
+                Player_Stats.instance.RefreshPlayerStats();
                 return;
             }
         }
     }
 
+    // Method to unequip an armory item
     public void UnequipItem(int armoryIndex)
     {
-        if (Player_Inventory.inventory_instance.GetArmoryItem(armoryIndex) != null) // If slot isn't empty, then continue
+        if (Player_Inventory.instance.GetArmoryItem(armoryIndex) != null) // If slot isn't empty, then continue
         {
-            if (!Player_Inventory.inventory_instance.CheckInventoryIsFull()) // If inventory isn't full put current armoryslot item in
+            if (!Player_Inventory.instance.CheckInventoryIsFull()) // If inventory isn't full put current armoryslot item in
             {
-                Player_Inventory.inventory_instance.GetNewItem(armorySlots[armoryIndex].item); // Put item in inventory
-                Player_Inventory.inventory_instance.SetArmoryIndex(armoryIndex, -1); // Remove it from armory items
-                
+                Player_Inventory.instance.GetNewItem(armorySlots[armoryIndex].item); // Put item in inventory
+                Player_Inventory.instance.SetArmoryIndex(armoryIndex, -1); // Remove it from armory items
+
+                if (Sound_Manager.instance)
+                {
+                    Sound_Manager.instance.PlaySound(Sound_Manager.instance.asset.itemUnequip);
+                }
+
             }
             else // Else you can only remove it.
             {
@@ -384,7 +432,7 @@ public class UI_Player_Inventory : MonoBehaviour
         }
 
         RefreshArmory();
-        Player_Stats.stats_instance.RefreshPlayerStats();
+        Player_Stats.instance.RefreshPlayerStats();
 
         // If we dont disable gameobject here, error will happened because player still can click on "remove" and will get error
         if (armorySlotIntercationsUI.activeSelf)
@@ -395,8 +443,12 @@ public class UI_Player_Inventory : MonoBehaviour
         }
     }
 
+    // Method to use a usable item
     public void UseItem(UsableItem item)
     {
+        if (!item.CanUse())
+            return;
+
         item.Use();
 
         if (inventorySlots[currentInventorySlotIndex].item.stackableItem)
@@ -421,9 +473,15 @@ public class UI_Player_Inventory : MonoBehaviour
         {
             if (inventorySlots[inventoryIndex].item.itemSellPrice > 0)
             {
-                if (Player_Inventory.inventory_instance)
+                if (Player_Inventory.instance)
                 {
-                    Player_Inventory.inventory_instance.SetPlayerGold(Mathf.RoundToInt(inventorySlots[inventoryIndex].item.itemSellPrice));
+                    Player_Inventory.instance.SetPlayerGold(Mathf.RoundToInt(inventorySlots[inventoryIndex].item.itemSellPrice));
+
+                    if (Sound_Manager.instance)
+                    {
+                        Sound_Manager.instance.PlaySound(Sound_Manager.instance.asset.sell);
+                    }
+
                     RemoveItem(inventoryIndex, false);
                 }
             }
@@ -437,9 +495,15 @@ public class UI_Player_Inventory : MonoBehaviour
         {
             if (armorySlots[armoryIndex].item.itemSellPrice > 0)
             {
-                if (Player_Inventory.inventory_instance)
+                if (Player_Inventory.instance)
                 {
-                    Player_Inventory.inventory_instance.SetPlayerGold(Mathf.RoundToInt(armorySlots[armoryIndex].item.itemSellPrice));
+                    Player_Inventory.instance.SetPlayerGold(Mathf.RoundToInt(armorySlots[armoryIndex].item.itemSellPrice));
+
+                    if (Sound_Manager.instance)
+                    {
+                        Sound_Manager.instance.PlaySound(Sound_Manager.instance.asset.sell);
+                    }
+
                     RemoveArmoryItem(armoryIndex, false);
                 }
             }
@@ -452,5 +516,29 @@ public class UI_Player_Inventory : MonoBehaviour
         if (inventorySlots[indexSlot] != null)
             return inventorySlots[indexSlot];
         return null;
+    }
+
+    // TODO Upgrade to use more than the potion ID 100
+    public void FastPotionUse()
+    {
+        for (int i = 0; i < inventorySlots.Length; i++) // Loop over inventory slots
+        {
+            if (inventorySlots[i].item) // if there is an item in this slot
+            {
+                if (inventorySlots[i].item.itemID == 350) // test it to check if its a potion
+                {
+                    UsableItem potion = inventorySlots[i].item as UsableItem; // Convert it into a UsableItem
+
+                    // If player already using inventory, we need to put currentInventorySlotIndex in a temp variable because UseItem use currentInventorySlotIndex to use potion.
+                    int tempCurrentInventorySlotIndex = currentInventorySlotIndex;
+                    currentInventorySlotIndex = i; // put the right inventorySlots index into currentInventorySlotIndex to have the right action
+
+                    UseItem(potion); // use potion (will remove one from inventory too)
+
+                    currentInventorySlotIndex = tempCurrentInventorySlotIndex; // Reset currentInventorySlotIndex as it was
+                    return; // Dont continue because potion is used.
+                }
+            }
+        }
     }
 }

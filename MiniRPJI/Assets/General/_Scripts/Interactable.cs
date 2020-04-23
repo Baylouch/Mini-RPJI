@@ -6,7 +6,7 @@ public class Interactable : MonoBehaviour
     [HideInInspector]
     public PlayerInteractionType interactionType;
 
-    [SerializeField] private bool isInteracting = false;
+    private bool isInteracting = false;
     public bool GetIsInteracting()
     {
         return isInteracting;

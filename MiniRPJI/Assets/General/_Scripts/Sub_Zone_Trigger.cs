@@ -9,7 +9,6 @@ using UnityEngine;
 public class Sub_Zone_Trigger : Interactable
 {
     // Use build index of scenes.
-    [SerializeField] int levelFrom;
     [SerializeField] int levelToGo;
 
     private void Start()
@@ -21,7 +20,7 @@ public class Sub_Zone_Trigger : Interactable
     {
         if (Scenes_Control.instance)
         {
-            Scenes_Control.instance.SwitchPlayerLevel(levelFrom, levelToGo);
+            Scenes_Control.instance.SwitchPlayerLevel(levelToGo);
         }
     }
    

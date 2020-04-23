@@ -5,14 +5,17 @@
 public class Projectile : MonoBehaviour
 {
     // Damage
-    //[HideInInspector]
+    [HideInInspector]
     public int projectileDamage = 0; // Is set in Player_Combat_Control for player. Is set in AI_Combat_Control for AI
     public ProjectileType projectileType; // To set projectile effect (frost, fire, nothing..)
 
     [SerializeField] float projectileSpeed = 5f;
+
     [SerializeField] float timerBeforeDestroy = 3f;
 
     [SerializeField] GameObject impactEffect;
+
+    bool used = false;
 
     private void Awake()
     {
@@ -27,6 +30,9 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (used)
+            return;
+
         if (collision.gameObject.tag == "Enemy")
         {
             if (collision.gameObject.GetComponent<AI_Health>())
@@ -37,7 +43,7 @@ public class Projectile : MonoBehaviour
                 switch (projectileType)
                 {
                     case ProjectileType.Normal:
-                        // Do nothing
+                        Sound_Manager.instance.PlaySound(Sound_Manager.instance.asset.bowAttackNormalImpact);
                         break;
                     case ProjectileType.Frost:
                         enemyHealth.Slowed();
@@ -54,13 +60,12 @@ public class Projectile : MonoBehaviour
                     AI_Stats enemyStats = collision.gameObject.GetComponent<AI_Stats>();
                     if (enemyStats)
                     {
-                        if (Player_Stats.stats_instance)
+                        if (Player_Stats.instance)
                         {
-                            Player_Stats.stats_instance.AddExperience(enemyStats.GetExperienceGain());
+                            Player_Stats.instance.AddExperience(enemyStats.GetExperienceGain());
                         }
                     }
                 }
-
             }
             
             if (impactEffect)
@@ -69,6 +74,7 @@ public class Projectile : MonoBehaviour
                 Destroy(_impact, .5f);
             }
 
+            used = true;
             Destroy(gameObject);
         }
 

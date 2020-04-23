@@ -5,11 +5,21 @@ public enum ItemRarety { Common, Uncommon, Rare, Epic, Legendary }; // All items
 
 public class Player_Inventory : MonoBehaviour
 {  
-    public static Player_Inventory inventory_instance;
+    public static Player_Inventory instance;
 
-    public ItemDataBase itemDataBase;
+    public ItemDataBase itemDataBase; // The database that contain ALL items
 
     [SerializeField] int playerGold;
+    public int GetPlayerGold()
+    {
+        return playerGold;
+    }
+
+    // you can put negative amount to decrease money, or a positive amount to increase it
+    public void SetPlayerGold(int amount)
+    {
+        playerGold += amount;
+    }
 
     public const int armorySlotsNumb = 6; // Number of armory slots
     public const int inventorySlotsNumb = 18; // Number of inventory slots
@@ -21,9 +31,9 @@ public class Player_Inventory : MonoBehaviour
     private void Awake()
     {
         // Make this singleton
-        if (!inventory_instance)
+        if (!instance)
         {
-            inventory_instance = this;
+            instance = this;
         }
         else
         {
@@ -35,26 +45,26 @@ public class Player_Inventory : MonoBehaviour
     {
         // Give to the player 5 health potions
         // TODO see if next line get wrong when loading data
-        GetNewItem(itemDataBase.GetItemById(100));
-        GetNewItem(itemDataBase.GetItemById(100));
-        GetNewItem(itemDataBase.GetItemById(100));
-        GetNewItem(itemDataBase.GetItemById(100));
-        GetNewItem(itemDataBase.GetItemById(100));
+        for (int i = 0; i < 5; i++)
+        {
+            GetNewItem(itemDataBase.GetItemById(350));
+        }
 
-        UI_Player.ui_instance.playerInventoryUI.RefreshInventory();
-        UI_Player.ui_instance.playerInventoryUI.RefreshArmory();
+        UI_Player.instance.playerInventoryUI.RefreshInventory();
+        UI_Player.instance.playerInventoryUI.RefreshArmory();
     }
 
-    // TODO Delete
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.A))
         {
-            playerGold += 10;
+            if (UI_Player.instance.playerInventoryUI)
+            {
+                UI_Player.instance.playerInventoryUI.FastPotionUse();
+            }
         }
     }
 
-    // TODO Modify after split Player_Inventory with UI_Player_Inventory (to check THIS array of item?).
     // False = slots available, true = full
     public bool CheckInventoryIsFull()
     {
@@ -80,7 +90,7 @@ public class Player_Inventory : MonoBehaviour
         {
             QuestItem questItem = (QuestItem)item;
             // Check if we got the quest linked to the item.
-            if (Player_Quest_Control.quest_instance.GetPlayerQuestByID(questItem.questID))
+            if (Player_Quest_Control.instance.GetPlayerQuestByID(questItem.questID))
             {
                 questItem.IncrementLinkedQuest();
             }
@@ -94,8 +104,8 @@ public class Player_Inventory : MonoBehaviour
                 {
                     if (inventoryItems[i] == item) // If its the same item than stackable one increment it
                     {
-                        UI_Player.ui_instance.playerInventoryUI.GetInventorySlotByIndex(i).itemNumb++;
-                        UI_Player.ui_instance.playerInventoryUI.RefreshInventory();
+                        UI_Player.instance.playerInventoryUI.GetInventorySlotByIndex(i).itemNumb++;
+                        UI_Player.instance.playerInventoryUI.RefreshInventory();
                         return; // dont continue
                     }
                 }
@@ -111,8 +121,8 @@ public class Player_Inventory : MonoBehaviour
                 inventoryItems[i] = item;
                 // We need to check if its a stackable item here too.
                 if (item.stackableItem)
-                    UI_Player.ui_instance.playerInventoryUI.GetInventorySlotByIndex(i).itemNumb++;
-                UI_Player.ui_instance.playerInventoryUI.RefreshInventory();
+                    UI_Player.instance.playerInventoryUI.GetInventorySlotByIndex(i).itemNumb++;
+                UI_Player.instance.playerInventoryUI.RefreshInventory();
                 return; // Get out of there
             }
         }
@@ -166,16 +176,5 @@ public class Player_Inventory : MonoBehaviour
         }
 
         armoryItems[armoryIndex] = (EquipmentItem)itemDataBase.GetItemById(_itemID);
-    }
-
-    public int GetPlayerGold()
-    {
-        return playerGold;
-    }
-
-    // you can put negative amount to decrease money, or a positive amount to increase it
-    public void SetPlayerGold(int amount)
-    {
-        playerGold += amount;
     }
 }

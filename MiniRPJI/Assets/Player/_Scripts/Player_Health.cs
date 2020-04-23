@@ -5,13 +5,17 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(Player_Combat_Control))] // To know when we can regenerate health or not (with IsInCombat variable)
+[RequireComponent(typeof(Player_Combat))] // To know when we can regenerate health or not (with IsInCombat variable)
 public class Player_Health : MonoBehaviour
 {
     [SerializeField] private int totalHealthPoints = 100; // Total player healthpoints
     public int GetTotalHealthPoints()
     {
         return totalHealthPoints;
+    }
+    public void SetTotalHealthPoints(int newTotal)
+    {
+        totalHealthPoints = newTotal;
     }
 
     private int baseHealthPoints = 0; // We need this base for know how much healthpoints (without vitality multiplier) player have (for refreshing stats)
@@ -29,6 +33,19 @@ public class Player_Health : MonoBehaviour
     {
         return currentHealthPoints;
     }
+    public void SetCurrentHealthPoints(float newHealthPoints)
+    {
+        int tempHealth = Mathf.RoundToInt(newHealthPoints);
+
+        if (newHealthPoints < 0)
+        {
+            currentHealthPoints = 0;
+        }
+        else
+        {
+            currentHealthPoints = tempHealth;
+        }
+    }
 
     [SerializeField] float healthRegenerationTimer = 2f;
     float currentRegenerationTimer;
@@ -40,14 +57,22 @@ public class Player_Health : MonoBehaviour
     [Tooltip("Let it null if you don't want fading when damage taken.")]
     [SerializeField] SpriteRenderer rend;
 
-    Player_Combat_Control player_combat;
+    Player_Combat player_combat;
+
+    private void OnDisable()
+    {
+        // Security when player die when hes on "alpha" because taking damage
+        Color c = rend.material.color;
+        c.a = 1;
+        rend.material.color = c;
+    }
 
     // Start is called before the first frame update
     void Start()
     {
         SetCurrentHealthPoints(totalHealthPoints); // Set player healthpoints
 
-        player_combat = GetComponent<Player_Combat_Control>();
+        player_combat = GetComponent<Player_Combat>();
 
         currentRegenerationTimer = healthRegenerationTimer;
     }
@@ -60,9 +85,9 @@ public class Player_Health : MonoBehaviour
         {
             SetCurrentHealthPoints(totalHealthPoints);
             // Then refresh UI via UI_Player instance
-            if (UI_Player.ui_instance.playerStatsUI) // if its not null
+            if (UI_Player.instance.playerStatsUI) // if its not null
             {
-                UI_Player.ui_instance.playerStatsUI.RefreshStatsDisplay();
+                UI_Player.instance.playerStatsUI.RefreshStatsDisplay();
             }
             return;
         }
@@ -103,9 +128,9 @@ public class Player_Health : MonoBehaviour
             }
 
             // Then refresh UI via UI_Player instance
-            if (UI_Player.ui_instance.playerStatsUI) // if its not null
+            if (UI_Player.instance.playerStatsUI) // if its not null
             {
-                UI_Player.ui_instance.playerStatsUI.RefreshStatsDisplay();
+                UI_Player.instance.playerStatsUI.RefreshStatsDisplay();
             }
 
             currentRegenerationTimer = healthRegenerationTimer;
@@ -147,25 +172,6 @@ public class Player_Health : MonoBehaviour
 
     #endregion
 
-    public void SetCurrentHealthPoints(float newHealthPoints)
-    {
-        int tempHealth = Mathf.RoundToInt(newHealthPoints);
-
-        if (newHealthPoints < 0)
-        {
-            currentHealthPoints = 0;
-        }
-        else
-        {
-            currentHealthPoints = tempHealth;
-        }
-    }
-
-    public void SetTotalHealthPoints(int newTotal)
-    {
-        totalHealthPoints = newTotal;
-    }
-
     public void GetDamage(int amount)
     {
         // Reduction of damage amount by % depending of our armor.
@@ -173,7 +179,7 @@ public class Player_Health : MonoBehaviour
         //                       resultat /= 100 to obtain like 0.05 to reduce attack by 5% for exemple
         //                       DamageTaken = TotalDmg - TotalDmg * resultat
 
-        float percentageOfAttackReduction = Player_Stats.stats_instance.getArmor() * Player_Stats.stats_instance.getArmorMultiplier();
+        float percentageOfAttackReduction = Player_Stats.instance.GetArmor() * Player_Stats.instance.GetArmorMultiplier();
         percentageOfAttackReduction /= 100;
         // Security for max attack reduction (60% of the attack max)
         if (percentageOfAttackReduction > 0.60f)
@@ -194,26 +200,46 @@ public class Player_Health : MonoBehaviour
         SetCurrentHealthPoints(afterDamageHealthPoints); // Then set healthpoint
 
         // If player take damage when he's already in the stats panel
-        UI_Player.ui_instance.playerStatsUI.RefreshStatsDisplay();
+        UI_Player.instance.playerStatsUI.RefreshStatsDisplay();
 
         if (currentHealthPoints <= 0)
+        {
             Die();
+        }
         else if (rend)
         {
             StartCoroutine("FadeOut");
         }
     }
-
-    // TODO Don't destroy gameobject entirely?
+    
     public void Die()
     {
-        // TODO Display game over screen
-
-        // Security for camera
-        if (gameObject.GetComponentInChildren<Camera>())
+        FloatingText[] floatingTexts = FindObjectsOfType<FloatingText>();
+        for (int i = 0; i < floatingTexts.Length; i++)
         {
-            gameObject.GetComponentInChildren<Camera>().gameObject.transform.parent = null;
+            Destroy(floatingTexts[i].gameObject);
         }
-        Destroy(gameObject);
+
+        // it'll get all ai combat control in the scene to reset it because there is an issue when ai kill the player.
+        AI_Enemy_Combat[] aI_Combat_Controls = FindObjectsOfType<AI_Enemy_Combat>(); 
+        for (int i = 0; i < aI_Combat_Controls.Length; i++)
+        {
+            aI_Combat_Controls[i].TurnOffAnimatorParamAttack();
+        }
+
+        player_combat.isInCombat = false;
+        player_combat.endingCombat = false;
+        player_combat.ResetEndingCombatTimer();
+
+        if (UI_Player.instance)
+        {
+            if (UI_Player.instance.gameOverUI)
+            {
+                UI_Player.instance.gameOverUI.gameObject.SetActive(true);
+            }
+        }
+
+        Camera.main.transform.parent = null;
+        gameObject.SetActive(false);
     }
 }
