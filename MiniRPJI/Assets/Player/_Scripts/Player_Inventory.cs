@@ -1,4 +1,19 @@
-﻿using UnityEngine;
+﻿/* Player_Inventory.cs :
+ * 
+ * Gère la partie non UI de l'inventaire.
+ * Contient l'inventaire du joueur et son armurerie (objets équipés)
+ * 
+ * Permet de savoir si l'inventaire est plein, de recevoir un nouvel item, de configurer (load) l'inventaire directement
+ * et de connaître son état actuel (save).
+ * 
+ * Beaucoup de méthodes comme vendre, équiper, jeter sont elles placées dans UI_Player_Inventory.cs car elles sont directement lié à l'UI et n'ont pas d'utilités
+ * lorsque celle-ci n'est pas activée.
+ * Cela permet aussi de séparé ce script (qui été un seul script de base) et de le rendre plus simple.
+ * 
+ * 
+ * */
+
+using UnityEngine;
 
 public enum ArmoryPart { Helm, Chest, Pants, Gloves, Boots, Bow }; // Index of parts are same in armorySlots
 public enum ItemRarety { Common, Uncommon, Rare, Epic, Legendary }; // All items rarety

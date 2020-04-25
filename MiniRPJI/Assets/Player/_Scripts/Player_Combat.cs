@@ -1,17 +1,22 @@
-﻿/* Combat_Control.cs
-Utilisé pour gérer les combats du joueur
+﻿/* Player_Combat.cs
+* Pièce centrale pour les combats du joueur.
+* 
+* Contient les Inputs des attaques primaire et secondaire.
+* Gère les animations d'attaques, les dégats des attaques, détérmine si le joueur est en mode combat.
+* 
+* 
 */
 
 
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public enum ProjectileType { Normal, Frost, Fire };
-
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(Collider2D))]
 [RequireComponent(typeof(Player_Stats))]
+[RequireComponent(typeof(Player_Abilities))]
 public class Player_Combat : MonoBehaviour
 {
     public bool isInCombat = false; // Set in AI_Movement_Control
@@ -24,15 +29,183 @@ public class Player_Combat : MonoBehaviour
 
     Animator animator;
     AI_Health currentEnemy;
+    Player_Abilities playerAbilities;
 
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
+        playerAbilities = GetComponent<Player_Abilities>();
     }
 
     // Update is called once per frame
     void Update()
+    {
+        CheckIfPlayerIsInCombat();
+
+        if (IsMouseOverUI())
+        {
+            return;
+        }
+
+        // If we're not attacking yet. (Bool isAttacking is reset in each combat animation's end.
+        if (!animator.GetBool("isAttacking"))
+        {
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                // TODO add a "powered shoot". Multiply arrow damage with a value between 1.0 - 1.2. ???
+                return;
+            }
+
+            // Left clic input
+            if (Input.GetKeyDown(KeyCode.Mouse0))
+            {
+                // Use Primary Ability
+                if (playerAbilities.GetPrimaryAbility() != null) // Check if there is a primary ability set (must be)
+                {
+                    if (playerAbilities.GetPrimaryAbility().abilityType == AbilityType.Bow) // Check if its a Bow type (in this case we need a bow)
+                    {
+                        if (Player_Inventory.instance.GetCurrentBow() != null) // Be sure player got a bow equiped
+                        {
+                            // Now we can use ability
+                            // First check if player got enough energy
+                            if (Player_Stats.instance.playerEnergy.GetCurrentEnergyPoints() >= playerAbilities.GetPrimaryAbility().energyCost)
+                            {
+                                StartCoroutine(UseBowAttack(playerAbilities.GetPrimaryAbility(), .3f));
+                            }
+                        }
+                        else
+                        {
+                            Debug.Log("No bow equiped. Impossible to use ability. (Ability ID : " + playerAbilities.GetPrimaryAbility().abilityID + ")");
+                        }
+                    }
+                    else // else its a punch ability type
+                    {
+                        if (Player_Stats.instance.playerEnergy.GetCurrentEnergyPoints() >= playerAbilities.GetPrimaryAbility().energyCost)
+                        {
+                            StartCoroutine(UsePunchAttack(playerAbilities.GetPrimaryAbility(), 0f));
+                        }
+                    }
+                }
+            }
+            // Right clic input
+            else if (Input.GetKeyDown(KeyCode.Mouse1))
+            {
+                // Use Secondary Ability
+                if (playerAbilities.GetSecondaryAbility() != null) // Check if there is a primary ability set (must be)
+                {
+                    if (playerAbilities.GetSecondaryAbility().abilityType == AbilityType.Bow) // Check if its a Bow type (in this case we need a bow)
+                    {
+                        if (Player_Inventory.instance.GetCurrentBow() != null) // Be sure player got a bow equiped
+                        {
+                            // Now we can use ability
+                            // First check if player got enough energy
+                            if (Player_Stats.instance.playerEnergy.GetCurrentEnergyPoints() >= playerAbilities.GetSecondaryAbility().energyCost)
+                            {
+                                StartCoroutine(UseBowAttack(playerAbilities.GetSecondaryAbility(), .3f));
+                            }
+                        }
+                        else
+                        {
+                            Debug.Log("No bow equiped. Impossible to use ability. (Ability ID : " + playerAbilities.GetSecondaryAbility().abilityID + ")");
+                        }
+                    }
+                    else // else its a punch ability type
+                    {
+                        if (Player_Stats.instance.playerEnergy.GetCurrentEnergyPoints() >= playerAbilities.GetSecondaryAbility().energyCost)
+                        {
+                            StartCoroutine(UsePunchAttack(playerAbilities.GetSecondaryAbility(), 0f));
+                        }
+                    }
+                }              
+            }
+        }
+    }
+
+    // used for each bow attack to launch an arrow
+    IEnumerator UseBowAttack(Ability_Config _ability, float _delay)
+    {
+        PlayBowAnimation();
+
+        yield return new WaitForSeconds(_delay);
+
+        if (Player_Inventory.instance.GetCurrentBow()) // IF player got equiped bow (already check before using Shoot() in Update(), but we never sure enough)
+        {
+            // spawn ability's prefab, who represent a projectile
+            GameObject _projectile = Instantiate(_ability.abilityPrefab, firePoint.position, firePoint.rotation);
+
+            // To keep clean hierarchy, because projectiles maybe got a parent gameobject who's been instantiate. Destroy _projectile after 20sec if still there.
+            // 20sec should be a great amount.
+            Destroy(_projectile, 20f);
+
+            // If this ability prefab got children (for multiple arrow for instance)
+            if (_projectile.transform.childCount > 0)
+            {
+                for (int i = 0; i < _projectile.transform.childCount; i++)
+                {
+                    Player_Projectile currentProjectileComponent = _projectile.transform.GetChild(i).GetComponent<Player_Projectile>();
+
+                    currentProjectileComponent.projectileDamage = GetRangedAttackDamage();
+                }
+            }
+            else
+            {
+                Player_Projectile currentProjectileComponent = _projectile.GetComponent<Player_Projectile>();
+
+                currentProjectileComponent.projectileDamage = GetRangedAttackDamage();
+            }
+          
+            // Use energy
+            Player_Stats.instance.playerEnergy.SetCurrentEnergyPoints(Player_Stats.instance.playerEnergy.GetCurrentEnergyPoints() - _ability.energyCost);
+
+            // Play sound
+            Sound_Manager.instance.PlaySound(Sound_Manager.instance.asset.bowAttackNormal);
+        }
+    }
+
+    IEnumerator UsePunchAttack(Ability_Config _ability, float _delay)
+    {
+        PlayPunchAnimation();
+
+        yield return new WaitForSeconds(_delay);
+
+        if (currentEnemy != null) // If we got a currentEnemy, then we're close to one because its set with triggerEnter2D, and unset in triggerExit2D
+        {
+            // Damage enemy
+            currentEnemy.GetDamage(GetAttackDamage()); // So we can direclty set damage to the enemy
+
+            // Use energy
+            Player_Stats.instance.playerEnergy.SetCurrentEnergyPoints(Player_Stats.instance.playerEnergy.GetCurrentEnergyPoints() - _ability.energyCost);
+
+            // Play sound
+            if (Sound_Manager.instance)
+            {
+                Sound_Manager.instance.PlaySound(Sound_Manager.instance.asset.punchHit);
+            }
+
+            // If we kill the enemy
+            if (currentEnemy.IsDead())
+            {
+                // Check if npc got AI_Stats on him
+                AI_Stats enemyStats = currentEnemy.gameObject.GetComponent<AI_Stats>();
+                if (enemyStats)
+                {
+                    // If yes add experience to player (to securise later Stats_Control)
+                    Player_Stats.instance.AddExperience(enemyStats.GetExperienceGain());
+                    currentEnemy = null;
+                }
+            }
+        }
+        else // else just punch in the wind
+        {
+            if (Sound_Manager.instance)
+            {
+                Sound_Manager.instance.PlaySound(Sound_Manager.instance.asset.punchNoHit);
+            }
+        }
+    }
+
+    void CheckIfPlayerIsInCombat()
     {
         // Check if player is in combat
         if (isInCombat)
@@ -51,68 +224,9 @@ public class Player_Combat : MonoBehaviour
                 }
             }
         }
-
-        if (IsMouseOverUI())
-        {
-            return;
-        }
-
-        if (!animator.GetBool("isAttacking"))
-        {
-            if (Input.GetKey(KeyCode.LeftShift))
-            {
-                // TODO add a "powered shoot". Multiply arrow damage with a value between 1.0 - 1.2. ???
-                return;
-            }
-
-            if (Input.GetKeyDown(KeyCode.Mouse0)) // To centralise in Player_Input.cs later
-            {
-                UseNormalAttack();
-                if (currentEnemy)
-                {
-                    currentEnemy.GetDamage(GetAttackDamage());
-
-                    if (Sound_Manager.instance)
-                    {
-                        Sound_Manager.instance.PlaySound(Sound_Manager.instance.asset.punchHit);
-                    }
-
-                    // If we kill the enemy
-                    if (currentEnemy.IsDead())
-                    {
-                        // Check if npc got AI_Stats on him
-                        AI_Stats enemyStats = currentEnemy.gameObject.GetComponent<AI_Stats>();
-                        if (enemyStats)
-                        {
-                            // If yes add experience to player (to securise later Stats_Control)
-                            Player_Stats.instance.AddExperience(enemyStats.GetExperienceGain());
-                            currentEnemy = null;
-                        }
-                    }
-                }
-                else
-                {
-                    if (Sound_Manager.instance)
-                    {
-                        Sound_Manager.instance.PlaySound(Sound_Manager.instance.asset.punchNoHit);
-                    }
-                }
-            }
-            if (Input.GetKeyDown(KeyCode.Mouse1)) // To centralise in Player_Input.cs later
-            {
-                if (Player_Inventory.instance.GetCurrentBow())
-                {
-                    if (Player_Stats.instance.playerEnergy.GetCurrentEnergyPoints() >= energyNeededForShoot)
-                    {
-                        UseBowAttack();
-                    }
-                }
-                else
-                    Debug.Log("No bow equiped");
-            }
-        }
     }
 
+    // Method to know when mouse is over UI then dont attack
     bool IsMouseOverUI()
     {
         PointerEventData pointerEventData = new PointerEventData(EventSystem.current);
@@ -130,13 +244,13 @@ public class Player_Combat : MonoBehaviour
         return false;
     }
     
-    void UseNormalAttack()
+    void PlayPunchAnimation()
     {
         animator.SetBool("isAttacking", true);
-        animator.SetBool("normalAttack", true);
+        animator.SetBool("punchAttack", true);
     }
 
-    void UseBowAttack()
+    void PlayBowAnimation()
     {
         animator.SetBool("isAttacking", true);
         animator.SetBool("bowAttack", true);
@@ -169,6 +283,7 @@ public class Player_Combat : MonoBehaviour
         }        
     }
 
+    // Punch damage
     int GetAttackDamage()
     {
         float tempCritCondition = Random.Range(0, 100);
@@ -185,6 +300,7 @@ public class Player_Combat : MonoBehaviour
 
     }
 
+    // Bow damages
     int GetRangedAttackDamage()
     {
         float tempCritCondition = Random.Range(0, 100);
@@ -205,34 +321,13 @@ public class Player_Combat : MonoBehaviour
     {
         animator.SetBool("isAttacking", false);
 
-        if (animator.GetBool("normalAttack"))
+        if (animator.GetBool("punchAttack"))
         {
-            animator.SetBool("normalAttack", false);
+            animator.SetBool("punchAttack", false);
         }
         if (animator.GetBool("bowAttack"))
         {
             animator.SetBool("bowAttack", false);
-        }
-    }
-
-    // used for each bow attack to launch an arrow
-    public void Shoot()
-    {
-        if (Player_Inventory.instance.GetCurrentBow()) // IF player got equiped bow
-        {
-            GameObject _projectile = Instantiate(Player_Inventory.instance.GetCurrentBow().projectile, firePoint.position, firePoint.rotation);
-            Projectile currentProjectileComponent = _projectile.GetComponent<Projectile>();
-
-            if (currentProjectileComponent == null)
-                return; // There is a bug here or a miss by game master. Every projectile must have Projectile.cs attach
-
-            currentProjectileComponent.projectileDamage = GetRangedAttackDamage();
-
-            // Use energy
-            Player_Stats.instance.playerEnergy.SetCurrentEnergyPoints(Player_Stats.instance.playerEnergy.GetCurrentEnergyPoints() - energyNeededForShoot);
-
-            // Play sound
-            Sound_Manager.instance.PlaySound(Sound_Manager.instance.asset.bowAttackNormal);
         }
     }
 

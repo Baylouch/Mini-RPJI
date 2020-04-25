@@ -44,11 +44,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 838b2ab463ae5a84aa06f1289be40126, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  musics:
-  - {fileID: 8300000, guid: 8cf6f56e9b2b32c49b6b857e3fc4dfef, type: 3}
-  - {fileID: 8300000, guid: c451b091533571d4db0e587bb5a94b30, type: 3}
-  - {fileID: 8300000, guid: f50f1a94644ddaf48a04b8059b4ff52f, type: 3}
-  - {fileID: 8300000, guid: c6e39e8a8fc368f41850883a9a84770a, type: 3}
+  isInGameLevel: 0
+  menuMusics:
+  - {fileID: 8300000, guid: 2de0323b963c92f4c957ed455d3d8bbb, type: 3}
+  - {fileID: 8300000, guid: b6713b929595e394a8e79090a430b236, type: 3}
+  gameMusics:
+  - {fileID: 8300000, guid: 3ba915ac90d5fb74f8f3fc49cf2aa589, type: 3}
+  - {fileID: 8300000, guid: 36aa0c2586d8fc14e8f90420e7221cd8, type: 3}
+  - {fileID: 8300000, guid: bb65ea82617806740b32d0ceb421be8b, type: 3}
+  - {fileID: 8300000, guid: cb03e1f072b24ad4d85e23d12c5f169c, type: 3}
 --- !u!82 &5498729625224101038
 AudioSource:
   m_ObjectHideFlags: 0
@@ -67,7 +71,7 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 256
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 100

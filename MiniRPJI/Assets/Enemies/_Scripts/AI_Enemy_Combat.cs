@@ -203,7 +203,7 @@ public class AI_Enemy_Combat : MonoBehaviour
     public void Shoot()
     {
         GameObject _projectile = Instantiate(projectile, firePoint.position, firePoint.rotation);
-        Projectile proj = _projectile.GetComponent<Projectile>();
+        Enemy_Projectile proj = _projectile.GetComponent<Enemy_Projectile>();
 
         if (proj != null)
             proj.projectileDamage = GetProjectileDamage();

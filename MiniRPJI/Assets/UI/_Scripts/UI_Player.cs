@@ -28,6 +28,7 @@ public class UI_Player : MonoBehaviour
     public UI_Player_Inventory playerInventoryUI;
     public UI_Player_Quest playerQuestUI;
     public UI_Player_Menu playerMenu; // To pause the game, save, load, quit...
+    public UI_Player_Bank playerBankUI;
     public UI_GameOver gameOverUI;
 
     private void Start()
@@ -51,7 +52,6 @@ public class UI_Player : MonoBehaviour
         {
             ToggleStatsMenu();
         }
-        // Toggle inventoryUI
         if (Input.GetKeyDown(KeyCode.B))
         {
             ToggleInventoryMenu();
@@ -88,8 +88,13 @@ public class UI_Player : MonoBehaviour
         {
             playerMenu.gameObject.SetActive(false);
         }
+        if (playerBankUI.gameObject.activeSelf)
+        {
+            playerBankUI.gameObject.SetActive(false);
+        }
     }
 
+    // Menu UI. On the center of the screen
     public void TogglePlayerMenu()
     {
         if (playerMenu)
@@ -111,6 +116,7 @@ public class UI_Player : MonoBehaviour
         }
     }
 
+    // Quest UI. On the left of the screen
     public void ToggleQuestMenu()
     {
         if (playerQuestUI)
@@ -123,6 +129,14 @@ public class UI_Player : MonoBehaviour
                     {
                         playerStatsUI.gameObject.SetActive(false);
 
+                    }
+                }
+
+                if (playerBankUI)
+                {
+                    if (playerBankUI.gameObject.activeSelf)
+                    {
+                        playerBankUI.gameObject.SetActive(false);
                     }
                 }
 
@@ -140,6 +154,7 @@ public class UI_Player : MonoBehaviour
         }
     }
 
+    // Inventory UI. On the right of the screen
     public void ToggleInventoryMenu()
     {
         if (playerInventoryUI)
@@ -160,6 +175,7 @@ public class UI_Player : MonoBehaviour
         }
     }
 
+    // Stats UI. On the left of the screen
     public void ToggleStatsMenu()
     {
         if (playerStatsUI) // To active/disable playerStatsUI
@@ -171,7 +187,14 @@ public class UI_Player : MonoBehaviour
                     if (playerQuestUI.gameObject.activeSelf)
                     {
                         playerQuestUI.gameObject.SetActive(false);
+                    }
+                }
 
+                if (playerBankUI)
+                {
+                    if (playerBankUI.gameObject.activeSelf)
+                    {
+                        playerBankUI.gameObject.SetActive(false);
                     }
                 }
 
@@ -187,6 +210,58 @@ public class UI_Player : MonoBehaviour
             {
                 Sound_Manager.instance.PlaySound(Sound_Manager.instance.asset.toggleUI);
             }
+        }
+    }
+
+    // Bank UI. On the left of the screen. We need a parameter on it because its not the same way its open/closed. (Interaction in game instead of Input pre def)
+    public void ToggleBankUI(bool value)
+    {
+        if (playerBankUI)
+        {
+            if (value == true)
+            {
+                // Hide others left menus
+                if (playerStatsUI)
+                {
+                    if (playerStatsUI.gameObject.activeSelf)
+                    {
+                        playerStatsUI.gameObject.SetActive(false);
+
+                    }
+                }
+
+                if (playerQuestUI)
+                {
+                    if (playerQuestUI.gameObject.activeSelf)
+                    {
+                        playerQuestUI.gameObject.SetActive(false);
+                    }
+                }
+
+                if (!playerBankUI.gameObject.activeSelf)
+                {
+                    playerBankUI.gameObject.SetActive(true);
+
+                    if (Sound_Manager.instance)
+                    {
+                        Sound_Manager.instance.PlaySound(Sound_Manager.instance.asset.toggleUI);
+                    }
+                }
+            }
+            else
+            {
+                if (playerBankUI.gameObject.activeSelf)
+                {
+                    playerBankUI.gameObject.SetActive(false);
+
+                    if (Sound_Manager.instance)
+                    {
+                        Sound_Manager.instance.PlaySound(Sound_Manager.instance.asset.toggleUI);
+                    }
+                }
+            }
+
+
         }
     }
 }

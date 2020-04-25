@@ -23,6 +23,7 @@ public class Sounds_Asset : ScriptableObject
     public AudioClip buy;
     public AudioClip potUse;
     public AudioClip questAchievement;
+    public AudioClip bankStoreAndGet;
 
     [Header("Player")]
     public AudioClip punchNoHit;

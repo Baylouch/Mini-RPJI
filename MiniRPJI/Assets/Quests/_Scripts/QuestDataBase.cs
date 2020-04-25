@@ -8,7 +8,7 @@ It's used to save and load inventory data.
 */
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "QuestDataBase", menuName = "ScriptableObjects/Quest/QuestDataBase", order = 1)]
+[CreateAssetMenu(fileName = "QuestDataBase", menuName = "ScriptableObjects/Quest/DataBase", order = 0)]
 public class QuestDataBase : ScriptableObject
 {
     public QuestConfig[] quests;

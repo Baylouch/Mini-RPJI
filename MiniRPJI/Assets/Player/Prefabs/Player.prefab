@@ -517,9 +517,10 @@ GameObject:
   - component: {fileID: 253237965}
   - component: {fileID: 3989481840696752571}
   - component: {fileID: 8135678737734394875}
+  - component: {fileID: 7751749420711559548}
   - component: {fileID: 5602025987022067929}
   - component: {fileID: 2250115526518171777}
-  - component: {fileID: 7751749420711559548}
+  - component: {fileID: 8024586158939363690}
   - component: {fileID: 6777473535734216677}
   - component: {fileID: 882769571}
   - component: {fileID: 1337840066}
@@ -607,41 +608,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &5602025987022067929
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7874364025698239459}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e92f914a5a29f04dae495cd0a2606b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 3
-  dashSpeed: 58
-  dashTime: 0.05
-  energyNeedToDash: 8
-  dashEffect: {fileID: 4724881586850035680, guid: e07c23c7ffe1cab4491b81ccc09840b7,
-    type: 3}
---- !u!114 &2250115526518171777
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7874364025698239459}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3af97678c698ce746bbcfcbef515e94c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isInCombat: 0
-  endingCombat: 0
-  timerBeforeEndCombat: 5
-  firePoint: {fileID: 696354655934323737}
-  energyNeededForShoot: 15
 --- !u!114 &7751749420711559548
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -669,6 +635,56 @@ MonoBehaviour:
   damageMax: 3
   playerEnergy: {fileID: 0}
   playerHealth: {fileID: 0}
+--- !u!114 &5602025987022067929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7874364025698239459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e92f914a5a29f04dae495cd0a2606b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 3
+  dashSpeed: 58
+  dashTime: 0.05
+  energyNeedToDash: 5
+  dashEffect: {fileID: 4724881586850035680, guid: e07c23c7ffe1cab4491b81ccc09840b7,
+    type: 3}
+--- !u!114 &2250115526518171777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7874364025698239459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3af97678c698ce746bbcfcbef515e94c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isInCombat: 0
+  endingCombat: 0
+  timerBeforeEndCombat: 5
+  firePoint: {fileID: 696354655934323737}
+  energyNeededForShoot: 15
+--- !u!114 &8024586158939363690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7874364025698239459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e0b04b09b0fb67409722e61a1ace37e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  abilitiesDatabase: {fileID: 11400000, guid: a0f0002e4768c1b4ba68d59999cec0ab, type: 2}
+  primary_ability: {fileID: 0}
+  secondary_ability: {fileID: 0}
 --- !u!114 &6777473535734216677
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -699,7 +715,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8346c52c7b25a944aa1690a01c213ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalEnergyPoints: 85
+  totalEnergyPoints: 90
   energyRegenerationTimer: 2
 --- !u!114 &1337840066
 MonoBehaviour:

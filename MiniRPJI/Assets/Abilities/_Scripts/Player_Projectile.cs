@@ -1,18 +1,18 @@
 ﻿using UnityEngine;
 
+public enum ProjectileType { Normal, Frost, Fire };
+
 [RequireComponent(typeof(Collider2D))]
 [RequireComponent(typeof(Rigidbody2D))]
-public class Projectile : MonoBehaviour
+public class Player_Projectile : MonoBehaviour
 {
-    // Damage
     [HideInInspector]
-    public int projectileDamage = 0; // Is set in Player_Combat_Control for player. Is set in AI_Combat_Control for AI
+    public int projectileDamage = 0; // Is set in Player_Combat
+
     public ProjectileType projectileType; // To set projectile effect (frost, fire, nothing..)
 
     [SerializeField] float projectileSpeed = 5f;
-
     [SerializeField] float timerBeforeDestroy = 3f;
-
     [SerializeField] GameObject impactEffect;
 
     bool used = false;
@@ -67,7 +67,7 @@ public class Projectile : MonoBehaviour
                     }
                 }
             }
-            
+
             if (impactEffect)
             {
                 GameObject _impact = Instantiate(impactEffect, transform.position, Quaternion.identity);
@@ -75,23 +75,6 @@ public class Projectile : MonoBehaviour
             }
 
             used = true;
-            Destroy(gameObject);
-        }
-
-        if (collision.gameObject.tag == "Player")
-        {
-            if (collision.gameObject.GetComponent<Player_Health>())
-            {
-                Player_Health playerHealth = collision.gameObject.GetComponent<Player_Health>();
-                playerHealth.GetDamage(Random.Range((projectileDamage - 2), (projectileDamage + 2)));
-            }
-
-            if (impactEffect)
-            {
-                GameObject _impact = Instantiate(impactEffect, transform.position, Quaternion.identity);
-                Destroy(_impact, .5f);
-            }
-
             Destroy(gameObject);
         }
     }

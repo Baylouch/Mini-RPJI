@@ -1,4 +1,11 @@
-﻿using UnityEngine;
+﻿/* QuestInteractableObject.cs :
+ * A le même fonctionnement que QuestItemDroper mais plutot que d'être attaché à un monstre,
+ * il faut attacher ce script a un objet pour que le joueur puisse intéragir avec et obtenir l'objet de quête.
+ * 
+ * 
+ * */
+
+using UnityEngine;
 
 public class QuestInteractableObject : Interactable
 {

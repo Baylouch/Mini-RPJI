@@ -113,7 +113,7 @@ public class Player_Intercations : MonoBehaviour
                     // Dosnt require to use Uninteract method.
                     break;
                 default:
-                    // Do nothing
+                    collision.GetComponent<Interactable>().UnInteract();
                     break;
             }
 

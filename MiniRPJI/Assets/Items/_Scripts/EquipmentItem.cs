@@ -11,9 +11,6 @@ public class EquipmentItem : BaseItem
     public ArmoryPart armoryPart;
     public ItemRarety rarety;
 
-    [Tooltip("You set projectile ONLY if you are creating a BOW !")]
-    public GameObject projectile;
-
     [Header("Statistiques")]
     public int strength;
     public int agility;

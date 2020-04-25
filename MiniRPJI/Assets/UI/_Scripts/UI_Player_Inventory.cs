@@ -14,10 +14,11 @@ public class UI_Player_Inventory : MonoBehaviour
     [SerializeField] Button useButton;
     [SerializeField] Button sellInventoryButton;
     [SerializeField] Button sellArmoryButton;
+    [SerializeField] Button storeButton;
 
     [SerializeField] Text playerMoneyText;
 
-    [SerializeField] UI_DisplayItemStats itemStatsDisplay; // Must have UI_DisplayItemStats on it
+    [SerializeField] UI_DisplayItemStats itemStatsDisplay; // Stats displayer
 
     int currentInventorySlotIndex = -1; // Important to set it -1 because inventory index starts at 0
     int currentArmorySlotIndex = -1;
@@ -66,10 +67,8 @@ public class UI_Player_Inventory : MonoBehaviour
             inventorySlotInteractionsUI.SetActive(false);
 
         // Hide and reset stats displayer
-        if (itemStatsDisplay)
-        {
-            itemStatsDisplay.HideAndReset();
-        }
+        itemStatsDisplay.HideAndReset();
+        
     }
 
     // Method to remove all buttons listeners.
@@ -81,6 +80,7 @@ public class UI_Player_Inventory : MonoBehaviour
         unequipButton.onClick.RemoveAllListeners();
         sellInventoryButton.onClick.RemoveAllListeners();
         sellArmoryButton.onClick.RemoveAllListeners();
+        storeButton.onClick.RemoveAllListeners();
     }
 
     // Method to quickly refresh inventory
@@ -112,6 +112,12 @@ public class UI_Player_Inventory : MonoBehaviour
             // Remove previous listeners
             RemoveAllButtonsListeners();
 
+            // Check if UI_Player_Bank is in use. If yes reset interactions parameters.
+            if (UI_Player.instance.playerBankUI.gameObject.activeSelf)
+            {
+                UI_Player.instance.playerBankUI.ResetInteractionsParameters();
+            }
+
             // add right method with right index
             // every items can be removed. So we dont need to particulary check for removebutton
             inventoryRemoveButton.onClick.AddListener(() => RemoveItem(indexSlot, true));
@@ -123,6 +129,8 @@ public class UI_Player_Inventory : MonoBehaviour
                 equipButton.gameObject.SetActive(false);
             if (sellInventoryButton.gameObject.activeSelf)
                 sellInventoryButton.gameObject.SetActive(false);
+            if (storeButton.gameObject.activeSelf)
+                storeButton.gameObject.SetActive(false);
 
             // Detect if its an EquipmentItem
             if (inventorySlots[indexSlot].item as EquipmentItem)
@@ -150,6 +158,16 @@ public class UI_Player_Inventory : MonoBehaviour
                     sellInventoryButton.gameObject.SetActive(true);
             }
 
+            // Check if we can store the item (if player is using the bank)
+            if (UI_Player.instance.playerBankUI.gameObject.activeSelf)
+            {
+                // add listener on the storeButton to store item in the bank.
+                 storeButton.onClick.AddListener(() => StoreItem(indexSlot));
+
+                if (!storeButton.gameObject.activeSelf)
+                    storeButton.gameObject.SetActive(true);
+            }
+
             // Set currentInventorySlotIndex with the right indexSlot. It'll be used if player click on the same index, so we can hide it.
             currentInventorySlotIndex = indexSlot;
             currentArmorySlotIndex = -1;
@@ -160,29 +178,15 @@ public class UI_Player_Inventory : MonoBehaviour
             if (armorySlotIntercationsUI.activeSelf)
                 armorySlotIntercationsUI.SetActive(false);
 
-            // If we are not displaying stats yet 
-            if (!itemStatsDisplay)
-            {
-                // Display item stats
-                if (inventorySlots[indexSlot].item as EquipmentItem)
-                    itemStatsDisplay.DisplayItemStats((EquipmentItem)inventorySlots[indexSlot].item);
-                else if (inventorySlots[indexSlot].item as UsableItem)
-                    itemStatsDisplay.DisplayItemStats((UsableItem)inventorySlots[indexSlot].item);
-                else if (inventorySlots[indexSlot].item as QuestItem)
-                    itemStatsDisplay.DisplayItemStats((QuestItem)inventorySlots[indexSlot].item);
-            }
-            else // Else we need to reset before display. Because player want to see another item's stats
-            {
-                itemStatsDisplay.HideAndReset();
+            // Then display item's stats
+            itemStatsDisplay.HideAndReset();
 
-                if (inventorySlots[indexSlot].item as EquipmentItem)
-                    itemStatsDisplay.DisplayItemStats((EquipmentItem)inventorySlots[indexSlot].item);
-                else if (inventorySlots[indexSlot].item as UsableItem)
-                    itemStatsDisplay.DisplayItemStats((UsableItem)inventorySlots[indexSlot].item);
-                else if (inventorySlots[indexSlot].item as QuestItem)
-                    itemStatsDisplay.DisplayItemStats((QuestItem)inventorySlots[indexSlot].item);
-            }
-
+            if (inventorySlots[indexSlot].item as EquipmentItem)
+                itemStatsDisplay.DisplayItemStats((EquipmentItem)inventorySlots[indexSlot].item);
+            else if (inventorySlots[indexSlot].item as UsableItem)
+                itemStatsDisplay.DisplayItemStats((UsableItem)inventorySlots[indexSlot].item);
+            else if (inventorySlots[indexSlot].item as QuestItem)
+                itemStatsDisplay.DisplayItemStats((QuestItem)inventorySlots[indexSlot].item);
         }
         else // If currentInventorySlotIndex == indexSlot, player clicked on the same item so we want to unshow slotIntercationsUI and reset buttons
         {
@@ -193,10 +197,7 @@ public class UI_Player_Inventory : MonoBehaviour
             if (inventorySlotInteractionsUI.activeSelf)
                 inventorySlotInteractionsUI.SetActive(false);
 
-            if (itemStatsDisplay)
-            {
-                itemStatsDisplay.HideAndReset();
-            }
+            itemStatsDisplay.HideAndReset();
         }
     }
 
@@ -206,6 +207,12 @@ public class UI_Player_Inventory : MonoBehaviour
         if (currentArmorySlotIndex != indexPart)
         {
             RemoveAllButtonsListeners();
+
+            // Check if UI_Player_Bank is in use. If yes reset interactions parameters.
+            if (UI_Player.instance.playerBankUI.gameObject.activeSelf)
+            {
+                UI_Player.instance.playerBankUI.ResetInteractionsParameters();
+            }
 
             armoryRemoveButton.onClick.AddListener(() => RemoveArmoryItem(indexPart, true));
             unequipButton.onClick.AddListener(() => UnequipItem(indexPart));
@@ -227,17 +234,9 @@ public class UI_Player_Inventory : MonoBehaviour
             if (!armorySlotIntercationsUI.activeSelf)
                 armorySlotIntercationsUI.SetActive(true);
 
-            // If we are not displaying yet
-            if (!itemStatsDisplay)
-            {
-                // Display item stats
-                itemStatsDisplay.DisplayItemStats(armorySlots[indexPart].item);
-            }
-            else // Else we need to destroy before display. Because player want to see another item's stats
-            {
-                itemStatsDisplay.HideAndReset();
-                itemStatsDisplay.DisplayItemStats(armorySlots[indexPart].item);
-            }
+            // Display item's stats
+            itemStatsDisplay.HideAndReset();
+            itemStatsDisplay.DisplayItemStats(armorySlots[indexPart].item);
         }
         else // If its equal, player clicked on the same item so we want to unshow slotIntercationsUI and reset buttons
         {
@@ -248,10 +247,7 @@ public class UI_Player_Inventory : MonoBehaviour
             if (armorySlotIntercationsUI.activeSelf)
                 armorySlotIntercationsUI.SetActive(false);
 
-            if (itemStatsDisplay)
-            {
-                itemStatsDisplay.HideAndReset();
-            }
+            itemStatsDisplay.HideAndReset();
         }
     }
 
@@ -311,10 +307,7 @@ public class UI_Player_Inventory : MonoBehaviour
             if (currentInventorySlotIndex == itemIndex)
                 SetCurrentInventorySlotInteractions(itemIndex);
 
-            if (itemStatsDisplay)
-            {
-                itemStatsDisplay.HideAndReset();
-            }
+            itemStatsDisplay.HideAndReset();
         }
     }
 
@@ -350,10 +343,7 @@ public class UI_Player_Inventory : MonoBehaviour
             if (armorySlotIntercationsUI.activeSelf)
                 armorySlotIntercationsUI.SetActive(false);
 
-            if (itemStatsDisplay)
-            {
-                itemStatsDisplay.HideAndReset();
-            }
+            itemStatsDisplay.HideAndReset();
         }
     }
 
@@ -399,6 +389,7 @@ public class UI_Player_Inventory : MonoBehaviour
 
                 RefreshArmory();
                 Player_Stats.instance.RefreshPlayerStats();
+
                 return;
             }
         }
@@ -437,10 +428,8 @@ public class UI_Player_Inventory : MonoBehaviour
         // If we dont disable gameobject here, error will happened because player still can click on "remove" and will get error
         if (armorySlotIntercationsUI.activeSelf)
             armorySlotIntercationsUI.SetActive(false);
-        if (itemStatsDisplay)
-        {
-            itemStatsDisplay.HideAndReset();
-        }
+
+        itemStatsDisplay.HideAndReset();
     }
 
     // Method to use a usable item
@@ -464,6 +453,31 @@ public class UI_Player_Inventory : MonoBehaviour
 
         RemoveItem(currentInventorySlotIndex, false);
         
+    }
+
+    // Method used to store item in the bank
+    public void StoreItem(int inventoryIndex)
+    {
+        if (inventorySlots[inventoryIndex].item)
+        {
+            // Check if bank isn't full
+            if (UI_Player.instance.playerBankUI)
+            {
+                if (!UI_Player.instance.playerBankUI.CheckIfBankIsFull())
+                {
+                    // Put item in the bank
+                    UI_Player.instance.playerBankUI.StoreNewItem(inventorySlots[inventoryIndex].item);
+
+                    if (Sound_Manager.instance)
+                    {
+                        Sound_Manager.instance.PlaySound(Sound_Manager.instance.asset.bankStoreAndGet);
+                    }
+
+                    // Remove item from inventory
+                    RemoveItem(inventoryIndex, false);
+                }
+            }           
+        }
     }
 
     // Method to sell an item in inventory
@@ -518,14 +532,14 @@ public class UI_Player_Inventory : MonoBehaviour
         return null;
     }
 
-    // TODO Upgrade to use more than the potion ID 100
+    // TODO Upgrade to use more than the potion ID 350
     public void FastPotionUse()
     {
         for (int i = 0; i < inventorySlots.Length; i++) // Loop over inventory slots
         {
             if (inventorySlots[i].item) // if there is an item in this slot
             {
-                if (inventorySlots[i].item.itemID == 350) // test it to check if its a potion
+                if (inventorySlots[i].item.itemID == 350) // Check if its a potion
                 {
                     UsableItem potion = inventorySlots[i].item as UsableItem; // Convert it into a UsableItem
 
@@ -539,6 +553,36 @@ public class UI_Player_Inventory : MonoBehaviour
                     return; // Dont continue because potion is used.
                 }
             }
+        }
+    }
+
+    // Method to reset all interactions parameters. Used in UI_Player_Bank who got a mirror method used here.
+    public void ResetInteractionsParameters()
+    {
+        // Check if currentInventorySlotIndex is in use ( != 1)
+        if (currentInventorySlotIndex != -1)
+        {
+            RemoveAllButtonsListeners();
+
+            currentInventorySlotIndex = -1;
+
+            if (inventorySlotInteractionsUI.activeSelf)
+                inventorySlotInteractionsUI.SetActive(false);
+
+            itemStatsDisplay.HideAndReset();
+        }
+
+        // Check if currentArmorySlotIndex is in use
+        if (currentArmorySlotIndex != -1)
+        {
+            RemoveAllButtonsListeners();
+
+            currentArmorySlotIndex = -1;
+
+            if (armorySlotIntercationsUI.activeSelf)
+                armorySlotIntercationsUI.SetActive(false);
+
+            itemStatsDisplay.HideAndReset();
         }
     }
 }

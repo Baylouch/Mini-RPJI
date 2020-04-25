@@ -30,11 +30,14 @@ public class Game_Data_Control : MonoBehaviour
     public void SavePlayerData(int saveIndex)
     {
         BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Create(Application.persistentDataPath + "/PlayerData" + saveIndex.ToString() + ".max");
+        FileStream file = File.Create(Application.persistentDataPath + "/PlayerData" + saveIndex.ToString() + ".mrpji");
 
         PlayerData data = new PlayerData();
-    
-        // Player Stats
+
+        // ************************************************************************************************
+        // ********************************* PLAYER_STATS *************************************************
+        // ************************************************************************************************
+
         data.playerStats = new PlayerStatsData();
 
         data.playerStats.level = Player_Stats.instance.GetCurrentLevel();
@@ -46,7 +49,10 @@ public class Game_Data_Control : MonoBehaviour
         data.playerStats.intellect = Player_Stats.instance.GetBaseStatsByType(StatsType.ENERGY);
         data.playerStats.currentStatsPoints = Player_Stats.instance.GetCurrentStatsPoints();
 
-        // Player Inventory
+        // ************************************************************************************************
+        // ********************************* PLAYER_INVENTORY *********************************************
+        // ************************************************************************************************
+
         data.playerInventory = new PlayerInventoryData(); // Create new instance of PlayerInventoryData
 
         data.playerInventory.inventoryItems = new int[Player_Inventory.inventorySlotsNumb]; // Create new int array to contain item's id
@@ -78,9 +84,28 @@ public class Game_Data_Control : MonoBehaviour
             }
         }
 
+        // Then same for the bank
+        data.playerInventory.bankItems = new int[UI_Player_Bank.bankSlotsNumb];
+        for (int i = 0; i < UI_Player_Bank.bankSlotsNumb; i++)
+        {
+            data.playerInventory.bankItems[i] = -1;
+        }
+
+        for (int i = 0; i < UI_Player_Bank.bankSlotsNumb; i++)
+        {
+            if (UI_Player.instance.playerBankUI.GetBankItem(i) != null)
+            {
+                data.playerInventory.bankItems[i] = UI_Player.instance.playerBankUI.GetBankItem(i).itemID;
+            }
+        }
+
+        // Get player's gold
         data.playerInventory.gold = Player_Inventory.instance.GetPlayerGold();
 
-        // Player quests
+        // ************************************************************************************************
+        // ********************************* PLAYER_QUEST *************************************************
+        // ************************************************************************************************
+
         // TODO upgrade if there are more than one Act, to get all quests by act.
         data.playerQuest = new PlayerQuestData();
         data.playerQuest.questsID = new int[Player_Quest_Control.questSlotsNumb];
@@ -118,20 +143,61 @@ public class Game_Data_Control : MonoBehaviour
             }
         }
 
+        // ************************************************************************************************
+        // ********************************* PLAYER_ABILITIES *********************************************
+        // ************************************************************************************************
+
+        data.playerAbilities = new PlayerAbilitiesData();
+
+        // Start by get numbers of available's abilities
+        int abilitiesAvailable = 0;
+        for (int i = 0; i < Player_Abilities.instance.abilitiesDatabase.abilities.Length; i++)
+        {
+            if (Player_Abilities.instance.GetUnlockAbility(i) == true)
+            {
+                abilitiesAvailable++;
+            }
+        }
+
+        // Create data abilities array with the right size.
+        data.playerAbilities.abilitiesID = new int[abilitiesAvailable];
+        int indexDataAbilitiesArray = 0; // To loop trough array using other variable than the loop one (i)
+
+        // now we can put available abilities ID in the data array. i represent abilit'y ID
+        for (int i = 0; i < Player_Abilities.instance.abilitiesDatabase.abilities.Length; i++)
+        {
+            if (Player_Abilities.instance.GetUnlockAbility(i) == true)
+            {
+                data.playerAbilities.abilitiesID[indexDataAbilitiesArray] = i;
+                indexDataAbilitiesArray++;
+            }
+        }
+
+        // Get primary and secondary ability
+        data.playerAbilities.primaryAbilityID = Player_Abilities.instance.GetPrimaryAbility().abilityID;
+        data.playerAbilities.secondaryAbilityID = Player_Abilities.instance.GetSecondaryAbility().abilityID;
+
+        // ************************************************************************************************
+        // ************************************************************************************************
+        // ************************************************************************************************
+
         bf.Serialize(file, data);
         file.Close();
     }
 
     public void LoadPlayerData(int saveIndex)
     {      
-        if (File.Exists(Application.persistentDataPath + "/PlayerData" + saveIndex.ToString() + ".max"))
+        if (File.Exists(Application.persistentDataPath + "/PlayerData" + saveIndex.ToString() + ".mrpji"))
         {
             BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = File.Open(Application.persistentDataPath + "/PlayerData" + saveIndex.ToString() + ".max", FileMode.Open);
+            FileStream file = File.Open(Application.persistentDataPath + "/PlayerData" + saveIndex.ToString() + ".mrpji", FileMode.Open);
             PlayerData data = (PlayerData)bf.Deserialize(file);
             file.Close();
 
-            // Player Stats
+            // ************************************************************************************************
+            // ********************************* PLAYER_STATS *************************************************
+            // ************************************************************************************************
+
             Player_Stats.instance.SetCurrentLevel(data.playerStats.level);
             Player_Stats.instance.SetTotalLevelExp(data.playerStats.totalLevelExp);
             Player_Stats.instance.SetCurrentLevelExp(data.playerStats.currentExp);
@@ -145,7 +211,10 @@ public class Game_Data_Control : MonoBehaviour
 
             Player_Stats.instance.playerHealth.SetCurrentHealthPoints(Player_Stats.instance.playerHealth.GetTotalHealthPoints());
 
-            // Player Inventory
+            // ************************************************************************************************
+            // ********************************* PLAYER_INVENTORY *********************************************
+            // ************************************************************************************************
+
             // Remove all item in inventory to not have unsaved item.
             for (int i = 0; i < Player_Inventory.inventorySlotsNumb; i++)
             {
@@ -155,6 +224,11 @@ public class Game_Data_Control : MonoBehaviour
             for (int i = 0; i < Player_Inventory.armorySlotsNumb; i++)
             {
                 Player_Inventory.instance.SetArmoryIndex(i, -1);
+            }
+            // Same for bank slots
+            for (int i = 0; i < UI_Player_Bank.bankSlotsNumb; i++)
+            {
+                UI_Player.instance.playerBankUI.SetBankItemSlot(i, -1);
             }
 
             // And now set registered item into their slots.
@@ -174,6 +248,14 @@ public class Game_Data_Control : MonoBehaviour
                 }
             }
 
+            for (int i = 0; i < UI_Player_Bank.bankSlotsNumb; i++)
+            {
+                if (data.playerInventory.bankItems[i] != -1)
+                {
+                    UI_Player.instance.playerBankUI.SetBankItemSlot(i, data.playerInventory.bankItems[i]);
+                }
+            }
+
             Player_Inventory.instance.SetPlayerGold(0);
             Player_Inventory.instance.SetPlayerGold(data.playerInventory.gold);
 
@@ -181,7 +263,10 @@ public class Game_Data_Control : MonoBehaviour
             UI_Player.instance.playerInventoryUI.RefreshInventory();
             UI_Player.instance.playerInventoryUI.RefreshArmory();
 
-            // Player quests
+            // ************************************************************************************************
+            // ********************************* PLAYER_QUESTS ************************************************
+            // ************************************************************************************************
+
             // First of all remove current quests and reset all quests achievement.
             for (int i = 0; i < Player_Quest_Control.questSlotsNumb; i++)
             {
@@ -210,16 +295,36 @@ public class Game_Data_Control : MonoBehaviour
                     Player_Quest_Control.instance.GetNewQuest(data.playerQuest.questsID[i]);
                     Player_Quest_Control.instance.GetPlayerQuestByIndex(i).currentQuestObjective = data.playerQuest.questsCurrentObjective[i];
                 }
-            }           
-        }       
+            }
+
+            // ************************************************************************************************
+            // ********************************* PLAYER_ABILITIES *********************************************
+            // ************************************************************************************************
+
+            // First lock all abilities
+            for (int i = 0; i < Player_Abilities.instance.abilitiesDatabase.abilities.Length; i++)
+            {
+                Player_Abilities.instance.SetUnlockAbility(i, false);
+            }
+
+            // Simply loop trough our data array and unlock abilities ID linked
+            for (int i = 0; i < data.playerAbilities.abilitiesID.Length; i++)
+            {
+                Player_Abilities.instance.SetUnlockAbility(data.playerAbilities.abilitiesID[i], true);
+            }
+
+            // Set primary and secondary abilities
+            UI_Player_Abilities.instance.ChangeAbility(data.playerAbilities.primaryAbilityID, 0);
+            UI_Player_Abilities.instance.ChangeAbility(data.playerAbilities.secondaryAbilityID, 1);
+        }
     }
 
     public PlayerData GetLoadData(int saveIndex)
     {
-        if (File.Exists(Application.persistentDataPath + "/PlayerData" + saveIndex.ToString() + ".max"))
+        if (File.Exists(Application.persistentDataPath + "/PlayerData" + saveIndex.ToString() + ".mrpji"))
         {
             BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = File.Open(Application.persistentDataPath + "/PlayerData" + saveIndex.ToString() + ".max", FileMode.Open);
+            FileStream file = File.Open(Application.persistentDataPath + "/PlayerData" + saveIndex.ToString() + ".mrpji", FileMode.Open);
             PlayerData data = (PlayerData)bf.Deserialize(file);
             file.Close();
             return data;
@@ -230,9 +335,9 @@ public class Game_Data_Control : MonoBehaviour
 
     public void RemoveData(int saveIndex)
     {
-        if (File.Exists(Application.persistentDataPath + "/PlayerData" + saveIndex.ToString() + ".max"))
+        if (File.Exists(Application.persistentDataPath + "/PlayerData" + saveIndex.ToString() + ".mrpji"))
         {
-            File.Delete(Application.persistentDataPath + "/PlayerData" + saveIndex.ToString() + ".max");
+            File.Delete(Application.persistentDataPath + "/PlayerData" + saveIndex.ToString() + ".mrpji");
         }
     }
 }
@@ -243,6 +348,7 @@ public class PlayerData
     public PlayerStatsData playerStats;
     public PlayerInventoryData playerInventory;
     public PlayerQuestData playerQuest;
+    public PlayerAbilitiesData playerAbilities;
 }
 
 [Serializable]
@@ -263,9 +369,10 @@ public class PlayerStatsData
 [Serializable]
 public class PlayerInventoryData
 {
-    // We get the unique item ID of items in inventory and in armory
+    // We get the unique item ID of items in inventory, armory and bank
     public int[] inventoryItems;
     public int[] armoryItems;
+    public int[] bankItems;
 
     public int gold;
 }
@@ -275,5 +382,14 @@ public class PlayerQuestData
 {
     public int[] questsID; // Contain current player quest. We got them by index into Player quest control playerQuests
     public int[] questsCurrentObjective; // Contain the quest progress. Use same index as questsID
-    public bool[] questsDone; // To know which quests are already done for this save. Index array is used as quest ID.
+    public bool[] questsDone; // To know which quests are already done for this save. Index array is used as quest ID. We loop trough all quests in the game.
+}
+
+[Serializable]
+public class PlayerAbilitiesData
+{
+    public int[] abilitiesID; // Contain all ID's of available abilities for this save.
+
+    public int primaryAbilityID; // To know what's the current primary ability
+    public int secondaryAbilityID;
 }

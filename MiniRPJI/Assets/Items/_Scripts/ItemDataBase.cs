@@ -13,7 +13,7 @@ Récap: - A big ItemDataBase (in top hierarchy of Items folder in Assets) contai
 */
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "ItemDataBase", menuName = "ScriptableObjects/Items/DataBase", order = 1)]
+[CreateAssetMenu(fileName = "ItemDataBase", menuName = "ScriptableObjects/Items/DataBase", order = 0)]
 public class ItemDataBase : ScriptableObject
 {
     // A list of items contained in the database.

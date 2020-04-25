@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca51243307a238c4596c518c409b92e9, type: 3}
+  m_Name: 1_NormalArrow
+  m_EditorClassIdentifier: 
+  abilityID: 1
+  abilityName: Fleche basique
+  abilityDescription: Fleche simple
+  abilitySprite: {fileID: 21300000, guid: 4dcefe822b3d0bf478fad08988578db8, type: 3}
+  abilityPrefab: {fileID: 6052980135759029977, guid: 77de479917db3204cae1bd43cf852001,
+    type: 3}
+  energyCost: 10
+  abilityType: 1
