@@ -1,6 +1,6 @@
 ﻿/* Sounds_Asset.cs (ScriptableObject)
  * Permet d'obtenir d'un moyen rapide la plupart des sons utilisés dans le jeu pour les jouer dans Sound_Manager.cs
- * (exlus: sons des ennemies)
+ * (exclus: sons des ennemies)
  * 
  * */
 using UnityEngine;

@@ -316,6 +316,10 @@ public class Game_Data_Control : MonoBehaviour
             // Set primary and secondary abilities
             UI_Player_Abilities.instance.ChangeAbility(data.playerAbilities.primaryAbilityID, 0);
             UI_Player_Abilities.instance.ChangeAbility(data.playerAbilities.secondaryAbilityID, 1);
+
+            // ************************************************************************************************
+            // ************************************************************************************************
+            // ************************************************************************************************
         }
     }
 

@@ -110,7 +110,7 @@ public class UI_Player_Abilities : MonoBehaviour
         // If we're here mouse isn't over Ability_Button so destroy abilityDescriptionPanel if there is one
         if (currentDescriptionPanel)
         {
-            //Destroy(currentDescriptionPanel);
+            Destroy(currentDescriptionPanel);
             currentAbilityDescription = null;
         }            
     }
@@ -197,7 +197,7 @@ public class UI_Player_Abilities : MonoBehaviour
                 }
 
                 // Now we got our array containing all available abilities. (abilitiesAvailable[])
-                // We can start displaying UI and set set interactions.
+                // We can start displaying UI and set interactions.
 
                 // First display AbilitiesPanel
                 if (!AbilitiesPanel.gameObject.activeSelf)
@@ -208,7 +208,7 @@ public class UI_Player_Abilities : MonoBehaviour
                 // Now for each abilities available, increase width of AbilitiesPanel by 30f, instantiate an ability button then set it.
                 for (int i = 0; i < abilitiesAvailable.Length; i++)
                 {
-                    // Because of UNITY issue, we must create a new int to store value of i. If not, onClick,AddListener will not WORK /!\
+                    // /!\ Because of UNITY issue, we must create a new int to store value of i. If not, onClick,AddListener will not WORK /!\
                     int x = i;
 
                     AbilitiesPanel.sizeDelta = new Vector2(AbilitiesPanel.sizeDelta.x + 30f, 33f);

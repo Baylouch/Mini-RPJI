@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2585047884409619239
+--- !u!1 &1504328191540438405
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,37 +8,37 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 671421350601947289}
-  - component: {fileID: 7297069290923919151}
-  - component: {fileID: 5281922249679632589}
+  - component: {fileID: 18291900011146364}
+  - component: {fileID: 4276044300587884105}
+  - component: {fileID: 4404905264706838749}
   m_Layer: 0
-  m_Name: Blood_ImpactEffect
+  m_Name: Fire Arrow OverPower Effect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &671421350601947289
+--- !u!4 &18291900011146364
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2585047884409619239}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_GameObject: {fileID: 1504328191540438405}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -7.83, y: 22.46, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
---- !u!198 &7297069290923919151
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!198 &4276044300587884105
 ParticleSystem:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2585047884409619239}
+  m_GameObject: {fileID: 1504328191540438405}
   serializedVersion: 6
   lengthInSec: 1
   simulationSpeed: 1
@@ -114,9 +114,9 @@ ParticleSystem:
     enabled: 1
     startLifetime:
       serializedVersion: 2
-      minMaxState: 3
-      scalar: 0.5
-      minScalar: 0.3
+      minMaxState: 0
+      scalar: 1
+      minScalar: 0.5
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -167,9 +167,9 @@ ParticleSystem:
         m_RotationOrder: 4
     startSpeed:
       serializedVersion: 2
-      minMaxState: 3
-      scalar: 7
-      minScalar: 3
+      minMaxState: 0
+      scalar: 0
+      minScalar: 5
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -220,9 +220,9 @@ ParticleSystem:
         m_RotationOrder: 4
     startColor:
       serializedVersion: 2
-      minMaxState: 2
-      minColor: {r: 0.7169812, g: 0.07102172, b: 0.07102172, a: 1}
-      maxColor: {r: 0.8113208, g: 0.10332859, b: 0.14001222, a: 1}
+      minMaxState: 0
+      minColor: {r: 1, g: 1, b: 1, a: 1}
+      maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -283,9 +283,9 @@ ParticleSystem:
         m_NumAlphaKeys: 2
     startSize:
       serializedVersion: 2
-      minMaxState: 3
-      scalar: 1
-      minScalar: 0.6
+      minMaxState: 0
+      scalar: 3
+      minScalar: 0.4
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -336,7 +336,7 @@ ParticleSystem:
         m_RotationOrder: 4
     startSizeY:
       serializedVersion: 2
-      minMaxState: 3
+      minMaxState: 0
       scalar: 1
       minScalar: 1
       maxCurve:
@@ -389,7 +389,7 @@ ParticleSystem:
         m_RotationOrder: 4
     startSizeZ:
       serializedVersion: 2
-      minMaxState: 3
+      minMaxState: 0
       scalar: 1
       minScalar: 1
       maxCurve:
@@ -600,7 +600,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 100
+    maxNumParticles: 1
     size3D: 0
     rotation3D: 0
     gravityModifier:
@@ -658,16 +658,16 @@ ParticleSystem:
         m_RotationOrder: 4
   ShapeModule:
     serializedVersion: 6
-    enabled: 1
-    type: 4
-    angle: 37.7
+    enabled: 0
+    type: 5
+    angle: 25
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
     m_Rotation: {x: 0, y: 0, z: 0}
-    m_Scale: {x: 1, y: 1, z: 1}
+    m_Scale: {x: 0.85, y: 0.85, z: 1}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
@@ -746,7 +746,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 0.0001
+      value: 0.61
       mode: 0
       spread: 0
       speed:
@@ -975,7 +975,7 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 0
-        scalar: 25
+        scalar: 1
         minScalar: 30
         maxCurve:
           serializedVersion: 2
@@ -1040,28 +1040,19 @@ ParticleSystem:
         m_Curve:
         - serializedVersion: 3
           time: 0
-          value: 1
-          inSlope: -0.65933305
-          outSlope: -0.65933305
-          tangentMode: 34
-          weightedMode: 0
-          inWeight: 0.33333334
-          outWeight: 0.33333334
-        - serializedVersion: 3
-          time: 0.80470896
-          value: 0.46942878
-          inSlope: -1.5315362
-          outSlope: -1.5315362
-          tangentMode: 34
+          value: 0
+          inSlope: 2
+          outSlope: 2
+          tangentMode: 0
           weightedMode: 0
           inWeight: 0.33333334
           outWeight: 0.33333334
         - serializedVersion: 3
           time: 1
-          value: 0
-          inSlope: -2.4037395
-          outSlope: -2.4037395
-          tangentMode: 34
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
           weightedMode: 0
           inWeight: 0.33333334
           outWeight: 0.33333334
@@ -1362,7 +1353,7 @@ ParticleSystem:
         m_RotationOrder: 4
     separateAxes: 0
   ColorModule:
-    enabled: 0
+    enabled: 1
     gradient:
       serializedVersion: 2
       minMaxState: 1
@@ -1387,8 +1378,8 @@ ParticleSystem:
         ctime6: 0
         ctime7: 0
         atime0: 0
-        atime1: 65535
-        atime2: 0
+        atime1: 33539
+        atime2: 65535
         atime3: 0
         atime4: 0
         atime5: 0
@@ -1396,7 +1387,7 @@ ParticleSystem:
         atime7: 0
         m_Mode: 0
         m_NumColorKeys: 2
-        m_NumAlphaKeys: 2
+        m_NumAlphaKeys: 3
       minGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -1428,8 +1419,8 @@ ParticleSystem:
         m_NumAlphaKeys: 2
   UVModule:
     serializedVersion: 2
-    enabled: 0
-    mode: 0
+    enabled: 1
+    mode: 1
     timeMode: 0
     fps: 30
     frameOverTime:
@@ -1443,9 +1434,9 @@ ParticleSystem:
         - serializedVersion: 3
           time: 0
           value: 0
-          inSlope: 0
+          inSlope: 1
           outSlope: 1
-          tangentMode: 0
+          tangentMode: 34
           weightedMode: 0
           inWeight: 0.33333334
           outWeight: 0.33333334
@@ -1453,8 +1444,8 @@ ParticleSystem:
           time: 1
           value: 1
           inSlope: 1
-          outSlope: 0
-          tangentMode: 0
+          outSlope: 1
+          tangentMode: 34
           weightedMode: 0
           inWeight: 0.33333334
           outWeight: 0.33333334
@@ -1539,7 +1530,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     speedRange: {x: 0, y: 1}
-    tilesX: 1
+    tilesX: 22
     tilesY: 1
     animationType: 0
     rowIndex: 0
@@ -1547,7 +1538,88 @@ ParticleSystem:
     uvChannelMask: -1
     rowMode: 1
     sprites:
-    - sprite: {fileID: 0}
+    - sprite: {fileID: -5635632212553896260, guid: 628eafa01691f3e4496a6f810c51e24a,
+        type: 3}
+    - sprite: {fileID: -2268326314306085926, guid: 628eafa01691f3e4496a6f810c51e24a,
+        type: 3}
+    - sprite: {fileID: -1140550129061839541, guid: 628eafa01691f3e4496a6f810c51e24a,
+        type: 3}
+    - sprite: {fileID: -7371254824520208257, guid: 628eafa01691f3e4496a6f810c51e24a,
+        type: 3}
+    - sprite: {fileID: 7950009725975413969, guid: 628eafa01691f3e4496a6f810c51e24a,
+        type: 3}
+    - sprite: {fileID: 8822078998525266752, guid: 628eafa01691f3e4496a6f810c51e24a,
+        type: 3}
+    - sprite: {fileID: 6281504351583581501, guid: 628eafa01691f3e4496a6f810c51e24a,
+        type: 3}
+    - sprite: {fileID: 5372079534215839861, guid: 628eafa01691f3e4496a6f810c51e24a,
+        type: 3}
+    - sprite: {fileID: 6045220063276970158, guid: 628eafa01691f3e4496a6f810c51e24a,
+        type: 3}
+    - sprite: {fileID: 2979418018163894744, guid: 628eafa01691f3e4496a6f810c51e24a,
+        type: 3}
+    - sprite: {fileID: -1890618502521180503, guid: 628eafa01691f3e4496a6f810c51e24a,
+        type: 3}
+    - sprite: {fileID: -5175349048509556476, guid: 628eafa01691f3e4496a6f810c51e24a,
+        type: 3}
+    - sprite: {fileID: 4829606271055397948, guid: 628eafa01691f3e4496a6f810c51e24a,
+        type: 3}
+    - sprite: {fileID: -7915103811652493258, guid: 628eafa01691f3e4496a6f810c51e24a,
+        type: 3}
+    - sprite: {fileID: -9117560188840066296, guid: 628eafa01691f3e4496a6f810c51e24a,
+        type: 3}
+    - sprite: {fileID: -8932317322729998379, guid: 628eafa01691f3e4496a6f810c51e24a,
+        type: 3}
+    - sprite: {fileID: 5324660109265914643, guid: 628eafa01691f3e4496a6f810c51e24a,
+        type: 3}
+    - sprite: {fileID: -626180262304477838, guid: 628eafa01691f3e4496a6f810c51e24a,
+        type: 3}
+    - sprite: {fileID: 8107887220461569508, guid: 628eafa01691f3e4496a6f810c51e24a,
+        type: 3}
+    - sprite: {fileID: -8128879771153265230, guid: 628eafa01691f3e4496a6f810c51e24a,
+        type: 3}
+    - sprite: {fileID: 5918995906730435472, guid: 628eafa01691f3e4496a6f810c51e24a,
+        type: 3}
+    - sprite: {fileID: 4202143554528526672, guid: 628eafa01691f3e4496a6f810c51e24a,
+        type: 3}
+    - sprite: {fileID: 8779264656079207269, guid: 628eafa01691f3e4496a6f810c51e24a,
+        type: 3}
+    - sprite: {fileID: 2731562844191106441, guid: 628eafa01691f3e4496a6f810c51e24a,
+        type: 3}
+    - sprite: {fileID: -1985711300859806086, guid: 628eafa01691f3e4496a6f810c51e24a,
+        type: 3}
+    - sprite: {fileID: -1117978913358439331, guid: 628eafa01691f3e4496a6f810c51e24a,
+        type: 3}
+    - sprite: {fileID: -6110383054457295818, guid: 628eafa01691f3e4496a6f810c51e24a,
+        type: 3}
+    - sprite: {fileID: -284711506058415689, guid: 628eafa01691f3e4496a6f810c51e24a,
+        type: 3}
+    - sprite: {fileID: -8332106529473301150, guid: 628eafa01691f3e4496a6f810c51e24a,
+        type: 3}
+    - sprite: {fileID: 1804461450460474102, guid: 628eafa01691f3e4496a6f810c51e24a,
+        type: 3}
+    - sprite: {fileID: 1944083098276220103, guid: 628eafa01691f3e4496a6f810c51e24a,
+        type: 3}
+    - sprite: {fileID: -345382342200330346, guid: 628eafa01691f3e4496a6f810c51e24a,
+        type: 3}
+    - sprite: {fileID: -4360291211644406463, guid: 628eafa01691f3e4496a6f810c51e24a,
+        type: 3}
+    - sprite: {fileID: 5980345835671500925, guid: 628eafa01691f3e4496a6f810c51e24a,
+        type: 3}
+    - sprite: {fileID: -1564708373398831586, guid: 628eafa01691f3e4496a6f810c51e24a,
+        type: 3}
+    - sprite: {fileID: -5570417992190881180, guid: 628eafa01691f3e4496a6f810c51e24a,
+        type: 3}
+    - sprite: {fileID: 1440502011687198799, guid: 628eafa01691f3e4496a6f810c51e24a,
+        type: 3}
+    - sprite: {fileID: 4396558829037500132, guid: 628eafa01691f3e4496a6f810c51e24a,
+        type: 3}
+    - sprite: {fileID: -134364861633414396, guid: 628eafa01691f3e4496a6f810c51e24a,
+        type: 3}
+    - sprite: {fileID: 3357091303007870557, guid: 628eafa01691f3e4496a6f810c51e24a,
+        type: 3}
+    - sprite: {fileID: -8693866620004329978, guid: 628eafa01691f3e4496a6f810c51e24a,
+        type: 3}
     flipU: 0
     flipV: 0
   VelocityModule:
@@ -2689,11 +2761,11 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
   NoiseModule:
-    enabled: 1
+    enabled: 0
     strength:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.5
+      scalar: 1
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -4757,14 +4829,14 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
---- !u!199 &5281922249679632589
+--- !u!199 &4404905264706838749
 ParticleSystemRenderer:
   serializedVersion: 6
   m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2585047884409619239}
+  m_GameObject: {fileID: 1504328191540438405}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -4775,7 +4847,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10301, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 10308, guid: 0000000000000000f000000000000000, type: 0}
   - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -4795,7 +4867,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_RenderMode: 0
   m_SortMode: 0
   m_MinParticleSize: 0

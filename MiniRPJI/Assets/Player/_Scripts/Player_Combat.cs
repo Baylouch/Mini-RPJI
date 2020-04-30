@@ -172,7 +172,7 @@ public class Player_Combat : MonoBehaviour
         if (currentEnemy != null) // If we got a currentEnemy, then we're close to one because its set with triggerEnter2D, and unset in triggerExit2D
         {
             // Damage enemy
-            currentEnemy.GetDamage(GetAttackDamage()); // So we can direclty set damage to the enemy
+            currentEnemy.TakeDamage(GetAttackDamage(), true); // So we can direclty set damage to the enemy
 
             // Use energy
             Player_Stats.instance.playerEnergy.SetCurrentEnergyPoints(Player_Stats.instance.playerEnergy.GetCurrentEnergyPoints() - _ability.energyCost);
@@ -205,6 +205,7 @@ public class Player_Combat : MonoBehaviour
         }
     }
 
+    // TODO use coroutine
     void CheckIfPlayerIsInCombat()
     {
         // Check if player is in combat
@@ -286,11 +287,13 @@ public class Player_Combat : MonoBehaviour
     // Punch damage
     int GetAttackDamage()
     {
-        float tempCritCondition = Random.Range(0, 100);
-        if (tempCritCondition <= Player_Stats.instance.GetCriticalRate()) // Do critical strike
+        bool tempCritCondition = Player_Stats.instance.GetCriticalRate() > Random.Range(0, 101);
+
+        if (tempCritCondition) // Do critical strike (add 20% damage to the attack)
         {
-            int criticalAttack = Mathf.RoundToInt((Random.Range(Player_Stats.instance.GetCurrentMinDamage(), Player_Stats.instance.GetCurrentMaxDamage()) * 1.5f));
-            return criticalAttack;
+            float criticalAttack = Mathf.RoundToInt((Random.Range(Player_Stats.instance.GetCurrentMinDamage(), Player_Stats.instance.GetCurrentMaxDamage())));
+            criticalAttack = criticalAttack + criticalAttack * 0.2f;
+            return Mathf.RoundToInt(criticalAttack);
         }
         else
         {
@@ -303,11 +306,12 @@ public class Player_Combat : MonoBehaviour
     // Bow damages
     int GetRangedAttackDamage()
     {
-        float tempCritCondition = Random.Range(0, 100);
-        if (tempCritCondition <= Player_Stats.instance.GetRangedCriticalRate())
+        bool tempCritCondition = Player_Stats.instance.GetRangedCriticalRate() > Random.Range(0, 101);
+        if (tempCritCondition)
         {
-            int criticalRangedAttack = Mathf.RoundToInt((Random.Range(Player_Stats.instance.GetCurrentRangedMinDamage(), Player_Stats.instance.GetCurrentRangedMaxDamage()) * 1.5f));
-            return criticalRangedAttack;
+            float criticalRangedAttack = Mathf.RoundToInt((Random.Range(Player_Stats.instance.GetCurrentRangedMinDamage(), Player_Stats.instance.GetCurrentRangedMaxDamage())));
+            criticalRangedAttack = criticalRangedAttack + criticalRangedAttack * 0.2f;
+            return Mathf.RoundToInt(criticalRangedAttack);
         }
         else
         {

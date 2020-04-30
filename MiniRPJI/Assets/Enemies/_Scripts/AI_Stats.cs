@@ -26,6 +26,10 @@ public class AI_Stats : MonoBehaviour
     [SerializeField] private int projectileDamageMin = 6;
     [SerializeField] private int projectileDamageMax= 8;
 
+    // Critical rates
+    [SerializeField] private float criticalRate = 3f;
+    [SerializeField] private float rangedCriticalRate = 5f;
+
     int currentHealthPoints;
     bool enemySet; // If game master want to place enemy with AI_Stats in game, we must check if its already set because of EnemySpawner who's spawn and set ennemies.
 
@@ -123,5 +127,15 @@ public class AI_Stats : MonoBehaviour
     public float GetSpeed()
     {
         return speed;
+    }
+
+    public float GetCriticalRate()
+    {
+        return criticalRate;
+    }
+
+    public float GetRangedCriticalRate()
+    {
+        return rangedCriticalRate;
     }
 }

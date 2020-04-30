@@ -58,6 +58,7 @@ public class Player_Health : MonoBehaviour
     [SerializeField] SpriteRenderer rend;
 
     Player_Combat player_combat;
+    float lastDamagedTextXPosition = 0;
 
     private void OnDisable()
     {
@@ -142,8 +143,6 @@ public class Player_Health : MonoBehaviour
     // A FadeIn and FadeOut coroutine methods to apply on each sprite who doesnt have "TakeDamage" animation
     IEnumerator FadeIn() // Reapear
     {
-        StopCoroutine("FadeOut");// Make end of FadeOut Coroutine
-
         for (float f = 0.05f; f <= 1; f+=0.05f)
         {
             Color c = rend.material.color;
@@ -152,8 +151,6 @@ public class Player_Health : MonoBehaviour
 
             yield return new WaitForSeconds(0.01f);
         }
-       
-        StopCoroutine("FadeIn"); // Make end of this coroutine
     }
 
     IEnumerator FadeOut() // Dissapear
@@ -172,7 +169,39 @@ public class Player_Health : MonoBehaviour
 
     #endregion
 
-    public void GetDamage(int amount)
+    void DisplayDamagedTextUI(int amount)
+    {
+        if (damageText)
+        {
+            GameObject _damagedText = Instantiate(damageText, DamageTextParent); // Create damagedText GO
+            RectTransform _damagedTextRect = _damagedText.GetComponent<RectTransform>(); // Get acces to the RectTransform component
+
+            float randomPosX = 0;
+
+            // Give random position to _damagedText on X between -0.5f - 0.5f.
+            // Check what was the last X position of the damaged text
+            if (lastDamagedTextXPosition > 0) // If it was on the left
+            {
+                randomPosX = Random.Range(_damagedTextRect.localPosition.x - 0.2f, _damagedTextRect.localPosition.x - 0.6f);
+            }
+            else if (lastDamagedTextXPosition < 0) // It was on the right
+            {
+                randomPosX = Random.Range(_damagedTextRect.localPosition.x + 0.2f, _damagedTextRect.localPosition.x + 0.6f);
+            }
+            else // If its equal to 0, first time we use it.
+            {
+                randomPosX = Random.Range(_damagedTextRect.localPosition.x - 0.6f, _damagedTextRect.localPosition.x + 0.6f);
+            }
+
+            lastDamagedTextXPosition = randomPosX;
+
+            _damagedTextRect.localPosition = new Vector2(randomPosX, _damagedTextRect.localPosition.y);
+
+            _damagedText.GetComponent<Text>().text = amount.ToString();
+        }
+    }
+
+    public void TakeDamage(int amount)
     {
         // Reduction of damage amount by % depending of our armor.
         // Full calculation is : CurrentArmor * 0.05 = resultat (% of attack reduction)
@@ -189,11 +218,7 @@ public class Player_Health : MonoBehaviour
         float tempDamageAmount = amount - amount * percentageOfAttackReduction;
 
         // Display on the screen damage received
-        if (damageText)
-        {
-            GameObject _damagedText = Instantiate(damageText, DamageTextParent);
-            _damagedText.GetComponent<Text>().text = amount.ToString();
-        }
+        DisplayDamagedTextUI(amount);
 
         float afterDamageHealthPoints = currentHealthPoints - tempDamageAmount;
 

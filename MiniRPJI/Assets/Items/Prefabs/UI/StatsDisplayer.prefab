@@ -52,5 +52,7 @@ MonoBehaviour:
     type: 3}
   itemName: {fileID: 8420641754194104172, guid: 5e56e0380cdd38f40940d7cdc7c309fa,
     type: 3}
+  itemDescription: {fileID: 2949171186553502917, guid: b9c75bdbe1b2fbf4fbaf12510e25bbb0,
+    type: 3}
   statsNameAndPoints: {fileID: 358088707896995869, guid: 7b169b5bc734ac1418324a39cdd0d438,
     type: 3}

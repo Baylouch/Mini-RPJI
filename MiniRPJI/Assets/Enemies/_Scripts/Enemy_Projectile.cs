@@ -34,7 +34,7 @@ public class Enemy_Projectile : MonoBehaviour
             if (collision.gameObject.GetComponent<Player_Health>())
             {
                 Player_Health playerHealth = collision.gameObject.GetComponent<Player_Health>();
-                playerHealth.GetDamage(Random.Range((projectileDamage - 2), (projectileDamage + 2)));
+                playerHealth.TakeDamage(projectileDamage);
             }
 
             if (impactEffect)

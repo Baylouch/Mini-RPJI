@@ -2,6 +2,7 @@
 Utilisé pour gérer les combats
 */
 
+using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
@@ -23,15 +24,11 @@ public class AI_Enemy_Combat : MonoBehaviour
     }
     [SerializeField] private float shootRange = 3f;
     [SerializeField] private float timerBeforeShoot;
-    float currentTimerBeforeShoot;
-
-    // Basic timer for now
-    [SerializeField] float timerBeforeAttack;
-    float currentTimerBeforeAttack;
+    float currentTimerBeforeShoot; 
 
     // Range for attacking
     [SerializeField] float attackRange = 1f;
-    [SerializeField] bool attacking = false;
+    [SerializeField] float timerBeforeAttack;
 
     // Sounds
     [SerializeField] AudioClip[] attackSounds;
@@ -47,6 +44,9 @@ public class AI_Enemy_Combat : MonoBehaviour
 
     AI_Health ai_health;
     AI_Stats ai_stats;
+
+    Coroutine attackCoroutine; // To know if an attack coroutine is already executing
+    Coroutine rangedAttackCoroutine; // To know if a ranged attack coroutine is already executing
 
     private void OnDrawGizmos()
     {
@@ -65,8 +65,7 @@ public class AI_Enemy_Combat : MonoBehaviour
         ai_health = GetComponent<AI_Health>();
         ai_stats = GetComponent<AI_Stats>();
 
-        currentTimerBeforeAttack = timerBeforeAttack;
-        currentTimerBeforeShoot = timerBeforeShoot;
+        currentTimerBeforeShoot = timerBeforeShoot; 
         initialChasingDistance = chasingDistance;
     }
 
@@ -81,56 +80,6 @@ public class AI_Enemy_Combat : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (target)
-        {
-            // If player is in attack range
-            if (Vector3.Distance(transform.position, target.position) <= attackRange)
-            {
-                if (currentTimerBeforeAttack >= 0f && !attacking) // Test timer before attack
-                {
-                    currentTimerBeforeAttack -= Time.deltaTime;
-                }
-                else if (!attacking) // Now attack
-                {
-                    UseAttack();
-
-                    Player_Health playerHealth = target.gameObject.GetComponent<Player_Health>();
-                    if (playerHealth)
-                    {
-                        playerHealth.GetDamage(GetAttackDamage());
-                    }
-
-                    currentTimerBeforeAttack = timerBeforeAttack;
-                }
-            }
-            else if (Vector3.Distance(transform.position, target.position) > attackRange && projectile) // else if we got projectile
-            {
-                if (Vector3.Distance(transform.position, target.position) <= shootRange)
-                {
-                    if (currentTimerBeforeShoot >= 0f && !attacking)
-                    {
-                        currentTimerBeforeShoot -= Time.deltaTime;
-                    }
-                    else
-                    {
-                        RaycastHit2D hit2D = Physics2D.Raycast(transform.position, firePoint.up, Mathf.Infinity, LayerMask.GetMask("Player"));
-
-                        if (hit2D != false)
-                        {
-                            if (hit2D.collider.gameObject.tag == "Player")
-                            {
-                                if (!attacking)
-                                {
-                                    UseRangedAttack();
-                                    currentTimerBeforeShoot = timerBeforeShoot;
-                                }
-                            }
-                        }
-                    }
-                }
-            }          
-        }
-
         if (ai_health.damaged) // If we're damaged we want to upgrade chasing distance
         {
             if (chasingDistance != damagedChasingDistance)
@@ -145,59 +94,154 @@ public class AI_Enemy_Combat : MonoBehaviour
                 chasingDistance = initialChasingDistance;
             }
         }
+
+        CheckTargetDistance();
     }
 
-    // Security in addition of Update because sometimes enemies dont attack when they're in range
-    private void OnTriggerStay2D(Collider2D collision)
+    // Method to check target distance and do stuff relative
+    void CheckTargetDistance()
     {
-        if (collision.gameObject.tag == "Player")
+        if (target)
         {
-            if (currentTimerBeforeAttack >= 0f && !attacking) // Test timer before attack
-            {
-                currentTimerBeforeAttack -= Time.deltaTime;
-            }
-            else if (!attacking) // Now attack
-            {
-                UseAttack();
+            float targetDistance = Vector3.Distance(transform.position, target.position);
 
-                Player_Health playerHealth = target.gameObject.GetComponent<Player_Health>();
-                if (playerHealth)
+            // If player is in attack range
+            if (targetDistance <= attackRange)
+            {
+                // If enemy was attacking in range, cancel that
+                if (rangedAttackCoroutine != null)
                 {
-                    playerHealth.GetDamage(GetAttackDamage());
+                    StopCoroutine(rangedAttackCoroutine);
+                    rangedAttackCoroutine = null;
                 }
 
-                currentTimerBeforeAttack = timerBeforeAttack;
+                if (attackCoroutine == null)
+                {
+                    attackCoroutine = StartCoroutine(UseAttack());
+                }
+            }
+            // Else If isn't in attack range, is in shoot range and AI got projectile
+            else if (targetDistance > attackRange && targetDistance <= shootRange && projectile)
+            {
+                // If enemy was attacking cancel that.
+                if (attackCoroutine != null)
+                {
+                    StopCoroutine(attackCoroutine);
+                    attackCoroutine = null;
+                }
+
+                // use timer to know when enemy is ready to shoot
+                if (currentTimerBeforeShoot >= 0f)
+                {
+                    currentTimerBeforeShoot -= Time.deltaTime;
+                }
+                else
+                {
+                    // Check by raycasthit if enemy got player in view
+                    RaycastHit2D hit2D = Physics2D.Raycast(transform.position, firePoint.up, Mathf.Infinity, LayerMask.GetMask("Player"));
+
+                    if (hit2D != false)
+                    {
+                        if (hit2D.collider.gameObject.tag == "Player")
+                        {
+                            if (rangedAttackCoroutine == null)
+                            {
+                                rangedAttackCoroutine = StartCoroutine(UseRangedAttack(0));
+                                currentTimerBeforeShoot = timerBeforeShoot;
+                            }
+                        }
+                    }
+                }
+            }
+            // Else if AI isn't in chasing distance cancel attacks
+            else if (targetDistance > chasingDistance)
+            {
+                if (attackCoroutine != null)
+                {
+                    StopCoroutine(attackCoroutine);
+                    TurnOffAnimatorParamAttack();
+                }
+                if (rangedAttackCoroutine != null)
+                {
+                    StopCoroutine(rangedAttackCoroutine);
+                    TurnOffAnimatorParamAttack();
+                }
             }
         }
     }
 
-    void UseAttack()
+    IEnumerator UseAttack()
     {
-        attacking = true;
-        animator.SetBool("isAttacking", true);
-        animator.SetBool("normalAttack", true);
+        // Wait attack timer
+        yield return new WaitForSeconds(timerBeforeAttack);
 
+        // Then attack
+        PlayerNormalAttackAnimation();
+
+        // Look if we found Player_Health component to deal damage to the player
+        Player_Health playerHealth = target.gameObject.GetComponent<Player_Health>();
+        if (playerHealth)
+        {
+            playerHealth.TakeDamage(GetAttackDamage());
+        }
+
+        // Play attack sound
         if (attackSounds.Length >= 1)
         {
             Sound_Manager.instance.PlaySound(attackSounds[Random.Range(0, attackSounds.Length)]);
         }
     }
 
-    void UseRangedAttack()
+    IEnumerator UseRangedAttack(float delayBeforeShoot)
     {
-        attacking = true;
+        yield return new WaitForSeconds(delayBeforeShoot);
+
+        PlayRangedAttackAnimation(); // Shoot method is called inside ranged attack animation
+
+    }
+
+    void PlayerNormalAttackAnimation()
+    {
+        animator.SetBool("isAttacking", true);
+        animator.SetBool("normalAttack", true);
+    }
+
+    void PlayRangedAttackAnimation()
+    {
         animator.SetBool("isAttacking", true);
         animator.SetBool("rangedAttack", true);
     }
 
     int GetAttackDamage()
     {
-        return Random.Range(ai_stats.GetDamageMin(), ai_stats.GetDamageMax());
+        bool tempCritCondition = ai_stats.GetCriticalRate() > Random.Range(0, 101);
+
+        if (tempCritCondition)
+        {
+            float criticalAttack = Random.Range(ai_stats.GetDamageMin(), ai_stats.GetDamageMax());
+            criticalAttack = criticalAttack + criticalAttack * 0.2f;
+            return Mathf.RoundToInt(criticalAttack);
+        }
+        else
+        {
+            return Random.Range(ai_stats.GetDamageMin(), ai_stats.GetDamageMax());
+        }
     }
 
     int GetProjectileDamage()
     {
-        return Random.Range(ai_stats.GetProjectileDamageMin(), ai_stats.GetProjectileDamageMax());
+        bool tempCritCondition = ai_stats.GetRangedCriticalRate() > Random.Range(0, 101);
+
+        if (tempCritCondition)
+        {
+            float criticalAttack = Random.Range(ai_stats.GetProjectileDamageMin(), ai_stats.GetProjectileDamageMax());
+            criticalAttack = criticalAttack + criticalAttack * 0.2f;
+            return Mathf.RoundToInt(criticalAttack);
+        }
+        else
+        {
+            return Random.Range(ai_stats.GetProjectileDamageMin(), ai_stats.GetProjectileDamageMax());
+        }
     }
 
     public void Shoot()
@@ -229,9 +273,7 @@ public class AI_Enemy_Combat : MonoBehaviour
             animator.SetBool("rangedAttack", false);
         }
 
-        if (attacking)
-        {
-            attacking = false;
-        }
+        attackCoroutine = null;
+        rangedAttackCoroutine = null;
     }
 }

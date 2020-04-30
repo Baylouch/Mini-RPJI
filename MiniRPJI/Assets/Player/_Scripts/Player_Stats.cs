@@ -107,6 +107,7 @@ public class Player_Stats : MonoBehaviour
 
     private void Update()
     {
+        // TODO DELETE LOL
         if (Input.GetKeyDown(KeyCode.Alpha5))
             LevelUp();
     }

@@ -75,7 +75,7 @@ public class AI_Enemy_Movement : MonoBehaviour
     {
         float targetDistance = Vector2.Distance(myRb.position, target.position);
 
-        if (targetDistance <= ai_combat.chasingDistance)
+        if (targetDistance <= ai_combat.chasingDistance && targetDistance > stoppingDistance)
         {
             if (!inChase)
             {
@@ -99,7 +99,7 @@ public class AI_Enemy_Movement : MonoBehaviour
                 }
             }
         }
-        else
+        else if (targetDistance > ai_combat.chasingDistance)
         {
             if (inChase)
             {
@@ -149,12 +149,15 @@ public class AI_Enemy_Movement : MonoBehaviour
 
         float curWaypointDistance = Vector2.Distance(myRb.position, path.vectorPath[currentWaypoint]);
 
+        // TODO Change the way it works. Use velocity addforce for instance. Because issue with animation when change direction
+        // * For now i found a fix -> Exit time between each walk and idle animations. *
         if (curWaypointDistance < stoppingDistance)
         {
             myRb.velocity = Vector2.zero;
         }
-        else
+        else 
         {
+
             if (direction.y < -0.2f && direction.x < -0.2f) // upper and right
             {
                 myRb.velocity = new Vector2(1f, 1f) * ai_stats.GetSpeed();
@@ -171,7 +174,7 @@ public class AI_Enemy_Movement : MonoBehaviour
             {
                 myRb.velocity = new Vector2(-1f, -1f) * ai_stats.GetSpeed();
             }
-            else if (direction.y < -0.2f) // Direction is upper
+            else if (direction.y < -0.2f) // upper
             {
                 myRb.velocity = new Vector2(0f, 1f) * ai_stats.GetSpeed();
             }
@@ -179,7 +182,6 @@ public class AI_Enemy_Movement : MonoBehaviour
             {
                 myRb.velocity = new Vector2(0f, -1f) * ai_stats.GetSpeed();
             }
-
             else if (direction.x < -0.2f) // right
             {
                 myRb.velocity = new Vector2(1f, 0f) * ai_stats.GetSpeed();
@@ -211,12 +213,9 @@ public class AI_Enemy_Movement : MonoBehaviour
         {
             animator.SetBool("isMoving", true);
         }
-        else
+        else if (myRb.velocity == Vector2.zero && animator.GetBool("isMoving")) 
         {
-            if (animator.GetBool("isMoving"))
-            {
-                animator.SetBool("isMoving", false);
-            }
+            animator.SetBool("isMoving", false);           
         }
     }
 

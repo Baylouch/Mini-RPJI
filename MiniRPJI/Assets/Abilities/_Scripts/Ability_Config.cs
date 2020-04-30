@@ -17,7 +17,7 @@ public class Ability_Config : ScriptableObject
     public string abilityDescription;
 
     public Sprite abilitySprite;
-
+    // TODO Think about punch ability can use an abilityPrefab too ?
     public GameObject abilityPrefab; // For this game, it consist of a prefab with Player_Projectile on it or its children. (Keep it null for punch ability)
 
     public int energyCost;
