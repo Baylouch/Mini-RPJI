@@ -20,7 +20,10 @@ public class AI_Enemy_Combat : MonoBehaviour
     [SerializeField] private Transform firePoint;
     public void SetFirePointRotation(float newRotation)
     {
-        firePoint.rotation = Quaternion.Euler(new Vector3(0f, 0f, newRotation));
+        if (firePoint.rotation.z != newRotation) // Not must, but can avoid sometimes to repeat rotation (not every time because of Quaternion, value is weird)
+        {
+            firePoint.rotation = Quaternion.Euler(new Vector3(0f, 0f, newRotation));
+        }
     }
     [SerializeField] private float shootRange = 3f;
     [SerializeField] private float timerBeforeShoot;
@@ -77,6 +80,13 @@ public class AI_Enemy_Combat : MonoBehaviour
         }
     }
 
+    private void OnDisable()
+    {
+        StopAllCoroutines();
+        attackCoroutine = null;
+        rangedAttackCoroutine = null;
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -121,7 +131,7 @@ public class AI_Enemy_Combat : MonoBehaviour
                 }
             }
             // Else If isn't in attack range, is in shoot range and AI got projectile
-            else if (targetDistance > attackRange && targetDistance <= shootRange && projectile)
+            else if (targetDistance > attackRange && targetDistance <= shootRange)
             {
                 // If enemy was attacking cancel that.
                 if (attackCoroutine != null)
@@ -130,24 +140,28 @@ public class AI_Enemy_Combat : MonoBehaviour
                     attackCoroutine = null;
                 }
 
-                // use timer to know when enemy is ready to shoot
-                if (currentTimerBeforeShoot >= 0f)
+                // If enemy got a projectile
+                if (projectile)
                 {
-                    currentTimerBeforeShoot -= Time.deltaTime;
-                }
-                else
-                {
-                    // Check by raycasthit if enemy got player in view
-                    RaycastHit2D hit2D = Physics2D.Raycast(transform.position, firePoint.up, Mathf.Infinity, LayerMask.GetMask("Player"));
-
-                    if (hit2D != false)
+                    // use timer to know when enemy is ready to shoot
+                    if (currentTimerBeforeShoot >= 0f)
                     {
-                        if (hit2D.collider.gameObject.tag == "Player")
+                        currentTimerBeforeShoot -= Time.deltaTime;
+                    }
+                    else
+                    {
+                        // Check by raycasthit if enemy got player in view
+                        RaycastHit2D hit2D = Physics2D.Raycast(transform.position, firePoint.up, Mathf.Infinity, LayerMask.GetMask("Player"));
+
+                        if (hit2D != false)
                         {
-                            if (rangedAttackCoroutine == null)
+                            if (hit2D.collider.gameObject.tag == "Player")
                             {
-                                rangedAttackCoroutine = StartCoroutine(UseRangedAttack(0));
-                                currentTimerBeforeShoot = timerBeforeShoot;
+                                if (rangedAttackCoroutine == null)
+                                {
+                                    rangedAttackCoroutine = StartCoroutine(UseRangedAttack(0));
+                                    currentTimerBeforeShoot = timerBeforeShoot;
+                                }
                             }
                         }
                     }

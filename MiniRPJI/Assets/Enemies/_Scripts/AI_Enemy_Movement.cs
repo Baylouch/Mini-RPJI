@@ -38,6 +38,41 @@ public class AI_Enemy_Movement : MonoBehaviour
 
     bool inChase = false;
 
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.white;
+        Gizmos.DrawWireSphere(transform.position, stoppingDistance); // If we dont see it on the Scene window, check if Gizmos are displayed,
+        // then if its not the same distance as the attackRange because its using DrawWireSphere too with a red color and will override this gizmos.
+    }
+
+    private void OnDisable()
+    {
+        // Security if AI is dead, dont continue
+        if (GetComponent<AI_Health>())
+        {
+            if (GetComponent<AI_Health>().IsDead())
+                return;
+        }
+
+        // If AI is disactivate by AI_Activator, we must reset some variables
+        if (myRb.velocity != Vector2.zero)
+            myRb.velocity = Vector2.zero;
+
+        transform.position = startPos;
+
+        inChase = false;
+        currentWaypoint = 0;
+        reachedEndOfPath = true;
+        path = null;
+
+        CancelInvoke();
+
+        if (player_combat)
+        {
+            player_combat.endingCombat = true;
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -52,6 +87,96 @@ public class AI_Enemy_Movement : MonoBehaviour
 
         startPos = transform.position;
         target = ai_combat.GetTarget();
+    }
+
+    private void Update()
+    {
+        AnimatorUpdate();
+    }
+
+    // Update is called once per frame
+    void FixedUpdate()
+    {
+        ProcessMovement();
+    }
+
+    void ProcessMovement()
+    {
+        CreatePath();
+
+        // If enemy currently attacking, stop moving.
+        if (animator.GetBool("isAttacking") == true)
+        {
+            if (myRb.velocity != Vector2.zero)
+                myRb.velocity = Vector2.zero;
+
+            return;
+        }
+
+        if (path == null)
+            return;
+
+        if (currentWaypoint >= path.vectorPath.Count)
+        {
+            reachedEndOfPath = true;
+            return;
+        }
+        else
+        {
+            reachedEndOfPath = false;
+        }
+
+        Vector2 direction = (myRb.position - (Vector2)path.vectorPath[currentWaypoint]).normalized;
+
+        float curWaypointDistance = Vector2.Distance(myRb.position, path.vectorPath[currentWaypoint]);
+
+        // TODO Fix issue with animation when change direction
+        // * For now i found a fix -> Exit time between each walk and idle animations. *
+        if (curWaypointDistance < stoppingDistance)
+        {
+            myRb.velocity = Vector2.zero;
+        }
+        else
+        {
+
+            if (direction.y < -0.2f && direction.x < -0.2f) // upper and right
+            {
+                myRb.velocity = new Vector2(1f, 1f) * ai_stats.GetSpeed();
+            }
+            else if (direction.y < -0.2f && direction.x > 0.2f) // upper and left
+            {
+                myRb.velocity = new Vector2(-1f, 1f) * ai_stats.GetSpeed();
+            }
+            else if (direction.y > 0.2f && direction.x < -0.2f) // lower and right
+            {
+                myRb.velocity = new Vector2(1f, -1f) * ai_stats.GetSpeed();
+            }
+            else if (direction.y > 0.2f && direction.x > 0.2f) // lower and left
+            {
+                myRb.velocity = new Vector2(-1f, -1f) * ai_stats.GetSpeed();
+            }
+            else if (direction.y < -0.2f) // upper
+            {
+                myRb.velocity = new Vector2(0f, 1f) * ai_stats.GetSpeed();
+            }
+            else if (direction.y > 0.2f) // lower
+            {
+                myRb.velocity = new Vector2(0f, -1f) * ai_stats.GetSpeed();
+            }
+            else if (direction.x < -0.2f) // right
+            {
+                myRb.velocity = new Vector2(1f, 0f) * ai_stats.GetSpeed();
+            }
+            else if (direction.x > 0.2f) // left
+            {
+                myRb.velocity = new Vector2(-1f, 0f) * ai_stats.GetSpeed();
+            }
+        }
+
+        if (curWaypointDistance < nextWaypointDistance)
+        {
+            currentWaypoint++;
+        }
     }
 
     void UpdateTargetPath()
@@ -80,7 +205,9 @@ public class AI_Enemy_Movement : MonoBehaviour
             if (!inChase)
             {
                 inChase = true;
+
                 InvokeRepeating("UpdateTargetPath", 0f, .5f);
+
                 if (ai_moveset)
                 {
                     if (ai_moveset.GetAutoMove()) ai_moveset.SwitchAutoMove(false);
@@ -122,93 +249,8 @@ public class AI_Enemy_Movement : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        AnimatorUpdate();
-    }
-
-    // Update is called once per frame
-    void FixedUpdate()
-    {
-        CreatePath();
-
-        if (path == null)
-            return;
-
-        if (currentWaypoint >= path.vectorPath.Count)
-        {
-            reachedEndOfPath = true;
-            return;
-        }
-        else
-        {
-            reachedEndOfPath = false;
-        }
-
-        Vector2 direction = (myRb.position - (Vector2)path.vectorPath[currentWaypoint]).normalized;
-
-        float curWaypointDistance = Vector2.Distance(myRb.position, path.vectorPath[currentWaypoint]);
-
-        // TODO Change the way it works. Use velocity addforce for instance. Because issue with animation when change direction
-        // * For now i found a fix -> Exit time between each walk and idle animations. *
-        if (curWaypointDistance < stoppingDistance)
-        {
-            myRb.velocity = Vector2.zero;
-        }
-        else 
-        {
-
-            if (direction.y < -0.2f && direction.x < -0.2f) // upper and right
-            {
-                myRb.velocity = new Vector2(1f, 1f) * ai_stats.GetSpeed();
-            }
-            else if (direction.y < -0.2f && direction.x > 0.2f) // upper and left
-            {
-                myRb.velocity = new Vector2(-1f, 1f) * ai_stats.GetSpeed();
-            }
-            else if (direction.y > 0.2f && direction.x < -0.2f) // lower and right
-            {
-                myRb.velocity = new Vector2(1f, -1f) * ai_stats.GetSpeed();
-            }
-            else if (direction.y > 0.2f && direction.x > 0.2f) // lower and left
-            {
-                myRb.velocity = new Vector2(-1f, -1f) * ai_stats.GetSpeed();
-            }
-            else if (direction.y < -0.2f) // upper
-            {
-                myRb.velocity = new Vector2(0f, 1f) * ai_stats.GetSpeed();
-            }
-            else if (direction.y > 0.2f) // lower
-            {
-                myRb.velocity = new Vector2(0f, -1f) * ai_stats.GetSpeed();
-            }
-            else if (direction.x < -0.2f) // right
-            {
-                myRb.velocity = new Vector2(1f, 0f) * ai_stats.GetSpeed();
-            }
-            else if (direction.x > 0.2f) // left
-            {
-                myRb.velocity = new Vector2(-1f, 0f) * ai_stats.GetSpeed();
-            }
-        }   
-       
-        if (curWaypointDistance < nextWaypointDistance)
-        {
-            currentWaypoint++;
-        }
-    }
-
     void AnimatorUpdate()
     {
-        if (animator.GetFloat("VectorX") != myRb.velocity.x)
-        {
-            animator.SetFloat("VectorX", myRb.velocity.x);
-        }
-        if (animator.GetFloat("VectorY") != myRb.velocity.y)
-        {
-            animator.SetFloat("VectorY", myRb.velocity.y);
-        }
-
         if (myRb.velocity != Vector2.zero && !animator.GetBool("isMoving"))
         {
             animator.SetBool("isMoving", true);
@@ -216,6 +258,15 @@ public class AI_Enemy_Movement : MonoBehaviour
         else if (myRb.velocity == Vector2.zero && animator.GetBool("isMoving")) 
         {
             animator.SetBool("isMoving", false);           
+        }
+
+        if (animator.GetFloat("VectorX") != myRb.velocity.x)
+        {
+            animator.SetFloat("VectorX", myRb.velocity.x);
+        }
+        if (animator.GetFloat("VectorY") != myRb.velocity.y)
+        {
+            animator.SetFloat("VectorY", myRb.velocity.y);
         }
     }
 

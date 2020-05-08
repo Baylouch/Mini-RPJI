@@ -140,6 +140,15 @@ public class AI_Health : MonoBehaviour
 
     void PlayDeathAnimation()
     {
+        // Reset color if AI had malus on it
+        if (rend)
+        {
+            if (rend.color != Color.white)
+            {
+                rend.color = Color.white;
+            }
+        }
+
         // Disable others AI components
         if (GetComponent<AI_Enemy_Movement>())
             GetComponent<AI_Enemy_Movement>().enabled = false;
@@ -164,7 +173,6 @@ public class AI_Health : MonoBehaviour
         if (GetComponent<Rigidbody2D>())
             if (GetComponent<Rigidbody2D>().velocity != Vector2.zero)
                 GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-            
 
         // Play animation
         animator.SetTrigger("isDead");
@@ -413,6 +421,10 @@ public class AI_Health : MonoBehaviour
         if (takeDamage)
             TakeDamage(playerDamage, true);
 
+        // Security for enemy to dont get malused if dead.
+        if (isDead)
+            return;
+
         GetComponentInChildren<SpriteRenderer>().color = slowColor;
         ai_stats.SetSpeed(originalAISpeed / 2);
 
@@ -433,6 +445,10 @@ public class AI_Health : MonoBehaviour
     {
         if (takeDamage)
             TakeDamage(playerDamage, true);
+
+        // Security for enemy to dont get malused if dead.
+        if (isDead)
+            return;
 
         if (fireEffect)
         {
@@ -475,12 +491,15 @@ public class AI_Health : MonoBehaviour
         if (takeDamage)
             TakeDamage(playerDamage, true);
 
+        // Security for enemy to dont get malused if dead.
+        if (isDead)
+            return;
+
         GetComponentInChildren<SpriteRenderer>().color = poisonColor;
 
         float damagePerSecond = playerDamage / poisonedTimer;
         if (damagePerSecond < 1)
         {
-            Debug.Log("damagePerSecond = " + damagePerSecond); // TODO Delete because nothing i can do when damage is less than poisontimer?
             damagePerSecond = 1;
         }
         TakeDamagePerSecondCoroutine = StartCoroutine(TakeDamagePerSecond(Mathf.RoundToInt(damagePerSecond)));
@@ -507,6 +526,10 @@ public class AI_Health : MonoBehaviour
     {
         if (takeDamage)
             TakeDamage(playerDamage, true);
+
+        // Security for enemy to dont get malused if dead.
+        if (isDead)
+            return;
 
         bool willApply = percentageChanceToParalyze > Random.Range(0, 101);
         if (willApply == true)

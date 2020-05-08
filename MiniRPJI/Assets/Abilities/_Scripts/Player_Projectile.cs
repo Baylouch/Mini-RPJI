@@ -141,7 +141,7 @@ public class Player_Projectile : MonoBehaviour
 
         if (impactEffect)
         {
-            GameObject _impact = Instantiate(impactEffect, transform.position, Quaternion.identity);
+            GameObject _impact = Instantiate(impactEffect, transform.position, impactEffect.transform.rotation);
             Destroy(_impact, .5f);
         }
     }
@@ -156,7 +156,7 @@ public class Player_Projectile : MonoBehaviour
         // Create explosion
         if (overPowerEffect)
         {
-            GameObject _impact = Instantiate(overPowerEffect, transform.position, Quaternion.identity);
+            GameObject _impact = Instantiate(overPowerEffect, transform.position, overPowerEffect.transform.rotation);
             Destroy(_impact, 1f);
         }
 

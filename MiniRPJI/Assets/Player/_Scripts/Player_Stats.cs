@@ -105,13 +105,6 @@ public class Player_Stats : MonoBehaviour
         TrackCurrentStats(); // Get track of current stats at start      
     }
 
-    private void Update()
-    {
-        // TODO DELETE LOL
-        if (Input.GetKeyDown(KeyCode.Alpha5))
-            LevelUp();
-    }
-
     void SetLevelXP()
     {
         switch (level)
@@ -549,4 +542,12 @@ public class Player_Stats : MonoBehaviour
     // End of "loader setters"
 
     #endregion
+
+    // Non using in game methods (most used in Cheats.cs)
+    
+    // Method to level up by an input
+    public void CheatLevelUp()
+    {
+        LevelUp();
+    }
 }

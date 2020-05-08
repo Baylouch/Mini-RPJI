@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8325456551477211795}
   - component: {fileID: 8325456551477211794}
   m_Layer: 0
-  m_Name: Electric Arrow Impact
+  m_Name: Electric Arrow Impact Effect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

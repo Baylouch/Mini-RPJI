@@ -9,6 +9,6 @@ using UnityEngine;
 public class Teleport_Position_Level : MonoBehaviour
 {
     // Mettre le build index du niveau d'ou le joueur vient : 0 = la position de départ
-    public int levelFromBuildIndex; // Permet de configurer d'ou vient le joueur, et donc de trouver la bonne position dans le niveau.
+    public int levelFromBuildIndex; // Permet de savoir d'où vient le joueur, et donc de trouver la bonne position lorsqu'il atteint le niveau.
 
 }

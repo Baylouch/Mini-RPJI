@@ -37,7 +37,7 @@ public class Player_Movement : MonoBehaviour
 
     void Update()
     {
-        SimpleAnimatorControl();
+        AnimatorUpdate();
 
         if (Input.GetKey(KeyCode.LeftShift))
         {
@@ -76,7 +76,7 @@ public class Player_Movement : MonoBehaviour
         }
     }
 
-    void SimpleAnimatorControl()
+    void AnimatorUpdate()
     {
         if (myRb.velocity != Vector2.zero && !animator.GetBool("isMoving"))
         {
@@ -220,11 +220,25 @@ public class Player_Movement : MonoBehaviour
                         }
                     }
                     break;
+                default:
+                    Debug.Log("You can't dash if dashing direction isn't set !");
+                    break;
             }
         }
         else
         {
-            currentDashEffect.transform.parent = GameObject.Find("Effects").transform;
+            if (GameObject.Find("Effects"))
+            {
+                if (currentDashEffect)
+                    currentDashEffect.transform.parent = GameObject.Find("Effects").transform;
+            }
+            else
+            {
+                GameObject effectsGO = new GameObject("Effects");
+                if (currentDashEffect)
+                    currentDashEffect.transform.parent = GameObject.Find("Effects").transform;
+            }
+
             isDashing = false;
             dashTime = startDashTime;
         }

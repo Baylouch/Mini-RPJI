@@ -146,5 +146,7 @@ MonoBehaviour:
   projectileSpeed: 12
   timerBeforeDestroy: 1
   overPowerRange: 2
-  impactEffect: {fileID: 0}
-  overPowerEffect: {fileID: 0}
+  impactEffect: {fileID: 8961154692931648155, guid: a9019ee67a5c15347a5a2b07557c1f43,
+    type: 3}
+  overPowerEffect: {fileID: 1145238761560311323, guid: fced909852115914db0da3a3991f3636,
+    type: 3}

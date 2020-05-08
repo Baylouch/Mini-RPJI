@@ -1,6 +1,7 @@
 ﻿/* Scenes_Control.cs
+ * 
  * Permet le changement entre les scenes.
- * Est créé a partir de la premiere scene du jeu
+ * Est créé à partir de la première scene du jeu
  * 
  * */
 
