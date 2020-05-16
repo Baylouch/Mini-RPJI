@@ -20,7 +20,7 @@ public class Sub_Zone_Trigger : Interactable
     {
         if (Scenes_Control.instance)
         {
-            Scenes_Control.instance.SwitchPlayerLevel(levelToGo);
+            Scenes_Control.instance.SwitchGameLevel(levelToGo);
         }
     }
    

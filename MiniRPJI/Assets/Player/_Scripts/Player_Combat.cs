@@ -159,7 +159,8 @@ public class Player_Combat : MonoBehaviour
             Player_Stats.instance.playerEnergy.SetCurrentEnergyPoints(Player_Stats.instance.playerEnergy.GetCurrentEnergyPoints() - _ability.energyCost);
 
             // Play sound
-            Sound_Manager.instance.PlaySound(Sound_Manager.instance.asset.bowAttackNormal);
+            if (Sound_Manager.instance)
+                Sound_Manager.instance.PlaySound(Sound_Manager.instance.asset.bowAttackNormal);
         }
     }
 

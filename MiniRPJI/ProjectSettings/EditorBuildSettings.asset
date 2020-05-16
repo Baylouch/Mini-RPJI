@@ -6,27 +6,45 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/_Scenes/Menu/Start_Menu.unity
+    path: Assets/_.Scenes/Menu/Start_Menu.unity
     guid: a54307135205bf049958ffda0d3d5806
   - enabled: 1
-    path: Assets/_Scenes/Menu/Load_Menu.unity
+    path: Assets/_.Scenes/Menu/Load_Menu.unity
     guid: d1ad5a1c9fe887c4d8211e464da13510
   - enabled: 1
-    path: Assets/_Scenes/Menu/Options_Menu.unity
+    path: Assets/_.Scenes/Menu/Options_Menu.unity
     guid: 5f0f5560d89af574da5f5af186db4890
   - enabled: 1
-    path: Assets/_Scenes/Menu/Level_Transition.unity
+    path: Assets/_.Scenes/Menu/Level_Transition.unity
     guid: 3635e74dba53be340ab5de9e8c46a8c6
   - enabled: 1
-    path: Assets/_Scenes/Game/Player_Level.unity
+    path: Assets/_.Scenes/Game/_Player and Settings.unity
     guid: 05684a83271abd046b3b3f448f63413d
   - enabled: 1
-    path: Assets/_Scenes/Game/Level_1.unity
-    guid: 975efbfafdc3bcd44ab7ee6ac66ff7b5
+    path: Assets/_.Scenes/Game/Level_Town.unity
+    guid: 17a46ac6fb4b2b74da57db4844942f6c
   - enabled: 1
-    path: Assets/_Scenes/Game/Level_1_subzone_1_1.unity
-    guid: 3b6df6a3ec41aff4486f811b7bf35766
+    path: Assets/_.Scenes/Game/Level_Forest_Part_1.unity
+    guid: 30fc4dd7f9c7a0e469949eab75c5ffb7
   - enabled: 1
-    path: Assets/_Scenes/Game/Level_1_subzone_1_2.unity
-    guid: aef99aa8f15c5824394e44b29f39c958
+    path: Assets/_.Scenes/Game/Level_Forest_Part_2.unity
+    guid: ec33782949c767c4f941569071a47833
+  - enabled: 1
+    path: Assets/_.Scenes/Game/Level_Forest_Part_3.unity
+    guid: f06eb91f9410fcd43a5a1f35cbda7459
+  - enabled: 1
+    path: Assets/_.Scenes/Game/Level_Forest_Part_4.unity
+    guid: bbf562282cb85ce47b12a77c5067683a
+  - enabled: 1
+    path: Assets/_.Scenes/Game/Level_Forest_Part_5.unity
+    guid: 2edaaa052346e664b9339503e06be934
+  - enabled: 1
+    path: Assets/_.Scenes/Game/Complete_Beach.unity
+    guid: ea8ed7a90e7a88648ba16fb27d1d6082
+  - enabled: 1
+    path: Assets/_.Scenes/Game/SubLevel_Forest_1_1.unity
+    guid: 765b710cac89fc74c84c3a5c2831dc27
+  - enabled: 1
+    path: Assets/_.Scenes/Game/SubLevel_Forest_1_2.unity
+    guid: 244fc30d6f0eae64cbd90899eaf2bb64
   m_configObjects: {}

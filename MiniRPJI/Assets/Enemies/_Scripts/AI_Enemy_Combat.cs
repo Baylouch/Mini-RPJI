@@ -51,6 +51,8 @@ public class AI_Enemy_Combat : MonoBehaviour
     Coroutine attackCoroutine; // To know if an attack coroutine is already executing
     Coroutine rangedAttackCoroutine; // To know if a ranged attack coroutine is already executing
 
+    Player_Combat player_combat; // To use for determine if player is in combat (AI_Enemy_Movement.cs got this too)
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
@@ -204,6 +206,18 @@ public class AI_Enemy_Combat : MonoBehaviour
         {
             Sound_Manager.instance.PlaySound(attackSounds[Random.Range(0, attackSounds.Length)]);
         }
+
+        if (!player_combat)
+        {
+            player_combat = FindObjectOfType<Player_Combat>();
+        }
+
+        if (player_combat && player_combat.endingCombat == true)
+        {
+            player_combat.isInCombat = true;
+            player_combat.endingCombat = false;
+            player_combat.ResetEndingCombatTimer();
+        }
     }
 
     IEnumerator UseRangedAttack(float delayBeforeShoot)
@@ -212,6 +226,17 @@ public class AI_Enemy_Combat : MonoBehaviour
 
         PlayRangedAttackAnimation(); // Shoot method is called inside ranged attack animation
 
+        if (!player_combat)
+        {
+            player_combat = FindObjectOfType<Player_Combat>();
+        }
+
+        if (player_combat && player_combat.endingCombat == true)
+        {
+            player_combat.isInCombat = true;
+            player_combat.endingCombat = false;
+            player_combat.ResetEndingCombatTimer();
+        }
     }
 
     void PlayerNormalAttackAnimation()
@@ -266,7 +291,7 @@ public class AI_Enemy_Combat : MonoBehaviour
         if (proj != null)
             proj.projectileDamage = GetProjectileDamage();
 
-        if (projectileSound)
+        if (projectileSound && Sound_Manager.instance)
         {
             Sound_Manager.instance.PlaySound(projectileSound);
         }

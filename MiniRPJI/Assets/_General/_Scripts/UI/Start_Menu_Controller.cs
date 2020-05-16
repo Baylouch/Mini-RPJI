@@ -22,7 +22,7 @@ public class Start_Menu_Controller : MonoBehaviour
     {
         if (Scenes_Control.instance)
         {
-            Scenes_Control.instance.LoadGameLevels();
+            Scenes_Control.instance.LoadTownLevel();
         }
     }
 

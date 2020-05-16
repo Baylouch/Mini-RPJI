@@ -43,6 +43,11 @@ public class Player_Activator : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        StartCoroutine(CheckForEnnemiesActivation());
+    }
+
     // Security methods, not really used.
     private void OnDisable()
     {

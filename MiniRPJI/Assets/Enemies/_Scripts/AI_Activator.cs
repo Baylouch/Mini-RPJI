@@ -34,7 +34,8 @@ public class AI_Activator : MonoBehaviour
         }
 
         // Invoke 2 seconds after scene started method to check if player is out of desactivationDistance
-        Invoke("CheckForDesactivation", 2f);
+        //Invoke("CheckForDesactivation", 2f);
+        CheckForDesactivation();
     }
 
     private void Update()
@@ -48,6 +49,18 @@ public class AI_Activator : MonoBehaviour
 
     void CheckForDesactivation()
     {
+        if (playerTransform == null)
+        {
+            if (Player_Stats.instance)
+            {
+                playerTransform = Player_Stats.instance.transform;
+            }
+            else
+            {
+                return;
+            }
+        }
+
         float distance = Vector3.Distance(transform.position, playerTransform.position);
 
         if (distance > desactivationDistance)

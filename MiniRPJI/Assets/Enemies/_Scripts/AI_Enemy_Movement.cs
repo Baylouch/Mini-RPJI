@@ -34,7 +34,7 @@ public class AI_Enemy_Movement : MonoBehaviour
     AI_Moveset ai_moveset;
     AI_Stats ai_stats;
 
-    Player_Combat player_combat; // To use for determine if player is in combat
+    Player_Combat player_combat; // To use for determine if player is in combat (AI_Enemy_Combat.cs got this too)
 
     bool inChase = false;
 
@@ -198,6 +198,12 @@ public class AI_Enemy_Movement : MonoBehaviour
     // else if was "inChase", create path to back to "startPos".
     void CreatePath()
     {
+        if (target == null)
+        {
+            target = ai_combat.GetTarget();
+            return;
+        }
+
         float targetDistance = Vector2.Distance(myRb.position, target.position);
 
         if (targetDistance <= ai_combat.chasingDistance && targetDistance > stoppingDistance)

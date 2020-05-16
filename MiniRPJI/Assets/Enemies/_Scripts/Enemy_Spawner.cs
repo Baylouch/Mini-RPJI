@@ -83,9 +83,8 @@ public class Enemy_Spawner : MonoBehaviour
             {
                 Debug.LogWarning("Enemy has no AI_Stats ! Fix it.");
                 return;
-            }            
+            }
         }
-
         // Then finaly we can destroy gameObject because no more use for it.
         Destroy(gameObject);
     }

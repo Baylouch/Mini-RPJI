@@ -112,7 +112,8 @@ public class Player_Projectile : MonoBehaviour
                 }
 
                 // For now just play a normal sound
-                Sound_Manager.instance.PlaySound(Sound_Manager.instance.asset.bowAttackNormalImpact);
+                if (Sound_Manager.instance)
+                    Sound_Manager.instance.PlaySound(Sound_Manager.instance.asset.bowAttackNormalImpact);
 
                 // If we kill the enemy
                 if (enemyHealth.IsDead())

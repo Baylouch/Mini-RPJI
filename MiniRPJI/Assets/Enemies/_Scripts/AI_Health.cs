@@ -258,7 +258,7 @@ public class AI_Health : MonoBehaviour
 
         if (hurtSounds.Length > 0)
         {
-            if (playSound)
+            if (playSound && Sound_Manager.instance)
                 Sound_Manager.instance.PlaySound(hurtSounds[Random.Range(0, hurtSounds.Length)], transform);
         }
     }
