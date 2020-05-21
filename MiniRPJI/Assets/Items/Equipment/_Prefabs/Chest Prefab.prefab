@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3851986353995263576}
   - component: {fileID: 4904910447382609712}
   - component: {fileID: 1888875789848061813}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Item Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -110,7 +110,7 @@ GameObject:
   - component: {fileID: 2147488387028230923}
   - component: {fileID: 7322028124999933993}
   - component: {fileID: 4934801933075387337}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Item Name Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -189,7 +189,7 @@ GameObject:
   - component: {fileID: 3642105735001785333}
   - component: {fileID: 4412376833083085684}
   - component: {fileID: 9199006738798359944}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Item Name Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -265,7 +265,7 @@ GameObject:
   - component: {fileID: 6105507112566103762}
   - component: {fileID: 6105507112566103773}
   - component: {fileID: 6105507112566103772}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Chest Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 343607992543694741}
   - component: {fileID: 343607992543694739}
   - component: {fileID: 343607992543694738}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Particle Effect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4782,7 +4782,7 @@ GameObject:
   - component: {fileID: 343607994377496566}
   - component: {fileID: 343607994377496569}
   - component: {fileID: 343607994377496568}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Ability Unlocker FrostArrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -54,6 +54,9 @@ public class AI_Enemy_Movement : MonoBehaviour
                 return;
         }
 
+        if (myRb == null)
+            return;
+
         // If AI is disactivate by AI_Activator, we must reset some variables
         if (myRb.velocity != Vector2.zero)
             myRb.velocity = Vector2.zero;

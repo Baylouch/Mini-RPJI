@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3554161230045972181}
   - component: {fileID: 3554161230045972178}
   - component: {fileID: 3554161230045972179}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Electric Arrow OverPower Effect
   m_TagString: Untagged
   m_Icon: {fileID: 0}

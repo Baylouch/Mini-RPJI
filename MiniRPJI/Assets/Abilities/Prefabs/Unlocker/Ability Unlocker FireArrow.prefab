@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5120896095787605065}
   - component: {fileID: 5120896095787605062}
   - component: {fileID: 5120896095787605063}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Ability Unlocker FireArrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 5120896097619637290}
   - component: {fileID: 5120896097619637292}
   - component: {fileID: 5120896097619637293}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Particle Effect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -347,8 +347,8 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 0.63445234, g: 1, b: 0.4666667, a: 0.87058824}
-        key1: {r: 0.09411763, g: 0.8117647, b: 0.10987888, a: 0.6627451}
+        key0: {r: 0.9245283, g: 0.13519046, b: 0.13519046, a: 0.70980394}
+        key1: {r: 0.9339623, g: 0.36289287, b: 0, a: 0.7254902}
         key2: {r: 0, g: 0, b: 0, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
@@ -376,8 +376,8 @@ ParticleSystem:
         m_NumAlphaKeys: 2
       minGradient:
         serializedVersion: 2
-        key0: {r: 0.09411763, g: 0.8117647, b: 0.10987888, a: 0.87058824}
-        key1: {r: 0.63445234, g: 1, b: 0.4666667, a: 0.6627451}
+        key0: {r: 0.9339623, g: 0.36289287, b: 0, a: 0.70980394}
+        key1: {r: 0.9245283, g: 0.13519046, b: 0.13519046, a: 0.7254902}
         key2: {r: 0, g: 0, b: 0, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}

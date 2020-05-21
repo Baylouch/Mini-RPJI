@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6102823264894824718}
   - component: {fileID: 6610747444691487883}
   - component: {fileID: 5506408691255737029}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Item Name Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -91,7 +91,7 @@ GameObject:
   - component: {fileID: 4777377678443712547}
   - component: {fileID: 4777377678443712556}
   - component: {fileID: 4777377678443712557}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Health Potion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -203,7 +203,7 @@ GameObject:
   - component: {fileID: 5481220234457805997}
   - component: {fileID: 8381505059819808523}
   - component: {fileID: 1747510261483194347}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Item Name Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -279,7 +279,7 @@ GameObject:
   - component: {fileID: 8276328092695184552}
   - component: {fileID: 6124020072940897614}
   - component: {fileID: 8977851566635859152}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Item Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}

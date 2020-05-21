@@ -18,10 +18,10 @@ TagManager:
   - Enemy
   - EnemyAIMove
   - EnemyCantPass
-  - 
-  - 
-  - 
-  - 
+  - MiniMap
+  - AI
+  - Item
+  - Ability
   - 
   - 
   - 

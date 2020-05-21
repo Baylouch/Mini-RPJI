@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 60622221}
   - component: {fileID: 60622223}
   - component: {fileID: 60622222}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Dialogue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -89,7 +89,7 @@ GameObject:
   m_Component:
   - component: {fileID: 207939118}
   - component: {fileID: 207939119}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: QG_sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -170,7 +170,7 @@ GameObject:
   - component: {fileID: 226625111}
   - component: {fileID: 226625113}
   - component: {fileID: 226625112}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -250,7 +250,7 @@ GameObject:
   - component: {fileID: 302005502}
   - component: {fileID: 302005501}
   - component: {fileID: 302005500}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: AcceptButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -371,7 +371,7 @@ GameObject:
   - component: {fileID: 353116427}
   - component: {fileID: 353116426}
   - component: {fileID: 353116425}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -470,7 +470,7 @@ GameObject:
   - component: {fileID: 657773396}
   - component: {fileID: 657773395}
   - component: {fileID: 657773394}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: RefuseButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -588,7 +588,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 877906060}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Reward position
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -620,7 +620,7 @@ GameObject:
   - component: {fileID: 1299335094}
   - component: {fileID: 1299335096}
   - component: {fileID: 1299335095}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -699,7 +699,7 @@ GameObject:
   - component: {fileID: 1430402065}
   - component: {fileID: 1430402067}
   - component: {fileID: 1430402066}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -778,7 +778,7 @@ GameObject:
   - component: {fileID: 1672388798}
   - component: {fileID: 1672388800}
   - component: {fileID: 1672388799}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -857,7 +857,7 @@ GameObject:
   - component: {fileID: 1906081218}
   - component: {fileID: 1906081217}
   - component: {fileID: 1906081216}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: ValidButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -966,6 +966,86 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!1 &5217672401935281989
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 844967222522362380}
+  - component: {fileID: 5046192806990540317}
+  m_Layer: 12
+  m_Name: MiniMap Icon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &844967222522362380
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5217672401935281989}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7627387975689525734}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &5046192806990540317
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5217672401935281989}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 10
+  m_Sprite: {fileID: -8370939267008384512, guid: 609734f098305e24097085a4c5f362c3,
+    type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 2, y: 2}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &7627387975689525738
 GameObject:
   m_ObjectHideFlags: 0
@@ -979,7 +1059,7 @@ GameObject:
   - component: {fileID: 7627387975689525736}
   - component: {fileID: 1515324777}
   - component: {fileID: 9112410473397879518}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: QuestGiver_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1000,6 +1080,7 @@ Transform:
   - {fileID: 207939118}
   - {fileID: 877906060}
   - {fileID: 353116424}
+  - {fileID: 844967222522362380}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1055,13 +1136,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dbb7b4263a736b4f9e4595cd6c39f73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactionType: 0
   questsToGive:
   - {fileID: 11400000, guid: 99820147bcf0cf34e8b5bbd257180eeb, type: 2}
   - {fileID: 11400000, guid: 35800e4b949b1494488923218f5d7759, type: 2}
   - {fileID: 11400000, guid: e79e582293b4ef543aef8e70d71909cb, type: 2}
   - {fileID: 11400000, guid: a285c26770ed2e7459c0ace9d1e61cdf, type: 2}
   rewardPosition: {fileID: 877906060}
-  isIntercating: 0
   endDialogue: Rendez vous dans la zone sud, rencontrez mon ami. Il devrait avoir
     d'autres quetes a vous donner.
   dialoguePanel: {fileID: 1672388797}

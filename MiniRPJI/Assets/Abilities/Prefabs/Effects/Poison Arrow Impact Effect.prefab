@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7565172509708006242}
   - component: {fileID: 6047093573156045143}
   - component: {fileID: 6169164245528559555}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Poison Arrow Impact Effect
   m_TagString: Untagged
   m_Icon: {fileID: 0}

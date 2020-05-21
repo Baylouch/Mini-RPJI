@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 4144859057491969}
   - component: {fileID: 4144859057491974}
   - component: {fileID: 4144859057491975}
-  m_Layer: 0
-  m_Name: Thunder Effect Particle
+  m_Layer: 9
+  m_Name: Electric Malus Effect Particle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

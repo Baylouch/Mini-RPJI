@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4593501699259114710}
   - component: {fileID: 6028734988066577248}
   - component: {fileID: 9197215829452727426}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Frost Arrow Impact Effect
   m_TagString: Untagged
   m_Icon: {fileID: 0}

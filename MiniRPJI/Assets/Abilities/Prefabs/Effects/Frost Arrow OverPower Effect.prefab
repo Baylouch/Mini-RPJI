@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1697647707825988896}
   - component: {fileID: 5199406042395917047}
   - component: {fileID: 8059534102224401475}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Frost Arrow OverPower Effect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4857,7 +4857,7 @@ GameObject:
   - component: {fileID: 6715374239493129076}
   - component: {fileID: 3541226479253683394}
   - component: {fileID: 2102542410122986272}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Frost Arrow OverPower Effect Sparks
   m_TagString: Untagged
   m_Icon: {fileID: 0}

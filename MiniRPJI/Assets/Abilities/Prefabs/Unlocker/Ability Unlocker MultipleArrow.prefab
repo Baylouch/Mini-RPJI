@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 575121062678128861}
   - component: {fileID: 575121062678128859}
   - component: {fileID: 575121062678128858}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Particle Effect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4782,7 +4782,7 @@ GameObject:
   - component: {fileID: 575121063362543806}
   - component: {fileID: 575121063362543793}
   - component: {fileID: 575121063362543792}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Ability Unlocker MultipleArrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}

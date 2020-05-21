@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 18291900011146364}
   - component: {fileID: 4276044300587884105}
   - component: {fileID: 4404905264706838749}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Fire Arrow OverPower Effect
   m_TagString: Untagged
   m_Icon: {fileID: 0}

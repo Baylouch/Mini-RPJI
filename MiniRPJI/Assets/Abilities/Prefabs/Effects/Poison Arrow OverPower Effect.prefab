@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1964759599781138402}
   - component: {fileID: 2329286461868735959}
   - component: {fileID: 2748770345883878211}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Poison Arrow OverPower Effect
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7980145086185313638}
   - component: {fileID: 6172280513547872083}
   - component: {fileID: 6043419267839334855}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Fire Arrow Impact Effect
   m_TagString: Untagged
   m_Icon: {fileID: 0}

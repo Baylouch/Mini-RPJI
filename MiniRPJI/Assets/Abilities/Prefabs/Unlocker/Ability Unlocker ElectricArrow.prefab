@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2800176307505361687}
   - component: {fileID: 2800176307505361688}
   - component: {fileID: 2800176307505361689}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Ability Unlocker ElectricArrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 2800176309194840948}
   - component: {fileID: 2800176309194840946}
   - component: {fileID: 2800176309194840947}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Particle Effect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -347,8 +347,8 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 0.63445234, g: 1, b: 0.4666667, a: 0.87058824}
-        key1: {r: 0.09411763, g: 0.8117647, b: 0.10987888, a: 0.6627451}
+        key0: {r: 0.9543972, g: 1, b: 0.4666667, a: 0.87058824}
+        key1: {r: 0.7931409, g: 0.8117647, b: 0.09411763, a: 0.6627451}
         key2: {r: 0, g: 0, b: 0, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
@@ -376,8 +376,8 @@ ParticleSystem:
         m_NumAlphaKeys: 2
       minGradient:
         serializedVersion: 2
-        key0: {r: 0.09411763, g: 0.8117647, b: 0.10987888, a: 0.87058824}
-        key1: {r: 0.63445234, g: 1, b: 0.4666667, a: 0.6627451}
+        key0: {r: 0.7931409, g: 0.8117647, b: 0.09411763, a: 0.87058824}
+        key1: {r: 0.9543972, g: 1, b: 0.4666667, a: 0.6627451}
         key2: {r: 0, g: 0, b: 0, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}

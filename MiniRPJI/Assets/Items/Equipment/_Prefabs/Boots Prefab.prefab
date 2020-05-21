@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 153867840}
   - component: {fileID: 153867842}
   - component: {fileID: 153867841}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Item Name Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 535095003}
   - component: {fileID: 535095005}
   - component: {fileID: 535095004}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Item Name Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -166,7 +166,7 @@ GameObject:
   - component: {fileID: 2055391043}
   - component: {fileID: 2055391042}
   - component: {fileID: 2055391041}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Item Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -265,7 +265,7 @@ GameObject:
   - component: {fileID: 733386610476664072}
   - component: {fileID: 733386610476664071}
   - component: {fileID: 733386610476664070}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Boots Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}

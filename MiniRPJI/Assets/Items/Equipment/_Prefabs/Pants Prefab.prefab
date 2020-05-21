@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5552542398318905006}
   - component: {fileID: 2080542195485258294}
   - component: {fileID: 4545298221378664604}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Item Name Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 7265609020250697307}
   - component: {fileID: 5658034937568293435}
   - component: {fileID: 1554810199341414204}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Item Name Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -166,7 +166,7 @@ GameObject:
   - component: {fileID: 7290006494410735301}
   - component: {fileID: 7290006494410735306}
   - component: {fileID: 7290006494410735307}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Pants Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -279,7 +279,7 @@ GameObject:
   - component: {fileID: 7760021845710298133}
   - component: {fileID: 5635036660466251915}
   - component: {fileID: 5269598647844382921}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Item Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}

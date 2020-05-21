@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3432374395403765593}
   - component: {fileID: 4879374911633848559}
   - component: {fileID: 8051952587402839821}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Normal Arrow Impact Effect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
