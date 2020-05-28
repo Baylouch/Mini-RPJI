@@ -71,6 +71,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactionType: 0
-  isInteracting: 0
-  levelFrom: 5
-  levelToGo: 4
+  levelToGoBuildIndex: 0
+  levelRequired: 0
+  questRequiredID: -1
+  bowEquipedRequired: 0
+  informationsUI: {fileID: 2500479828093473609, guid: 130d401ea91aef14692ddbea8e311751,
+    type: 3}

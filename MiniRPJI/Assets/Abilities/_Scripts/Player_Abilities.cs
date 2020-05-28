@@ -1,9 +1,13 @@
 ﻿/* Player_Abilities.cs 
+ * 
  * Contient les différentes abilitées disponible pour le joueur.
+ * 
  * Permet de savoir quelles abilitées sont débloquées
+ * 
  * Permet de connaitre les abilitées courantes (primaire et secondaire)
  * 
  * */
+
 using UnityEngine;
 
 public enum AbilityType { Punch, Bow }; // Used in Ability_Config

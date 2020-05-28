@@ -37,7 +37,7 @@ public class Player_Data_Setter : MonoBehaviour
                 {
                     if (Player_Inventory.instance)
                     {
-                        if (Player_Quest_Control.instance)
+                        if (Quests_Control.instance)
                         {
                             // Now set data
                             if (Game_Data_Control.data_instance)

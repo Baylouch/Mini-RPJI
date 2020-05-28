@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fdb7f0b41b6b644fa6921ecacee3aa6, type: 3}
+  m_Name: 2_Quest
+  m_EditorClassIdentifier: 
+  questID: 2
+  questTitle: Leur yeux !
+  questDescription: "Apr\xE8s analyse de la s\xE8ve j'ai remarqu\xE9 une substance
+    \xE9trange inconnue qui agirait sur le syst\xE8me nerveux. \nIl faudrait que vous
+    me rameniez 5 oeils d'\xE9cureils pour que je continue mes analyses."
+  questSprite: {fileID: 21300000, guid: 4461c87bad5222349b14c22b26d43b95, type: 3}
+  totalQuestObjective: 5
+  questDone: 0
+  questReward: {fileID: 0}
+  xpAmount: 600

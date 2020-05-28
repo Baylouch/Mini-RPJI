@@ -7,6 +7,12 @@ public class ItemSeller : Interactable
     // when item is sell, player gain money, item is added to player inventory and delete from seller inventory.
     [SerializeField] GameObject backPanel;
 
+    // Database item is used to sell items relative to player level and randomless. Items change when scene is loaded 
+    // (not activated when player switch on an already loaded scene).
+    [SerializeField] ItemDataBase itemDataBase;
+    [SerializeField] int maxItemsToSell = 5;
+
+    // If you want this vendor to sell specific items, place them into this array.
     [SerializeField] BaseItem[] itemsToSell;
 
     [SerializeField] Button buyButton; // This one need to be configure for every slots
@@ -20,6 +26,8 @@ public class ItemSeller : Interactable
 
     UI_DisplayItemStats itemStatsDisplay; // Must have UI_DisplayItemStats on it
 
+    bool sellerSet = false; // To know if vendor is already set or not. (Because of issue at start -> no instance for Player_Stats)
+
     private void Start()
     {
         interactionType = PlayerInteractionType.ItemSeller;
@@ -30,20 +38,60 @@ public class ItemSeller : Interactable
 
         slots = GetComponentsInChildren<SellableSlot>();
 
-        for (int i = 0; i < itemsToSell.Length; i++)
+        SetSeller();
+    }
+
+    void SetSeller()
+    {
+        // If we want vendor sell specific items
+        if (itemsToSell.Length > 0)
         {
-            if (itemsToSell[i] != null)
+            for (int i = 0; i < itemsToSell.Length; i++)
             {
-                slots[i].item = itemsToSell[i];
+                if (itemsToSell[i] != null)
+                {
+                    slots[i].item = itemsToSell[i];
+                }
+            }
+        }
+        else // Set items relative to player level by database
+        {
+            int playerLevel = -1;
+
+            if (Player_Stats.instance)
+            {
+                playerLevel = Player_Stats.instance.GetCurrentLevel();
+            }
+            else
+            {
+                Debug.Log("No Player_Stats instance.");
+
+                UnActiveUI();
+
+                return;
+            }
+
+            // Get a random numbers of item
+            int itemNumbers = Random.Range(1, maxItemsToSell);
+
+            for (int i = 0; i < itemNumbers; i++)
+            {
+                slots[i].item = itemDataBase.GetRandomItemByLevel(playerLevel);
             }
         }
 
+        sellerSet = true;
         UnActiveUI();
     }
 
     public override void Interact()
     {
         base.Interact();
+
+        if (!sellerSet)
+        {
+            SetSeller();
+        }
 
         itemStatsDisplay = FindObjectOfType<UI_DisplayItemStats>();
 

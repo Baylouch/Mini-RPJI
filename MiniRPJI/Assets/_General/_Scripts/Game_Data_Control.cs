@@ -108,32 +108,32 @@ public class Game_Data_Control : MonoBehaviour
 
         // TODO upgrade if there are more than one Act, to get all quests by act.
         data.playerQuest = new PlayerQuestData();
-        data.playerQuest.questsID = new int[Player_Quest_Control.questSlotsNumb];
-        data.playerQuest.questsCurrentObjective = new int[Player_Quest_Control.questSlotsNumb];
+        data.playerQuest.questsID = new int[200];
+        data.playerQuest.questsCurrentObjective = new int[200];
 
         // First set data quests ID to -1 to know what index of quest is set (index set != -1)
-        for (int i = 0; i < Player_Quest_Control.questSlotsNumb; i++)
+        for (int i = 0; i < 200; i++)
         {
             data.playerQuest.questsID[i] = -1;
         }
 
         // Now save which quest player has and currentQuestObjective linked.
-        for (int i = 0; i < Player_Quest_Control.questSlotsNumb; i++)
+        for (int i = 0; i < 200; i++)
         {
-            if (Player_Quest_Control.instance.GetPlayerQuestByIndex(i))
+            if (Quests_Control.instance.GetPlayerQuestByIndex(i))
             {
-                data.playerQuest.questsID[i] = Player_Quest_Control.instance.GetPlayerQuestByIndex(i).questConfig.questID;
-                data.playerQuest.questsCurrentObjective[i] = Player_Quest_Control.instance.GetPlayerQuestByIndex(i).currentQuestObjective;
+                data.playerQuest.questsID[i] = Quests_Control.instance.GetPlayerQuestByIndex(i).questConfig.questID;
+                data.playerQuest.questsCurrentObjective[i] = Quests_Control.instance.GetPlayerQuestByIndex(i).currentQuestObjective;
             }
         }
 
         // Then save the quests done by player : loop trough all quests to set it.
-        int totalGameQuests = Player_Quest_Control.instance.questDataBase.quests.Length;
+        int totalGameQuests = Quests_Control.instance.questDataBase.quests.Length;
         data.playerQuest.questsDone = new bool[totalGameQuests];
 
         for (int i = 0; i < totalGameQuests; i++)
         {
-            if (Player_Quest_Control.instance.questDataBase.quests[i].questDone)
+            if (Quests_Control.instance.questDataBase.quests[i].questDone)
             {
                 data.playerQuest.questsDone[i] = true;
             }
@@ -268,32 +268,32 @@ public class Game_Data_Control : MonoBehaviour
             // ************************************************************************************************
 
             // First of all remove current quests and reset all quests achievement.
-            for (int i = 0; i < Player_Quest_Control.questSlotsNumb; i++)
+            for (int i = 0; i < 200; i++)
             {
-                Player_Quest_Control.instance.RemoveQuestByIndex(i);                
+                Quests_Control.instance.RemoveQuestByIndex(i);                
             }
 
-            Player_Quest_Control.instance.ResetAllQuestsAchievement();
+            Quests_Control.instance.ResetAllQuestsAchievement();
 
             // Get the total quests in the game to set the ones player already done.
-            int totalGameQuests = Player_Quest_Control.instance.questDataBase.quests.Length;
+            int totalGameQuests = Quests_Control.instance.questDataBase.quests.Length;
 
             for (int i = 0; i < totalGameQuests; i++)
             {
                 if (data.playerQuest.questsDone[i])
                 {
-                    int currentQuestID = Player_Quest_Control.instance.questDataBase.quests[i].questID;
-                    Player_Quest_Control.instance.SetQuestAchievement(currentQuestID, true);
+                    int currentQuestID = Quests_Control.instance.questDataBase.quests[i].questID;
+                    Quests_Control.instance.SetQuestAchievement(currentQuestID, true);
                 }
             }
 
             // Then set player's current quests.
-            for (int i = 0; i < Player_Quest_Control.questSlotsNumb; i++)
+            for (int i = 0; i < 200; i++)
             {
                 if (data.playerQuest.questsID[i] != -1)
                 {
-                    Player_Quest_Control.instance.GetNewQuest(data.playerQuest.questsID[i]);
-                    Player_Quest_Control.instance.GetPlayerQuestByIndex(i).currentQuestObjective = data.playerQuest.questsCurrentObjective[i];
+                    Quests_Control.instance.GetNewQuest(data.playerQuest.questsID[i]);
+                    Quests_Control.instance.GetPlayerQuestByIndex(i).currentQuestObjective = data.playerQuest.questsCurrentObjective[i];
                 }
             }
 

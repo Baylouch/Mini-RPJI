@@ -1,7 +1,9 @@
 ﻿/* Player_Combat.cs
+ * 
 * Pièce centrale pour les combats du joueur.
 * 
 * Contient les Inputs des attaques primaire et secondaire.
+* 
 * Gère les animations d'attaques, les dégats des attaques, détérmine si le joueur est en mode combat.
 * 
 * 
@@ -107,7 +109,7 @@ public class Player_Combat : MonoBehaviour
                         }
                         else
                         {
-                            Debug.Log("No bow equiped. Impossible to use ability. (Ability ID : " + playerAbilities.GetSecondaryAbility().abilityID + ")");
+                            // Debug.Log("No bow equiped. Impossible to use ability. (Ability ID : " + playerAbilities.GetSecondaryAbility().abilityID + ")");
                         }
                     }
                     else // else its a punch ability type

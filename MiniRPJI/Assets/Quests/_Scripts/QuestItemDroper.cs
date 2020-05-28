@@ -25,10 +25,10 @@ public class QuestItemDroper : MonoBehaviour
         for (int i = 0; i < items.Length; i++)
         {
             // Check if there is a quest instance for the player.
-            if (Player_Quest_Control.instance)
+            if (Quests_Control.instance)
             {
                 // Now check if player got the linked quest
-                if (Player_Quest_Control.instance.GetPlayerQuestByID(items[i].questID))
+                if (Quests_Control.instance.GetPlayerQuestByID(items[i].questID))
                 {
                     // Then we can try to drop this quest item
                     bool questItemWillDrop = dropRate > Random.Range(0, 101);

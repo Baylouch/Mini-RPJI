@@ -1,119 +1,141 @@
-﻿using UnityEngine;
+﻿/* UI_Player_Quest.cs
+ * 
+ * 
+ * 
+ * 
+ * 
+ * */
+
+
+using UnityEngine;
 using UnityEngine.UI;
 
 public class UI_Player_Quest : MonoBehaviour
 {
-    [SerializeField] Button[] questsButtons; // To put buttons at the same index as quests config array
+    [SerializeField] GameObject questButtonPrefab; // The button who'll spawn each time player get a new quest
 
+    [SerializeField] RectTransform buttonsContainer; // The parent of each quest buttons.
+
+    [SerializeField] GameObject questDisplayer; // The panel to display quest description, current objective...
+
+    // Displaying stuff
     [SerializeField] Text questTitle;
     [SerializeField] Text questDescription;
-
     [SerializeField] Text objective;
     [SerializeField] Text questObjective;
     [SerializeField] Text currentQuestObjective;
-
-    [SerializeField] Sprite noQuestSprite;
-    [SerializeField] Color noQuestColor;
-
-    private void Start()
-    {
-        if (objective.gameObject.activeSelf)
-            objective.gameObject.SetActive(false);
-    }
+    [SerializeField] Image questImage;
+    [SerializeField] Text noQuestText;
 
     private void OnDisable()
     {
-        ResetQuestsDisplay();
+        if (questDisplayer.activeSelf)
+            questDisplayer.SetActive(false);
     }
 
     private void OnEnable()
     {
-        for (int i = 0; i < questsButtons.Length; i++)
+        // We check if there is a quest at first index
+        if (Quests_Control.instance && Quests_Control.instance.GetPlayerQuestByIndex(0))
         {
-            if (Player_Quest_Control.instance)
-            {
-                if (Player_Quest_Control.instance.GetPlayerQuestByIndex(i) != null) // If we have a quest on this button index we can set sprite only
-                {
-                    questsButtons[i].GetComponent<Image>().sprite = Player_Quest_Control.instance.GetPlayerQuestByIndex(i).questConfig.questSprite;
-                    questsButtons[i].GetComponent<Image>().color = Color.white;
-                }
-            }
+            if (noQuestText.gameObject.activeSelf)
+                noQuestText.gameObject.SetActive(false);
+        }
+        else
+        {
+            if (!noQuestText.gameObject.activeSelf)
+                noQuestText.gameObject.SetActive(true);
         }
     }
 
-    void ResetQuestsDisplay()
+    // Start is called before the first frame update
+    void Start()
     {
-        questTitle.text = "";
-        questDescription.text = "";
-
-        objective.text = "";
-        questObjective.text = "";
-        currentQuestObjective.text = "";
-
-        for (int i = 0; i < questsButtons.Length; i++)
-        {
-            questsButtons[i].GetComponent<Image>().sprite = noQuestSprite;
-            questsButtons[i].GetComponent<Image>().color = noQuestColor;
-        }
-
-        if (objective.gameObject.activeSelf)
-            objective.gameObject.SetActive(false);
+        if (questDisplayer.activeSelf)
+            questDisplayer.SetActive(false);
     }
 
-    // Method used on quests button 
-    public void DisplayQuest(int questIndex)
+    public void DisplayQuest(QuestConfig questToDisplay)
     {
-        if (Player_Quest_Control.questSlotsNumb - 1 < questIndex)
-            return;
+        questTitle.text = questToDisplay.questTitle;
+        questDescription.text = questToDisplay.questDescription;
 
-        if (Player_Quest_Control.instance.GetPlayerQuestByIndex(questIndex) != null)
+        if (questToDisplay.questSprite != null)
         {
-            questTitle.text = Player_Quest_Control.instance.GetPlayerQuestByIndex(questIndex).questConfig.questTitle;
-            questDescription.text = Player_Quest_Control.instance.GetPlayerQuestByIndex(questIndex).questConfig.questDescription;
+            questImage.sprite = questToDisplay.questSprite;
+            questImage.gameObject.SetActive(true);
+        }
+        else
+        {
+            questImage.gameObject.SetActive(false);
+        }
 
-            // If sprite isnt already set, set it.
-            if (questsButtons[questIndex].GetComponent<Image>().sprite != Player_Quest_Control.instance.GetPlayerQuestByIndex(questIndex).questConfig.questSprite)
+        if (!Quests_Control.instance.GetPlayerQuestByID(questToDisplay.questID).IsQuestAccomplished())
+        {
+            objective.text = "Objectif ";
+            questObjective.text = questToDisplay.totalQuestObjective.ToString();
+            currentQuestObjective.text = Quests_Control.instance.GetPlayerQuestByID(questToDisplay.questID).currentQuestObjective.ToString();
+            // Because we disable them when objective is accomplished, we need to enable them when it's not.
+            for (int i = 0; i < objective.transform.childCount; i++)
             {
-                questsButtons[questIndex].GetComponent<Image>().sprite = Player_Quest_Control.instance.GetPlayerQuestByIndex(questIndex).questConfig.questSprite;
-                questsButtons[questIndex].GetComponent<Image>().color = Color.white;
-            }
-
-            if (!Player_Quest_Control.instance.GetPlayerQuestByIndex(questIndex).IsQuestAccomplished())
-            {
-                objective.text = "Objectif ";
-                questObjective.text = Player_Quest_Control.instance.GetPlayerQuestByIndex(questIndex).questConfig.totalQuestObjective.ToString();
-                currentQuestObjective.text = Player_Quest_Control.instance.GetPlayerQuestByIndex(questIndex).currentQuestObjective.ToString();
-                // Because we disable them when objective is accomplished, we need to enable them when it's not.
-                for (int i = 0; i < objective.transform.childCount; i++)
-                {
-                    objective.transform.GetChild(i).gameObject.SetActive(true);
-                }
-            }
-            else
-            {
-                objective.text = "Accompli ";
-                questObjective.text = "";
-                currentQuestObjective.text = "";
-                // Because objective is parent of questObjective and currentQuestObjective text we can disable them from it
-                for (int i = 0; i < objective.transform.childCount; i++)
-                {
-                    objective.transform.GetChild(i).gameObject.SetActive(false);
-                }
-            }
-
-            if (!objective.gameObject.activeSelf)
-            {
-                objective.gameObject.SetActive(true);
+                objective.transform.GetChild(i).gameObject.SetActive(true);
             }
         }
-        else // There is no quest in the slot
+        else
         {
-            ResetQuestsDisplay();
+            objective.text = "Accompli ";
+            questObjective.text = "";
+            currentQuestObjective.text = "";
+            // Because objective is parent of questObjective and currentQuestObjective text we can disable them from it
+            for (int i = 0; i < objective.transform.childCount; i++)
+            {
+                objective.transform.GetChild(i).gameObject.SetActive(false);
+            }
+        }
+
+        if (!questDisplayer.activeSelf)
+            questDisplayer.SetActive(true);
+    }
+
+    public void AddQuestButton(QuestConfig linkedQuest)
+    {
+        GameObject newButton = Instantiate(questButtonPrefab, buttonsContainer);
+
+        newButton.GetComponent<Quest_Button>().questLinkedID = linkedQuest.questID;
+        newButton.GetComponentInChildren<Text>().text = linkedQuest.questTitle;
+
+        newButton.GetComponent<Button>().onClick.AddListener(() => DisplayQuest(linkedQuest));
+    }
+
+    public void RemoveQuestButton(QuestConfig linkedQuest)
+    {
+        for (int i = 0; i < buttonsContainer.childCount; i++)
+        {
+            Quest_Button cur_QuestButton = buttonsContainer.GetChild(i).GetComponent<Quest_Button>();
+
+            if (cur_QuestButton && cur_QuestButton.questLinkedID == linkedQuest.questID)
+            {
+                Destroy(cur_QuestButton.gameObject);
+                return;
+            }
+        }
+
+        // We check if there is a quest at first index
+        if (Quests_Control.instance.GetPlayerQuestByIndex(0))
+        {
+            if (noQuestText.gameObject.activeSelf)
+                noQuestText.gameObject.SetActive(false);
+        }
+        else
+        {
+            if (!noQuestText.gameObject.activeSelf)
+                noQuestText.gameObject.SetActive(true);
         }
     }
 
-    public void SetupButton(int questIndex)
+    public void CloseQuestDisplayer()
     {
-        questsButtons[questIndex].onClick.AddListener(() => DisplayQuest(questIndex));
+        if (questDisplayer.activeSelf)
+            questDisplayer.SetActive(false);
     }
 }

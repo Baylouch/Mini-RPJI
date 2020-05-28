@@ -63,10 +63,10 @@ public class QuestGiver : Interactable
             }
 
             // Si le joueur a déjà cette quête
-            if (Player_Quest_Control.instance.GetPlayerQuestByID(questsToGive[i].questID))
+            if (Quests_Control.instance.GetPlayerQuestByID(questsToGive[i].questID))
             {
                 // On verifie si il a terminé l'objectif
-                if (Player_Quest_Control.instance.GetPlayerQuestByID(questsToGive[i].questID).IsQuestAccomplished())
+                if (Quests_Control.instance.GetPlayerQuestByID(questsToGive[i].questID).IsQuestAccomplished())
                 {
                     // Si oui on valide la quête
                     SetPreRewardUI(i);
@@ -83,17 +83,9 @@ public class QuestGiver : Interactable
             }
             else // Sinon le joueur n'a pas cette quête
             {
-                // On verifie qu'il n'a pas de quête se trouvant au meme index log
-                if (Player_Quest_Control.instance.GetPlayerQuestByIndex(questsToGive[i].questIndexLog) == null)
-                {
-                    SetNewQuestUI(i);
+                SetNewQuestUI(i);
 
-                    return;
-                }
-                else
-                {
-                    // Sinon on dit au joueur qu'il doit effectuer la quête se trouvant à l'index log avant (ce cas ne devrait pas arriver)
-                }
+                return;
             }
         }
 
@@ -156,7 +148,7 @@ public class QuestGiver : Interactable
         if (!dialogue.gameObject.activeSelf)
             dialogue.gameObject.SetActive(true);
 
-        validationButton.onClick.AddListener(() => Player_Quest_Control.instance.ValideQuest(questsToGive[questToGiveIndex].questIndexLog, rewardPosition.position));
+        validationButton.onClick.AddListener(() => Quests_Control.instance.ValideQuest(questsToGive[questToGiveIndex].questID, rewardPosition.position));
         validationButton.onClick.AddListener(UnInteract);
         if (!validationButton.gameObject.activeSelf)
             validationButton.gameObject.SetActive(true);
@@ -192,8 +184,8 @@ public class QuestGiver : Interactable
     }
 
     public void AcceptQuest(int questID)
-    {        
-        Player_Quest_Control.instance.GetNewQuest(questID);
+    {
+        Quests_Control.instance.GetNewQuest(questID);
         UnInteract();
     }
 }

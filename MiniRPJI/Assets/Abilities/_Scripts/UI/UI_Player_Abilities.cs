@@ -14,7 +14,7 @@ using UnityEngine.EventSystems;
 
 public class UI_Player_Abilities : MonoBehaviour
 {
-    // We make this script singleton to have an easy acces from Game_Data_Control
+    // We make this script singleton to have an easy acces from Game_Data_Control and UI_Player_Potions (to unshow ability panel)
     public static UI_Player_Abilities instance;
 
     private void Awake()
@@ -153,9 +153,14 @@ public class UI_Player_Abilities : MonoBehaviour
     }
 
     // Method to display abilities available when player clic on the Primary or Secondary ability's UI.
-    // indexAttack represent (0) Primary ability, (1) Secondary ability.
+    // indexAttack means : (0) Primary ability, (1) Secondary ability.
     public void DisplayAbilitiesAvailable(int indexAttack)
     {
+        if (UI_Player_Potions.instance)
+        {
+            UI_Player_Potions.instance.ResetPotionsPanel();
+        }
+
         if (!displayingAbilities)
         {
             displayingAbilities = true;
@@ -227,6 +232,7 @@ public class UI_Player_Abilities : MonoBehaviour
 
                     // Set the ability's image
                     currentAbilityButton.abilityImage.sprite = abilitiesAvailable[i].abilitySprite;
+
                     // Set the ability's ID
                     currentAbilityButton.abilityID = abilitiesAvailable[i].abilityID;
                 }
@@ -258,7 +264,7 @@ public class UI_Player_Abilities : MonoBehaviour
         else
         {
             // There is an error
-            Debug.Log("ChangeAbility from UI_Player_Abilities isnt right. Please fix.");
+            Debug.Log("ChangeAbility indexAttack from UI_Player_Abilities isnt right. Please fix.");
         }
 
         ResetAbilitiesPanel();

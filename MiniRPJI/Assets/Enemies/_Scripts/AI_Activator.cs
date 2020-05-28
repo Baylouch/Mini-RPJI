@@ -77,6 +77,9 @@ public class AI_Activator : MonoBehaviour
 
         for (int i = 0; i < behaviours.Length; i++)
         {
+            if (behaviours[i] == null)
+                return;
+
             // Debug.Log(behaviours[i].GetType());
             // Check type you don't want to disable then continue to the next iteration
             if (behaviours[i].GetType() == this.GetType())
@@ -103,7 +106,7 @@ public class AI_Activator : MonoBehaviour
 
         for (int i = 0; i < behaviours.Length; i++)
         {
-            if (behaviours[i].enabled == false)
+            if (behaviours[i] && behaviours[i].enabled == false)
             {
                 behaviours[i].enabled = true;
             }

@@ -104,7 +104,7 @@ public class UI_Player_Bank : MonoBehaviour
         {
             QuestItem questItem = (QuestItem)item;
             // Check if we got the quest linked to the item.
-            if (Player_Quest_Control.instance.GetPlayerQuestByID(questItem.questID))
+            if (Quests_Control.instance.GetPlayerQuestByID(questItem.questID))
             {
                 questItem.DecrementLinkedQuest();
             }

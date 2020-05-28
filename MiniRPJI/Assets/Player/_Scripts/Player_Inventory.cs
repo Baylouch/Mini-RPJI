@@ -33,11 +33,19 @@ public class Player_Inventory : MonoBehaviour
     // you can put negative amount to decrease money, or a positive amount to increase it
     public void SetPlayerGold(int amount)
     {
-        playerGold += amount;
+        if (playerGold + amount > 1000000000) // Security to not break the game because of int limit.
+        {
+            playerGold = 1000000000;
+        }
+        else
+        {
+            playerGold += amount;
+        }
     }
 
     public const int armorySlotsNumb = 6; // Number of armory slots
     public const int inventorySlotsNumb = 18; // Number of inventory slots
+
     [Header("Player's armory")]
     [SerializeField] EquipmentItem[] armoryItems;
     [Header("Player's inventory")]
@@ -60,24 +68,29 @@ public class Player_Inventory : MonoBehaviour
     {
         // Give to the player 5 health potions
         // TODO see if next line get wrong when loading data
-        for (int i = 0; i < 5; i++)
-        {
-            GetNewItem(itemDataBase.GetItemById(350));
-        }
+        //for (int i = 0; i < 5; i++)
+        //{
+        //    GetNewItem(itemDataBase.GetItemById(350));
+        //}
+        //for (int i = 0; i < 5; i++)
+        //{
+        //    GetNewItem(itemDataBase.GetItemById(351));
+        //}
+        //for (int i = 0; i < 5; i++)
+        //{
+        //    GetNewItem(itemDataBase.GetItemById(352));
+        //}
+        //for (int i = 0; i < 5; i++)
+        //{
+        //    GetNewItem(itemDataBase.GetItemById(353));
+        //}
+        //for (int i = 0; i < 5; i++)
+        //{
+        //    GetNewItem(itemDataBase.GetItemById(354));
+        //}
 
         UI_Player.instance.playerInventoryUI.RefreshInventory();
         UI_Player.instance.playerInventoryUI.RefreshArmory();
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            if (UI_Player.instance.playerInventoryUI)
-            {
-                UI_Player.instance.playerInventoryUI.FastPotionUse();
-            }
-        }
     }
 
     // False = slots available, true = full
@@ -105,7 +118,7 @@ public class Player_Inventory : MonoBehaviour
         {
             QuestItem questItem = (QuestItem)item;
             // Check if we got the quest linked to the item.
-            if (Player_Quest_Control.instance.GetPlayerQuestByID(questItem.questID))
+            if (Quests_Control.instance.GetPlayerQuestByID(questItem.questID))
             {
                 questItem.IncrementLinkedQuest();
             }
@@ -138,7 +151,7 @@ public class Player_Inventory : MonoBehaviour
                 if (item.stackableItem)
                     UI_Player.instance.playerInventoryUI.GetInventorySlotByIndex(i).itemNumb++;
                 UI_Player.instance.playerInventoryUI.RefreshInventory();
-                return; // Get out of there
+                return; // Get out of there -> useless. But no matter.
             }
         }
     }

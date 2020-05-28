@@ -23,9 +23,9 @@ public class UI_Player_Inventory : MonoBehaviour
     int currentInventorySlotIndex = -1; // Important to set it -1 because inventory index starts at 0
     int currentArmorySlotIndex = -1;
 
-    [SerializeField] ArmorySlot[] armorySlots; // Contains all armory's slots
+    [SerializeField] ArmorySlot[] armorySlots; // Contains all armory's slots manually set
 
-    [SerializeField] InventorySlot[] inventorySlots; // Contains all inventory's slots
+    [SerializeField] InventorySlot[] inventorySlots; // Contains all inventory's slots manually set
 
     // Start is called before the first frame update
     void Start()
@@ -277,7 +277,7 @@ public class UI_Player_Inventory : MonoBehaviour
             if (Player_Inventory.instance.GetInventoryItem(itemIndex) as QuestItem)
             {
                 QuestItem questItem = (QuestItem)Player_Inventory.instance.GetInventoryItem(itemIndex);
-                if (Player_Quest_Control.instance.GetPlayerQuestByID(questItem.questID))
+                if (Quests_Control.instance.GetPlayerQuestByID(questItem.questID))
                 {
                     questItem.DecrementLinkedQuest();
                 }
@@ -294,6 +294,22 @@ public class UI_Player_Inventory : MonoBehaviour
                 if (inventorySlots[currentInventorySlotIndex].itemNumb < 1)
                 {
                     Player_Inventory.instance.SetInventoryIndex(itemIndex, -1);
+
+                    // Check if this potion was on a fast potion use input, if yes remove it.
+                    if (UI_Player_Potions.instance)
+                    {
+                        if (UI_Player_Potions.instance.firstPotion && 
+                            UI_Player_Potions.instance.firstPotion.itemID == inventorySlots[currentInventorySlotIndex].item.itemID)
+                        {
+                            UI_Player_Potions.instance.firstPotion = null;
+                        }
+
+                        if (UI_Player_Potions.instance.secondPotion && 
+                            UI_Player_Potions.instance.secondPotion.itemID == inventorySlots[currentInventorySlotIndex].item.itemID)
+                        {
+                            UI_Player_Potions.instance.secondPotion = null;
+                        }
+                    }
                 }
             }
             else
@@ -435,24 +451,44 @@ public class UI_Player_Inventory : MonoBehaviour
     // Method to use a usable item
     public void UseItem(UsableItem item)
     {
+        if (item == null) // I saw only one time an error when player used its last potion leading me here with a null reference. I suppose this will fix it.
+            return;
+
         if (!item.CanUse())
             return;
 
         item.Use();
 
-        if (inventorySlots[currentInventorySlotIndex].item.stackableItem)
+        for (int i = 0; i < inventorySlots.Length; i++) // Loop over inventory slots to find the item used to decrease the right one.
         {
-            if (inventorySlots[currentInventorySlotIndex].itemNumb > 1)
+            if (inventorySlots[i].item.itemID == item.itemID) // We found it.
             {
-                inventorySlots[currentInventorySlotIndex].itemNumb--;
-                RefreshInventory();
+                // If player already using inventory, we need to put currentInventorySlotIndex in a temp variable because UseItem use currentInventorySlotIndex to use potion.
+                int tempCurrentInventorySlotIndex = currentInventorySlotIndex;
 
+                currentInventorySlotIndex = i; // put the right inventorySlots index into currentInventorySlotIndex to have the right action
+
+                if (inventorySlots[currentInventorySlotIndex].item.stackableItem)
+                {
+                    if (inventorySlots[currentInventorySlotIndex].itemNumb > 1)
+                    {
+                        inventorySlots[currentInventorySlotIndex].itemNumb--;
+                        RefreshInventory();
+                    }
+                    else
+                    {
+                        RemoveItem(currentInventorySlotIndex, false);
+                    }
+                }
+                else
+                {
+                    RemoveItem(currentInventorySlotIndex, false);
+                }
+
+                currentInventorySlotIndex = tempCurrentInventorySlotIndex; // Reset currentInventorySlotIndex as it was
                 return;
             }
-        }
-
-        RemoveItem(currentInventorySlotIndex, false);
-        
+        }   
     }
 
     // Method used to store item in the bank
@@ -530,30 +566,6 @@ public class UI_Player_Inventory : MonoBehaviour
         if (inventorySlots[indexSlot] != null)
             return inventorySlots[indexSlot];
         return null;
-    }
-
-    // TODO Upgrade to use more than the potion ID 350
-    public void FastPotionUse()
-    {
-        for (int i = 0; i < inventorySlots.Length; i++) // Loop over inventory slots
-        {
-            if (inventorySlots[i].item) // if there is an item in this slot
-            {
-                if (inventorySlots[i].item.itemID == 350) // Check if its a potion
-                {
-                    UsableItem potion = inventorySlots[i].item as UsableItem; // Convert it into a UsableItem
-
-                    // If player already using inventory, we need to put currentInventorySlotIndex in a temp variable because UseItem use currentInventorySlotIndex to use potion.
-                    int tempCurrentInventorySlotIndex = currentInventorySlotIndex;
-                    currentInventorySlotIndex = i; // put the right inventorySlots index into currentInventorySlotIndex to have the right action
-
-                    UseItem(potion); // use potion (will remove one from inventory too)
-
-                    currentInventorySlotIndex = tempCurrentInventorySlotIndex; // Reset currentInventorySlotIndex as it was
-                    return; // Dont continue because potion is used.
-                }
-            }
-        }
     }
 
     // Method to reset all interactions parameters. Used in UI_Player_Bank who got a mirror method used here.

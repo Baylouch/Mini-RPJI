@@ -77,7 +77,7 @@ public class Load_Menu_Controller : MonoBehaviour
         if (Scenes_Control.instance)
         {
             loadSlotButton.onClick.AddListener(() => InstantiatePlayerDataSetter(saveIndex));
-            loadSlotButton.onClick.AddListener(() => Scenes_Control.instance.LoadGameLevels());
+            loadSlotButton.onClick.AddListener(() => Scenes_Control.instance.LoadTownLevel());
         }
         else
         {

@@ -155,7 +155,7 @@ public class UI_Player_Menu : MonoBehaviour
         if (Scenes_Control.instance)
         {
             validationButton.onClick.AddListener(() => Destroy(Player_Stats.instance.gameObject)); // We must destroy player gameobject to avoid issue with data setter
-            validationButton.onClick.AddListener(() => Scenes_Control.instance.LoadGameLevels());
+            validationButton.onClick.AddListener(() => Scenes_Control.instance.LoadTownLevel());
             validationButton.onClick.AddListener(() => InstantiatePlayerDataSetter(saveIndex));
         }
         else

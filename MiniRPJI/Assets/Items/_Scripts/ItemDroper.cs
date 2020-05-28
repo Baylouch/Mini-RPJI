@@ -35,7 +35,13 @@ public class ItemDroper : MonoBehaviour
     [Header("Level difference between npc and objects")]
     [SerializeField] int levelRange = 1; // The range between our level and item's level who could drop (AI_Stats.level - levelRange && AI_Stats.level + levelRange)
 
+    [SerializeField] BaseItem[] potionsToDrop;
+    [SerializeField] float potionDropRate;
+    [SerializeField] int potionTryDropNumb;
+    [SerializeField] int maxPotionDropable = 2;
+
     int itemsDropped = 0;
+    int potionsDropped = 0;
 
     private void OnDrawGizmos()
     {
@@ -64,6 +70,56 @@ public class ItemDroper : MonoBehaviour
         {
             parentGameObject = GameObject.Find("Items").transform;
         }
+
+        // Potions
+        for (int i = 0; i < potionTryDropNumb; i++)
+        {
+            bool willPotionDrop = potionDropRate > Random.Range(0, 101);
+
+            if (willPotionDrop)
+            {
+                // Determine drop position
+                Vector3 dropPose = new Vector3(Random.Range(dropZone[0].position.x, dropZone[1].position.x),
+                                               Random.Range(dropZone[0].position.y, dropZone[1].position.y), 0f);
+
+                int potionIndex = -1; // To determine what potion will spawn
+                if (potionsToDrop.Length > 1)
+                {
+                    potionIndex = Random.Range(0, potionsToDrop.Length);
+                }
+                else
+                {
+                    potionIndex = 0;
+                }
+
+                BaseItem currentPotion = potionsToDrop[potionIndex];
+
+                if (currentPotion)
+                {
+                    // Set the item
+                    GameObject droppedGO = Instantiate(currentPotion.itemPrefab, dropPose, Quaternion.identity);
+
+                    droppedGO.GetComponent<SpriteRenderer>().sprite = currentPotion.prefabImage;
+                    droppedGO.GetComponent<Item>().itemConfig = currentPotion;
+
+                    // Parent it to clean up hierarchy
+                    if (parentGameObject)
+                        droppedGO.transform.parent = parentGameObject;
+
+                    // Increment potionsDropped and check if we dropped the max amount of items.
+                    potionsDropped++;
+                    if (potionsDropped >= maxPotionDropable)
+                    {
+                        break;
+                    }
+                }
+                else
+                {
+                    Debug.Log("No potion found for index " + potionIndex);
+                }
+            }
+        }
+        
 
         // TODO Make legendary ones.
 
