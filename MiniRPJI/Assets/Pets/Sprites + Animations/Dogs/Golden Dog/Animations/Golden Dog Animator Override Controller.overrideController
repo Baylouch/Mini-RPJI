@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Golden Dog Animator Override Controller
+  m_Controller: {fileID: 9100000, guid: 8d0063ce7336ea049b02547d7ae85838, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 8344c69b3a48a054d8ea4715c23aba74, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: bc2a446e31267d540a848792660ca51c, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: fbec1ee232d116b4eb14298fb7b16ace, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 75ec8824283a51841b88993ad1382126, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 6d54611211858ba4a8a6a0e516f4a7fd, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: a1faad1361a9b5f4d89fe7f156c0b9be, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 466d26507cad26a48a43f37d4226fa31, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 01ffaab7402bc9e4c981344e8e90c97b, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 010fdcb29b1bc064aabf28d980d19ec2, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: a34ebaad4a7a10040af821eb48b575a7, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: f2bbc136e8794d34892f7df460d06c8c, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: f0e6053cbd275f946be1872df11aeeed, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: eec038344a0d5984ebb5bd5242f2d1fa, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 726ff66c3658a0a48bd45f1b0d5ab7ae, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: ac914553b1c3d9b4aa6707cec83f0a31, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 24247ebba2c607546a5327eea0107bcb, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 182baf45367621e428e0873ce5b35b6d, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: ff2b7cb082127dc458a01737af288f37, type: 2}

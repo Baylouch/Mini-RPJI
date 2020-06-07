@@ -14,6 +14,9 @@ public class QuestConfig : ScriptableObject
 
     public bool questDone; // To set true in QuestGiver.cs when questReward is give
     public BaseItem questReward;
+    public BaseItem questLinkedItem; // An item who's objective of the quest, and should be spawn only when player get the quest.
 
     public int xpAmount;
+
+    public int levelRequired;
 }

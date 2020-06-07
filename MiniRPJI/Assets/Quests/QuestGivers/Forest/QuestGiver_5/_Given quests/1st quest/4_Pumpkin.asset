@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fdb7f0b41b6b644fa6921ecacee3aa6, type: 3}
+  m_Name: 4_Pumpkin
+  m_EditorClassIdentifier: 
+  questID: 4
+  questTitle: Citrouilles
+  questDescription: "Chuut chuut ne fais pas de bruit. Regarde les monstres la bas,
+    ils ont vol\xE9s mes citrouilles pour se les mettre sur la t\xEAte... C'\xE9tait
+    toute ma r\xE9colte, maintenant je n'aurais plus d'argent, plus de maison... Si
+    seulement je pouvais r\xE9cup\xE9rer mes citrouilles..."
+  questSprite: {fileID: 21300000, guid: ee38461764b4baa4499b50ce6249b971, type: 3}
+  totalQuestObjective: 10
+  questDone: 0
+  questReward: {fileID: 11400000, guid: cb39c66714e4b274ab017ed9b482b402, type: 2}
+  questLinkedItem: {fileID: 0}
+  xpAmount: 500

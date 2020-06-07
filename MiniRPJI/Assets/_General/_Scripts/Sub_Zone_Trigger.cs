@@ -8,7 +8,6 @@
  * */
 
 using UnityEngine;
-using UnityEngine.UI;
 
 [RequireComponent(typeof(Collider2D))]
 public class Sub_Zone_Trigger : Interactable
@@ -20,44 +19,10 @@ public class Sub_Zone_Trigger : Interactable
     [SerializeField] int questRequiredID = -1; // Set a quest ID to link the quest. (-1 = unused)
     [SerializeField] bool bowEquipedRequired = false; // If player must have a bow to go into this zone.
 
-    // TODO Add a UI to display why player can't interact.
-    [SerializeField] GameObject informationsUI;
-
-    GameObject currentInformationsUI;
-
     private void Start()
     {
         interactionType = PlayerInteractionType.SubZoneTrigger;
 
-        if (informationsUI.activeSelf)
-            informationsUI.SetActive(false);
-    }
-
-    void SetInformationsUI(string textToDisplay)
-    {
-        if (currentInformationsUI != null)
-            return;
-
-        if (UI_Player.instance)
-        {
-            // Instantiate informationsUI
-            currentInformationsUI = Instantiate(informationsUI, UI_Player.instance.transform);
-            // Set it unactive
-            currentInformationsUI.SetActive(false);
-
-            // Set the text
-            currentInformationsUI.GetComponentInChildren<Text>().text = textToDisplay;
-
-            // Set it active
-            currentInformationsUI.SetActive(true);
-
-            // Destroy timer
-            Destroy(currentInformationsUI, 1.5f);
-        }
-        else // Must never be reached.
-        {
-            Debug.Log("No UI_Player instance in the scene to display infos.");
-        }
     }
 
     public override void Interact()
@@ -79,7 +44,7 @@ public class Sub_Zone_Trigger : Interactable
                         // Tell player he can't enter while he's not levelRequired.
                         // Debug.Log("You must be lvl " + levelRequired + " to enter.");
 
-                        SetInformationsUI("Tu dois être niveau " + levelRequired + " !");
+                        UI_Player_Informations.instance.DisplayInformation("Tu dois être niveau " + levelRequired + " !");
 
                         return;
                     }
@@ -102,7 +67,7 @@ public class Sub_Zone_Trigger : Interactable
 
                         QuestConfig questToAccomplish = Quests_Control.instance.questDataBase.GetQuestByID(questRequiredID);
 
-                        SetInformationsUI("Tu dois accomplir la quête \"" + questToAccomplish.questTitle + "\"");
+                        UI_Player_Informations.instance.DisplayInformation("Tu dois accomplir la quête \"" + questToAccomplish.questTitle + "\"");
 
                         return;
 
@@ -124,7 +89,7 @@ public class Sub_Zone_Trigger : Interactable
                         // Tell player he need a bow to enter.
                         // Debug.Log("You must have a bow.");
 
-                        SetInformationsUI("Il te faut un arc !");
+                        UI_Player_Informations.instance.DisplayInformation("Il te faut un arc !");
 
                         return;
 

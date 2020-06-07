@@ -184,7 +184,7 @@ public class Player_Inventory : MonoBehaviour
     }
 
     // Used to set inventory item (GameControl.cs)
-    public void SetInventoryIndex(int inventoryIndex, int _itemID)
+    public void SetInventoryIndex(int inventoryIndex, int _itemID, int _itemNumb = 0)
     {
         // Next condition is used to remove item in the inventoryIndex slot. Because item's IDs will never be NEGATIVE
         if (_itemID == -1)
@@ -193,6 +193,14 @@ public class Player_Inventory : MonoBehaviour
         }
 
         inventoryItems[inventoryIndex] = itemDataBase.GetItemById(_itemID);
+
+        if (_itemNumb > 0)
+        {
+            if (UI_Player.instance && UI_Player.instance.playerInventoryUI)
+            {
+                UI_Player.instance.playerInventoryUI.GetInventorySlotByIndex(inventoryIndex).itemNumb = _itemNumb;
+            }
+        }
     }
 
     // used to set armory item (GameControl.cs)

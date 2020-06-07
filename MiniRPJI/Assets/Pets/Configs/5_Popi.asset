@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97f05dfc57da6554288acf95c3df286b, type: 3}
+  m_Name: 5_Popi
+  m_EditorClassIdentifier: 
+  petID: 5
+  petName: Popi
+  petDescription: On l'appelle aussi "Croque-mollet".
+  petCategory: 1
+  petSex: 1
+  petSprite: {fileID: -8542676398023535629, guid: 1190499089f6a3a4389dde09c2fd8f1d,
+    type: 3}
+  petWeight: 6.5
+  petPrefab: {fileID: 27379601882180476, guid: e3fcd0677771a8e4c9b7a5d6dc9c2548, type: 3}
+  petPrice: 2000

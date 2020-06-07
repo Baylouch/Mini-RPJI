@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fdb7f0b41b6b644fa6921ecacee3aa6, type: 3}
+  m_Name: 6_MysteriousCavern
+  m_EditorClassIdentifier: 
+  questID: 6
+  questTitle: "La myst\xE9rieuse grotte"
+  questDescription: "C'est tr\xE8s \xE9trange, je viens m'entrainer par ici depuis
+    que je suis petit et cette grotte n'\xE9tait pas l\xE0 avant. J'entends des bruits
+    bisarres depuis tout \xE0 l'heure, il y a l'air d'y avoir des choses qui se passent
+    l\xE0-dedans. Tu veux bien aller jeter un coup d'oeil pour moi ?"
+  questSprite: {fileID: -5161489949763356392, guid: 114c0f715e5069249a292780634da8ad,
+    type: 3}
+  totalQuestObjective: 1
+  questDone: 0
+  questReward: {fileID: 11400000, guid: 245ce80cd6c51e147a97df1ff31552b3, type: 2}
+  questLinkedItem: {fileID: 0}
+  xpAmount: 700

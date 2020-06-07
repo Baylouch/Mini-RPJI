@@ -62,4 +62,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_.Scenes/Game/Forest Sub Levels/SubLevel_Forest_1_2.unity
     guid: 244fc30d6f0eae64cbd90899eaf2bb64
+  - enabled: 1
+    path: Assets/_.Scenes/Game/Forest Sub Levels/SubLevel_Forest_2_1.unity
+    guid: 00024d03bcc96d246a8896e5f906424f
+  - enabled: 1
+    path: Assets/_.Scenes/Game/Forest Sub Levels/SubLevel_Forest_2_2.unity
+    guid: 2a7e09488e9e58448b229a28af9ceb46
+  - enabled: 1
+    path: Assets/_.Scenes/Game/Forest Sub Levels/SubLevel_Forest_2_3.unity
+    guid: c18159da40cc73e47a591f061757ed27
   m_configObjects: {}

@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fdb7f0b41b6b644fa6921ecacee3aa6, type: 3}
+  m_Name: 7_Bones
+  m_EditorClassIdentifier: 
+  questID: 7
+  questTitle: De vieux os
+  questDescription: "Bien le bonjour mon bon ranger. Je suis Loret un viellard qu'on
+    a chass\xE9 du village... Depuis j'erre et j'essaye de survivre comme je le peux...
+    As-tu vu cette grotte au sud d'ici ? Un soir il y a eu un bruit assourdissant
+    venant de l\xE0 bas, et la grotte est apparu comme par magie. J'ai trouv\xE9 un
+    os pas tr\xE8s loin de celle-ci et j'ai remarqu\xE9 que les monstres ne m'attaqu\xE9
+    pas lorsque je le leur pointais au visage. Tu pourrais aider un pauvre vieux comme
+    moi et m'en ramener quelques-uns ? Tu m'aiderais beaucoup a finir mes vieux jours
+    plus sereinement."
+  questSprite: {fileID: -5161489949763356392, guid: 114c0f715e5069249a292780634da8ad,
+    type: 3}
+  totalQuestObjective: 10
+  questDone: 0
+  questReward: {fileID: 11400000, guid: 120bc840abb51f64594362602f2c37d8, type: 2}
+  questLinkedItem: {fileID: 0}
+  xpAmount: 700

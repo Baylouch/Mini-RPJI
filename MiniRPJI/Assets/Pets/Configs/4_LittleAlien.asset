@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97f05dfc57da6554288acf95c3df286b, type: 3}
+  m_Name: 4_LittleAlien
+  m_EditorClassIdentifier: 
+  petID: 4
+  petName: Petit Alien
+  petDescription: "Etrange petite cr\xE9ature d'origine inconnu, il n'en reste pas
+    moins mignon !"
+  petCategory: 2
+  petSex: 2
+  petSprite: {fileID: 8539034440500839741, guid: 14b0ceea9a0e7c64c95d1d2cd00531d2,
+    type: 3}
+  petWeight: 3
+  petPrefab: {fileID: 945254347769628168, guid: 301ffcfeda0d9d54db67130c904d57d3,
+    type: 3}
+  petPrice: 10000

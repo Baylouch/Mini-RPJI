@@ -76,6 +76,7 @@ public class TreasureSpawner : MonoBehaviour
                 else
                 {
                     GameObject treasuresParent = new GameObject("Treasures");
+                    treasuresParent.transform.parent = gameObject.transform.parent;
                     treasureGO.transform.parent = treasuresParent.transform;
                 }
             }

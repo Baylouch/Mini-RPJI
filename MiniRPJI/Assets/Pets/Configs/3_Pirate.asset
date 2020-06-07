@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97f05dfc57da6554288acf95c3df286b, type: 3}
+  m_Name: 3_Pirate
+  m_EditorClassIdentifier: 
+  petID: 3
+  petName: Pirate
+  petDescription: "Celui-l\xE0 il sait s'imposer et se faire comprendre !"
+  petCategory: 0
+  petSex: 1
+  petSprite: {fileID: -5505462039982863634, guid: 763ea03b6ec3ea84c889dc67e2d2a25e,
+    type: 3}
+  petWeight: 6
+  petPrefab: {fileID: 6400650402547692095, guid: 891b042b72d04254491ec047d6f8331d,
+    type: 3}
+  petPrice: 1200

@@ -14,3 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   quests:
   - {fileID: 11400000, guid: 63c825234d4a3d442a6f905ac63430f0, type: 2}
+  - {fileID: 11400000, guid: deaa0bb29ed686940a9fdc931f62c7cc, type: 2}
+  - {fileID: 11400000, guid: 44b963420ae40e34390de5019894b4a4, type: 2}
+  - {fileID: 11400000, guid: 58523d396beab8643935be84a15c1d76, type: 2}
+  - {fileID: 11400000, guid: 9994ed512198914498e66504b4f35fca, type: 2}
+  - {fileID: 11400000, guid: 7288756d096d8fe4485ec1af7c92eaf5, type: 2}
+  - {fileID: 11400000, guid: caa412b59ed32a4499addadee05f1958, type: 2}
+  - {fileID: 11400000, guid: fc883b98294b5b041859de0106acb314, type: 2}
+  - {fileID: 11400000, guid: a05d57256621fcf4e8d8d7f76a07839b, type: 2}
+  - {fileID: 11400000, guid: cdeebdb0262735049aa9bdf646e2863d, type: 2}
+  - {fileID: 11400000, guid: 465a21b4bceaabb46a697c95cc682750, type: 2}
+  - {fileID: 11400000, guid: bc2d51affdc10ed4190f420ae5e13577, type: 2}

@@ -18,8 +18,23 @@ public class QuestItemDroper : MonoBehaviour
     [Header("Drop rate")]
     [SerializeField] float dropRate = 10f;
 
+    [Header("Level required to apply quest")]
+    [SerializeField] int levelRequiredToApplyQuest = 0;
+
     public void DropQuestItems()
     {
+        // A check to know if this AI got the level required to apply the quest
+        if (GetComponent<AI_Stats>())
+        {
+            if (levelRequiredToApplyQuest > 0)
+            {
+                if (GetComponent<AI_Stats>().GetLevel() < levelRequiredToApplyQuest)
+                {
+                    return;
+                }
+            }
+        }
+
         // We have the possibility of set multiple items. Maybe each are not for the same quest.
         // So we need to test each object to know if player got the linked quest.
         for (int i = 0; i < items.Length; i++)

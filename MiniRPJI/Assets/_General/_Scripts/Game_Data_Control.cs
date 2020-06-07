@@ -56,16 +56,33 @@ public class Game_Data_Control : MonoBehaviour
         data.playerInventory = new PlayerInventoryData(); // Create new instance of PlayerInventoryData
 
         data.playerInventory.inventoryItems = new int[Player_Inventory.inventorySlotsNumb]; // Create new int array to contain item's id
+        data.playerInventory.inventoryItemsNumber = new int[Player_Inventory.inventorySlotsNumb]; // Create new int array to contain item's number (linked to inventoryItems -> itemsNumber[i]'s item = inventoryItems[i]'s item.)
+
         for (int i = 0; i < Player_Inventory.inventorySlotsNumb; i++) // Reset all number to -1 (usefull for load part)
         {
             data.playerInventory.inventoryItems[i] = -1;
+            data.playerInventory.inventoryItemsNumber[i] = 0; // Initialize itemsNumber to 0 (As every items that are not stackable)
         }
         // Then if there is an item in the current slot, get his ID into inventoryItems data.
+        // And his number if its a stackable item.
         for (int i = 0; i < Player_Inventory.inventorySlotsNumb; i++) 
         {
             if (Player_Inventory.instance.GetInventoryItem(i) != null)
             {
                 data.playerInventory.inventoryItems[i] = Player_Inventory.instance.GetInventoryItem(i).itemID;
+
+                // If current item is a stackable one
+                if (Player_Inventory.instance.GetInventoryItem(i).stackableItem)
+                {
+                    // Get acces to the inventory slot by UI_Player_Inventory
+                    if (UI_Player.instance && UI_Player.instance.playerInventoryUI)
+                    {
+                        if (UI_Player.instance.playerInventoryUI.GetInventorySlotByIndex(i) != null)
+                        {
+                            data.playerInventory.inventoryItemsNumber[i] = UI_Player.instance.playerInventoryUI.GetInventorySlotByIndex(i).itemNumb;
+                        }
+                    }
+                }
             }
         }
 
@@ -86,9 +103,12 @@ public class Game_Data_Control : MonoBehaviour
 
         // Then same for the bank
         data.playerInventory.bankItems = new int[UI_Player_Bank.bankSlotsNumb];
+        data.playerInventory.bankItemsNumber = new int[UI_Player_Bank.bankSlotsNumb];
+
         for (int i = 0; i < UI_Player_Bank.bankSlotsNumb; i++)
         {
             data.playerInventory.bankItems[i] = -1;
+            data.playerInventory.bankItemsNumber[i] = 0;
         }
 
         for (int i = 0; i < UI_Player_Bank.bankSlotsNumb; i++)
@@ -96,6 +116,12 @@ public class Game_Data_Control : MonoBehaviour
             if (UI_Player.instance.playerBankUI.GetBankItem(i) != null)
             {
                 data.playerInventory.bankItems[i] = UI_Player.instance.playerBankUI.GetBankItem(i).itemID;
+
+                // If current item is a stackable one
+                if (UI_Player.instance.playerBankUI.GetBankItem(i).stackableItem)
+                {
+                    data.playerInventory.bankItemsNumber[i] = UI_Player.instance.playerBankUI.GetBankSlotByIndex(i).itemNumb;
+                }
             }
         }
 
@@ -236,7 +262,7 @@ public class Game_Data_Control : MonoBehaviour
             {
                 if (data.playerInventory.inventoryItems[i] != -1) // If we had set this, there is an item ID in
                 {
-                    Player_Inventory.instance.SetInventoryIndex(i, data.playerInventory.inventoryItems[i]);
+                    Player_Inventory.instance.SetInventoryIndex(i, data.playerInventory.inventoryItems[i], data.playerInventory.inventoryItemsNumber[i]);
                 }
             }
             
@@ -252,7 +278,7 @@ public class Game_Data_Control : MonoBehaviour
             {
                 if (data.playerInventory.bankItems[i] != -1)
                 {
-                    UI_Player.instance.playerBankUI.SetBankItemSlot(i, data.playerInventory.bankItems[i]);
+                    UI_Player.instance.playerBankUI.SetBankItemSlot(i, data.playerInventory.bankItems[i], data.playerInventory.bankItemsNumber[i]);
                 }
             }
 
@@ -262,6 +288,8 @@ public class Game_Data_Control : MonoBehaviour
             // Then refresh all for the right display
             UI_Player.instance.playerInventoryUI.RefreshInventory();
             UI_Player.instance.playerInventoryUI.RefreshArmory();
+
+            Player_Stats.instance.RefreshPlayerStats();
 
             // ************************************************************************************************
             // ********************************* PLAYER_QUESTS ************************************************
@@ -375,8 +403,10 @@ public class PlayerInventoryData
 {
     // We get the unique item ID of items in inventory, armory and bank
     public int[] inventoryItems;
+    public int[] inventoryItemsNumber; // To know, if its a stackable item, how much player has (0 = not a stackable item)
     public int[] armoryItems;
     public int[] bankItems;
+    public int[] bankItemsNumber; // Same as inventoryItemsNumber for the bank this time.
 
     public int gold;
 }

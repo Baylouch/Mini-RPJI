@@ -176,18 +176,35 @@ public class Music_Manager : MonoBehaviour
         musicIndex++;
         audioSource.Play();
 
-        while (audioSource.volume < volumeMax)
+        float volumeInPlayerPrefs = 0f;
+
+        if (PlayerPrefs.HasKey(volumeKey))
         {
-            audioSource.volume += .03f;
-            if (audioSource.volume > volumeMax)
-                audioSource.volume = volumeMax;
+            volumeInPlayerPrefs = PlayerPrefs.GetFloat(volumeKey);
 
-            yield return new WaitForSeconds(.4f);
+            while (audioSource.volume < volumeInPlayerPrefs)
+            {
+                audioSource.volume += .03f;
+                if (audioSource.volume > volumeInPlayerPrefs)
+                    audioSource.volume = volumeInPlayerPrefs;
+
+                yield return new WaitForSeconds(.4f);
+            }
         }
+        else
+        {
+            while (audioSource.volume < volumeMax)
+            {
+                audioSource.volume += .03f;
+                if (audioSource.volume > volumeMax)
+                    audioSource.volume = volumeMax;
 
+                yield return new WaitForSeconds(.4f);
+            }
+        }
     }
 
-    // TODO Deletes StopMusic & StartMusic ? (Because ChangeMusic is a combinaison of them)
+    // TODO Delete StopMusic & StartMusic ? (Because ChangeMusic is a combinaison of them)
     IEnumerator StopMusic()
     {
         while (audioSource.volume > 0)

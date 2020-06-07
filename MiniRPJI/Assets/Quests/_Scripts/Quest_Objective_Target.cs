@@ -8,8 +8,22 @@ public class Quest_Objective_Target : MonoBehaviour
 {
     public int questID = 0; // To know the quest ID (not index) of the script acces to.
 
+    [SerializeField] int levelRequiredToApplyQuest = 0;
+
     public void IncrementQuestObjective()
     {
+        // A check to know if this AI got the level required to apply the quest
+        if (GetComponent<AI_Stats>())
+        {
+            if (levelRequiredToApplyQuest > 0)
+            {
+                if (GetComponent<AI_Stats>().GetLevel() < levelRequiredToApplyQuest)
+                {
+                    return;
+                }
+            }
+        }
+
         if (Quests_Control.instance) // If there is a quest control in game
         {
             // Check if player got the quest linked

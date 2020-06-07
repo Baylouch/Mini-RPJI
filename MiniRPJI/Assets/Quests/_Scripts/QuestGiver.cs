@@ -20,6 +20,7 @@ public class QuestGiver : Interactable
     [SerializeField] private QuestConfig[] questsToGive; // Set it for quest suit. Quests[0] = first quest, Quests[1] = second quest, etc...
 
     [SerializeField] private Transform rewardPosition;
+    [SerializeField] private Transform questLinkedItemSpawnPosition;
 
     [SerializeField] [TextArea] private string endDialogue;
 
@@ -40,6 +41,27 @@ public class QuestGiver : Interactable
         // Le cas du bouton refuser est spécial : Il utilisera "UnInteract" a chaque fois, et comme la méthode ne reçoit pas de paramètres,
         // on peut configurer le bouton ici et ne plus toucher à sa configuration ensuite.
         refuseButton.onClick.AddListener(UnInteract);
+
+        // Etant donné que l'objet de quête lié spawn au moment ou le joueur prend la quête, si il sauvegarde alors qu'il a accepté la quête, mais n'as pas
+        // encore récupéré l'objet, il disparaîtra a jamais. Pour palier à ce problème, il faut s'assurer que le QuestGiver donnant cette quête soit dans la 
+        // même chose que l'objet lié. De ce fait au start de celui-ci on peut spawn l'objet si le joueur a déjà accepté la quête sans le ramasser auparavant.
+        if (questLinkedItemSpawnPosition != null)
+        {
+            // Check for every quests to give
+            for (int i = 0; i < questsToGive.Length; i++)
+            {
+                // Check if player is actually on the quest
+                if (Quests_Control.instance && Quests_Control.instance.GetPlayerQuestByID(questsToGive[i].questID) != null)
+                {
+                    // If this quest got a quest linked item
+                    if (questsToGive[i].questLinkedItem)
+                    {
+                        GameObject questItem = Instantiate(questsToGive[i].questLinkedItem.itemPrefab, GameObject.Find("Items").transform);
+                        questItem.transform.position = questLinkedItemSpawnPosition.position;
+                    }
+                }
+            }
+        }
     }
 
 
@@ -60,6 +82,19 @@ public class QuestGiver : Interactable
             if (questsToGive[i].questDone)
             {
                 continue; // Move to the next quest
+            }
+
+            // Verifier que le joueur a le niveau requis pour effectuer la quête
+            if (Player_Stats.instance)
+            {
+                if (questsToGive[i].levelRequired > 0)
+                {
+                    if (Player_Stats.instance.GetCurrentLevel() < questsToGive[i].levelRequired)
+                    {
+                        SetDialogueUI("Reviens me voir quand tu sera niveau " + questsToGive[i].levelRequired + ".");
+                        return;
+                    }
+                }
             }
 
             // Si le joueur a déjà cette quête
@@ -90,7 +125,7 @@ public class QuestGiver : Interactable
         }
 
         // Si le joueur a fait toutes les quêtes qu'il y avait, affiche "endDialogue"
-        SetEndDialogueUI();
+        SetDialogueUI(endDialogue);
     }
 
     void UnActiveUI()
@@ -144,7 +179,7 @@ public class QuestGiver : Interactable
         if (!dialoguePanel.activeSelf)
             dialoguePanel.SetActive(true);
 
-        dialogue.text = "Vous avez terminer la quête " + questsToGive[questToGiveIndex].questTitle + ".\n\n\nVoila votre récompense!";
+        dialogue.text = "Vous avez terminer la quête " + questsToGive[questToGiveIndex].questTitle + ".\n\nVoila votre récompense!";
         if (!dialogue.gameObject.activeSelf)
             dialogue.gameObject.SetActive(true);
 
@@ -168,17 +203,18 @@ public class QuestGiver : Interactable
             validationButton.gameObject.SetActive(true);
     }
 
-    void SetEndDialogueUI()
+    void SetDialogueUI(string _dialogue)
     {
         if (!dialoguePanel.activeSelf)
             dialoguePanel.SetActive(true);
 
-        dialogue.text = endDialogue;
+        dialogue.text = _dialogue;
 
         if (!dialogue.gameObject.activeSelf)
             dialogue.gameObject.SetActive(true);
 
         validationButton.onClick.AddListener(UnInteract);
+
         if (!validationButton.gameObject.activeSelf)
             validationButton.gameObject.SetActive(true);
     }
@@ -186,6 +222,16 @@ public class QuestGiver : Interactable
     public void AcceptQuest(int questID)
     {
         Quests_Control.instance.GetNewQuest(questID);
+
+        if (questLinkedItemSpawnPosition != null)
+        {
+            if (Quests_Control.instance.questDataBase.GetQuestByID(questID).questLinkedItem)
+            {
+                GameObject questItem = Instantiate(Quests_Control.instance.questDataBase.GetQuestByID(questID).questLinkedItem.itemPrefab, GameObject.Find("Items").transform);
+                questItem.transform.position = questLinkedItemSpawnPosition.position;
+            }
+        }
+
         UnInteract();
     }
 }
