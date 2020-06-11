@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class Quest_Objective_Target : MonoBehaviour
 {
-    public int questID = 0; // To know the quest ID (not index) of the script acces to.
+    public int questID = 0; // To know the quest ID of the script acces to.
 
     [SerializeField] int levelRequiredToApplyQuest = 0;
 

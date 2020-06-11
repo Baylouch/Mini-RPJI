@@ -204,6 +204,53 @@ public class Game_Data_Control : MonoBehaviour
         data.playerAbilities.secondaryAbilityID = Player_Abilities.instance.GetSecondaryAbility().abilityID;
 
         // ************************************************************************************************
+        // ********************************* PLAYER_PETS **************************************************
+        // ************************************************************************************************
+
+        data.playerPets = new PlayerPetsData();
+
+        data.playerPets.petsUnlocked = Player_Pets.instance.GetPetsUnlocked();
+
+        // If pets are unlocked, get player pets ID
+        if (data.playerPets.petsUnlocked)
+        {
+            int playerPetsNumb = 0;
+
+            for (int i = 0; i < Player_Pets.playerPetsLength; i++)
+            {
+                if (Player_Pets.instance.GetPlayerPetByIndex(i) != null)
+                {
+                    playerPetsNumb++;
+                }
+            }
+
+            data.playerPets.petsID = new int[playerPetsNumb];
+
+            if (playerPetsNumb > 0)
+            {
+                int currentPlayerPetsIDIndex = 0;
+
+                for (int i = 0; i < Player_Pets.playerPetsLength; i++)
+                {
+                    if (Player_Pets.instance.GetPlayerPetByIndex(i) != null)
+                    {
+                        data.playerPets.petsID[currentPlayerPetsIDIndex] = Player_Pets.instance.GetPlayerPetByIndex(i).petID;
+                        currentPlayerPetsIDIndex++;
+                    }
+                }
+            }
+
+            if (Player_Pets.instance.currentPlayerPet != null)
+            {
+                data.playerPets.playerCurrentPetID = Player_Pets.instance.currentPlayerPet.petID;
+            }
+            else
+            {
+                data.playerPets.playerCurrentPetID = -1;
+            }
+        }
+       
+        // ************************************************************************************************
         // ************************************************************************************************
         // ************************************************************************************************
 
@@ -298,7 +345,7 @@ public class Game_Data_Control : MonoBehaviour
             // First of all remove current quests and reset all quests achievement.
             for (int i = 0; i < 200; i++)
             {
-                Quests_Control.instance.RemoveQuestByIndex(i);                
+                Quests_Control.instance.RemoveQuestByIndex(i);
             }
 
             Quests_Control.instance.ResetAllQuestsAchievement();
@@ -346,6 +393,25 @@ public class Game_Data_Control : MonoBehaviour
             UI_Player_Abilities.instance.ChangeAbility(data.playerAbilities.secondaryAbilityID, 1);
 
             // ************************************************************************************************
+            // ********************************* PLAYER_PETS **************************************************
+            // ************************************************************************************************
+
+            Player_Pets.instance.SetPetsUnlocked(data.playerPets.petsUnlocked);
+
+            if (data.playerPets.petsUnlocked)
+            {
+                for (int i = 0; i < data.playerPets.petsID.Length; i++)
+                {
+                    Player_Pets.instance.GetNewPet(Player_Pets.instance.petsDataBase.GetPetByID(data.playerPets.petsID[0]));
+                }
+
+                if (data.playerPets.playerCurrentPetID != -1)
+                {
+                    Player_Pets.instance.InvokePet(Player_Pets.instance.petsDataBase.GetPetByID(data.playerPets.playerCurrentPetID));
+                }
+            }
+
+            // ************************************************************************************************
             // ************************************************************************************************
             // ************************************************************************************************
         }
@@ -381,6 +447,7 @@ public class PlayerData
     public PlayerInventoryData playerInventory;
     public PlayerQuestData playerQuest;
     public PlayerAbilitiesData playerAbilities;
+    public PlayerPetsData playerPets;
 }
 
 [Serializable]
@@ -426,4 +493,13 @@ public class PlayerAbilitiesData
 
     public int primaryAbilityID; // To know what's the current primary ability
     public int secondaryAbilityID;
+}
+
+[Serializable]
+public class PlayerPetsData
+{
+    public bool petsUnlocked; // To know if player already unlock pets or not
+
+    public int[] petsID; // All pet's ID own by the player
+    public int playerCurrentPetID; // The current pet ID of the player
 }

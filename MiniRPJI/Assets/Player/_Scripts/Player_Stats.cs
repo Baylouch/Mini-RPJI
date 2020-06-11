@@ -316,11 +316,34 @@ public class Player_Stats : MonoBehaviour
             return;
 
         int tempCurrentExperience = currentExp + amount; // Put in a temp variable currentExperience + amount
+
         if (tempCurrentExperience >= totalLevelExp) // Check if it's >= of required experience to lvl up
-        {
+        {            
             int tempNextLevelExperience = tempCurrentExperience - totalLevelExp; // Get the "too much" amount of experience
+
+            if (tempNextLevelExperience >= totalLevelExp) // If current exp - totalLevelExp still greater player's won 2 lvl or more
+            {
+                while (tempNextLevelExperience >= totalLevelExp) // While tempNextLevelExperience is >= totalLevelExp, lvl up and decrement tempNextLevelExperience
+                {
+                    tempNextLevelExperience -= totalLevelExp;
+
+                    if (tempNextLevelExperience <= 0)
+                    {
+                        tempNextLevelExperience = 0;
+
+                        break;
+                    }
+
+                    LevelUp();
+                }
+            }
+            else  // Else player just lvl up once
+            {
+                LevelUp();
+            }
+
             currentExp = tempNextLevelExperience; // Set the "too much" into currentExperience
-            LevelUp();
+
         }
         else
         {

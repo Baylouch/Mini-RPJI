@@ -59,6 +59,13 @@ public class QuestGiver : Interactable
                         GameObject questItem = Instantiate(questsToGive[i].questLinkedItem.itemPrefab, GameObject.Find("Items").transform);
                         questItem.transform.position = questLinkedItemSpawnPosition.position;
                     }
+
+                    // If this quest got a GO linked
+                    if (questsToGive[i].questGOToSpawn)
+                    {
+                        GameObject questGO = Instantiate(questsToGive[i].questGOToSpawn, GameObject.Find("Items").transform);
+                        questGO.transform.position = questLinkedItemSpawnPosition.position;
+                    }
                 }
             }
         }
@@ -229,6 +236,12 @@ public class QuestGiver : Interactable
             {
                 GameObject questItem = Instantiate(Quests_Control.instance.questDataBase.GetQuestByID(questID).questLinkedItem.itemPrefab, GameObject.Find("Items").transform);
                 questItem.transform.position = questLinkedItemSpawnPosition.position;
+            }
+
+            if (Quests_Control.instance.questDataBase.GetQuestByID(questID).questGOToSpawn)
+            {
+                GameObject questGO = Instantiate(Quests_Control.instance.questDataBase.GetQuestByID(questID).questGOToSpawn, GameObject.Find("Items").transform);
+                questGO.transform.position = questLinkedItemSpawnPosition.position;
             }
         }
 

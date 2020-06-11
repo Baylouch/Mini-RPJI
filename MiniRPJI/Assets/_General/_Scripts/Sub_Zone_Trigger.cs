@@ -22,7 +22,6 @@ public class Sub_Zone_Trigger : Interactable
     private void Start()
     {
         interactionType = PlayerInteractionType.SubZoneTrigger;
-
     }
 
     public override void Interact()
@@ -34,12 +33,7 @@ public class Sub_Zone_Trigger : Interactable
             {
                 if (Player_Stats.instance)
                 {
-                    if (Player_Stats.instance.GetCurrentLevel() >= levelRequired)
-                    {
-                        // Player can enter into the game level
-                        // Debug.Log("You have the level required to enter.");
-                    }
-                    else
+                    if (Player_Stats.instance.GetCurrentLevel() < levelRequired)
                     {
                         // Tell player he can't enter while he's not levelRequired.
                         // Debug.Log("You must be lvl " + levelRequired + " to enter.");
@@ -55,12 +49,7 @@ public class Sub_Zone_Trigger : Interactable
             {
                 if (Quests_Control.instance)
                 {
-                    if (Quests_Control.instance.GetQuestAchievement(questRequiredID))
-                    {
-                        // Quest is done, player can enter
-                        // Debug.Log("The quest is done. You can enter.");
-                    }
-                    else
+                    if (!Quests_Control.instance.GetQuestAchievement(questRequiredID))
                     {
                         // Tell player he must accomplish this quest before enter
                         // Debug.Log("You must accomplish the quest(ID) : " + questRequiredID + ". To enter.");
@@ -79,12 +68,7 @@ public class Sub_Zone_Trigger : Interactable
             {
                 if (Player_Inventory.instance)
                 {
-                    if (Player_Inventory.instance.GetCurrentBow() != null)
-                    {
-                        // Player has a bow, he can enter
-                        // Debug.Log("You got a bow.");
-                    }
-                    else
+                    if (Player_Inventory.instance.GetCurrentBow() == null)
                     {
                         // Tell player he need a bow to enter.
                         // Debug.Log("You must have a bow.");

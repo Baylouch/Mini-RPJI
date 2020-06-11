@@ -40,9 +40,10 @@ public class PetSeller : Interactable
     {
         interactionType = PlayerInteractionType.PetSeller;
 
-        textDialogue.text = dialogue;
         backButton.onClick.AddListener(UnInteract);
         okButton.onClick.AddListener(SetUIInventory);
+
+        UnActiveUI();
 
         SetSeller();
     }
@@ -62,9 +63,12 @@ public class PetSeller : Interactable
         {
             for (int i = 0; i < petsToSell.Length; i++)
             {
+                // If we're here, player dont have the pet to sell. We can create a new sell button and link the pet to it.
+                AddPetSellableButton(petsToSell[i]);
+
                 for (int j = 0; j < Player_Pets.playerPetsLength; j++)
                 {
-                    if (Player_Pets.instance.GetPlayerPetByIndex(j) != null)
+                    if (Player_Pets.instance.GetPlayerPetByIndex(j) != null && petsToSell[i] != null)
                     {
                         if (Player_Pets.instance.GetPlayerPetByIndex(j).petID == petsToSell[i].petID)
                         {
@@ -78,9 +82,6 @@ public class PetSeller : Interactable
                         }
                     }
                 }
-
-                // If we're here, player dont have the pet to sell. We can create a new sell button and link the pet to it.
-                AddPetSellableButton(petsToSell[i]);
             }
 
             sellerSet = true;
@@ -157,6 +158,22 @@ public class PetSeller : Interactable
             informationsPanel.SetActive(false);
     }
 
+    // Method to show a dialogue when player hasnt unlocked pets
+    void SetUIPreDialogue()
+    {
+        if (!globalPanel.gameObject.activeSelf)
+            globalPanel.gameObject.SetActive(true);
+
+        if (!textDialogue.gameObject.activeSelf)
+        {
+            textDialogue.text = "Oui ? On se connait ?";
+            textDialogue.gameObject.SetActive(true);
+        }
+
+        if (!backButton.gameObject.activeSelf)
+            backButton.gameObject.SetActive(true);
+    }
+
     // Set the dialogue UI. First thing player see when interact with.
     void SetUIDialogue()
     {
@@ -164,7 +181,10 @@ public class PetSeller : Interactable
             globalPanel.gameObject.SetActive(true);
 
         if (!textDialogue.gameObject.activeSelf)
+        {
+            textDialogue.text = dialogue;
             textDialogue.gameObject.SetActive(true);
+        }
 
         if (!okButton.gameObject.activeSelf)
             okButton.gameObject.SetActive(true);
@@ -193,7 +213,14 @@ public class PetSeller : Interactable
         if (!sellerSet)
             SetSeller();
 
-        SetUIDialogue();
+        if (Player_Pets.instance && !Player_Pets.instance.GetPetsUnlocked())
+        {
+            SetUIPreDialogue();
+        }
+        else
+        {
+            SetUIDialogue();
+        }
     }
 
     public override void UnInteract()
@@ -305,19 +332,22 @@ public class PetSeller : Interactable
     {
         for (int i = 0; i < petsToSell.Length; i++)
         {            
-            if (petsToSell[i] && petsToSell[i].petID == linkedPet.petID)
+            if (linkedPet != null)
             {
-                // remove linked pet to sell
-                petsToSell[i] = null;
-
-                // Then remove the linked button
-                for (int j = 0; j < buttonsContainer.childCount; j++)
+                if (petsToSell[i] != null && petsToSell[i].petID == linkedPet.petID)
                 {
-                    if (buttonsContainer.GetChild(j).GetComponent<Pet_Sellable_Button>())
+                    // remove linked pet to sell
+                    petsToSell[i] = null;
+
+                    // Then remove the linked button
+                    for (int j = 0; j < buttonsContainer.childCount; j++)
                     {
-                        if (buttonsContainer.GetChild(j).GetComponent<Pet_Sellable_Button>().petConfig.petID == linkedPet.petID)
+                        if (buttonsContainer.GetChild(j).GetComponent<Pet_Sellable_Button>())
                         {
-                            Destroy(buttonsContainer.GetChild(j).gameObject);
+                            if (buttonsContainer.GetChild(j).GetComponent<Pet_Sellable_Button>().petConfig.petID == linkedPet.petID)
+                            {
+                                Destroy(buttonsContainer.GetChild(j).gameObject);
+                            }
                         }
                     }
                 }

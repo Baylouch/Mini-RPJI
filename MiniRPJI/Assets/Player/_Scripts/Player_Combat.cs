@@ -208,7 +208,7 @@ public class Player_Combat : MonoBehaviour
         }
     }
 
-    // TODO use coroutine
+    // TODO use coroutine ?
     void CheckIfPlayerIsInCombat()
     {
         // Check if player is in combat

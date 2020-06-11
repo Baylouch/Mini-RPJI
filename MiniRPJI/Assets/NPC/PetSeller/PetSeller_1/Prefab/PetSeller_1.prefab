@@ -1803,14 +1803,18 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 169f57d7efe3241488fc4c79e76c5c75, type: 2}
   - {fileID: 11400000, guid: b418b45bd3abe2840bd3ef632c057a6e, type: 2}
   - {fileID: 11400000, guid: 8247e0bca35906f4e95149a3070df8d3, type: 2}
+  - {fileID: 11400000, guid: 2c1b5bcd934b94546b4d4c77b1ccf230, type: 2}
+  - {fileID: 11400000, guid: 1ca4d7be324b73340b6b219b4f0bd526, type: 2}
+  - {fileID: 11400000, guid: 898591ae777a29e499bec38dabd92398, type: 2}
   globalPanel: {fileID: 3612360774651326920}
   petsList: {fileID: 2126232437335261492}
   buyButton: {fileID: 5774434800918867732}
   okButton: {fileID: 3081775286751432909}
   backButton: {fileID: 4028985482021144687}
   textDialogue: {fileID: 16341851644509242}
-  dialogue: Bonjour, je suis la vendeuse d'animaux de compagnie. Tu veux consulter
-    le catalogue ?
+  dialogue: "Oh c'est toi qui a aid\xE9 ma petite fille a retrouver ses animaux ?
+    Je suis la vendeuse d'animaux de compagnie. Tu peux consulter le catalogue si
+    tu veux."
   petButtonPrefab: {fileID: 1516309976796225063, guid: aa502f8e78cc8c74fac4a88cbbb3ced7,
     type: 3}
   buttonsContainer: {fileID: 5682254386926520691}

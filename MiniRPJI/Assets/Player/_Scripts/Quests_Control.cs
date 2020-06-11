@@ -24,7 +24,7 @@ public class Quests_Control : MonoBehaviour
     public QuestDataBase questDataBase; // The data base containing all the quests.
 
     // In this little game, we'll never get more than 200 Quests. So we can set the array to 200 size, this will not cause any issue (memory) and will simplify a bit the code.
-    [SerializeField] Player_Quest[] playerQuests = new Player_Quest[200]; 
+    [SerializeField] Player_Quest[] playerQuests = new Player_Quest[200];
 
     private void Start()
     {
@@ -171,6 +171,12 @@ public class Quests_Control : MonoBehaviour
                 {
                     Player_Stats.instance.AddExperience(playerQuests[_questIndex].questConfig.xpAmount);
                 }
+            }
+
+            // Check if the quest was the pet linked one to unlock pets.
+            if (playerQuests[_questIndex].questConfig.questID == Player_Pets.questIDToUnlockPets)
+            {
+                Player_Pets.instance.SetPetsUnlocked(true);
             }
 
             UI_Player.instance.playerQuestUI.RemoveQuestButton(playerQuests[_questIndex].questConfig);

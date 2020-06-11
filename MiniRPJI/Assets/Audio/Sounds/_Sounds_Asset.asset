@@ -34,3 +34,6 @@ MonoBehaviour:
   bowAttackNormalImpact: {fileID: 8300000, guid: 09c4acdb130de4845b8eb54f58fd7d00,
     type: 3}
   levelUp: {fileID: 8300000, guid: 991205d00bce2ea48a2b16d920de924b, type: 3}
+  catInvoke: {fileID: 8300000, guid: 2137ef033a02bb24dad5fd13dab5bba1, type: 3}
+  dogInvoke: {fileID: 8300000, guid: 0a440c4fd5e647d468bf033b1a7e59f8, type: 3}
+  alienInvoke: {fileID: 0}

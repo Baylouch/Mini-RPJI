@@ -12,6 +12,8 @@ public enum PetSex { Female, Male, Undefined };
 
 public class Player_Pets : MonoBehaviour
 {
+    public const int questIDToUnlockPets = 12; // The quest ID to unlock pets in game.
+
     public const int playerPetsLength = 20;
 
     public static Player_Pets instance;
@@ -28,7 +30,20 @@ public class Player_Pets : MonoBehaviour
 
     public PetConfig currentPlayerPet;
 
+    [SerializeField] GameObject petInvokeEffect;
+    [SerializeField] GameObject petReturnEffect;
+
     [SerializeField] PetConfig[] playerPets = new PetConfig[20]; // Linked to playerPetsLength const.
+
+    private bool petsUnlocked = false;
+    public void SetPetsUnlocked(bool value)
+    {
+        petsUnlocked = value;
+    }
+    public bool GetPetsUnlocked()
+    {
+        return petsUnlocked;
+    }
 
     GameObject currentPlayerPetGO;
 
@@ -102,6 +117,35 @@ public class Player_Pets : MonoBehaviour
         {
             UI_Player.instance.playerPetsUI.SetPetButtonListener(petToInvoke);
         }
+
+        if (petInvokeEffect)
+        {
+            GameObject effect = Instantiate(petInvokeEffect, petPosition, Quaternion.identity);
+
+            if (GameObject.Find("Effects"))
+            {
+                GameObject effectHierarchy = GameObject.Find("Effects");
+            }
+
+            Destroy(effect, 1f);
+        }
+
+        if (Sound_Manager.instance)
+        {
+            switch (petToInvoke.petCategory)
+            {
+                case PetCategory.Cat:
+                    Sound_Manager.instance.PlaySound(Sound_Manager.instance.asset.catInvoke);
+                    break;
+                case PetCategory.Dog:
+                    Sound_Manager.instance.PlaySound(Sound_Manager.instance.asset.dogInvoke);
+                    break;
+                case PetCategory.Alien:
+                    // TODO Create a sound for the alien
+                    break;
+            }
+            
+        }
     }
 
     // Method to return the current player's pet
@@ -109,6 +153,8 @@ public class Player_Pets : MonoBehaviour
     {
         if (currentPlayerPet != null)
         {
+            Vector3 petPosition = currentPlayerPetGO.transform.position;
+
             Destroy(currentPlayerPetGO);
 
             PetConfig tempPet = currentPlayerPet;
@@ -119,6 +165,18 @@ public class Player_Pets : MonoBehaviour
             if (UI_Player.instance && UI_Player.instance.playerPetsUI)
             {
                 UI_Player.instance.playerPetsUI.SetPetButtonListener(tempPet);
+            }
+
+            if (petReturnEffect)
+            {
+                GameObject effect = Instantiate(petReturnEffect, petPosition, Quaternion.identity);
+
+                if (GameObject.Find("Effects"))
+                {
+                    GameObject effectHierarchy = GameObject.Find("Effects");
+                }
+
+                Destroy(effect, 1f);
             }
         }
     }

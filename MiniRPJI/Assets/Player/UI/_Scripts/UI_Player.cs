@@ -1,6 +1,8 @@
 ﻿/* UI_Player.cs
+ * 
  * Utiliser pour gérer le reste des elements UI du joueur (Est en top hierarchie)
- * - Centralise les input pour afficher les différentes parties UI
+ * 
+ * - Centralise les inputs pour afficher les différentes parties UI
  * - Permet d'acceder aux différents scripts gérant l'UI du joueur
  * 
  * */
@@ -49,6 +51,11 @@ public class UI_Player : MonoBehaviour
             return;
         }
 
+        if (Cheats.instance && Cheats.instance.PlayerIsInCheatMode())
+        {
+            return;
+        }
+
         if (Input.GetKeyDown(KeyCode.I)) // To centralise in Player_Input.cs later
         {
             ToggleStatsMenu();
@@ -66,9 +73,13 @@ public class UI_Player : MonoBehaviour
             TogglePlayerMenu();
         }
 
-        if (Input.GetKeyDown(KeyCode.P))
+        // Special condition for pets UI because we wants its unlock when player did a quest.
+        if (Player_Pets.instance && Player_Pets.instance.GetPetsUnlocked())
         {
-            TogglePetsUI();
+            if (Input.GetKeyDown(KeyCode.P))
+            {
+                TogglePetsUI();
+            }
         }
     }
 

@@ -31,4 +31,9 @@ public class Sounds_Asset : ScriptableObject
     public AudioClip bowAttackNormal;
     public AudioClip bowAttackNormalImpact;
     public AudioClip levelUp;
+
+    [Header("Pets")]
+    public AudioClip catInvoke;
+    public AudioClip dogInvoke;
+    public AudioClip alienInvoke;
 }

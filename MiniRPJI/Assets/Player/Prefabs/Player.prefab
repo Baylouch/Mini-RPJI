@@ -1155,6 +1155,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   petsDataBase: {fileID: 11400000, guid: af4a9c4c028eae34f8d22caac07378fc, type: 2}
   currentPlayerPet: {fileID: 0}
+  petInvokeEffect: {fileID: 4993502316696954844, guid: 76a5977b25366ea499db51e1b6e84843,
+    type: 3}
+  petReturnEffect: {fileID: 4230028523464217478, guid: 0891441e64a7a8444a70980a01c90568,
+    type: 3}
   playerPets:
   - {fileID: 0}
   - {fileID: 0}

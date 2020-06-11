@@ -32,7 +32,7 @@ public class Player_Data_Setter : MonoBehaviour
         {
             if (Scenes_Control.instance.GetCurrentSceneBuildIndex() >= 3) // If we're in a playable level.
             {
-                // Check if you find all player's components to set data.
+                // Check if you find all player's components to set data. To add Player_Pets, Player_Abilities
                 if (Player_Stats.instance)
                 {
                     if (Player_Inventory.instance)
