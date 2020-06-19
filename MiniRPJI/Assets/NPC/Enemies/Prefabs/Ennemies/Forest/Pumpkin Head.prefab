@@ -240,7 +240,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chasingDistance: 6
   damagedChasingDistance: 25
-  projectile: {fileID: 6052980135759029977, guid: 0e389b709426a364d80fe0668df63d67,
+  projectile: {fileID: 2291449171880596720, guid: fc2ce7c5b3187f2408724105df20bfef,
     type: 3}
   firePoint: {fileID: 1781909727236868863}
   shootRange: 6

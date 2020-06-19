@@ -16,6 +16,7 @@ MonoBehaviour:
   abilityName: Punch
   abilityDescription: Un bon coup de poing
   abilitySprite: {fileID: 21300000, guid: be05b24d7c1be704f9ad30dbab21ba1f, type: 3}
-  abilityPrefab: {fileID: 0}
-  energyNeeded: 0
+  abilityPrefab: {fileID: 8712131509357282460, guid: 1a787cd634ac59647b0a174935bfbc92,
+    type: 3}
+  energyCost: 0
   abilityType: 0

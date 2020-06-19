@@ -63,6 +63,9 @@ public class ItemDroper : MonoBehaviour
 
     public void DropItems(int itemLevel)
     {
+        if (itemLevel < 1)
+            itemLevel = 1;
+
         // Get the parent of all items gameobjects
         Transform parentGameObject = null;
 

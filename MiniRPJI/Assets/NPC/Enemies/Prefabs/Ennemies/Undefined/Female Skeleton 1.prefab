@@ -290,7 +290,7 @@ MonoBehaviour:
   shootRange: 5
   timerBeforeShoot: 2
   attackRange: 0.8
-  timerBeforeAttack: 1.2
+  timerBeforeAttack: 1
   attackSounds:
   - {fileID: 8300000, guid: 39b08bd2b51e75b479f47245cf9f2737, type: 3}
   - {fileID: 8300000, guid: 02c8b56eda7e02049a068db63cd5e239, type: 3}

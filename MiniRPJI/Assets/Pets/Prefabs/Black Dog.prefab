@@ -1,5 +1,65 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3434715392706966367
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4769075907645566679}
+  m_Layer: 16
+  m_Name: Top left
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4769075907645566679
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3434715392706966367}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.31, y: -0.29000002, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6059048048386882117}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5565515042028681986
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4316717013575515708}
+  m_Layer: 16
+  m_Name: Bottom right
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4316717013575515708
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5565515042028681986}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.34, y: -0.82, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6059048048386882117}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8019979071539927066
 GameObject:
   m_ObjectHideFlags: 0
@@ -16,6 +76,8 @@ GameObject:
   - component: {fileID: 1922469348276458707}
   - component: {fileID: 1922469348276458706}
   - component: {fileID: 1922469348276458705}
+  - component: {fileID: -75808398771894565}
+  - component: {fileID: -3877308944935249110}
   m_Layer: 16
   m_Name: Black Dog
   m_TagString: Untagged
@@ -35,6 +97,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8019979072060814820}
+  - {fileID: 6059048048386882117}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -174,6 +237,64 @@ MonoBehaviour:
   speed: 3
   nextWaypointDistance: 1.2
   stoppingDistance: 1.2
+--- !u!114 &-75808398771894565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8019979071539927066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e6f37a7f8435464d9722debe97d828e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minTimerToDig: 30
+  maxTimerToDig: 120
+  digTimer: 5
+  diggingEffect: {fileID: 312174317549181514, guid: b6d9b66888d7de0449c5b632f9f21c07,
+    type: 3}
+  holeEffect: {fileID: 3997034183244152159, guid: 761716ec8f1f88a429a928c51476ecf6,
+    type: 3}
+--- !u!114 &-3877308944935249110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8019979071539927066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 716615de44a16b24e8a93f30584024f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dropZone:
+  - {fileID: 4769075907645566679}
+  - {fileID: 4316717013575515708}
+  commonItems: {fileID: 11400000, guid: 03fbb6e84eca86a4eba09100739242b2, type: 2}
+  uncommonItems: {fileID: 11400000, guid: 6c272500724b8104081f6ba802af4515, type: 2}
+  rareItems: {fileID: 11400000, guid: 0cbdd841b62106d40ae9cf10ff02c2fe, type: 2}
+  epicItems: {fileID: 11400000, guid: 1acde7ba8b104824f9fbd8db7962aa2b, type: 2}
+  commonItemDropRate: 30
+  uncommonItemDropRate: 20
+  rareItemDropRate: 10
+  epicItemDropRate: 5
+  commonItemTryDropNumb: 1
+  uncommonItemTryDropNumb: 1
+  rareItemTryDropNumb: 1
+  epicItemTryDropNumb: 1
+  maxItemDropable: 1
+  levelRange: 3
+  potionsToDrop:
+  - {fileID: 11400000, guid: f896568763a318444a41d36d90b3f4b7, type: 2}
+  - {fileID: 11400000, guid: 50ba78c24ab68b84e9116bd6aa69ca03, type: 2}
+  - {fileID: 11400000, guid: 24117e4534fa0694686afeb6f6c8ffdb, type: 2}
+  - {fileID: 11400000, guid: b3b6a806f9f03f645b9ec91aaed37755, type: 2}
+  - {fileID: 11400000, guid: eb62fdd8d2dfa0947aa2ae096c7b1696, type: 2}
+  - {fileID: 11400000, guid: 4d5a644082cbc224d8723fd37400966c, type: 2}
+  potionDropRate: 100
+  potionTryDropNumb: 1
+  maxPotionDropable: 1
 --- !u!1 &8019979072060814821
 GameObject:
   m_ObjectHideFlags: 0
@@ -271,3 +392,35 @@ MonoBehaviour:
   offset: 0
   runOnlyOnce: 0
   enemyUI: {fileID: 0}
+--- !u!1 &8334675486555039566
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6059048048386882117}
+  m_Layer: 16
+  m_Name: Drop Pos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6059048048386882117
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8334675486555039566}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4769075907645566679}
+  - {fileID: 4316717013575515708}
+  m_Father: {fileID: 8019979071539927062}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

@@ -15,6 +15,8 @@ using UnityEngine.EventSystems;
 
 public class UI_Player_Pets : MonoBehaviour
 {
+    public GameObject uiButtonToDisplayPetsUI;
+
     [SerializeField] GameObject petButtonPrefab; // Pet button to set when created with the right pet config -> Must have a Pet_Button component on it
 
     [SerializeField] RectTransform buttonsContainer; // The parent of each pet buttons.

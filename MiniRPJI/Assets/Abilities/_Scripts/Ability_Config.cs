@@ -1,4 +1,5 @@
 ﻿/* Abilities_config.cs :
+ * 
  * Contient les données d'une abilité
  * 
  * 
@@ -17,11 +18,12 @@ public class Ability_Config : ScriptableObject
     public string abilityDescription;
 
     public Sprite abilitySprite;
-    // TODO Think about punch ability can use an abilityPrefab too ?
-    public GameObject abilityPrefab; // For this game, it consist of a prefab with Player_Projectile on it or its children. (Keep it null for punch ability)
+
+    public GameObject abilityPrefab; // For this game, it consist of a prefab reprensenting the ability itself. Player_Projectile required on bow ability type
 
     public int energyCost;
 
-    public AbilityType abilityType; // PunchAttack when its the punch. Bow when its the bow. (I keep it simple because this game will not have more than the "Ranger" who use only a punch and a bow.
+    public AbilityType abilityType; // PunchAttack when its the punch. Bow when its the bow. Other when its something else (no animation for this one)
+    // (I keep it simple because this game will not have more than the "Ranger" who use only a punch and a bow).
 
 }

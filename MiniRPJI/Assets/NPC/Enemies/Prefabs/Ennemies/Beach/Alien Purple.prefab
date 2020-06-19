@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 1318611719}
   - component: {fileID: 1422346116}
   m_Layer: 9
-  m_Name: Alien
+  m_Name: Alien Purple
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -213,15 +213,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: 1
-  totalHealthPoints: 50
-  experienceGain: 20
-  speed: 2
-  damageMin: 5
-  damageMax: 10
-  projectileDamageMin: 6
-  projectileDamageMax: 8
-  criticalRate: 3
-  rangedCriticalRate: 5
+  totalHealthPoints: 65
+  experienceGain: 40
+  speed: 2.8
+  damageMin: 7
+  damageMax: 11
+  projectileDamageMin: 8
+  projectileDamageMax: 10
+  criticalRate: 7
+  rangedCriticalRate: 7
 --- !u!114 &7266838945628842690
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -234,15 +234,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd9aa14811435dd42a59a4c146f73a9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chasingDistance: 5.5
+  chasingDistance: 6.5
   damagedChasingDistance: 25
   projectile: {fileID: 6052980135759029977, guid: 0e389b709426a364d80fe0668df63d67,
     type: 3}
   firePoint: {fileID: 1873958402090030934}
-  shootRange: 5
+  shootRange: 6
   timerBeforeShoot: 2
   attackRange: 0.8
-  timerBeforeAttack: 1.2
+  timerBeforeAttack: 1
   attackSounds:
   - {fileID: 8300000, guid: 39b08bd2b51e75b479f47245cf9f2737, type: 3}
   - {fileID: 8300000, guid: 02c8b56eda7e02049a068db63cd5e239, type: 3}

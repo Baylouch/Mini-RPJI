@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 9182164372662201708}
   - component: {fileID: 6908806090517831223}
   - component: {fileID: 3904274274095922164}
+  - component: {fileID: -5235269342562276475}
+  - component: {fileID: 4937479818131593599}
   m_Layer: 9
   m_Name: Nut enemy Projectile
   m_TagString: Enemy
@@ -132,6 +134,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectileDamage: 0
-  projectileSpeed: 14
+  projectileSpeed: 10
   timerBeforeDestroy: 1
-  impactEffect: {fileID: 0}
+  impactEffect: {fileID: 8582567975531680893, guid: e2283ab5bf98c8e41a89d1faa37a2178,
+    type: 3}
+--- !u!114 &-5235269342562276475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6052980135759029977}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afd567dc9f6945f4290bc2b16c93f763, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sortingOrderBase: 5000
+  offset: -1
+  runOnlyOnce: 0
+  enemyUI: {fileID: 0}
+--- !u!114 &4937479818131593599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6052980135759029977}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8764c9d1582e0664591212fe3edc6147, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 35

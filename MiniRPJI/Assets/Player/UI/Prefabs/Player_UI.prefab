@@ -4281,6 +4281,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdd5ec7bdcaa14e4aa9c13cb2a8981db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiButtonToDisplayPetsUI: {fileID: 1835330706}
   petButtonPrefab: {fileID: 352236432172824129, guid: a59495ab0b7d7674f89de0770a8f1abe,
     type: 3}
   buttonsContainer: {fileID: 479019692}

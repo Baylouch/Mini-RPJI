@@ -828,7 +828,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextWaypointDistance: 1
-  stoppingDistance: 0.8
+  stoppingDistance: 0.9
 --- !u!114 &3821673173973507645
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -881,13 +881,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chasingDistance: 5
   damagedChasingDistance: 25
-  projectile: {fileID: 6052980135759029977, guid: 0e389b709426a364d80fe0668df63d67,
+  projectile: {fileID: 4793382507794528828, guid: 817cee239fbceec4fb9726636fcc483e,
     type: 3}
   firePoint: {fileID: 2367532677160194572}
   shootRange: 4
   timerBeforeShoot: 1
-  attackRange: 0.7
-  timerBeforeAttack: 1
+  attackRange: 0.8
+  timerBeforeAttack: 0.8
   attackSounds:
   - {fileID: 8300000, guid: 39b08bd2b51e75b479f47245cf9f2737, type: 3}
   - {fileID: 8300000, guid: 02c8b56eda7e02049a068db63cd5e239, type: 3}

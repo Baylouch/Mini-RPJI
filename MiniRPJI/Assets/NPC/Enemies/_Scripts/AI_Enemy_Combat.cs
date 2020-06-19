@@ -107,6 +107,8 @@ public class AI_Enemy_Combat : MonoBehaviour
             }
         }
 
+        CheckForPlayerDecoy();
+
         CheckTargetDistance();
     }
 
@@ -194,11 +196,18 @@ public class AI_Enemy_Combat : MonoBehaviour
         // Then attack
         PlayerNormalAttackAnimation();
 
-        // Look if we found Player_Health component to deal damage to the player
+        // Check if we found Player_Health component to deal damage to the player
         Player_Health playerHealth = target.gameObject.GetComponent<Player_Health>();
         if (playerHealth)
         {
             playerHealth.TakeDamage(GetAttackDamage());
+        }
+
+        // Or maybe a Decoy_Health component
+        Decoy_Health decoyHealth = target.gameObject.GetComponent<Decoy_Health>();
+        if (decoyHealth)
+        {
+            decoyHealth.TakeDamage(GetAttackDamage());
         }
 
         // Play attack sound
@@ -283,6 +292,30 @@ public class AI_Enemy_Combat : MonoBehaviour
         }
     }
 
+    // Method to check when player invoke a decoy. AI will target decoy until there is one.
+    void CheckForPlayerDecoy()
+    {
+        if (FindObjectOfType<Ability_Decoy>())
+        {
+            float decoyDistance = Vector3.Distance(transform.position, FindObjectOfType<Ability_Decoy>().transform.position);
+
+            if (decoyDistance < chasingDistance)
+            {
+                target = FindObjectOfType<Ability_Decoy>().transform;
+            }
+            else
+            {
+                if (GameObject.FindGameObjectWithTag("Player"))
+                {
+                    if (target == null || target != GameObject.FindGameObjectWithTag("Player").transform)
+                    {
+                        target = GameObject.FindGameObjectWithTag("Player").transform;
+                    }
+                }
+            }
+        }        
+    }
+
     public void Shoot()
     {
         GameObject _projectile = Instantiate(projectile, firePoint.position, firePoint.rotation);
@@ -300,6 +333,14 @@ public class AI_Enemy_Combat : MonoBehaviour
     // To use in each event in animations attack and in Player_health when player died to reset AI_Combat_Control
     public void TurnOffAnimatorParamAttack()
     {
+        if (!animator)
+        {
+            attackCoroutine = null;
+            rangedAttackCoroutine = null;
+
+            return;
+        }
+
         animator.SetBool("isAttacking", false);
 
         if (animator.GetBool("normalAttack"))

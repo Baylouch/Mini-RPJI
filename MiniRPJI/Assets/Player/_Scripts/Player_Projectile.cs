@@ -24,6 +24,9 @@ public class Player_Projectile : MonoBehaviour
     // a different time. BUT, i think its more logical biologically pov, to have each enemies act different themself.
     // Exemple : A mutant can more resist poison than a squirrel.
 
+    // TODO Create a special sprite to apply as arrow image when player got alien's pet to modify the arrow gfx to a laser one.
+    [SerializeField] Sprite laserArrow;
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
@@ -111,6 +114,7 @@ public class Player_Projectile : MonoBehaviour
                         break;
                 }
 
+                // TODO Think about each arrow got a specific impact sound
                 // For now just play a normal sound
                 if (Sound_Manager.instance)
                     Sound_Manager.instance.PlaySound(Sound_Manager.instance.asset.bowAttackNormalImpact);
@@ -173,5 +177,11 @@ public class Player_Projectile : MonoBehaviour
 
         // Target's malus removed
         enemy.RemoveMalus();
+    }
+
+    // Used in Research_Projectile.cs
+    public float GetProjectileSpeed()
+    {
+        return projectileSpeed;
     }
 }

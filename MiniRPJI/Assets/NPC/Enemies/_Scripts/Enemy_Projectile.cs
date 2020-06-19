@@ -37,6 +37,12 @@ public class Enemy_Projectile : MonoBehaviour
                 playerHealth.TakeDamage(projectileDamage);
             }
 
+            if (collision.gameObject.GetComponent<Decoy_Health>())
+            {
+                Decoy_Health decoyHealth = collision.gameObject.GetComponent<Decoy_Health>();
+                decoyHealth.TakeDamage(projectileDamage);
+            }
+
             if (impactEffect)
             {
                 GameObject _impact = Instantiate(impactEffect, transform.position, Quaternion.identity);

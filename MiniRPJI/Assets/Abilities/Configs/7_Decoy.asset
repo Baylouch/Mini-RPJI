@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca51243307a238c4596c518c409b92e9, type: 3}
+  m_Name: 7_Decoy
+  m_EditorClassIdentifier: 
+  abilityID: 7
+  abilityName: Leurre
+  abilityDescription: "Cr\xE9e un leurre qui distrait les ennemis"
+  abilitySprite: {fileID: 21300000, guid: 096e41870559fe54aa8754681da636f0, type: 3}
+  abilityPrefab: {fileID: 1743312516820072697, guid: 07ae9cf22311a054aa9276cdf24b5593,
+    type: 3}
+  energyCost: 150
+  abilityType: 2

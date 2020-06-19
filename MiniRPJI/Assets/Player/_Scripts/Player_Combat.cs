@@ -27,7 +27,6 @@ public class Player_Combat : MonoBehaviour
     float currentTimerBeforeEndCombat;
 
     [SerializeField] Transform firePoint;
-    [SerializeField] float energyNeededForShoot;
 
     Animator animator;
     AI_Health currentEnemy;
@@ -73,7 +72,7 @@ public class Player_Combat : MonoBehaviour
                             // First check if player got enough energy
                             if (Player_Stats.instance.playerEnergy.GetCurrentEnergyPoints() >= playerAbilities.GetPrimaryAbility().energyCost)
                             {
-                                StartCoroutine(UseBowAttack(playerAbilities.GetPrimaryAbility(), .3f));
+                                StartCoroutine(UseBowAbility(playerAbilities.GetPrimaryAbility(), .3f));
                             }
                         }
                         else
@@ -81,11 +80,18 @@ public class Player_Combat : MonoBehaviour
                             Debug.Log("No bow equiped. Impossible to use ability. (Ability ID : " + playerAbilities.GetPrimaryAbility().abilityID + ")");
                         }
                     }
-                    else // else its a punch ability type
+                    else if (playerAbilities.GetPrimaryAbility().abilityType == AbilityType.Punch) // else its a punch ability type
                     {
                         if (Player_Stats.instance.playerEnergy.GetCurrentEnergyPoints() >= playerAbilities.GetPrimaryAbility().energyCost)
                         {
-                            StartCoroutine(UsePunchAttack(playerAbilities.GetPrimaryAbility(), 0f));
+                            StartCoroutine(UsePunchAbility(playerAbilities.GetPrimaryAbility(), 0f));
+                        }
+                    }
+                    else // else its an other ability type
+                    {
+                        if (Player_Stats.instance.playerEnergy.GetCurrentEnergyPoints() >= playerAbilities.GetPrimaryAbility().energyCost)
+                        {
+                            StartCoroutine(UseOtherAbility(playerAbilities.GetPrimaryAbility(), 0f));
                         }
                     }
                 }
@@ -104,7 +110,7 @@ public class Player_Combat : MonoBehaviour
                             // First check if player got enough energy
                             if (Player_Stats.instance.playerEnergy.GetCurrentEnergyPoints() >= playerAbilities.GetSecondaryAbility().energyCost)
                             {
-                                StartCoroutine(UseBowAttack(playerAbilities.GetSecondaryAbility(), .3f));
+                                StartCoroutine(UseBowAbility(playerAbilities.GetSecondaryAbility(), .3f));
                             }
                         }
                         else
@@ -112,11 +118,18 @@ public class Player_Combat : MonoBehaviour
                             // Debug.Log("No bow equiped. Impossible to use ability. (Ability ID : " + playerAbilities.GetSecondaryAbility().abilityID + ")");
                         }
                     }
-                    else // else its a punch ability type
+                    else if (playerAbilities.GetSecondaryAbility().abilityType == AbilityType.Punch) // else its a punch ability type
                     {
                         if (Player_Stats.instance.playerEnergy.GetCurrentEnergyPoints() >= playerAbilities.GetSecondaryAbility().energyCost)
                         {
-                            StartCoroutine(UsePunchAttack(playerAbilities.GetSecondaryAbility(), 0f));
+                            StartCoroutine(UsePunchAbility(playerAbilities.GetSecondaryAbility(), 0f));
+                        }
+                    }
+                    else // else its an other ability type
+                    {
+                        if (Player_Stats.instance.playerEnergy.GetCurrentEnergyPoints() >= playerAbilities.GetSecondaryAbility().energyCost)
+                        {
+                            StartCoroutine(UseOtherAbility(playerAbilities.GetSecondaryAbility(), 0f));
                         }
                     }
                 }              
@@ -125,7 +138,7 @@ public class Player_Combat : MonoBehaviour
     }
 
     // used for each bow attack to launch an arrow
-    IEnumerator UseBowAttack(Ability_Config _ability, float _delay)
+    IEnumerator UseBowAbility(Ability_Config _ability, float _delay)
     {
         PlayBowAnimation();
 
@@ -141,20 +154,27 @@ public class Player_Combat : MonoBehaviour
             Destroy(_projectile, 20f);
 
             // If this ability prefab got children (for multiple arrow for instance)
-            if (_projectile.transform.childCount > 0)
-            {
-                for (int i = 0; i < _projectile.transform.childCount; i++)
-                {
-                    Player_Projectile currentProjectileComponent = _projectile.transform.GetChild(i).GetComponent<Player_Projectile>();
-
-                    currentProjectileComponent.projectileDamage = GetRangedAttackDamage();
-                }
-            }
-            else
+            if (_projectile.GetComponent<Player_Projectile>())
             {
                 Player_Projectile currentProjectileComponent = _projectile.GetComponent<Player_Projectile>();
 
                 currentProjectileComponent.projectileDamage = GetRangedAttackDamage();
+            }
+            else if (_projectile.transform.childCount > 0)
+            {
+                for (int i = 0; i < _projectile.transform.childCount; i++)
+                {
+                    if (_projectile.transform.GetChild(i).GetComponent<Player_Projectile>())
+                    {
+                        Player_Projectile currentProjectileComponent = _projectile.transform.GetChild(i).GetComponent<Player_Projectile>();
+
+                        currentProjectileComponent.projectileDamage = GetRangedAttackDamage();
+                    }
+                }
+            }
+            else
+            {
+                Debug.Log("Can't find Player_Projectile component when instantiating arrow.");
             }
           
             // Use energy
@@ -166,7 +186,7 @@ public class Player_Combat : MonoBehaviour
         }
     }
 
-    IEnumerator UsePunchAttack(Ability_Config _ability, float _delay)
+    IEnumerator UsePunchAbility(Ability_Config _ability, float _delay)
     {
         PlayPunchAnimation();
 
@@ -174,6 +194,13 @@ public class Player_Combat : MonoBehaviour
 
         if (currentEnemy != null) // If we got a currentEnemy, then we're close to one because its set with triggerEnter2D, and unset in triggerExit2D
         {
+            if (_ability.abilityPrefab)
+            {
+                GameObject abilityGO = Instantiate(_ability.abilityPrefab, currentEnemy.transform.position, _ability.abilityPrefab.transform.rotation);
+
+                Destroy(abilityGO, 2f);
+            }
+
             // Damage enemy
             currentEnemy.TakeDamage(GetAttackDamage(), true); // So we can direclty set damage to the enemy
 
@@ -206,6 +233,21 @@ public class Player_Combat : MonoBehaviour
                 Sound_Manager.instance.PlaySound(Sound_Manager.instance.asset.punchNoHit);
             }
         }
+    }
+
+    IEnumerator UseOtherAbility(Ability_Config _ability, float _delay)
+    {
+        // No animation for that sort of ability
+
+        yield return new WaitForSeconds(_delay);
+
+        if (_ability.abilityPrefab)
+        {
+            GameObject abilityPrefab = Instantiate(_ability.abilityPrefab, transform.position, Quaternion.identity);
+        }
+
+        // Use energy
+        Player_Stats.instance.playerEnergy.SetCurrentEnergyPoints(Player_Stats.instance.playerEnergy.GetCurrentEnergyPoints() - _ability.energyCost);
     }
 
     // TODO use coroutine ?
@@ -336,6 +378,12 @@ public class Player_Combat : MonoBehaviour
         {
             animator.SetBool("bowAttack", false);
         }
+    }
+
+    // Used in Research_Projectile.cs to get the arrow rotation when created.
+    public float GetFirePointRotationZ()
+    {
+        return firePoint.rotation.eulerAngles.z;
     }
 
     // Use for set firepoint rotation depending of player's movement (as animation's event)

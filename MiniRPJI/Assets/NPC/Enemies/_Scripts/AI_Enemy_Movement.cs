@@ -183,7 +183,7 @@ public class AI_Enemy_Movement : MonoBehaviour
 
     void UpdateTargetPath()
     {
-        if (seeker.IsDone())
+        if (target && seeker.IsDone())
             seeker.StartPath(myRb.position, target.position, OnPathComplete);
     }
 
@@ -204,6 +204,11 @@ public class AI_Enemy_Movement : MonoBehaviour
         {
             target = ai_combat.GetTarget();
             return;
+        }
+
+        if (target != ai_combat.GetTarget())
+        {
+            target = ai_combat.GetTarget();
         }
 
         float targetDistance = Vector2.Distance(myRb.position, target.position);

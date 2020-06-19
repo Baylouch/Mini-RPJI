@@ -215,11 +215,11 @@ MonoBehaviour:
   level: 1
   totalHealthPoints: 90
   experienceGain: 55
-  speed: 3.5
+  speed: 3
   damageMin: 10
   damageMax: 15
-  projectileDamageMin: 6
-  projectileDamageMax: 8
+  projectileDamageMin: 18
+  projectileDamageMax: 20
   criticalRate: 3
   rangedCriticalRate: 5
 --- !u!114 &6970406378993414975
@@ -234,15 +234,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd9aa14811435dd42a59a4c146f73a9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chasingDistance: 5.5
+  chasingDistance: 7.5
   damagedChasingDistance: 25
   projectile: {fileID: 6052980135759029977, guid: 0e389b709426a364d80fe0668df63d67,
     type: 3}
   firePoint: {fileID: 2189460881212296875}
-  shootRange: 5
-  timerBeforeShoot: 2
+  shootRange: 7
+  timerBeforeShoot: 2.5
   attackRange: 0.8
-  timerBeforeAttack: 1.2
+  timerBeforeAttack: 1
   attackSounds:
   - {fileID: 8300000, guid: 39b08bd2b51e75b479f47245cf9f2737, type: 3}
   - {fileID: 8300000, guid: 02c8b56eda7e02049a068db63cd5e239, type: 3}

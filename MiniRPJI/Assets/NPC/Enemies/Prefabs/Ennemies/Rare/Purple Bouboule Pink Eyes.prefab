@@ -828,7 +828,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextWaypointDistance: 1
-  stoppingDistance: 0.8
+  stoppingDistance: 0.9
 --- !u!114 &3977132387292383453
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -861,10 +861,10 @@ MonoBehaviour:
   totalHealthPoints: 120
   experienceGain: 100
   speed: 4
-  damageMin: 8
-  damageMax: 11
-  projectileDamageMin: 10
-  projectileDamageMax: 12
+  damageMin: 10
+  damageMax: 13
+  projectileDamageMin: 11
+  projectileDamageMax: 13
   criticalRate: 5
   rangedCriticalRate: 10
 --- !u!114 &6645806176511818104
@@ -879,15 +879,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd9aa14811435dd42a59a4c146f73a9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chasingDistance: 5
+  chasingDistance: 5.2
   damagedChasingDistance: 25
-  projectile: {fileID: 6052980135759029977, guid: 0e389b709426a364d80fe0668df63d67,
+  projectile: {fileID: 4793382507794528828, guid: fd4a7160740542e4ebb4ee35408be335,
     type: 3}
   firePoint: {fileID: 2514127037381493996}
-  shootRange: 4
+  shootRange: 5
   timerBeforeShoot: 2
-  attackRange: 0.7
-  timerBeforeAttack: 1.2
+  attackRange: 0.8
+  timerBeforeAttack: 1
   attackSounds:
   - {fileID: 8300000, guid: 39b08bd2b51e75b479f47245cf9f2737, type: 3}
   - {fileID: 8300000, guid: 02c8b56eda7e02049a068db63cd5e239, type: 3}

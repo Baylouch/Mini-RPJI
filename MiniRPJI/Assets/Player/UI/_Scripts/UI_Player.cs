@@ -74,13 +74,25 @@ public class UI_Player : MonoBehaviour
         }
 
         // Special condition for pets UI because we wants its unlock when player did a quest.
-        if (Player_Pets.instance && Player_Pets.instance.GetPetsUnlocked())
+        if (Player_Pets.instance)
         {
-            if (Input.GetKeyDown(KeyCode.P))
+            if (Player_Pets.instance.GetPetsUnlocked())
             {
-                TogglePetsUI();
+                if (!playerPetsUI.uiButtonToDisplayPetsUI.activeSelf)
+                    playerPetsUI.uiButtonToDisplayPetsUI.SetActive(true);
+
+                if (Input.GetKeyDown(KeyCode.P))
+                {
+                    TogglePetsUI();
+                }
+            }
+            else
+            {
+                if (playerPetsUI.uiButtonToDisplayPetsUI.activeSelf)
+                    playerPetsUI.uiButtonToDisplayPetsUI.SetActive(false);
             }
         }
+
     }
 
     void HideAllMenus()

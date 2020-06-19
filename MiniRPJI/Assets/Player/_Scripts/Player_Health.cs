@@ -1,11 +1,15 @@
-﻿/* Health.cs
-Utilisé pour gérer la vie du joueur
-*/
+﻿/* Player_Health.cs
+ * 
+ * Utilisé pour gérer la vie du joueur
+ *
+ * 
+ */
+
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(Player_Combat))] // To know when we can regenerate health or not (with IsInCombat variable)
+//[RequireComponent(typeof(Player_Combat))] // To know when we can regenerate health or not (with IsInCombat variable)
 public class Player_Health : MonoBehaviour
 {
     [SerializeField] private int totalHealthPoints = 100; // Total player healthpoints

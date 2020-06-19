@@ -865,10 +865,10 @@ MonoBehaviour:
   speed: 3.5
   damageMin: 10
   damageMax: 15
-  projectileDamageMin: 6
-  projectileDamageMax: 8
-  criticalRate: 3
-  rangedCriticalRate: 5
+  projectileDamageMin: 0
+  projectileDamageMax: 0
+  criticalRate: 5
+  rangedCriticalRate: 0
 --- !u!114 &8738013336624014727
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -883,8 +883,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chasingDistance: 5.5
   damagedChasingDistance: 25
-  projectile: {fileID: 6052980135759029977, guid: 0e389b709426a364d80fe0668df63d67,
-    type: 3}
+  projectile: {fileID: 0}
   firePoint: {fileID: 548019051894970387}
   shootRange: 5
   timerBeforeShoot: 2

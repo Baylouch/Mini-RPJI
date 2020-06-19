@@ -10,7 +10,7 @@
 
 using UnityEngine;
 
-public enum AbilityType { Punch, Bow }; // Used in Ability_Config
+public enum AbilityType { Punch, Bow, Other }; // Used in Ability_Config
 
 public class Player_Abilities : MonoBehaviour
 {

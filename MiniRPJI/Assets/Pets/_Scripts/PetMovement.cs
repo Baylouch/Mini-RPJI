@@ -27,6 +27,14 @@ public class PetMovement : MonoBehaviour
     Animator animator;
 
     Transform target;
+    public void SetTarget(Transform newTarget)
+    {
+        target = newTarget;
+    }
+    public Transform GetTarget()
+    {
+        return target;
+    }
 
     bool processingMovement = false;
     float startSpeed;
