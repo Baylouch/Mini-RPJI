@@ -213,7 +213,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 10000
   m_TargetDisplay: 0
 --- !u!114 &7435301255456575490
 MonoBehaviour:
@@ -571,6 +571,7 @@ GameObject:
   - component: {fileID: 6082030465106904191}
   - component: {fileID: 1390248393612499362}
   - component: {fileID: 1390248392562975589}
+  - component: {fileID: 3569394723007368531}
   m_Layer: 9
   m_Name: Blue Ghost
   m_TagString: Enemy
@@ -585,7 +586,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9170123422094426921}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -761,14 +762,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: 1
-  totalHealthPoints: 65
-  experienceGain: 40
-  speed: 2.5
-  damageMin: 7
-  damageMax: 12
-  projectileDamageMin: 8
-  projectileDamageMax: 10
-  criticalRate: 3
+  totalHealthPoints: 120
+  experienceGain: 85
+  speed: 4.2
+  damageMin: 18
+  damageMax: 22
+  projectileDamageMin: 20
+  projectileDamageMax: 24
+  criticalRate: 9
   rangedCriticalRate: 5
 --- !u!114 &1870721867926919713
 MonoBehaviour:
@@ -782,12 +783,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd9aa14811435dd42a59a4c146f73a9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chasingDistance: 4
+  chasingDistance: 8.5
   damagedChasingDistance: 25
-  projectile: {fileID: 6052980135759029977, guid: 0e389b709426a364d80fe0668df63d67,
+  projectile: {fileID: 4509037830737197445, guid: d5c89c407044be54e89c106f5796834a,
     type: 3}
   firePoint: {fileID: 7435301256791844789}
-  shootRange: 3
+  shootRange: 6.5
   timerBeforeShoot: 2
   attackRange: 0.7
   timerBeforeAttack: 1
@@ -817,17 +818,6 @@ MonoBehaviour:
   AI_Collider: {fileID: 8285808528941274065}
   hurtSounds:
   - {fileID: 8300000, guid: e968ba30a9173be4ea937eabac3c5377, type: 3}
-  slowedTimer: 4
-  slowColor: {r: 0.045701336, g: 0.21816757, b: 0.745283, a: 1}
-  fireTimer: 3
-  fireEffect: {fileID: 4050406411080310882, guid: 53a323b2909ea034a9fef0b954c7f7ce,
-    type: 3}
-  poisonedTimer: 10
-  poisonColor: {r: 0.4509928, g: 0.09549664, b: 0.6981132, a: 1}
-  electrifiedTimer: 2
-  percentageChanceToParalyze: 35
-  electricEffect: {fileID: 4144859057491972, guid: 91d03a92bb3425f4186bc9844360af1c,
-    type: 3}
 --- !u!114 &6082030465106904191
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -890,6 +880,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gfxMinimap: {fileID: 4849729477652816768, guid: 82ca7783b886f96479de5a4e06dd142d,
     type: 3}
+--- !u!114 &3569394723007368531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9170123422094426921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bad68f115af6bf34383ef46435629f1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slowColor: {r: 0, g: 0, b: 1, a: 1}
+  fireEffect: {fileID: 4050406411080310882, guid: 53a323b2909ea034a9fef0b954c7f7ce,
+    type: 3}
+  poisonColor: {r: 1, g: 0, b: 1, a: 1}
+  electricEffect: {fileID: 4144859057491972, guid: 91d03a92bb3425f4186bc9844360af1c,
+    type: 3}
+  Env_Collider: {fileID: 8285808528941274065}
 --- !u!1 &9170123423036371266
 GameObject:
   m_ObjectHideFlags: 0

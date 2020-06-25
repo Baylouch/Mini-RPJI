@@ -13,7 +13,6 @@ public class Player_Activator : MonoBehaviour
 {
     [SerializeField] float activationDistance = 30f; // TODO Link to desactivation distance
 
-
     private void Start()
     {
         StartCoroutine(CheckForEnnemiesActivation());
@@ -39,7 +38,7 @@ public class Player_Activator : MonoBehaviour
                     activators[i].ActiveBehaviours();
                     continue; // If AI is in the activationRange, active it, then move to the next iteration
                 }
-            }
+            }            
         }
     }
 

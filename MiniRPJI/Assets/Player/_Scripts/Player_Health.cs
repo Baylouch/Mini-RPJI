@@ -9,8 +9,8 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-//[RequireComponent(typeof(Player_Combat))] // To know when we can regenerate health or not (with IsInCombat variable)
-public class Player_Health : MonoBehaviour
+[RequireComponent(typeof(Player_Combat))] // To know when we can regenerate health or not (with IsInCombat variable)
+public class Player_Health : MonoBehaviour, IDamageable
 {
     [SerializeField] private int totalHealthPoints = 100; // Total player healthpoints
     public int GetTotalHealthPoints()
@@ -62,7 +62,13 @@ public class Player_Health : MonoBehaviour
     [SerializeField] SpriteRenderer rend;
 
     Player_Combat player_combat;
+    MalusApplier player_MalusApplier;
     float lastDamagedTextXPosition = 0;
+    bool isDead = false;
+    public bool IsDead()
+    {
+        return isDead;
+    }
 
     private void OnDisable()
     {
@@ -78,6 +84,7 @@ public class Player_Health : MonoBehaviour
         SetCurrentHealthPoints(totalHealthPoints); // Set player healthpoints
 
         player_combat = GetComponent<Player_Combat>();
+        player_MalusApplier = GetComponent<MalusApplier>();
 
         currentRegenerationTimer = healthRegenerationTimer;
     }
@@ -205,8 +212,17 @@ public class Player_Health : MonoBehaviour
         }
     }
 
-    public void TakeDamage(int amount)
+    public void TakeDamage(int amount, bool playSound)
     {
+        // First of all, check if player entered godMode. If yes, just return before all calculation.
+        if (Cheats.instance)
+        {
+            if (Cheats.instance.godModeActived)
+            {
+                return;
+            }
+        }
+
         // Reduction of damage amount by % depending of our armor.
         // Full calculation is : CurrentArmor * 0.05 = resultat (% of attack reduction)
         //                       resultat /= 100 to obtain like 0.05 to reduce attack by 5% for exemple
@@ -243,6 +259,11 @@ public class Player_Health : MonoBehaviour
     
     public void Die()
     {
+        isDead = true;
+
+        if (player_MalusApplier)
+            player_MalusApplier.RemoveCurrentEffect();
+
         FloatingText[] floatingTexts = FindObjectsOfType<FloatingText>();
         for (int i = 0; i < floatingTexts.Length; i++)
         {

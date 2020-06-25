@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Decoy_Health : MonoBehaviour
+public class Decoy_Health : MonoBehaviour, IDamageable
 {
     [SerializeField] private int totalHealthPoints = 100; // Total player healthpoints
     public int GetTotalHealthPoints()
@@ -42,6 +42,11 @@ public class Decoy_Health : MonoBehaviour
     [SerializeField] RectTransform healthLine;
 
     float lastDamagedTextXPosition = 0;
+    bool isDead = false;
+    public bool IsDead()
+    {
+        return isDead;
+    }
 
     private void Start()
     {
@@ -122,7 +127,7 @@ public class Decoy_Health : MonoBehaviour
         }
     }
 
-    public void TakeDamage(int amount)
+    public void TakeDamage(int amount, bool playSound)
     {
         // Reduction of damage amount by % depending of our armor.
         // Full calculation is : CurrentArmor * 0.05 = resultat (% of attack reduction)
@@ -157,6 +162,7 @@ public class Decoy_Health : MonoBehaviour
 
     public void Die()
     {
+        isDead = true;
         Destroy(gameObject);
     }
 }

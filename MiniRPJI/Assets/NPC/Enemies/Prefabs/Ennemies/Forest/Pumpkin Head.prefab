@@ -27,6 +27,7 @@ GameObject:
   - component: {fileID: -8743499735396266996}
   - component: {fileID: 2193221001438687756}
   - component: {fileID: 1462328229643825715}
+  - component: {fileID: -10166185859189542}
   m_Layer: 9
   m_Name: Pumpkin Head
   m_TagString: Enemy
@@ -217,13 +218,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: 1
-  totalHealthPoints: 70
-  experienceGain: 40
-  speed: 3
-  damageMin: 7
-  damageMax: 12
-  projectileDamageMin: 8
-  projectileDamageMax: 12
+  totalHealthPoints: 115
+  experienceGain: 50
+  speed: 3.6
+  damageMin: 12
+  damageMax: 15
+  projectileDamageMin: 12
+  projectileDamageMax: 14
   criticalRate: 5
   rangedCriticalRate: 10
 --- !u!114 &7377953701908281195
@@ -273,17 +274,6 @@ MonoBehaviour:
   AI_Collider: {fileID: 966295456699252379}
   hurtSounds:
   - {fileID: 8300000, guid: e968ba30a9173be4ea937eabac3c5377, type: 3}
-  slowedTimer: 4
-  slowColor: {r: 0.045701336, g: 0.21816757, b: 0.745283, a: 1}
-  fireTimer: 3
-  fireEffect: {fileID: 4050406411080310882, guid: 53a323b2909ea034a9fef0b954c7f7ce,
-    type: 3}
-  poisonedTimer: 10
-  poisonColor: {r: 0.4509928, g: 0.09549664, b: 0.6981132, a: 1}
-  electrifiedTimer: 2
-  percentageChanceToParalyze: 35
-  electricEffect: {fileID: 4144859057491972, guid: 91d03a92bb3425f4186bc9844360af1c,
-    type: 3}
 --- !u!114 &3166685942284986677
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -415,6 +405,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   questID: 11
   levelRequiredToApplyQuest: 7
+--- !u!114 &-10166185859189542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 60570751664533091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bad68f115af6bf34383ef46435629f1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slowColor: {r: 0, g: 0, b: 1, a: 1}
+  fireEffect: {fileID: 4050406411080310882, guid: 53a323b2909ea034a9fef0b954c7f7ce,
+    type: 3}
+  poisonColor: {r: 1, g: 0, b: 1, a: 1}
+  electricEffect: {fileID: 4144859057491972, guid: 91d03a92bb3425f4186bc9844360af1c,
+    type: 3}
+  Env_Collider: {fileID: 966295456699252379}
 --- !u!1 &60570751790603272
 GameObject:
   m_ObjectHideFlags: 0
@@ -901,7 +910,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 10000
   m_TargetDisplay: 0
 --- !u!114 &1781909727497878856
 MonoBehaviour:

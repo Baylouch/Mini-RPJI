@@ -5,11 +5,11 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum MalusType { None, Slowed, InFire, Poisoned, Electrified }; // Used to know what projectile type hurt AI from ApplyMalus coroutine.
+//public enum MalusType { None, Slowed, InFire, Poisoned, Electrified }; // Used to know what projectile type hurt AI from ApplyMalus coroutine.
 
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(AI_Stats))] // To get healthpoints & speed
-public class AI_Health : MonoBehaviour
+public class AI_Health : MonoBehaviour, IDamageable
 {
     [Header("General")]
     // To know when AI just took damage, then we want to upgrade his chasing distance (via AI_Combat_Control)
@@ -30,44 +30,19 @@ public class AI_Health : MonoBehaviour
 
     // The one for avoid collision with others AI
     [SerializeField] Collider2D AI_Collider; // To disable when dead.
+    public void SetAI_Collider(bool value)
+    {
+        AI_Collider.enabled = value;
+    }
 
     // Sounds
-    [SerializeField] AudioClip[] hurtSounds;
-
-    //******* Malus variables **********\\
-
-    // Slowed variables
-
-    [Header("Slow Malus")]
-    [SerializeField] float slowedTimer = 2f;
-    [SerializeField] Color slowColor = Color.blue;
-
-    // In fire variables
-    [Header("Fire Malus")]
-    [SerializeField] float fireTimer = 2f;
-    [SerializeField] GameObject fireEffect; // A particle effect on AI's body. TODO Think about put it in Player_Projectile directly as malusEffect?
-
-    // Poisoned variables
-    [Header("Poison Malus")]
-    [SerializeField] float poisonedTimer = 2f;
-    [SerializeField] Color poisonColor = Color.magenta;
-
-    // Electric variables
-    [Header("Electric Malus")]
-    [SerializeField] float electrifiedTimer = 2f;
-    [SerializeField] float percentageChanceToParalyze; // a percentage of chance to be paralyze
-    [SerializeField] GameObject electricEffect;
+    [SerializeField] AudioClip[] hurtSounds; 
 
     // others variables
     Animator animator;
     AI_Stats ai_stats;
+    MalusApplier ai_MalusApplier;
 
-    Coroutine TakeDamagePerSecondCoroutine; // To know what damageOverTime coroutine is currently using
-    Coroutine malusCoroutine; // To know when AI is already on a malus.
-    MalusType currentMalus; // To know what is the current Malus on AI to disable it before got a new one.
-
-    GameObject currentEffect; // The current effect on the AI. No cumulable.
-    float originalAISpeed; // To know what's the AI speed at start. (When its got 0 malus on it)
     float lastDamagedTextXPosition = 0f;
 
     // Start is called before the first frame update
@@ -75,8 +50,7 @@ public class AI_Health : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         ai_stats = GetComponent<AI_Stats>();
-
-        originalAISpeed = ai_stats.GetSpeed();
+        ai_MalusApplier = GetComponent<MalusApplier>();
     }
 
     // Update is called once per frame
@@ -161,8 +135,8 @@ public class AI_Health : MonoBehaviour
             GetComponent<Collider2D>().enabled = false;
         if (AI_Collider)
             AI_Collider.enabled = false;
-        if (currentEffect)
-            Destroy(currentEffect);
+        if (ai_MalusApplier)
+            ai_MalusApplier.RemoveCurrentEffect();
 
         // Set all animator parameters to false
         animator.SetBool("isMoving", false);
@@ -189,6 +163,12 @@ public class AI_Health : MonoBehaviour
         if (GetComponent<ItemDroper>())
         {
             GetComponent<ItemDroper>().DropItems(ai_stats.GetLevel());
+        }
+
+        // Drop GameObjects
+        if (GetComponent<GameObjectDroper>())
+        {
+            GetComponent<GameObjectDroper>().DropItems();
         }
 
         // Drop quest items
@@ -297,275 +277,5 @@ public class AI_Health : MonoBehaviour
 
             _damagedText.GetComponent<Text>().text = amount.ToString();
         }
-    }
-
-    // ************************************************************************************ \\
-    // ********************************** MALUS METHODS *********************************** \\
-    // ************************************************************************************ \\
-
-    // TODO think about use only currentMalus and not malusCoroutine to check malus on the enemy ?
-
-    // Method used into Player_Projectile to deal overPower attack when enemy is already affect by the same malus type.
-    public MalusType GetCurrentMalusType()
-    {
-        return currentMalus;
-    }
-
-    // Method call from Player_Projectile to set a malus on the AI.
-    // bool takeDamage parameter exist because of overpower projectile. To inflict malus and damageovertime to ennemies but not projectile damage directly.
-    public void SetMalus(MalusType type, int playerDamage, bool takeDamage = true)
-    {
-        // First before add a new Malus, verifity there is none already by checking malusCoroutine.
-        RemoveMalus();
-
-        malusCoroutine = StartCoroutine(ApplyMalus(type, playerDamage, takeDamage));
-    }
-
-    // Method to remove current malus on enemy.
-    public void RemoveMalus()
-    {
-        if (malusCoroutine != null)
-        {
-            StopCoroutine(malusCoroutine);
-
-            switch (currentMalus)
-            {
-                case MalusType.Slowed:
-                    UnApplySlow();
-                    break;
-                case MalusType.InFire:
-                    UnApplyFire();
-                    break;
-                case MalusType.Poisoned:
-                    UnApplyPoison();
-                    break;
-                case MalusType.Electrified:
-                    UnApplyElectric();
-                    break;
-            }
-        }
-    }
-
-    // Method to apply malus inside SetMalus()
-    IEnumerator ApplyMalus(MalusType type, int playerDamage, bool takeDamage)
-    {
-        switch(type)
-        {
-            // SLOWED PART
-            case MalusType.Slowed:
-                // Apply slow malus
-                ApplySlow(playerDamage, takeDamage);
-
-                // Wait slowed timer
-                yield return new WaitForSeconds(slowedTimer);
-
-                // UnApply slow malus
-                UnApplySlow();
-                
-                break;
-            // FIRE PART
-            case MalusType.InFire:
-                // Apply fire malus
-                ApplyFire(playerDamage, takeDamage);
-
-                // Wait fire timer
-                yield return new WaitForSeconds(fireTimer);
-
-                // UnApply fire malus
-                UnApplyFire();
-
-                break;
-            // POISONED PART
-            case MalusType.Poisoned:
-                // Apply poison malus
-                ApplyPoison(playerDamage, takeDamage);
-
-                // Wait poison timer
-                yield return new WaitForSeconds(poisonedTimer);
-
-                // UnApply poison malus
-                UnApplyPoison();
-
-                break;
-            // ELECTRIFIED PART
-            case MalusType.Electrified:
-                // Apply electrified malus
-                ApplyElectric(playerDamage, takeDamage);
-
-                // Wait for electrified timer
-                yield return new WaitForSeconds(electrifiedTimer);
-
-                // UnApply electrified malus
-                UnApplyElectric();
-
-                break;
-        }
-    }
-
-    // Method to inflict damage over time (used for fire and poison)
-    IEnumerator TakeDamagePerSecond(int damagePerSecond)
-    {
-        // Just wait a short amount of time and do the first burst, then burst every 1 sec
-        yield return new WaitForSeconds(.5f);
-
-        TakeDamage(damagePerSecond, false);
-
-        // Then go into infinite loop to do damage until we unapply malus.
-        while (true)
-        {
-            yield return new WaitForSeconds(1);
-
-            TakeDamage(damagePerSecond, false);
-        }
-    }
-
-    // ********************************** SLOW MALUS *********************************** \\
-    void ApplySlow(int playerDamage, bool takeDamage)
-    {
-        if (takeDamage)
-            TakeDamage(playerDamage, true);
-
-        // Security for enemy to dont get malused if dead.
-        if (isDead)
-            return;
-
-        GetComponentInChildren<SpriteRenderer>().color = slowColor;
-        ai_stats.SetSpeed(originalAISpeed / 2);
-
-        currentMalus = MalusType.Slowed;
-    }
-
-    void UnApplySlow()
-    {
-        GetComponentInChildren<SpriteRenderer>().color = Color.white;
-        ai_stats.SetSpeed(originalAISpeed);
-
-        currentMalus = MalusType.None;
-        malusCoroutine = null;
-    }
-
-    // ********************************** FIRE MALUS *********************************** \\
-    void ApplyFire(int playerDamage, bool takeDamage)
-    {
-        if (takeDamage)
-            TakeDamage(playerDamage, true);
-
-        // Security for enemy to dont get malused if dead.
-        if (isDead)
-            return;
-
-        if (fireEffect)
-        {
-            if (currentEffect != null)
-            {
-                Destroy(currentEffect);
-            }
-
-            float damagePerSecond = playerDamage / fireTimer;
-
-            TakeDamagePerSecondCoroutine = StartCoroutine(TakeDamagePerSecond(Mathf.RoundToInt(damagePerSecond)));
-
-            currentEffect = Instantiate(fireEffect, transform.position, Quaternion.identity);
-            currentEffect.transform.parent = transform;
-        }
-
-        currentMalus = MalusType.InFire;
-    }
-
-    void UnApplyFire()
-    {
-        if (currentEffect != null)
-        {
-            Destroy(currentEffect);
-        }
-
-        if (TakeDamagePerSecondCoroutine != null)
-        {
-            StopCoroutine(TakeDamagePerSecondCoroutine);
-        }
-
-        currentMalus = MalusType.None;
-        malusCoroutine = null;
-
-    }
-
-    // ********************************** POISON MALUS *********************************** \\
-    void ApplyPoison(int playerDamage, bool takeDamage)
-    {
-        if (takeDamage)
-            TakeDamage(playerDamage, true);
-
-        // Security for enemy to dont get malused if dead.
-        if (isDead)
-            return;
-
-        GetComponentInChildren<SpriteRenderer>().color = poisonColor;
-
-        float damagePerSecond = playerDamage / poisonedTimer;
-        if (damagePerSecond < 1)
-        {
-            damagePerSecond = 1;
-        }
-        TakeDamagePerSecondCoroutine = StartCoroutine(TakeDamagePerSecond(Mathf.RoundToInt(damagePerSecond)));
-
-        currentMalus = MalusType.Poisoned;
-    }
-
-    void UnApplyPoison()
-    {
-        GetComponentInChildren<SpriteRenderer>().color = Color.white;
-
-        if (TakeDamagePerSecondCoroutine != null)
-        {
-            StopCoroutine(TakeDamagePerSecondCoroutine);
-        }
-
-        currentMalus = MalusType.None;
-        malusCoroutine = null;
-
-    }
-
-    // ********************************** ELECTRIC MALUS *********************************** \\
-    void ApplyElectric(int playerDamage, bool takeDamage)
-    {
-        if (takeDamage)
-            TakeDamage(playerDamage, true);
-
-        // Security for enemy to dont get malused if dead.
-        if (isDead)
-            return;
-
-        bool willApply = percentageChanceToParalyze > Random.Range(0, 101);
-        if (willApply == true)
-        {
-            ai_stats.SetSpeed(0f);
-            AI_Collider.enabled = false; // disable ai_collider to avoid AI to be push by others
-
-            if (currentEffect != null)
-            {
-                Destroy(currentEffect);
-            }
-
-            currentEffect = Instantiate(electricEffect, transform.position, Quaternion.identity);
-            currentEffect.transform.parent = transform;
-
-            currentMalus = MalusType.Electrified;
-
-        }
-    }
-
-    void UnApplyElectric()
-    {
-        ai_stats.SetSpeed(originalAISpeed);
-        AI_Collider.enabled = true;
-
-        if (currentEffect != null)
-        {
-            Destroy(currentEffect);
-        }
-
-        currentMalus = MalusType.None;
-        malusCoroutine = null;
-
     }
 }

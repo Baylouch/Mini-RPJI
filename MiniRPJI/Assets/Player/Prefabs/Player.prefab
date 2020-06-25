@@ -360,7 +360,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 10000
   m_TargetDisplay: 0
 --- !u!114 &805558580
 MonoBehaviour:
@@ -723,7 +723,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 126775
+    m_Bits: 519991
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -889,6 +889,7 @@ GameObject:
   - component: {fileID: 882769571}
   - component: {fileID: 1337840066}
   - component: {fileID: 1701430016557441841}
+  - component: {fileID: 8797233774777249410}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -999,6 +1000,7 @@ MonoBehaviour:
   baseEnergy: 10
   criticalRate: 3
   rangedCriticalRate: 5
+  movementSpeed: 4
   damageMin: 1
   damageMax: 3
   playerEnergy: {fileID: 0}
@@ -1015,7 +1017,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e92f914a5a29f04dae495cd0a2606b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
   dashSpeed: 58
   dashTime: 0.05
   energyNeedToDash: 5
@@ -1037,7 +1038,6 @@ MonoBehaviour:
   endingCombat: 0
   timerBeforeEndCombat: 5
   firePoint: {fileID: 696354655934323737}
-  energyNeededForShoot: 15
 --- !u!114 &8024586158939363690
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1110,6 +1110,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activationDistance: 30
+--- !u!114 &8797233774777249410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7874364025698239459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bad68f115af6bf34383ef46435629f1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slowColor: {r: 0, g: 0, b: 1, a: 1}
+  fireEffect: {fileID: 4050406411080310882, guid: 53a323b2909ea034a9fef0b954c7f7ce,
+    type: 3}
+  poisonColor: {r: 1, g: 0, b: 1, a: 1}
+  electricEffect: {fileID: 4144859057491972, guid: 91d03a92bb3425f4186bc9844360af1c,
+    type: 3}
+  Env_Collider: {fileID: 196583246}
 --- !u!1 &8396921112244121463
 GameObject:
   m_ObjectHideFlags: 0

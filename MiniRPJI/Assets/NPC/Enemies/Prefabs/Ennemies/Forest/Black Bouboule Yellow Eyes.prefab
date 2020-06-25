@@ -263,7 +263,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 10000
   m_TargetDisplay: 0
 --- !u!114 &1147255518429565321
 MonoBehaviour:
@@ -526,6 +526,7 @@ GameObject:
   - component: {fileID: 63643926}
   - component: {fileID: -6762836022910437430}
   - component: {fileID: 2988043502790362086}
+  - component: {fileID: -5900297360070713438}
   m_Layer: 9
   m_Name: Black Bouboule Yellow Eyes
   m_TagString: Enemy
@@ -716,14 +717,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: 1
-  totalHealthPoints: 65
-  experienceGain: 40
-  speed: 2.5
-  damageMin: 7
-  damageMax: 12
-  projectileDamageMin: 8
-  projectileDamageMax: 10
-  criticalRate: 3
+  totalHealthPoints: 100
+  experienceGain: 55
+  speed: 3.5
+  damageMin: 10
+  damageMax: 15
+  projectileDamageMin: 13
+  projectileDamageMax: 16
+  criticalRate: 5
   rangedCriticalRate: 5
 --- !u!114 &8156725263683443626
 MonoBehaviour:
@@ -737,15 +738,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd9aa14811435dd42a59a4c146f73a9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chasingDistance: 4
+  chasingDistance: 6.5
   damagedChasingDistance: 25
   projectile: {fileID: 4793382507794528828, guid: ce8200f3bc248bf4c808096f06e49dd3,
     type: 3}
   firePoint: {fileID: 1147255518152058430}
-  shootRange: 4
+  shootRange: 6.5
   timerBeforeShoot: 2
   attackRange: 0.8
-  timerBeforeAttack: 1.2
+  timerBeforeAttack: 1
   attackSounds:
   - {fileID: 8300000, guid: 39b08bd2b51e75b479f47245cf9f2737, type: 3}
   - {fileID: 8300000, guid: 02c8b56eda7e02049a068db63cd5e239, type: 3}
@@ -772,17 +773,6 @@ MonoBehaviour:
   AI_Collider: {fileID: 1889747389987344986}
   hurtSounds:
   - {fileID: 8300000, guid: e968ba30a9173be4ea937eabac3c5377, type: 3}
-  slowedTimer: 4
-  slowColor: {r: 0.045701336, g: 0.21816757, b: 0.745283, a: 1}
-  fireTimer: 3
-  fireEffect: {fileID: 4050406411080310882, guid: 53a323b2909ea034a9fef0b954c7f7ce,
-    type: 3}
-  poisonedTimer: 10
-  poisonColor: {r: 0.4509928, g: 0.09549664, b: 0.6981132, a: 1}
-  electrifiedTimer: 2
-  percentageChanceToParalyze: 35
-  electricEffect: {fileID: 4144859057491972, guid: 91d03a92bb3425f4186bc9844360af1c,
-    type: 3}
 --- !u!114 &4369362117603984884
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -883,6 +873,25 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e8afa90dfbf0deb4998d89293123eaf9, type: 2}
   dropRate: 80
   levelRequiredToApplyQuest: 5
+--- !u!114 &-5900297360070713438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1695169179251180194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bad68f115af6bf34383ef46435629f1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slowColor: {r: 0, g: 0, b: 1, a: 1}
+  fireEffect: {fileID: 4050406411080310882, guid: 53a323b2909ea034a9fef0b954c7f7ce,
+    type: 3}
+  poisonColor: {r: 1, g: 0, b: 1, a: 1}
+  electricEffect: {fileID: 4144859057491972, guid: 91d03a92bb3425f4186bc9844360af1c,
+    type: 3}
+  Env_Collider: {fileID: 1889747389987344986}
 --- !u!1 &1695169179386835145
 GameObject:
   m_ObjectHideFlags: 0

@@ -22,5 +22,8 @@ MonoBehaviour:
   totalQuestObjective: 1
   questDone: 0
   questReward: {fileID: 0}
-  questLinkedItem: {fileID: 11400000, guid: d2baf8987b616b748a13e8856fa3aad1, type: 2}
+  questLinkedItem: {fileID: 0}
+  questGOToSpawn: {fileID: 5362988514200447822, guid: f8fe9747694517048b5017eb2757920c,
+    type: 3}
   xpAmount: 2500
+  levelRequired: 0

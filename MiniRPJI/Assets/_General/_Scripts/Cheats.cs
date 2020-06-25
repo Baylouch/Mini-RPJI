@@ -25,6 +25,7 @@ public class Cheats : MonoBehaviour
     public const string GetItemCheat = "pls give item "; // Space at end is very important, because after this space, player put number to get the linked item ID.
     public const string GetAndValideQuest = "pls do quest "; // To get and valide a quest via its ID
     public const string GetMoneyCheat = "give me poney";
+    public const string GodMode = "i am the matrix";
 
     public static Cheats instance;
 
@@ -39,6 +40,8 @@ public class Cheats : MonoBehaviour
     }
 
     bool controlKeyPressed = false;
+
+    public bool godModeActived = false; // To know in Player_Health if player can take damage or not.
 
     private void Awake()
     {
@@ -312,6 +315,7 @@ public class Cheats : MonoBehaviour
             Player_Stats.instance.CheatLevelUp();
         }
 
+        // Cheat to give money to the player
         if (cheatCode == GetMoneyCheat)
         {
             Player_Inventory.instance.SetPlayerGold(1000);
@@ -319,6 +323,21 @@ public class Cheats : MonoBehaviour
             if (Sound_Manager.instance)
             {
                 Sound_Manager.instance.PlaySound(Sound_Manager.instance.asset.sell);
+            }
+        }
+
+        // Cheat to enter player into GodMode (take no damage)
+        if (cheatCode == GodMode)
+        {
+            if (!godModeActived)
+            {
+                godModeActived = true;
+                Debug.Log("god mode actived");
+            }
+            else
+            {
+                godModeActived = false;
+                Debug.Log("god mode unactived");
             }
         }
 

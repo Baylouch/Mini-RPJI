@@ -30,6 +30,7 @@ public class Player_Stats : MonoBehaviour
     [SerializeField] private int baseEnergy = 10;
     [SerializeField] private float criticalRate = 3f;
     [SerializeField] private float rangedCriticalRate = 5f;
+    [SerializeField] float movementSpeed = 4;
 
     // Current stats used in game. Addition of baseStats + weaponStats.
     private int currentStrength;
@@ -519,6 +520,11 @@ public class Player_Stats : MonoBehaviour
         return rangedCriticalRate;
     }
 
+    public float GetSpeed()
+    {
+        return movementSpeed;
+    }
+
     #endregion
 
     #region setters
@@ -560,6 +566,11 @@ public class Player_Stats : MonoBehaviour
     public void SetCurrentStatsPoints(int amount)
     {
         currentStatsPoints = amount;
+    }
+
+    public void SetSpeed(float amount)
+    {
+        movementSpeed = amount;
     }
 
     // End of "loader setters"

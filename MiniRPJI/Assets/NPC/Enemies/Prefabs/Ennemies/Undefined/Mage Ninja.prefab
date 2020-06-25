@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 3254499926668684641}
   - component: {fileID: 1871372633690904720}
   - component: {fileID: 1871372634225441978}
+  - component: {fileID: 7679261026457436695}
   m_Layer: 9
   m_Name: Mage Ninja
   m_TagString: Enemy
@@ -213,13 +214,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: 1
-  totalHealthPoints: 90
+  totalHealthPoints: 150
   experienceGain: 55
   speed: 3
   damageMin: 10
   damageMax: 15
-  projectileDamageMin: 18
-  projectileDamageMax: 20
+  projectileDamageMin: 25
+  projectileDamageMax: 30
   criticalRate: 3
   rangedCriticalRate: 5
 --- !u!114 &6970406378993414975
@@ -236,7 +237,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chasingDistance: 7.5
   damagedChasingDistance: 25
-  projectile: {fileID: 6052980135759029977, guid: 0e389b709426a364d80fe0668df63d67,
+  projectile: {fileID: 601498987779062885, guid: 0cf08f98b1f02f041b7c6b2ee2bf1e61,
     type: 3}
   firePoint: {fileID: 2189460881212296875}
   shootRange: 7
@@ -269,17 +270,6 @@ MonoBehaviour:
   AI_Collider: {fileID: 842422717966744271}
   hurtSounds:
   - {fileID: 8300000, guid: e968ba30a9173be4ea937eabac3c5377, type: 3}
-  slowedTimer: 4
-  slowColor: {r: 0.045701336, g: 0.21816757, b: 0.745283, a: 1}
-  fireTimer: 3
-  fireEffect: {fileID: 4050406411080310882, guid: 53a323b2909ea034a9fef0b954c7f7ce,
-    type: 3}
-  poisonedTimer: 10
-  poisonColor: {r: 0.4509928, g: 0.09549664, b: 0.6981132, a: 1}
-  electrifiedTimer: 2
-  percentageChanceToParalyze: 35
-  electricEffect: {fileID: 4144859057491972, guid: 91d03a92bb3425f4186bc9844360af1c,
-    type: 3}
 --- !u!114 &3254499926668684641
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -340,6 +330,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gfxMinimap: {fileID: 4849729477652816768, guid: 82ca7783b886f96479de5a4e06dd142d,
     type: 3}
+--- !u!114 &7679261026457436695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 436614562460969527}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bad68f115af6bf34383ef46435629f1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slowColor: {r: 0, g: 0, b: 1, a: 1}
+  fireEffect: {fileID: 4050406411080310882, guid: 53a323b2909ea034a9fef0b954c7f7ce,
+    type: 3}
+  poisonColor: {r: 1, g: 0, b: 1, a: 1}
+  electricEffect: {fileID: 4144859057491972, guid: 91d03a92bb3425f4186bc9844360af1c,
+    type: 3}
+  Env_Collider: {fileID: 842422717966744271}
 --- !u!1 &436614562603620444
 GameObject:
   m_ObjectHideFlags: 0
@@ -747,7 +756,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 10000
   m_TargetDisplay: 0
 --- !u!114 &2189460881490016540
 MonoBehaviour:

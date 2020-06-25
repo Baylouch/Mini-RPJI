@@ -30,7 +30,10 @@ public class Sounds_Asset : ScriptableObject
     public AudioClip punchHit;
     public AudioClip bowAttackNormal;
     public AudioClip bowAttackNormalImpact;
+    public AudioClip bowAttackLaser;
+    public AudioClip bowAttackLaserImpact;
     public AudioClip levelUp;
+    public AudioClip unlockAbility;
 
     [Header("Pets")]
     public AudioClip catInvoke;

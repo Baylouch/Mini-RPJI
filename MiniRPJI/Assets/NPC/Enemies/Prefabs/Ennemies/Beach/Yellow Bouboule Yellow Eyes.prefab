@@ -120,6 +120,7 @@ GameObject:
   - component: {fileID: 881175788719754167}
   - component: {fileID: 83066892}
   - component: {fileID: 288178442}
+  - component: {fileID: -5206624156721294165}
   m_Layer: 9
   m_Name: Yellow Bouboule Yellow Eyes
   m_TagString: Enemy
@@ -310,13 +311,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: 1
-  totalHealthPoints: 80
-  experienceGain: 60
-  speed: 3
-  damageMin: 9
-  damageMax: 14
-  projectileDamageMin: 10
-  projectileDamageMax: 12
+  totalHealthPoints: 140
+  experienceGain: 90
+  speed: 4.6
+  damageMin: 15
+  damageMax: 19
+  projectileDamageMin: 20
+  projectileDamageMax: 23
   criticalRate: 5
   rangedCriticalRate: 10
 --- !u!114 &4731881801302873577
@@ -331,12 +332,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd9aa14811435dd42a59a4c146f73a9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chasingDistance: 6
+  chasingDistance: 8.5
   damagedChasingDistance: 25
   projectile: {fileID: 4793382507794528828, guid: 18bb3beed653d11419f2d8d6e2f00f5d,
     type: 3}
   firePoint: {fileID: 4571815341076392061}
-  shootRange: 5.5
+  shootRange: 6.5
   timerBeforeShoot: 2
   attackRange: 0.8
   timerBeforeAttack: 1
@@ -366,17 +367,6 @@ MonoBehaviour:
   AI_Collider: {fileID: 3071521161829391385}
   hurtSounds:
   - {fileID: 8300000, guid: e968ba30a9173be4ea937eabac3c5377, type: 3}
-  slowedTimer: 4
-  slowColor: {r: 0.045701336, g: 0.21816757, b: 0.745283, a: 1}
-  fireTimer: 3
-  fireEffect: {fileID: 4050406411080310882, guid: 53a323b2909ea034a9fef0b954c7f7ce,
-    type: 3}
-  poisonedTimer: 10
-  poisonColor: {r: 0.4509928, g: 0.09549664, b: 0.6981132, a: 1}
-  electrifiedTimer: 2
-  percentageChanceToParalyze: 35
-  electricEffect: {fileID: 4144859057491972, guid: 91d03a92bb3425f4186bc9844360af1c,
-    type: 3}
 --- !u!114 &881175788719754167
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -437,6 +427,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gfxMinimap: {fileID: 4849729477652816768, guid: 82ca7783b886f96479de5a4e06dd142d,
     type: 3}
+--- !u!114 &-5206624156721294165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2819240615629311201}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bad68f115af6bf34383ef46435629f1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slowColor: {r: 0, g: 0, b: 1, a: 1}
+  fireEffect: {fileID: 4050406411080310882, guid: 53a323b2909ea034a9fef0b954c7f7ce,
+    type: 3}
+  poisonColor: {r: 1, g: 0, b: 1, a: 1}
+  electricEffect: {fileID: 4144859057491972, guid: 91d03a92bb3425f4186bc9844360af1c,
+    type: 3}
+  Env_Collider: {fileID: 3071521161829391385}
 --- !u!1 &3071521161829391367
 GameObject:
   m_ObjectHideFlags: 0
@@ -898,7 +907,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 10000
   m_TargetDisplay: 0
 --- !u!114 &4571815342948261834
 MonoBehaviour:

@@ -29,7 +29,7 @@ public class FloatingText : MonoBehaviour
     // Create a fade effect on the text color.
     IEnumerator FadeTextColor()
     {
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.4f);
 
         for (float f = 1f; f >= -0.05f; f -= 0.05f)
         {
@@ -37,7 +37,7 @@ public class FloatingText : MonoBehaviour
             c.a = f;
             GetComponent<Text>().color = c;
 
-            yield return new WaitForSeconds(0.01f);
+            yield return new WaitForSeconds(0.02f);
         }
     }
 }

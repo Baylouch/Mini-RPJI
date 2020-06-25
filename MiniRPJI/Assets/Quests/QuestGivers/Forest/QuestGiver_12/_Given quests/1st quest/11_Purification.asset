@@ -18,10 +18,10 @@ MonoBehaviour:
     le plus recul\xE9 de la for\xEAt pour commencer la grande purification. Mon objectif
     est de tuer tout les monstres croisant mon chemin. Tu veux te joindre \xE0 la
     f\xEAte ?"
-  questSprite: {fileID: 21300000, guid: 7972dd97521bb1c44ba8e3774391b996, type: 3}
+  questSprite: {fileID: 21300000, guid: f507f03eb80bcbf49bb458bd6a54bd9a, type: 3}
   totalQuestObjective: 15
   questDone: 0
   questReward: {fileID: 11400000, guid: 4d78362e36c1e384e9e4967a07711625, type: 2}
-  questLinkedItem: {fileID: 0}
+  questGOToSpawn: {fileID: 0}
   xpAmount: 3000
   levelRequired: 0

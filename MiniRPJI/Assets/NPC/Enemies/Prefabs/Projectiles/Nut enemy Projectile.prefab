@@ -134,10 +134,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectileDamage: 0
+  projectileType: 0
   projectileSpeed: 10
-  timerBeforeDestroy: 1
+  timerBeforeDestroy: 2
+  malusTimer: 0
+  percentageChanceToApplyMalus: 100
   impactEffect: {fileID: 8582567975531680893, guid: e2283ab5bf98c8e41a89d1faa37a2178,
     type: 3}
+  impactSound: {fileID: 8300000, guid: 32dcff4de7e0b2643aad9a0247880525, type: 3}
 --- !u!114 &-5235269342562276475
 MonoBehaviour:
   m_ObjectHideFlags: 0

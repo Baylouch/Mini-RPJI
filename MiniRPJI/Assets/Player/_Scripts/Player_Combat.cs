@@ -59,7 +59,7 @@ public class Player_Combat : MonoBehaviour
             }
 
             // Left clic input
-            if (Input.GetKeyDown(KeyCode.Mouse0))
+            if (Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.Alpha1))
             {
                 // Use Primary Ability
                 if (playerAbilities.GetPrimaryAbility() != null) // Check if there is a primary ability set (must be)
@@ -77,7 +77,11 @@ public class Player_Combat : MonoBehaviour
                         }
                         else
                         {
-                            Debug.Log("No bow equiped. Impossible to use ability. (Ability ID : " + playerAbilities.GetPrimaryAbility().abilityID + ")");
+                            //Debug.Log("No bow equiped. Impossible to use ability. (Ability ID : " + playerAbilities.GetPrimaryAbility().abilityID + ")");
+                            if (UI_Player_Informations.instance)
+                            {
+                                UI_Player_Informations.instance.DisplayInformation("Il te faut un arc !");
+                            }
                         }
                     }
                     else if (playerAbilities.GetPrimaryAbility().abilityType == AbilityType.Punch) // else its a punch ability type
@@ -97,7 +101,7 @@ public class Player_Combat : MonoBehaviour
                 }
             }
             // Right clic input
-            else if (Input.GetKeyDown(KeyCode.Mouse1))
+            else if (Input.GetKeyDown(KeyCode.Mouse1) || Input.GetKeyDown(KeyCode.Alpha2))
             {
                 // Use Secondary Ability
                 if (playerAbilities.GetSecondaryAbility() != null) // Check if there is a primary ability set (must be)
@@ -116,6 +120,10 @@ public class Player_Combat : MonoBehaviour
                         else
                         {
                             // Debug.Log("No bow equiped. Impossible to use ability. (Ability ID : " + playerAbilities.GetSecondaryAbility().abilityID + ")");
+                            if (UI_Player_Informations.instance)
+                            {
+                                UI_Player_Informations.instance.DisplayInformation("Il te faut un arc !");
+                            }
                         }
                     }
                     else if (playerAbilities.GetSecondaryAbility().abilityType == AbilityType.Punch) // else its a punch ability type
@@ -158,7 +166,7 @@ public class Player_Combat : MonoBehaviour
             {
                 Player_Projectile currentProjectileComponent = _projectile.GetComponent<Player_Projectile>();
 
-                currentProjectileComponent.projectileDamage = GetRangedAttackDamage();
+                currentProjectileComponent.projectileDamage = GetRangedAttackDamage() + _ability.abilityDamage;
             }
             else if (_projectile.transform.childCount > 0)
             {
@@ -168,7 +176,7 @@ public class Player_Combat : MonoBehaviour
                     {
                         Player_Projectile currentProjectileComponent = _projectile.transform.GetChild(i).GetComponent<Player_Projectile>();
 
-                        currentProjectileComponent.projectileDamage = GetRangedAttackDamage();
+                        currentProjectileComponent.projectileDamage = GetRangedAttackDamage() + _ability.abilityDamage;
                     }
                 }
             }
@@ -179,10 +187,6 @@ public class Player_Combat : MonoBehaviour
           
             // Use energy
             Player_Stats.instance.playerEnergy.SetCurrentEnergyPoints(Player_Stats.instance.playerEnergy.GetCurrentEnergyPoints() - _ability.energyCost);
-
-            // Play sound
-            if (Sound_Manager.instance)
-                Sound_Manager.instance.PlaySound(Sound_Manager.instance.asset.bowAttackNormal);
         }
     }
 
@@ -202,7 +206,7 @@ public class Player_Combat : MonoBehaviour
             }
 
             // Damage enemy
-            currentEnemy.TakeDamage(GetAttackDamage(), true); // So we can direclty set damage to the enemy
+            currentEnemy.TakeDamage(GetAttackDamage() + _ability.abilityDamage, true); // So we can direclty set damage to the enemy
 
             // Use energy
             Player_Stats.instance.playerEnergy.SetCurrentEnergyPoints(Player_Stats.instance.playerEnergy.GetCurrentEnergyPoints() - _ability.energyCost);

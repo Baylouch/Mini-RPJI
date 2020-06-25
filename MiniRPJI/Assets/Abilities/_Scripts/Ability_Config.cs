@@ -21,6 +21,8 @@ public class Ability_Config : ScriptableObject
 
     public GameObject abilityPrefab; // For this game, it consist of a prefab reprensenting the ability itself. Player_Projectile required on bow ability type
 
+    public int abilityDamage;
+
     public int energyCost;
 
     public AbilityType abilityType; // PunchAttack when its the punch. Bow when its the bow. Other when its something else (no animation for this one)

@@ -19,13 +19,13 @@ public class Ability_Unlocker : Interactable
         interactionType = PlayerInteractionType.None;
 
         // Security if player's already got this ability (just destroy gameobject)
-        //if (Player_Abilities.instance)
-        //{
-        //    if (Player_Abilities.instance.GetUnlockAbility(ability.abilityID))
-        //    {
-        //        Destroy(gameObject);
-        //    }
-        //}
+        if (Player_Abilities.instance)
+        {
+            if (Player_Abilities.instance.GetUnlockAbility(ability.abilityID))
+            {
+                Destroy(gameObject);
+            }
+        }
 
         rend = GetComponent<SpriteRenderer>();
         
@@ -52,6 +52,12 @@ public class Ability_Unlocker : Interactable
 
                     // If player already display abilities, we undisplay it to refresh
                     UI_Player_Abilities.instance.ResetAbilitiesPanel();
+
+                    // Play a sound to indicate player he gots a new ability !
+                    if (Sound_Manager.instance)
+                    {
+                        Sound_Manager.instance.PlaySound(Sound_Manager.instance.asset.unlockAbility);
+                    }
                 }
 
                 // In all case now we can destroy gameobject

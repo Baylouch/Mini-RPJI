@@ -58,7 +58,6 @@ public class ItemDroper : MonoBehaviour
         Gizmos.DrawLine(TopLeftCorner, BottomLeftCorner);
         Gizmos.DrawLine(TopRightCorner, BottomRightCorner);
         Gizmos.DrawLine(BottomLeftCorner, BottomRightCorner);
-
     }
 
     public void DropItems(int itemLevel)

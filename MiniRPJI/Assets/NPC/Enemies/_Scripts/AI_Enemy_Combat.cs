@@ -70,7 +70,7 @@ public class AI_Enemy_Combat : MonoBehaviour
         ai_health = GetComponent<AI_Health>();
         ai_stats = GetComponent<AI_Stats>();
 
-        currentTimerBeforeShoot = timerBeforeShoot; 
+        currentTimerBeforeShoot = 0f; 
         initialChasingDistance = chasingDistance;
     }
 
@@ -118,6 +118,16 @@ public class AI_Enemy_Combat : MonoBehaviour
         if (target)
         {
             float targetDistance = Vector3.Distance(transform.position, target.position);
+
+            // A security for player dont get damage when he run out attack range
+            if (targetDistance > attackRange + 1.5f)
+            {
+                if (attackCoroutine != null)
+                {
+                    StopCoroutine(attackCoroutine);
+                    TurnOffAnimatorParamAttack();
+                }
+            }
 
             // If player is in attack range
             if (targetDistance <= attackRange)
@@ -200,14 +210,14 @@ public class AI_Enemy_Combat : MonoBehaviour
         Player_Health playerHealth = target.gameObject.GetComponent<Player_Health>();
         if (playerHealth)
         {
-            playerHealth.TakeDamage(GetAttackDamage());
+            playerHealth.TakeDamage(GetAttackDamage(), true);
         }
 
         // Or maybe a Decoy_Health component
         Decoy_Health decoyHealth = target.gameObject.GetComponent<Decoy_Health>();
         if (decoyHealth)
         {
-            decoyHealth.TakeDamage(GetAttackDamage());
+            decoyHealth.TakeDamage(GetAttackDamage(), true);
         }
 
         // Play attack sound
@@ -319,10 +329,26 @@ public class AI_Enemy_Combat : MonoBehaviour
     public void Shoot()
     {
         GameObject _projectile = Instantiate(projectile, firePoint.position, firePoint.rotation);
+
         Enemy_Projectile proj = _projectile.GetComponent<Enemy_Projectile>();
 
         if (proj != null)
+        {
             proj.projectileDamage = GetProjectileDamage();
+        }
+        else
+        {
+            if (_projectile.transform.childCount > 0)
+            {
+                for (int i = 0; i < _projectile.transform.childCount; i++)
+                {
+                    if (_projectile.transform.GetChild(i).GetComponent<Enemy_Projectile>())
+                    {
+                        _projectile.transform.GetChild(i).GetComponent<Enemy_Projectile>().projectileDamage = GetProjectileDamage();
+                    }
+                }
+            }
+        }
 
         if (projectileSound && Sound_Manager.instance)
         {

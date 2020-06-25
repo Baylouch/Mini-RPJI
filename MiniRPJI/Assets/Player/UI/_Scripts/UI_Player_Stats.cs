@@ -14,6 +14,8 @@ public class UI_Player_Stats : MonoBehaviour
     [SerializeField] Text currentEnergyPoints;
     [SerializeField] Text armor;
 
+    [SerializeField] Text primaryAbilityText;
+    [SerializeField] Text secondaryAbilityText;
     [SerializeField] Text primaryMinAttackDamage;
     [SerializeField] Text primaryMaxAttackDamage;
     [SerializeField] Text secondaryMinAttackDamage;
@@ -122,6 +124,26 @@ public class UI_Player_Stats : MonoBehaviour
         }       
     }
 
+    // return a color linked to a projectile type to display for instance fire ability damage in red.
+    Color SetAbilityDamageTextColor(ProjectileType type)
+    {
+        switch (type)
+        {
+            case ProjectileType.Electric:
+                return Color.yellow;
+            case ProjectileType.Fire:
+                return Color.red;
+            case ProjectileType.Frost:
+                return Color.cyan;
+            case ProjectileType.Normal:
+                return Color.white;
+            case ProjectileType.Poison:
+                return Color.magenta;
+            default:
+                return Color.white;
+        }
+    }
+
     public void RefreshStatsDisplay()
     {
         if (!Player_Stats.instance)
@@ -140,10 +162,133 @@ public class UI_Player_Stats : MonoBehaviour
         armor.text = Player_Stats.instance.GetArmor().ToString();
 
         // Attack panel
-        primaryMinAttackDamage.text = Player_Stats.instance.GetCurrentMinDamage().ToString();
-        primaryMaxAttackDamage.text = Player_Stats.instance.GetCurrentMaxDamage().ToString();
-        secondaryMinAttackDamage.text = Player_Stats.instance.GetCurrentRangedMinDamage().ToString();
-        secondaryMaxAttackDamage.text = Player_Stats.instance.GetCurrentRangedMaxDamage().ToString();
+        // Get acces to player's abilities, display abilities name and damage. Find way to get acces to projectile component to know what type is to show color text
+        if (Player_Abilities.instance)
+        {
+            if (Player_Abilities.instance.GetPrimaryAbility() != null)
+            {
+                int minDamage = 0, maxDamage = 0;
+
+                // A security if previous ability displayed was "Other" category
+                primaryMinAttackDamage.enabled = true;
+                primaryMaxAttackDamage.enabled = true;
+
+                Ability_Config _primaryAbility = Player_Abilities.instance.GetPrimaryAbility();
+
+                primaryAbilityText.text = _primaryAbility.abilityName;
+
+                if (_primaryAbility.abilityType == AbilityType.Bow)
+                {
+                    Color damageTextsColor = Color.white;
+
+                    if (_primaryAbility.abilityPrefab.GetComponent<Player_Projectile>())
+                    {
+                        damageTextsColor = SetAbilityDamageTextColor(_primaryAbility.abilityPrefab.GetComponent<Player_Projectile>().projectileType);
+                    }
+                    else
+                    {
+                        if (_primaryAbility.abilityPrefab.transform.childCount > 1)
+                        {
+                            if (_primaryAbility.abilityPrefab.transform.GetComponentInChildren<Player_Projectile>())
+                            {
+                                damageTextsColor = SetAbilityDamageTextColor(_primaryAbility.abilityPrefab.GetComponentInChildren<Player_Projectile>().projectileType);
+                            }
+                        }
+                    }
+
+                    primaryMinAttackDamage.color = damageTextsColor;
+                    primaryMaxAttackDamage.color = damageTextsColor;
+
+                    minDamage = Player_Stats.instance.GetCurrentRangedMinDamage() + _primaryAbility.abilityDamage;
+                    maxDamage = Player_Stats.instance.GetCurrentRangedMaxDamage() + _primaryAbility.abilityDamage;
+
+                    primaryMinAttackDamage.text = minDamage.ToString();
+                    primaryMaxAttackDamage.text = maxDamage.ToString();
+                }
+                else if (_primaryAbility.abilityType == AbilityType.Punch)
+                {
+                    primaryMinAttackDamage.color = Color.white;
+                    primaryMaxAttackDamage.color = Color.white;
+
+                    minDamage = Player_Stats.instance.GetCurrentMinDamage() + _primaryAbility.abilityDamage;
+                    maxDamage = Player_Stats.instance.GetCurrentMaxDamage() + _primaryAbility.abilityDamage;
+
+                    primaryMinAttackDamage.text = minDamage.ToString();
+                    primaryMaxAttackDamage.text = maxDamage.ToString();
+                }
+                else if (_primaryAbility.abilityType == AbilityType.Other)
+                {
+                    primaryMinAttackDamage.enabled = false;
+                    primaryMaxAttackDamage.enabled = false;
+                }
+                else
+                {
+                    Debug.Log("Something goes wrong here. Ability must got an ability type set.");
+                }
+            }
+
+            if (Player_Abilities.instance.GetSecondaryAbility() != null)
+            {
+                int minDamage = 0, maxDamage = 0;
+
+                // A security if previous ability displayed was "Other" category
+                secondaryMinAttackDamage.enabled = true;
+                secondaryMaxAttackDamage.enabled = true;
+
+                Ability_Config _secondaryAbility = Player_Abilities.instance.GetSecondaryAbility();
+
+                secondaryAbilityText.text = _secondaryAbility.abilityName;
+
+                if (_secondaryAbility.abilityType == AbilityType.Bow)
+                {
+                    Color damageTextsColor = Color.white;
+
+                    if (_secondaryAbility.abilityPrefab.GetComponent<Player_Projectile>())
+                    {
+                        damageTextsColor = SetAbilityDamageTextColor(_secondaryAbility.abilityPrefab.GetComponent<Player_Projectile>().projectileType);
+                    }
+                    else
+                    {
+                        if (_secondaryAbility.abilityPrefab.transform.childCount > 1)
+                        {
+                            if (_secondaryAbility.abilityPrefab.transform.GetComponentInChildren<Player_Projectile>())
+                            {
+                                damageTextsColor = SetAbilityDamageTextColor(_secondaryAbility.abilityPrefab.GetComponentInChildren<Player_Projectile>().projectileType);
+                            }
+                        }
+                    }
+
+                    secondaryMinAttackDamage.color = damageTextsColor;
+                    secondaryMaxAttackDamage.color = damageTextsColor;
+
+                    minDamage = Player_Stats.instance.GetCurrentRangedMinDamage() + _secondaryAbility.abilityDamage;
+                    maxDamage = Player_Stats.instance.GetCurrentRangedMaxDamage() + _secondaryAbility.abilityDamage;
+
+                    secondaryMinAttackDamage.text = minDamage.ToString();
+                    secondaryMaxAttackDamage.text = maxDamage.ToString();
+                }
+                else if (_secondaryAbility.abilityType == AbilityType.Punch)
+                {
+                    secondaryMinAttackDamage.color = Color.white;
+                    secondaryMaxAttackDamage.color = Color.white;
+
+                    minDamage = Player_Stats.instance.GetCurrentMinDamage() + _secondaryAbility.abilityDamage;
+                    maxDamage = Player_Stats.instance.GetCurrentMaxDamage() + _secondaryAbility.abilityDamage;
+
+                    secondaryMinAttackDamage.text = minDamage.ToString();
+                    secondaryMaxAttackDamage.text = maxDamage.ToString();
+                }
+                else if (_secondaryAbility.abilityType == AbilityType.Other)
+                {
+                    secondaryMinAttackDamage.enabled = false;
+                    secondaryMaxAttackDamage.enabled = false;
+                }
+                else
+                {
+                    Debug.Log("Something goes wrong here. Ability must got an ability type set.");
+                }
+            }
+        }
 
         // Stats panel
         strengthStatsPoints.text = Player_Stats.instance.GetCurrentStatsByType(StatsType.STRENGTH).ToString();

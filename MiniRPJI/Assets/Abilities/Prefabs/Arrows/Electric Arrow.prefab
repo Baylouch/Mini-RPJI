@@ -146,13 +146,15 @@ MonoBehaviour:
   projectileDamage: 0
   projectileType: 4
   projectileSpeed: 12
-  timerBeforeDestroy: 1
+  timerBeforeDestroy: 2
+  malusTimer: 2
+  percentageChanceToApplyMalus: 35
   overPowerRange: 2
   impactEffect: {fileID: 8325456551477211793, guid: 2616fbaf833f269488798b1eae8537a6,
     type: 3}
   overPowerEffect: {fileID: 3554161230045972176, guid: 22ec92d6202c18849a29205e3e82cd8d,
     type: 3}
-  laserArrow: {fileID: 0}
+  laserGfx: {fileID: 21300000, guid: 71356c6dbbfc21e458d6e52242975dcf, type: 3}
 --- !u!114 &-797798868335707741
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fdb7f0b41b6b644fa6921ecacee3aa6, type: 3}
+  m_Name: 13_Restriction
+  m_EditorClassIdentifier: 
+  questID: 13
+  questTitle: Restreints
+  questDescription: "Salut, es-tu au courant ? Les aliens ont d\xE9barqu\xE9s ! Ils
+    sont pas si intelligent que \xE7a, mais dangereux oui ! Ils nous ont restreints
+    l'acc\xE8s aux deux premieres parties de cette zone. Si tu veux aller plus loin,
+    il faudra d'abord te rendre dans la partie 2 afin de trouver leur chef. Dirige
+    toi vers le Nord, prend le chemin qui se trouvera le plus \xE0 l'est. Continue
+    de marcher et prend l'entr\xE9e qui se trouvera le plus au sud."
+  questSprite: {fileID: 1808999691540107661, guid: 42de378fddc0f8e4bb6c728339301ec2,
+    type: 3}
+  totalQuestObjective: 1
+  questDone: 0
+  questReward: {fileID: 0}
+  questGOToSpawn: {fileID: 0}
+  xpAmount: 4000
+  levelRequired: 0

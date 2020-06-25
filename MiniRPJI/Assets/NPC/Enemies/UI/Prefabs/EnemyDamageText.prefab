@@ -95,7 +95,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   floatingSpeed: 1.2
-  timerToDestroy: 0.7
+  timerToDestroy: 1.2
 --- !u!50 &1266929176842038561
 Rigidbody2D:
   serializedVersion: 4

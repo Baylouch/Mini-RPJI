@@ -573,6 +573,8 @@ GameObject:
   - component: {fileID: 207557731495258821}
   - component: {fileID: 8164960022949489649}
   - component: {fileID: 4284913851236194609}
+  - component: {fileID: -5400853090781178092}
+  - component: {fileID: 2817191650388044346}
   m_Layer: 9
   m_Name: Big Skeleton Sword
   m_TagString: Enemy
@@ -588,7 +590,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2095930259281181768}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.84, y: 28.93, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2095930259685608992}
@@ -763,11 +765,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: 6
-  totalHealthPoints: 100
-  experienceGain: 60
-  speed: 3
-  damageMin: 10
-  damageMax: 15
+  totalHealthPoints: 175
+  experienceGain: 100
+  speed: 4.5
+  damageMin: 18
+  damageMax: 20
   projectileDamageMin: 15
   projectileDamageMax: 17
   criticalRate: 10
@@ -784,15 +786,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd9aa14811435dd42a59a4c146f73a9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chasingDistance: 6.5
+  chasingDistance: 9
   damagedChasingDistance: 25
-  projectile: {fileID: 2476864194466352011, guid: 7ec026478e3ede24994d4613cd6de58b,
+  projectile: {fileID: 7516390770161056243, guid: 81480f582f609484fb859423ea3e86bc,
     type: 3}
   firePoint: {fileID: 395068567890434260}
-  shootRange: 5
+  shootRange: 7
   timerBeforeShoot: 3
   attackRange: 1
-  timerBeforeAttack: 1.2
+  timerBeforeAttack: 1
   attackSounds:
   - {fileID: 8300000, guid: 39b08bd2b51e75b479f47245cf9f2737, type: 3}
   - {fileID: 8300000, guid: 02c8b56eda7e02049a068db63cd5e239, type: 3}
@@ -819,17 +821,6 @@ MonoBehaviour:
   AI_Collider: {fileID: 1200760333966093488}
   hurtSounds:
   - {fileID: 8300000, guid: e968ba30a9173be4ea937eabac3c5377, type: 3}
-  slowedTimer: 4
-  slowColor: {r: 0.045701336, g: 0.21816757, b: 0.745283, a: 1}
-  fireTimer: 3
-  fireEffect: {fileID: 4050406411080310882, guid: 53a323b2909ea034a9fef0b954c7f7ce,
-    type: 3}
-  poisonedTimer: 10
-  poisonColor: {r: 0.4509928, g: 0.09549664, b: 0.6981132, a: 1}
-  electrifiedTimer: 2
-  percentageChanceToParalyze: 35
-  electricEffect: {fileID: 4144859057491972, guid: 91d03a92bb3425f4186bc9844360af1c,
-    type: 3}
 --- !u!114 &3905563873437219614
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -925,6 +916,42 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 95b198be9ed8e244383a347f696e9719, type: 2}
   dropRate: 100
   levelRequiredToApplyQuest: 0
+--- !u!114 &-5400853090781178092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2095930259281181768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bad68f115af6bf34383ef46435629f1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slowColor: {r: 0, g: 0, b: 1, a: 1}
+  fireEffect: {fileID: 4050406411080310882, guid: 53a323b2909ea034a9fef0b954c7f7ce,
+    type: 3}
+  poisonColor: {r: 1, g: 0, b: 1, a: 1}
+  electricEffect: {fileID: 4144859057491972, guid: 91d03a92bb3425f4186bc9844360af1c,
+    type: 3}
+  Env_Collider: {fileID: 1200760333966093488}
+--- !u!114 &2817191650388044346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2095930259281181768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c08447187f6b7e0468dd60a17c8b976f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dropZone:
+  - {fileID: 395068567977886648}
+  - {fileID: 395068566626917759}
+  prefabsToDrop:
+  - {fileID: 6324734908420715180, guid: d47c949d4b4378143b2cd2c9536a9f2e, type: 3}
 --- !u!1 &2095930259685608995
 GameObject:
   m_ObjectHideFlags: 0

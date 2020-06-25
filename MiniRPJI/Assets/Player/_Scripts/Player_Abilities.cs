@@ -103,7 +103,7 @@ public class Player_Abilities : MonoBehaviour
     public void SetUnlockAbility(int _abilityID, bool value)
     {
         // Check if index isnt out of range
-        if (_abilityID <= unlockAbilitiesID.Length)
+        if (_abilityID < unlockAbilitiesID.Length)
         {
             unlockAbilitiesID[_abilityID] = value;
         }
@@ -113,12 +113,12 @@ public class Player_Abilities : MonoBehaviour
     public bool GetUnlockAbility(int _abilityID)
     {
         // Check if index isnt out of range
-        if (_abilityID <= unlockAbilitiesID.Length)
+        if (unlockAbilitiesID != null && _abilityID < unlockAbilitiesID.Length)
         {
             return unlockAbilitiesID[_abilityID];
         }
 
-        Debug.Log("GetUnlockAbility() parameter is out of range. Ability ID doesn't exist.");
+        // Debug.Log("GetUnlockAbility() parameter is out of range. Ability ID doesn't exist.");
         return false;
     }
 }

@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityID: 1
   abilityName: Fleche basique
-  abilityDescription: Fleche simple
+  abilityDescription: Tir une fleche
   abilitySprite: {fileID: 21300000, guid: 4dcefe822b3d0bf478fad08988578db8, type: 3}
   abilityPrefab: {fileID: 6052980135759029977, guid: 77de479917db3204cae1bd43cf852001,
     type: 3}
+  abilityDamage: 5
   energyCost: 10
   abilityType: 1

@@ -8,7 +8,6 @@ using UnityEngine;
 [RequireComponent(typeof(Player_Stats))]
 public class Player_Movement : MonoBehaviour
 {
-    [SerializeField] float speed = 4;
     [SerializeField] float dashSpeed = 40f;
     [SerializeField] float dashTime = .2f;
     [SerializeField] float energyNeedToDash = 8f;
@@ -20,6 +19,7 @@ public class Player_Movement : MonoBehaviour
     bool isDashing = false;
     int dashDirection = 0; // 1 = dashUp, 2 = dashDown, 3 = dashRight, 4 = dashLeft
 
+    Player_Stats player_Stats;
     Rigidbody2D myRb;
     Animator animator;
     
@@ -29,6 +29,7 @@ public class Player_Movement : MonoBehaviour
     {
         myRb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        player_Stats = GetComponent<Player_Stats>();
 
         startDashTime = dashTime;
 
@@ -41,7 +42,7 @@ public class Player_Movement : MonoBehaviour
 
         if (Input.GetKey(KeyCode.LeftShift))
         {
-            if (Input.GetKeyDown(KeyCode.Mouse0))
+            if (Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.LeftArrow))
             {
                 if (!isDashing)
                 {
@@ -103,27 +104,27 @@ public class Player_Movement : MonoBehaviour
             return;
 
         // Process normal movement
-        if (Input.GetKey(KeyCode.Z))
+        if (Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.UpArrow))
         {
-            myRb.velocity = new Vector2(0f, 1f) * speed;
+            myRb.velocity = new Vector2(0f, 1f) * player_Stats.GetSpeed();
             if (dashDirection != 1)
                 dashDirection = 1;
         }
-        else if (Input.GetKey(KeyCode.S))
+        else if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
         {
-            myRb.velocity = new Vector2(0f, -1f) * speed;
+            myRb.velocity = new Vector2(0f, -1f) * player_Stats.GetSpeed();
             if (dashDirection != 2)
                 dashDirection = 2;
         }
-        else if (Input.GetKey(KeyCode.D))
+        else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
-            myRb.velocity = new Vector2(1f, 0f) * speed;
+            myRb.velocity = new Vector2(1f, 0f) * player_Stats.GetSpeed();
             if (dashDirection != 3)
                 dashDirection = 3;
         }
-        else if (Input.GetKey(KeyCode.Q))
+        else if (Input.GetKey(KeyCode.Q) || Input.GetKey(KeyCode.LeftArrow))
         {
-            myRb.velocity = new Vector2(-1f, 0f) * speed;
+            myRb.velocity = new Vector2(-1f, 0f) * player_Stats.GetSpeed();
             if (dashDirection != 4)
                 dashDirection = 4;
         }

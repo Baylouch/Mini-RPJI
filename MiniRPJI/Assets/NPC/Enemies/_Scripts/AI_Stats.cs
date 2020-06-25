@@ -53,7 +53,10 @@ public class AI_Stats : MonoBehaviour
         }
 
         level = _level;
-        float statsMultiplier = 1.2f * (level - 1); // level - 1 to start multiplication with 1.2f instead of 2.4f
+
+        float statsMultiplier = 1.5f + (level / 10f) * level;
+
+        Debug.Log(statsMultiplier);
 
         totalHealthPoints = Mathf.RoundToInt(totalHealthPoints * statsMultiplier);
         experienceGain = Mathf.RoundToInt(experienceGain * statsMultiplier);

@@ -19,6 +19,8 @@ MonoBehaviour:
     id\xE9e ! Rapportes moi 3 bout de bois, je t'en frabriquerais un."
   questSprite: {fileID: 21300000, guid: 0e1ccb64303778e4081913a6d9cca677, type: 3}
   totalQuestObjective: 3
-  questDone: 0
+  questDone: 1
   questReward: {fileID: 11400000, guid: 62ec09eeddc87ee48b5f7b60be8a651f, type: 2}
-  xpAmount: 100
+  questGOToSpawn: {fileID: 0}
+  xpAmount: 200
+  levelRequired: 0

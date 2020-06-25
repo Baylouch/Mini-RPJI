@@ -56,9 +56,6 @@ AnimationClip:
     - time: 0
       value: {fileID: -2167885455777336892, guid: 9e5c106cc5b874047a379e025e640dc2,
         type: 3}
-    - time: 1
-      value: {fileID: -7308292388938493882, guid: ca3fbfc26d4c35c4da00ce0c821e6a87,
-        type: 3}
     attribute: m_Sprite
     path: Enemy_Sprite
     classID: 212
@@ -86,13 +83,12 @@ AnimationClip:
       isPPtrCurve: 1
     pptrCurveMapping:
     - {fileID: -2167885455777336892, guid: 9e5c106cc5b874047a379e025e640dc2, type: 3}
-    - {fileID: -7308292388938493882, guid: ca3fbfc26d4c35c4da00ce0c821e6a87, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 1.1
+    m_StopTime: 1
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0

@@ -668,6 +668,8 @@ GameObject:
   - component: {fileID: 1289608467}
   - component: {fileID: 588733633}
   - component: {fileID: 7078804549874397239}
+  - component: {fileID: -6104451728218553838}
+  - component: {fileID: 2095575642}
   m_Layer: 9
   m_Name: Big Mole
   m_TagString: Enemy
@@ -858,15 +860,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: 4
-  totalHealthPoints: 80
-  experienceGain: 40
-  speed: 3
-  damageMin: 8
-  damageMax: 13
+  totalHealthPoints: 110
+  experienceGain: 80
+  speed: 4
+  damageMin: 10
+  damageMax: 15
   projectileDamageMin: 10
   projectileDamageMax: 12
-  criticalRate: 3
-  rangedCriticalRate: 5
+  criticalRate: 5
+  rangedCriticalRate: 10
 --- !u!114 &1961729578692491047
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -879,15 +881,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd9aa14811435dd42a59a4c146f73a9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chasingDistance: 6.5
+  chasingDistance: 7.5
   damagedChasingDistance: 25
-  projectile: {fileID: 6052980135759029977, guid: 0e389b709426a364d80fe0668df63d67,
+  projectile: {fileID: 8004946281686160654, guid: 56e24e6d426c6684590dd4195a30f6fc,
     type: 3}
   firePoint: {fileID: 7340913647282457267}
-  shootRange: 6
-  timerBeforeShoot: 3
+  shootRange: 7
+  timerBeforeShoot: 2
   attackRange: 1
-  timerBeforeAttack: 1.4
+  timerBeforeAttack: 1
   attackSounds:
   - {fileID: 8300000, guid: 39b08bd2b51e75b479f47245cf9f2737, type: 3}
   - {fileID: 8300000, guid: 02c8b56eda7e02049a068db63cd5e239, type: 3}
@@ -914,17 +916,6 @@ MonoBehaviour:
   AI_Collider: {fileID: 8084612225311129303}
   hurtSounds:
   - {fileID: 8300000, guid: e968ba30a9173be4ea937eabac3c5377, type: 3}
-  slowedTimer: 4
-  slowColor: {r: 0.045701336, g: 0.21816757, b: 0.745283, a: 1}
-  fireTimer: 3
-  fireEffect: {fileID: 4050406411080310882, guid: 53a323b2909ea034a9fef0b954c7f7ce,
-    type: 3}
-  poisonedTimer: 10
-  poisonColor: {r: 0.4509928, g: 0.09549664, b: 0.6981132, a: 1}
-  electrifiedTimer: 2
-  percentageChanceToParalyze: 35
-  electricEffect: {fileID: 4144859057491972, guid: 91d03a92bb3425f4186bc9844360af1c,
-    type: 3}
 --- !u!114 &6244490966574328185
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1000,3 +991,40 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   questID: 2
+  levelRequiredToApplyQuest: 0
+--- !u!114 &-6104451728218553838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9047036356855655983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bad68f115af6bf34383ef46435629f1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slowColor: {r: 0, g: 0, b: 1, a: 1}
+  fireEffect: {fileID: 4050406411080310882, guid: 53a323b2909ea034a9fef0b954c7f7ce,
+    type: 3}
+  poisonColor: {r: 1, g: 0, b: 1, a: 1}
+  electricEffect: {fileID: 4144859057491972, guid: 91d03a92bb3425f4186bc9844360af1c,
+    type: 3}
+  Env_Collider: {fileID: 8084612225311129303}
+--- !u!114 &2095575642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9047036356855655983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c08447187f6b7e0468dd60a17c8b976f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dropZone:
+  - {fileID: 7340913647434076639}
+  - {fileID: 7340913648701198104}
+  prefabsToDrop:
+  - {fileID: 343607994377496570, guid: a78817d88a8c12944a3b4f4dfbe3f3ad, type: 3}

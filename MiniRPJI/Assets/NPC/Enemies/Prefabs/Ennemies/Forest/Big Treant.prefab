@@ -73,6 +73,8 @@ GameObject:
   - component: {fileID: 2587510992301165958}
   - component: {fileID: 3583491171395045845}
   - component: {fileID: 9092405880434905816}
+  - component: {fileID: 622594455789193583}
+  - component: {fileID: 8555023603986651454}
   m_Layer: 9
   m_Name: Big Treant
   m_TagString: Enemy
@@ -263,9 +265,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: 1
-  totalHealthPoints: 150
+  totalHealthPoints: 170
   experienceGain: 200
-  speed: 4
+  speed: 4.5
   damageMin: 15
   damageMax: 20
   projectileDamageMin: 0
@@ -288,10 +290,10 @@ MonoBehaviour:
   damagedChasingDistance: 25
   projectile: {fileID: 0}
   firePoint: {fileID: 1434213554201658911}
-  shootRange: 6
-  timerBeforeShoot: 3
+  shootRange: 0
+  timerBeforeShoot: 0
   attackRange: 1.1
-  timerBeforeAttack: 1.2
+  timerBeforeAttack: 1
   attackSounds:
   - {fileID: 8300000, guid: 39b08bd2b51e75b479f47245cf9f2737, type: 3}
   - {fileID: 8300000, guid: 02c8b56eda7e02049a068db63cd5e239, type: 3}
@@ -318,17 +320,6 @@ MonoBehaviour:
   AI_Collider: {fileID: 447330041204322939}
   hurtSounds:
   - {fileID: 8300000, guid: e968ba30a9173be4ea937eabac3c5377, type: 3}
-  slowedTimer: 4
-  slowColor: {r: 0.045701336, g: 0.21816757, b: 0.745283, a: 1}
-  fireTimer: 3
-  fireEffect: {fileID: 4050406411080310882, guid: 53a323b2909ea034a9fef0b954c7f7ce,
-    type: 3}
-  poisonedTimer: 10
-  poisonColor: {r: 0.4509928, g: 0.09549664, b: 0.6981132, a: 1}
-  electrifiedTimer: 2
-  percentageChanceToParalyze: 35
-  electricEffect: {fileID: 4144859057491972, guid: 91d03a92bb3425f4186bc9844360af1c,
-    type: 3}
 --- !u!114 &2355260295165208021
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -450,6 +441,42 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e8afa90dfbf0deb4998d89293123eaf9, type: 2}
   dropRate: 80
   levelRequiredToApplyQuest: 5
+--- !u!114 &622594455789193583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 831745445109162627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bad68f115af6bf34383ef46435629f1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slowColor: {r: 0, g: 0, b: 1, a: 1}
+  fireEffect: {fileID: 4050406411080310882, guid: 53a323b2909ea034a9fef0b954c7f7ce,
+    type: 3}
+  poisonColor: {r: 1, g: 0, b: 1, a: 1}
+  electricEffect: {fileID: 4144859057491972, guid: 91d03a92bb3425f4186bc9844360af1c,
+    type: 3}
+  Env_Collider: {fileID: 447330041204322939}
+--- !u!114 &8555023603986651454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 831745445109162627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c08447187f6b7e0468dd60a17c8b976f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dropZone:
+  - {fileID: 1434213554315795827}
+  - {fileID: 1434213552797631412}
+  prefabsToDrop:
+  - {fileID: 575121063362543794, guid: 3f72b834833ebeb47bb0a1df8230d579, type: 3}
 --- !u!1 &831745445519167720
 GameObject:
   m_ObjectHideFlags: 0

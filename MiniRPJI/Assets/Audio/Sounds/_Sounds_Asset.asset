@@ -33,7 +33,11 @@ MonoBehaviour:
   bowAttackNormal: {fileID: 8300000, guid: e33e58839c2fa7f4191b618e183f2a11, type: 3}
   bowAttackNormalImpact: {fileID: 8300000, guid: 09c4acdb130de4845b8eb54f58fd7d00,
     type: 3}
+  bowAttackLaser: {fileID: 8300000, guid: 082fd321b6139284091eddef24542e4e, type: 3}
+  bowAttackLaserImpact: {fileID: 8300000, guid: 94b9df38e017a7e4aa93765567c9363e,
+    type: 3}
   levelUp: {fileID: 8300000, guid: 991205d00bce2ea48a2b16d920de924b, type: 3}
+  unlockAbility: {fileID: 8300000, guid: 308664b3d3a53b544af27533de3d81ef, type: 3}
   catInvoke: {fileID: 8300000, guid: 2137ef033a02bb24dad5fd13dab5bba1, type: 3}
   dogInvoke: {fileID: 8300000, guid: 0a440c4fd5e647d468bf033b1a7e59f8, type: 3}
   alienInvoke: {fileID: 0}

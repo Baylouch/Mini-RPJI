@@ -53,13 +53,6 @@ public class QuestGiver : Interactable
                 // Check if player is actually on the quest
                 if (Quests_Control.instance && Quests_Control.instance.GetPlayerQuestByID(questsToGive[i].questID) != null)
                 {
-                    // If this quest got a quest linked item
-                    if (questsToGive[i].questLinkedItem)
-                    {
-                        GameObject questItem = Instantiate(questsToGive[i].questLinkedItem.itemPrefab, GameObject.Find("Items").transform);
-                        questItem.transform.position = questLinkedItemSpawnPosition.position;
-                    }
-
                     // If this quest got a GO linked
                     if (questsToGive[i].questGOToSpawn)
                     {
@@ -232,12 +225,6 @@ public class QuestGiver : Interactable
 
         if (questLinkedItemSpawnPosition != null)
         {
-            if (Quests_Control.instance.questDataBase.GetQuestByID(questID).questLinkedItem)
-            {
-                GameObject questItem = Instantiate(Quests_Control.instance.questDataBase.GetQuestByID(questID).questLinkedItem.itemPrefab, GameObject.Find("Items").transform);
-                questItem.transform.position = questLinkedItemSpawnPosition.position;
-            }
-
             if (Quests_Control.instance.questDataBase.GetQuestByID(questID).questGOToSpawn)
             {
                 GameObject questGO = Instantiate(Quests_Control.instance.questDataBase.GetQuestByID(questID).questGOToSpawn, GameObject.Find("Items").transform);

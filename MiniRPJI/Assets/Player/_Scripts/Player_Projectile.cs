@@ -13,19 +13,16 @@ public class Player_Projectile : MonoBehaviour
 
     [SerializeField] float projectileSpeed = 5f;
     [SerializeField] float timerBeforeDestroy = 3f;
+    [SerializeField] float malusTimer = 2f;
+    [SerializeField] float percentageChanceToApplyMalus = 100f;
     [SerializeField] float overPowerRange = 2f;
     [SerializeField] GameObject impactEffect;
     [SerializeField] GameObject overPowerEffect;
 
     bool used = false;
 
-    // TODO Think about move the malus timer here.
-    // Create a unique malus timer in AI_Health set with this projectile. Then for each different projectile you can set
-    // a different time. BUT, i think its more logical biologically pov, to have each enemies act different themself.
-    // Exemple : A mutant can more resist poison than a squirrel.
-
-    // TODO Create a special sprite to apply as arrow image when player got alien's pet to modify the arrow gfx to a laser one.
-    [SerializeField] Sprite laserArrow;
+    // TODO Create a special sprite to apply as arrow image when player got alien's pet to modify the arrow gfx into a laser one.
+    [SerializeField] Sprite laserGfx;
 
     private void OnDrawGizmos()
     {
@@ -36,6 +33,36 @@ public class Player_Projectile : MonoBehaviour
     private void Awake()
     {
         GetComponent<Rigidbody2D>().velocity = transform.up * projectileSpeed;
+
+        if (Player_Pets.instance && Player_Pets.instance.currentPlayerPet && laserGfx)
+        {
+            if (Player_Pets.instance.currentPlayerPet.petCategory == PetCategory.Alien)
+            {
+                if (GetComponent<SpriteRenderer>())
+                {
+                    GetComponent<SpriteRenderer>().sprite = laserGfx;
+                }
+                else
+                {
+                    if (transform.childCount > 0)
+                    {
+                        for (int i = 0; i < transform.childCount; i++)
+                        {
+                            if (transform.GetChild(i).GetComponent<SpriteRenderer>())
+                            {
+                                transform.GetChild(i).GetComponent<SpriteRenderer>().sprite = laserGfx;
+                                break;
+                            }
+                        }
+                    }
+                }
+
+                Sound_Manager.instance.PlaySound(Sound_Manager.instance.asset.bowAttackLaser);
+                return;
+            }
+        }
+
+        Sound_Manager.instance.PlaySound(Sound_Manager.instance.asset.bowAttackNormal);
     }
 
     // Start is called before the first frame update
@@ -55,69 +82,91 @@ public class Player_Projectile : MonoBehaviour
             {
                 AI_Health enemyHealth = collision.gameObject.GetComponent<AI_Health>();
 
-                // Now get projectile type to set the right malus on the enemy
-                switch (projectileType)
+                if (enemyHealth.GetComponent<MalusApplier>())
                 {
-                    // Normal projectile
-                    case ProjectileType.Normal:
-                        enemyHealth.TakeDamage(projectileDamage, true);
+                    MalusApplier malusApplier = enemyHealth.GetComponent<MalusApplier>();
+
+                    // Now get projectile type to set the right malus on the enemy
+                    switch (projectileType)
+                    {
+                        // Normal projectile
+                        case ProjectileType.Normal:
+                            enemyHealth.TakeDamage(projectileDamage, true);
 
 
-                        break;
-                    // Frost projectile
-                    case ProjectileType.Frost:
-                        if (enemyHealth.GetCurrentMalusType() == MalusType.Slowed) // If enemy is already slowed, deal overPower
-                        {
-                            // Do overpower things
-                            ProjectileOverPower(enemyHealth, MalusType.Slowed);
-                        }
-                        else // Else just set malus on the enemy
-                        {
-                            ProjectileNormalAttack(enemyHealth, MalusType.Slowed);
-                        }
-                        break;
-                    // Fire projectile
-                    case ProjectileType.Fire:
-                        if (enemyHealth.GetCurrentMalusType() == MalusType.InFire)
-                        {
-                            // Do overpower
-                            ProjectileOverPower(enemyHealth, MalusType.InFire);
-                        }
-                        else // else set malus on the enemy
-                        {
-                            ProjectileNormalAttack(enemyHealth, MalusType.InFire);
-                        }
-                        break;
-                    // Poison projectile
-                    case ProjectileType.Poison:
-                        if (enemyHealth.GetCurrentMalusType() == MalusType.Poisoned)
-                        {
-                            // Do overpower
-                            ProjectileOverPower(enemyHealth, MalusType.Poisoned);
-                        }
-                        else
-                        {
-                            ProjectileNormalAttack(enemyHealth, MalusType.Poisoned);
-                        }
-                        break;
-                    // Electric projectile
-                    case ProjectileType.Electric:
-                        if (enemyHealth.GetCurrentMalusType() == MalusType.Electrified)
-                        {
-                            // Do overpower
-                            ProjectileOverPower(enemyHealth, MalusType.Electrified);
-                        }
-                        else
-                        {
-                            ProjectileNormalAttack(enemyHealth, MalusType.Electrified);
-                        }
-                        break;
+                            break;
+                        // Frost projectile
+                        case ProjectileType.Frost:
+                            if (malusApplier.GetCurrentMalusType() == MalusType.Slowed) // If enemy is already slowed, deal overPower
+                            {
+                                // Do overpower things
+                                ProjectileOverPower(enemyHealth, malusApplier, MalusType.Slowed);
+                            }
+                            else // Else just set malus on the enemy
+                            {
+                                ProjectileNormalAttack(malusApplier, MalusType.Slowed);
+                            }
+                            break;
+                        // Fire projectile
+                        case ProjectileType.Fire:
+                            if (malusApplier.GetCurrentMalusType() == MalusType.InFire)
+                            {
+                                // Do overpower
+                                ProjectileOverPower(enemyHealth, malusApplier, MalusType.InFire);
+                            }
+                            else // else set malus on the enemy
+                            {
+                                ProjectileNormalAttack(malusApplier, MalusType.InFire);
+                            }
+                            break;
+                        // Poison projectile
+                        case ProjectileType.Poison:
+                            if (malusApplier.GetCurrentMalusType() == MalusType.Poisoned)
+                            {
+                                // Do overpower
+                                ProjectileOverPower(enemyHealth, malusApplier, MalusType.Poisoned);
+                            }
+                            else
+                            {
+                                ProjectileNormalAttack(malusApplier, MalusType.Poisoned);
+                            }
+                            break;
+                        // Electric projectile
+                        case ProjectileType.Electric:
+                            if (malusApplier.GetCurrentMalusType() == MalusType.Electrified)
+                            {
+                                // Do overpower
+                                ProjectileOverPower(enemyHealth, malusApplier, MalusType.Electrified);
+                            }
+                            else
+                            {
+                                ProjectileNormalAttack(malusApplier, MalusType.Electrified);
+                            }
+                            break;
+                    }
                 }
-
+                else
+                {
+                    enemyHealth.TakeDamage(projectileDamage, true);
+                }
+                
                 // TODO Think about each arrow got a specific impact sound
                 // For now just play a normal sound
                 if (Sound_Manager.instance)
-                    Sound_Manager.instance.PlaySound(Sound_Manager.instance.asset.bowAttackNormalImpact);
+                {
+                    if (Player_Pets.instance && Player_Pets.instance.currentPlayerPet && laserGfx)
+                    {
+                        if (Player_Pets.instance.currentPlayerPet.petCategory == PetCategory.Alien)
+                        {
+                            Sound_Manager.instance.PlaySound(Sound_Manager.instance.asset.bowAttackLaserImpact);
+                        }
+                    }
+                    else
+                    {
+                        Sound_Manager.instance.PlaySound(Sound_Manager.instance.asset.bowAttackNormalImpact);
+                    }
+                }
+
 
                 // If we kill the enemy
                 if (enemyHealth.IsDead())
@@ -140,9 +189,9 @@ public class Player_Projectile : MonoBehaviour
     }
 
     // Method to deal not overpower arrow attack, inflict damage and set malus if projectile got a type linked.
-    void ProjectileNormalAttack(AI_Health enemy, MalusType type)
+    void ProjectileNormalAttack(MalusApplier _malusApplier, MalusType type)
     {
-        enemy.SetMalus(type, projectileDamage);
+        _malusApplier.SetMalus(type, projectileDamage, malusTimer, percentageChanceToApplyMalus);
 
         if (impactEffect)
         {
@@ -152,7 +201,7 @@ public class Player_Projectile : MonoBehaviour
     }
 
     // Method to deal overpower explosion
-    void ProjectileOverPower(AI_Health enemy, MalusType type)
+    void ProjectileOverPower(AI_Health enemy, MalusApplier _malusApplier, MalusType type)
     {
         // Target receive extra damage
         float extraDamage = projectileDamage + projectileDamage * 0.2f; // For the extra damage, we increase projectile damage by 20%.
@@ -169,14 +218,14 @@ public class Player_Projectile : MonoBehaviour
         Collider2D[] nearbyColliders = Physics2D.OverlapCircleAll(transform.position, overPowerRange);
         foreach(Collider2D collider in nearbyColliders)
         {
-            if (collider.GetComponent<AI_Health>())
+            if (collider.gameObject.tag != "Player" && collider.GetComponent<MalusApplier>())
             {
-                collider.GetComponent<AI_Health>().SetMalus(type, projectileDamage, false);
+                collider.GetComponent<MalusApplier>().SetMalus(type, projectileDamage, malusTimer, percentageChanceToApplyMalus, false);
             }
         }
 
         // Target's malus removed
-        enemy.RemoveMalus();
+        _malusApplier.RemoveMalus();
     }
 
     // Used in Research_Projectile.cs
