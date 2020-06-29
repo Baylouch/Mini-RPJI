@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fdb7f0b41b6b644fa6921ecacee3aa6, type: 3}
+  m_Name: 20_AppleAddict
+  m_EditorClassIdentifier: 
+  questID: 20
+  questTitle: Les pommes
+  questDescription: "Salut, je m'appelle Lucio. Ma grande soeur ne veut plus me voir,
+    je sais pas pourquoi... Alors je tra\xEEne par ici, y'a beaucoup de pommes par
+    ici, tu savais ? Tu voudrais m'en rapporter quelques unes ? J'adore les pommes."
+  questSprite: {fileID: 21300000, guid: c1d0e6764d9c5f8458571840fb1d57d3, type: 3}
+  totalQuestObjective: 10
+  questDone: 0
+  questReward: {fileID: 11400000, guid: a5c3aca052eaa4243ac2ef2d00a718e8, type: 2}
+  questGOToSpawn: {fileID: 0}
+  xpAmount: 1000
+  levelRequired: 0

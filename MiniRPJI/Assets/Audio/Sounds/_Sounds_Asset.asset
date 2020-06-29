@@ -18,6 +18,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 0520e29d0a06c834e89392b804ed5507, type: 3}
   - {fileID: 8300000, guid: 28769c4058a2b7e42ad078bd22f9ce3a, type: 3}
   - {fileID: 8300000, guid: eac905cb994b0b44dadfc737125721f3, type: 3}
+  teleportSound: {fileID: 8300000, guid: b55202a6cff9b174abe235480b441275, type: 3}
   toggleUI: {fileID: 8300000, guid: 6d1f7404048995d419d6bca4d37b3126, type: 3}
   itemEquip: {fileID: 8300000, guid: ffe95bb8650c84c4fbfbc953c71bb7dc, type: 3}
   itemUnequip: {fileID: 8300000, guid: 4606d89adfcc4b34f93efd4701173460, type: 3}

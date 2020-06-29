@@ -290,20 +290,20 @@ MonoBehaviour:
   uncommonItems: {fileID: 11400000, guid: 6c272500724b8104081f6ba802af4515, type: 2}
   rareItems: {fileID: 11400000, guid: 0cbdd841b62106d40ae9cf10ff02c2fe, type: 2}
   epicItems: {fileID: 11400000, guid: 1acde7ba8b104824f9fbd8db7962aa2b, type: 2}
-  commonItemDropRate: 10
-  uncommonItemDropRate: 5
-  rareItemDropRate: 3
-  epicItemDropRate: 1
-  commonItemTryDropNumb: 2
+  commonItemDropRate: 0
+  uncommonItemDropRate: 100
+  rareItemDropRate: 100
+  epicItemDropRate: 10
+  commonItemTryDropNumb: 0
   uncommonItemTryDropNumb: 2
   rareItemTryDropNumb: 2
   epicItemTryDropNumb: 2
-  maxItemDropable: 3
-  levelRange: 1
+  maxItemDropable: 5
+  levelRange: 2
   potionsToDrop: []
   potionDropRate: 0
   potionTryDropNumb: 0
-  maxPotionDropable: 2
+  maxPotionDropable: 4
 --- !u!114 &610592037504741770
 MonoBehaviour:
   m_ObjectHideFlags: 0

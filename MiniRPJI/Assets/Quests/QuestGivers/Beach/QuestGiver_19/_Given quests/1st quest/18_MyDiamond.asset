@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fdb7f0b41b6b644fa6921ecacee3aa6, type: 3}
+  m_Name: 18_MyDiamond
+  m_EditorClassIdentifier: 
+  questID: 18
+  questTitle: "Mon pr\xE9cieux"
+  questDescription: "Bonjour, je m'appelle Lucy. Je me trouve ici parce que je cherche
+    mon diamant... Tu l'as vu ? ... Si il est \xE0 moi ? Oui bien s\xFBr. Enfin...
+    Je l'ai m\xE9rit\xE9e c'est certain ! J'ai travaill\xE9 pendant des ann\xE9es
+    pour la famille royale. Et mon petit fr\xE8re a vol\xE9 une pomme un jour dans
+    les cuisines. Cet imb\xE9cile s'est fait prendre ! Le roi n'a rien voulu savoir
+    et nous devons nous \xE9stimer \"heureux\" qu'il ne lui ai pas coup\xE9 les mains...
+    Pfff... Bon tu vas m'aider ou pas ?"
+  questSprite: {fileID: 21300000, guid: 3faa68d4e2f05f04786133598667ac36, type: 3}
+  totalQuestObjective: 1
+  questDone: 0
+  questReward: {fileID: 11400000, guid: 408eba92cc653ca4c85b3c78289c9c3c, type: 2}
+  questGOToSpawn: {fileID: 5362988514200447822, guid: 08a73c9e7dca01841b55270b28261007,
+    type: 3}
+  xpAmount: 18000
+  levelRequired: 0

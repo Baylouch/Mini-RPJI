@@ -10,6 +10,7 @@ public class Sounds_Asset : ScriptableObject
 {
     [Header("General")]
     public AudioClip[] gameOver;
+    public AudioClip teleportSound;
 
     [Header("UI")]
     public AudioClip toggleUI;

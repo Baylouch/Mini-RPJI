@@ -669,8 +669,9 @@ GameObject:
   - component: {fileID: 6551057923286424141}
   - component: {fileID: 6551057923716544206}
   - component: {fileID: -8438721175093307035}
+  - component: {fileID: -3847239437893523661}
   m_Layer: 9
-  m_Name: Alien Pink
+  m_Name: Alien 1 Pink
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -993,3 +994,22 @@ MonoBehaviour:
   electricEffect: {fileID: 4144859057491972, guid: 91d03a92bb3425f4186bc9844360af1c,
     type: 3}
   Env_Collider: {fileID: 6141166795495330424}
+--- !u!114 &-3847239437893523661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6378793584370614912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d167d6bf839243a419acbdecb86a3c8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dropZone:
+  - {fileID: 4678020947872021872}
+  - {fileID: 4678020946739176375}
+  items:
+  - {fileID: 11400000, guid: a4c65d78b6c4c8f4ea9a419c10c46188, type: 2}
+  dropRate: 15
+  levelRequiredToApplyQuest: 0

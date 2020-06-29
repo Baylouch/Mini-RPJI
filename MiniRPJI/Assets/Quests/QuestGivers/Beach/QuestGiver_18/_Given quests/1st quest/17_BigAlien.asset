@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fdb7f0b41b6b644fa6921ecacee3aa6, type: 3}
+  m_Name: 17_BigAlien
+  m_EditorClassIdentifier: 
+  questID: 17
+  questTitle: Commandant Alien
+  questDescription: "Comme on se retrouve, j'\xE9tudie ce portail depuis un moment
+    maintenant. Je pense savoir pourquoi nous ne pouvons pas l'utiliser. Son energie
+    est r\xE9li\xE9e \xE0 une chose puissante... Peut-\xEAtre leur chef ? Je ne sais
+    pas... Quoi qu'il en soit, je peux sentir l'energie aller vers l'est d'ici. Trouve
+    ce qu'il y a la bas, et nous pourrons peut-\xEAtre d\xE9couvrir \xE0 quoi sert
+    ce portail."
+  questSprite: {fileID: -3964438593568469139, guid: d51029d5ee6add347acfa22be41b790a,
+    type: 3}
+  totalQuestObjective: 1
+  questDone: 0
+  questReward: {fileID: 0}
+  questGOToSpawn: {fileID: 0}
+  xpAmount: 20000
+  levelRequired: 0

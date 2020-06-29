@@ -61,8 +61,8 @@ public class Player_Stats : MonoBehaviour
 
     private float strenghtMultiplier = .30f; // 30% of our strength is convert into damage
     private float agilityMultiplier = .25f; // 25% of our agility is convert into ranged damage
-    private float vitalityMultiplier = 2;
-    private float energyMultiplier = 1f;
+    private float vitalityMultiplier = 3.5f;
+    private float energyMultiplier = 2.5f;
     private float armorMultiplier = .10f; // Used in Player_Health to reduce damage taken
 
     // TODO hideininspector

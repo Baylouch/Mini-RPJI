@@ -525,6 +525,7 @@ GameObject:
   - component: {fileID: 5681942012671980570}
   - component: {fileID: 2895976995448814884}
   - component: {fileID: 6672692195768823522}
+  - component: {fileID: 3867539522505638690}
   m_Layer: 9
   m_Name: Mush Alien Blue
   m_TagString: Enemy
@@ -539,7 +540,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8533432848929314273}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -850,6 +851,25 @@ MonoBehaviour:
   electricEffect: {fileID: 4144859057491972, guid: 91d03a92bb3425f4186bc9844360af1c,
     type: 3}
   Env_Collider: {fileID: 8922510097310745881}
+--- !u!114 &3867539522505638690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8533432848929314273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d167d6bf839243a419acbdecb86a3c8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dropZone:
+  - {fileID: 7926751257553283601}
+  - {fileID: 7926751256974914774}
+  items:
+  - {fileID: 11400000, guid: a4c65d78b6c4c8f4ea9a419c10c46188, type: 2}
+  dropRate: 15
+  levelRequiredToApplyQuest: 0
 --- !u!1 &8533432849614448522
 GameObject:
   m_ObjectHideFlags: 0

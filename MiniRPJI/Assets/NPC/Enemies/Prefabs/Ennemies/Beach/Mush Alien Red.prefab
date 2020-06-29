@@ -669,6 +669,7 @@ GameObject:
   - component: {fileID: 4789269958066627528}
   - component: {fileID: 2638023292333681398}
   - component: {fileID: 5779980603159935280}
+  - component: {fileID: -8796019457385179441}
   m_Layer: 9
   m_Name: Mush Alien Red
   m_TagString: Enemy
@@ -683,7 +684,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8845175737485378099}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -994,3 +995,22 @@ MonoBehaviour:
   electricEffect: {fileID: 4144859057491972, guid: 91d03a92bb3425f4186bc9844360af1c,
     type: 3}
   Env_Collider: {fileID: 8610785893930209995}
+--- !u!114 &-8796019457385179441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8845175737485378099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d167d6bf839243a419acbdecb86a3c8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dropZone:
+  - {fileID: 7110565661049667011}
+  - {fileID: 7110565661762544388}
+  items:
+  - {fileID: 11400000, guid: a4c65d78b6c4c8f4ea9a419c10c46188, type: 2}
+  dropRate: 15
+  levelRequiredToApplyQuest: 0

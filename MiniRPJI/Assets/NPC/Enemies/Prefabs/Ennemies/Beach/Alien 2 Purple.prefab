@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 1318611719}
   - component: {fileID: 1422346116}
   - component: {fileID: -1851116327491096496}
+  - component: {fileID: -8344937071734230562}
   m_Layer: 9
   m_Name: Alien 2 Purple
   m_TagString: Enemy
@@ -349,6 +350,25 @@ MonoBehaviour:
   electricEffect: {fileID: 4144859057491972, guid: 91d03a92bb3425f4186bc9844360af1c,
     type: 3}
   Env_Collider: {fileID: 1140473733434762034}
+--- !u!114 &-8344937071734230562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 174530494264062922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d167d6bf839243a419acbdecb86a3c8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dropZone:
+  - {fileID: 1873958402273168442}
+  - {fileID: 1873958400822285053}
+  items:
+  - {fileID: 11400000, guid: a4c65d78b6c4c8f4ea9a419c10c46188, type: 2}
+  dropRate: 15
+  levelRequiredToApplyQuest: 0
 --- !u!1 &174530494680711585
 GameObject:
   m_ObjectHideFlags: 0

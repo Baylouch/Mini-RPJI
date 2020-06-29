@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 5159065735074630695}
   - component: {fileID: 5159065735516676260}
   - component: {fileID: 1698144332894342927}
+  - component: {fileID: -8155425798086696220}
   m_Layer: 9
   m_Name: Alien 1 Blue
   m_TagString: Enemy
@@ -38,7 +39,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5040830341121447146}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -348,6 +349,25 @@ MonoBehaviour:
   electricEffect: {fileID: 4144859057491972, guid: 91d03a92bb3425f4186bc9844360af1c,
     type: 3}
   Env_Collider: {fileID: 5209371893040268306}
+--- !u!114 &-8155425798086696220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5040830341121447146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d167d6bf839243a419acbdecb86a3c8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dropZone:
+  - {fileID: 6744437101649128218}
+  - {fileID: 6744437100382533085}
+  items:
+  - {fileID: 11400000, guid: a4c65d78b6c4c8f4ea9a419c10c46188, type: 2}
+  dropRate: 15
+  levelRequiredToApplyQuest: 0
 --- !u!1 &5040830341253817985
 GameObject:
   m_ObjectHideFlags: 0

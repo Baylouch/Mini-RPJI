@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fdb7f0b41b6b644fa6921ecacee3aa6, type: 3}
+  m_Name: 14_Technology
+  m_EditorClassIdentifier: 
+  questID: 14
+  questTitle: Technologie
+  questDescription: "Je suis l'agent sp\xE9ciale R. Le roi m'a envoy\xE9e ici pour
+    r\xE9cup\xE9rer ces objets qui brille que les aliens utilisent. Qui sait \xE7a
+    aidera peut-\xEAtre a leur botter les fesses ! Si tu as envie de m'aider, toute
+    aide est la bienvenue. Les aliens en ont souvent sur eux, ils apparaissent sous
+    forme de cristaux."
+  questSprite: {fileID: 21300000, guid: 8f6d58fd471ba8a45a4b681953e29c26, type: 3}
+  totalQuestObjective: 20
+  questDone: 0
+  questReward: {fileID: 11400000, guid: 5cff1a3221c5516419b1870b8fb4c253, type: 2}
+  questGOToSpawn: {fileID: 0}
+  xpAmount: 9000
+  levelRequired: 0

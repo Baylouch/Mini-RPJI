@@ -24,7 +24,7 @@ MonoBehaviour:
     type: 3}
   totalQuestObjective: 1
   questDone: 0
-  questReward: {fileID: 0}
+  questReward: {fileID: 11400000, guid: aa504ef5bfcbd354284228ccfd822f20, type: 2}
   questGOToSpawn: {fileID: 0}
-  xpAmount: 4000
+  xpAmount: 6500
   levelRequired: 0

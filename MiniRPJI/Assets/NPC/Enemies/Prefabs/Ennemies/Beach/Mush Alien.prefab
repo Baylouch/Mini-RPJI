@@ -572,6 +572,7 @@ GameObject:
   - component: {fileID: 7415954775999214686}
   - component: {fileID: 352910688}
   - component: {fileID: -816636383979934042}
+  - component: {fileID: -7877542983690908302}
   m_Layer: 9
   m_Name: Mush Alien
   m_TagString: Enemy
@@ -897,6 +898,25 @@ MonoBehaviour:
   electricEffect: {fileID: 4144859057491972, guid: 91d03a92bb3425f4186bc9844360af1c,
     type: 3}
   Env_Collider: {fileID: 6044829139057116509}
+--- !u!114 &-7877542983690908302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6799384635017123237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d167d6bf839243a419acbdecb86a3c8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dropZone:
+  - {fileID: 5058081136584763989}
+  - {fileID: 5058081137683592338}
+  items:
+  - {fileID: 11400000, guid: a4c65d78b6c4c8f4ea9a419c10c46188, type: 2}
+  dropRate: 15
+  levelRequiredToApplyQuest: 0
 --- !u!1 &6799384635958503374
 GameObject:
   m_ObjectHideFlags: 0

@@ -1511,7 +1511,7 @@ MonoBehaviour:
   questsToGive:
   - {fileID: 11400000, guid: cae8dc2610a2a454fa012a609fabc548, type: 2}
   rewardPosition: {fileID: 1056940074137747492}
-  questLinkedItemSpawnPosition: {fileID: 9031010036771763880}
+  questLinkedItemSpawnPosition: {fileID: 0}
   endDialogue: Enfin libres !
   dialoguePanel: {fileID: 1056940074725340645}
   dialogue: {fileID: 1056940074824934219}

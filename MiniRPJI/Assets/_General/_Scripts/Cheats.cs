@@ -26,6 +26,7 @@ public class Cheats : MonoBehaviour
     public const string GetAndValideQuest = "pls do quest "; // To get and valide a quest via its ID
     public const string GetMoneyCheat = "give me poney";
     public const string GodMode = "i am the matrix";
+    public const string PowerRangerStyle = "i am force red !";
 
     public static Cheats instance;
 
@@ -120,6 +121,20 @@ public class Cheats : MonoBehaviour
             CheckIfCheatIsComplete(playerInput);
 
             return;
+        }
+
+        // We must use Input.inputString for some character else unity cant detect that input.
+        if (Input.inputString == "!")
+        {
+            UpdatePlayerInputs('!');
+        }
+        if (Input.inputString == "?")
+        {
+            UpdatePlayerInputs('?');
+        }
+        if (Input.inputString == "$")
+        {
+            UpdatePlayerInputs('$');
         }
 
         if (Input.GetKeyDown(KeyCode.A))
@@ -270,7 +285,7 @@ public class Cheats : MonoBehaviour
         {
             UpdatePlayerInputs(' ');
         }
-        if (Input.GetKeyDown(KeyCode.Backspace))
+        if (Input.GetKeyDown(KeyCode.Backspace)) // To delete last char
         {
             UpdatePlayerInputs('@');
         }
@@ -324,6 +339,29 @@ public class Cheats : MonoBehaviour
             {
                 Sound_Manager.instance.PlaySound(Sound_Manager.instance.asset.sell);
             }
+        }
+
+        if (cheatCode == PowerRangerStyle)
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                Player_Inventory.instance.GetNewItem(Player_Inventory.instance.itemDataBase.GetItemById(353));
+            }
+
+            while (Player_Stats.instance.GetCurrentLevel() < 10)
+            {
+                Player_Stats.instance.CheatLevelUp();
+            }
+
+            Player_Inventory.instance.SetArmoryIndex(0, 236);
+            Player_Inventory.instance.SetArmoryIndex(1, 237);
+            Player_Inventory.instance.SetArmoryIndex(2, 238);
+            Player_Inventory.instance.SetArmoryIndex(3, 239);
+            Player_Inventory.instance.SetArmoryIndex(4, 240);
+            Player_Inventory.instance.SetArmoryIndex(5, 241);
+
+            UI_Player.instance.playerInventoryUI.RefreshArmory();
+            Player_Stats.instance.RefreshPlayerStats();
         }
 
         // Cheat to enter player into GodMode (take no damage)

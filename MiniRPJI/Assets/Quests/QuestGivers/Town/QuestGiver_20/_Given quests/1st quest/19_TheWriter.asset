@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fdb7f0b41b6b644fa6921ecacee3aa6, type: 3}
+  m_Name: 19_TheWriter
+  m_EditorClassIdentifier: 
+  questID: 19
+  questTitle: "L'\xE9crivain"
+  questDescription: "Bonjour, je suis \xE9crivain. Je suis en train de terminer un
+    thriller palpitant sur des aliens, mais je suis coinc\xE9. Je n'ai plus de papier
+    pour \xE9crire... J'ai toujours \xE9cris avec du papier de cactus, ce papier d'arbre
+    banale ne me conviens pas. Tu peux m'en procurer ? Il me reste environ 15 pages
+    a \xE9crire."
+  questSprite: {fileID: 21300000, guid: 615ecf391b0ba0b40a9c3882ac5e6afc, type: 3}
+  totalQuestObjective: 15
+  questDone: 0
+  questReward: {fileID: 11400000, guid: 03b544aac7bc1e244bbb5f2929d1b3ff, type: 2}
+  questGOToSpawn: {fileID: 0}
+  xpAmount: 15000
+  levelRequired: 8
