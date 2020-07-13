@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1544561072709479124}
   - component: {fileID: 6386697734815538000}
   - component: {fileID: 389890814455368146}
-  m_Layer: 8
+  m_Layer: 17
   m_Name: Poison Arrow Effect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4766,7 +4766,7 @@ GameObject:
   - component: {fileID: 4801239510097525339}
   - component: {fileID: 8930157474938055109}
   - component: {fileID: 5644225261999032166}
-  m_Layer: 8
+  m_Layer: 17
   m_Name: Poison Arrow
   m_TagString: Player
   m_Icon: {fileID: 0}

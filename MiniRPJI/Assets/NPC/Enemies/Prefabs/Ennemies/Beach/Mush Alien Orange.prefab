@@ -169,6 +169,7 @@ GameObject:
   - component: {fileID: 8354200495782793132}
   - component: {fileID: 529925707866381418}
   - component: {fileID: 5945441776489083797}
+  - component: {fileID: 4158634444404017228}
   m_Layer: 9
   m_Name: Mush Alien Orange
   m_TagString: Enemy
@@ -183,7 +184,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3291094882038294377}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -360,12 +361,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   level: 1
   totalHealthPoints: 115
-  experienceGain: 55
+  experienceGain: 60
   speed: 3.6
   damageMin: 13
   damageMax: 15
-  projectileDamageMin: 15
-  projectileDamageMax: 18
+  projectileDamageMin: 9
+  projectileDamageMax: 15
   criticalRate: 7
   rangedCriticalRate: 7
 --- !u!114 &5411251226044333665
@@ -388,7 +389,7 @@ MonoBehaviour:
   shootRange: 6
   timerBeforeShoot: 2
   attackRange: 0.8
-  timerBeforeAttack: 1
+  timerBeforeAttack: 1.2
   attackSounds:
   - {fileID: 8300000, guid: 39b08bd2b51e75b479f47245cf9f2737, type: 3}
   - {fileID: 8300000, guid: 02c8b56eda7e02049a068db63cd5e239, type: 3}
@@ -513,6 +514,25 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a4c65d78b6c4c8f4ea9a419c10c46188, type: 2}
   dropRate: 15
   levelRequiredToApplyQuest: 0
+--- !u!114 &4158634444404017228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3291094882038294377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d167d6bf839243a419acbdecb86a3c8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dropZone:
+  - {fileID: 3873655228409796761}
+  - {fileID: 3873655228955199070}
+  items:
+  - {fileID: 11400000, guid: 2d4edb2ef5553064a8373a6024ad4847, type: 2}
+  dropRate: 40
+  levelRequiredToApplyQuest: 14
 --- !u!1 &3873655228222260214
 GameObject:
   m_ObjectHideFlags: 0

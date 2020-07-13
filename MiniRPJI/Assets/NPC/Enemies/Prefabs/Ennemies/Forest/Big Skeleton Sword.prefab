@@ -734,6 +734,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41f3ff672cef08d4d94a2bf20c3fba46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitted: 0
   nextWaypointDistance: 1
   stoppingDistance: 1
 --- !u!114 &1200760332199384293
@@ -766,10 +767,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   level: 6
   totalHealthPoints: 175
-  experienceGain: 100
+  experienceGain: 140
   speed: 4.5
   damageMin: 18
-  damageMax: 20
+  damageMax: 22
   projectileDamageMin: 15
   projectileDamageMax: 17
   criticalRate: 10
@@ -794,7 +795,7 @@ MonoBehaviour:
   shootRange: 7
   timerBeforeShoot: 3
   attackRange: 1
-  timerBeforeAttack: 1
+  timerBeforeAttack: 1.2
   attackSounds:
   - {fileID: 8300000, guid: 39b08bd2b51e75b479f47245cf9f2737, type: 3}
   - {fileID: 8300000, guid: 02c8b56eda7e02049a068db63cd5e239, type: 3}
@@ -813,6 +814,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damaged: 0
   damagedTimer: 5
+  immuneToPush: 1
   deathAnimation: 0
   damageText: {fileID: 1463897701562130290, guid: 9a78e4ea4f0e5924fbecc84bf09796a6,
     type: 3}

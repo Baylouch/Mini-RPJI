@@ -671,6 +671,7 @@ GameObject:
   - component: {fileID: 6479412413935036990}
   - component: {fileID: 5346650508353980353}
   - component: {fileID: 4794840463171479754}
+  - component: {fileID: 1098776438}
   m_Layer: 8
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -719,7 +720,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 8
+  orthographic size: 9
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -743,6 +744,19 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 698841423853756456}
   m_Enabled: 1
+--- !u!114 &1098776438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 698841423853756456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48e9e1170760a334cac81668aa7676ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camSize: 9
 --- !u!1 &1194236356763299263
 GameObject:
   m_ObjectHideFlags: 0
@@ -1071,6 +1085,8 @@ MonoBehaviour:
     type: 3}
   DamageTextParent: {fileID: 1860566190}
   rend: {fileID: 3282687990247486242}
+  hurtEffectUI: {fileID: 8490881720424789147, guid: 5c79db8a39d4dbd4e8ea9bf088c7c836,
+    type: 3}
 --- !u!114 &882769571
 MonoBehaviour:
   m_ObjectHideFlags: 0

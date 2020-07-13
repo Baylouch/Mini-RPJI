@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3651711310064801294}
   - component: {fileID: 2397710982640953411}
   - component: {fileID: 6507986277245129867}
-  m_Layer: 9
+  m_Layer: 18
   m_Name: Gfx
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: 5987874925036846910}
   - component: {fileID: 2068312167602730354}
   - component: {fileID: 7216877776551780253}
-  m_Layer: 9
+  m_Layer: 18
   m_Name: Orange FireBall Effect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4861,7 +4861,7 @@ GameObject:
   - component: {fileID: 4881683822954335613}
   - component: {fileID: 7148235993956433446}
   - component: {fileID: 791618202606967781}
-  m_Layer: 9
+  m_Layer: 18
   m_Name: Red Laser 1
   m_TagString: Enemy
   m_Icon: {fileID: 0}

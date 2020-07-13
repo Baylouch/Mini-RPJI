@@ -16,6 +16,7 @@ public class AI_Health : MonoBehaviour, IDamageable
     public bool damaged = false;
     [SerializeField] float damagedTimer = 5f;
     float currentDamagedTimer;
+    [SerializeField] bool immuneToPush = false;
 
     // Dead variables
     [SerializeField] bool deathAnimation = false;
@@ -44,6 +45,30 @@ public class AI_Health : MonoBehaviour, IDamageable
     MalusApplier ai_MalusApplier;
 
     float lastDamagedTextXPosition = 0f;
+
+    float timeLastHit = 0f;
+
+    private void OnDisable()
+    {
+        StopAllCoroutines();
+
+        if (GetComponent<AI_Enemy_Movement>())
+        {
+            if (GetComponent<AI_Enemy_Movement>().enabled == false)
+                GetComponent<AI_Enemy_Movement>().enabled = true;
+        }
+    }
+
+    private void OnDestroy()
+    {
+        StopAllCoroutines();
+
+        if (GetComponent<AI_Enemy_Movement>())
+        {
+            if (GetComponent<AI_Enemy_Movement>().enabled == false)
+                GetComponent<AI_Enemy_Movement>().enabled = true;
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -201,6 +226,9 @@ public class AI_Health : MonoBehaviour, IDamageable
         if (isDead)
             return;
 
+        if (Time.time < timeLastHit + 0.3f)
+            return;
+
         // Display damage on the UI
         DisplayDamagedTextUI(amount);
 
@@ -213,6 +241,8 @@ public class AI_Health : MonoBehaviour, IDamageable
         {
             ai_stats.SetCurrentHealthPoints(tempHealthPoints);
         }
+
+        timeLastHit = Time.time;
 
         if (ai_stats.GetCurrentHealthPoints() <= 0)
         {
@@ -277,5 +307,77 @@ public class AI_Health : MonoBehaviour, IDamageable
 
             _damagedText.GetComponent<Text>().text = amount.ToString();
         }
+    }
+
+    // Methods to apply a push effect when enemy get hitted by the player.
+    // We must have acces to AI_Enemy_Movement to disable it (and the fact it block velocity to 0 when enemy's attacking).
+    // Then use a coroutine to re active that after the delay of push is done.
+    // We can get Player_Combat directly as parameter because we call this method from Player_Combat script.
+    public void GetHit(float _delay, float _power, AI_Enemy_Movement _movement, Player_Combat _combat)
+    {
+        // If we havn't acces to AI_Enemy_Movement, no need to continue
+        if (GetComponent<AI_Enemy_Movement>() && !immuneToPush)
+        {
+            StartCoroutine(GetHitCoroutine(_delay, _power, _movement, _combat));
+        }
+    }
+
+    IEnumerator GetHitCoroutine(float _delay, float _power, AI_Enemy_Movement _movement, Player_Combat _combat)
+    {
+        _movement.hitted = true;
+
+        Rigidbody2D curRb = GetComponent<Rigidbody2D>();
+
+        if (curRb)
+        {
+            curRb = GetComponent<Rigidbody2D>();
+            curRb.velocity = Vector2.zero;
+
+            // We must know from where player hit the enemy to propulse it in the right place.
+            // To do it : Get acces to the player fire point. With its z rotation we can know.
+            // Right = 270, Left = 90, Up = 0, Down = 180
+            // Try to acces to Player_Combat for its method float GetFirePointRotationZ().
+            if (_combat)
+            {
+                float zRot = _combat.GetFirePointRotationZ();
+                
+                if (zRot >= -1 && zRot <= 1)
+                {
+                    // Push upward
+                    curRb.velocity = Vector2.up * _power;
+                }
+                else if (zRot >= 179 && zRot <= 181)
+                {
+                    // Push backward
+                    curRb.velocity = -Vector2.up * _power;
+                }
+                else if (zRot >= 89 && zRot <= 91)
+                {
+                    // Push leftward
+                    curRb.velocity = -Vector2.right * _power;
+                }
+                else if (zRot >= 269 && zRot <= 271)
+                {
+                    // Push rightward
+                    curRb.velocity = Vector2.right * _power;
+                }
+                else
+                {
+                    Debug.Log("Dont know the rotation to push the enemy.");
+                }
+            }
+        }
+
+        yield return new WaitForSeconds(_delay);
+
+        if (curRb)
+        {
+            curRb.velocity = Vector2.zero;
+        }
+
+        // Adding a mini delay to wait just a bit when enemy reach and of pushed pos to come back to the player.
+        yield return new WaitForSeconds(.1f);
+
+        _movement.hitted = false;
     }
 }

@@ -66,29 +66,6 @@ public class Player_Inventory : MonoBehaviour
 
     private void Start()
     {
-        // Give to the player 5 health potions
-        // TODO see if next line get wrong when loading data
-        //for (int i = 0; i < 5; i++)
-        //{
-        //    GetNewItem(itemDataBase.GetItemById(350));
-        //}
-        //for (int i = 0; i < 5; i++)
-        //{
-        //    GetNewItem(itemDataBase.GetItemById(351));
-        //}
-        //for (int i = 0; i < 5; i++)
-        //{
-        //    GetNewItem(itemDataBase.GetItemById(352));
-        //}
-        //for (int i = 0; i < 5; i++)
-        //{
-        //    GetNewItem(itemDataBase.GetItemById(353));
-        //}
-        //for (int i = 0; i < 5; i++)
-        //{
-        //    GetNewItem(itemDataBase.GetItemById(354));
-        //}
-
         UI_Player.instance.playerInventoryUI.RefreshInventory();
         UI_Player.instance.playerInventoryUI.RefreshArmory();
     }

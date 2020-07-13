@@ -39,6 +39,21 @@ EditorBuildSettings:
     path: Assets/_.Scenes/Game/Forest/Level_Forest_Part_5.unity
     guid: 2edaaa052346e664b9339503e06be934
   - enabled: 1
+    path: Assets/_.Scenes/Game/Forest Sub Levels/SubLevel_Forest_1_1.unity
+    guid: 765b710cac89fc74c84c3a5c2831dc27
+  - enabled: 1
+    path: Assets/_.Scenes/Game/Forest Sub Levels/SubLevel_Forest_1_2.unity
+    guid: 244fc30d6f0eae64cbd90899eaf2bb64
+  - enabled: 1
+    path: Assets/_.Scenes/Game/Forest Sub Levels/SubLevel_Forest_2_1.unity
+    guid: 00024d03bcc96d246a8896e5f906424f
+  - enabled: 1
+    path: Assets/_.Scenes/Game/Forest Sub Levels/SubLevel_Forest_2_2.unity
+    guid: 2a7e09488e9e58448b229a28af9ceb46
+  - enabled: 1
+    path: Assets/_.Scenes/Game/Forest Sub Levels/SubLevel_Forest_2_3.unity
+    guid: c18159da40cc73e47a591f061757ed27
+  - enabled: 1
     path: Assets/_.Scenes/Game/Beach/Level_Beach_Part_1.unity
     guid: 581c8fb9663d13b4990d9db9dc1ff1b9
   - enabled: 1
@@ -57,18 +72,27 @@ EditorBuildSettings:
     path: Assets/_.Scenes/Game/Beach/Level_Beach_Part_6.unity
     guid: 66ec5caaaa0b52f4bab046b37a112e4b
   - enabled: 1
-    path: Assets/_.Scenes/Game/Forest Sub Levels/SubLevel_Forest_1_1.unity
-    guid: 765b710cac89fc74c84c3a5c2831dc27
+    path: Assets/_.Scenes/Game/Volcano/Level_Volcano_Part_1.unity
+    guid: 085eb003767072c40a17aade2f904fb5
   - enabled: 1
-    path: Assets/_.Scenes/Game/Forest Sub Levels/SubLevel_Forest_1_2.unity
-    guid: 244fc30d6f0eae64cbd90899eaf2bb64
+    path: Assets/_.Scenes/Game/Volcano/Level_Volcano_Part_2.unity
+    guid: ec0a9382d8d601d418be7594840b556f
   - enabled: 1
-    path: Assets/_.Scenes/Game/Forest Sub Levels/SubLevel_Forest_2_1.unity
-    guid: 00024d03bcc96d246a8896e5f906424f
+    path: Assets/_.Scenes/Game/Volcano/Level_Volcano_Part_3.unity
+    guid: d953871dcbc0d2146b4c7c919cadb0c7
   - enabled: 1
-    path: Assets/_.Scenes/Game/Forest Sub Levels/SubLevel_Forest_2_2.unity
-    guid: 2a7e09488e9e58448b229a28af9ceb46
+    path: Assets/_.Scenes/Game/Volcano/Level_Volcano_Part_4.unity
+    guid: fc89048037fb437429ad343330375f43
   - enabled: 1
-    path: Assets/_.Scenes/Game/Forest Sub Levels/SubLevel_Forest_2_3.unity
-    guid: c18159da40cc73e47a591f061757ed27
+    path: Assets/_.Scenes/Game/Volcano/Level_Volcano_Part_5.unity
+    guid: 7d5ea38f93e534a47874e6aefa79f063
+  - enabled: 1
+    path: Assets/_.Scenes/Game/Volcano/Level_Volcano_Part_6.unity
+    guid: 963b933c0eb70a4449f0ab7595578f36
+  - enabled: 1
+    path: Assets/_.Scenes/Game/Volcano/Level_Volcano_Part_7.unity
+    guid: 5e64abb09e6b6dd4088c7d6185c43a46
+  - enabled: 1
+    path: Assets/_.Scenes/Game/Volcano/Level_Volcano_Part_8.unity
+    guid: e2a3672873c397b4b802d32eaa78a8fe
   m_configObjects: {}

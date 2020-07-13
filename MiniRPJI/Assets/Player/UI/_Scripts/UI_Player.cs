@@ -33,6 +33,8 @@ public class UI_Player : MonoBehaviour
     public UI_Player_Bank playerBankUI;
     public UI_Player_Pets playerPetsUI;
     public UI_GameOver gameOverUI;
+    public UI_Teleporter teleporterUI;
+    public UI_Map mapUI;
 
     private void Start()
     {
@@ -56,7 +58,17 @@ public class UI_Player : MonoBehaviour
             return;
         }
 
-        if (Input.GetKeyDown(KeyCode.I)) // To centralise in Player_Input.cs later
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            TogglePlayerMenu();
+        }
+
+        if (playerMenu.gameObject.activeSelf)
+        {
+            return;
+        }
+
+        if (Input.GetKeyDown(KeyCode.I))
         {
             ToggleStatsMenu();
         }
@@ -68,9 +80,9 @@ public class UI_Player : MonoBehaviour
         {
             ToggleQuestMenu();
         }
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.M))
         {
-            TogglePlayerMenu();
+            ToggleMap();
         }
 
         // Special condition for pets UI because we wants its unlock when player did a quest.
@@ -125,6 +137,14 @@ public class UI_Player : MonoBehaviour
         {
             playerPetsUI.gameObject.SetActive(false);
         }
+        if (teleporterUI.gameObject.activeSelf)
+        {
+            teleporterUI.teleporterPanel.SetActive(false);
+        }
+        if (mapUI.gameObject.activeSelf)
+        {
+            mapUI.gameObject.SetActive(false);
+        }
     }
 
     void HideLeftMenus()
@@ -141,6 +161,10 @@ public class UI_Player : MonoBehaviour
         {
             playerBankUI.gameObject.SetActive(false);
         }
+        if (mapUI.gameObject.activeSelf)
+        {
+            mapUI.gameObject.SetActive(false);
+        }
     }
 
     void HideRightMenus()
@@ -152,6 +176,14 @@ public class UI_Player : MonoBehaviour
         if (playerPetsUI.gameObject.activeSelf)
         {
             playerPetsUI.gameObject.SetActive(false);
+        }
+        if (teleporterUI.gameObject.activeSelf)
+        {
+            teleporterUI.teleporterPanel.SetActive(false);
+        }
+        if (mapUI.gameObject.activeSelf)
+        {
+            mapUI.gameObject.SetActive(false);
         }
     }
 
@@ -178,6 +210,61 @@ public class UI_Player : MonoBehaviour
         }
     }
 
+    public void ToggleMap()
+    {
+        if (mapUI)
+        {
+            if (!mapUI.gameObject.activeSelf)
+            {
+                if (playerMenu.gameObject.activeSelf)
+                {
+                    return;
+                }
+
+                mapUI.gameObject.SetActive(true);
+            }
+            else
+            {
+                mapUI.gameObject.SetActive(false);
+            }
+
+            if (Sound_Manager.instance)
+            {
+                Sound_Manager.instance.PlaySound(Sound_Manager.instance.asset.toggleUI);
+            }
+        }
+    }
+
+    public void ToggleTeleporterMenu(bool condition)
+    {
+        if (teleporterUI)
+        {
+            if (condition == true)
+            {
+                if (!teleporterUI.teleporterPanel.activeSelf)
+                {
+                    HideRightMenus();
+
+                    teleporterUI.teleporterPanel.SetActive(true);
+
+                    if (Sound_Manager.instance)
+                    {
+                        Sound_Manager.instance.PlaySound(Sound_Manager.instance.asset.toggleUI);
+                    }
+                }
+            }
+            else
+            {
+                if (teleporterUI.teleporterPanel.activeSelf)
+                {
+                    teleporterUI.teleporterPanel.SetActive(false);
+
+                    // Do not play sound because when player change scene its cause issue.
+                }
+            }
+        }
+    }
+
     // Quest UI. On the left of the screen
     public void ToggleQuestMenu()
     {
@@ -185,6 +272,11 @@ public class UI_Player : MonoBehaviour
         {
             if (!playerQuestUI.gameObject.activeSelf)
             {
+                if (playerMenu.gameObject.activeSelf)
+                {
+                    return;
+                }
+
                 HideLeftMenus();
 
                 playerQuestUI.gameObject.SetActive(true);
@@ -208,6 +300,11 @@ public class UI_Player : MonoBehaviour
         {            
             if (!playerInventoryUI.gameObject.activeSelf)
             {
+                if (playerMenu.gameObject.activeSelf)
+                {
+                    return;
+                }
+
                 HideRightMenus();
 
                 playerInventoryUI.gameObject.SetActive(true);
@@ -231,6 +328,11 @@ public class UI_Player : MonoBehaviour
         {
             if (!playerStatsUI.gameObject.activeSelf)
             {
+                if (playerMenu.gameObject.activeSelf)
+                {
+                    return;
+                }
+
                 HideLeftMenus();
 
                 playerStatsUI.gameObject.SetActive(true);
@@ -288,6 +390,11 @@ public class UI_Player : MonoBehaviour
         {
             if (!playerPetsUI.gameObject.activeSelf)
             {
+                if (playerMenu.gameObject.activeSelf)
+                {
+                    return;
+                }
+
                 HideRightMenus();
 
                 playerPetsUI.gameObject.SetActive(true);

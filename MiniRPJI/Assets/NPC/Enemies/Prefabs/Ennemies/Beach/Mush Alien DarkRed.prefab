@@ -526,6 +526,7 @@ GameObject:
   - component: {fileID: 3438856035994661439}
   - component: {fileID: 6562867057796637177}
   - component: {fileID: 1065984792262856198}
+  - component: {fileID: 6087873164909915491}
   m_Layer: 9
   m_Name: Mush Alien DarkRed
   m_TagString: Enemy
@@ -716,12 +717,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: 1
-  totalHealthPoints: 115
-  experienceGain: 55
-  speed: 3.6
-  damageMin: 13
-  damageMax: 15
-  projectileDamageMin: 15
+  totalHealthPoints: 130
+  experienceGain: 75
+  speed: 4
+  damageMin: 14
+  damageMax: 19
+  projectileDamageMin: 14
   projectileDamageMax: 18
   criticalRate: 7
   rangedCriticalRate: 7
@@ -737,15 +738,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd9aa14811435dd42a59a4c146f73a9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chasingDistance: 7.5
+  chasingDistance: 8
   damagedChasingDistance: 25
   projectile: {fileID: 7553135905865221832, guid: 82870b55fa92ac9409f6168033d5398e,
     type: 3}
   firePoint: {fileID: 7604517803976572518}
-  shootRange: 6
+  shootRange: 7
   timerBeforeShoot: 2
   attackRange: 0.8
-  timerBeforeAttack: 1
+  timerBeforeAttack: 1.2
   attackSounds:
   - {fileID: 8300000, guid: 39b08bd2b51e75b479f47245cf9f2737, type: 3}
   - {fileID: 8300000, guid: 02c8b56eda7e02049a068db63cd5e239, type: 3}
@@ -870,6 +871,25 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a4c65d78b6c4c8f4ea9a419c10c46188, type: 2}
   dropRate: 15
   levelRequiredToApplyQuest: 0
+--- !u!114 &6087873164909915491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8206967087190661882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d167d6bf839243a419acbdecb86a3c8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dropZone:
+  - {fileID: 7604517803824948490}
+  - {fileID: 7604517802708859853}
+  items:
+  - {fileID: 11400000, guid: 2d4edb2ef5553064a8373a6024ad4847, type: 2}
+  dropRate: 40
+  levelRequiredToApplyQuest: 14
 --- !u!1 &8206967087330863249
 GameObject:
   m_ObjectHideFlags: 0

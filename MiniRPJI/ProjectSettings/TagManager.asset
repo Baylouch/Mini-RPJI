@@ -23,8 +23,8 @@ TagManager:
   - Item
   - Ability
   - Pet
-  - 
-  - 
+  - PlayerProjectile
+  - UnstoppableProjectile
   - 
   - 
   - 

@@ -246,7 +246,7 @@ MonoBehaviour:
   rareItemTryDropNumb: 2
   epicItemTryDropNumb: 2
   maxItemDropable: 5
-  levelRange: 2
+  levelRange: 1
   potionsToDrop:
   - {fileID: 11400000, guid: f896568763a318444a41d36d90b3f4b7, type: 2}
   - {fileID: 11400000, guid: 50ba78c24ab68b84e9116bd6aa69ca03, type: 2}

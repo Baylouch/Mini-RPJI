@@ -22,5 +22,5 @@ MonoBehaviour:
   questDone: 1
   questReward: {fileID: 11400000, guid: 62ec09eeddc87ee48b5f7b60be8a651f, type: 2}
   questGOToSpawn: {fileID: 0}
-  xpAmount: 200
+  xpAmount: 100
   levelRequired: 0

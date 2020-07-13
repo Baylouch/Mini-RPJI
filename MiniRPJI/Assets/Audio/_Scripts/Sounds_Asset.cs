@@ -11,6 +11,7 @@ public class Sounds_Asset : ScriptableObject
     [Header("General")]
     public AudioClip[] gameOver;
     public AudioClip teleportSound;
+    public AudioClip teleportailSound;
 
     [Header("UI")]
     public AudioClip toggleUI;

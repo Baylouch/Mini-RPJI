@@ -268,10 +268,10 @@ MonoBehaviour:
   totalHealthPoints: 115
   experienceGain: 55
   speed: 3.6
-  damageMin: 12
-  damageMax: 15
-  projectileDamageMin: 12
-  projectileDamageMax: 14
+  damageMin: 9
+  damageMax: 14
+  projectileDamageMin: 10
+  projectileDamageMax: 12
   criticalRate: 3
   rangedCriticalRate: 5
 --- !u!114 &3212455710514885168

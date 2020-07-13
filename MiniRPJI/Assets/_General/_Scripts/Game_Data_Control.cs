@@ -249,7 +249,27 @@ public class Game_Data_Control : MonoBehaviour
                 data.playerPets.playerCurrentPetID = -1;
             }
         }
-       
+
+        // ************************************************************************************************
+        // ********************************* TELEPORTERS **************************************************
+        // ************************************************************************************************
+
+        data.playerTps = new PlayerTeleportersData();
+
+        data.playerTps.tpsUnlocked = new bool[UI_Teleporter.teleporterNumber];
+
+        for (int i = 0; i < UI_Teleporter.teleporterNumber; i++)
+        {
+            if (UI_Player.instance.teleporterUI.GetUnlockedTp(i))
+            {
+                data.playerTps.tpsUnlocked[i] = true;
+            }
+            else
+            {
+                data.playerTps.tpsUnlocked[i] = false;
+            }
+        }
+
         // ************************************************************************************************
         // ************************************************************************************************
         // ************************************************************************************************
@@ -412,6 +432,22 @@ public class Game_Data_Control : MonoBehaviour
             }
 
             // ************************************************************************************************
+            // ********************************* TELEPORTERS **************************************************
+            // ************************************************************************************************
+
+            for (int i = 0; i < UI_Teleporter.teleporterNumber; i++)
+            {
+                if (data.playerTps.tpsUnlocked[i])
+                {
+                    UI_Player.instance.teleporterUI.SetUnlockedTp(i, true);
+                }
+                else
+                {
+                    UI_Player.instance.teleporterUI.SetUnlockedTp(i, false);
+                }
+            }
+
+            // ************************************************************************************************
             // ************************************************************************************************
             // ************************************************************************************************
         }
@@ -448,6 +484,7 @@ public class PlayerData
     public PlayerQuestData playerQuest;
     public PlayerAbilitiesData playerAbilities;
     public PlayerPetsData playerPets;
+    public PlayerTeleportersData playerTps;
 }
 
 [Serializable]
@@ -502,4 +539,10 @@ public class PlayerPetsData
 
     public int[] petsID; // All pet's ID own by the player
     public int playerCurrentPetID; // The current pet ID of the player
+}
+
+[Serializable]
+public class PlayerTeleportersData
+{
+    public bool[] tpsUnlocked; // Represent unlockedTps in UI_Teleporter.cs
 }

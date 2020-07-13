@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3968527701530683511}
   - component: {fileID: 1702239416272116524}
   - component: {fileID: 9101871561591324399}
-  m_Layer: 9
+  m_Layer: 18
   m_Name: Green Laser 1
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -104,7 +104,7 @@ GameObject:
   - component: {fileID: 2861201923312474676}
   - component: {fileID: 7500795262016311416}
   - component: {fileID: 1192243752966158999}
-  m_Layer: 9
+  m_Layer: 18
   m_Name: Green Laser 1 Effect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4856,7 +4856,7 @@ GameObject:
   - component: {fileID: 5044400396954383108}
   - component: {fileID: 6190850896069627209}
   - component: {fileID: 3385915753884447105}
-  m_Layer: 9
+  m_Layer: 18
   m_Name: Gfx
   m_TagString: Untagged
   m_Icon: {fileID: 0}

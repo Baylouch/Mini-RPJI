@@ -53,13 +53,16 @@ public class Player_Health : MonoBehaviour, IDamageable
 
     [SerializeField] float healthRegenerationTimer = 2f;
     float currentRegenerationTimer;
-    float regenerationMultiplier = 0.01f; // We regenerate 0.01% of our total health
+    float regenerationMultiplier = 0.01f; // We regenerate 1% of our total health
 
     [SerializeField] GameObject damageText;
     [SerializeField] Transform DamageTextParent;
 
     [Tooltip("Let it null if you don't want fading when damage taken.")]
     [SerializeField] SpriteRenderer rend;
+
+    [SerializeField] GameObject hurtEffectUI; // GameObject to instantiate when player take damage (dont die) and parent to UI_Player
+    GameObject currentHurtEffect; // TO destroy if player dies
 
     Player_Combat player_combat;
     MalusApplier player_MalusApplier;
@@ -69,6 +72,8 @@ public class Player_Health : MonoBehaviour, IDamageable
     {
         return isDead;
     }
+
+    float timeLastHit = 0f; // To make a little timer before player can take more damage just after been hit
 
     private void OnDisable()
     {
@@ -223,6 +228,11 @@ public class Player_Health : MonoBehaviour, IDamageable
             }
         }
 
+        if (Time.time < timeLastHit + .3f)
+        {
+            return;
+        }
+
         // Reduction of damage amount by % depending of our armor.
         // Full calculation is : CurrentArmor * 0.05 = resultat (% of attack reduction)
         //                       resultat /= 100 to obtain like 0.05 to reduce attack by 5% for exemple
@@ -244,6 +254,8 @@ public class Player_Health : MonoBehaviour, IDamageable
 
         SetCurrentHealthPoints(afterDamageHealthPoints); // Then set healthpoint
 
+        timeLastHit = Time.time; // Set the timer
+
         // If player take damage when he's already in the stats panel
         UI_Player.instance.playerStatsUI.RefreshStatsDisplay();
 
@@ -254,6 +266,40 @@ public class Player_Health : MonoBehaviour, IDamageable
         else if (rend)
         {
             StartCoroutine("FadeOut");
+
+            // Set HurtEffect UI
+            if (UI_Player.instance)
+            {
+                if (hurtEffectUI)
+                {
+                    if (currentHurtEffect == null)
+                    {
+                        currentHurtEffect = Instantiate(hurtEffectUI, UI_Player.instance.transform); // Its destroy itself in HurtEffect.cs
+
+                        // Get current healthpoints as percentage then test it to decrease transparency
+                        float healthAsPercentage = (currentHealthPoints * 100) / totalHealthPoints;
+
+                        if (healthAsPercentage > 75)
+                        {
+                            currentHurtEffect.GetComponent<HurtEffect>().alphaLimit = .2f;
+                        }
+                        else if (healthAsPercentage <= 75 && healthAsPercentage > 50)
+                        {
+                            currentHurtEffect.GetComponent<HurtEffect>().alphaLimit = .5f;
+                        }
+                        else if (healthAsPercentage <= 50 && healthAsPercentage > 20)
+                        {
+                            currentHurtEffect.GetComponent<HurtEffect>().alphaLimit = .75f;
+                        }
+                        else
+                        {
+                            currentHurtEffect.GetComponent<HurtEffect>().alphaLimit = 1f;
+                        }
+
+                        currentHurtEffect.GetComponent<HurtEffect>().StartFadeEffect();
+                    }
+                }
+            }
         }
     }
     

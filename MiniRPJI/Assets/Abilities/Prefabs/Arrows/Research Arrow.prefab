@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 4285321944226173628}
   - component: {fileID: 3876100259642011140}
   - component: {fileID: 3278132471705833228}
-  m_Layer: 8
+  m_Layer: 17
   m_Name: Research Arrow
   m_TagString: Player
   m_Icon: {fileID: 0}

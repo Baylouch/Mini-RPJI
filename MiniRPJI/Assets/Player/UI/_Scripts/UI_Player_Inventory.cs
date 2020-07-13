@@ -27,6 +27,9 @@ public class UI_Player_Inventory : MonoBehaviour
 
     [SerializeField] InventorySlot[] inventorySlots; // Contains all inventory's slots manually set
 
+    float clicDelayToEquip = 1f;
+    float lastTimeClickedOnItem = 0f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -187,9 +190,25 @@ public class UI_Player_Inventory : MonoBehaviour
                 itemStatsDisplay.DisplayItemStats((UsableItem)inventorySlots[indexSlot].item);
             else if (inventorySlots[indexSlot].item as QuestItem)
                 itemStatsDisplay.DisplayItemStats((QuestItem)inventorySlots[indexSlot].item);
+
+            // Set the last time player clicked on it to check if click again
+            lastTimeClickedOnItem = Time.time;
         }
-        else // If currentInventorySlotIndex == indexSlot, player clicked on the same item so we want to unshow slotIntercationsUI and reset buttons
+        else // If currentInventorySlotIndex == indexSlot, player clicked on the same item so we want to unshow slotIntercationsUI and reset buttons OR equip / use the item
         {
+            // Check if player double clicked
+            if (Time.time < lastTimeClickedOnItem + lastTimeClickedOnItem)
+            {
+                if (inventorySlots[indexSlot].item as EquipmentItem) // Equip item
+                {
+                    EquipItem((EquipmentItem)inventorySlots[indexSlot].item);
+                }
+                else if (inventorySlots[indexSlot].item as UsableItem) // Use item
+                {
+                    UseItem((UsableItem)inventorySlots[indexSlot].item);
+                }
+            }
+
             RemoveAllButtonsListeners();
 
             currentInventorySlotIndex = -1;
@@ -237,9 +256,17 @@ public class UI_Player_Inventory : MonoBehaviour
             // Display item's stats
             itemStatsDisplay.HideAndReset();
             itemStatsDisplay.DisplayItemStats(armorySlots[indexPart].item);
+
+            lastTimeClickedOnItem = Time.time;
         }
         else // If its equal, player clicked on the same item so we want to unshow slotIntercationsUI and reset buttons
         {
+            // Check if player double clicked
+            if (Time.time < lastTimeClickedOnItem + lastTimeClickedOnItem)
+            {
+                UnequipItem(indexPart);
+            }
+
             RemoveAllButtonsListeners();
 
             currentArmorySlotIndex = -1;

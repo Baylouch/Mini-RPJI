@@ -1,7 +1,13 @@
 ﻿/* Player_Intercations.cs :
+ * 
  * Centralise les interactions possible du joueur. 
  * Par exemple :
  * Si le joueur peut ramasser un objet, ce script affiche une fenetre : Appuie sur e pour intéragir.
+ * 
+ * 
+ * Le code a été simplifié pour l'instant car je n'effectue pas d'actions spéciales pour chaque type d'interactions différentes.
+ * Pour l'instant, Interact() et UnInteract() sont utilisés de manières universelle.
+ * Tout les nouveaux Scripts "Interactable" peuvent définir leur PlayerInteractionType en "None".
  * 
  * */
 
@@ -46,29 +52,31 @@ public class Player_Intercations : MonoBehaviour
                 {
                     if (!interactableThing.GetIsInteracting())
                     {
-                        switch (interactableThing.interactionType)
-                        {
-                            case PlayerInteractionType.Item:
-                                Item item = interactableThing.GetComponent<Item>();
-                                item.Interact();
-                                break;
-                            case PlayerInteractionType.ItemSeller:
-                                ItemSeller itemSeller = interactableThing.GetComponent<ItemSeller>();
-                                itemSeller.Interact();
-                                break;
-                            case PlayerInteractionType.QuestGiver:
-                                QuestGiver questGiver = interactableThing.GetComponent<QuestGiver>();
-                                questGiver.Interact();
-                                break;
-                                // Add PetSeller part
-                            case PlayerInteractionType.SubZoneTrigger:
-                                Sub_Zone_Trigger subZoneTrigger = interactableThing.GetComponent<Sub_Zone_Trigger>();
-                                subZoneTrigger.Interact();
-                                break;
-                            default:
-                                interactableThing.Interact();
-                                break;
-                        }
+                        interactableThing.Interact();
+
+                        //switch (interactableThing.interactionType)
+                        //{
+                        //    case PlayerInteractionType.Item:
+                        //        Item item = interactableThing.GetComponent<Item>();
+                        //        item.Interact();
+                        //        break;
+                        //    case PlayerInteractionType.ItemSeller:
+                        //        ItemSeller itemSeller = interactableThing.GetComponent<ItemSeller>();
+                        //        itemSeller.Interact();
+                        //        break;
+                        //    case PlayerInteractionType.QuestGiver:
+                        //        QuestGiver questGiver = interactableThing.GetComponent<QuestGiver>();
+                        //        questGiver.Interact();
+                        //        break;
+                        //        // Add PetSeller part
+                        //    case PlayerInteractionType.SubZoneTrigger:
+                        //        Sub_Zone_Trigger subZoneTrigger = interactableThing.GetComponent<Sub_Zone_Trigger>();
+                        //        subZoneTrigger.Interact();
+                        //        break;
+                        //    default:
+                        //        interactableThing.Interact();
+                        //        break;
+                        //}
                     }
 
                     interactionUI.ResetInteractionUI();
@@ -98,27 +106,29 @@ public class Player_Intercations : MonoBehaviour
     {
         if (collision.GetComponent<Interactable>())
         {
-            switch (collision.GetComponent<Interactable>().interactionType)
-            {
-                case PlayerInteractionType.Item:
-                    // Item doesnt require to use Uninteract method.
-                    break;
-                case PlayerInteractionType.ItemSeller:
-                    ItemSeller itemSeller = collision.GetComponent<ItemSeller>();
-                    itemSeller.UnInteract();
-                    break;
-                case PlayerInteractionType.QuestGiver:
-                    QuestGiver questGiver = collision.GetComponent<QuestGiver>();
-                    questGiver.UnInteract();
-                    break;
-                // Add PetSeller part
-                case PlayerInteractionType.SubZoneTrigger:
-                    // Dosnt require to use Uninteract method.
-                    break;
-                default:
-                    collision.GetComponent<Interactable>().UnInteract();
-                    break;
-            }
+            collision.GetComponent<Interactable>().UnInteract();
+
+            //switch (collision.GetComponent<Interactable>().interactionType)
+            //{
+            //    case PlayerInteractionType.Item:
+            //        // Item doesnt require to use Uninteract method.
+            //        break;
+            //    case PlayerInteractionType.ItemSeller:
+            //        ItemSeller itemSeller = collision.GetComponent<ItemSeller>();
+            //        itemSeller.UnInteract();
+            //        break;
+            //    case PlayerInteractionType.QuestGiver:
+            //        QuestGiver questGiver = collision.GetComponent<QuestGiver>();
+            //        questGiver.UnInteract();
+            //        break;
+            //    // Add PetSeller part
+            //    case PlayerInteractionType.SubZoneTrigger:
+            //        // Dosnt require to use Uninteract method.
+            //        break;
+            //    default:
+            //        collision.GetComponent<Interactable>().UnInteract();
+            //        break;
+            //}
 
             interactionUI.ResetInteractionUI();
             interactableThing = null;

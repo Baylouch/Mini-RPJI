@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3203395411164056046}
   - component: {fileID: 1529983808279501424}
   - component: {fileID: -797798868335707741}
-  m_Layer: 8
+  m_Layer: 17
   m_Name: Electric Arrow
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -182,7 +182,7 @@ GameObject:
   - component: {fileID: 4497143196661132960}
   - component: {fileID: 4497143196661132967}
   - component: {fileID: 4497143196661132966}
-  m_Layer: 8
+  m_Layer: 17
   m_Name: Electric Arrow Effect
   m_TagString: Untagged
   m_Icon: {fileID: 0}

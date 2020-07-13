@@ -1,5 +1,6 @@
 ﻿/* Teleport_Position_Level.cs :
- * Permet d'effectuer une teleportation lorsque le joueur change de game level. Afin qu'il soit placé au bonne endroit sur la scene
+ * 
+ * Permet d'effectuer une teleportation lorsque le joueur change de game level. Afin qu'il soit placé au bon endroit dans la scene
  * 
  * 
  * */

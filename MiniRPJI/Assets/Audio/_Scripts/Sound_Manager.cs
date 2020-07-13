@@ -65,6 +65,7 @@ public class Sound_Manager : MonoBehaviour
             return;
 
         GameObject newSound = new GameObject(sound.name);
+
         if (GameObject.Find("Sounds"))
         {
             newSound.transform.parent = GameObject.Find("Sounds").transform;

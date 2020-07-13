@@ -14,7 +14,7 @@ public class Player_Stats : MonoBehaviour
 {
     public static Player_Stats instance; // Singleton + persistent
 
-    public const int level_max = 15;
+    public const int level_max = 25;
 
     // Experience is for now set in "Projectile.cs" and "Player_Combat_Control.cs"
     [Header("Experience")]
@@ -152,10 +152,39 @@ public class Player_Stats : MonoBehaviour
             case 14:
                 totalLevelExp = 75000;
                 break;
-            case 15: // level_max
+            case 15:
+                totalLevelExp = 90000;
+                break;
+            case 16:
+                totalLevelExp = 107000;
+                break;
+            case 17:
+                totalLevelExp = 127000;
+                break;
+            case 18:
+                totalLevelExp = 149000;
+                break;
+            case 19:
+                totalLevelExp = 173000;
+                break;
+            case 20:
+                totalLevelExp = 190000;
+                break;
+            case 21:
+                totalLevelExp = 200000;
+                break;
+            case 22:
+                totalLevelExp = 225000;
+                break;
+            case 23:
+                totalLevelExp = 250000;
+                break;
+            case 24:
+                totalLevelExp = 285000;
+                break;
+            case 25: // Last level
                 totalLevelExp = 0;
                 break;
-
         }
     }
 
@@ -252,7 +281,7 @@ public class Player_Stats : MonoBehaviour
         tempItemDamageMax = 0;
 
         // Now check armory slot for know if there is an item. If yes, apply stats item.
-        // We know there is 6 armory slots because of the enum ArmoryPart. All armory slot got a unique name with this.
+        // We know there are 6 armory slots because of the enum ArmoryPart. Every armory slot got a unique name with this.
         for (int i = 0; i < 6; i++)
         {
             if (Player_Inventory.instance.GetArmoryItem(i) != null)
@@ -262,7 +291,7 @@ public class Player_Stats : MonoBehaviour
         }
 
         float currentDamageMultiplier = (currentStrength * strenghtMultiplier);
-        // Then use mathf methods to get min integer and max integer for the calcul
+        // Then use mathf methods to get min integer and max integer for the calculation
         currentDamageMin = (int)Mathf.Round(damageMin + currentDamageMultiplier);
         currentDamageMax = (int)Mathf.Round(damageMax + currentDamageMultiplier);
 

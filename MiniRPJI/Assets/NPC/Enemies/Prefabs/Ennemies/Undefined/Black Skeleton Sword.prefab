@@ -268,7 +268,7 @@ MonoBehaviour:
   experienceGain: 120
   speed: 4.3
   damageMin: 18
-  damageMax: 23
+  damageMax: 22
   projectileDamageMin: 0
   projectileDamageMax: 0
   criticalRate: 8

@@ -23,6 +23,10 @@ public class Ability_Config : ScriptableObject
 
     public int abilityDamage;
 
+    public float abilityPower; // Represent the push force when enemy gets hitted
+
+    public float abilityTimer; // For others ability, to get a time before the prefab of the ability has been destroy
+
     public int energyCost;
 
     public AbilityType abilityType; // PunchAttack when its the punch. Bow when its the bow. Other when its something else (no animation for this one)

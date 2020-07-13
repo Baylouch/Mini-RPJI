@@ -764,12 +764,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   level: 1
   totalHealthPoints: 115
-  experienceGain: 55
+  experienceGain: 65
   speed: 3.6
-  damageMin: 13
-  damageMax: 15
-  projectileDamageMin: 15
-  projectileDamageMax: 18
+  damageMin: 10
+  damageMax: 14
+  projectileDamageMin: 9
+  projectileDamageMax: 14
   criticalRate: 7
   rangedCriticalRate: 7
 --- !u!114 &4320870728554111877
@@ -792,7 +792,7 @@ MonoBehaviour:
   shootRange: 6
   timerBeforeShoot: 2
   attackRange: 0.8
-  timerBeforeAttack: 1
+  timerBeforeAttack: 1.2
   attackSounds:
   - {fileID: 8300000, guid: 39b08bd2b51e75b479f47245cf9f2737, type: 3}
   - {fileID: 8300000, guid: 02c8b56eda7e02049a068db63cd5e239, type: 3}

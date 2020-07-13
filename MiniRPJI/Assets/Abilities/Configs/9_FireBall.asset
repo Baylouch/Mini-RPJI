@@ -19,5 +19,6 @@ MonoBehaviour:
   abilityPrefab: {fileID: 601498987779062885, guid: 46adec574127bb140ac578bdc175bfe0,
     type: 3}
   abilityDamage: 25
+  abilityPower: 15
   energyCost: 60
   abilityType: 1

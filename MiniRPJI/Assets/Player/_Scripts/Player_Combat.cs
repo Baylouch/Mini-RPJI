@@ -167,6 +167,7 @@ public class Player_Combat : MonoBehaviour
                 Player_Projectile currentProjectileComponent = _projectile.GetComponent<Player_Projectile>();
 
                 currentProjectileComponent.projectileDamage = GetRangedAttackDamage() + _ability.abilityDamage;
+                currentProjectileComponent.projectilePower = _ability.abilityPower;
             }
             else if (_projectile.transform.childCount > 0)
             {
@@ -177,6 +178,7 @@ public class Player_Combat : MonoBehaviour
                         Player_Projectile currentProjectileComponent = _projectile.transform.GetChild(i).GetComponent<Player_Projectile>();
 
                         currentProjectileComponent.projectileDamage = GetRangedAttackDamage() + _ability.abilityDamage;
+                        currentProjectileComponent.projectilePower = _ability.abilityPower;
                     }
                 }
             }
@@ -203,6 +205,14 @@ public class Player_Combat : MonoBehaviour
                 GameObject abilityGO = Instantiate(_ability.abilityPrefab, currentEnemy.transform.position, _ability.abilityPrefab.transform.rotation);
 
                 Destroy(abilityGO, 2f);
+            }
+
+            Debug.Log("Punch ability used.");
+
+            // Propulse enemy to the back
+            if (currentEnemy.gameObject.GetComponent<AI_Enemy_Movement>())
+            {
+                currentEnemy.GetHit(.1f, _ability.abilityPower, currentEnemy.gameObject.GetComponent<AI_Enemy_Movement>(), this);
             }
 
             // Damage enemy
@@ -248,6 +258,8 @@ public class Player_Combat : MonoBehaviour
         if (_ability.abilityPrefab)
         {
             GameObject abilityPrefab = Instantiate(_ability.abilityPrefab, transform.position, Quaternion.identity);
+
+            Destroy(abilityPrefab, _ability.abilityTimer);
         }
 
         // Use energy

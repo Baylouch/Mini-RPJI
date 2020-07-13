@@ -107,6 +107,16 @@ public class AI_Enemy_Combat : MonoBehaviour
             }
         }
 
+        if (target == null)
+        {
+            if (Player_Stats.instance)
+            {
+                target = Player_Stats.instance.transform;
+            }
+
+            return;
+        }
+
         CheckForPlayerDecoy();
 
         CheckTargetDistance();

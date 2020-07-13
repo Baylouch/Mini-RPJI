@@ -215,12 +215,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   level: 1
   totalHealthPoints: 150
-  experienceGain: 55
+  experienceGain: 75
   speed: 3
   damageMin: 10
   damageMax: 15
-  projectileDamageMin: 25
-  projectileDamageMax: 30
+  projectileDamageMin: 20
+  projectileDamageMax: 25
   criticalRate: 3
   rangedCriticalRate: 5
 --- !u!114 &6970406378993414975

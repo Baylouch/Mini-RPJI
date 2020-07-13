@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7240985650566559463}
   - component: {fileID: 4447412304030467410}
   - component: {fileID: 6498918730914432712}
-  m_Layer: 8
+  m_Layer: 17
   m_Name: Fire Arrow Effect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4766,7 +4766,7 @@ GameObject:
   - component: {fileID: 9050981905757099577}
   - component: {fileID: 4959777224111048103}
   - component: {fileID: -7655867196749834635}
-  m_Layer: 8
+  m_Layer: 17
   m_Name: Fire Arrow
   m_TagString: Player
   m_Icon: {fileID: 0}

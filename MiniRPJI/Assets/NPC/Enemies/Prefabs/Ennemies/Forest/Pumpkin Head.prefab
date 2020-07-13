@@ -221,10 +221,10 @@ MonoBehaviour:
   totalHealthPoints: 115
   experienceGain: 50
   speed: 3.6
-  damageMin: 12
-  damageMax: 15
-  projectileDamageMin: 12
-  projectileDamageMax: 14
+  damageMin: 9
+  damageMax: 14
+  projectileDamageMin: 10
+  projectileDamageMax: 12
   criticalRate: 5
   rangedCriticalRate: 10
 --- !u!114 &7377953701908281195
@@ -239,7 +239,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd9aa14811435dd42a59a4c146f73a9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chasingDistance: 6
+  chasingDistance: 6.5
   damagedChasingDistance: 25
   projectile: {fileID: 2291449171880596720, guid: fc2ce7c5b3187f2408724105df20bfef,
     type: 3}

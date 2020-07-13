@@ -104,16 +104,19 @@ public class AI_Activator : MonoBehaviour
     {
         aiActivated = true;
 
-        for (int i = 0; i < behaviours.Length; i++)
+        if (behaviours != null)
         {
-            if (behaviours[i] && behaviours[i].enabled == false)
+            for (int i = 0; i < behaviours.Length; i++)
             {
-                behaviours[i].enabled = true;
-            }
+                if (behaviours[i] && behaviours[i].enabled == false)
+                {
+                    behaviours[i].enabled = true;
+                }
 
-            for (int j = 0; j < transform.childCount; j++)
-            {
-                transform.GetChild(j).gameObject.SetActive(true);
+                for (int j = 0; j < transform.childCount; j++)
+                {
+                    transform.GetChild(j).gameObject.SetActive(true);
+                }
             }
         }
     }

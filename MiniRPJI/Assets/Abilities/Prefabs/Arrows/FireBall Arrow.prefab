@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2537194139028387792}
   - component: {fileID: 268377532399912075}
   - component: {fileID: -1586550866479650882}
-  m_Layer: 8
+  m_Layer: 17
   m_Name: FireBall Arrow
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -127,7 +127,7 @@ GameObject:
   - component: {fileID: 4735012054538814501}
   - component: {fileID: 2817449620489418437}
   - component: {fileID: 7615891242024660484}
-  m_Layer: 8
+  m_Layer: 17
   m_Name: FireBall Arrow Effect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4879,7 +4879,7 @@ GameObject:
   - component: {fileID: 5919886207969127587}
   - component: {fileID: 4741362821526606574}
   - component: {fileID: 4241219023936400934}
-  m_Layer: 8
+  m_Layer: 17
   m_Name: Gfx
   m_TagString: Untagged
   m_Icon: {fileID: 0}

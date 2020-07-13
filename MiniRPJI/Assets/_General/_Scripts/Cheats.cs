@@ -345,7 +345,8 @@ public class Cheats : MonoBehaviour
         {
             for (int i = 0; i < 10; i++)
             {
-                Player_Inventory.instance.GetNewItem(Player_Inventory.instance.itemDataBase.GetItemById(353));
+                Player_Inventory.instance.GetNewItem(Player_Inventory.instance.itemDataBase.GetItemById(1004));
+                Player_Inventory.instance.GetNewItem(Player_Inventory.instance.itemDataBase.GetItemById(1005));
             }
 
             while (Player_Stats.instance.GetCurrentLevel() < 10)

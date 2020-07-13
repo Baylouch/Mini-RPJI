@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fdb7f0b41b6b644fa6921ecacee3aa6, type: 3}
+  m_Name: 22_AlienGear
+  m_EditorClassIdentifier: 
+  questID: 22
+  questTitle: "Mat\xE9riaux"
+  questDescription: "Excellent travail ! Je ne comprends pas tout mais il y a une
+    partie imag\xE9e, je pense comprendre d'o\xF9 vient le probl\xE8me de cette soucoupe.
+    Il me faudrait des mat\xE9riaux comme ceci. C'est un espece de \"depanne tout\"
+    qu'ils ont cr\xE9\xE9, je pense que certains aliens devraient en avoir sur eux.
+    Apr\xE8s, nous pourrons faire fonctionner la soucoupe j'en suis s\xFBr !"
+  questSprite: {fileID: 21300000, guid: 042fae2dd68bce044b8fbd1f26724a2d, type: 3}
+  totalQuestObjective: 15
+  questDone: 0
+  questReward: {fileID: 11400000, guid: 1cde6ba1bfb4355468dbd14be0e86f28, type: 2}
+  questGOToSpawn: {fileID: 0}
+  xpAmount: 35000
+  levelRequired: 0

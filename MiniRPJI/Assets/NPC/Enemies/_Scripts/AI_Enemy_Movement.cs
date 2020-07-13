@@ -16,6 +16,8 @@ using Pathfinding;
 [RequireComponent(typeof(AI_Stats))] // To get speed because of stats centralisation
 public class AI_Enemy_Movement : MonoBehaviour
 {
+    public bool hitted = false;
+
     [SerializeField] float nextWaypointDistance = 3f;
     [SerializeField] float stoppingDistance = 1f;
 
@@ -94,12 +96,18 @@ public class AI_Enemy_Movement : MonoBehaviour
 
     private void Update()
     {
+        if (hitted)
+            return;
+
         AnimatorUpdate();
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (hitted)
+            return;
+
         ProcessMovement();
     }
 

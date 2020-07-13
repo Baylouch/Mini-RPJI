@@ -40,6 +40,17 @@ public class PetCatSpecialAbility : MonoBehaviour
                 }
                 else
                 {
+                    if (processingAbility)
+                    {
+                        CancelInvoke();
+                        processingAbility = false;
+                    }
+                }
+            }
+            else
+            {
+                if (processingAbility)
+                {
                     CancelInvoke();
                     processingAbility = false;
                 }

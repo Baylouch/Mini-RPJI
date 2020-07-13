@@ -9,6 +9,9 @@ public class Player_Projectile : MonoBehaviour
     [HideInInspector]
     public int projectileDamage = 0; // Is set in Player_Combat
 
+    [HideInInspector]
+    public float projectilePower = 0f; // Represent the abilityPower
+
     public ProjectileType projectileType; // To set projectile effect (frost, fire, nothing..)
 
     [SerializeField] float projectileSpeed = 5f;
@@ -81,6 +84,12 @@ public class Player_Projectile : MonoBehaviour
             if (collision.gameObject.GetComponent<AI_Health>())
             {
                 AI_Health enemyHealth = collision.gameObject.GetComponent<AI_Health>();
+
+                // Impact the enemy to propulse / just stop him when hitted
+                if (enemyHealth.gameObject.GetComponent<AI_Enemy_Movement>() && FindObjectOfType<Player_Combat>())
+                {
+                    enemyHealth.GetHit(.1f, projectilePower, enemyHealth.gameObject.GetComponent<AI_Enemy_Movement>(), FindObjectOfType<Player_Combat>());
+                }
 
                 if (enemyHealth.GetComponent<MalusApplier>())
                 {

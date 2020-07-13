@@ -16,7 +16,7 @@ public class Scenes_Control : MonoBehaviour
 
     public static Scenes_Control instance;
 
-    public const int totalGameLevels = 4; // All game levels (including Player_Level)
+    //public const int totalGameLevels = 4; // All game levels (including Player_Level)
 
     public const int levelTransitionBuildIndex = 3;
     public const int PlayerAndSettingsBuildIndex = 4; // Because of scenes organisation in build settings, we got our first level at index 4 (previous are menus)
@@ -136,13 +136,19 @@ public class Scenes_Control : MonoBehaviour
     // An other SwitchPlayerLevel(int) method but now it must test :
     // If the level is already loaded just switch on it (disable previous and enable the new level)
     // Else if the level isn't loaded yet, then load it before switch player on it.
-    public void SwitchGameLevel(int levelToGoBuildIndex)
+    public void SwitchGameLevel(int levelToGoBuildIndex, bool usedTeleportail = false) // bool here to know if player used teleportail to change game level
     {
+        if (levelToGoBuildIndex > SceneManager.sceneCountInBuildSettings)
+        {
+            Debug.Log("Level build index is out of range.");
+            return;
+        }
+
         // Check if level to go isn't loaded. If not, load it.
         Scene levelToGo = SceneManager.GetSceneByBuildIndex(levelToGoBuildIndex);
         if (!levelToGo.isLoaded)
         {
-            StartCoroutine(LoadGameLevel(levelToGoBuildIndex));
+            StartCoroutine(LoadGameLevel(levelToGoBuildIndex, usedTeleportail));
             return;
         }
         else
@@ -160,10 +166,18 @@ public class Scenes_Control : MonoBehaviour
             // Set the new scene as the active one.
             SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(levelToGoBuildIndex));
 
-            // Set player position
-            FindObjectOfType<Player_Movement>().SetPlayerPosition(levelFrom.buildIndex);
+            // If player used usedTeleportail to get into the scene, we must research the one is in the new scene the zone to tp player on it
+            if (usedTeleportail)
+            {
+                FindObjectOfType<Player_Movement>().transform.position = FindObjectOfType<Teleportail>().transform.position;
+            }
+            else
+            {
+                // Set player position with teleportation index
+                FindObjectOfType<Player_Movement>().SetPlayerPosition(levelFrom.buildIndex);
+            }
 
-            // Set pet's player position
+            // Set pet's player position relative to player
             if (FindObjectOfType<PetMovement>())
             {
                 FindObjectOfType<PetMovement>().transform.position = FindObjectOfType<Player_Movement>().transform.position;
@@ -172,7 +186,7 @@ public class Scenes_Control : MonoBehaviour
     }
 
     // To load a new game level. Will put the player into transition scene while waiting.
-    IEnumerator LoadGameLevel(int levelToLoadBuildIndex)
+    IEnumerator LoadGameLevel(int levelToLoadBuildIndex, bool usedTeleportail)
     {
         // Load Transition scene while player is waiting.
         AsyncOperation asyncTransitionLoad = SceneManager.LoadSceneAsync(levelTransitionBuildIndex, LoadSceneMode.Additive);
@@ -191,7 +205,7 @@ public class Scenes_Control : MonoBehaviour
         Button readyButton = GameObject.Find("ReadyButton").GetComponent<Button>();
         readyButton.gameObject.SetActive(false); // Set it unactive to not show before level is loaded.
 
-        // Disable the game level where player from
+        // Disable the game level where player came from
         Scene levelFrom = SceneManager.GetActiveScene();
         GameObject rootLevelFrom = levelFrom.GetRootGameObjects()[0]; // Because there is only one root gameobject per game level.
         rootLevelFrom.SetActive(false);
@@ -220,12 +234,12 @@ public class Scenes_Control : MonoBehaviour
         rootLevelToGo.SetActive(false);
 
         // Set the ready button to switch to the new game level
-        readyButton.onClick.AddListener(() => NewGameLevelReady(levelToLoadBuildIndex, levelFrom.buildIndex));
+        readyButton.onClick.AddListener(() => NewGameLevelReady(levelToLoadBuildIndex, levelFrom.buildIndex, usedTeleportail));
         readyButton.gameObject.SetActive(true);
         loadingBar.gameObject.SetActive(false);
     }
 
-    IEnumerator SetNewGameLevel(int newGameLevelBuildIndex, int levelFromBuildIndex)
+    IEnumerator SetNewGameLevel(int newGameLevelBuildIndex, int levelFromBuildIndex, bool usedTeleportail)
     {
         // Unload transition scene
         AsyncOperation unloadTransition = SceneManager.UnloadSceneAsync(levelTransitionBuildIndex);
@@ -235,32 +249,45 @@ public class Scenes_Control : MonoBehaviour
             yield return null;
         }
 
-        // Enable player 
-        Player_Stats.instance.gameObject.SetActive(true);
-        UI_Player.instance.gameObject.SetActive(true);
-
         // Active new game level
         Scene newGameLevel = SceneManager.GetSceneByBuildIndex(newGameLevelBuildIndex);
         GameObject rootLevelToGo = newGameLevel.GetRootGameObjects()[0];
         rootLevelToGo.SetActive(true);
 
+        // Enable player 
+        Player_Stats.instance.gameObject.SetActive(true);
+        UI_Player.instance.gameObject.SetActive(true);
+
         // Set the new scene as the active one.
         SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(newGameLevelBuildIndex));
 
-        // Set player position
-        FindObjectOfType<Player_Movement>().SetPlayerPosition(levelFromBuildIndex);
-
+        // If player used usedTeleportail to get into the scene, we must research the one is in the new scene the zone to tp player on it
+        if (usedTeleportail)
+        {
+            FindObjectOfType<Player_Movement>().transform.position = FindObjectOfType<Teleportail>().transform.position;
+        }
+        else
+        {
+            // Set player position with teleportation index
+            FindObjectOfType<Player_Movement>().SetPlayerPosition(levelFromBuildIndex);
+        }
 
         // Set pet's player position
         if (FindObjectOfType<PetMovement>())
         {
             FindObjectOfType<PetMovement>().transform.position = FindObjectOfType<Player_Movement>().transform.position;
         }
+
+        // Active ennemies
+        if (FindObjectOfType<Player_Activator>())
+        {
+            FindObjectOfType<Player_Activator>().CheckForEnnemiesActivationOnNewLevel();
+        }
     }
 
-    public void NewGameLevelReady(int newGameLevelBuildIndex, int levelFromBuildIndex)
+    public void NewGameLevelReady(int newGameLevelBuildIndex, int levelFromBuildIndex, bool usedTeleportail)
     {
-        StartCoroutine(SetNewGameLevel(newGameLevelBuildIndex, levelFromBuildIndex));
+        StartCoroutine(SetNewGameLevel(newGameLevelBuildIndex, levelFromBuildIndex, usedTeleportail));
     }
 
     // TODO find a way to move player to level 1 start position when needed. (In UI_GameOver for exemple.)

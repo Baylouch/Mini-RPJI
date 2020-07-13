@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1656426653237844405}
   - component: {fileID: 8856879183874778627}
   - component: {fileID: 6260207063241333217}
-  m_Layer: 8
+  m_Layer: 17
   m_Name: Frost Arrow Effect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4766,7 +4766,7 @@ GameObject:
   - component: {fileID: 8978046376388679111}
   - component: {fileID: 3139852434870667388}
   - component: {fileID: 8446292409987381522}
-  m_Layer: 8
+  m_Layer: 17
   m_Name: Frost Arrow
   m_TagString: Player
   m_Icon: {fileID: 0}

@@ -23,9 +23,7 @@ public class Player_Activator : MonoBehaviour
     IEnumerator CheckForEnnemiesActivation()
     {
         while (true)
-        {
-            yield return new WaitForSeconds(1f);
-
+        {            
             AI_Activator[] activators = FindObjectsOfType<AI_Activator>();
 
             for (int i = 0; i < activators.Length; i++)
@@ -38,7 +36,27 @@ public class Player_Activator : MonoBehaviour
                     activators[i].ActiveBehaviours();
                     continue; // If AI is in the activationRange, active it, then move to the next iteration
                 }
-            }            
+            }
+
+            yield return new WaitForSeconds(1f);
+        }
+    }
+
+    // Method to call in Scene_Control when player entered in new game level to active instantly ennemies.
+    public void CheckForEnnemiesActivationOnNewLevel()
+    {
+        AI_Activator[] activators = FindObjectsOfType<AI_Activator>();
+
+        for (int i = 0; i < activators.Length; i++)
+        {
+            // Get the distance between player and current AI_Activator
+            float distance = Vector3.Distance(transform.position, activators[i].transform.position);
+
+            if (distance <= activationDistance && activators[i].IsAIActivate() == false)
+            {
+                activators[i].ActiveBehaviours();
+                continue; // If AI is in the activationRange, active it, then move to the next iteration
+            }
         }
     }
 

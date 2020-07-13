@@ -10,7 +10,7 @@ public class UI_GameOver : MonoBehaviour
     {
         if (Scenes_Control.instance)
         {
-            //Time.timeScale = 0;
+            Time.timeScale = 0;
 
             if (continueButton)
             {
@@ -39,6 +39,6 @@ public class UI_GameOver : MonoBehaviour
 
     private void OnDisable()
     {
-        //Time.timeScale = 1;
+        Time.timeScale = 1;
     }
 }

@@ -83,6 +83,7 @@ public class Item : Interactable
         if (Player_Inventory.instance)
         {
             bool isFull = Player_Inventory.instance.CheckInventoryIsFull();
+
             if (isFull)
                 return;
 

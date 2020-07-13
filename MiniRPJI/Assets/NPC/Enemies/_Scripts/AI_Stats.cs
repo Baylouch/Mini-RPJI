@@ -1,8 +1,8 @@
 ﻿/* AI_Stats.cs
  * Contient toutes les statistiques de l'ennemi (vitesse inclus)
- * Il est important de le pré-configurer sur le prefab pour un lvl 1 pour permettre le bon fonctionnement
+ * Il est important de le pré-configurer le prefab en tant que lvl 1 pour permettre le bon fonctionnement
  * de l'automatisation des statistiques par le level.
- * un ennemi lvl 2 sera 1,2* plus fort qu'un ennemi lvl 1
+ * Calcul = 1.3f + (level / 10f) * level;
  * */
 
 using UnityEngine;
@@ -54,9 +54,9 @@ public class AI_Stats : MonoBehaviour
 
         level = _level;
 
-        float statsMultiplier = 1.5f + (level / 10f) * level;
+        float statsMultiplier = 1.3f + (level / 10f) * level;
 
-        Debug.Log(statsMultiplier);
+        //Debug.Log(statsMultiplier);
 
         totalHealthPoints = Mathf.RoundToInt(totalHealthPoints * statsMultiplier);
         experienceGain = Mathf.RoundToInt(experienceGain * statsMultiplier);

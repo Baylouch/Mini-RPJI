@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fdb7f0b41b6b644fa6921ecacee3aa6, type: 3}
+  m_Name: 21_AlienBook
+  m_EditorClassIdentifier: 
+  questID: 21
+  questTitle: Mode d'emploi
+  questDescription: "Que fais-tu ici ? Cet endroit est top secret ! Je suis membre
+    des forces secr\xE8tes du royaume. Bon si tu es arriv\xE9 l\xE0, tu es assez fort
+    pour que je te veuille \xE0 mes c\xF4t\xE9s. Il y a une soucoupe volante juste
+    \xE0 c\xF4t\xE9, les aliens ont l'air de l'avoir abandonn\xE9. Pourtant elle fait
+    du bruit et a l'air fonctionnelle. Si seulement on pouvait r\xE9cup\xE9rer un
+    document ou quelque chose nous permettant de comprendre comment l'utiliser...
+    Tu veux m'aider dans mes recherches ?"
+  questSprite: {fileID: 21300000, guid: 6b22156af64babe4f9bff6441c5b942f, type: 3}
+  totalQuestObjective: 1
+  questDone: 0
+  questReward: {fileID: 11400000, guid: 6827e0a031bf84840b246008c9157dff, type: 2}
+  questGOToSpawn: {fileID: 5362988514200447822, guid: 635b033d1f7d1934a819d817c6cb82eb,
+    type: 3}
+  xpAmount: 25000
+  levelRequired: 0

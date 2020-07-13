@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b2431d060f39b343a13742e70692e8f, type: 3}
+  m_Name: 1111_Map
+  m_EditorClassIdentifier: 
+  itemID: 1111
+  itemName: Carte perdue
+  itemDescription: Elle indique vraiment tout.
+  itemSellPrice: 0
+  itemPrefab: {fileID: 5362988514200447822, guid: 3d060772ad5839241a9e40d74d37cb47,
+    type: 3}
+  prefabImage: {fileID: 21300000, guid: 34102981c7e63b646b05313914b723a6, type: 3}
+  inventoryImage: {fileID: 21300000, guid: 34102981c7e63b646b05313914b723a6, type: 3}
+  stackableItem: 0
+  questID: 16
