@@ -12,11 +12,13 @@ public class Player_Projectile : MonoBehaviour
     [HideInInspector]
     public float projectilePower = 0f; // Represent the abilityPower
 
+    [HideInInspector]
+    public float malusTimer = 0f; // Represent the abilityTimer
+
     public ProjectileType projectileType; // To set projectile effect (frost, fire, nothing..)
 
     [SerializeField] float projectileSpeed = 5f;
     [SerializeField] float timerBeforeDestroy = 3f;
-    [SerializeField] float malusTimer = 2f;
     [SerializeField] float percentageChanceToApplyMalus = 100f;
     [SerializeField] float overPowerRange = 2f;
     [SerializeField] GameObject impactEffect;
@@ -234,7 +236,8 @@ public class Player_Projectile : MonoBehaviour
         }
 
         // Target's malus removed
-        _malusApplier.RemoveMalus();
+        //_malusApplier.RemoveMalus();
+        // I decided after weeks to just dont remove the malus on the target who gets overpowered.
     }
 
     // Used in Research_Projectile.cs

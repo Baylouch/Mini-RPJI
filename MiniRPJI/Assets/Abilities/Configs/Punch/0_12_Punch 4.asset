@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca51243307a238c4596c518c409b92e9, type: 3}
+  m_Name: 0_12_Punch 4
+  m_EditorClassIdentifier: 
+  abilityID: 12
+  abilitySubID: 0
+  abilityLevel: 4
+  abilityName: Punch
+  abilityShortDescription: Un bon coup de poing
+  abilityLongDescription: "Ce coup de poing est si puissant qu'il propulse l'ennemi
+    en arri\xE8re."
+  abilitySprite: {fileID: 21300000, guid: be05b24d7c1be704f9ad30dbab21ba1f, type: 3}
+  abilityPrefab: {fileID: 8712131509357282460, guid: 1a787cd634ac59647b0a174935bfbc92,
+    type: 3}
+  abilityBonus: 20
+  abilityPower: 40
+  abilityTimer: 0
+  energyCost: 0
+  abilityType: 0
+  abilityShortcut: 0
+  levelRequired: 1

@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(Camera))]
 public class PlayerCameraZoom : MonoBehaviour
@@ -15,6 +17,9 @@ public class PlayerCameraZoom : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (IsMouseOverUI())
+            return;
+
         if (Input.GetAxis("Mouse ScrollWheel") < 0f)
         {
             if (cam.orthographicSize < 11f)
@@ -38,5 +43,23 @@ public class PlayerCameraZoom : MonoBehaviour
                 cam.orthographicSize = 7f;
             }
         }
+    }
+
+    // Method to know when mouse is over UI then dont attack
+    bool IsMouseOverUI()
+    {
+        PointerEventData pointerEventData = new PointerEventData(EventSystem.current);
+        pointerEventData.position = Input.mousePosition;
+
+        List<RaycastResult> raycastResultList = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(pointerEventData, raycastResultList);
+        for (int i = 0; i < raycastResultList.Count; i++)
+        {
+            if (raycastResultList[i].gameObject.layer == LayerMask.NameToLayer("UI"))
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }

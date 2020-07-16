@@ -10,15 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ca51243307a238c4596c518c409b92e9, type: 3}
-  m_Name: 2_IceArrow
+  m_Name: 2_2_IceArrow 1
   m_EditorClassIdentifier: 
   abilityID: 2
+  abilitySubID: 2
+  abilityLevel: 1
   abilityName: Fleche de glace
-  abilityDescription: Glace les ennemies
+  abilityShortDescription: "Tir une fl\xE8che de glace"
+  abilityLongDescription: "Tir une fl\xE8che glac\xE9e ralentissant les ennemis."
   abilitySprite: {fileID: 21300000, guid: e50dcfd503ffd2e48bd17f6fd1913f52, type: 3}
   abilityPrefab: {fileID: 6052980135759029977, guid: b247c121159f8b24ebd8ded3f1d90b10,
     type: 3}
-  abilityDamage: 10
+  abilityBonus: 15
   abilityPower: 5
+  abilityTimer: 2
   energyCost: 15
   abilityType: 1
+  abilityShortcut: 0
+  levelRequired: 3

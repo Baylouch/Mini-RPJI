@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca51243307a238c4596c518c409b92e9, type: 3}
+  m_Name: 3_3_MultipleArrow 1
+  m_EditorClassIdentifier: 
+  abilityID: 3
+  abilitySubID: 3
+  abilityLevel: 1
+  abilityName: Fleches multiple
+  abilityShortDescription: "Tir plusieurs fl\xE8ches"
+  abilityLongDescription: "Tir une salve de 2 fl\xE8ches."
+  abilitySprite: {fileID: 21300000, guid: cc03a5223e231044582b40bd6f8fe80d, type: 3}
+  abilityPrefab: {fileID: 1394852920656781993, guid: f379e52ec022bdb40b4c7112050a679c,
+    type: 3}
+  abilityBonus: 10
+  abilityPower: 5
+  abilityTimer: 0
+  energyCost: 20
+  abilityType: 1
+  abilityShortcut: 0
+  levelRequired: 6

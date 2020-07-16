@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca51243307a238c4596c518c409b92e9, type: 3}
+  m_Name: 9_9_FireBall 1
+  m_EditorClassIdentifier: 
+  abilityID: 9
+  abilitySubID: 9
+  abilityLevel: 1
+  abilityName: Boule de feu
+  abilityShortDescription: Tir une boule de feu
+  abilityLongDescription: Tir une boule de feu droit devant. Enflamme la cible.
+  abilitySprite: {fileID: 21300000, guid: a6fca08f9de1d2c42831676daba6fa33, type: 3}
+  abilityPrefab: {fileID: 601498987779062885, guid: 46adec574127bb140ac578bdc175bfe0,
+    type: 3}
+  abilityBonus: 60
+  abilityPower: 15
+  abilityTimer: 4
+  energyCost: 50
+  abilityType: 1
+  abilityShortcut: 0
+  levelRequired: 15

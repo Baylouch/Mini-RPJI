@@ -166,8 +166,9 @@ public class Player_Combat : MonoBehaviour
             {
                 Player_Projectile currentProjectileComponent = _projectile.GetComponent<Player_Projectile>();
 
-                currentProjectileComponent.projectileDamage = GetRangedAttackDamage() + _ability.abilityDamage;
+                currentProjectileComponent.projectileDamage = GetRangedAttackDamage() + _ability.abilityBonus;
                 currentProjectileComponent.projectilePower = _ability.abilityPower;
+                currentProjectileComponent.malusTimer = _ability.abilityTimer;
             }
             else if (_projectile.transform.childCount > 0)
             {
@@ -177,8 +178,9 @@ public class Player_Combat : MonoBehaviour
                     {
                         Player_Projectile currentProjectileComponent = _projectile.transform.GetChild(i).GetComponent<Player_Projectile>();
 
-                        currentProjectileComponent.projectileDamage = GetRangedAttackDamage() + _ability.abilityDamage;
+                        currentProjectileComponent.projectileDamage = GetRangedAttackDamage() + _ability.abilityBonus;
                         currentProjectileComponent.projectilePower = _ability.abilityPower;
+                        currentProjectileComponent.malusTimer = _ability.abilityTimer;
                     }
                 }
             }
@@ -216,7 +218,7 @@ public class Player_Combat : MonoBehaviour
             }
 
             // Damage enemy
-            currentEnemy.TakeDamage(GetAttackDamage() + _ability.abilityDamage, true); // So we can direclty set damage to the enemy
+            currentEnemy.TakeDamage(GetAttackDamage() + _ability.abilityBonus, true); // So we can direclty set damage to the enemy
 
             // Use energy
             Player_Stats.instance.playerEnergy.SetCurrentEnergyPoints(Player_Stats.instance.playerEnergy.GetCurrentEnergyPoints() - _ability.energyCost);
@@ -289,6 +291,7 @@ public class Player_Combat : MonoBehaviour
     }
 
     // Method to know when mouse is over UI then dont attack
+    // TODO Put this code into a static class to acces from everywhere (because of rebondancy in PlayerCameraZoom.cs)
     bool IsMouseOverUI()
     {
         PointerEventData pointerEventData = new PointerEventData(EventSystem.current);

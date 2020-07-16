@@ -10,16 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ca51243307a238c4596c518c409b92e9, type: 3}
-  m_Name: 0_Punch
+  m_Name: 0_0_Punch 1
   m_EditorClassIdentifier: 
   abilityID: 0
+  abilitySubID: 0
+  abilityLevel: 1
   abilityName: Punch
-  abilityDescription: Un bon coup de poing
+  abilityShortDescription: Un bon coup de poing
+  abilityLongDescription: "Ce coup de poing est si puissant qu'il propulse l'ennemi
+    en arri\xE8re."
   abilitySprite: {fileID: 21300000, guid: be05b24d7c1be704f9ad30dbab21ba1f, type: 3}
   abilityPrefab: {fileID: 8712131509357282460, guid: 1a787cd634ac59647b0a174935bfbc92,
     type: 3}
-  abilityDamage: 5
+  abilityBonus: 5
   abilityPower: 20
   abilityTimer: 0
   energyCost: 0
   abilityType: 0
+  abilityShortcut: 0
+  levelRequired: 1

@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca51243307a238c4596c518c409b92e9, type: 3}
+  m_Name: 4_4_FireArrow 1
+  m_EditorClassIdentifier: 
+  abilityID: 4
+  abilitySubID: 4
+  abilityLevel: 1
+  abilityName: Fleche de feu
+  abilityShortDescription: "Tir une fl\xE8che enflamm\xE9e"
+  abilityLongDescription: "Tir une fl\xE8che de feu droit devant. A la capacit\xE9
+    d'enflammer la cible."
+  abilitySprite: {fileID: 21300000, guid: 2d31caf6b00328247878e3c6fb68940a, type: 3}
+  abilityPrefab: {fileID: 6125846395911611687, guid: 66d309938906d014f8910ecea2abb8ea,
+    type: 3}
+  abilityBonus: 20
+  abilityPower: 5
+  abilityTimer: 2
+  energyCost: 20
+  abilityType: 1
+  abilityShortcut: 0
+  levelRequired: 3

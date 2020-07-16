@@ -199,8 +199,8 @@ public class UI_Player_Stats : MonoBehaviour
                     primaryMinAttackDamage.color = damageTextsColor;
                     primaryMaxAttackDamage.color = damageTextsColor;
 
-                    minDamage = Player_Stats.instance.GetCurrentRangedMinDamage() + _primaryAbility.abilityDamage;
-                    maxDamage = Player_Stats.instance.GetCurrentRangedMaxDamage() + _primaryAbility.abilityDamage;
+                    minDamage = Player_Stats.instance.GetCurrentRangedMinDamage() + _primaryAbility.abilityBonus;
+                    maxDamage = Player_Stats.instance.GetCurrentRangedMaxDamage() + _primaryAbility.abilityBonus;
 
                     primaryMinAttackDamage.text = minDamage.ToString();
                     primaryMaxAttackDamage.text = maxDamage.ToString();
@@ -210,8 +210,8 @@ public class UI_Player_Stats : MonoBehaviour
                     primaryMinAttackDamage.color = Color.white;
                     primaryMaxAttackDamage.color = Color.white;
 
-                    minDamage = Player_Stats.instance.GetCurrentMinDamage() + _primaryAbility.abilityDamage;
-                    maxDamage = Player_Stats.instance.GetCurrentMaxDamage() + _primaryAbility.abilityDamage;
+                    minDamage = Player_Stats.instance.GetCurrentMinDamage() + _primaryAbility.abilityBonus;
+                    maxDamage = Player_Stats.instance.GetCurrentMaxDamage() + _primaryAbility.abilityBonus;
 
                     primaryMinAttackDamage.text = minDamage.ToString();
                     primaryMaxAttackDamage.text = maxDamage.ToString();
@@ -261,8 +261,8 @@ public class UI_Player_Stats : MonoBehaviour
                     secondaryMinAttackDamage.color = damageTextsColor;
                     secondaryMaxAttackDamage.color = damageTextsColor;
 
-                    minDamage = Player_Stats.instance.GetCurrentRangedMinDamage() + _secondaryAbility.abilityDamage;
-                    maxDamage = Player_Stats.instance.GetCurrentRangedMaxDamage() + _secondaryAbility.abilityDamage;
+                    minDamage = Player_Stats.instance.GetCurrentRangedMinDamage() + _secondaryAbility.abilityBonus;
+                    maxDamage = Player_Stats.instance.GetCurrentRangedMaxDamage() + _secondaryAbility.abilityBonus;
 
                     secondaryMinAttackDamage.text = minDamage.ToString();
                     secondaryMaxAttackDamage.text = maxDamage.ToString();
@@ -272,8 +272,8 @@ public class UI_Player_Stats : MonoBehaviour
                     secondaryMinAttackDamage.color = Color.white;
                     secondaryMaxAttackDamage.color = Color.white;
 
-                    minDamage = Player_Stats.instance.GetCurrentMinDamage() + _secondaryAbility.abilityDamage;
-                    maxDamage = Player_Stats.instance.GetCurrentMaxDamage() + _secondaryAbility.abilityDamage;
+                    minDamage = Player_Stats.instance.GetCurrentMinDamage() + _secondaryAbility.abilityBonus;
+                    maxDamage = Player_Stats.instance.GetCurrentMaxDamage() + _secondaryAbility.abilityBonus;
 
                     secondaryMinAttackDamage.text = minDamage.ToString();
                     secondaryMaxAttackDamage.text = maxDamage.ToString();

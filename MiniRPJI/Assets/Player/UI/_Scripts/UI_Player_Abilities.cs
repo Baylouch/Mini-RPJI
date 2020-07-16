@@ -134,7 +134,7 @@ public class UI_Player_Abilities : MonoBehaviour
                 // and third (last child) is the energy cost
 
                 currentDescriptionPanel.transform.GetChild(0).GetComponent<Text>().text = abilityToDisplay.abilityName;
-                currentDescriptionPanel.transform.GetChild(1).GetComponent<Text>().text = abilityToDisplay.abilityDescription;
+                currentDescriptionPanel.transform.GetChild(1).GetComponent<Text>().text = abilityToDisplay.abilityShortDescription;
                 currentDescriptionPanel.transform.GetChild(2).GetComponent<Text>().text = "Energie : " + abilityToDisplay.energyCost;
 
 
@@ -142,7 +142,7 @@ public class UI_Player_Abilities : MonoBehaviour
             else
             {
                 currentDescriptionPanel.transform.GetChild(0).GetComponent<Text>().text = abilityToDisplay.abilityName;
-                currentDescriptionPanel.transform.GetChild(1).GetComponent<Text>().text = abilityToDisplay.abilityDescription;
+                currentDescriptionPanel.transform.GetChild(1).GetComponent<Text>().text = abilityToDisplay.abilityShortDescription;
                 currentDescriptionPanel.transform.GetChild(2).GetComponent<Text>().text = "Energie : " + abilityToDisplay.energyCost;
             }
         }
@@ -263,7 +263,7 @@ public class UI_Player_Abilities : MonoBehaviour
         }
         else
         {
-            // There is an error
+            // There is an error with indexAttack parameter
             Debug.Log("ChangeAbility indexAttack from UI_Player_Abilities isnt right. Please fix.");
         }
 

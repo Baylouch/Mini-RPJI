@@ -74,36 +74,6 @@ public class UI_DisplayItemStats : MonoBehaviour
         // Add 30 to panel's height
         statsPanelRect.sizeDelta = new Vector2(statsPanelRect.sizeDelta.x, statsPanelRect.sizeDelta.y + 30);
 
-        //// If its a bow, display arrow type
-        //if (item.armoryPart == ArmoryPart.Bow)
-        //{
-        //    GameObject arrowTypeText = Instantiate(statsNameAndPoints);
-        //    arrowTypeText.GetComponent<Text>().text = "Type de flèche : ";
-
-        //    Player_Projectile tempProj = item.projectile.GetComponent<Player_Projectile>();
-        //    if (tempProj)
-        //    {
-        //        switch (tempProj.projectileType)
-        //        {
-        //            case ProjectileType.Normal:
-        //                arrowTypeText.GetComponent<Text>().text += "normale";
-        //                break;
-        //            case ProjectileType.Frost:
-        //                arrowTypeText.GetComponent<Text>().text += "glacée";
-
-        //                break;
-        //            case ProjectileType.Fire:
-        //                arrowTypeText.GetComponent<Text>().text += "enflammée";
-
-        //                break;
-        //        }
-
-        //        arrowTypeText.transform.SetParent(statsPanelRect.transform);
-        //        arrowTypeText.GetComponent<RectTransform>().localScale = Vector3.one;
-        //        statsPanelRect.sizeDelta = new Vector2(statsPanelRect.sizeDelta.x, statsPanelRect.sizeDelta.y + 30);
-        //    }
-        //}
-
         // Stats are tested in order we want to display them
 
         if (item.damageMin != 0) // We only check damageMin and rangedDamageMin. If min is set max must be set /!!!!!\ 

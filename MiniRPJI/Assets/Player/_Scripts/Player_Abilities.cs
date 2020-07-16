@@ -42,6 +42,16 @@ public class Player_Abilities : MonoBehaviour
         return secondary_ability;
     }
 
+    private int abilityPoints = 0; // Incremented each time player level up (Player_Stats.cs)
+    public int GetAbilityPoints()
+    {
+        return abilityPoints;
+    }
+    public void SetAbilityPoints(int value)
+    {
+        abilityPoints = value;
+    }
+
     bool[] unlockAbilitiesID; // Array who determine unlock (true) abilities or locked (false) one. Index is linked to the unique ability's ID. (index 0 = ability's ID 0)
 
     // Start is called before the first frame update

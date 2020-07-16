@@ -10,15 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ca51243307a238c4596c518c409b92e9, type: 3}
-  m_Name: 5_ElectrifiedArrow
+  m_Name: 5_32_ElectrifiedArrow 4
   m_EditorClassIdentifier: 
-  abilityID: 5
+  abilityID: 32
+  abilitySubID: 5
+  abilityLevel: 4
   abilityName: "Fleche \xE9lectrique"
-  abilityDescription: Peut paralyser
+  abilityShortDescription: "Tir une fl\xE8che \xE9l\xE9ctrique"
+  abilityLongDescription: "Tir une fl\xE8che charg\xE9e d'\xE9l\xE9ctricit\xE9. Peut
+    parfois paralyser la cible."
   abilitySprite: {fileID: 21300000, guid: 6dd5914d5261be74d9579fd8f7cbf992, type: 3}
   abilityPrefab: {fileID: 354750721926904560, guid: f55d5720431e34440b0bf5e48817fdb1,
     type: 3}
-  abilityDamage: 10
+  abilityBonus: 65
   abilityPower: 5
-  energyCost: 15
+  abilityTimer: 5
+  energyCost: 55
   abilityType: 1
+  abilityShortcut: 0
+  levelRequired: 9

@@ -10,15 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ca51243307a238c4596c518c409b92e9, type: 3}
-  m_Name: 1_NormalArrow
+  m_Name: 1_15_NormalArrow 3
   m_EditorClassIdentifier: 
-  abilityID: 1
+  abilityID: 15
+  abilitySubID: 1
+  abilityLevel: 3
   abilityName: Fleche basique
-  abilityDescription: Tir une fleche
+  abilityShortDescription: "Tir une fl\xE8che"
+  abilityLongDescription: "Tir une puissante fl\xE8che droit devant."
   abilitySprite: {fileID: 21300000, guid: 4dcefe822b3d0bf478fad08988578db8, type: 3}
   abilityPrefab: {fileID: 6052980135759029977, guid: 77de479917db3204cae1bd43cf852001,
     type: 3}
-  abilityDamage: 5
+  abilityBonus: 30
   abilityPower: 5
-  energyCost: 10
+  abilityTimer: 0
+  energyCost: 20
   abilityType: 1
+  abilityShortcut: 0
+  levelRequired: 1

@@ -194,6 +194,7 @@ public class Player_Stats : MonoBehaviour
             return;
 
         level++; // Add a lvl        
+        Player_Abilities.instance.SetAbilityPoints(Player_Abilities.instance.GetAbilityPoints() + 1); // Add an ability points
 
         // Set new base player stats
         baseStrength += 2; baseAgility += 2; baseVitality += 4; baseEnergy += 2; // See StatsBoard sheets for more information
