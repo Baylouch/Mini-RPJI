@@ -14,6 +14,8 @@ public enum AbilityType { Punch, Bow, Other }; // Used in Ability_Config
 
 public class Player_Abilities : MonoBehaviour
 {
+    public const int totalPlayerAbilities = 10;
+
     public static Player_Abilities instance;
 
     private void Awake()
@@ -28,15 +30,70 @@ public class Player_Abilities : MonoBehaviour
         }
     }
 
-    public AbilitiesDataBase abilitiesDatabase; // player's abilities
+    public AbilitiesDataBase abilitiesDatabase; // player's abilities database
 
-    [SerializeField] Ability_Config primary_ability; // Left clic ability
+    // Array representing current abilities player has unlocked
+    [SerializeField] Ability_Config[] player_AbilityConfigs = new Ability_Config[totalPlayerAbilities]; // Initialize to 10 (the max number of ability player can has)
+    public Ability_Config GetPlayerAbilityConfig(int index)
+    {
+        if (index < player_AbilityConfigs.Length && index >= 0)
+            return player_AbilityConfigs[index];
+        else
+            return null;
+    }
+    public void SetPlayerAbilityConfig(int index, Ability_Config _config)
+    {
+        if (index < player_AbilityConfigs.Length && index >= 0)
+            player_AbilityConfigs[index] = _config;
+        else
+            Debug.Log("Index out of range.");
+    }
+
+    // Player can use "F", "T", "W", "X", "C" as shortcuts to fastly get access to an ability
+    // Each time player change a shortcut, the couple of arrays are checked to delete the precedent input using to apply on the right ability in the right array.
+    // Index array are the same as player_AbilityConfigs
+    [SerializeField] string[] primaryAbilityShortCuts = new string[totalPlayerAbilities]; // represent the primary ability shortcuts.
+    public string GetPrimaryAbilityShortCutByAbilityID(int _abilityID)
+    {
+        for (int i = 0; i < player_AbilityConfigs.Length; i++)
+        {
+            if (player_AbilityConfigs[i].abilityID == _abilityID)
+            {
+                return primaryAbilityShortCuts[i];
+            }
+        }
+
+        return "";
+    }
+    public string GetPrimaryAbilityShortCutByIndex(int _index)
+    {
+        return primaryAbilityShortCuts[_index];
+    }
+    [SerializeField] string[] secondaryAbilityShortCuts = new string[totalPlayerAbilities]; // represent the secondary ability shortcuts.
+    public string GetSecondaryAbilityShortCutByAbilityID(int _abilityID)
+    {
+        for (int i = 0; i < player_AbilityConfigs.Length; i++)
+        {
+            if (player_AbilityConfigs[i].abilityID == _abilityID)
+            {
+                return secondaryAbilityShortCuts[i];
+            }
+        }
+
+        return "";
+    }
+    public string GetSecondaryAbilityShortCutByIndex(int _index)
+    {
+        return secondaryAbilityShortCuts[_index];
+    }
+
+    Ability_Config primary_ability; // Left clic ability
     public Ability_Config GetPrimaryAbility()
     {
         return primary_ability;
     }
 
-    [SerializeField] Ability_Config secondary_ability; // Right clic ability
+    Ability_Config secondary_ability; // Right clic ability
     public Ability_Config GetSecondaryAbility()
     {
         return secondary_ability;
@@ -52,83 +109,86 @@ public class Player_Abilities : MonoBehaviour
         abilityPoints = value;
     }
 
-    bool[] unlockAbilitiesID; // Array who determine unlock (true) abilities or locked (false) one. Index is linked to the unique ability's ID. (index 0 = ability's ID 0)
-
     // Start is called before the first frame update
     void Start()
     {
-        // Set array size (Length = all player's abilities in game )
-        unlockAbilitiesID = new bool[abilitiesDatabase.abilities.Length];
-
         // Unlock punch ability (ID = 0) and normalArrow (ID = 1)
-        SetUnlockAbility(0, true);
-        SetUnlockAbility(1, true);
+        SetPlayerAbilityConfig(0, abilitiesDatabase.GetAbilityByID(0));
+        SetPlayerAbilityConfig(1, abilitiesDatabase.GetAbilityByID(1));
 
         // Set base abilities
-        SetPrimaryAbility(0);
-        SetSecondaryAbility(1);
+        SetPrimaryAbility(abilitiesDatabase.GetAbilityByID(0));
+        SetSecondaryAbility(abilitiesDatabase.GetAbilityByID(1));
     }
 
     // Method to set primary ability
-    public void SetPrimaryAbility(int _abilityID)
+    public void SetPrimaryAbility(Ability_Config _newAbility)
     {
-        if (abilitiesDatabase.GetAbilityByID(_abilityID) != null)
+        if (abilitiesDatabase.GetAbilityByID(_newAbility.abilityID) != null)
         {
-            if (unlockAbilitiesID[_abilityID] == true)
-            {
-                primary_ability = abilitiesDatabase.GetAbilityByID(_abilityID);
-            }
-            else
-            {
-                Debug.Log("Ability ID " + _abilityID + " isn't unlock yet!");
-            }
+            primary_ability = _newAbility;
         }
         else
         {
-            Debug.Log("No ability linked to this ID : " + _abilityID);
+            Debug.Log("No ability linked to this ID : " + _newAbility.abilityID);
         }
     }
 
     // Method to set secondary ability
-    public void SetSecondaryAbility(int _abilityID)
+    public void SetSecondaryAbility(Ability_Config _newAbility)
     {
-        if (abilitiesDatabase.GetAbilityByID(_abilityID) != null)
+        if (abilitiesDatabase.GetAbilityByID(_newAbility.abilityID) != null)
         {
-            if (unlockAbilitiesID[_abilityID] == true)
-            {
-                secondary_ability = abilitiesDatabase.GetAbilityByID(_abilityID);
-            }
-            else
-            {
-                Debug.Log("Ability ID " + _abilityID + " isn't unlock yet!");
-            }
+            secondary_ability = _newAbility;
         }
         else
         {
-            Debug.Log("No ability linked to this ID : " + _abilityID);
+            Debug.Log("No ability linked to this ID : " + _newAbility.abilityID);
         }
     }
 
-    // Method to unlock an ability. We can use only one parameter as two (ability's ID) because array is set for it.
-    public void SetUnlockAbility(int _abilityID, bool value)
+    public void SetAbilityShortCut(string _shortCut, int _abilityID, bool _primaryAbility) // bool primaryAbility is just a switch to not have 2 method indentic with only the last line different
     {
-        // Check if index isnt out of range
-        if (_abilityID < unlockAbilitiesID.Length)
-        {
-            unlockAbilitiesID[_abilityID] = value;
-        }
-    }
+        int abilityIndex = -1;
 
-    // Method to know if an ability is unlock. False = lock, true = unlock
-    public bool GetUnlockAbility(int _abilityID)
-    {
-        // Check if index isnt out of range
-        if (unlockAbilitiesID != null && _abilityID < unlockAbilitiesID.Length)
+        // Check of the index ability in player_AbilityConfigs to get the right index of the ability
+        for (int i = 0; i < player_AbilityConfigs.Length; i++)
         {
-            return unlockAbilitiesID[_abilityID];
+            if (player_AbilityConfigs[i].abilityID == _abilityID)
+            {
+                abilityIndex = i;
+                break;
+            }
         }
 
-        // Debug.Log("GetUnlockAbility() parameter is out of range. Ability ID doesn't exist.");
-        return false;
+        // If shortCutIndex still -1 here, we havn't the ability linked to this ID.
+        if (abilityIndex == -1)
+        {
+            Debug.Log("Wront ability ID");
+            return;
+        }
+
+        // Check if we already use the short cut by looping trough all index of primaryAbilityShortCuts and secondaryAbilityShortcuts.
+        for (int i = 0; i < totalPlayerAbilities; i++) // We know these two arrays are set with totalPlayerAbilities
+        {
+            if (primaryAbilityShortCuts[i] == _shortCut)
+            {
+                primaryAbilityShortCuts[i] = "";
+
+                break;
+            }
+            if (secondaryAbilityShortCuts[i] == _shortCut)
+            {
+                secondaryAbilityShortCuts[i] = "";
+
+                break;
+            }
+        }
+
+        // If we're here, everything is preset, we can set the new shortcut to the right index of the ability in the primary ability array
+        if (_primaryAbility)
+            primaryAbilityShortCuts[abilityIndex] = _shortCut;
+        else
+            secondaryAbilityShortCuts[abilityIndex] = _shortCut;
     }
 }

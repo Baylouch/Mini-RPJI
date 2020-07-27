@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class UI_Map : MonoBehaviour
 {
     // Forest scenes range : 6 - 10
-    // Beach scenes range : 11 - 16
+    // Beach scenes range : 16 - 21
 
     [SerializeField] Sprite gameMapForest;
     [SerializeField] Sprite gameMapBeach;
@@ -36,7 +36,7 @@ public class UI_Map : MonoBehaviour
                 gameMapImage.sprite = gameMapForest;
                 gameMapGO.SetActive(true);
             }
-            else if (Scenes_Control.instance.GetCurrentSceneBuildIndex() >= 11 && Scenes_Control.instance.GetCurrentSceneBuildIndex() <= 16)
+            else if (Scenes_Control.instance.GetCurrentSceneBuildIndex() >= 16 && Scenes_Control.instance.GetCurrentSceneBuildIndex() <= 21)
             {
                 // Display beach map
                 noMapText.SetActive(false);

@@ -10228,7 +10228,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -0.2}
-  m_Size: {x: 0.8, y: 0.9}
+  m_Size: {x: 0.8, y: 1.2}
   m_Direction: 0
 --- !u!50 &6024608979424483150
 Rigidbody2D:
@@ -10464,10 +10464,10 @@ MonoBehaviour:
   epicItemTryDropNumb: 2
   maxItemDropable: 3
   levelRange: 1
-  potionsToDrop: []
-  potionDropRate: 0
-  potionTryDropNumb: 0
-  maxPotionDropable: 2
+  usableDatabase: {fileID: 11400000, guid: 54b7a65e365544b428942cbaa70a4894, type: 2}
+  usableDropRate: 40
+  usableTryDropNumb: 2
+  maxUsableDropable: 2
 --- !u!114 &5906395583722344333
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10591,6 +10591,6 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.3}
+  m_Offset: {x: 0, y: -0.5}
   serializedVersion: 2
-  m_Radius: 0.35
+  m_Radius: 0.4

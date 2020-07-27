@@ -330,6 +330,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41f3ff672cef08d4d94a2bf20c3fba46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitted: 0
   nextWaypointDistance: 1
   stoppingDistance: 0.9
 --- !u!114 &479514478397163908
@@ -409,6 +410,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damaged: 0
   damagedTimer: 5
+  immuneToPush: 0
   deathAnimation: 1
   damageText: {fileID: 1463897701562130290, guid: 9a78e4ea4f0e5924fbecc84bf09796a6,
     type: 3}
@@ -446,12 +448,10 @@ MonoBehaviour:
   epicItemTryDropNumb: 2
   maxItemDropable: 3
   levelRange: 1
-  potionsToDrop:
-  - {fileID: 11400000, guid: f896568763a318444a41d36d90b3f4b7, type: 2}
-  - {fileID: 11400000, guid: 50ba78c24ab68b84e9116bd6aa69ca03, type: 2}
-  potionDropRate: 35
-  potionTryDropNumb: 2
-  maxPotionDropable: 2
+  usableDatabase: {fileID: 11400000, guid: 54b7a65e365544b428942cbaa70a4894, type: 2}
+  usableDropRate: 40
+  usableTryDropNumb: 2
+  maxUsableDropable: 2
 --- !u!114 &412357559
 MonoBehaviour:
   m_ObjectHideFlags: 0

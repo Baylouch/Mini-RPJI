@@ -209,8 +209,6 @@ public class Player_Combat : MonoBehaviour
                 Destroy(abilityGO, 2f);
             }
 
-            Debug.Log("Punch ability used.");
-
             // Propulse enemy to the back
             if (currentEnemy.gameObject.GetComponent<AI_Enemy_Movement>())
             {
@@ -219,9 +217,6 @@ public class Player_Combat : MonoBehaviour
 
             // Damage enemy
             currentEnemy.TakeDamage(GetAttackDamage() + _ability.abilityBonus, true); // So we can direclty set damage to the enemy
-
-            // Use energy
-            Player_Stats.instance.playerEnergy.SetCurrentEnergyPoints(Player_Stats.instance.playerEnergy.GetCurrentEnergyPoints() - _ability.energyCost);
 
             // Play sound
             if (Sound_Manager.instance)
@@ -249,6 +244,9 @@ public class Player_Combat : MonoBehaviour
                 Sound_Manager.instance.PlaySound(Sound_Manager.instance.asset.punchNoHit);
             }
         }
+
+        // Use energy
+        Player_Stats.instance.playerEnergy.SetCurrentEnergyPoints(Player_Stats.instance.playerEnergy.GetCurrentEnergyPoints() - _ability.energyCost);
     }
 
     IEnumerator UseOtherAbility(Ability_Config _ability, float _delay)
@@ -260,6 +258,15 @@ public class Player_Combat : MonoBehaviour
         if (_ability.abilityPrefab)
         {
             GameObject abilityPrefab = Instantiate(_ability.abilityPrefab, transform.position, Quaternion.identity);
+
+            // Check if its a decoy
+            if (_ability.abilitySubID == 7)
+            {
+                // Set the healthpoints decoy_health component
+                int decoyHealthPoints = Player_Stats.instance.playerHealth.GetTotalHealthPoints() + _ability.abilityBonus;
+                abilityPrefab.GetComponent<Decoy_Health>().SetTotalHealthPoints(decoyHealthPoints);
+                abilityPrefab.GetComponent<Decoy_Health>().SetCurrentHealthPoints(decoyHealthPoints);
+            }
 
             Destroy(abilityPrefab, _ability.abilityTimer);
         }

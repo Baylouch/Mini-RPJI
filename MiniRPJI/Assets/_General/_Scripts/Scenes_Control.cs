@@ -6,6 +6,7 @@
  * */
 
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -16,11 +17,12 @@ public class Scenes_Control : MonoBehaviour
 
     public static Scenes_Control instance;
 
-    //public const int totalGameLevels = 4; // All game levels (including Player_Level)
-
     public const int levelTransitionBuildIndex = 3;
     public const int PlayerAndSettingsBuildIndex = 4; // Because of scenes organisation in build settings, we got our first level at index 4 (previous are menus)
     public const int TownLevelBuildIndex = 5;
+
+    // TODO Think about limit the maximum number of game level when apply to mobile ?
+    //private List<Scene> loadedScenes = new List<Scene>();
 
     private void Awake()
     {

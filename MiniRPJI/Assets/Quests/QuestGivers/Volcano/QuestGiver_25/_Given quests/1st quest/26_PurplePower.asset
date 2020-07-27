@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fdb7f0b41b6b644fa6921ecacee3aa6, type: 3}
+  m_Name: 26_PurplePower
+  m_EditorClassIdentifier: 
+  questID: 26
+  questTitle: Puissance violette
+  questDescription: "J'ai retrouv\xE9 une gel\xE9 violette en marchant par ici, elle
+    a agit comme un aimant envers mon poignard. Je n'avais jamais rien vu de tel.
+    Tu peux m'en rapporter plus ?"
+  questSprite: {fileID: 21300000, guid: 827a7c1ec4bbfc0468e0df84baf29201, type: 3}
+  totalQuestObjective: 10
+  questDone: 0
+  questReward: {fileID: 11400000, guid: 86392f342d0006c49af946001a228f5f, type: 2}
+  questGOToSpawn: {fileID: 0}
+  xpAmount: 58000
+  levelRequired: 0

@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fdb7f0b41b6b644fa6921ecacee3aa6, type: 3}
+  m_Name: 25_LostFriend
+  m_EditorClassIdentifier: 
+  questID: 25
+  questTitle: L'ami perdu
+  questDescription: J'ai perdu mon meilleur ami... Mes parents ne veulent pas que
+    j'aille plus loin parce que c'est trop dangeureux... Aide moi s'il te plait !
+  questSprite: {fileID: 524633085650608049, guid: 15af7f4a0651a994c93d96cd1f1c5cfb,
+    type: 3}
+  totalQuestObjective: 1
+  questDone: 0
+  questReward: {fileID: 0}
+  questGOToSpawn: {fileID: 7127734161123483124, guid: c2edcd74e33ae5e4cb793a2f89eb9dfb,
+    type: 3}
+  xpAmount: 53000
+  levelRequired: 0

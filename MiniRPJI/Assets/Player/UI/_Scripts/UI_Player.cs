@@ -35,6 +35,7 @@ public class UI_Player : MonoBehaviour
     public UI_GameOver gameOverUI;
     public UI_Teleporter teleporterUI;
     public UI_Map mapUI;
+    public UI_Abilities playerAbilitiesUI;
 
     private void Start()
     {
@@ -83,6 +84,10 @@ public class UI_Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.M))
         {
             ToggleMap();
+        }
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            TogglePlayerAbilitiesUI();
         }
 
         // Special condition for pets UI because we wants its unlock when player did a quest.
@@ -145,6 +150,10 @@ public class UI_Player : MonoBehaviour
         {
             mapUI.gameObject.SetActive(false);
         }
+        if (playerAbilitiesUI.gameObject.activeSelf)
+        {
+            playerAbilitiesUI.gameObject.SetActive(false);
+        }
     }
 
     void HideLeftMenus()
@@ -185,6 +194,10 @@ public class UI_Player : MonoBehaviour
         {
             mapUI.gameObject.SetActive(false);
         }
+        if (playerAbilitiesUI.gameObject.activeSelf)
+        {
+            playerAbilitiesUI.gameObject.SetActive(false);
+        }
     }
 
     // Menu UI. On the center of the screen
@@ -201,6 +214,31 @@ public class UI_Player : MonoBehaviour
             else
             {
                 playerMenu.gameObject.SetActive(false);
+            }
+
+            if (Sound_Manager.instance)
+            {
+                Sound_Manager.instance.PlaySound(Sound_Manager.instance.asset.toggleUI);
+            }
+        }
+    }
+
+    public void TogglePlayerAbilitiesUI()
+    {
+        if (playerAbilitiesUI)
+        {
+            if (!playerAbilitiesUI.gameObject.activeSelf)
+            {
+                if (playerMenu.gameObject.activeSelf)
+                {
+                    return;
+                }
+
+                playerAbilitiesUI.gameObject.SetActive(true);
+            }
+            else
+            {
+                playerAbilitiesUI.gameObject.SetActive(false);
             }
 
             if (Sound_Manager.instance)

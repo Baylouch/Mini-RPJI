@@ -20,20 +20,20 @@ public class Player_Projectile : MonoBehaviour
     [SerializeField] float projectileSpeed = 5f;
     [SerializeField] float timerBeforeDestroy = 3f;
     [SerializeField] float percentageChanceToApplyMalus = 100f;
-    [SerializeField] float overPowerRange = 2f;
+    //[SerializeField] float overPowerRange = 2f;
     [SerializeField] GameObject impactEffect;
-    [SerializeField] GameObject overPowerEffect;
+    //[SerializeField] GameObject overPowerEffect;
 
     bool used = false;
 
     // TODO Create a special sprite to apply as arrow image when player got alien's pet to modify the arrow gfx into a laser one.
     [SerializeField] Sprite laserGfx;
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, overPowerRange);
-    }
+    //private void OnDrawGizmos()
+    //{
+    //    Gizmos.color = Color.red;
+    //    Gizmos.DrawWireSphere(transform.position, overPowerRange);
+    //}
 
     private void Awake()
     {
@@ -108,51 +108,47 @@ public class Player_Projectile : MonoBehaviour
                             break;
                         // Frost projectile
                         case ProjectileType.Frost:
-                            if (malusApplier.GetCurrentMalusType() == MalusType.Slowed) // If enemy is already slowed, deal overPower
-                            {
-                                // Do overpower things
-                                ProjectileOverPower(enemyHealth, malusApplier, MalusType.Slowed);
-                            }
-                            else // Else just set malus on the enemy
-                            {
-                                ProjectileNormalAttack(malusApplier, MalusType.Slowed);
-                            }
+                            //if (malusApplier.GetCurrentMalusType() == MalusType.Slowed) // If enemy is already slowed, deal overPower
+                            //{
+                            //    // Do overpower things
+                            //    ProjectileOverPower(enemyHealth, malusApplier, MalusType.Slowed);
+                            //}
+
+                            ProjectileNormalAttack(malusApplier, MalusType.Slowed);
+
                             break;
                         // Fire projectile
                         case ProjectileType.Fire:
-                            if (malusApplier.GetCurrentMalusType() == MalusType.InFire)
-                            {
-                                // Do overpower
-                                ProjectileOverPower(enemyHealth, malusApplier, MalusType.InFire);
-                            }
-                            else // else set malus on the enemy
-                            {
-                                ProjectileNormalAttack(malusApplier, MalusType.InFire);
-                            }
+                            //if (malusApplier.GetCurrentMalusType() == MalusType.InFire)
+                            //{
+                            //    // Do overpower
+                            //    ProjectileOverPower(enemyHealth, malusApplier, MalusType.InFire);
+                            //}
+
+                            ProjectileNormalAttack(malusApplier, MalusType.InFire);
+                            
                             break;
                         // Poison projectile
                         case ProjectileType.Poison:
-                            if (malusApplier.GetCurrentMalusType() == MalusType.Poisoned)
-                            {
-                                // Do overpower
-                                ProjectileOverPower(enemyHealth, malusApplier, MalusType.Poisoned);
-                            }
-                            else
-                            {
-                                ProjectileNormalAttack(malusApplier, MalusType.Poisoned);
-                            }
+                            //if (malusApplier.GetCurrentMalusType() == MalusType.Poisoned)
+                            //{
+                            //    // Do overpower
+                            //    ProjectileOverPower(enemyHealth, malusApplier, MalusType.Poisoned);
+                            //}
+                            
+                            ProjectileNormalAttack(malusApplier, MalusType.Poisoned);
+                            
                             break;
                         // Electric projectile
                         case ProjectileType.Electric:
-                            if (malusApplier.GetCurrentMalusType() == MalusType.Electrified)
-                            {
-                                // Do overpower
-                                ProjectileOverPower(enemyHealth, malusApplier, MalusType.Electrified);
-                            }
-                            else
-                            {
-                                ProjectileNormalAttack(malusApplier, MalusType.Electrified);
-                            }
+                            //if (malusApplier.GetCurrentMalusType() == MalusType.Electrified)
+                            //{
+                            //    // Do overpower
+                            //    ProjectileOverPower(enemyHealth, malusApplier, MalusType.Electrified);
+                            //}
+
+                            ProjectileNormalAttack(malusApplier, MalusType.Electrified);
+                            
                             break;
                     }
                 }
@@ -211,34 +207,34 @@ public class Player_Projectile : MonoBehaviour
         }
     }
 
-    // Method to deal overpower explosion
-    void ProjectileOverPower(AI_Health enemy, MalusApplier _malusApplier, MalusType type)
-    {
-        // Target receive extra damage
-        float extraDamage = projectileDamage + projectileDamage * 0.2f; // For the extra damage, we increase projectile damage by 20%.
-        enemy.TakeDamage(Mathf.RoundToInt(extraDamage), true);
+    //// Method to deal overpower explosion
+    //void ProjectileOverPower(AI_Health enemy, MalusApplier _malusApplier, MalusType type)
+    //{
+    //    // Target receive extra damage
+    //    float extraDamage = projectileDamage + projectileDamage * 0.2f; // For the extra damage, we increase projectile damage by 20%.
+    //    enemy.TakeDamage(Mathf.RoundToInt(extraDamage), true);
 
-        // Create explosion
-        if (overPowerEffect)
-        {
-            GameObject _impact = Instantiate(overPowerEffect, transform.position, overPowerEffect.transform.rotation);
-            Destroy(_impact, 1f);
-        }
+    //    // Create explosion
+    //    if (overPowerEffect)
+    //    {
+    //        GameObject _impact = Instantiate(overPowerEffect, transform.position, overPowerEffect.transform.rotation);
+    //        Destroy(_impact, 1f);
+    //    }
 
-        // Nearby ennemies take no damage but only the malus on them
-        Collider2D[] nearbyColliders = Physics2D.OverlapCircleAll(transform.position, overPowerRange);
-        foreach(Collider2D collider in nearbyColliders)
-        {
-            if (collider.gameObject.tag != "Player" && collider.GetComponent<MalusApplier>())
-            {
-                collider.GetComponent<MalusApplier>().SetMalus(type, projectileDamage, malusTimer, percentageChanceToApplyMalus, false);
-            }
-        }
+    //    // Nearby ennemies take no damage but only the malus on them
+    //    Collider2D[] nearbyColliders = Physics2D.OverlapCircleAll(transform.position, overPowerRange);
+    //    foreach(Collider2D collider in nearbyColliders)
+    //    {
+    //        if (collider.gameObject.tag != "Player" && collider.GetComponent<MalusApplier>())
+    //        {
+    //            collider.GetComponent<MalusApplier>().SetMalus(type, projectileDamage, malusTimer, percentageChanceToApplyMalus, false);
+    //        }
+    //    }
 
-        // Target's malus removed
-        //_malusApplier.RemoveMalus();
-        // I decided after weeks to just dont remove the malus on the target who gets overpowered.
-    }
+    //    // Target's malus removed
+    //    //_malusApplier.RemoveMalus();
+    //    // I decided after weeks to just dont remove the malus on the target who gets overpowered.
+    //}
 
     // Used in Research_Projectile.cs
     public float GetProjectileSpeed()

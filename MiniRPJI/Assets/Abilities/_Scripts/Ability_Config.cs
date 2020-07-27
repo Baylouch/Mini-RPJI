@@ -41,7 +41,5 @@ public class Ability_Config : ScriptableObject
     public AbilityType abilityType; // PunchAttack when its the punch. Bow when its the bow. Other when its something else (no animation for this one)
     // (I keep it simple because this game will not have more than the "Ranger" who use only a punch and a bow).
 
-    public char abilityShortcut;
-
     public int levelRequired;
 }

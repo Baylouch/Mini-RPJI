@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fdb7f0b41b6b644fa6921ecacee3aa6, type: 3}
+  m_Name: 33_BigRedGhost
+  m_EditorClassIdentifier: 
+  questID: 33
+  questTitle: Le gros rouge
+  questDescription: "Ah ! Un visage amical ! Ca faisait longtemps. J'ai aper\xE7u
+    un monstre plus gros que les autres au sud ouest d'ici. Je sens sa puissance d'ici
+    et je n'ose pas aller plus loin... Tu veux bien t'en d\xE9barasser pour moi ?
+    Je pourrais te donner ce truc qui m'encombre."
+  questSprite: {fileID: 6439155412531007967, guid: 70d30922731eae84198ec22f78435e66,
+    type: 3}
+  totalQuestObjective: 1
+  questDone: 0
+  questReward: {fileID: 11400000, guid: fb305b03127bcba478c38dbaba56e976, type: 2}
+  questGOToSpawn: {fileID: 0}
+  xpAmount: 100000
+  levelRequired: 0

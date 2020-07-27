@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class Decoy_Health : MonoBehaviour, IDamageable
 {
-    [SerializeField] private int totalHealthPoints = 100; // Total player healthpoints
+    [SerializeField] private int totalHealthPoints = 100; // Total Decoy healthpoints
     public int GetTotalHealthPoints()
     {
         return totalHealthPoints;
@@ -14,7 +14,7 @@ public class Decoy_Health : MonoBehaviour, IDamageable
         totalHealthPoints = newTotal;
     }
 
-    private int currentHealthPoints; // Player current healthpoints
+    private int currentHealthPoints; // Decoy current healthpoints
     public int GetCurrentHealthPoints()
     {
         return currentHealthPoints;
@@ -48,13 +48,14 @@ public class Decoy_Health : MonoBehaviour, IDamageable
         return isDead;
     }
 
-    private void Start()
-    {
-        Player_Health playerHealth = Player_Stats.instance.GetComponent<Player_Health>();
+    // Old method, now decoy health is set directly in Player_Combat.cs to set the right bonus of healthpoints ability to the decoy.
+    //private void Start()
+    //{
+    //    Player_Health playerHealth = Player_Stats.instance.GetComponent<Player_Health>();
 
-        SetTotalHealthPoints(playerHealth.GetTotalHealthPoints());
-        SetCurrentHealthPoints(GetTotalHealthPoints());
-    }
+    //    SetTotalHealthPoints(playerHealth.GetTotalHealthPoints());
+    //    SetCurrentHealthPoints(GetTotalHealthPoints());
+    //}
 
     private void Update()
     {

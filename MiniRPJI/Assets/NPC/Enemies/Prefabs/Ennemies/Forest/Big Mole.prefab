@@ -669,7 +669,6 @@ GameObject:
   - component: {fileID: 588733633}
   - component: {fileID: 7078804549874397239}
   - component: {fileID: -6104451728218553838}
-  - component: {fileID: 2095575642}
   m_Layer: 9
   m_Name: Big Mole
   m_TagString: Enemy
@@ -947,12 +946,10 @@ MonoBehaviour:
   epicItemTryDropNumb: 0
   maxItemDropable: 3
   levelRange: 1
-  potionsToDrop:
-  - {fileID: 11400000, guid: f896568763a318444a41d36d90b3f4b7, type: 2}
-  - {fileID: 11400000, guid: 50ba78c24ab68b84e9116bd6aa69ca03, type: 2}
-  potionDropRate: 50
-  potionTryDropNumb: 4
-  maxPotionDropable: 4
+  usableDatabase: {fileID: 11400000, guid: 54b7a65e365544b428942cbaa70a4894, type: 2}
+  usableDropRate: 40
+  usableTryDropNumb: 2
+  maxUsableDropable: 2
 --- !u!114 &1289608467
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1013,20 +1010,3 @@ MonoBehaviour:
   electricEffect: {fileID: 4144859057491972, guid: 91d03a92bb3425f4186bc9844360af1c,
     type: 3}
   Env_Collider: {fileID: 8084612225311129303}
---- !u!114 &2095575642
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9047036356855655983}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c08447187f6b7e0468dd60a17c8b976f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dropZone:
-  - {fileID: 7340913647434076639}
-  - {fileID: 7340913648701198104}
-  prefabsToDrop:
-  - {fileID: 343607994377496570, guid: a78817d88a8c12944a3b4f4dfbe3f3ad, type: 3}

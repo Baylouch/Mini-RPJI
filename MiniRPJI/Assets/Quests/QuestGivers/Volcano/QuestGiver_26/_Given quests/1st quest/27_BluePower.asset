@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fdb7f0b41b6b644fa6921ecacee3aa6, type: 3}
+  m_Name: 27_BluePower
+  m_EditorClassIdentifier: 
+  questID: 27
+  questTitle: Puissance bleue
+  questDescription: "Notre clan d'enchanteurs continue de rechercher la source des
+    \xE9tranges pouvoirs ressentis ici. Les monstres dans cette partie ont une apparence
+    bleuet\xE9e. Trouve d'o\xF9 vient leur facult\xE9s."
+  questSprite: {fileID: 21300000, guid: 7c317a7b1aef9e64e9ca3d82d64f843c, type: 3}
+  totalQuestObjective: 10
+  questDone: 0
+  questReward: {fileID: 11400000, guid: c401d222ac38ffd46a6f6dc1351e9b60, type: 2}
+  questGOToSpawn: {fileID: 0}
+  xpAmount: 62000
+  levelRequired: 0

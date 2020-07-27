@@ -49,6 +49,8 @@ public class UI_Player_Abilities : MonoBehaviour
 
     bool displayingAbilities = false; // To know when player is displaying abilities.
 
+    bool primaryAbilityDisplaying = false; // Just to know if its primary or secondary ability to set shortcut in the right array in Player_Abilities.cs
+
     // Start is called before the first frame update
     void Start()
     {
@@ -58,6 +60,129 @@ public class UI_Player_Abilities : MonoBehaviour
     private void Update()
     {
         IsMouseOverAbilityButton();
+
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            // If we're displaying abilities description, we want to change the bind of the ability
+            if (currentAbilityDescription)
+            {
+                SetCurrentAbilityShortCut("F");
+            }
+            else // Else we want to use the bind, so change the current ability to the one we binded later on.
+            {
+                UseAbilityShortCut("F");
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            // If we're displaying abilities description, we want to change the bind of the ability
+            if (currentAbilityDescription)
+            {
+                SetCurrentAbilityShortCut("T");
+            }
+            else // Else we want to use the bind, so change the current ability to the one we binded later on.
+            {
+                UseAbilityShortCut("T");
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            // If we're displaying abilities description, we want to change the bind of the ability
+            if (currentAbilityDescription)
+            {
+                SetCurrentAbilityShortCut("W");
+            }
+            else // Else we want to use the bind, so change the current ability to the one we binded later on.
+            {
+                UseAbilityShortCut("W");
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            // If we're displaying abilities description, we want to change the bind of the ability
+            if (currentAbilityDescription)
+            {
+                SetCurrentAbilityShortCut("X");
+            }
+            else // Else we want to use the bind, so change the current ability to the one we binded later on.
+            {
+                UseAbilityShortCut("X");
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            // If we're displaying abilities description, we want to change the bind of the ability
+            if (currentAbilityDescription)
+            {
+                SetCurrentAbilityShortCut("C");
+            }
+            else // Else we want to use the bind, so change the current ability to the one we binded later on.
+            {
+                UseAbilityShortCut("C");
+            }
+        }
+    }
+
+    void SetCurrentAbilityShortCut(string _shortCut)
+    {
+        Ability_Button[] abilityButtons = FindObjectsOfType<Ability_Button>();
+
+        for (int i = 0; i < abilityButtons.Length; i++)
+        {
+            for (int j = 0; j < Player_Abilities.totalPlayerAbilities; j++)
+            {
+                if (Player_Abilities.instance.GetPlayerAbilityConfig(j) != null && abilityButtons[i].abilityID == Player_Abilities.instance.GetPlayerAbilityConfig(j).abilityID)
+                {
+                    if (Player_Abilities.instance.GetPrimaryAbilityShortCutByIndex(j) == _shortCut)
+                    {
+                        abilityButtons[i].SetInput("");
+                        break;
+                    }
+                    if (Player_Abilities.instance.GetSecondaryAbilityShortCutByIndex(j) == _shortCut)
+                    {
+                        abilityButtons[i].SetInput("");
+                        break;
+                    }
+                }
+            }
+        }
+
+        if (primaryAbilityDisplaying)
+        {
+            Player_Abilities.instance.SetAbilityShortCut(_shortCut, currentAbilityDescription.abilityID, true);
+        }
+        else
+        {
+            Player_Abilities.instance.SetAbilityShortCut(_shortCut, currentAbilityDescription.abilityID, false);
+        }
+
+        currentAbilityDescription.SetInput(_shortCut);
+    }
+
+    void UseAbilityShortCut(string _shortCut)
+    {
+        for (int i = 0; i < Player_Abilities.totalPlayerAbilities; i++)
+        {
+            if (Player_Abilities.instance.GetPrimaryAbilityShortCutByIndex(i) == _shortCut)
+            {
+                if (Player_Abilities.instance.GetPlayerAbilityConfig(i) != null)
+                {
+                    ChangeAbility(Player_Abilities.instance.GetPlayerAbilityConfig(i).abilityID, 0);
+                }
+
+                return;
+            }
+
+            if (Player_Abilities.instance.GetSecondaryAbilityShortCutByIndex(i) == _shortCut)
+            {
+                if (Player_Abilities.instance.GetPlayerAbilityConfig(i) != null)
+                {
+                    ChangeAbility(Player_Abilities.instance.GetPlayerAbilityConfig(i).abilityID, 1);
+                }
+
+                return;
+            }
+        }
     }
 
     // Method to reset abilities panel
@@ -156,11 +281,13 @@ public class UI_Player_Abilities : MonoBehaviour
     // indexAttack means : (0) Primary ability, (1) Secondary ability.
     public void DisplayAbilitiesAvailable(int indexAttack)
     {
+        // We first need to unactive potions panel because its using the same spot on the screen.
         if (UI_Player_Potions.instance)
         {
             UI_Player_Potions.instance.ResetPotionsPanel();
         }
 
+        // Check if we are not already displaying abilities
         if (!displayingAbilities)
         {
             displayingAbilities = true;
@@ -168,36 +295,22 @@ public class UI_Player_Abilities : MonoBehaviour
             // We need to check if we have acces to player abilities
             if (Player_Abilities.instance)
             {
+                // Set primaryAbilityDisplaying for shortCuts input
+                if (indexAttack == 0)
+                    primaryAbilityDisplaying = true;
+                else
+                    primaryAbilityDisplaying = false;
+
                 // Now get available abilities
-                // for this we first create a bool array intialize with the number of total abilities (accessed by abilities database).
-                // Array index = Ability's ID
-                int statesArraySize = Player_Abilities.instance.abilitiesDatabase.abilities.Length;
-                bool[] abilitiesStates = new bool[statesArraySize];
+                Ability_Config[] abilitiesAvailable = new Ability_Config[Player_Abilities.totalPlayerAbilities];
+                int currentIndex = 0;
 
-                for (int i = 0; i < statesArraySize; i++)
+                for (int i = 0; i < Player_Abilities.totalPlayerAbilities; i++)
                 {
-                    abilitiesStates[i] = Player_Abilities.instance.GetUnlockAbility(i);
-                }
-
-                // Then we can create a Ability_Config array with size of available abilities and put it with their ID in
-                int abilitiesArraySize = 0;
-                for (int i = 0; i < abilitiesStates.Length; i++)
-                {
-                    if (abilitiesStates[i] == true)
+                    if (Player_Abilities.instance.GetPlayerAbilityConfig(i) != null)
                     {
-                        abilitiesArraySize++;
-                    }
-                }
-
-                Ability_Config[] abilitiesAvailable = new Ability_Config[abilitiesArraySize];
-                int currentAbilityIndex = 0; // To know index of abilitiesAvailable array. Because we loop trough abilitiesStates who havn't the same size.
-
-                for (int i = 0; i < abilitiesStates.Length; i++)
-                {
-                    if (abilitiesStates[i] == true)
-                    {
-                        abilitiesAvailable[currentAbilityIndex] = Player_Abilities.instance.abilitiesDatabase.GetAbilityByID(i);
-                        currentAbilityIndex++;
+                        abilitiesAvailable[currentIndex] = Player_Abilities.instance.GetPlayerAbilityConfig(i);
+                        currentIndex++;
                     }
                 }
 
@@ -213,7 +326,11 @@ public class UI_Player_Abilities : MonoBehaviour
                 // Now for each abilities available, increase width of AbilitiesPanel by 30f, instantiate an ability button then set it.
                 for (int i = 0; i < abilitiesAvailable.Length; i++)
                 {
-                    // /!\ Because of UNITY issue, we must create a new int to store value of i. If not, onClick,AddListener will not WORK /!\
+                    // If we're at the end of player abilities (because the array chechked is initialize by 10 -> the max ability player can hold).
+                    if (abilitiesAvailable[i] == null)
+                        break;
+
+                    // /!\ Because of UNITY issue, we must create a new int to store the value of i. If not, onClick.AddListener() will not WORK /!\
                     int x = i;
 
                     AbilitiesPanel.sizeDelta = new Vector2(AbilitiesPanel.sizeDelta.x + 30f, 33f);
@@ -235,6 +352,16 @@ public class UI_Player_Abilities : MonoBehaviour
 
                     // Set the ability's ID
                     currentAbilityButton.abilityID = abilitiesAvailable[i].abilityID;
+
+                    // Set the ability's shortcut
+                    if (indexAttack == 0)
+                    {
+                        currentAbilityButton.SetInput(Player_Abilities.instance.GetPrimaryAbilityShortCutByAbilityID(currentAbilityButton.abilityID));
+                    }
+                    else if (indexAttack == 1)
+                    {
+                        currentAbilityButton.SetInput(Player_Abilities.instance.GetSecondaryAbilityShortCutByAbilityID(currentAbilityButton.abilityID));
+                    }
                 }
             }
         }
@@ -253,13 +380,13 @@ public class UI_Player_Abilities : MonoBehaviour
         {
             primaryAbilityImage.sprite = newAbility.abilitySprite;
 
-            Player_Abilities.instance.SetPrimaryAbility(newAbility.abilityID);
+            Player_Abilities.instance.SetPrimaryAbility(newAbility);
         }
         else if (indexAttack == 1) // if its the secondary ability
         {
             secondaryAbilityImage.sprite = newAbility.abilitySprite;
 
-            Player_Abilities.instance.SetSecondaryAbility(newAbility.abilityID);
+            Player_Abilities.instance.SetSecondaryAbility(newAbility);
         }
         else
         {

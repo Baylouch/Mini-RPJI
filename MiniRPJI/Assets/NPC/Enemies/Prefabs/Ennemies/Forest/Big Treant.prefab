@@ -74,7 +74,6 @@ GameObject:
   - component: {fileID: 3583491171395045845}
   - component: {fileID: 9092405880434905816}
   - component: {fileID: 622594455789193583}
-  - component: {fileID: 8555023603986651454}
   m_Layer: 9
   m_Name: Big Treant
   m_TagString: Enemy
@@ -351,14 +350,10 @@ MonoBehaviour:
   epicItemTryDropNumb: 1
   maxItemDropable: 5
   levelRange: 1
-  potionsToDrop:
-  - {fileID: 11400000, guid: f896568763a318444a41d36d90b3f4b7, type: 2}
-  - {fileID: 11400000, guid: 50ba78c24ab68b84e9116bd6aa69ca03, type: 2}
-  - {fileID: 11400000, guid: 24117e4534fa0694686afeb6f6c8ffdb, type: 2}
-  - {fileID: 11400000, guid: eb62fdd8d2dfa0947aa2ae096c7b1696, type: 2}
-  potionDropRate: 30
-  potionTryDropNumb: 4
-  maxPotionDropable: 4
+  usableDatabase: {fileID: 11400000, guid: 54b7a65e365544b428942cbaa70a4894, type: 2}
+  usableDropRate: 40
+  usableTryDropNumb: 2
+  maxUsableDropable: 2
 --- !u!114 &8504893627004586844
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -462,23 +457,6 @@ MonoBehaviour:
   electricEffect: {fileID: 4144859057491972, guid: 91d03a92bb3425f4186bc9844360af1c,
     type: 3}
   Env_Collider: {fileID: 447330041204322939}
---- !u!114 &8555023603986651454
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 831745445109162627}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c08447187f6b7e0468dd60a17c8b976f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dropZone:
-  - {fileID: 1434213554315795827}
-  - {fileID: 1434213552797631412}
-  prefabsToDrop:
-  - {fileID: 575121063362543794, guid: 3f72b834833ebeb47bb0a1df8230d579, type: 3}
 --- !u!1 &831745445519167720
 GameObject:
   m_ObjectHideFlags: 0

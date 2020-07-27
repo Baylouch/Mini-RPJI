@@ -175,29 +175,29 @@ public class Game_Data_Control : MonoBehaviour
 
         data.playerAbilities = new PlayerAbilitiesData();
 
-        // Start by get numbers of available's abilities
-        int abilitiesAvailable = 0;
-        for (int i = 0; i < Player_Abilities.instance.abilitiesDatabase.abilities.Length; i++)
+        // Create data abilities array with the right size.
+        data.playerAbilities.abilitiesID = new int[Player_Abilities.totalPlayerAbilities];
+
+        // Initialize it to -1 to not have the basic initialization to 0 (and cause a bug with the ability ID 0 -> when loaded, empty abilities are replace by ID's 0 ability).
+        for (int i = 0; i < data.playerAbilities.abilitiesID.Length; i++)
         {
-            if (Player_Abilities.instance.GetUnlockAbility(i) == true)
-            {
-                abilitiesAvailable++;
-            }
+            data.playerAbilities.abilitiesID[i] = -1;
         }
 
-        // Create data abilities array with the right size.
-        data.playerAbilities.abilitiesID = new int[abilitiesAvailable];
         int indexDataAbilitiesArray = 0; // To loop trough array using other variable than the loop one (i)
 
-        // now we can put available abilities ID in the data array. i represent abilit'y ID
-        for (int i = 0; i < Player_Abilities.instance.abilitiesDatabase.abilities.Length; i++)
+        // now we can put available abilities ID in the data array.
+        for (int i = 0; i < Player_Abilities.totalPlayerAbilities; i++)
         {
-            if (Player_Abilities.instance.GetUnlockAbility(i) == true)
+            if (Player_Abilities.instance.GetPlayerAbilityConfig(i) != null)
             {
-                data.playerAbilities.abilitiesID[indexDataAbilitiesArray] = i;
+                data.playerAbilities.abilitiesID[indexDataAbilitiesArray] = Player_Abilities.instance.GetPlayerAbilityConfig(i).abilityID;
                 indexDataAbilitiesArray++;
             }
         }
+
+        // Get ability points
+        data.playerAbilities.abilityPoints = Player_Abilities.instance.GetAbilityPoints();
 
         // Get primary and secondary ability
         data.playerAbilities.primaryAbilityID = Player_Abilities.instance.GetPrimaryAbility().abilityID;
@@ -396,17 +396,20 @@ public class Game_Data_Control : MonoBehaviour
             // ********************************* PLAYER_ABILITIES *********************************************
             // ************************************************************************************************
 
-            // First lock all abilities
-            for (int i = 0; i < Player_Abilities.instance.abilitiesDatabase.abilities.Length; i++)
+            // First reset all abilities
+            for (int i = 0; i < Player_Abilities.totalPlayerAbilities; i++)
             {
-                Player_Abilities.instance.SetUnlockAbility(i, false);
+                Player_Abilities.instance.SetPlayerAbilityConfig(i, null);
             }
 
             // Simply loop trough our data array and unlock abilities ID linked
             for (int i = 0; i < data.playerAbilities.abilitiesID.Length; i++)
             {
-                Player_Abilities.instance.SetUnlockAbility(data.playerAbilities.abilitiesID[i], true);
+                Player_Abilities.instance.SetPlayerAbilityConfig(i, Player_Abilities.instance.abilitiesDatabase.GetAbilityByID(data.playerAbilities.abilitiesID[i]));
             }
+
+            // Set ability points
+            Player_Abilities.instance.SetAbilityPoints(data.playerAbilities.abilityPoints);
 
             // Set primary and secondary abilities
             UI_Player_Abilities.instance.ChangeAbility(data.playerAbilities.primaryAbilityID, 0);
@@ -527,6 +530,8 @@ public class PlayerQuestData
 public class PlayerAbilitiesData
 {
     public int[] abilitiesID; // Contain all ID's of available abilities for this save.
+
+    public int abilityPoints;
 
     public int primaryAbilityID; // To know what's the current primary ability
     public int secondaryAbilityID;

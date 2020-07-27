@@ -18,16 +18,21 @@ public class AbilityTree_Button : MonoBehaviour
     private void Start()
     {
         buttonComponent = GetComponent<Button>();
+
         RefreshButton();
     }
 
     private void OnEnable()
     {
-        RefreshButton();
+        if (buttonComponent != null)
+            RefreshButton();
     }
 
-    void RefreshButton()
+    public void RefreshButton()
     {
+        if (buttonComponent == null)
+            return;
+
         if (Player_Stats.instance)
         {
             if (config.levelRequired > Player_Stats.instance.GetCurrentLevel())

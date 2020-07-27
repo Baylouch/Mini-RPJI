@@ -35,13 +35,15 @@ public class ItemDroper : MonoBehaviour
     [Header("Level difference between npc and objects")]
     [SerializeField] int levelRange = 1; // The range between our level and item's level who could drop (AI_Stats.level - levelRange && AI_Stats.level + levelRange)
 
-    [SerializeField] BaseItem[] potionsToDrop;
-    [SerializeField] float potionDropRate;
-    [SerializeField] int potionTryDropNumb;
-    [SerializeField] int maxPotionDropable = 2;
+    [Header("Usable items specific")]
+    // To drop usable, we could check for the level, then drop relative pots.
+    [SerializeField] ItemDataBase usableDatabase; // We know usableDatabase.items[0] and [1] = Small pots, [2] and [3] = Medium pots, [4] and [5] Big pots.
+    [SerializeField] float usableDropRate;
+    [SerializeField] int usableTryDropNumb;
+    [SerializeField] int maxUsableDropable = 2;
 
     int itemsDropped = 0;
-    int potionsDropped = 0;
+    int usableDropped = 0;
 
     private void OnDrawGizmos()
     {
@@ -73,56 +75,147 @@ public class ItemDroper : MonoBehaviour
             parentGameObject = GameObject.Find("Items").transform;
         }
 
-        // Potions
-        for (int i = 0; i < potionTryDropNumb; i++)
+        // Usables
+        for (int i = 0; i < usableTryDropNumb; i++)
         {
-            bool willPotionDrop = potionDropRate > Random.Range(0, 101);
+            bool willUsableDrop = usableDropRate > Random.Range(0, 101);
 
-            if (willPotionDrop)
+            if (willUsableDrop)
             {
                 // Determine drop position
                 Vector3 dropPose = new Vector3(Random.Range(dropZone[0].position.x, dropZone[1].position.x),
                                                Random.Range(dropZone[0].position.y, dropZone[1].position.y), 0f);
 
-                int potionIndex = -1; // To determine what potion will spawn
-                if (potionsToDrop.Length > 1)
+                int usableIndex = -1; // To determine what usable will spawn
+
+                // For now, usable items are potions, so we could check the item level then spawn relative pots
+                if (itemLevel > 0 && itemLevel <= 6)
                 {
-                    potionIndex = Random.Range(0, potionsToDrop.Length);
-                }
-                else
-                {
-                    potionIndex = 0;
-                }
+                    // Drop small pots
+                    usableIndex = Random.Range(0, 2); // 2 is exclusive because of int overload method.
 
-                BaseItem currentPotion = potionsToDrop[potionIndex];
+                    BaseItem itemToDrop = usableDatabase.items[usableIndex];
 
-                if (currentPotion)
-                {
-                    // Set the item
-                    GameObject droppedGO = Instantiate(currentPotion.itemPrefab, dropPose, Quaternion.identity);
-
-                    droppedGO.GetComponent<SpriteRenderer>().sprite = currentPotion.prefabImage;
-                    droppedGO.GetComponent<Item>().itemConfig = currentPotion;
-
-                    // Parent it to clean up hierarchy
-                    if (parentGameObject)
-                        droppedGO.transform.parent = parentGameObject;
-
-                    // Increment potionsDropped and check if we dropped the max amount of items.
-                    potionsDropped++;
-                    if (potionsDropped >= maxPotionDropable)
+                    if (itemToDrop != null)
                     {
-                        break;
+                        // Set the item
+                        GameObject droppedGO = Instantiate(itemToDrop.itemPrefab, dropPose, Quaternion.identity);
+
+                        droppedGO.GetComponent<SpriteRenderer>().sprite = itemToDrop.prefabImage;
+                        droppedGO.GetComponent<Item>().itemConfig = itemToDrop;
+
+                        // Parent it to clean up hierarchy
+                        if (parentGameObject)
+                            droppedGO.transform.parent = parentGameObject;
+
+                        // Increment potionsDropped and check if we dropped the max amount of items.
+                        usableDropped++;
+                        if (usableDropped >= maxUsableDropable)
+                        {
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        Debug.Log("No usable item found for index : " + usableIndex);
+                    }
+                }
+                else if (itemLevel > 6 && itemLevel <= 10)
+                {
+                    // Drop medium pots
+                    usableIndex = Random.Range(2, 4); // 4 is exclusive because of int overload method.
+
+                    BaseItem itemToDrop = usableDatabase.items[usableIndex];
+
+                    if (itemToDrop != null)
+                    {
+                        // Set the item
+                        GameObject droppedGO = Instantiate(itemToDrop.itemPrefab, dropPose, Quaternion.identity);
+
+                        droppedGO.GetComponent<SpriteRenderer>().sprite = itemToDrop.prefabImage;
+                        droppedGO.GetComponent<Item>().itemConfig = itemToDrop;
+
+                        // Parent it to clean up hierarchy
+                        if (parentGameObject)
+                            droppedGO.transform.parent = parentGameObject;
+
+                        // Increment potionsDropped and check if we dropped the max amount of items.
+                        usableDropped++;
+                        if (usableDropped >= maxUsableDropable)
+                        {
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        Debug.Log("No usable item found for index : " + usableIndex);
+                    }
+                }
+                else if (itemLevel > 10 && itemLevel <= 15)
+                {
+                    // Drop big pots
+                    usableIndex = Random.Range(4, 6); // 6 is exclusive because of int overload method.
+
+                    BaseItem itemToDrop = usableDatabase.items[usableIndex];
+
+                    if (itemToDrop != null)
+                    {
+                        // Set the item
+                        GameObject droppedGO = Instantiate(itemToDrop.itemPrefab, dropPose, Quaternion.identity);
+
+                        droppedGO.GetComponent<SpriteRenderer>().sprite = itemToDrop.prefabImage;
+                        droppedGO.GetComponent<Item>().itemConfig = itemToDrop;
+
+                        // Parent it to clean up hierarchy
+                        if (parentGameObject)
+                            droppedGO.transform.parent = parentGameObject;
+
+                        // Increment potionsDropped and check if we dropped the max amount of items.
+                        usableDropped++;
+                        if (usableDropped >= maxUsableDropable)
+                        {
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        Debug.Log("No usable item found for index : " + usableIndex);
                     }
                 }
                 else
                 {
-                    Debug.Log("No potion found for index " + potionIndex);
+                    // Drop big pots while i create more pots
+                    usableIndex = Random.Range(4, 6); // 6 is exclusive because of int overload method.
+
+                    BaseItem itemToDrop = usableDatabase.items[usableIndex];
+
+                    if (itemToDrop != null)
+                    {
+                        // Set the item
+                        GameObject droppedGO = Instantiate(itemToDrop.itemPrefab, dropPose, Quaternion.identity);
+
+                        droppedGO.GetComponent<SpriteRenderer>().sprite = itemToDrop.prefabImage;
+                        droppedGO.GetComponent<Item>().itemConfig = itemToDrop;
+
+                        // Parent it to clean up hierarchy
+                        if (parentGameObject)
+                            droppedGO.transform.parent = parentGameObject;
+
+                        // Increment potionsDropped and check if we dropped the max amount of items.
+                        usableDropped++;
+                        if (usableDropped >= maxUsableDropable)
+                        {
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        Debug.Log("No usable item found for index : " + usableIndex);
+                    }
                 }
             }
         }
         
-
         // TODO Make legendary ones.
 
         // Epic items

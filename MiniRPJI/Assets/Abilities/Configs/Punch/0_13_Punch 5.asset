@@ -25,7 +25,7 @@ MonoBehaviour:
   abilityBonus: 30
   abilityPower: 50
   abilityTimer: 0
-  energyCost: 0
+  energyCost: 10
   abilityType: 0
   abilityShortcut: 0
   levelRequired: 1
