@@ -1397,9 +1397,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactionType: 0
+  voice: 2
   questsToGive:
   - {fileID: 11400000, guid: 58523d396beab8643935be84a15c1d76, type: 2}
   rewardPosition: {fileID: 2938945707076523669}
+  questLinkedItemSpawnPosition: {fileID: 0}
   endDialogue: "J'espere qu'elle acceptera d'\xEAtre avec moi...\nQuoi ?! Tu m'\xE9coutes
     ??? Laisse moi maintenant !"
   dialoguePanel: {fileID: 2938945706486883156}

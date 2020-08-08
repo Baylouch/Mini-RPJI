@@ -16,6 +16,8 @@ using UnityEngine.UI;
 
 public class QuestGiver : Interactable
 {
+    [SerializeField] NPC_VOICE voice;
+
     [Tooltip("If you put more than one quest in, quests will be get in ordrer its set.")]
     [SerializeField] private QuestConfig[] questsToGive; // Set it for quest suit. Quests[0] = first quest, Quests[1] = second quest, etc...
 
@@ -32,6 +34,8 @@ public class QuestGiver : Interactable
     [SerializeField] private Button refuseButton;
     [SerializeField] private Button validationButton;
 
+    bool justValidQuest = false; // To play a completion voice
+
     private void Start()
     {
         interactionType = PlayerInteractionType.QuestGiver;
@@ -44,7 +48,7 @@ public class QuestGiver : Interactable
 
         // Etant donné que l'objet de quête lié spawn au moment ou le joueur prend la quête, si il sauvegarde alors qu'il a accepté la quête, mais n'as pas
         // encore récupéré l'objet, il disparaîtra a jamais. Pour palier à ce problème, il faut s'assurer que le QuestGiver donnant cette quête soit dans la 
-        // même chose que l'objet lié. De ce fait au start de celui-ci on peut spawn l'objet si le joueur a déjà accepté la quête sans le ramasser auparavant.
+        // même scene que l'objet lié. De ce fait au start de celui-ci on peut spawn l'objet si le joueur a déjà accepté la quête sans le ramasser auparavant.
         if (questLinkedItemSpawnPosition != null)
         {
             // Check for every quests to give
@@ -69,12 +73,42 @@ public class QuestGiver : Interactable
     {
         base.UnInteract();
 
+        // I put a security here (dialogue.gameObject.activeSelf) because we dont want each time player trigger this NPC,
+        // a farewell sound played.
+        if (dialogue.gameObject.activeSelf)
+        {
+            if (voice != NPC_VOICE.None)
+            {
+                if (Sound_Manager.instance)
+                {
+                    if (justValidQuest)
+                    {
+                        Sound_Manager.instance.PlayNPCSound(voice, NPC_Interaction.Completion);
+                        justValidQuest = false;
+                    }
+                    else
+                    {
+                        Sound_Manager.instance.PlayNPCSound(voice, NPC_Interaction.Farewell);
+
+                    }
+                }
+            }
+        }
+
         UnActiveUI();
     }
 
     public override void Interact()
     {
         base.Interact();
+
+        if (voice != NPC_VOICE.None)
+        {
+            if (Sound_Manager.instance)
+            {
+                Sound_Manager.instance.PlayNPCSound(voice, NPC_Interaction.Greetings);
+            }
+        }
 
         for (int i = 0; i < questsToGive.Length; i++)
         {
@@ -134,6 +168,7 @@ public class QuestGiver : Interactable
         {
             dialogue.text = "";
             dialogue.gameObject.SetActive(false);
+
         }
             
         if (acceptButton.gameObject.activeSelf)
@@ -153,7 +188,7 @@ public class QuestGiver : Interactable
 
         if (dialoguePanel.activeSelf)
             dialoguePanel.SetActive(false);
-           
+
     }
 
     void SetNewQuestUI(int questToGiveIndex)
@@ -183,8 +218,11 @@ public class QuestGiver : Interactable
         if (!dialogue.gameObject.activeSelf)
             dialogue.gameObject.SetActive(true);
 
+        justValidQuest = true;
+
         validationButton.onClick.AddListener(() => Quests_Control.instance.ValideQuest(questsToGive[questToGiveIndex].questID, rewardPosition.position));
         validationButton.onClick.AddListener(UnInteract);
+        
         if (!validationButton.gameObject.activeSelf)
             validationButton.gameObject.SetActive(true);
     }

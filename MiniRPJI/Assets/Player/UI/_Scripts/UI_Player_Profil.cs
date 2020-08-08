@@ -87,7 +87,8 @@ public class UI_Player_Profil : MonoBehaviour
             }
             else
             {
-                expLine.sizeDelta = new Vector2((Player_Stats.instance.GetCurrentExp() * 100) / Player_Stats.instance.GetTotalLevelExp(), expLine.sizeDelta.y);
+                if (Player_Stats.instance.GetTotalLevelExp() > 0)
+                    expLine.sizeDelta = new Vector2((Player_Stats.instance.GetCurrentExp() * 100) / Player_Stats.instance.GetTotalLevelExp(), expLine.sizeDelta.y);
             }
         }
         // In combat icon

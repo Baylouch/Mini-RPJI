@@ -21,13 +21,14 @@ GameObject:
   - component: {fileID: 7377953701908281195}
   - component: {fileID: 4515706957250417830}
   - component: {fileID: 3166685942284986677}
-  - component: {fileID: 82557629}
   - component: {fileID: 940417877}
   - component: {fileID: -224908322650762388}
   - component: {fileID: -8743499735396266996}
   - component: {fileID: 2193221001438687756}
   - component: {fileID: 1462328229643825715}
   - component: {fileID: -10166185859189542}
+  - component: {fileID: -5596295689408493169}
+  - component: {fileID: 7900466145076421433}
   m_Layer: 9
   m_Name: Pumpkin Head
   m_TagString: Enemy
@@ -188,6 +189,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitted: 0
+  reachedStartPos: 1
   nextWaypointDistance: 1
   stoppingDistance: 0.8
 --- !u!114 &966295457423918798
@@ -218,6 +220,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5166c0560d75234f9cd1357204c0d7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyID: 3
   level: 1
   totalHealthPoints: 115
   experienceGain: 50
@@ -309,19 +312,6 @@ MonoBehaviour:
   usableDropRate: 40
   usableTryDropNumb: 2
   maxUsableDropable: 2
---- !u!114 &82557629
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 60570751664533091}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b05e0486ef20dd042aa8dafba951f4e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  desactivationDistance: 30
 --- !u!114 &940417877
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -426,6 +416,31 @@ MonoBehaviour:
   electricEffect: {fileID: 4144859057491972, guid: 91d03a92bb3425f4186bc9844360af1c,
     type: 3}
   Env_Collider: {fileID: 966295456699252379}
+--- !u!114 &-5596295689408493169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 60570751664533091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae16013ad45711c4999df36b2cb46658, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  successID: 4
+--- !u!114 &7900466145076421433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 60570751664533091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c842ebdd400fc0843be85c55d6d72af3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &60570751790603272
 GameObject:
   m_ObjectHideFlags: 0

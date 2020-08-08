@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Little Alien PurpleBlack Animator Override Controller
+  m_Controller: {fileID: 9100000, guid: 8d0063ce7336ea049b02547d7ae85838, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 8344c69b3a48a054d8ea4715c23aba74, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 3f61c4323eff9e84882d4dc8520d229e, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: fbec1ee232d116b4eb14298fb7b16ace, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: f6a730247e9d48942963d57983645f6c, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 6d54611211858ba4a8a6a0e516f4a7fd, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 0082f880a1793404194975a561e2a5bc, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 466d26507cad26a48a43f37d4226fa31, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 337fa9c8e75ae3e4899ef4ae2996650c, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 010fdcb29b1bc064aabf28d980d19ec2, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 82fdb062aa6fc7a4da124e095433f3ca, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: f2bbc136e8794d34892f7df460d06c8c, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: a3f4c7d2b5e78d4498164cd23c99d4ff, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: eec038344a0d5984ebb5bd5242f2d1fa, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: d03703174f1dfd245b091430d59b818f, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: ac914553b1c3d9b4aa6707cec83f0a31, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 9bc85881da67ab6469c92fa61d46d824, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 182baf45367621e428e0873ce5b35b6d, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 1d1c30c57aaae7f4d8039bbcb8677022, type: 2}

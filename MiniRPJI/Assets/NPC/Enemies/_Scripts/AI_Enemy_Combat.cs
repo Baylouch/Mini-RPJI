@@ -319,7 +319,7 @@ public class AI_Enemy_Combat : MonoBehaviour
         {
             float decoyDistance = Vector3.Distance(transform.position, FindObjectOfType<Ability_Decoy>().transform.position);
 
-            if (decoyDistance < chasingDistance)
+            if (decoyDistance < 10f)
             {
                 target = FindObjectOfType<Ability_Decoy>().transform;
             }

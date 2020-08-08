@@ -3,6 +3,8 @@ using UnityEngine.UI;
 
 public class ItemSeller : Interactable
 {
+    [SerializeField] NPC_VOICE voice;
+
     // Player interact, dialogue is launch, player click "ok", then display items to sell.
     // when item is sell, player loose money, item is added to player inventory and delete from seller inventory.
     [SerializeField] GameObject backPanel;
@@ -64,7 +66,7 @@ public class ItemSeller : Interactable
             }
             else
             {
-                Debug.Log("No Player_Stats instance.");
+                //Debug.Log("No Player_Stats instance.");
 
                 UnActiveUI();
 
@@ -88,6 +90,14 @@ public class ItemSeller : Interactable
     {
         base.Interact();
 
+        if (voice != NPC_VOICE.None)
+        {
+            if (Sound_Manager.instance)
+            {
+                Sound_Manager.instance.PlayNPCSound(voice, NPC_Interaction.Greetings);
+            }
+        }
+
         if (!sellerSet)
         {
             SetSeller();
@@ -104,6 +114,17 @@ public class ItemSeller : Interactable
 
         if (itemStatsDisplay)
             itemStatsDisplay.HideAndReset();
+
+        if (backPanel.gameObject.activeSelf)
+        {
+            if (voice != NPC_VOICE.None)
+            {
+                if (Sound_Manager.instance)
+                {
+                    Sound_Manager.instance.PlayNPCSound(voice, NPC_Interaction.Farewell);
+                }
+            }
+        }
 
         UnActiveUI();
     }

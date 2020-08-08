@@ -666,9 +666,9 @@ GameObject:
   - component: {fileID: 6774107446215602072}
   - component: {fileID: 489402060646435925}
   - component: {fileID: 1410720764287103430}
-  - component: {fileID: 1904449387}
   - component: {fileID: 216326020}
   - component: {fileID: -5848189125197446493}
+  - component: {fileID: -3966653704558157665}
   m_Layer: 9
   m_Name: Pink Bouboule Pink Eyes Volcano
   m_TagString: Enemy
@@ -829,6 +829,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitted: 0
+  reachedStartPos: 1
   nextWaypointDistance: 1
   stoppingDistance: 0.9
 --- !u!114 &3821673173973507645
@@ -859,6 +860,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5166c0560d75234f9cd1357204c0d7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyID: 60
   level: 1
   totalHealthPoints: 120
   experienceGain: 120
@@ -950,19 +952,6 @@ MonoBehaviour:
   usableDropRate: 40
   usableTryDropNumb: 2
   maxUsableDropable: 2
---- !u!114 &1904449387
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4086603102545327760}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b05e0486ef20dd042aa8dafba951f4e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  desactivationDistance: 30
 --- !u!114 &216326020
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -996,3 +985,15 @@ MonoBehaviour:
   electricEffect: {fileID: 4144859057491972, guid: 91d03a92bb3425f4186bc9844360af1c,
     type: 3}
   Env_Collider: {fileID: 3821673172208903784}
+--- !u!114 &-3966653704558157665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4086603102545327760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c842ebdd400fc0843be85c55d6d72af3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

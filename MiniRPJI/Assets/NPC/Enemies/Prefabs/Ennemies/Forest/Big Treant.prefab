@@ -69,11 +69,12 @@ GameObject:
   - component: {fileID: 3888514514006710342}
   - component: {fileID: 2355260295165208021}
   - component: {fileID: 8504893627004586844}
-  - component: {fileID: 2587510992066940167}
   - component: {fileID: 2587510992301165958}
   - component: {fileID: 3583491171395045845}
   - component: {fileID: 9092405880434905816}
   - component: {fileID: 622594455789193583}
+  - component: {fileID: -6002569467200904045}
+  - component: {fileID: -7891454132754622551}
   m_Layer: 9
   m_Name: Big Treant
   m_TagString: Enemy
@@ -234,6 +235,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitted: 0
+  reachedStartPos: 1
   nextWaypointDistance: 1
   stoppingDistance: 1
 --- !u!114 &447330039406152238
@@ -264,6 +266,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5166c0560d75234f9cd1357204c0d7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyID: 13
   level: 1
   totalHealthPoints: 190
   experienceGain: 200
@@ -373,19 +376,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0a96494179ac3dc4f8ac4f813b60e85a, type: 2}
   dropRate: 70
   levelRequiredToApplyQuest: 0
---- !u!114 &2587510992066940167
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 831745445109162627}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b05e0486ef20dd042aa8dafba951f4e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  desactivationDistance: 30
 --- !u!114 &2587510992301165958
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -457,6 +447,31 @@ MonoBehaviour:
   electricEffect: {fileID: 4144859057491972, guid: 91d03a92bb3425f4186bc9844360af1c,
     type: 3}
   Env_Collider: {fileID: 447330041204322939}
+--- !u!114 &-6002569467200904045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 831745445109162627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae16013ad45711c4999df36b2cb46658, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  successID: 4
+--- !u!114 &-7891454132754622551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 831745445109162627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c842ebdd400fc0843be85c55d6d72af3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &831745445519167720
 GameObject:
   m_ObjectHideFlags: 0

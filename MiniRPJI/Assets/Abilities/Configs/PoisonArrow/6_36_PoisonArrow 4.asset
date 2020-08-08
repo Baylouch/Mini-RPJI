@@ -23,8 +23,7 @@ MonoBehaviour:
     type: 3}
   abilityBonus: 65
   abilityPower: 5
-  abilityTimer: 7
+  abilityTimer: 10
   energyCost: 55
   abilityType: 1
-  abilityShortcut: 0
   levelRequired: 9

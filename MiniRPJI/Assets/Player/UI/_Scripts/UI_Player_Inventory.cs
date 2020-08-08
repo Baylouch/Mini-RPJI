@@ -27,7 +27,7 @@ public class UI_Player_Inventory : MonoBehaviour
 
     [SerializeField] InventorySlot[] inventorySlots; // Contains all inventory's slots manually set
 
-    float clicDelayToEquip = 1f;
+    float clicDelayToEquip = .3f;
     float lastTimeClickedOnItem = 0f;
 
     // Start is called before the first frame update
@@ -197,7 +197,7 @@ public class UI_Player_Inventory : MonoBehaviour
         else // If currentInventorySlotIndex == indexSlot, player clicked on the same item so we want to unshow slotIntercationsUI and reset buttons OR equip / use the item
         {
             // Check if player double clicked
-            if (Time.time < lastTimeClickedOnItem + lastTimeClickedOnItem)
+            if (Time.time < lastTimeClickedOnItem + clicDelayToEquip)
             {
                 if (inventorySlots[indexSlot].item as EquipmentItem) // Equip item
                 {
@@ -262,7 +262,7 @@ public class UI_Player_Inventory : MonoBehaviour
         else // If its equal, player clicked on the same item so we want to unshow slotIntercationsUI and reset buttons
         {
             // Check if player double clicked
-            if (Time.time < lastTimeClickedOnItem + lastTimeClickedOnItem)
+            if (Time.time < lastTimeClickedOnItem + clicDelayToEquip)
             {
                 UnequipItem(indexPart);
             }

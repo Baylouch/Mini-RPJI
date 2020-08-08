@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b235440d30b5f049ace0fa5e957cb88, type: 3}
+  m_Name: 4_ClearTheForest
+  m_EditorClassIdentifier: 
+  successID: 4
+  successSprite: {fileID: -1265532750122534292, guid: a7dfa991e33aadf42ab546bdff69ecbd,
+    type: 3}
+  successTitle: "Purifie la for\xEAt"
+  successDescription: "Tue 20 monstres dans la for\xEAt."
+  isDone: 0
+  successObjective: 20
+  xpReward: 1000

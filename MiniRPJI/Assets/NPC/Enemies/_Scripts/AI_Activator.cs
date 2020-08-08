@@ -4,6 +4,7 @@
  * 
  * Le joueur activera les objets via le script "Player_Activator" qui cherchera chaque seconde s'il rencontre AI_Activator à une certaine distance.
  * 
+ *  * SCRIPT USELESS DEPUIS REMEMBERENEMYDATA.CS / CLEARENEMY.CS
  * */
 
 using UnityEngine;

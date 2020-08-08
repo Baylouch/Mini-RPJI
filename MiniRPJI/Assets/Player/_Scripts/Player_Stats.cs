@@ -124,6 +124,7 @@ public class Player_Stats : MonoBehaviour
                 break;
             case 5:
                 totalLevelExp = 5100;
+                Player_Success.instance.IncrementSuccessObjectiveByID(14);
                 break;
             case 6:
                 totalLevelExp = 7500;
@@ -139,6 +140,7 @@ public class Player_Stats : MonoBehaviour
                 break;
             case 10:
                 totalLevelExp = 24400;
+                Player_Success.instance.IncrementSuccessObjectiveByID(15);
                 break;
             case 11:
                 totalLevelExp = 31000;
@@ -169,6 +171,7 @@ public class Player_Stats : MonoBehaviour
                 break;
             case 20:
                 totalLevelExp = 190000;
+                Player_Success.instance.IncrementSuccessObjectiveByID(16);
                 break;
             case 21:
                 totalLevelExp = 200000;
@@ -184,6 +187,7 @@ public class Player_Stats : MonoBehaviour
                 break;
             case 25: // Last level
                 totalLevelExp = 0;
+                Player_Success.instance.IncrementSuccessObjectiveByID(17);
                 break;
         }
     }

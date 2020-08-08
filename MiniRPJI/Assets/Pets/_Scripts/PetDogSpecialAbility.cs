@@ -101,7 +101,7 @@ public class PetDogSpecialAbility : MonoBehaviour
 
     IEnumerator StartDigProcess(Vector3 digPosition)
     {
-        // Just a security because of the random position, it's possible sometimes dig position spawn in a unreachable position.
+        // Just a security because of the random position, it's possible sometimes dig position spawn in an unreachable position.
         // To fix it i put a destroy timer on this script -> 1min seems great.
         Destroy(this, 60f);
 

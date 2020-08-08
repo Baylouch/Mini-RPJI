@@ -569,9 +569,9 @@ GameObject:
   - component: {fileID: 6515509530726375877}
   - component: {fileID: 190135410174755336}
   - component: {fileID: 1727738206629527451}
-  - component: {fileID: 2533298639612299882}
   - component: {fileID: 2533298640164630080}
   - component: {fileID: 7763992780742678865}
+  - component: {fileID: -7399650774263109156}
   m_Layer: 9
   m_Name: Dark King Green
   m_TagString: Enemy
@@ -732,6 +732,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitted: 0
+  reachedStartPos: 1
   nextWaypointDistance: 1
   stoppingDistance: 0.8
 --- !u!114 &3557989054996336736
@@ -762,6 +763,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5166c0560d75234f9cd1357204c0d7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyID: 51
   level: 1
   totalHealthPoints: 200
   experienceGain: 120
@@ -853,19 +855,6 @@ MonoBehaviour:
   usableDropRate: 40
   usableTryDropNumb: 2
   maxUsableDropable: 2
---- !u!114 &2533298639612299882
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4386308604368877773}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b05e0486ef20dd042aa8dafba951f4e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  desactivationDistance: 30
 --- !u!114 &2533298640164630080
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -899,6 +888,18 @@ MonoBehaviour:
   electricEffect: {fileID: 4144859057491972, guid: 91d03a92bb3425f4186bc9844360af1c,
     type: 3}
   Env_Collider: {fileID: 3557989054341097525}
+--- !u!114 &-7399650774263109156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4386308604368877773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c842ebdd400fc0843be85c55d6d72af3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4386308604498184870
 GameObject:
   m_ObjectHideFlags: 0

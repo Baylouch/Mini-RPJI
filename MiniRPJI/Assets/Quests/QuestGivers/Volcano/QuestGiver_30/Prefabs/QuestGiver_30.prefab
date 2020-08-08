@@ -72,6 +72,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactionType: 0
+  voice: 3
   questsToGive:
   - {fileID: 11400000, guid: 628b6c04b9d171041935f8e4c8246aef, type: 2}
   rewardPosition: {fileID: 1168677682647704909}

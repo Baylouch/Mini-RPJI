@@ -522,10 +522,11 @@ GameObject:
   - component: {fileID: 3766364532140821217}
   - component: {fileID: 7821647364976601388}
   - component: {fileID: 8778999246490277055}
-  - component: {fileID: 5550537296281739598}
   - component: {fileID: 5550537296819930468}
   - component: {fileID: 5645750449711098892}
   - component: {fileID: 750032050901050817}
+  - component: {fileID: -3103470519570020905}
+  - component: {fileID: 2776893355734335891}
   m_Layer: 9
   m_Name: Skeleton Sword Blue
   m_TagString: Enemy
@@ -686,6 +687,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitted: 0
+  reachedStartPos: 1
   nextWaypointDistance: 1
   stoppingDistance: 0.8
 --- !u!114 &6867964977483135812
@@ -716,10 +718,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5166c0560d75234f9cd1357204c0d7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyID: 68
   level: 1
   totalHealthPoints: 140
   experienceGain: 75
-  speed: 4.2
+  speed: 4
   damageMin: 14
   damageMax: 18
   projectileDamageMin: 0
@@ -806,19 +809,6 @@ MonoBehaviour:
   usableDropRate: 40
   usableTryDropNumb: 2
   maxUsableDropable: 2
---- !u!114 &5550537296281739598
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5976313659886474217}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b05e0486ef20dd042aa8dafba951f4e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  desactivationDistance: 30
 --- !u!114 &5550537296819930468
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -871,6 +861,31 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 05bc57dc6b4b99648a2f5d4c051c3fd3, type: 2}
   dropRate: 75
   levelRequiredToApplyQuest: 0
+--- !u!114 &-3103470519570020905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5976313659886474217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae16013ad45711c4999df36b2cb46658, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  successID: 6
+--- !u!114 &2776893355734335891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5976313659886474217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c842ebdd400fc0843be85c55d6d72af3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5976313660009013634
 GameObject:
   m_ObjectHideFlags: 0

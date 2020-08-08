@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fdb7f0b41b6b644fa6921ecacee3aa6, type: 3}
+  m_Name: 39_YellowGhosts
+  m_EditorClassIdentifier: 
+  questID: 39
+  questTitle: "Fant\xF4mes jaunes"
+  questDescription: "Excellent ! Il ne reste plus que quelques fant\xF4mes jaunes
+    a exorciser."
+  questSprite: {fileID: -6356739607934856663, guid: b4b15428180a2994eaf3d1dd97cd4c33,
+    type: 3}
+  totalQuestObjective: 5
+  questDone: 0
+  questReward: {fileID: 0}
+  questGOToSpawn: {fileID: 0}
+  xpAmount: 100000
+  levelRequired: 0

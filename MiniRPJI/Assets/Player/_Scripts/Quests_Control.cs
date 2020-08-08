@@ -183,10 +183,45 @@ public class Quests_Control : MonoBehaviour
 
             // Play sound
             if (Sound_Manager.instance)
-                Sound_Manager.instance.PlaySound(Sound_Manager.instance.asset.questAchievement);
+                Sound_Manager.instance.PlaySound(Sound_Manager.instance.asset.achievement);
 
             // Player rewarded, now we need to delete everything used by the quest into the world. No more use for them.
             RemoveAccomplishedQuestStuffInScene(playerQuests[_questIndex].questConfig.questID);
+
+            // Display a success pop up. We know the succes ID 0, 1, 2, 3 are for quests.
+            // We want to display them in the right order because they're all require quests to be done.
+            // So for instance : we'll check if the succes ID 0 is done, if yes, then display pop up for succes ID 1 and not for other.
+            if (Player_Success.instance)
+            {
+                if (!Player_Success.instance.successDatabase.GetSuccessByID(0).isDone)
+                {
+                    Player_Success.instance.IncrementSuccessObjectiveByID(0);
+                    Player_Success.instance.IncrementSuccessObjectiveByID(1, false);
+                    Player_Success.instance.IncrementSuccessObjectiveByID(2, false);
+                    Player_Success.instance.IncrementSuccessObjectiveByID(3, false);
+                }
+                else if (!Player_Success.instance.successDatabase.GetSuccessByID(1).isDone)
+                {
+                    Player_Success.instance.IncrementSuccessObjectiveByID(1);
+                    Player_Success.instance.IncrementSuccessObjectiveByID(0, false);
+                    Player_Success.instance.IncrementSuccessObjectiveByID(2, false);
+                    Player_Success.instance.IncrementSuccessObjectiveByID(3, false);
+                }
+                else if (!Player_Success.instance.successDatabase.GetSuccessByID(2).isDone)
+                {
+                    Player_Success.instance.IncrementSuccessObjectiveByID(2);
+                    Player_Success.instance.IncrementSuccessObjectiveByID(0, false);
+                    Player_Success.instance.IncrementSuccessObjectiveByID(1, false);
+                    Player_Success.instance.IncrementSuccessObjectiveByID(3, false);
+                }
+                else if (!Player_Success.instance.successDatabase.GetSuccessByID(3).isDone)
+                {
+                    Player_Success.instance.IncrementSuccessObjectiveByID(3);
+                    Player_Success.instance.IncrementSuccessObjectiveByID(0, false);
+                    Player_Success.instance.IncrementSuccessObjectiveByID(1, false);
+                    Player_Success.instance.IncrementSuccessObjectiveByID(2, false);
+                }
+            }
 
             // Now we can set questDone to true and delete it from our quest log (quests array)
             playerQuests[_questIndex].questConfig.questDone = true;
@@ -240,6 +275,12 @@ public class Quests_Control : MonoBehaviour
         if (questDataBase.GetQuestByID(questID))
         {
             questDataBase.GetQuestByID(questID).questDone = done;
+
+            // Check if the quest was the pet linked one to unlock pets.
+            if (questID == Player_Pets.questIDToUnlockPets)
+            {
+                Player_Pets.instance.SetPetsUnlocked(true);
+            }
         }
     }
 }

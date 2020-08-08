@@ -174,14 +174,15 @@ public class MalusApplier : MonoBehaviour
         // Just wait a short amount of time and do the first burst, then burst every 1 sec
         yield return new WaitForSeconds(.5f);
 
-        health.TakeDamage(damagePerSecond, false);
-
         // Then go into infinite loop to do damage until we unapply malus.
         while (true)
         {
-            yield return new WaitForSeconds(1);
+            if (health as AI_Health)
+                (health as AI_Health).TakeDamageOverTime(damagePerSecond);
+            else
+                health.TakeDamage(damagePerSecond, false);
 
-            health.TakeDamage(damagePerSecond, false);
+            yield return new WaitForSeconds(1);
         }
     }
 

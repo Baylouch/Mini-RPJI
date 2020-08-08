@@ -21,10 +21,10 @@ GameObject:
   - component: {fileID: 2660973495059097733}
   - component: {fileID: 8945678330872761160}
   - component: {fileID: 7601012466165872347}
-  - component: {fileID: 610592037504741770}
   - component: {fileID: 610592037970802166}
   - component: {fileID: 16364448426429847}
   - component: {fileID: -2582456845830592176}
+  - component: {fileID: 1638602666659887063}
   m_Layer: 9
   m_Name: Female Skeleton 2
   m_TagString: Enemy
@@ -185,6 +185,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitted: 0
+  reachedStartPos: 1
   nextWaypointDistance: 1
   stoppingDistance: 0.8
 --- !u!114 &5757452037019982112
@@ -215,6 +216,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5166c0560d75234f9cd1357204c0d7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyID: 77
   level: 1
   totalHealthPoints: 200
   experienceGain: 120
@@ -239,7 +241,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chasingDistance: 8.5
   damagedChasingDistance: 25
-  projectile: {fileID: 6052980135759029977, guid: 0e389b709426a364d80fe0668df63d67,
+  projectile: {fileID: 2476864194466352011, guid: 7ec026478e3ede24994d4613cd6de58b,
     type: 3}
   firePoint: {fileID: 6500086185564247313}
   shootRange: 7
@@ -306,19 +308,6 @@ MonoBehaviour:
   usableDropRate: 40
   usableTryDropNumb: 3
   maxUsableDropable: 3
---- !u!114 &610592037504741770
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4780953916936384909}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b05e0486ef20dd042aa8dafba951f4e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  desactivationDistance: 30
 --- !u!114 &610592037970802166
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -371,6 +360,18 @@ MonoBehaviour:
   electricEffect: {fileID: 4144859057491972, guid: 91d03a92bb3425f4186bc9844360af1c,
     type: 3}
   Env_Collider: {fileID: 5757452038776463733}
+--- !u!114 &1638602666659887063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4780953916936384909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c842ebdd400fc0843be85c55d6d72af3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4780953917875717094
 GameObject:
   m_ObjectHideFlags: 0

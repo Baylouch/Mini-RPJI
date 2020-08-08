@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fdb7f0b41b6b644fa6921ecacee3aa6, type: 3}
+  m_Name: 37_GreenAndPurpleGhosts
+  m_EditorClassIdentifier: 
+  questID: 37
+  questTitle: "Fant\xF4mes verts et violets"
+  questDescription: "Salut \xE0 toi, le consulat m'a envoy\xE9 ici afin d'exorciser
+    ces lieux remplis de fant\xF4mes. Ils sont plus puissant que je ne le pens\xE9...
+    J'ai une id\xE9e, et si on alliait nos force ? Il faudrait commencer par exorciser
+    ceux de couleure vert et violet. Surtout sois pr\xE9cis, il faut les eliminer
+    dans un certain ordre."
+  questSprite: {fileID: 21300000, guid: 1d7f7a83157e8ee47a99b2abd1bfe29d, type: 3}
+  totalQuestObjective: 20
+  questDone: 0
+  questReward: {fileID: 0}
+  questGOToSpawn: {fileID: 0}
+  xpAmount: 100000
+  levelRequired: 0

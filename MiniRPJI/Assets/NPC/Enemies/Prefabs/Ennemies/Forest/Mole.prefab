@@ -666,11 +666,12 @@ GameObject:
   - component: {fileID: 4895893179803964650}
   - component: {fileID: 6244490966574328185}
   - component: {fileID: 356288496}
-  - component: {fileID: 1289608467}
   - component: {fileID: 588733633}
   - component: {fileID: -5133859550367018074}
   - component: {fileID: 581406263970381134}
   - component: {fileID: -3534934183259572170}
+  - component: {fileID: -6756352671326965645}
+  - component: {fileID: -1880884709850783314}
   m_Layer: 9
   m_Name: Mole
   m_TagString: Enemy
@@ -831,6 +832,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitted: 0
+  reachedStartPos: 1
   nextWaypointDistance: 1
   stoppingDistance: 1
 --- !u!114 &8084612226830386818
@@ -861,6 +863,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5166c0560d75234f9cd1357204c0d7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyID: 1
   level: 1
   totalHealthPoints: 75
   experienceGain: 35
@@ -971,19 +974,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0a96494179ac3dc4f8ac4f813b60e85a, type: 2}
   dropRate: 90
   levelRequiredToApplyQuest: 0
---- !u!114 &1289608467
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9047036356855655983}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b05e0486ef20dd042aa8dafba951f4e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  desactivationDistance: 30
 --- !u!114 &588733633
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1055,3 +1045,28 @@ MonoBehaviour:
   electricEffect: {fileID: 4144859057491972, guid: 91d03a92bb3425f4186bc9844360af1c,
     type: 3}
   Env_Collider: {fileID: 8084612225311129303}
+--- !u!114 &-6756352671326965645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9047036356855655983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae16013ad45711c4999df36b2cb46658, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  successID: 4
+--- !u!114 &-1880884709850783314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9047036356855655983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c842ebdd400fc0843be85c55d6d72af3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b235440d30b5f049ace0fa5e957cb88, type: 3}
+  m_Name: 6_ClearTheVolcano
+  m_EditorClassIdentifier: 
+  successID: 6
+  successSprite: {fileID: 888643008759931579, guid: a7dfa991e33aadf42ab546bdff69ecbd,
+    type: 3}
+  successTitle: Extermine les squelettes
+  successDescription: Tue 100 squelettes dans le niveau volcanique.
+  isDone: 0
+  successObjective: 100
+  xpReward: 180000

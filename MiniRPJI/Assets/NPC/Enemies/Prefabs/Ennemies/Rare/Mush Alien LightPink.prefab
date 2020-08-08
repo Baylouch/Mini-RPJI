@@ -21,10 +21,10 @@ GameObject:
   - component: {fileID: 4916467271187589464}
   - component: {fileID: 2085745724017265301}
   - component: {fileID: 696748648077440774}
-  - component: {fileID: 1889464809795719595}
   - component: {fileID: 8994385168470513813}
   - component: {fileID: 610448997618125651}
   - component: {fileID: 6746426829413459116}
+  - component: {fileID: 4370549984891474591}
   m_Layer: 9
   m_Name: Mush Alien LightPink
   m_TagString: Enemy
@@ -185,6 +185,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitted: 0
+  reachedStartPos: 1
   nextWaypointDistance: 1
   stoppingDistance: 0.8
 --- !u!114 &3400769378435635453
@@ -215,6 +216,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5166c0560d75234f9cd1357204c0d7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyID: 81
   level: 1
   totalHealthPoints: 200
   experienceGain: 120
@@ -306,19 +308,6 @@ MonoBehaviour:
   usableDropRate: 40
   usableTryDropNumb: 3
   maxUsableDropable: 3
---- !u!114 &1889464809795719595
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2489995698205044816}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b05e0486ef20dd042aa8dafba951f4e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  desactivationDistance: 30
 --- !u!114 &8994385168470513813
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -371,6 +360,18 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a4c65d78b6c4c8f4ea9a419c10c46188, type: 2}
   dropRate: 15
   levelRequiredToApplyQuest: 0
+--- !u!114 &4370549984891474591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2489995698205044816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c842ebdd400fc0843be85c55d6d72af3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2489995698330452539
 GameObject:
   m_ObjectHideFlags: 0

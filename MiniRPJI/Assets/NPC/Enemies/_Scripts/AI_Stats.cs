@@ -9,6 +9,8 @@ using UnityEngine;
 
 public class AI_Stats : MonoBehaviour
 {
+    public int enemyID = -1;
+
     [Tooltip("will be set automaticaly in EnemySpawner")]
     [SerializeField] int level = 1;
 
@@ -36,25 +38,32 @@ public class AI_Stats : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (!enemySet)
-        {
-            InitializeEnemy(level);
-        }
+        // Was causing issue conflict with RememberEnemyData.
+        //if (!enemySet)
+        //{
+        //    InitializeEnemy(level);
+        //}
     }
 
     // Method to initialize an enemy via his level. Default value is level 1
     // To call for every enemy
-    public void InitializeEnemy(int _level = 1)
+    public void InitializeEnemy(int _level = 1, int _healthPoints = 0) // if _healthPoints == 0, it'll be initialize with the total amount of health.
     {
         if (_level <= 1)
         {
-            SetCurrentHealthPoints(totalHealthPoints);
+            if (_healthPoints == 0)
+                SetCurrentHealthPoints(totalHealthPoints);
+            else
+                SetCurrentHealthPoints(_healthPoints);
+
+            enemySet = true;
+
             return;
         }
 
         level = _level;
 
-        float statsMultiplier = 1.3f + (level / 10f) * level;
+        float statsMultiplier = 1.2f + (level / 10f) * (level / 2);
 
         //Debug.Log(statsMultiplier);
 
@@ -73,7 +82,10 @@ public class AI_Stats : MonoBehaviour
         projectileDamageMin = Mathf.RoundToInt(projectileDamageMin * statsMultiplier);
         projectileDamageMax = projectileDamageMin + projectileDamageRange; // Same calculation for same reason as damageMax
 
-        SetCurrentHealthPoints(totalHealthPoints);
+        if (_healthPoints == 0)
+            SetCurrentHealthPoints(totalHealthPoints);
+        else
+            SetCurrentHealthPoints(_healthPoints);
 
         enemySet = true;
     }

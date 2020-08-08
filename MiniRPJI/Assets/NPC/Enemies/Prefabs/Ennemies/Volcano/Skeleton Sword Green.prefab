@@ -68,10 +68,11 @@ GameObject:
   - component: {fileID: 993632826647478388}
   - component: {fileID: 6125693235052618681}
   - component: {fileID: 4637443254724746794}
-  - component: {fileID: 8397453122304338907}
   - component: {fileID: 8397453122827292657}
   - component: {fileID: 8635506341556250265}
   - component: {fileID: 69430846}
+  - component: {fileID: -8736355466206196799}
+  - component: {fileID: -1322923111804824750}
   m_Layer: 9
   m_Name: Skeleton Sword Green
   m_TagString: Enemy
@@ -232,6 +233,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitted: 0
+  reachedStartPos: 1
   nextWaypointDistance: 1
   stoppingDistance: 0.8
 --- !u!114 &7404250521083277777
@@ -262,10 +264,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5166c0560d75234f9cd1357204c0d7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyID: 69
   level: 1
   totalHealthPoints: 140
   experienceGain: 75
-  speed: 4.2
+  speed: 4
   damageMin: 14
   damageMax: 18
   projectileDamageMin: 0
@@ -352,19 +355,6 @@ MonoBehaviour:
   usableDropRate: 40
   usableTryDropNumb: 2
   maxUsableDropable: 2
---- !u!114 &8397453122304338907
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7745882124892690812}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b05e0486ef20dd042aa8dafba951f4e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  desactivationDistance: 30
 --- !u!114 &8397453122827292657
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -417,6 +407,31 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5eaa1b356dee2c24a96d7a929359cc4c, type: 2}
   dropRate: 80
   levelRequiredToApplyQuest: 0
+--- !u!114 &-8736355466206196799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7745882124892690812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae16013ad45711c4999df36b2cb46658, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  successID: 6
+--- !u!114 &-1322923111804824750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7745882124892690812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c842ebdd400fc0843be85c55d6d72af3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7745882125571271447
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fdb7f0b41b6b644fa6921ecacee3aa6, type: 3}
+  m_Name: 40_OldManLostDog
+  m_EditorClassIdentifier: 
+  questID: 40
+  questTitle: Mirabelle
+  questDescription: "Je suis arriv\xE9 jusqu'ici parce que je suis \xE0 la recherche
+    de ma chienne Mirabelle... Elle a disparue la semaine derni\xE8re, je n'ai pas
+    cess\xE9 de la chercher. Je suis pass\xE9 par la for\xEAt, la plage et me voil\xE0
+    ici... Je suis extenu\xE9... Si tu la vois tu peux me le dire s'il te plait ?"
+  questSprite: {fileID: 7842624481175806839, guid: 2c9cd168c6159f14eb3675170a515319,
+    type: 3}
+  totalQuestObjective: 1
+  questDone: 0
+  questReward: {fileID: 11400000, guid: 75543850ba2c29e4888bca9774106828, type: 2}
+  questGOToSpawn: {fileID: 7638128754566141779, guid: 032b3ec44b99cd446bd50cbb5571f21a,
+    type: 3}
+  xpAmount: 150000
+  levelRequired: 0

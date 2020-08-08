@@ -8,6 +8,8 @@ using UnityEngine;
 [RequireComponent(typeof(Player_Stats))]
 public class Player_Movement : MonoBehaviour
 {
+    public bool canMove = true;
+
     [SerializeField] float dashSpeed = 40f;
     [SerializeField] float dashTime = .2f;
     [SerializeField] float energyNeedToDash = 8f;
@@ -40,6 +42,9 @@ public class Player_Movement : MonoBehaviour
     {
         AnimatorUpdate();
 
+        if (!canMove)
+            return;
+
         if (Input.GetKey(KeyCode.LeftShift))
         {
             if (Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.LeftArrow))
@@ -59,6 +64,16 @@ public class Player_Movement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (!canMove)
+        {
+            if (myRb.velocity != Vector2.zero)
+            {
+                myRb.velocity = Vector2.zero;
+            }
+
+            return;
+        }
+
         if (isDashing)
         {
             ProcessDash();
@@ -256,6 +271,12 @@ public class Player_Movement : MonoBehaviour
             tempDashEffect.transform.rotation = Quaternion.Euler(xRotation, yRotation, zRotation);
 
             Destroy(tempDashEffect, .6f);
+
+            // Then play sound before return
+            if (Sound_Manager.instance)
+            {
+                Sound_Manager.instance.PlaySound(Sound_Manager.instance.asset.playerDash);
+            }
 
             return tempDashEffect;
         }

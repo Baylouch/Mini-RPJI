@@ -36,6 +36,7 @@ public class UI_Player : MonoBehaviour
     public UI_Teleporter teleporterUI;
     public UI_Map mapUI;
     public UI_Abilities playerAbilitiesUI;
+    public UI_Player_Success successUI;
 
     private void Start()
     {
@@ -88,6 +89,10 @@ public class UI_Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.N))
         {
             TogglePlayerAbilitiesUI();
+        }
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            ToggleSuccessUI();
         }
 
         // Special condition for pets UI because we wants its unlock when player did a quest.
@@ -154,6 +159,10 @@ public class UI_Player : MonoBehaviour
         {
             playerAbilitiesUI.gameObject.SetActive(false);
         }
+        if (successUI.gameObject.activeSelf)
+        {
+            successUI.gameObject.SetActive(false);
+        }
     }
 
     void HideLeftMenus()
@@ -173,6 +182,10 @@ public class UI_Player : MonoBehaviour
         if (mapUI.gameObject.activeSelf)
         {
             mapUI.gameObject.SetActive(false);
+        }
+        if (successUI.gameObject.activeSelf)
+        {
+            successUI.gameObject.SetActive(false);
         }
     }
 
@@ -197,6 +210,10 @@ public class UI_Player : MonoBehaviour
         if (playerAbilitiesUI.gameObject.activeSelf)
         {
             playerAbilitiesUI.gameObject.SetActive(false);
+        }
+        if (successUI.gameObject.activeSelf)
+        {
+            successUI.gameObject.SetActive(false);
         }
     }
 
@@ -223,6 +240,28 @@ public class UI_Player : MonoBehaviour
         }
     }
 
+    public void ToggleSuccessUI()
+    {
+        if (successUI)
+        {
+            if (!successUI.gameObject.activeSelf)
+            {
+                HideAllMenus();
+
+                successUI.gameObject.SetActive(true);
+            }
+            else
+            {
+                successUI.gameObject.SetActive(false);
+            }
+
+            if (Sound_Manager.instance)
+            {
+                Sound_Manager.instance.PlaySound(Sound_Manager.instance.asset.toggleUI);
+            }
+        }
+    }
+
     public void TogglePlayerAbilitiesUI()
     {
         if (playerAbilitiesUI)
@@ -233,6 +272,8 @@ public class UI_Player : MonoBehaviour
                 {
                     return;
                 }
+
+                HideRightMenus();
 
                 playerAbilitiesUI.gameObject.SetActive(true);
             }

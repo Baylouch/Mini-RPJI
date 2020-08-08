@@ -68,10 +68,10 @@ GameObject:
   - component: {fileID: 7502691819768520454}
   - component: {fileID: 3519044369680612555}
   - component: {fileID: 2706522290569593176}
-  - component: {fileID: 1251229529008272553}
   - component: {fileID: 1251229529560060035}
   - component: {fileID: 7077132940923350574}
   - component: {fileID: 8866167279612664918}
+  - component: {fileID: 4805529377310170033}
   m_Layer: 9
   m_Name: Mage Ninja Red
   m_TagString: Enemy
@@ -232,6 +232,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitted: 0
+  reachedStartPos: 1
   nextWaypointDistance: 1
   stoppingDistance: 0.8
 --- !u!114 &222315897541291683
@@ -262,6 +263,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5166c0560d75234f9cd1357204c0d7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyID: 59
   level: 1
   totalHealthPoints: 150
   experienceGain: 75
@@ -353,19 +355,6 @@ MonoBehaviour:
   usableDropRate: 40
   usableTryDropNumb: 2
   maxUsableDropable: 2
---- !u!114 &1251229529008272553
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1056687298398340622}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b05e0486ef20dd042aa8dafba951f4e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  desactivationDistance: 30
 --- !u!114 &1251229529560060035
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -418,6 +407,18 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b635d362ce2293945a5913b721347711, type: 2}
   dropRate: 70
   levelRequiredToApplyQuest: 0
+--- !u!114 &4805529377310170033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1056687298398340622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c842ebdd400fc0843be85c55d6d72af3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1056687298794271845
 GameObject:
   m_ObjectHideFlags: 0

@@ -1798,6 +1798,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactionType: 0
+  voice: 1
   petsToSell:
   - {fileID: 11400000, guid: 6a87b91ff1c5c8249922b5df38d794fe, type: 2}
   - {fileID: 11400000, guid: 169f57d7efe3241488fc4c79e76c5c75, type: 2}

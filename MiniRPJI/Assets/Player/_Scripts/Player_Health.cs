@@ -307,6 +307,9 @@ public class Player_Health : MonoBehaviour, IDamageable
     {
         isDead = true;
 
+        if (currentHurtEffect)
+            Destroy(currentHurtEffect);
+
         if (player_MalusApplier)
             player_MalusApplier.RemoveCurrentEffect();
 

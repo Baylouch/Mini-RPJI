@@ -20,6 +20,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: eac905cb994b0b44dadfc737125721f3, type: 3}
   teleportSound: {fileID: 8300000, guid: b55202a6cff9b174abe235480b441275, type: 3}
   teleportailSound: {fileID: 8300000, guid: bb0e9ab5482558745988fb0bbdbca668, type: 3}
+  achievement: {fileID: 8300000, guid: a273d2fa1e205be42b8707e795d213d8, type: 3}
+  questInteraction: {fileID: 8300000, guid: 163624943c6271f4388442d29a7269df, type: 3}
   toggleUI: {fileID: 8300000, guid: 6d1f7404048995d419d6bca4d37b3126, type: 3}
   itemEquip: {fileID: 8300000, guid: ffe95bb8650c84c4fbfbc953c71bb7dc, type: 3}
   itemUnequip: {fileID: 8300000, guid: 4606d89adfcc4b34f93efd4701173460, type: 3}
@@ -28,7 +30,6 @@ MonoBehaviour:
   sell: {fileID: 8300000, guid: 00f262f73b34aee4da71b05dd97bc24c, type: 3}
   buy: {fileID: 8300000, guid: 7d1e8c6dff8f88f4ab5def6d2e351621, type: 3}
   potUse: {fileID: 8300000, guid: f68baaebb3f333c45bdd7c42ee27f6b2, type: 3}
-  questAchievement: {fileID: 8300000, guid: a273d2fa1e205be42b8707e795d213d8, type: 3}
   bankStoreAndGet: {fileID: 8300000, guid: f4274d004e8124d49a995e3bafb6a139, type: 3}
   punchNoHit: {fileID: 8300000, guid: 5cbbbc11b40c4a74e8f43963cbda7079, type: 3}
   punchHit: {fileID: 8300000, guid: 2c054da20ca0c0446839818216192f54, type: 3}
@@ -39,7 +40,92 @@ MonoBehaviour:
   bowAttackLaserImpact: {fileID: 8300000, guid: 94b9df38e017a7e4aa93765567c9363e,
     type: 3}
   levelUp: {fileID: 8300000, guid: 991205d00bce2ea48a2b16d920de924b, type: 3}
-  unlockAbility: {fileID: 8300000, guid: 308664b3d3a53b544af27533de3d81ef, type: 3}
+  playerDash: {fileID: 8300000, guid: 58c325653010a054e9776eca65aa1be6, type: 3}
   catInvoke: {fileID: 8300000, guid: 2137ef033a02bb24dad5fd13dab5bba1, type: 3}
   dogInvoke: {fileID: 8300000, guid: 0a440c4fd5e647d468bf033b1a7e59f8, type: 3}
   alienInvoke: {fileID: 0}
+  karenGreetings:
+  - {fileID: 8300000, guid: 96ad776c15c234c4cb5cef4dee588846, type: 3}
+  - {fileID: 8300000, guid: 15a22b65b9335b247b4a58b3a14f2c7c, type: 3}
+  - {fileID: 8300000, guid: 5e1c87ebf0998d04d8d404fa04f2dcc2, type: 3}
+  - {fileID: 8300000, guid: c0f9cdc39952cd84eb36c5d69f44913a, type: 3}
+  karenFarewell:
+  - {fileID: 8300000, guid: d8b6f278b3036774b8b589b03306fcd5, type: 3}
+  - {fileID: 8300000, guid: 42c84fee9e9757c4a87eb25eb9970926, type: 3}
+  - {fileID: 8300000, guid: bbd433765b31b8945ae7774524081161, type: 3}
+  - {fileID: 8300000, guid: 16ccd1da6aff4524c8418a8aa67510ac, type: 3}
+  - {fileID: 8300000, guid: e8f0d05666ff86e40ad8191d76b42287, type: 3}
+  - {fileID: 8300000, guid: afc3775b694a6754393cd497336c5e4d, type: 3}
+  karenCompletion:
+  - {fileID: 8300000, guid: 073c2fab357a1364f889b2ebdb7919f7, type: 3}
+  - {fileID: 8300000, guid: 27437e891f1f424449b0cf9dc08b6b31, type: 3}
+  - {fileID: 8300000, guid: 16f8014806c18c8408d0b60b8416b5f3, type: 3}
+  - {fileID: 8300000, guid: 565c7838cabde404690491023e6a101c, type: 3}
+  meghanGreetings:
+  - {fileID: 8300000, guid: 2365ace5f2e74d64c91f16548c1e359c, type: 3}
+  - {fileID: 8300000, guid: e52c71a467549d44fbe469047a822367, type: 3}
+  - {fileID: 8300000, guid: 642495f39551957438df81b27eb9395b, type: 3}
+  - {fileID: 8300000, guid: a3bd671aa96ca234b8f13fa9b2d12a9f, type: 3}
+  meghanFarewell:
+  - {fileID: 8300000, guid: 169b14dabd53ecd4abd281301fc9d701, type: 3}
+  - {fileID: 8300000, guid: 21f1b0f4e1323a341b7ca10b2d50f453, type: 3}
+  - {fileID: 8300000, guid: ddae725d73512454baadc1b014da6fb2, type: 3}
+  - {fileID: 8300000, guid: 03196f95baf9d904989c6169a0c63f1d, type: 3}
+  - {fileID: 8300000, guid: 4fb4a67afdbbed54c8e723a3053ed606, type: 3}
+  - {fileID: 8300000, guid: 54143bee4c5dbad4bad7be9bbb4a9076, type: 3}
+  meghanCompletion:
+  - {fileID: 8300000, guid: bb4a1e9243a8d30428a4312fe7cc9e2e, type: 3}
+  - {fileID: 8300000, guid: 6fcada85055f5d040bd20cb270b5a2c6, type: 3}
+  - {fileID: 8300000, guid: 47d6b3b6af6ddcf4b90144bdea58f12b, type: 3}
+  - {fileID: 8300000, guid: 6474bce2497f11940b6aadb20aa5ce29, type: 3}
+  ianGreetings:
+  - {fileID: 8300000, guid: d97c786e7453fca4589dcbb76b9c514b, type: 3}
+  - {fileID: 8300000, guid: f82eec2814932694aace550c6892f951, type: 3}
+  - {fileID: 8300000, guid: 2115c83981a87e3498e0217f5bd61c96, type: 3}
+  - {fileID: 8300000, guid: c9fdda334c0f1f24abc1ac05d9f845c0, type: 3}
+  ianFarewell:
+  - {fileID: 8300000, guid: d4c4a555ac004a146b7dd88bd02b2645, type: 3}
+  - {fileID: 8300000, guid: a7ad7af9b89a0204aa0c2c10112ad16c, type: 3}
+  - {fileID: 8300000, guid: 03e9f499e1f6caa489c86e93a8ef5ac2, type: 3}
+  - {fileID: 8300000, guid: 28e438485bbb5e24a9aaa7612a8736d6, type: 3}
+  - {fileID: 8300000, guid: 2e6bfa7ec3ca8b14e9b1f5f95a7451d5, type: 3}
+  - {fileID: 8300000, guid: 9f82838a37181f94a940c9fe2d3484c0, type: 3}
+  ianCompletion:
+  - {fileID: 8300000, guid: 2725a5f1c981f644f985f07a528a78b8, type: 3}
+  - {fileID: 8300000, guid: def22978bd52edd4e9e63974faeb4015, type: 3}
+  - {fileID: 8300000, guid: 70d93be92b4a213439c4f8cf302a86c4, type: 3}
+  - {fileID: 8300000, guid: a0bc2ead71824ee4b98593723ee11e69, type: 3}
+  alexGreetings:
+  - {fileID: 8300000, guid: e7e4ce99526651349b9883f6890dc142, type: 3}
+  - {fileID: 8300000, guid: af72be40a122c314db51a1faf9b09a41, type: 3}
+  - {fileID: 8300000, guid: 2014ebfc96df24c48b2b21d04b943063, type: 3}
+  - {fileID: 8300000, guid: b1687dfe8ce77cc4290e7165da3ff38f, type: 3}
+  alexFarewell:
+  - {fileID: 8300000, guid: 8664cb6da4e3ea546857aea2314be8ea, type: 3}
+  - {fileID: 8300000, guid: a9faccccc72c94246b7e8dc0df84c74f, type: 3}
+  - {fileID: 8300000, guid: a9aca26f3884918488a74a7611790b87, type: 3}
+  - {fileID: 8300000, guid: 30c7e55f14d59dd4da34754ba9f96904, type: 3}
+  - {fileID: 8300000, guid: 010ea71f5ba3e2d4fa2457e0d13618d6, type: 3}
+  - {fileID: 8300000, guid: 182cd9c9c5d577449a1f4bb5d7c07c0e, type: 3}
+  alexCompletion:
+  - {fileID: 8300000, guid: 8e4623d4c245718439f6ff5bbaf3f93c, type: 3}
+  - {fileID: 8300000, guid: 8c5ee867e3bb21748ab2784e7afdb3a0, type: 3}
+  - {fileID: 8300000, guid: cfabbcfdb36e7454d81a1123adf23c78, type: 3}
+  - {fileID: 8300000, guid: 5a7a429f2ea83c34d8889ff24953a2c7, type: 3}
+  seanGreetings:
+  - {fileID: 8300000, guid: 2cbf7b5ca1ce14f4192805599854939d, type: 3}
+  - {fileID: 8300000, guid: e2621accc8571124e95bbd62f6f9c12c, type: 3}
+  - {fileID: 8300000, guid: c91899f9529b80b48885a1a64103a6b1, type: 3}
+  - {fileID: 8300000, guid: a2208ccd8f7779b42bd49c5a062db35d, type: 3}
+  seanFarewell:
+  - {fileID: 8300000, guid: 33c0c8e3bd911204299b486944212cd5, type: 3}
+  - {fileID: 8300000, guid: bc16c670e2b4beb408553ca9d795d7b8, type: 3}
+  - {fileID: 8300000, guid: c924d2dd5eb6e104bbb04e59271ff0bd, type: 3}
+  - {fileID: 8300000, guid: a091361e829919b4ea441c76ea8cf7ec, type: 3}
+  - {fileID: 8300000, guid: a84e5dc82f9a10140a11395058ba597a, type: 3}
+  - {fileID: 8300000, guid: e3340c79c18991a4ba883ac3afdd4d8e, type: 3}
+  seanCompletion:
+  - {fileID: 8300000, guid: 3af104d5807678248a7d29a66b0b2a3f, type: 3}
+  - {fileID: 8300000, guid: eeeeea2843f1c9d49897385614a024be, type: 3}
+  - {fileID: 8300000, guid: a94eed7ad812e3d4c9a14bb47f3b6ad1, type: 3}
+  - {fileID: 8300000, guid: 861de4d5bbd968b47b813d7d3f7c79ef, type: 3}

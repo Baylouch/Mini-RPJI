@@ -17,6 +17,7 @@ using Pathfinding;
 public class AI_Enemy_Movement : MonoBehaviour
 {
     public bool hitted = false;
+    public bool reachedStartPos = true;
 
     [SerializeField] float nextWaypointDistance = 3f;
     [SerializeField] float stoppingDistance = 1f;
@@ -39,6 +40,7 @@ public class AI_Enemy_Movement : MonoBehaviour
     Player_Combat player_combat; // To use for determine if player is in combat (AI_Enemy_Combat.cs got this too)
 
     bool inChase = false;
+    bool goingBackToStartPos = false;
 
     private void OnDrawGizmos()
     {
@@ -96,6 +98,10 @@ public class AI_Enemy_Movement : MonoBehaviour
 
     private void Update()
     {
+        if (inChase && reachedStartPos)
+            reachedStartPos = false;
+
+
         if (hitted)
             return;
 
@@ -130,6 +136,13 @@ public class AI_Enemy_Movement : MonoBehaviour
         if (currentWaypoint >= path.vectorPath.Count)
         {
             reachedEndOfPath = true;
+
+            if (goingBackToStartPos)
+            {
+                goingBackToStartPos = false;
+                reachedStartPos = true;
+            }
+
             return;
         }
         else
@@ -257,6 +270,8 @@ public class AI_Enemy_Movement : MonoBehaviour
                 if (seeker.IsDone())
                     seeker.StartPath(myRb.position, startPos, OnPathComplete);
 
+                goingBackToStartPos = true;
+
                 if (ai_moveset)
                 {
                     if (!ai_moveset.GetAutoMove()) ai_moveset.SwitchAutoMove(true);
@@ -297,5 +312,10 @@ public class AI_Enemy_Movement : MonoBehaviour
         {
             player_combat.endingCombat = true;
         }
+    }
+
+    public Vector3 GetStartPos()
+    {
+        return startPos;
     }
 }

@@ -23,6 +23,7 @@ public class UI_Player_Menu : MonoBehaviour
     [SerializeField] Toggle toggleMusic;
     [SerializeField] Slider soundVolumeSlider;
     [SerializeField] Toggle toggleSound;
+    [SerializeField] Toggle togglePopUp;
 
     [SerializeField] GameObject playerDataToSet;
 
@@ -260,6 +261,22 @@ public class UI_Player_Menu : MonoBehaviour
                 }
             }
         }
+
+        // PopUp options
+        if (togglePopUp)
+        {
+            if (PlayerPrefs.HasKey(UI_SuccessDisplayer.activePopUpKey))
+            {
+                if (PlayerPrefs.GetInt(UI_SuccessDisplayer.activePopUpKey) == 1)
+                {
+                    togglePopUp.isOn = true;
+                }
+                else
+                {
+                    togglePopUp.isOn = false;
+                }
+            }
+        }
     }
 
     public void SetMusicVolume(float value)
@@ -312,6 +329,23 @@ public class UI_Player_Menu : MonoBehaviour
             }
 
             Sound_Manager.instance.ToggleSound(value);
+        }
+    }
+
+    public void ActivePopUp(bool value)
+    {
+        if (UI_SuccessDisplayer.instance)
+        {
+            if (value == true)
+            {
+                PlayerPrefs.SetInt(UI_SuccessDisplayer.activePopUpKey, 1);
+            }
+            else
+            {
+                PlayerPrefs.SetInt(UI_SuccessDisplayer.activePopUpKey, 0);
+            }
+
+            UI_SuccessDisplayer.instance.TogglePopUp(value);
         }
     }
 

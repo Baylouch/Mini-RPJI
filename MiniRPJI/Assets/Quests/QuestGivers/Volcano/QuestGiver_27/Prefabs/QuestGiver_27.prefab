@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 975830349589786202}
   - component: {fileID: 4754263134383595065}
   m_Layer: 13
-  m_Name: QuestGiver_26
+  m_Name: QuestGiver_27
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -72,12 +72,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactionType: 0
+  voice: 0
   questsToGive:
-  - {fileID: 11400000, guid: a4f75aefd2e1b774daae08126cc8e4ec, type: 2}
-  - {fileID: 11400000, guid: effb87a5af1e7f844824683e373ecbc7, type: 2}
+  - {fileID: 11400000, guid: 3eb314e3ae7625d4e83b83133785ee44, type: 2}
   rewardPosition: {fileID: 1168677682647704909}
   questLinkedItemSpawnPosition: {fileID: 1722629946351711889}
-  endDialogue: "Ton aide nous ai tellement pr\xE9cieuse."
+  endDialogue: '*Continue ses recherches...*'
   dialoguePanel: {fileID: 4372710681228201442}
   dialogue: {fileID: 4090353998334275835}
   acceptButton: {fileID: 891105313805556524}
@@ -559,7 +559,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1398401741649749892}
   m_HandleRect: {fileID: 1703613127467289098}
   m_Direction: 2
-  m_Value: 0.999629
+  m_Value: 0.99963665
   m_Size: 0.7780161
   m_NumberOfSteps: 0
   m_OnValueChanged:

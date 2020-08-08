@@ -1397,9 +1397,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactionType: 0
+  voice: 3
   questsToGive:
   - {fileID: 11400000, guid: 44b963420ae40e34390de5019894b4a4, type: 2}
   rewardPosition: {fileID: 4236228966702950017}
+  questLinkedItemSpawnPosition: {fileID: 0}
   endDialogue: "Tu es un h\xE9ros !"
   dialoguePanel: {fileID: 4236228966219207488}
   dialogue: {fileID: 4236228966048269806}

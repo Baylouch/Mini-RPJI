@@ -12,6 +12,8 @@ public class Sounds_Asset : ScriptableObject
     public AudioClip[] gameOver;
     public AudioClip teleportSound;
     public AudioClip teleportailSound;
+    public AudioClip achievement;
+    public AudioClip questInteraction;
 
     [Header("UI")]
     public AudioClip toggleUI;
@@ -24,7 +26,6 @@ public class Sounds_Asset : ScriptableObject
     public AudioClip sell;
     public AudioClip buy;
     public AudioClip potUse;
-    public AudioClip questAchievement;
     public AudioClip bankStoreAndGet;
 
     [Header("Player")]
@@ -35,10 +36,35 @@ public class Sounds_Asset : ScriptableObject
     public AudioClip bowAttackLaser;
     public AudioClip bowAttackLaserImpact;
     public AudioClip levelUp;
-    public AudioClip unlockAbility;
+    public AudioClip playerDash;
 
     [Header("Pets")]
     public AudioClip catInvoke;
     public AudioClip dogInvoke;
     public AudioClip alienInvoke;
+
+    [Header("NPC Karen")]
+    public AudioClip[] karenGreetings;
+    public AudioClip[] karenFarewell;
+    public AudioClip[] karenCompletion;
+
+    [Header("NPC Meghan")]
+    public AudioClip[] meghanGreetings;
+    public AudioClip[] meghanFarewell;
+    public AudioClip[] meghanCompletion;
+
+    [Header("NPC Ian")]
+    public AudioClip[] ianGreetings;
+    public AudioClip[] ianFarewell;
+    public AudioClip[] ianCompletion;
+
+    [Header("NPC Alex")]
+    public AudioClip[] alexGreetings;
+    public AudioClip[] alexFarewell;
+    public AudioClip[] alexCompletion;
+
+    [Header("NPC Sean")]
+    public AudioClip[] seanGreetings;
+    public AudioClip[] seanFarewell;
+    public AudioClip[] seanCompletion;
 }

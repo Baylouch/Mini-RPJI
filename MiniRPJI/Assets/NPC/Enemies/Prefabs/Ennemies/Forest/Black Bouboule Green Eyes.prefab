@@ -166,9 +166,10 @@ GameObject:
   - component: {fileID: 1501595557011973087}
   - component: {fileID: 112566554485694028}
   - component: {fileID: 6279999047118188741}
-  - component: {fileID: 780896593}
   - component: {fileID: 97403746}
   - component: {fileID: -460846262969685611}
+  - component: {fileID: 4892398807872133608}
+  - component: {fileID: -4929062619501343242}
   m_Layer: 9
   m_Name: Black Bouboule Green Eyes
   m_TagString: Enemy
@@ -329,6 +330,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitted: 0
+  reachedStartPos: 1
   nextWaypointDistance: 1
   stoppingDistance: 0.9
 --- !u!114 &2816234245972341175
@@ -359,6 +361,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5166c0560d75234f9cd1357204c0d7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyID: 7
   level: 1
   totalHealthPoints: 100
   experienceGain: 55
@@ -469,19 +472,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0a96494179ac3dc4f8ac4f813b60e85a, type: 2}
   dropRate: 70
   levelRequiredToApplyQuest: 0
---- !u!114 &780896593
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3074426369532565786}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b05e0486ef20dd042aa8dafba951f4e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  desactivationDistance: 30
 --- !u!114 &97403746
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -515,6 +505,31 @@ MonoBehaviour:
   electricEffect: {fileID: 4144859057491972, guid: 91d03a92bb3425f4186bc9844360af1c,
     type: 3}
   Env_Collider: {fileID: 2816234246317459938}
+--- !u!114 &4892398807872133608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3074426369532565786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae16013ad45711c4999df36b2cb46658, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  successID: 4
+--- !u!114 &-4929062619501343242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3074426369532565786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c842ebdd400fc0843be85c55d6d72af3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3658932587950192684
 GameObject:
   m_ObjectHideFlags: 0

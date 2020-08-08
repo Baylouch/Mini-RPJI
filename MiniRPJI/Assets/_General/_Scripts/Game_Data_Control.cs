@@ -271,6 +271,59 @@ public class Game_Data_Control : MonoBehaviour
         }
 
         // ************************************************************************************************
+        // ************************************** SUCESS **************************************************
+        // ************************************************************************************************
+
+        data.playerSuccess = new PlayerSuccessData();
+
+        data.playerSuccess.areDone = new bool[Player_Success.totalSuccess];
+        data.playerSuccess.rewardsGift = new bool[Player_Success.totalSuccess];
+
+        data.playerSuccess.sucessObjectives = new int[Player_Success.totalSuccess];
+
+        data.playerSuccess.forestPartExplored = new bool[Player_Success.forestPartsLength];
+        data.playerSuccess.beachPartExplored = new bool[Player_Success.beachPartsLength];
+        data.playerSuccess.volcanoPartExplored = new bool[Player_Success.volcanoPartsLength];
+
+        for (int i = 0; i < Player_Success.totalSuccess; i++)
+        {
+            Success_Config currentConfig = Player_Success.instance.successDatabase.GetSuccessByID(0);
+
+            data.playerSuccess.sucessObjectives[i] = Player_Success.instance.successObjectives[i];
+
+            if (currentConfig.isDone)
+            {
+                data.playerSuccess.areDone[i] = true;
+
+                if (currentConfig.rewardGift)
+                {
+                    data.playerSuccess.rewardsGift[i] = true;
+                }
+            }
+            else
+            {          
+                data.playerSuccess.areDone[i] = false;
+                data.playerSuccess.rewardsGift[i] = false;
+            }
+        }
+
+
+        for (int i = 0; i < Player_Success.forestPartsLength; i++)
+        {
+            data.playerSuccess.forestPartExplored[i] = Player_Success.instance.forestPartExplored[i];
+        }
+
+        for (int i = 0; i < Player_Success.beachPartsLength; i++)
+        {
+            data.playerSuccess.beachPartExplored[i] = Player_Success.instance.beachPartExplored[i];
+        }
+
+        for (int i = 0; i < Player_Success.volcanoPartsLength; i++)
+        {
+            data.playerSuccess.volcanoPartExplored[i] = Player_Success.instance.volcanoPartExplored[i];
+        }
+
+        // ************************************************************************************************
         // ************************************************************************************************
         // ************************************************************************************************
 
@@ -451,6 +504,49 @@ public class Game_Data_Control : MonoBehaviour
             }
 
             // ************************************************************************************************
+            // ************************************** SUCESS **************************************************
+            // ************************************************************************************************
+
+            for (int i = 0; i < Player_Success.totalSuccess; i++)
+            {
+                Success_Config currentConfig = Player_Success.instance.successDatabase.GetSuccessByID(0);
+
+                Player_Success.instance.successObjectives[i] = data.playerSuccess.sucessObjectives[i];
+
+                if (data.playerSuccess.areDone[i])
+                {
+                    currentConfig.isDone = true;
+
+                    if (data.playerSuccess.rewardsGift[i])
+                    {
+                        currentConfig.rewardGift = true;
+                    }
+                }
+                else
+                {
+                    currentConfig.isDone = false;
+                    currentConfig.rewardGift = false;
+                }
+            }
+
+
+            for (int i = 0; i < Player_Success.forestPartsLength; i++)
+            {
+                Player_Success.instance.forestPartExplored[i] = data.playerSuccess.forestPartExplored[i];
+            }
+
+            for (int i = 0; i < Player_Success.beachPartsLength; i++)
+            {
+                Player_Success.instance.beachPartExplored[i] = data.playerSuccess.beachPartExplored[i];
+            }
+
+            for (int i = 0; i < Player_Success.volcanoPartsLength; i++)
+            {
+                Player_Success.instance.volcanoPartExplored[i] = data.playerSuccess.volcanoPartExplored[i];
+            }
+
+
+            // ************************************************************************************************
             // ************************************************************************************************
             // ************************************************************************************************
         }
@@ -488,6 +584,7 @@ public class PlayerData
     public PlayerAbilitiesData playerAbilities;
     public PlayerPetsData playerPets;
     public PlayerTeleportersData playerTps;
+    public PlayerSuccessData playerSuccess;
 }
 
 [Serializable]
@@ -550,4 +647,17 @@ public class PlayerPetsData
 public class PlayerTeleportersData
 {
     public bool[] tpsUnlocked; // Represent unlockedTps in UI_Teleporter.cs
+}
+
+[Serializable]
+public class PlayerSuccessData
+{
+    public bool[] areDone;
+    public bool[] rewardsGift;
+
+    public int[] sucessObjectives;
+
+    public bool[] forestPartExplored;
+    public bool[] beachPartExplored;
+    public bool[] volcanoPartExplored;
 }

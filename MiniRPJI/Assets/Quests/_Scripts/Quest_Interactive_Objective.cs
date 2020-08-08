@@ -49,6 +49,9 @@ public class Quest_Interactive_Objective : Interactable
 
                 Quests_Control.instance.GetPlayerQuestByID(questID).currentQuestObjective++;
 
+                if (Sound_Manager.instance)
+                    Sound_Manager.instance.PlaySound(Sound_Manager.instance.asset.questInteraction);
+
                 Destroy(gameObject);
                 }
             }

@@ -21,12 +21,13 @@ public class Cheats : MonoBehaviour
     public const int MaxCharByCheat = 20;
 
     // Const containing string representing cheat
-    public const string LevelUpCheat = "go level up noob";
+    public const string LevelUpCheat = "go level up noob"; // Give one level
     public const string GetItemCheat = "pls give item "; // Space at end is very important, because after this space, player put number to get the linked item ID.
-    public const string GetAndValideQuest = "pls do quest "; // To get and valide a quest via its ID
-    public const string GetMoneyCheat = "give me poney";
-    public const string GodMode = "i am the matrix";
-    public const string PowerRangerStyle = "i am force red !";
+    public const string GetAndValideQuest = "pls do quest "; // To get and valid a quest via its ID
+    public const string GetMoneyCheat = "give me poney"; // Give 1000 pieces
+    public const string GodMode = "i am the matrix"; // Player unvulnerable
+    public const string PowerRangerStyle = "i am force red !"; // Player reach level 10 and get rare items level 10
+    public const string FinishTheGame = "ok i am done$"; // End the game
 
     public static Cheats instance;
 
@@ -324,6 +325,44 @@ public class Cheats : MonoBehaviour
     // Method to check if a cheat is complete
     void CheckIfCheatIsComplete(string cheatCode)
     {
+        // Cheat to reach lvl 25
+        if (cheatCode == FinishTheGame)
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                Player_Inventory.instance.GetNewItem(Player_Inventory.instance.itemDataBase.GetItemById(1004));
+                Player_Inventory.instance.GetNewItem(Player_Inventory.instance.itemDataBase.GetItemById(1005));
+            }
+
+            while (Player_Stats.instance.GetCurrentLevel() < 25)
+            {
+                Player_Stats.instance.CheatLevelUp();
+            }
+
+            Player_Inventory.instance.SetArmoryIndex((int)ArmoryPart.Helm, 504);
+            Player_Inventory.instance.SetArmoryIndex((int)ArmoryPart.Boots, 505);
+            Player_Inventory.instance.SetArmoryIndex((int)ArmoryPart.Gloves, 506);
+            Player_Inventory.instance.SetArmoryIndex((int)ArmoryPart.Pants, 507);
+            Player_Inventory.instance.SetArmoryIndex((int)ArmoryPart.Chest, 508);
+            Player_Inventory.instance.SetArmoryIndex((int)ArmoryPart.Bow, 509);
+
+            UI_Player.instance.playerInventoryUI.RefreshArmory();
+            Player_Stats.instance.RefreshPlayerStats();
+
+            for (int i = 0; i < UI_Teleporter.teleporterNumber; i++)
+            {
+                UI_Player.instance.teleporterUI.SetUnlockedTp(i, true);
+            }
+
+            for (int i = 0; i < Quests_Control.instance.questDataBase.quests.Length; i++)
+            {
+                if (Quests_Control.instance.GetQuestAchievement(i) == false)
+                {
+                    Quests_Control.instance.SetQuestAchievement(i, true);
+                }
+            }
+        }
+
         // Cheat to give level up to the player
         if (cheatCode == LevelUpCheat)
         {
@@ -483,7 +522,7 @@ public class Cheats : MonoBehaviour
         // To proceed, we must know the length of the number (to know if its ID 32 or ID 323 for instance)
         // So we start by unit, then ten, then hundred. When we reach ' ' char, we know it was the last number.
 
-        char tempChar = 'a'; // No matter what char is initialize, we just must put one.
+        char tempChar = 'a'; // No matter by what char is initialized, we just must put one.
         int currentPlayerInputIndex = playerInput.Length; // Initialize to the length of the string (it'll be decremented before using)
         int multiplyNumb = 1; // Start to 1, then 10, then 100, then 1000. It'll multiply each time the converted char to get the expected ID number
         int _ID = -1;
@@ -499,7 +538,7 @@ public class Cheats : MonoBehaviour
             int tempNumb = ConvertCharToInt(tempChar);
             if (tempNumb == -1)
             {
-                // The char do not represent a number. Return -1.
+                // The char does not represent a number. Return -1.
 
                 // reset playerInputs.
                 playerInput = "";

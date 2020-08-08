@@ -2323,6 +2323,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactionType: 0
+  voice: 3
   backPanel: {fileID: 4389062426105214897}
   itemDataBase: {fileID: 11400000, guid: 0cbdd841b62106d40ae9cf10ff02c2fe, type: 2}
   maxItemsToSell: 5

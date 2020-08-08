@@ -21,10 +21,10 @@ public class Ability_Config : ScriptableObject
     public string abilityName;
 
     [TextArea]
-    public string abilityShortDescription;
+    public string abilityShortDescription; // Applied on ability's button from bottom bar
 
     [TextArea]
-    public string abilityLongDescription;
+    public string abilityLongDescription; // Applied on ability's button from ability tree
 
     public Sprite abilitySprite;
 

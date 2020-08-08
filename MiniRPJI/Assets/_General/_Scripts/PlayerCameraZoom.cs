@@ -45,7 +45,7 @@ public class PlayerCameraZoom : MonoBehaviour
         }
     }
 
-    // Method to know when mouse is over UI then dont attack
+    // Method to know when mouse is over UI then dont able to zoom/dezoom
     bool IsMouseOverUI()
     {
         PointerEventData pointerEventData = new PointerEventData(EventSystem.current);

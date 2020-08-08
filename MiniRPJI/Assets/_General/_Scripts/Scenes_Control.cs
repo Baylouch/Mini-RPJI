@@ -6,23 +6,22 @@
  * */
 
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Scenes_Control : MonoBehaviour
 {
-    // TODO Think about split Player and Settings scene into Player Settings (contain Player and Player_UI) and Game settings (contain pathfinding etc)
-
     public static Scenes_Control instance;
 
     public const int levelTransitionBuildIndex = 3;
     public const int PlayerAndSettingsBuildIndex = 4; // Because of scenes organisation in build settings, we got our first level at index 4 (previous are menus)
     public const int TownLevelBuildIndex = 5;
 
-    // TODO Think about limit the maximum number of game level when apply to mobile ?
-    //private List<Scene> loadedScenes = new List<Scene>();
+    // Limit of loaded scenes
+    public const int maxScenesLoaded = 5;
+    public Scene[] gameScenesLoaded;
+    private int gameScenesLoadedIndex = 0;
 
     private void Awake()
     {
@@ -34,6 +33,31 @@ public class Scenes_Control : MonoBehaviour
         else
             Destroy(gameObject);
 
+    }
+
+    private void Start()
+    {
+        gameScenesLoaded = new Scene[maxScenesLoaded];
+    }
+
+    // This method is used everytime a game level is load to recycle scenes and avoid performances issues.
+    void CheckScenesLoaded(Scene newScene)
+    {
+        Debug.Log("Scene cycle in progress...");
+
+        if (gameScenesLoadedIndex >= maxScenesLoaded)
+        {
+            gameScenesLoadedIndex = 0;
+        }
+
+        if (gameScenesLoaded[gameScenesLoadedIndex].IsValid())
+        {
+            SceneManager.UnloadSceneAsync(gameScenesLoaded[gameScenesLoadedIndex]);
+        }
+
+        gameScenesLoaded[gameScenesLoadedIndex] = newScene;
+
+        gameScenesLoadedIndex++;
     }
 
     public void LoadTownLevel()
@@ -96,7 +120,7 @@ public class Scenes_Control : MonoBehaviour
         GameObject rootObject = townScene.GetRootGameObjects()[0];
         rootObject.SetActive(false);
 
-        Debug.Log("Player Settings and Town level are loaded.");
+        // Debug.Log("Player Settings and Town level are loaded.");
 
         // Now we can display "readyButton" to let player continue to the game
         readyButton.onClick.AddListener(LaunchGame);
@@ -150,7 +174,7 @@ public class Scenes_Control : MonoBehaviour
         Scene levelToGo = SceneManager.GetSceneByBuildIndex(levelToGoBuildIndex);
         if (!levelToGo.isLoaded)
         {
-            StartCoroutine(LoadGameLevel(levelToGoBuildIndex, usedTeleportail));
+            StartCoroutine(LoadNewGameLevel(levelToGoBuildIndex, usedTeleportail));
             return;
         }
         else
@@ -188,7 +212,7 @@ public class Scenes_Control : MonoBehaviour
     }
 
     // To load a new game level. Will put the player into transition scene while waiting.
-    IEnumerator LoadGameLevel(int levelToLoadBuildIndex, bool usedTeleportail)
+    IEnumerator LoadNewGameLevel(int levelToLoadBuildIndex, bool usedTeleportail)
     {
         // Load Transition scene while player is waiting.
         AsyncOperation asyncTransitionLoad = SceneManager.LoadSceneAsync(levelTransitionBuildIndex, LoadSceneMode.Additive);
@@ -234,6 +258,9 @@ public class Scenes_Control : MonoBehaviour
         Scene levelToGo = SceneManager.GetSceneByBuildIndex(levelToLoadBuildIndex);
         GameObject rootLevelToGo = levelToGo.GetRootGameObjects()[0];
         rootLevelToGo.SetActive(false);
+
+        // Set scenes cycles
+        CheckScenesLoaded(levelToGo);
 
         // Set the ready button to switch to the new game level
         readyButton.onClick.AddListener(() => NewGameLevelReady(levelToLoadBuildIndex, levelFrom.buildIndex, usedTeleportail));
@@ -283,7 +310,16 @@ public class Scenes_Control : MonoBehaviour
         // Active ennemies
         if (FindObjectOfType<Player_Activator>())
         {
-            FindObjectOfType<Player_Activator>().CheckForEnnemiesActivationOnNewLevel();
+            FindObjectOfType<Player_Activator>().CheckForEnnemiesActivationNow();
+        }
+
+        // Set player succes
+        if (Player_Success.instance)
+        {
+            if (!Player_Success.instance.successDatabase.GetSuccessByID(11).isDone ||
+                !Player_Success.instance.successDatabase.GetSuccessByID(12).isDone ||
+                !Player_Success.instance.successDatabase.GetSuccessByID(13).isDone)
+                    Player_Success.instance.SetExploredZone(newGameLevelBuildIndex);
         }
     }
 

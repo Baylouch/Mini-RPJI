@@ -522,10 +522,11 @@ GameObject:
   - component: {fileID: 6171421297095759285}
   - component: {fileID: 967579822962439800}
   - component: {fileID: 1744264300038949867}
-  - component: {fileID: 8732943166169189562}
   - component: {fileID: 8732943166467475654}
   - component: {fileID: 8014859972528646415}
   - component: {fileID: 3120066873577939931}
+  - component: {fileID: 2471629511252748754}
+  - component: {fileID: 8870458912121872907}
   m_Layer: 9
   m_Name: Skeleton Blue
   m_TagString: Enemy
@@ -686,6 +687,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitted: 0
+  reachedStartPos: 1
   nextWaypointDistance: 1
   stoppingDistance: 0.8
 --- !u!114 &4516674662376842256
@@ -716,6 +718,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5166c0560d75234f9cd1357204c0d7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyID: 65
   level: 1
   totalHealthPoints: 115
   experienceGain: 55
@@ -807,19 +810,6 @@ MonoBehaviour:
   usableDropRate: 40
   usableTryDropNumb: 2
   maxUsableDropable: 2
---- !u!114 &8732943166169189562
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3679929020869708989}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b05e0486ef20dd042aa8dafba951f4e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  desactivationDistance: 30
 --- !u!114 &8732943166467475654
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -872,6 +862,31 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 05bc57dc6b4b99648a2f5d4c051c3fd3, type: 2}
   dropRate: 75
   levelRequiredToApplyQuest: 0
+--- !u!114 &2471629511252748754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3679929020869708989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae16013ad45711c4999df36b2cb46658, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  successID: 6
+--- !u!114 &8870458912121872907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3679929020869708989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c842ebdd400fc0843be85c55d6d72af3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3679929021806214870
 GameObject:
   m_ObjectHideFlags: 0

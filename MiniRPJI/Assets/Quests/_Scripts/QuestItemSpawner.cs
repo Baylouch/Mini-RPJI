@@ -65,6 +65,9 @@ public class QuestItemSpawner : Interactable
                         questGO.transform.parent = GameObject.Find("Items").transform;
                     }
 
+                    if (Sound_Manager.instance)
+                        Sound_Manager.instance.PlaySound(Sound_Manager.instance.asset.questInteraction);
+
                     Destroy(this);
                 }
             }

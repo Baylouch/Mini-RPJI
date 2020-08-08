@@ -20,8 +20,8 @@ public class Player_Projectile : MonoBehaviour
     [SerializeField] float projectileSpeed = 5f;
     [SerializeField] float timerBeforeDestroy = 3f;
     [SerializeField] float percentageChanceToApplyMalus = 100f;
-    //[SerializeField] float overPowerRange = 2f;
     [SerializeField] GameObject impactEffect;
+    //[SerializeField] float overPowerRange = 2f;
     //[SerializeField] GameObject overPowerEffect;
 
     bool used = false;

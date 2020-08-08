@@ -5,6 +5,8 @@ using UnityEngine.EventSystems;
 
 public class PetSeller : Interactable
 {
+    [SerializeField] NPC_VOICE voice;
+
     [SerializeField] PetConfig[] petsToSell;
 
     [SerializeField] GameObject globalPanel;
@@ -89,7 +91,7 @@ public class PetSeller : Interactable
         }
         else
         {
-            Debug.Log("No Player_Pets instance.");
+            //Debug.Log("No Player_Pets instance.");
         }
     }
 
@@ -210,6 +212,14 @@ public class PetSeller : Interactable
     {
         base.Interact();
 
+        if (voice != NPC_VOICE.None)
+        {
+            if (Sound_Manager.instance)
+            {
+                Sound_Manager.instance.PlayNPCSound(voice, NPC_Interaction.Greetings);
+            }
+        }
+
         if (!sellerSet)
             SetSeller();
 
@@ -226,6 +236,17 @@ public class PetSeller : Interactable
     public override void UnInteract()
     {
         base.UnInteract();
+
+        if (globalPanel.activeSelf)
+        {
+            if (voice != NPC_VOICE.None)
+            {
+                if (Sound_Manager.instance)
+                {
+                    Sound_Manager.instance.PlayNPCSound(voice, NPC_Interaction.Farewell);
+                }
+            }
+        }
 
         UnActiveUI();
     }
@@ -313,6 +334,46 @@ public class PetSeller : Interactable
                 buyButton.onClick.AddListener(() => Sound_Manager.instance.PlaySound(Sound_Manager.instance.asset.buy));
                 buyButton.onClick.AddListener(buyButton.onClick.RemoveAllListeners);
                 buyButton.onClick.AddListener(() => buyButton.gameObject.SetActive(false));
+
+                // Success unlock part
+                // Success 8 consist of buying 1 pet
+                if (!Player_Success.instance.successDatabase.GetSuccessByID(8).isDone)
+                {
+                    buyButton.onClick.AddListener(() => Player_Success.instance.IncrementSuccessObjectiveByID(8));
+                    buyButton.onClick.AddListener(() => Player_Success.instance.IncrementSuccessObjectiveByID(9)); // We want to increment the nine success aswell
+                    // Because we dont care if the first pet bought was a cat or a dog.
+                }
+                else if (!Player_Success.instance.successDatabase.GetSuccessByID(9).isDone)
+                {
+                    // Here we want to accomplish the success 9 who means player must buy a cat and a dog.
+                    // For do this we'll check if player got already a cat. If its not the case, he previously bought a dog.
+                    // So we can check now if he buy the other category.
+                    bool hasCat = false;
+
+                    for (int i = 0; i < Player_Pets.playerPetsLength; i++)
+                    {
+                        if (Player_Pets.instance.GetPlayerPetByIndex(i).petCategory == PetCategory.Cat)
+                        {
+                            hasCat = true;
+                            break;
+                        }
+                    }
+
+                    if (hasCat)
+                    {
+                        if (linkedPet.petCategory == PetCategory.Dog)
+                        {
+                            buyButton.onClick.AddListener(() => Player_Success.instance.IncrementSuccessObjectiveByID(9));
+                        }
+                    }
+                    else
+                    {
+                        if (linkedPet.petCategory == PetCategory.Cat)
+                        {
+                            buyButton.onClick.AddListener(() => Player_Success.instance.IncrementSuccessObjectiveByID(9));
+                        }
+                    }
+                }
             }
             else
             {

@@ -73,6 +73,21 @@ public class Player_Pets : MonoBehaviour
         playerPets[indexToSet] = petConfig;
     }
 
+    // To get player pet by ID
+    public PetConfig GetPlayerPetByID(int _petID)
+    {
+        for (int i = 0; i < playerPetsLength; i++)
+        {
+            if (playerPets[i] == null)
+                break;
+
+            if (playerPets[i].petID == _petID)
+                return playerPets[i];
+        }
+
+        return null;
+    }
+
     // Method to get a new pet
     public void GetNewPet(PetConfig newPet)
     {
@@ -98,6 +113,7 @@ public class Player_Pets : MonoBehaviour
         playerPets[petIndex] = newPet;
 
         UI_Player.instance.playerPetsUI.AddPetButton(newPet);
+
     }
 
     // Method to invoke a pet

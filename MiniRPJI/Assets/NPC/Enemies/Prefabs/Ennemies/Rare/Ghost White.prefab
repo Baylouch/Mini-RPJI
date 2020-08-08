@@ -21,9 +21,9 @@ GameObject:
   - component: {fileID: 7145837958388490212}
   - component: {fileID: 4315538623413959721}
   - component: {fileID: 3367153309124411834}
-  - component: {fileID: 7608297137020722279}
   - component: {fileID: 7608297138051573408}
   - component: {fileID: 2450019767538162501}
+  - component: {fileID: 9053131032196792824}
   m_Layer: 9
   m_Name: Ghost White
   m_TagString: Enemy
@@ -184,6 +184,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitted: 0
+  reachedStartPos: 1
   nextWaypointDistance: 1
   stoppingDistance: 0.8
 --- !u!114 &585508183597477441
@@ -214,6 +215,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5166c0560d75234f9cd1357204c0d7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyID: 80
   level: 1
   totalHealthPoints: 200
   experienceGain: 120
@@ -305,19 +307,6 @@ MonoBehaviour:
   usableDropRate: 40
   usableTryDropNumb: 3
   maxUsableDropable: 3
---- !u!114 &7608297137020722279
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 405302839905404652}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b05e0486ef20dd042aa8dafba951f4e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  desactivationDistance: 30
 --- !u!114 &7608297138051573408
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -351,6 +340,18 @@ MonoBehaviour:
   electricEffect: {fileID: 4144859057491972, guid: 91d03a92bb3425f4186bc9844360af1c,
     type: 3}
   Env_Collider: {fileID: 585508183240021524}
+--- !u!114 &9053131032196792824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 405302839905404652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c842ebdd400fc0843be85c55d6d72af3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &405302840324207751
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,6 +4,8 @@
  * 
  * Ce script est lié aux scripts AI_Activator mis sur chaque ennemies activable / desactivable dans la scene.
  * 
+ * 
+ * SCRIPT USELESS DEPUIS REMEMBERENEMYDATA.CS / CLEARENEMY.CS
  * */
 
 using System.Collections;
@@ -43,7 +45,7 @@ public class Player_Activator : MonoBehaviour
     }
 
     // Method to call in Scene_Control when player entered in new game level to active instantly ennemies.
-    public void CheckForEnnemiesActivationOnNewLevel()
+    public void CheckForEnnemiesActivationNow()
     {
         AI_Activator[] activators = FindObjectsOfType<AI_Activator>();
 

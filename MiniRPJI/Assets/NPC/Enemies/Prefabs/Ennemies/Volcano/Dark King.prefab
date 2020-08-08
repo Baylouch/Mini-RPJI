@@ -619,9 +619,10 @@ GameObject:
   - component: {fileID: 1343198121337197535}
   - component: {fileID: 5362447758003810322}
   - component: {fileID: 6859662041382997377}
-  - component: {fileID: 7773308915886520432}
   - component: {fileID: 7773308915338878042}
   - component: {fileID: -6667723582475998389}
+  - component: {fileID: -2441436185133214191}
+  - component: {fileID: -6123625943091761880}
   m_Layer: 9
   m_Name: Dark King
   m_TagString: Enemy
@@ -782,6 +783,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitted: 0
+  reachedStartPos: 1
   nextWaypointDistance: 1
   stoppingDistance: 0.8
 --- !u!114 &8766475233366401658
@@ -812,6 +814,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5166c0560d75234f9cd1357204c0d7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyID: 49
   level: 1
   totalHealthPoints: 200
   experienceGain: 120
@@ -903,19 +906,6 @@ MonoBehaviour:
   usableDropRate: 40
   usableTryDropNumb: 2
   maxUsableDropable: 2
---- !u!114 &7773308915886520432
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8365170885278943959}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b05e0486ef20dd042aa8dafba951f4e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  desactivationDistance: 30
 --- !u!114 &7773308915338878042
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -949,6 +939,32 @@ MonoBehaviour:
   electricEffect: {fileID: 4144859057491972, guid: 91d03a92bb3425f4186bc9844360af1c,
     type: 3}
   Env_Collider: {fileID: 8766475233791187503}
+--- !u!114 &-2441436185133214191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8365170885278943959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0183d7279441bd4cad16fb38a60bbbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  questID: 41
+  levelRequiredToApplyQuest: 0
+--- !u!114 &-6123625943091761880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8365170885278943959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c842ebdd400fc0843be85c55d6d72af3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8766475233791187505
 GameObject:
   m_ObjectHideFlags: 0

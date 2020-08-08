@@ -569,9 +569,11 @@ GameObject:
   - component: {fileID: 6789640420559501131}
   - component: {fileID: 500295096793273478}
   - component: {fileID: 1416435023624464661}
-  - component: {fileID: 2844600581658074340}
   - component: {fileID: 2844600582192576718}
   - component: {fileID: 5985690575786127012}
+  - component: {fileID: 4537819393456913323}
+  - component: {fileID: 800805913446071688}
+  - component: {fileID: -9198867903518858061}
   m_Layer: 9
   m_Name: Black Skeleton Sword 3
   m_TagString: Enemy
@@ -586,7 +588,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4075006658062741059}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -12.2, y: -10.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -732,6 +734,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitted: 0
+  reachedStartPos: 1
   nextWaypointDistance: 1
   stoppingDistance: 0.8
 --- !u!114 &3833298483587303150
@@ -762,6 +765,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5166c0560d75234f9cd1357204c0d7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyID: 45
   level: 1
   totalHealthPoints: 170
   experienceGain: 120
@@ -852,19 +856,6 @@ MonoBehaviour:
   usableDropRate: 40
   usableTryDropNumb: 2
   maxUsableDropable: 2
---- !u!114 &2844600581658074340
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4075006658062741059}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b05e0486ef20dd042aa8dafba951f4e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  desactivationDistance: 30
 --- !u!114 &2844600582192576718
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -898,6 +889,50 @@ MonoBehaviour:
   electricEffect: {fileID: 4144859057491972, guid: 91d03a92bb3425f4186bc9844360af1c,
     type: 3}
   Env_Collider: {fileID: 3833298483233799867}
+--- !u!114 &4537819393456913323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4075006658062741059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d167d6bf839243a419acbdecb86a3c8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dropZone:
+  - {fileID: 2369167477627326899}
+  - {fileID: 2369167478256586612}
+  items:
+  - {fileID: 11400000, guid: 63f5d07acb640304a9d521635cc560d9, type: 2}
+  dropRate: 85
+  levelRequiredToApplyQuest: 21
+--- !u!114 &800805913446071688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4075006658062741059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae16013ad45711c4999df36b2cb46658, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  successID: 6
+--- !u!114 &-9198867903518858061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4075006658062741059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c842ebdd400fc0843be85c55d6d72af3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4075006658476088360
 GameObject:
   m_ObjectHideFlags: 0

@@ -68,11 +68,12 @@ GameObject:
   - component: {fileID: 3212455710514885168}
   - component: {fileID: 8384626302833168893}
   - component: {fileID: 6991128865975430254}
-  - component: {fileID: 1249307455}
   - component: {fileID: 1706979139}
   - component: {fileID: -7634967906084237686}
   - component: {fileID: 3573613162417399677}
   - component: {fileID: 7671110299724005850}
+  - component: {fileID: -2033251116420782973}
+  - component: {fileID: 5789923970487598315}
   m_Layer: 9
   m_Name: Skeleton Volcano
   m_TagString: Enemy
@@ -233,6 +234,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitted: 0
+  reachedStartPos: 1
   nextWaypointDistance: 1
   stoppingDistance: 0.8
 --- !u!114 &5161079160004461461
@@ -263,6 +265,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5166c0560d75234f9cd1357204c0d7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyID: 72
   level: 1
   totalHealthPoints: 115
   experienceGain: 55
@@ -354,19 +357,6 @@ MonoBehaviour:
   usableDropRate: 40
   usableTryDropNumb: 2
   maxUsableDropable: 2
---- !u!114 &1249307455
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5341302661269515064}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b05e0486ef20dd042aa8dafba951f4e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  desactivationDistance: 30
 --- !u!114 &1706979139
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -433,6 +423,31 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5cc62f0563f83c74585efd0de6fd4a86, type: 2}
   dropRate: 100
   levelRequiredToApplyQuest: 20
+--- !u!114 &-2033251116420782973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5341302661269515064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae16013ad45711c4999df36b2cb46658, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  successID: 6
+--- !u!114 &5789923970487598315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5341302661269515064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c842ebdd400fc0843be85c55d6d72af3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5341302661661497683
 GameObject:
   m_ObjectHideFlags: 0

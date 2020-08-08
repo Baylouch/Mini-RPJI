@@ -211,6 +211,14 @@ public class AI_Health : MonoBehaviour, IDamageable
         {
                 questObjectiveTargets[i].IncrementQuestObjective();
         }
+
+        // Check if this AI was a success objective
+        Success_Objective[] successObjectives = GetComponentsInChildren<Success_Objective>();
+
+        for (int i = 0; i < successObjectives.Length; i++)
+        {
+            successObjectives[i].IncrementSuccessObjective();
+        }
         
         Destroy(gameObject);
     }
@@ -221,12 +229,62 @@ public class AI_Health : MonoBehaviour, IDamageable
         return isDead;
     }
 
+    // A mirror simplified version of TakeDamage() method to apply damage over time on enemy.
+    // I created this one because of an issue be discovered :
+    // I add a security to avoid enemy to take all arrow damage at the same time of the multiple arrow ability.
+    // But with this security, when a damage over time is applied, player could be not able to deal damage with a new attack on the enemy while he take damage over time.
+    public void TakeDamageOverTime(int amount)
+    {
+        if (isDead)
+            return;
+
+        // Display damage on the UI
+        DisplayDamagedTextUI(amount);
+
+        int tempHealthPoints = ai_stats.GetCurrentHealthPoints() - amount;
+        if (tempHealthPoints < 0)
+        {
+            ai_stats.SetCurrentHealthPoints(0);
+        }
+        else
+        {
+            ai_stats.SetCurrentHealthPoints(tempHealthPoints);
+        }
+
+        if (ai_stats.GetCurrentHealthPoints() <= 0)
+        {
+            isDead = true;
+
+            if (GetComponentInChildren<UI_Enemy>())
+                GetComponentInChildren<UI_Enemy>().gameObject.SetActive(false);
+
+            if (deathAnimation) // Play death animation if there is one
+            {
+                PlayDeathAnimation();
+            }
+            else
+            {
+                Die();
+            }
+            return;
+        }
+
+        damaged = true;
+        currentDamagedTimer = damagedTimer;
+
+        if (rend)
+        {
+            StartCoroutine("FadeOut");
+        }
+    }
+
     public void TakeDamage(int amount, bool playSound)
     {
         if (isDead)
             return;
 
-        if (Time.time < timeLastHit + 0.3f)
+        // Security to avoid multiple arrow to deal n*damage on the same enemy
+        if (Time.time < timeLastHit + 0.01f)
             return;
 
         // Display damage on the UI

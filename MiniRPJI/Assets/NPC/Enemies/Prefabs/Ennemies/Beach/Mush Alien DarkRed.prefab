@@ -522,11 +522,12 @@ GameObject:
   - component: {fileID: 1680388151927440370}
   - component: {fileID: 5735670984762433599}
   - component: {fileID: 6539338553358474668}
-  - component: {fileID: 5283714996753726209}
   - component: {fileID: 3438856035994661439}
   - component: {fileID: 6562867057796637177}
   - component: {fileID: 1065984792262856198}
   - component: {fileID: 6087873164909915491}
+  - component: {fileID: -7779363729704266125}
+  - component: {fileID: 9144846192261597129}
   m_Layer: 9
   m_Name: Mush Alien DarkRed
   m_TagString: Enemy
@@ -687,6 +688,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitted: 0
+  reachedStartPos: 1
   nextWaypointDistance: 1
   stoppingDistance: 0.8
 --- !u!114 &8960695732772270679
@@ -717,6 +719,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5166c0560d75234f9cd1357204c0d7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyID: 18
   level: 1
   totalHealthPoints: 130
   experienceGain: 75
@@ -808,19 +811,6 @@ MonoBehaviour:
   usableDropRate: 40
   usableTryDropNumb: 2
   maxUsableDropable: 2
---- !u!114 &5283714996753726209
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8206967087190661882}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b05e0486ef20dd042aa8dafba951f4e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  desactivationDistance: 30
 --- !u!114 &3438856035994661439
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -892,6 +882,31 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2d4edb2ef5553064a8373a6024ad4847, type: 2}
   dropRate: 40
   levelRequiredToApplyQuest: 14
+--- !u!114 &-7779363729704266125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8206967087190661882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae16013ad45711c4999df36b2cb46658, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  successID: 5
+--- !u!114 &9144846192261597129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8206967087190661882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c842ebdd400fc0843be85c55d6d72af3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8206967087330863249
 GameObject:
   m_ObjectHideFlags: 0

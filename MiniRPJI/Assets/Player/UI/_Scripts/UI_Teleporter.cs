@@ -5,7 +5,7 @@ using System.Collections;
 public class UI_Teleporter : MonoBehaviour
 {
     // A const to save and load data (representing all tps count)
-    public const int teleporterNumber = 8;
+    public const int teleporterNumber = 12;
 
     public GameObject teleporterPanel; // The UI of teleporters.
 
@@ -15,9 +15,11 @@ public class UI_Teleporter : MonoBehaviour
                                          // /!\ Index are constant to match with build index :
                                          // [0] = Town (5),
                                          //
-                                         // [1] = Forest part 2 (7),    [4] = Beach part 1 (11),
-                                         // [2] = Forest part 3 (8),    [5] = Beach part 4 (14),
-                                         // [3] = Forest part 5 (10),   [6] = Beach part 6 (16),                    
+                                         // [1] = Forest part 2 (7),    [4] = Beach part 1 (16), [7]  = Volcano part 2 (23)
+                                         // [2] = Forest part 3 (8),    [5] = Beach part 4 (19), [8]  = Volcano part 4 (25)
+                                         // [3] = Forest part 5 (10),   [6] = Beach part 6 (21), [9]  = Volcano part 5 (26)
+                                         //                                                      [10] = Volcano part 6 (27)
+                                         //                                                      [11] = Volcano part 9 (29)
 
     private bool[] unlockedTps; // Represent all tp unlocked or not. Initialized by tpButtons.Length. Index of tpButtons and unlockedTps are linked.
 
@@ -82,6 +84,10 @@ public class UI_Teleporter : MonoBehaviour
     // At the end execute Scene_Control.instance.SwitchGameLevel(tpIndex,true);
     IEnumerator SetTeleportation(int tpIndex)
     {
+        // Freeze the player
+        Player_Movement movement = FindObjectOfType<Player_Movement>();
+        movement.canMove = false;
+
         // Close Teleporting menu
         teleporterPanel.SetActive(false);
 
@@ -110,6 +116,8 @@ public class UI_Teleporter : MonoBehaviour
         {
             Debug.Log("No Scene_Control instance found.");
         }
+
+        movement.canMove = true;
     }
 
     // tpIndex refer to the build index of the scene we want to go

@@ -22,9 +22,8 @@ MonoBehaviour:
   abilityPrefab: {fileID: 6052980135759029977, guid: b247c121159f8b24ebd8ded3f1d90b10,
     type: 3}
   abilityBonus: 60
-  abilityPower: 15
+  abilityPower: 5
   abilityTimer: 6
   energyCost: 40
   abilityType: 1
-  abilityShortcut: 0
   levelRequired: 3

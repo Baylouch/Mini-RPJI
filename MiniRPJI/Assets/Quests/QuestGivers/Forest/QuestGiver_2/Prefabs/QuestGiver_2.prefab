@@ -1397,9 +1397,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactionType: 0
+  voice: 4
   questsToGive:
   - {fileID: 11400000, guid: deaa0bb29ed686940a9fdc931f62c7cc, type: 2}
   rewardPosition: {fileID: 4236228966702950017}
+  questLinkedItemSpawnPosition: {fileID: 0}
   endDialogue: Encore merci pour ces steaks de poissons !
   dialoguePanel: {fileID: 4236228966219207488}
   dialogue: {fileID: 4236228966048269806}
