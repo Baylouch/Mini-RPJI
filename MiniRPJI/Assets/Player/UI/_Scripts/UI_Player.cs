@@ -26,17 +26,34 @@ public class UI_Player : MonoBehaviour
         }
     }
 
-    public UI_Player_Stats playerStatsUI;
-    public UI_Player_Inventory playerInventoryUI;
-    public UI_Player_Quest playerQuestUI;
-    public UI_Player_Menu playerMenu; // To pause the game, save, load, quit...
-    public UI_Player_Bank playerBankUI;
-    public UI_Player_Pets playerPetsUI;
-    public UI_GameOver gameOverUI;
-    public UI_Teleporter teleporterUI;
-    public UI_Map mapUI;
-    public UI_Abilities playerAbilitiesUI;
-    public UI_Player_Success successUI;
+    // Menus prefabs to instantiate
+    [SerializeField] GameObject playerStatsUIGO;
+    [SerializeField] GameObject playerInventoryUIGO;
+    [SerializeField] GameObject playerQuestUIGO;
+    [SerializeField] GameObject playerMenuGO;
+    [SerializeField] GameObject playerBankUIGO;
+    [SerializeField] GameObject playerPetsUIGO;
+    [SerializeField] GameObject gameOverUIGO;
+    // [SerializeField] GameObject teleporterUIGO;
+    [SerializeField] GameObject mapUIGO;
+    [SerializeField] GameObject playerAbilitiesUIGO;
+    [SerializeField] GameObject successUIGO;
+
+    // All these menus are spawnable. Spawn them is a nice performance optimization.
+    [HideInInspector] public UI_Player_Stats playerStatsUI;
+    [HideInInspector] public UI_Player_Inventory playerInventoryUI;
+    [HideInInspector] public UI_Player_Quest playerQuestUI;
+    [HideInInspector] public UI_Player_Menu playerMenu; // To pause the game, save, load, quit...
+    [HideInInspector] public UI_Player_Bank playerBankUI;
+    [HideInInspector] public UI_Player_Pets playerPetsUI;
+    [HideInInspector] public UI_GameOver gameOverUI;
+    [HideInInspector] public UI_Map mapUI;
+    [HideInInspector] public UI_Abilities playerAbilitiesUI;
+    [HideInInspector] public UI_Player_Success successUI;
+
+    public UI_Teleporter teleporterUI; // TODO Make it acting as other UI elements (instantiate/Destroy) for simplicity i let as it is because i must change the behaviour of multiple things to make its working again
+
+    [SerializeField] GameObject uiButtonToDisplayPetsUI;
 
     private void Start()
     {
@@ -50,7 +67,7 @@ public class UI_Player : MonoBehaviour
 
     private void Update()
     {
-        if (gameOverUI.gameObject.activeSelf)
+        if (gameOverUI != null)
         {
             return;
         }
@@ -65,7 +82,7 @@ public class UI_Player : MonoBehaviour
             TogglePlayerMenu();
         }
 
-        if (playerMenu.gameObject.activeSelf)
+        if (playerMenu != null)
         {
             return;
         }
@@ -100,8 +117,8 @@ public class UI_Player : MonoBehaviour
         {
             if (Player_Pets.instance.GetPetsUnlocked())
             {
-                if (!playerPetsUI.uiButtonToDisplayPetsUI.activeSelf)
-                    playerPetsUI.uiButtonToDisplayPetsUI.SetActive(true);
+                if (!uiButtonToDisplayPetsUI.activeSelf)
+                    uiButtonToDisplayPetsUI.SetActive(true);
 
                 if (Input.GetKeyDown(KeyCode.P))
                 {
@@ -110,8 +127,8 @@ public class UI_Player : MonoBehaviour
             }
             else
             {
-                if (playerPetsUI.uiButtonToDisplayPetsUI.activeSelf)
-                    playerPetsUI.uiButtonToDisplayPetsUI.SetActive(false);
+                if (uiButtonToDisplayPetsUI.activeSelf)
+                    uiButtonToDisplayPetsUI.SetActive(false);
             }
         }
 
@@ -119,198 +136,208 @@ public class UI_Player : MonoBehaviour
 
     void HideAllMenus()
     {
-        if (gameOverUI.gameObject.activeSelf)
+        if (gameOverUI != null)
         {
-            gameOverUI.gameObject.SetActive(false);
+            Destroy(gameOverUI.gameObject);
+            gameOverUI = null;
         }
-        if (playerInventoryUI.gameObject.activeSelf)
+        if (playerInventoryUI != null)
         {
-            playerInventoryUI.gameObject.SetActive(false);
+            Destroy(playerInventoryUI.gameObject);
+            playerInventoryUI = null;
         }
-        if (playerStatsUI.gameObject.activeSelf)
+        if (playerStatsUI != null)
         {
-            playerStatsUI.gameObject.SetActive(false);
+            Destroy(playerStatsUI.gameObject);
+            playerStatsUI = null;
         }
-        if (playerQuestUI.gameObject.activeSelf)
+        if (playerQuestUI != null)
         {
-            playerQuestUI.gameObject.SetActive(false);
+            Destroy(playerQuestUI.gameObject);
+            playerQuestUI = null;
         }
-        if (playerMenu.gameObject.activeSelf)
+        if (playerMenu != null)
         {
-            playerMenu.gameObject.SetActive(false);
+            Destroy(playerMenu.gameObject);
+            playerMenu = null;
         }
-        if (playerBankUI.gameObject.activeSelf)
+        if (playerBankUI != null)
         {
-            playerBankUI.gameObject.SetActive(false);
+            Destroy(playerBankUI.gameObject);
+            playerBankUI = null;
         }
-        if (playerPetsUI.gameObject.activeSelf)
+        if (playerPetsUI != null)
         {
-            playerPetsUI.gameObject.SetActive(false);
+            Destroy(playerPetsUI.gameObject);
+            playerPetsUI = null;
         }
+        if (mapUI != null)
+        {
+            Destroy(mapUI.gameObject);
+            mapUI = null;
+        }
+        if (playerAbilitiesUI != null)
+        {
+            Destroy(playerAbilitiesUI.gameObject);
+            playerAbilitiesUI = null;
+        }
+        if (successUI != null)
+        {
+            Destroy(successUI.gameObject);
+            successUI = null;
+        }
+
         if (teleporterUI.gameObject.activeSelf)
         {
             teleporterUI.teleporterPanel.SetActive(false);
-        }
-        if (mapUI.gameObject.activeSelf)
-        {
-            mapUI.gameObject.SetActive(false);
-        }
-        if (playerAbilitiesUI.gameObject.activeSelf)
-        {
-            playerAbilitiesUI.gameObject.SetActive(false);
-        }
-        if (successUI.gameObject.activeSelf)
-        {
-            successUI.gameObject.SetActive(false);
         }
     }
 
     void HideLeftMenus()
     {
-        if (playerStatsUI.gameObject.activeSelf)
+        if (playerStatsUI != null)
         {
-            playerStatsUI.gameObject.SetActive(false);
+            Destroy(playerStatsUI.gameObject);
+            playerStatsUI = null;
         }
-        if (playerQuestUI.gameObject.activeSelf)
+        if (playerQuestUI != null)
         {
-            playerQuestUI.gameObject.SetActive(false);
+            Destroy(playerQuestUI.gameObject);
+            playerQuestUI = null;
         }
-        if (playerBankUI.gameObject.activeSelf)
+        if (playerBankUI != null)
         {
-            playerBankUI.gameObject.SetActive(false);
+            Destroy(playerBankUI.gameObject);
+            playerBankUI = null;
         }
-        if (mapUI.gameObject.activeSelf)
+        if (mapUI != null)
         {
-            mapUI.gameObject.SetActive(false);
+            Destroy(mapUI.gameObject);
+            mapUI = null;
         }
-        if (successUI.gameObject.activeSelf)
+        if (successUI != null)
         {
-            successUI.gameObject.SetActive(false);
+            Destroy(successUI.gameObject);
+            successUI = null;
+        }
+
+        if (teleporterUI.gameObject.activeSelf)
+        {
+            teleporterUI.teleporterPanel.SetActive(false);
         }
     }
 
     void HideRightMenus()
     {
-        if (playerInventoryUI.gameObject.activeSelf)
+        if (playerInventoryUI != null)
         {
-            playerInventoryUI.gameObject.SetActive(false);
+            Destroy(playerInventoryUI.gameObject);
+            playerInventoryUI = null;
         }
-        if (playerPetsUI.gameObject.activeSelf)
+        if (playerPetsUI != null)
         {
-            playerPetsUI.gameObject.SetActive(false);
+            Destroy(playerPetsUI.gameObject);
+            playerPetsUI = null;
         }
-        if (teleporterUI.gameObject.activeSelf)
+        if (mapUI != null)
         {
-            teleporterUI.teleporterPanel.SetActive(false);
+            Destroy(mapUI.gameObject);
+            mapUI = null;
         }
-        if (mapUI.gameObject.activeSelf)
+        if (playerAbilitiesUI != null)
         {
-            mapUI.gameObject.SetActive(false);
+            Destroy(playerAbilitiesUI.gameObject);
+            playerAbilitiesUI = null;
         }
-        if (playerAbilitiesUI.gameObject.activeSelf)
+        if (successUI != null)
         {
-            playerAbilitiesUI.gameObject.SetActive(false);
-        }
-        if (successUI.gameObject.activeSelf)
-        {
-            successUI.gameObject.SetActive(false);
+            Destroy(successUI.gameObject);
+            successUI = null;
         }
     }
 
     // Menu UI. On the center of the screen
     public void TogglePlayerMenu()
     {
-        if (playerMenu)
+        if (playerMenu == null)
         {
-            if (!playerMenu.gameObject.activeSelf)
-            {
-                HideAllMenus();
+            HideAllMenus();
 
-                playerMenu.gameObject.SetActive(true);
-            }
-            else
-            {
-                playerMenu.gameObject.SetActive(false);
-            }
+            GameObject newPlayerMenu = Instantiate(playerMenuGO, transform);
+            playerMenu = newPlayerMenu.GetComponent<UI_Player_Menu>();
+        }
+        else
+        {
+            Destroy(playerMenu.gameObject);
+            playerMenu = null;
+        }
 
-            if (Sound_Manager.instance)
-            {
-                Sound_Manager.instance.PlaySound(Sound_Manager.instance.asset.toggleUI);
-            }
+        if (Sound_Manager.instance)
+        {
+            Sound_Manager.instance.PlaySound(Sound_Manager.instance.asset.toggleUI);
         }
     }
 
     public void ToggleSuccessUI()
     {
-        if (successUI)
+        if (successUI == null)
         {
-            if (!successUI.gameObject.activeSelf)
-            {
-                HideAllMenus();
+            HideAllMenus();
 
-                successUI.gameObject.SetActive(true);
-            }
-            else
-            {
-                successUI.gameObject.SetActive(false);
-            }
+            GameObject newPlayerSucces = Instantiate(successUIGO, transform);
+            successUI = newPlayerSucces.GetComponent<UI_Player_Success>();
+        }
+        else
+        {
+            Destroy(successUI.gameObject);
+            successUI = null;
+        }
 
-            if (Sound_Manager.instance)
-            {
-                Sound_Manager.instance.PlaySound(Sound_Manager.instance.asset.toggleUI);
-            }
+        if (Sound_Manager.instance)
+        {
+            Sound_Manager.instance.PlaySound(Sound_Manager.instance.asset.toggleUI);
         }
     }
 
     public void TogglePlayerAbilitiesUI()
     {
-        if (playerAbilitiesUI)
+        if (playerAbilitiesUI == null)
         {
-            if (!playerAbilitiesUI.gameObject.activeSelf)
-            {
-                if (playerMenu.gameObject.activeSelf)
-                {
-                    return;
-                }
+            HideRightMenus();
 
-                HideRightMenus();
+            GameObject newPlayerAbilities = Instantiate(playerAbilitiesUIGO, transform);
+            playerAbilitiesUI = newPlayerAbilities.GetComponent<UI_Abilities>();
+        }
+        else
+        {
+            Destroy(playerAbilitiesUI.gameObject);
+            playerAbilitiesUI = null;
+        }
 
-                playerAbilitiesUI.gameObject.SetActive(true);
-            }
-            else
-            {
-                playerAbilitiesUI.gameObject.SetActive(false);
-            }
-
-            if (Sound_Manager.instance)
-            {
-                Sound_Manager.instance.PlaySound(Sound_Manager.instance.asset.toggleUI);
-            }
+        if (Sound_Manager.instance)
+        {
+            Sound_Manager.instance.PlaySound(Sound_Manager.instance.asset.toggleUI);
         }
     }
 
     public void ToggleMap()
     {
-        if (mapUI)
+        if (mapUI == null)
         {
-            if (!mapUI.gameObject.activeSelf)
-            {
-                if (playerMenu.gameObject.activeSelf)
-                {
-                    return;
-                }
+            HideAllMenus();
 
-                mapUI.gameObject.SetActive(true);
-            }
-            else
-            {
-                mapUI.gameObject.SetActive(false);
-            }
+            GameObject newMap = Instantiate(mapUIGO, transform);
+            mapUI = newMap.GetComponent<UI_Map>();
+        }
+        else
+        {
+            Destroy(mapUI.gameObject);
+            mapUI = null;
+        }
 
-            if (Sound_Manager.instance)
-            {
-                Sound_Manager.instance.PlaySound(Sound_Manager.instance.asset.toggleUI);
-            }
+        if (Sound_Manager.instance)
+        {
+            Sound_Manager.instance.PlaySound(Sound_Manager.instance.asset.toggleUI);
         }
     }
 
@@ -347,117 +374,92 @@ public class UI_Player : MonoBehaviour
     // Quest UI. On the left of the screen
     public void ToggleQuestMenu()
     {
-        if (playerQuestUI)
+        if (playerQuestUI == null)
         {
-            if (!playerQuestUI.gameObject.activeSelf)
-            {
-                if (playerMenu.gameObject.activeSelf)
-                {
-                    return;
-                }
+            HideLeftMenus();
 
-                HideLeftMenus();
+            GameObject newPlayerQuest = Instantiate(playerQuestUIGO, transform);
+            playerQuestUI = newPlayerQuest.GetComponent<UI_Player_Quest>();
+        }
+        else
+        {
+            Destroy(playerQuestUI.gameObject);
+            playerQuestUI = null;
+        }
 
-                playerQuestUI.gameObject.SetActive(true);
-            }
-            else
-            {
-                playerQuestUI.gameObject.SetActive(false);
-            }
-
-            if (Sound_Manager.instance)
-            {
-                Sound_Manager.instance.PlaySound(Sound_Manager.instance.asset.toggleUI);
-            }
+        if (Sound_Manager.instance)
+        {
+            Sound_Manager.instance.PlaySound(Sound_Manager.instance.asset.toggleUI);
         }
     }
 
     // Inventory UI. On the right of the screen
     public void ToggleInventoryMenu()
     {
-        if (playerInventoryUI)
-        {            
-            if (!playerInventoryUI.gameObject.activeSelf)
-            {
-                if (playerMenu.gameObject.activeSelf)
-                {
-                    return;
-                }
+        if (playerInventoryUI == null)
+        {
+            HideRightMenus();
 
-                HideRightMenus();
+            GameObject newPlayerInventory = Instantiate(playerInventoryUIGO, transform);
+            playerInventoryUI = newPlayerInventory.GetComponent<UI_Player_Inventory>();
+        }
+        else
+        {
+            Destroy(playerInventoryUI.gameObject);
+            playerInventoryUI = null;
+        }
 
-                playerInventoryUI.gameObject.SetActive(true);
-            }
-            else
-            {
-                playerInventoryUI.gameObject.SetActive(false);
-            }
-
-            if (Sound_Manager.instance)
-            {
-                Sound_Manager.instance.PlaySound(Sound_Manager.instance.asset.toggleUI);
-            }
+        if (Sound_Manager.instance)
+        {
+            Sound_Manager.instance.PlaySound(Sound_Manager.instance.asset.toggleUI);
         }
     }
 
     // Stats UI. On the left of the screen
     public void ToggleStatsMenu()
     {
-        if (playerStatsUI) // To active/disable playerStatsUI
+        if (playerStatsUI == null)
         {
-            if (!playerStatsUI.gameObject.activeSelf)
-            {
-                if (playerMenu.gameObject.activeSelf)
-                {
-                    return;
-                }
+            HideRightMenus();
 
-                HideLeftMenus();
+            GameObject newPlayerStats = Instantiate(playerStatsUIGO, transform);
+            playerStatsUI = newPlayerStats.GetComponent<UI_Player_Stats>();
+        }
+        else
+        {
+            Destroy(playerStatsUI.gameObject);
+            playerStatsUI = null;
+        }
 
-                playerStatsUI.gameObject.SetActive(true);
-                playerStatsUI.RefreshStatsDisplay();
-            }
-            else
-            {
-                playerStatsUI.gameObject.SetActive(false);
-            }
-
-            if (Sound_Manager.instance)
-            {
-                Sound_Manager.instance.PlaySound(Sound_Manager.instance.asset.toggleUI);
-            }
+        if (Sound_Manager.instance)
+        {
+            Sound_Manager.instance.PlaySound(Sound_Manager.instance.asset.toggleUI);
         }
     }
 
     // Bank UI. On the left of the screen. We need a parameter on it because its not the same way its open/closed. (Interaction in game instead of Input pre def)
     public void ToggleBankUI(bool value)
     {
-        if (playerBankUI)
+        if (value == true)
         {
-            if (value == true)
+            if (playerBankUI == null)
             {
                 HideLeftMenus();
 
-                if (!playerBankUI.gameObject.activeSelf)
-                {
-                    playerBankUI.gameObject.SetActive(true);
-
-                    if (Sound_Manager.instance)
-                    {
-                        Sound_Manager.instance.PlaySound(Sound_Manager.instance.asset.toggleUI);
-                    }
-                }
+                GameObject newPlayerBank = Instantiate(playerBankUIGO, transform);
+                playerBankUI = newPlayerBank.GetComponent<UI_Player_Bank>();
             }
-            else
+        }
+        else
+        {
+            if (playerBankUI)
             {
-                if (playerBankUI.gameObject.activeSelf)
-                {
-                    playerBankUI.gameObject.SetActive(false);
+                Destroy(playerBankUI.gameObject);
+                playerBankUI = null;
 
-                    if (Sound_Manager.instance)
-                    {
-                        Sound_Manager.instance.PlaySound(Sound_Manager.instance.asset.toggleUI);
-                    }
+                if (Sound_Manager.instance)
+                {
+                    Sound_Manager.instance.PlaySound(Sound_Manager.instance.asset.toggleUI);
                 }
             }
         }
@@ -465,27 +467,43 @@ public class UI_Player : MonoBehaviour
 
     public void TogglePetsUI()
     {
-        if (playerPetsUI)
+        if (playerPetsUI == null)
         {
-            if (!playerPetsUI.gameObject.activeSelf)
-            {
-                if (playerMenu.gameObject.activeSelf)
-                {
-                    return;
-                }
+            HideRightMenus();
 
+            GameObject newPlayerPets = Instantiate(playerPetsUIGO, transform);
+            playerPetsUI = newPlayerPets.GetComponent<UI_Player_Pets>();
+        }
+        else
+        {
+            Destroy(playerPetsUI.gameObject);
+            playerPetsUI = null;
+        }
+
+        if (Sound_Manager.instance)
+        {
+            Sound_Manager.instance.PlaySound(Sound_Manager.instance.asset.toggleUI);
+        }
+    }
+
+    public void ToggleGameOverUI(bool condition)
+    {
+        if (condition == true)
+        {
+            if (gameOverUI == null)
+            {
                 HideRightMenus();
 
-                playerPetsUI.gameObject.SetActive(true);
+                GameObject newGameOver = Instantiate(gameOverUIGO, transform);
+                gameOverUI = newGameOver.GetComponent<UI_GameOver>();
             }
-            else
+        }
+        else
+        {
+            if (gameOverUI != null)
             {
-                playerPetsUI.gameObject.SetActive(false);
-            }
-
-            if (Sound_Manager.instance)
-            {
-                Sound_Manager.instance.PlaySound(Sound_Manager.instance.asset.toggleUI);
+                Destroy(gameOverUI.gameObject);
+                gameOverUI = null;
             }
         }
     }

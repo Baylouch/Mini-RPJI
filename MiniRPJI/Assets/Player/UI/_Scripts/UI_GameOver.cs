@@ -23,7 +23,7 @@ public class UI_GameOver : MonoBehaviour
                 continueButton.onClick.AddListener(() => Camera.main.transform.SetParent(playerHealth.transform)); // Link camera to the player
                 continueButton.onClick.AddListener(() => Camera.main.transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, - 10)); // Offset camera
                 continueButton.onClick.AddListener(() => Camera.main.transform.localScale = Vector3.one); // Reset camera scale
-                continueButton.onClick.AddListener(() => gameObject.SetActive(false)); // Hide Game Over UI
+                continueButton.onClick.AddListener(() => UI_Player.instance.ToggleGameOverUI(false)); // Destroy Game Over UI
                 // TODO maybe add a curse to the player ?
             }
 

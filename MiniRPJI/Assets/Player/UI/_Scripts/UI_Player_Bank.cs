@@ -1,5 +1,6 @@
 ﻿/* UI_Player_Bank.cs :
- * Gère la banque du joueur.
+ * 
+ * Gère l'interface de la banque du joueur.
  * Il peut y stocker ses items et les retirer.
  * 
  * 
@@ -10,18 +11,18 @@ using UnityEngine.UI;
 
 public class UI_Player_Bank : MonoBehaviour
 {
-    public const int bankSlotsNumb = 36;
-
     [SerializeField] GameObject bankSlotInteractionUI;
 
     [SerializeField] Button getButton;
     [SerializeField] Button sellButton;
 
-    [SerializeField] UI_DisplayItemStats itemStatsDisplay; // Stats displayer (share the same with UI_Player_Inventory)
+    UI_DisplayItemStats itemStatsDisplay; // Stats displayer (share the same with UI_Player_Inventory)
 
     [SerializeField] InventorySlot[] bankSlots;
 
     int currentSlotInteraction = -1; // Important to set it -1 because bank index starts at 0
+
+    [SerializeField] Button quitButton;
 
     // Start is called before the first frame update
     void Start()
@@ -29,17 +30,14 @@ public class UI_Player_Bank : MonoBehaviour
         if (bankSlotInteractionUI.activeSelf)
             bankSlotInteractionUI.SetActive(false);
 
-        RefreshBank();
-    }
+        RefreshBankSlots();
 
-    void OnDisable()
-    {
-        getButton.onClick.RemoveAllListeners();
-        sellButton.onClick.RemoveAllListeners();
+        itemStatsDisplay = FindObjectOfType<UI_DisplayItemStats>();
 
-        if (bankSlotInteractionUI.activeSelf)
-            bankSlotInteractionUI.SetActive(false);
-      
+        if (quitButton)
+        {
+            quitButton.onClick.AddListener(() => UI_Player.instance.ToggleBankUI(false));
+        }
     }
 
     void RemoveItem(int slotIndex)
@@ -52,19 +50,22 @@ public class UI_Player_Bank : MonoBehaviour
                 if (bankSlots[slotIndex].itemNumb >= 1)
                 {
                     bankSlots[slotIndex].itemNumb--;
+                    Player_Inventory.instance.bankItemsNumb[slotIndex]--;
                 }
 
                 if (bankSlots[slotIndex].itemNumb < 1)
                 {
                     bankSlots[slotIndex].item = null;
+                    Player_Inventory.instance.SetBankItemSlot(slotIndex, -1);
                 }
             }
             else
             {
                 bankSlots[slotIndex].item = null;
+                Player_Inventory.instance.SetBankItemSlot(slotIndex, -1);
             }
 
-            RefreshBank();
+            RefreshBankSlots();
 
             if (currentSlotInteraction == slotIndex)
                 SetCurrentBankSlotInteractions(slotIndex);
@@ -72,31 +73,31 @@ public class UI_Player_Bank : MonoBehaviour
     }
 
     // Method to quickly refresh bank
-    public void RefreshBank()
+    public void RefreshBankSlots()
     {
-        for (int i = 0; i < bankSlots.Length; i++)
+        for (int i = 0; i < Player_Inventory.bankSlotsNumb; i++)
         {
-            // Refresh inventory item
+            if (Player_Inventory.instance.GetBankItem(i) != null)
+            {
+                bankSlots[i].item = Player_Inventory.instance.GetBankItem(i);
+
+                if (bankSlots[i].item.stackableItem)
+                {
+                    bankSlots[i].itemNumb = Player_Inventory.instance.bankItemsNumb[i];
+                }
+
+            }
+
             bankSlots[i].RefreshSlot();
+
         }
     }
 
-    // False = slots available, true = full
-    public bool CheckIfBankIsFull()
-    {
-        for (int i = 0; i < bankSlots.Length; i++)
-        {
-            if (bankSlots[i].item == null)
-                return false;
-        }
-        // If we're here bank got no more space
-        Debug.Log("No more available slot in the bank !");
-        return true;
-    }
+
 
     public void StoreNewItem(BaseItem item)
     {
-        if (CheckIfBankIsFull())
+        if (Player_Inventory.instance.CheckIfBankIsFull())
             return;
 
         // Issue : If player got 5 item / 3 required for the quest. When he store one, he still got 4 item in inventory, 1 in bank, but quest objective display 2/3.
@@ -121,7 +122,8 @@ public class UI_Player_Bank : MonoBehaviour
                     if (bankSlots[i].item == item) // If its the same item than stackable one increment it
                     {
                         bankSlots[i].itemNumb++;
-                        RefreshBank();
+                        RefreshBankSlots();
+                        Player_Inventory.instance.bankItemsNumb[i]++;
                         return; // dont continue
                     }
                 }
@@ -135,10 +137,16 @@ public class UI_Player_Bank : MonoBehaviour
             {
                 // set new item in inventory
                 bankSlots[i].item = item;
+                Player_Inventory.instance.SetBankItemSlot(i, item.itemID);
+
                 // We need to check if its a stackable item here too.
                 if (item.stackableItem)
+                {
                     bankSlots[i].itemNumb++;
-                RefreshBank();
+                    Player_Inventory.instance.bankItemsNumb[i]++;
+                }
+
+                RefreshBankSlots();
                 return; // Get out of there
             }
         }
@@ -154,7 +162,7 @@ public class UI_Player_Bank : MonoBehaviour
             sellButton.onClick.RemoveAllListeners();
 
             // If UI_Player_Inventory is in use, check if its interactions are set. If yes reset it.
-            if (UI_Player.instance.playerInventoryUI.gameObject.activeSelf)
+            if (UI_Player.instance.playerInventoryUI)
             {
                 UI_Player.instance.playerInventoryUI.ResetInteractionsParameters();
             }
@@ -181,14 +189,17 @@ public class UI_Player_Bank : MonoBehaviour
                 bankSlotInteractionUI.SetActive(true);
 
             // Then display item's stats
-            itemStatsDisplay.HideAndReset();
+            if (itemStatsDisplay)
+            {
+                itemStatsDisplay.HideAndReset();
 
-            if (bankSlots[indexSlot].item as EquipmentItem)
-                itemStatsDisplay.DisplayItemStats((EquipmentItem)bankSlots[indexSlot].item);
-            else if (bankSlots[indexSlot].item as UsableItem)
-                itemStatsDisplay.DisplayItemStats((UsableItem)bankSlots[indexSlot].item);
-            else if (bankSlots[indexSlot].item as QuestItem)
-                itemStatsDisplay.DisplayItemStats((QuestItem)bankSlots[indexSlot].item);
+                if (bankSlots[indexSlot].item as EquipmentItem)
+                    itemStatsDisplay.DisplayItemStats((EquipmentItem)bankSlots[indexSlot].item);
+                else if (bankSlots[indexSlot].item as UsableItem)
+                    itemStatsDisplay.DisplayItemStats((UsableItem)bankSlots[indexSlot].item);
+                else if (bankSlots[indexSlot].item as QuestItem)
+                    itemStatsDisplay.DisplayItemStats((QuestItem)bankSlots[indexSlot].item);
+            }
         }
         else // If currentInventorySlotIndex == indexSlot, player clicked on the same item so we want to unshow slotIntercationsUI and reset buttons
         {
@@ -200,7 +211,8 @@ public class UI_Player_Bank : MonoBehaviour
             if (bankSlotInteractionUI.activeSelf)
                 bankSlotInteractionUI.SetActive(false);
 
-            itemStatsDisplay.HideAndReset();
+            if (itemStatsDisplay)
+                itemStatsDisplay.HideAndReset();
         }
     }
 
@@ -259,32 +271,8 @@ public class UI_Player_Bank : MonoBehaviour
             if (bankSlotInteractionUI.activeSelf)
                 bankSlotInteractionUI.SetActive(false);
 
-            itemStatsDisplay.HideAndReset();
-        }
-    }
-
-    // used in GameControl.cs to save bank index item if there is an item in
-    public BaseItem GetBankItem(int bankIndex)
-    {
-        if (bankSlots[bankIndex].item != null)
-            return bankSlots[bankIndex].item;
-        return null;
-    }
-
-    // Used to set inventory item (Game_Data_Control.cs)
-    public void SetBankItemSlot(int bankIndex, int _itemID, int _itemNumb = 0)
-    {
-        // Next condition is used to remove item in the inventoryIndex slot. Because item's IDs will never be NEGATIVE
-        if (_itemID == -1)
-        {
-            bankSlots[bankIndex].item = null;
-        }
-
-        bankSlots[bankIndex].item = Player_Inventory.instance.itemDataBase.GetItemById(_itemID);
-
-        if (_itemNumb > 0)
-        {
-            bankSlots[bankIndex].itemNumb = _itemNumb;
+            if (itemStatsDisplay)
+                itemStatsDisplay.HideAndReset();
         }
     }
 

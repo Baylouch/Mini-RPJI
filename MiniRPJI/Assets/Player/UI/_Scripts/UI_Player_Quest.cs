@@ -27,31 +27,26 @@ public class UI_Player_Quest : MonoBehaviour
     [SerializeField] Image questImage;
     [SerializeField] Text noQuestText;
 
-    private void OnDisable()
+    [SerializeField] Button quitButton;
+
+    private void OnDestroy()
     {
         if (questDisplayer.activeSelf)
             questDisplayer.SetActive(false);
     }
 
-    private void OnEnable()
+    private void Start()
     {
-        // OLD content, check if new below works, then delete it.
-        // We check if there is a quest at first index
-        //if (Quests_Control.instance && Quests_Control.instance.GetPlayerQuestByIndex(0))
-        //{
-        //    if (noQuestText.gameObject.activeSelf)
-        //        noQuestText.gameObject.SetActive(false);
-        //}
-        //else
-        //{
-        //    if (!noQuestText.gameObject.activeSelf)
-        //        noQuestText.gameObject.SetActive(true);
-        //}
+        if (questDisplayer.activeSelf)
+            questDisplayer.SetActive(false);
 
-        // We check if there is a quest, else we show "noQuestText"
+        // We check if there is a quest to set buttons
         if (Quests_Control.instance)
         {
-            for (int i = 0; i < 200; i++) // We know 200 because its the max length of the Player_Quest array in Quests_Control.
+            if (!noQuestText.gameObject.activeSelf)
+                noQuestText.gameObject.SetActive(true);
+
+            for (int i = 0; i < Quests_Control.instance.questDataBase.quests.Length; i++)
             {
                 if (Quests_Control.instance.GetPlayerQuestByIndex(i) != null) // We check if there is a quest
                 {
@@ -59,21 +54,29 @@ public class UI_Player_Quest : MonoBehaviour
                     if (noQuestText.gameObject.activeSelf)
                         noQuestText.gameObject.SetActive(false);
 
+                    AddQuestButton(Quests_Control.instance.GetPlayerQuestByID(i).questConfig);
+                }
+                else
+                {
                     return;
                 }
             }
-            // If we're here, there is no quest in Player_Quest array
-            if (!noQuestText.gameObject.activeSelf)
-                noQuestText.gameObject.SetActive(true);
+        }
 
+        if (quitButton)
+        {
+            quitButton.onClick.AddListener(() => UI_Player.instance.ToggleQuestMenu());
         }
     }
 
-    // Start is called before the first frame update
-    void Start()
+    void AddQuestButton(QuestConfig linkedQuest)
     {
-        if (questDisplayer.activeSelf)
-            questDisplayer.SetActive(false);
+        GameObject newButton = Instantiate(questButtonPrefab, buttonsContainer);
+
+        newButton.GetComponent<Quest_Button>().questLinkedID = linkedQuest.questID;
+        newButton.GetComponentInChildren<Text>().text = linkedQuest.questTitle;
+
+        newButton.GetComponent<Button>().onClick.AddListener(() => DisplayQuest(linkedQuest));
     }
 
     public void DisplayQuest(QuestConfig questToDisplay)
@@ -116,16 +119,6 @@ public class UI_Player_Quest : MonoBehaviour
 
         if (!questDisplayer.activeSelf)
             questDisplayer.SetActive(true);
-    }
-
-    public void AddQuestButton(QuestConfig linkedQuest)
-    {
-        GameObject newButton = Instantiate(questButtonPrefab, buttonsContainer);
-
-        newButton.GetComponent<Quest_Button>().questLinkedID = linkedQuest.questID;
-        newButton.GetComponentInChildren<Text>().text = linkedQuest.questTitle;
-
-        newButton.GetComponent<Button>().onClick.AddListener(() => DisplayQuest(linkedQuest));
     }
 
     public void RemoveQuestButton(QuestConfig linkedQuest)

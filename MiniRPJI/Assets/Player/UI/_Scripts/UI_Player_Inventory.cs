@@ -18,7 +18,7 @@ public class UI_Player_Inventory : MonoBehaviour
 
     [SerializeField] Text playerMoneyText;
 
-    [SerializeField] UI_DisplayItemStats itemStatsDisplay; // Stats displayer
+    UI_DisplayItemStats itemStatsDisplay; // Stats displayer
 
     int currentInventorySlotIndex = -1; // Important to set it -1 because inventory index starts at 0
     int currentArmorySlotIndex = -1;
@@ -30,6 +30,8 @@ public class UI_Player_Inventory : MonoBehaviour
     float clicDelayToEquip = .3f;
     float lastTimeClickedOnItem = 0f;
 
+    [SerializeField] Button quitButton;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -39,6 +41,16 @@ public class UI_Player_Inventory : MonoBehaviour
 
         if (inventorySlotInteractionsUI.activeSelf)
             inventorySlotInteractionsUI.SetActive(false);
+
+        RefreshInventory();
+        RefreshArmory();
+
+        itemStatsDisplay = FindObjectOfType<UI_DisplayItemStats>();
+
+        if (quitButton)
+        {
+            quitButton.onClick.AddListener(() => UI_Player.instance.ToggleInventoryMenu());
+        }
     }
 
     private void Update()
@@ -53,24 +65,11 @@ public class UI_Player_Inventory : MonoBehaviour
         }
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
-        // Reset all buttons
-        RemoveAllButtonsListeners();
-
-        // Reset slots index to not have a pre-set one when player re open inventory
-        currentInventorySlotIndex = -1;
-        currentArmorySlotIndex = -1;
-
-        // Disable interactions UI
-        if (armorySlotIntercationsUI.activeSelf)
-            armorySlotIntercationsUI.SetActive(false);
-
-        if (inventorySlotInteractionsUI.activeSelf)
-            inventorySlotInteractionsUI.SetActive(false);
-
         // Hide and reset stats displayer
-        itemStatsDisplay.HideAndReset();
+        if (itemStatsDisplay)
+            itemStatsDisplay.HideAndReset();
         
     }
 
@@ -93,6 +92,12 @@ public class UI_Player_Inventory : MonoBehaviour
         {
             // Refresh inventory item
             inventorySlots[i].item = Player_Inventory.instance.GetInventoryItem(i);
+
+            if (inventorySlots[i].item && inventorySlots[i].item.stackableItem)
+            {
+                inventorySlots[i].itemNumb = Player_Inventory.instance.inventoryItemsNumb[i];
+            }
+
             inventorySlots[i].RefreshSlot();
         }
     }
@@ -116,7 +121,7 @@ public class UI_Player_Inventory : MonoBehaviour
             RemoveAllButtonsListeners();
 
             // Check if UI_Player_Bank is in use. If yes reset interactions parameters.
-            if (UI_Player.instance.playerBankUI.gameObject.activeSelf)
+            if (UI_Player.instance.playerBankUI)
             {
                 UI_Player.instance.playerBankUI.ResetInteractionsParameters();
             }
@@ -162,7 +167,7 @@ public class UI_Player_Inventory : MonoBehaviour
             }
 
             // Check if we can store the item (if player is using the bank)
-            if (UI_Player.instance.playerBankUI.gameObject.activeSelf)
+            if (UI_Player.instance.playerBankUI && UI_Player.instance.playerBankUI.gameObject.activeSelf)
             {
                 // add listener on the storeButton to store item in the bank.
                  storeButton.onClick.AddListener(() => StoreItem(indexSlot));
@@ -182,15 +187,17 @@ public class UI_Player_Inventory : MonoBehaviour
                 armorySlotIntercationsUI.SetActive(false);
 
             // Then display item's stats
-            itemStatsDisplay.HideAndReset();
+            if (itemStatsDisplay)
+            {
+                itemStatsDisplay.HideAndReset();
 
-            if (inventorySlots[indexSlot].item as EquipmentItem)
-                itemStatsDisplay.DisplayItemStats((EquipmentItem)inventorySlots[indexSlot].item);
-            else if (inventorySlots[indexSlot].item as UsableItem)
-                itemStatsDisplay.DisplayItemStats((UsableItem)inventorySlots[indexSlot].item);
-            else if (inventorySlots[indexSlot].item as QuestItem)
-                itemStatsDisplay.DisplayItemStats((QuestItem)inventorySlots[indexSlot].item);
-
+                if (inventorySlots[indexSlot].item as EquipmentItem)
+                    itemStatsDisplay.DisplayItemStats((EquipmentItem)inventorySlots[indexSlot].item);
+                else if (inventorySlots[indexSlot].item as UsableItem)
+                    itemStatsDisplay.DisplayItemStats((UsableItem)inventorySlots[indexSlot].item);
+                else if (inventorySlots[indexSlot].item as QuestItem)
+                    itemStatsDisplay.DisplayItemStats((QuestItem)inventorySlots[indexSlot].item);
+            }
             // Set the last time player clicked on it to check if click again
             lastTimeClickedOnItem = Time.time;
         }
@@ -216,7 +223,8 @@ public class UI_Player_Inventory : MonoBehaviour
             if (inventorySlotInteractionsUI.activeSelf)
                 inventorySlotInteractionsUI.SetActive(false);
 
-            itemStatsDisplay.HideAndReset();
+            if (itemStatsDisplay)
+                itemStatsDisplay.HideAndReset();
         }
     }
 
@@ -254,8 +262,11 @@ public class UI_Player_Inventory : MonoBehaviour
                 armorySlotIntercationsUI.SetActive(true);
 
             // Display item's stats
-            itemStatsDisplay.HideAndReset();
-            itemStatsDisplay.DisplayItemStats(armorySlots[indexPart].item);
+            if (itemStatsDisplay)
+            {
+                itemStatsDisplay.HideAndReset();
+                itemStatsDisplay.DisplayItemStats(armorySlots[indexPart].item);
+            }
 
             lastTimeClickedOnItem = Time.time;
         }
@@ -274,7 +285,8 @@ public class UI_Player_Inventory : MonoBehaviour
             if (armorySlotIntercationsUI.activeSelf)
                 armorySlotIntercationsUI.SetActive(false);
 
-            itemStatsDisplay.HideAndReset();
+            if (itemStatsDisplay)
+                itemStatsDisplay.HideAndReset();
         }
     }
 
@@ -316,6 +328,7 @@ public class UI_Player_Inventory : MonoBehaviour
                 if (inventorySlots[currentInventorySlotIndex].itemNumb >= 1)
                 {
                     inventorySlots[currentInventorySlotIndex].itemNumb--;
+                    Player_Inventory.instance.inventoryItemsNumb[currentInventorySlotIndex]--;
                 }
 
                 if (inventorySlots[currentInventorySlotIndex].itemNumb < 1)
@@ -350,7 +363,8 @@ public class UI_Player_Inventory : MonoBehaviour
             if (currentInventorySlotIndex == itemIndex)
                 SetCurrentInventorySlotInteractions(itemIndex);
 
-            itemStatsDisplay.HideAndReset();
+            if (itemStatsDisplay)
+                itemStatsDisplay.HideAndReset();
         }
     }
 
@@ -386,7 +400,8 @@ public class UI_Player_Inventory : MonoBehaviour
             if (armorySlotIntercationsUI.activeSelf)
                 armorySlotIntercationsUI.SetActive(false);
 
-            itemStatsDisplay.HideAndReset();
+            if (itemStatsDisplay)
+                itemStatsDisplay.HideAndReset();
         }
     }
 
@@ -433,6 +448,7 @@ public class UI_Player_Inventory : MonoBehaviour
                 }
 
                 RefreshArmory();
+
                 Player_Stats.instance.RefreshPlayerStats();
 
                 return;
@@ -475,7 +491,8 @@ public class UI_Player_Inventory : MonoBehaviour
         if (armorySlotIntercationsUI.activeSelf)
             armorySlotIntercationsUI.SetActive(false);
 
-        itemStatsDisplay.HideAndReset();
+        if (itemStatsDisplay)
+            itemStatsDisplay.HideAndReset();
     }
 
     // Method to use a usable item
@@ -507,6 +524,7 @@ public class UI_Player_Inventory : MonoBehaviour
                     if (inventorySlots[currentInventorySlotIndex].itemNumb > 1)
                     {
                         inventorySlots[currentInventorySlotIndex].itemNumb--;
+                        Player_Inventory.instance.inventoryItemsNumb[currentInventorySlotIndex]--;
                         RefreshInventory();
                     }
                     else
@@ -533,7 +551,7 @@ public class UI_Player_Inventory : MonoBehaviour
             // Check if bank isn't full
             if (UI_Player.instance.playerBankUI)
             {
-                if (!UI_Player.instance.playerBankUI.CheckIfBankIsFull())
+                if (!Player_Inventory.instance.CheckIfBankIsFull())
                 {
                     // Put item in the bank
                     UI_Player.instance.playerBankUI.StoreNewItem(inventorySlots[inventoryIndex].item);
@@ -619,7 +637,8 @@ public class UI_Player_Inventory : MonoBehaviour
             if (inventorySlotInteractionsUI.activeSelf)
                 inventorySlotInteractionsUI.SetActive(false);
 
-            itemStatsDisplay.HideAndReset();
+            if (itemStatsDisplay)
+                itemStatsDisplay.HideAndReset();
         }
 
         // Check if currentArmorySlotIndex is in use
@@ -632,7 +651,8 @@ public class UI_Player_Inventory : MonoBehaviour
             if (armorySlotIntercationsUI.activeSelf)
                 armorySlotIntercationsUI.SetActive(false);
 
-            itemStatsDisplay.HideAndReset();
+            if (itemStatsDisplay)
+                itemStatsDisplay.HideAndReset();
         }
     }
 }

@@ -939,14 +939,14 @@ MonoBehaviour:
   rareItems: {fileID: 11400000, guid: 0cbdd841b62106d40ae9cf10ff02c2fe, type: 2}
   epicItems: {fileID: 11400000, guid: 1acde7ba8b104824f9fbd8db7962aa2b, type: 2}
   commonItemDropRate: 10
-  uncommonItemDropRate: 5
-  rareItemDropRate: 3
-  epicItemDropRate: 1
-  commonItemTryDropNumb: 2
-  uncommonItemTryDropNumb: 2
-  rareItemTryDropNumb: 2
-  epicItemTryDropNumb: 2
-  maxItemDropable: 3
+  uncommonItemDropRate: 30
+  rareItemDropRate: 40
+  epicItemDropRate: 25
+  commonItemTryDropNumb: 1
+  uncommonItemTryDropNumb: 1
+  rareItemTryDropNumb: 1
+  epicItemTryDropNumb: 1
+  maxItemDropable: 4
   levelRange: 1
   usableDatabase: {fileID: 11400000, guid: 54b7a65e365544b428942cbaa70a4894, type: 2}
   usableDropRate: 40

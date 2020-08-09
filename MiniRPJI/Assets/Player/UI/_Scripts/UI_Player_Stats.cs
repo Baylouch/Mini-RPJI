@@ -40,6 +40,7 @@ public class UI_Player_Stats : MonoBehaviour
 
     [SerializeField] Button statsCancel;
     [SerializeField] Button statsValidation;
+    [SerializeField] Button quitButton;
 
     private int[] removableStatsPoints; // To know when player can remove points or not (an array for know exaclty what pts can be remove or not)
 
@@ -52,6 +53,11 @@ public class UI_Player_Stats : MonoBehaviour
         }
 
         RefreshStatsDisplay();
+
+        if (quitButton)
+        {
+            quitButton.onClick.AddListener(() => UI_Player.instance.ToggleStatsMenu());
+        }
     }
 
     void RefreshStatsButtons()

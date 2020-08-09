@@ -257,7 +257,8 @@ public class Player_Health : MonoBehaviour, IDamageable
         timeLastHit = Time.time; // Set the timer
 
         // If player take damage when he's already in the stats panel
-        UI_Player.instance.playerStatsUI.RefreshStatsDisplay();
+        if (UI_Player.instance.playerStatsUI)
+            UI_Player.instance.playerStatsUI.RefreshStatsDisplay();
 
         if (currentHealthPoints <= 0)
         {
@@ -332,10 +333,7 @@ public class Player_Health : MonoBehaviour, IDamageable
 
         if (UI_Player.instance)
         {
-            if (UI_Player.instance.gameOverUI)
-            {
-                UI_Player.instance.gameOverUI.gameObject.SetActive(true);
-            }
+            UI_Player.instance.ToggleGameOverUI(true);
         }
 
         Camera.main.transform.parent = null;

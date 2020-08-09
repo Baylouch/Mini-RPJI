@@ -13,16 +13,18 @@ public class UI_Map : MonoBehaviour
     [SerializeField] GameObject noMapText;
     [SerializeField] GameObject gameMapGO;
     [SerializeField] Image gameMapImage;
+
+    [SerializeField] Button quitButton;
     
     // Start is called before the first frame update
     void Start()
     {
         SetMap();
-    }
 
-    private void OnEnable()
-    {
-        SetMap();
+        if (quitButton)
+        {
+            quitButton.onClick.AddListener(() => UI_Player.instance.ToggleMap());
+        }
     }
 
     void SetMap()

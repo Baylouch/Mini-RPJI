@@ -6,8 +6,12 @@ public class HurtEffect : MonoBehaviour
 {
     public float alphaLimit = 0; // 0.0 to 1.0. Set into Player_Health
 
-    [SerializeField] Image hurtImage;
+    [SerializeField] Image[] hurtImage;
 
+    private void Start()
+    {
+        Destroy(gameObject, 10f);
+    }
     public void StartFadeEffect()
     {
         StartCoroutine(FadeIn());
@@ -17,9 +21,12 @@ public class HurtEffect : MonoBehaviour
     {
         for (float f = 0.05f; f <= alphaLimit; f += 0.05f)
         {
-            Color c = hurtImage.color;
-            c.a = f;
-            hurtImage.color = c;
+            for (int i = 0; i < hurtImage.Length; i++)
+            {
+                Color c = hurtImage[i].color;
+                c.a = f;
+                hurtImage[i].color = c;
+            }
 
             yield return new WaitForSeconds(0.01f);
         }
@@ -31,9 +38,12 @@ public class HurtEffect : MonoBehaviour
     {
         for (float f = alphaLimit; f >= -0.05f; f -= 0.05f)
         {
-            Color c = hurtImage.color;
-            c.a = f;
-            hurtImage.color = c;
+            for (int i = 0; i < hurtImage.Length; i++)
+            {
+                Color c = hurtImage[i].color;
+                c.a = f;
+                hurtImage[i].color = c;
+            }
 
             yield return new WaitForSeconds(0.01f);
         }

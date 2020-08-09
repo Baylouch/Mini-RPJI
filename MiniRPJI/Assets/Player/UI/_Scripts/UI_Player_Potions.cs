@@ -307,16 +307,54 @@ public class UI_Player_Potions : MonoBehaviour
         ResetPotionsPanel();
     }
 
+    void UsePotion(UsableItem item)
+    {
+        if (item == null) // I saw only one time an error when player used its last potion leading me here with a null reference. I suppose this will fix it.
+            return;
+
+        if (!item.CanUse())
+            return;
+
+        item.Use();
+
+        for (int i = 0; i < Player_Inventory.inventorySlotsNumb; i++) // Loop over inventory slots to find the item used to decrease the right one.
+        {
+            // Goal with line 2 next lines is to avoid null reference when player use fast potion when there is no more potions available.
+            if (Player_Inventory.instance.GetInventoryItem(i) == null)
+                continue;
+
+            if (Player_Inventory.instance.GetInventoryItem(i).itemID == item.itemID) // We found it.
+            {
+                Player_Inventory.instance.inventoryItemsNumb[i]--;
+
+                if (Player_Inventory.instance.inventoryItemsNumb[i] <= 0)
+                {
+                    Player_Inventory.instance.SetInventoryIndex(i, -1);
+
+                    if (item == firstPotion)
+                    {
+                        firstPotion = null;
+                    }
+                    else
+                    {
+                        secondPotion = null;
+                    }
+
+                }
+
+                if (UI_Player.instance.playerInventoryUI)
+                {
+                    UI_Player.instance.playerInventoryUI.RefreshInventory();
+                }
+
+                return;
+            }
+        }
+    }
+
     public void FastPotionUse(UsableItem potionToUse)
     {
-        if (UI_Player.instance) // If we have acces to UI_Player instance
-        {
-            if (UI_Player.instance.playerInventoryUI) // If we got acces to the inventoryUI
-            {
-                // Use the potion
-                UI_Player.instance.playerInventoryUI.UseItem(potionToUse);
-            }
-        }      
+        UsePotion(potionToUse);
     }
 }
 

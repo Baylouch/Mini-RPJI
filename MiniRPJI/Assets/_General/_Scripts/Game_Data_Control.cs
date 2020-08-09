@@ -102,25 +102,25 @@ public class Game_Data_Control : MonoBehaviour
         }
 
         // Then same for the bank
-        data.playerInventory.bankItems = new int[UI_Player_Bank.bankSlotsNumb];
-        data.playerInventory.bankItemsNumber = new int[UI_Player_Bank.bankSlotsNumb];
+        data.playerInventory.bankItems = new int[Player_Inventory.bankSlotsNumb];
+        data.playerInventory.bankItemsNumber = new int[Player_Inventory.bankSlotsNumb];
 
-        for (int i = 0; i < UI_Player_Bank.bankSlotsNumb; i++)
+        for (int i = 0; i < Player_Inventory.bankSlotsNumb; i++)
         {
             data.playerInventory.bankItems[i] = -1;
             data.playerInventory.bankItemsNumber[i] = 0;
         }
 
-        for (int i = 0; i < UI_Player_Bank.bankSlotsNumb; i++)
+        for (int i = 0; i < Player_Inventory.bankSlotsNumb; i++)
         {
-            if (UI_Player.instance.playerBankUI.GetBankItem(i) != null)
+            if (Player_Inventory.instance.GetBankItem(i) != null)
             {
-                data.playerInventory.bankItems[i] = UI_Player.instance.playerBankUI.GetBankItem(i).itemID;
+                data.playerInventory.bankItems[i] = Player_Inventory.instance.GetBankItem(i).itemID;
 
                 // If current item is a stackable one
-                if (UI_Player.instance.playerBankUI.GetBankItem(i).stackableItem)
+                if (Player_Inventory.instance.GetBankItem(i).stackableItem)
                 {
-                    data.playerInventory.bankItemsNumber[i] = UI_Player.instance.playerBankUI.GetBankSlotByIndex(i).itemNumb;
+                    data.playerInventory.bankItemsNumber[i] = Player_Inventory.instance.bankItemsNumb[i];
                 }
             }
         }
@@ -372,9 +372,9 @@ public class Game_Data_Control : MonoBehaviour
                 Player_Inventory.instance.SetArmoryIndex(i, -1);
             }
             // Same for bank slots
-            for (int i = 0; i < UI_Player_Bank.bankSlotsNumb; i++)
+            for (int i = 0; i < Player_Inventory.bankSlotsNumb; i++)
             {
-                UI_Player.instance.playerBankUI.SetBankItemSlot(i, -1);
+                Player_Inventory.instance.SetBankItemSlot(i, -1);
             }
 
             // And now set registered item into their slots.
@@ -394,11 +394,11 @@ public class Game_Data_Control : MonoBehaviour
                 }
             }
 
-            for (int i = 0; i < UI_Player_Bank.bankSlotsNumb; i++)
+            for (int i = 0; i < Player_Inventory.bankSlotsNumb; i++)
             {
                 if (data.playerInventory.bankItems[i] != -1)
                 {
-                    UI_Player.instance.playerBankUI.SetBankItemSlot(i, data.playerInventory.bankItems[i], data.playerInventory.bankItemsNumber[i]);
+                    Player_Inventory.instance.SetBankItemSlot(i, data.playerInventory.bankItems[i], data.playerInventory.bankItemsNumber[i]);
                 }
             }
 
@@ -406,8 +406,11 @@ public class Game_Data_Control : MonoBehaviour
             Player_Inventory.instance.SetPlayerGold(data.playerInventory.gold);
 
             // Then refresh all for the right display
-            UI_Player.instance.playerInventoryUI.RefreshInventory();
-            UI_Player.instance.playerInventoryUI.RefreshArmory();
+            if (UI_Player.instance.playerInventoryUI)
+            {
+                UI_Player.instance.playerInventoryUI.RefreshInventory();
+                UI_Player.instance.playerInventoryUI.RefreshArmory();
+            }
 
             Player_Stats.instance.RefreshPlayerStats();
 

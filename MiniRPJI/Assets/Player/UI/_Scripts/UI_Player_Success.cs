@@ -14,19 +14,17 @@ public class UI_Player_Success : MonoBehaviour
     [SerializeField] GameObject rewardLabel;
     [SerializeField] Button rewardButton;
 
+    [SerializeField] Button quitButton;
+
     private void Start()
     {
         ResetSuccessInformation();
-    }
-
-    private void OnDisable()
-    {
-        ResetSuccessInformation();
-    }
-
-    private void OnEnable()
-    {
         RefreshSuccessButtons();
+
+        if (quitButton)
+        {
+            quitButton.onClick.AddListener(() => UI_Player.instance.ToggleSuccessUI());
+        }
     }
 
     void RefreshSuccessButtons()

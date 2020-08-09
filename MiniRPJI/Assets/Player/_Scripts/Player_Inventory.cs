@@ -45,11 +45,17 @@ public class Player_Inventory : MonoBehaviour
 
     public const int armorySlotsNumb = 6; // Number of armory slots
     public const int inventorySlotsNumb = 18; // Number of inventory slots
+    public const int bankSlotsNumb = 36;
 
     [Header("Player's armory")]
     [SerializeField] EquipmentItem[] armoryItems;
     [Header("Player's inventory")]
     [SerializeField] BaseItem[] inventoryItems;
+    [Header("Player's bank")]
+    [SerializeField] BaseItem[] bankItems;
+
+    [HideInInspector] public int[] inventoryItemsNumb; // To keep a track when its a stackable item
+    [HideInInspector] public int[] bankItemsNumb;
 
     private void Awake()
     {
@@ -66,8 +72,8 @@ public class Player_Inventory : MonoBehaviour
 
     private void Start()
     {
-        UI_Player.instance.playerInventoryUI.RefreshInventory();
-        UI_Player.instance.playerInventoryUI.RefreshArmory();
+        inventoryItemsNumb = new int[inventoryItems.Length];
+        bankItemsNumb = new int[bankItems.Length];
     }
 
     // False = slots available, true = full
@@ -80,6 +86,19 @@ public class Player_Inventory : MonoBehaviour
         }
         // If we're here inventory got no more space
         Debug.Log("No more available slot in Inventory !");
+        return true;
+    }
+
+    // False = slots available, true = full
+    public bool CheckIfBankIsFull()
+    {
+        for (int i = 0; i < bankItems.Length; i++)
+        {
+            if (bankItems[i] == null)
+                return false;
+        }
+        // If we're here bank got no more space
+        Debug.Log("No more available slot in the bank !");
         return true;
     }
 
@@ -107,10 +126,15 @@ public class Player_Inventory : MonoBehaviour
             {
                 if (inventoryItems[i] != null)
                 {
-                    if (inventoryItems[i] == item) // If its the same item than stackable one increment it
+                    if (inventoryItems[i].itemID == item.itemID) // If its the same item than stackable one increment it
                     {
-                        UI_Player.instance.playerInventoryUI.GetInventorySlotByIndex(i).itemNumb++;
-                        UI_Player.instance.playerInventoryUI.RefreshInventory();
+                        inventoryItemsNumb[i]++;
+
+                        if (UI_Player.instance.playerInventoryUI)
+                        {
+                            UI_Player.instance.playerInventoryUI.RefreshInventory();
+                        }
+
                         return; // dont continue
                     }
                 }
@@ -124,11 +148,21 @@ public class Player_Inventory : MonoBehaviour
             {
                 // set new item in inventory
                 inventoryItems[i] = item;
+
                 // We need to check if its a stackable item here too.
                 if (item.stackableItem)
-                    UI_Player.instance.playerInventoryUI.GetInventorySlotByIndex(i).itemNumb++;
-                UI_Player.instance.playerInventoryUI.RefreshInventory();
-                return; // Get out of there -> useless. But no matter.
+                {
+                    inventoryItemsNumb[i]++;
+
+                    if (UI_Player.instance.playerInventoryUI)
+                        UI_Player.instance.playerInventoryUI.GetInventorySlotByIndex(i).itemNumb++;
+
+                }
+
+                if (UI_Player.instance.playerInventoryUI)
+                    UI_Player.instance.playerInventoryUI.RefreshInventory();
+
+                return; // Get out of there
             }
         }
     }
@@ -173,10 +207,7 @@ public class Player_Inventory : MonoBehaviour
 
         if (_itemNumb > 0)
         {
-            if (UI_Player.instance && UI_Player.instance.playerInventoryUI)
-            {
-                UI_Player.instance.playerInventoryUI.GetInventorySlotByIndex(inventoryIndex).itemNumb = _itemNumb;
-            }
+            inventoryItemsNumb[inventoryIndex] = _itemNumb;
         }
     }
 
@@ -189,5 +220,30 @@ public class Player_Inventory : MonoBehaviour
         }
 
         armoryItems[armoryIndex] = (EquipmentItem)itemDataBase.GetItemById(_itemID);
+    }
+
+    // used in GameControl.cs to save bank index item if there is an item in
+    public BaseItem GetBankItem(int bankIndex)
+    {
+        if (bankItems[bankIndex] != null)
+            return bankItems[bankIndex];
+        return null;
+    }
+
+    // Used to set inventory item (Game_Data_Control.cs)
+    public void SetBankItemSlot(int bankIndex, int _itemID, int _itemNumb = 0)
+    {
+        // Next condition is used to remove item in the inventoryIndex slot. Because item's IDs will never be NEGATIVE
+        if (_itemID == -1)
+        {
+            bankItems[bankIndex] = null;
+        }
+
+        bankItems[bankIndex] = itemDataBase.GetItemById(_itemID);
+
+        if (_itemNumb > 0)
+        {
+            bankItemsNumb[bankIndex] = _itemNumb;
+        }
     }
 }

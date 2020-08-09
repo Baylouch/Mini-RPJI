@@ -673,6 +673,45 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  bankItems:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  inventoryItemsNumb: 
+  bankItemsNumb: 
 --- !u!1 &1860566189
 GameObject:
   m_ObjectHideFlags: 0
@@ -1165,7 +1204,7 @@ MonoBehaviour:
     type: 3}
   DamageTextParent: {fileID: 1860566190}
   rend: {fileID: 3282687990247486242}
-  hurtEffectUI: {fileID: 8490881720424789147, guid: 5c79db8a39d4dbd4e8ea9bf088c7c836,
+  hurtEffectUI: {fileID: 1790697372039184848, guid: 52451311556a9364a98cfcc7435c906f,
     type: 3}
 --- !u!114 &882769571
 MonoBehaviour:

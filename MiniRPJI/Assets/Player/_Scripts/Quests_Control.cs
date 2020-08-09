@@ -29,14 +29,6 @@ public class Quests_Control : MonoBehaviour
     private void Start()
     {
         ResetAllQuestsAchievement();
-
-        for (int i = 0; i < playerQuests.Length; i++)
-        {
-            if (playerQuests[i] != null)
-            {
-                UI_Player.instance.playerQuestUI.AddQuestButton(playerQuests[i].questConfig);
-            }
-        }
     }
 
     void RemoveAccomplishedQuestStuffInScene(int _questID)
@@ -53,7 +45,8 @@ public class Quests_Control : MonoBehaviour
                     if (_questID == questItem.questID)
                     {
                         Player_Inventory.instance.SetInventoryIndex(i, -1); // Delete item.
-                        UI_Player.instance.playerInventoryUI.RefreshInventory();
+                        if (UI_Player.instance.playerInventoryUI)
+                            UI_Player.instance.playerInventoryUI.RefreshInventory();
                     }
                 }
             }
@@ -100,8 +93,6 @@ public class Quests_Control : MonoBehaviour
         _tempPlayerQuest.questConfig = questDataBase.GetQuestByID(_questID);
 
         playerQuests[questIndex] = _tempPlayerQuest;
-
-        UI_Player.instance.playerQuestUI.AddQuestButton(playerQuests[questIndex].questConfig);
     }
 
     // To find a quest by INDEX
@@ -179,7 +170,8 @@ public class Quests_Control : MonoBehaviour
                 Player_Pets.instance.SetPetsUnlocked(true);
             }
 
-            UI_Player.instance.playerQuestUI.RemoveQuestButton(playerQuests[_questIndex].questConfig);
+            if (UI_Player.instance.playerQuestUI)
+                UI_Player.instance.playerQuestUI.RemoveQuestButton(playerQuests[_questIndex].questConfig);
 
             // Play sound
             if (Sound_Manager.instance)

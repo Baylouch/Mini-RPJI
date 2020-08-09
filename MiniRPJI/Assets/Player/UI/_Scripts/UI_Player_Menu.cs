@@ -31,23 +31,14 @@ public class UI_Player_Menu : MonoBehaviour
     {
         HideConfirmationWindow();
         HideAndResetSaveSlots();
-
         HideCommands();
         HideOptionsGame();
-    }
 
-    private void OnEnable()
-    {
         Time.timeScale = 0;
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
-        HideConfirmationWindow();
-        HideAndResetSaveSlots();
-        HideCommands();
-        HideOptionsGame();
-
         Time.timeScale = 1;
     }
 
@@ -59,7 +50,7 @@ public class UI_Player_Menu : MonoBehaviour
 
     public void ContinueGame()
     {
-        gameObject.SetActive(false);
+        UI_Player.instance.TogglePlayerMenu();
     }
 
     public void SaveGame()

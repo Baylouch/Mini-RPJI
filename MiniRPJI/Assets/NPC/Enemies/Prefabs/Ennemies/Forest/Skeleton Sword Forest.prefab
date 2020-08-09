@@ -944,10 +944,10 @@ MonoBehaviour:
   uncommonItemDropRate: 5
   rareItemDropRate: 3
   epicItemDropRate: 1
-  commonItemTryDropNumb: 2
-  uncommonItemTryDropNumb: 2
-  rareItemTryDropNumb: 2
-  epicItemTryDropNumb: 2
+  commonItemTryDropNumb: 1
+  uncommonItemTryDropNumb: 1
+  rareItemTryDropNumb: 1
+  epicItemTryDropNumb: 1
   maxItemDropable: 3
   levelRange: 1
   usableDatabase: {fileID: 11400000, guid: 54b7a65e365544b428942cbaa70a4894, type: 2}

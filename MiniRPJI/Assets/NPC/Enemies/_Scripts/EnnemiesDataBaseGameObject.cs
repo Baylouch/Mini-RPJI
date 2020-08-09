@@ -1,6 +1,6 @@
 ﻿/* EnnemiesDataBaseGameObject.cs
  * 
- * Simply use because i found no other place to nicely put on the EnnemiesDataBase.
+ * Simply used because i found no other place to nicely put the EnnemiesDataBase.
  * 
  * Make this singleton and persistent
  * 

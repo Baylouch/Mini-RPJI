@@ -1,6 +1,6 @@
 ﻿/* Research_Projectile.cs
  * 
- * Script a attacher sur une flèche afin qu'elle devienne a tête chercheuse.
+ * Script a attacher sur un projectile du joueur afin qu'il devienne a tête chercheuse.
  * 
  * Prend pour cible l'ennemi le plus proche lors de sa création.
  * 
@@ -15,7 +15,7 @@ using Pathfinding;
 [RequireComponent(typeof(Seeker))] // To set path
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Player_Projectile))]
-public class Research_Projectile : MonoBehaviour
+public class Player_Research_Projectile : MonoBehaviour
 {
     // The distance maximum the arrow will search a target
     [SerializeField] float researchingTargetDistance = 15f;
@@ -43,8 +43,8 @@ public class Research_Projectile : MonoBehaviour
         projectile = GetComponent<Player_Projectile>();
         animator = GetComponent<Animator>();
 
-        // To set the arrow direction at start (to avoid arrow only spawn for top direction because of animator component).
-        if (gameObject.tag == "Player" && FindObjectOfType<Player_Combat>())
+        // To set the arrow direction at start (to avoid arrow spawn from top direction everytime because of animator component).
+        if (FindObjectOfType<Player_Combat>())
         {
             float currentFirePointRotation = FindObjectOfType<Player_Combat>().GetFirePointRotationZ();
 
@@ -127,7 +127,7 @@ public class Research_Projectile : MonoBehaviour
         }
         else
         {
-            // No target find, the arrow will simply be a normal arrow.
+            // No target found, the arrow will simply be a normal arrow.
             Destroy(this);
         }
     }

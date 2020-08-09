@@ -29,24 +29,24 @@ public class UI_Abilities : MonoBehaviour
     [SerializeField] Button validateButton;
     [SerializeField] Button cancelButton;
 
+    [SerializeField] Button quitButton;
+
 
     // Start is called before the first frame update
     void Start()
     {
         abilityInfoPanel.SetActive(false);
+
         ResetAbilitiesInfos();
+
         cancelButton.onClick.AddListener(() => ResetAbilitiesInfos());
-    }
 
-    private void OnEnable()
-    {
-        if (Player_Abilities.instance)
-            abilityPointsAvailableText.text = Player_Abilities.instance.GetAbilityPoints().ToString();
-    }
+        RefreshAbilitiesUI();
 
-    private void OnDisable()
-    {
-        ResetAbilitiesInfos(); 
+        if (quitButton)
+        {
+            quitButton.onClick.AddListener(() => UI_Player.instance.TogglePlayerAbilitiesUI());
+        }
     }
 
     void ResetAbilityLevelButtons()
