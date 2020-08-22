@@ -17,6 +17,8 @@ using Pathfinding;
 [RequireComponent(typeof(Player_Projectile))]
 public class Player_Research_Projectile : MonoBehaviour
 {
+    public Player_Research_Projectile[] linkedProj;
+
     // The distance maximum the arrow will search a target
     [SerializeField] float researchingTargetDistance = 15f;
 
@@ -79,43 +81,56 @@ public class Player_Research_Projectile : MonoBehaviour
         ProcessMovement();
     }
 
-    void SetTarget()
+    public void SetTarget()
     {
         // Find the closer enemy and set it as target
         AI_Health[] aiHealth = FindObjectsOfType<AI_Health>(); // Search for all AI_Health in the scene to compare their distance.
         Transform closerTarget = null;
 
-        for (int i = 0; i < aiHealth.Length - 1; i++)
+        if (aiHealth.Length > 1)
         {
-            // if closerTarget == null we're at the first iteration
-            if (closerTarget == null)
+            for (int i = 0; i < aiHealth.Length - 1; i++)
             {
-                // Check if aiHealth[i] position is greater than the researchingTargetDistance
-                if (Vector3.Distance(transform.position, aiHealth[i].transform.position) > researchingTargetDistance)
+                // if closerTarget == null we're at the first iteration
+                if (closerTarget == null)
                 {
-                    // If its the case, just continue to go to the next iteration. Testing aiHealth[i + 1] is useless because we'll test it on the next iteration.
-                    // And if we pass trough this condition, aiHealth[i + 1] is out of researchingTargetDistance range so aiHealth[i] is closer and will be set as target.
-                    continue;
+                    // Check if aiHealth[i] position is greater than the researchingTargetDistance
+                    if (aiHealth[i] != null && Vector3.Distance(transform.position, aiHealth[i].transform.position) > researchingTargetDistance)
+                    {
+                        // If its the case, just continue to go to the next iteration. Testing aiHealth[i + 1] is useless because we'll test it on the next iteration.
+                        // And if we pass trough this condition, aiHealth[i + 1] is out of researchingTargetDistance range so aiHealth[i] is closer and will be set as target.
+                        continue;
+                    }
+
+                    if (aiHealth[i + 1] != null && Vector3.Distance(transform.position, aiHealth[i].transform.position) > Vector3.Distance(transform.position, aiHealth[i + 1].transform.position))
+                    {
+                        closerTarget = aiHealth[i + 1].transform;
+                    }
+                    else
+                    {
+                        closerTarget = aiHealth[i].transform;
+                    }
+
+                    continue; // We set closerTarget, go to the next iteration to compare with next aiHealth
                 }
 
-                if (Vector3.Distance(transform.position, aiHealth[i].transform.position) > Vector3.Distance(transform.position, aiHealth[i + 1].transform.position))
+                // Check if aiHealth[i] isn't out of range, then compare it with closerTarget position to know if its closer or not.
+                if (Vector3.Distance(transform.position, aiHealth[i].transform.position) <= researchingTargetDistance)
                 {
-                    closerTarget = aiHealth[i + 1].transform;
+                    if (Vector3.Distance(transform.position, closerTarget.position) > Vector3.Distance(transform.position, aiHealth[i].transform.position))
+                    {
+                        closerTarget = aiHealth[i].transform;
+                    }
                 }
-                else
-                {
-                    closerTarget = aiHealth[i].transform;
-                }
-
-                continue; // We set closerTarget, go to the next iteration to compare with next aiHealth
             }
-
-            // Check if aiHealth[i] isn't out of range, then compare it with closerTarget position to know if its closer or not.
-            if (Vector3.Distance(transform.position, aiHealth[i].transform.position) <= researchingTargetDistance)
+        }
+        else
+        {
+            if (aiHealth.Length > 0)
             {
-                if (Vector3.Distance(transform.position, closerTarget.position) > Vector3.Distance(transform.position, aiHealth[i].transform.position))
+                if (Vector3.Distance(transform.position, aiHealth[0].transform.position) <= researchingTargetDistance)
                 {
-                    closerTarget = aiHealth[i].transform;
+                    closerTarget = aiHealth[0].transform;
                 }
             }
         }
@@ -128,7 +143,7 @@ public class Player_Research_Projectile : MonoBehaviour
         else
         {
             // No target found, the arrow will simply be a normal arrow.
-            Destroy(this);
+            this.enabled = false;
         }
     }
 
@@ -161,35 +176,43 @@ public class Player_Research_Projectile : MonoBehaviour
         {
             if (direction.y < -0.2f && direction.x < -0.2f) // upper and right
             {
-                myRb.velocity = new Vector2(1f, 1f) * projectile.GetProjectileSpeed();
+                if (myRb.velocity != new Vector2(1f, 1f) * projectile.GetProjectileSpeed())
+                    myRb.velocity = new Vector2(1f, 1f) * projectile.GetProjectileSpeed();
             }
             else if (direction.y < -0.2f && direction.x > 0.2f) // upper and left
             {
-                myRb.velocity = new Vector2(-1f, 1f) * projectile.GetProjectileSpeed();
+                if (myRb.velocity != new Vector2(-1f, 1f) * projectile.GetProjectileSpeed())
+                    myRb.velocity = new Vector2(-1f, 1f) * projectile.GetProjectileSpeed();
             }
             else if (direction.y > 0.2f && direction.x < -0.2f) // lower and right
             {
-                myRb.velocity = new Vector2(1f, -1f) * projectile.GetProjectileSpeed();
+                if (myRb.velocity != new Vector2(1f, -1f) * projectile.GetProjectileSpeed())
+                    myRb.velocity = new Vector2(1f, -1f) * projectile.GetProjectileSpeed();
             }
             else if (direction.y > 0.2f && direction.x > 0.2f) // lower and left
             {
-                myRb.velocity = new Vector2(-1f, -1f) * projectile.GetProjectileSpeed();
+                if (myRb.velocity != new Vector2(-1f, -1f) * projectile.GetProjectileSpeed())
+                    myRb.velocity = new Vector2(-1f, -1f) * projectile.GetProjectileSpeed();
             }
             else if (direction.y < -0.2f) // upper
             {
-                myRb.velocity = new Vector2(0f, 1f) * projectile.GetProjectileSpeed();
+                if (myRb.velocity != new Vector2(0f, 1f) * projectile.GetProjectileSpeed())
+                    myRb.velocity = new Vector2(0f, 1f) * projectile.GetProjectileSpeed();
             }
             else if (direction.y > 0.2f) // lower
             {
-                myRb.velocity = new Vector2(0f, -1f) * projectile.GetProjectileSpeed();
+                if (myRb.velocity != new Vector2(0f, -1f) * projectile.GetProjectileSpeed())
+                    myRb.velocity = new Vector2(0f, -1f) * projectile.GetProjectileSpeed();
             }
             else if (direction.x < -0.2f) // right
             {
-                myRb.velocity = new Vector2(1f, 0f) * projectile.GetProjectileSpeed();
+                if (myRb.velocity != new Vector2(1f, 0f) * projectile.GetProjectileSpeed())
+                    myRb.velocity = new Vector2(1f, 0f) * projectile.GetProjectileSpeed();
             }
             else if (direction.x > 0.2f) // left
             {
-                myRb.velocity = new Vector2(-1f, 0f) * projectile.GetProjectileSpeed();
+                if (myRb.velocity != new Vector2(-1f, 0f) * projectile.GetProjectileSpeed())
+                    myRb.velocity = new Vector2(-1f, 0f) * projectile.GetProjectileSpeed();
             }
         }
 
@@ -218,7 +241,8 @@ public class Player_Research_Projectile : MonoBehaviour
     {
         if (target == null)
         {
-            Debug.Log("La fleche n'as pas de cible.");
+            SetTarget();
+
             return;
         }
 

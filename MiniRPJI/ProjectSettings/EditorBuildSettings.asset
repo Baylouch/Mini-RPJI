@@ -98,4 +98,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_.Scenes/Game/Volcano/Level_Volcano_Part_Final.unity
     guid: b3f8502409c7d344aa4935c9c03eedf8
+  - enabled: 1
+    path: Assets/_.Scenes/Game/Volcano Sub Levels/SpecialLevel_RareEnnemies.unity
+    guid: cd7e2cfe22ec83346927310b4c78bf83
+  - enabled: 1
+    path: Assets/_.Scenes/Game/Volcano Sub Levels/SpecialLevel_TestZone.unity
+    guid: e3ff43ab0ca664a429618dd39345f7fc
+  - enabled: 1
+    path: Assets/_.Scenes/Game/Level_Credits.unity
+    guid: e9de87771067bd743a2a07d48120f525
   m_configObjects: {}

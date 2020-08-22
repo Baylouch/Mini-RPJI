@@ -164,35 +164,43 @@ public class AI_Enemy_Movement : MonoBehaviour
         {
             if (direction.y < -0.2f && direction.x < -0.2f) // upper and right
             {
-                myRb.velocity = new Vector2(1f, 1f) * ai_stats.GetSpeed();
+                if (myRb.velocity != new Vector2(1f, 1f) * ai_stats.GetSpeed())
+                    myRb.velocity = new Vector2(1f, 1f) * ai_stats.GetSpeed();
             }
             else if (direction.y < -0.2f && direction.x > 0.2f) // upper and left
             {
-                myRb.velocity = new Vector2(-1f, 1f) * ai_stats.GetSpeed();
+                if (myRb.velocity != new Vector2(-1f, 1f) * ai_stats.GetSpeed())
+                    myRb.velocity = new Vector2(-1f, 1f) * ai_stats.GetSpeed();
             }
             else if (direction.y > 0.2f && direction.x < -0.2f) // lower and right
             {
-                myRb.velocity = new Vector2(1f, -1f) * ai_stats.GetSpeed();
+                if (myRb.velocity != new Vector2(1f, -1f) * ai_stats.GetSpeed())
+                    myRb.velocity = new Vector2(1f, -1f) * ai_stats.GetSpeed();
             }
             else if (direction.y > 0.2f && direction.x > 0.2f) // lower and left
             {
-                myRb.velocity = new Vector2(-1f, -1f) * ai_stats.GetSpeed();
+                if (myRb.velocity != new Vector2(-1f, -1f) * ai_stats.GetSpeed())
+                    myRb.velocity = new Vector2(-1f, -1f) * ai_stats.GetSpeed();
             }
             else if (direction.y < -0.2f) // upper
             {
-                myRb.velocity = new Vector2(0f, 1f) * ai_stats.GetSpeed();
+                if (myRb.velocity != new Vector2(0f, 1f) * ai_stats.GetSpeed())
+                    myRb.velocity = new Vector2(0f, 1f) * ai_stats.GetSpeed();
             }
             else if (direction.y > 0.2f) // lower
             {
-                myRb.velocity = new Vector2(0f, -1f) * ai_stats.GetSpeed();
+                if (myRb.velocity != new Vector2(0f, -1f) * ai_stats.GetSpeed())
+                    myRb.velocity = new Vector2(0f, -1f) * ai_stats.GetSpeed();
             }
             else if (direction.x < -0.2f) // right
             {
-                myRb.velocity = new Vector2(1f, 0f) * ai_stats.GetSpeed();
+                if (myRb.velocity != new Vector2(1f, 0f) * ai_stats.GetSpeed())
+                    myRb.velocity = new Vector2(1f, 0f) * ai_stats.GetSpeed();
             }
             else if (direction.x > 0.2f) // left
             {
-                myRb.velocity = new Vector2(-1f, 0f) * ai_stats.GetSpeed();
+                if (myRb.velocity != new Vector2(-1f, 0f) * ai_stats.GetSpeed())
+                    myRb.velocity = new Vector2(-1f, 0f) * ai_stats.GetSpeed();
             }
         }
 

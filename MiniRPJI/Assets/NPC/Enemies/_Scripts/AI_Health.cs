@@ -219,7 +219,10 @@ public class AI_Health : MonoBehaviour, IDamageable
         {
             successObjectives[i].IncrementSuccessObjective();
         }
-        
+
+        if (GetComponent<SendPlayerToCreditScene>())
+            GetComponent<SendPlayerToCreditScene>().GoToCreditScene();
+
         Destroy(gameObject);
     }
 

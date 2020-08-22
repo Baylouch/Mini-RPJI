@@ -10,7 +10,15 @@ public class Enemy_Projectile : MonoBehaviour
     public ProjectileType projectileType; // To set projectile effect (frost, fire, nothing..)
 
     [SerializeField] float projectileSpeed = 5f;
+    public float GetProjectileSpeed()
+    {
+        return projectileSpeed;
+    }
     [SerializeField] float timerBeforeDestroy = 3f;
+    public float GetTimerBeforeDestroy()
+    {
+        return timerBeforeDestroy;
+    }
     [SerializeField] float malusTimer = 2f;
     [SerializeField] float percentageChanceToApplyMalus = 100f;
     [SerializeField] GameObject impactEffect;

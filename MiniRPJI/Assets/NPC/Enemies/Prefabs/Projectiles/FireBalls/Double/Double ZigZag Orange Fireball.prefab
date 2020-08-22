@@ -1,0 +1,226 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &8944033196334909301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 141195634621521153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f8443b85aad7e542a8277464abe3894, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  theEnemyWhoLaunchTheProjectile: {fileID: 0}
+  movementType: 0
+  intervalMovement: 0.35
+--- !u!1 &2881757163408350091
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3079225949223593652}
+  m_Layer: 0
+  m_Name: Double ZigZag Orange Fireball
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3079225949223593652
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2881757163408350091}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 659034750938499307}
+  - {fileID: 7468512744384691379}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3388489148815221922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8031467305955666265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f8443b85aad7e542a8277464abe3894, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  theEnemyWhoLaunchTheProjectile: {fileID: 0}
+  movementType: 0
+  intervalMovement: 0.35
+--- !u!1001 &697306469097300324
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 3079225949223593652}
+    m_Modifications:
+    - target: {fileID: 601498987779062885, guid: 0cf08f98b1f02f041b7c6b2ee2bf1e61,
+        type: 3}
+      propertyPath: m_Name
+      value: Orange FireBall
+      objectReference: {fileID: 0}
+    - target: {fileID: 38289492891904399, guid: 0cf08f98b1f02f041b7c6b2ee2bf1e61,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 38289492891904399, guid: 0cf08f98b1f02f041b7c6b2ee2bf1e61,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 38289492891904399, guid: 0cf08f98b1f02f041b7c6b2ee2bf1e61,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 38289492891904399, guid: 0cf08f98b1f02f041b7c6b2ee2bf1e61,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 38289492891904399, guid: 0cf08f98b1f02f041b7c6b2ee2bf1e61,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 38289492891904399, guid: 0cf08f98b1f02f041b7c6b2ee2bf1e61,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.043619405
+      objectReference: {fileID: 0}
+    - target: {fileID: 38289492891904399, guid: 0cf08f98b1f02f041b7c6b2ee2bf1e61,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9990483
+      objectReference: {fileID: 0}
+    - target: {fileID: 38289492891904399, guid: 0cf08f98b1f02f041b7c6b2ee2bf1e61,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 38289492891904399, guid: 0cf08f98b1f02f041b7c6b2ee2bf1e61,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 38289492891904399, guid: 0cf08f98b1f02f041b7c6b2ee2bf1e61,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 38289492891904399, guid: 0cf08f98b1f02f041b7c6b2ee2bf1e61,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -5
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0cf08f98b1f02f041b7c6b2ee2bf1e61, type: 3}
+--- !u!1 &141195634621521153 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 601498987779062885, guid: 0cf08f98b1f02f041b7c6b2ee2bf1e61,
+    type: 3}
+  m_PrefabInstance: {fileID: 697306469097300324}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &659034750938499307 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 38289492891904399, guid: 0cf08f98b1f02f041b7c6b2ee2bf1e61,
+    type: 3}
+  m_PrefabInstance: {fileID: 697306469097300324}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &7434727005955118396
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 3079225949223593652}
+    m_Modifications:
+    - target: {fileID: 601498987779062885, guid: 0cf08f98b1f02f041b7c6b2ee2bf1e61,
+        type: 3}
+      propertyPath: m_Name
+      value: Orange FireBall (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 38289492891904399, guid: 0cf08f98b1f02f041b7c6b2ee2bf1e61,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 38289492891904399, guid: 0cf08f98b1f02f041b7c6b2ee2bf1e61,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 38289492891904399, guid: 0cf08f98b1f02f041b7c6b2ee2bf1e61,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 38289492891904399, guid: 0cf08f98b1f02f041b7c6b2ee2bf1e61,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 38289492891904399, guid: 0cf08f98b1f02f041b7c6b2ee2bf1e61,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 38289492891904399, guid: 0cf08f98b1f02f041b7c6b2ee2bf1e61,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.043619405
+      objectReference: {fileID: 0}
+    - target: {fileID: 38289492891904399, guid: 0cf08f98b1f02f041b7c6b2ee2bf1e61,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9990483
+      objectReference: {fileID: 0}
+    - target: {fileID: 38289492891904399, guid: 0cf08f98b1f02f041b7c6b2ee2bf1e61,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 38289492891904399, guid: 0cf08f98b1f02f041b7c6b2ee2bf1e61,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 38289492891904399, guid: 0cf08f98b1f02f041b7c6b2ee2bf1e61,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 38289492891904399, guid: 0cf08f98b1f02f041b7c6b2ee2bf1e61,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 5
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0cf08f98b1f02f041b7c6b2ee2bf1e61, type: 3}
+--- !u!1 &8031467305955666265 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 601498987779062885, guid: 0cf08f98b1f02f041b7c6b2ee2bf1e61,
+    type: 3}
+  m_PrefabInstance: {fileID: 7434727005955118396}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &7468512744384691379 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 38289492891904399, guid: 0cf08f98b1f02f041b7c6b2ee2bf1e61,
+    type: 3}
+  m_PrefabInstance: {fileID: 7434727005955118396}
+  m_PrefabAsset: {fileID: 0}

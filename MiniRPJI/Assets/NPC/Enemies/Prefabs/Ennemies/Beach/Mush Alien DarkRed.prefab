@@ -744,8 +744,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chasingDistance: 8
   damagedChasingDistance: 25
-  projectile: {fileID: 7553135905865221832, guid: 82870b55fa92ac9409f6168033d5398e,
-    type: 3}
+  projectiles:
+  - {fileID: 7553135905865221832, guid: 82870b55fa92ac9409f6168033d5398e, type: 3}
+  - {fileID: 7553135905865221832, guid: 43828a0394238f14294435178ec26148, type: 3}
+  - {fileID: 7553135905865221832, guid: 41e0cc8478af2bd44b002e250f9abf9f, type: 3}
   firePoint: {fileID: 7604517803976572518}
   shootRange: 7
   timerBeforeShoot: 2
@@ -808,7 +810,7 @@ MonoBehaviour:
   maxItemDropable: 3
   levelRange: 1
   usableDatabase: {fileID: 11400000, guid: 54b7a65e365544b428942cbaa70a4894, type: 2}
-  usableDropRate: 40
+  usableDropRate: 25
   usableTryDropNumb: 2
   maxUsableDropable: 2
 --- !u!114 &3438856035994661439
@@ -837,7 +839,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bad68f115af6bf34383ef46435629f1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slowColor: {r: 0, g: 0, b: 1, a: 1}
+  slowColor: {r: 0.0990566, g: 0.264151, b: 1, a: 1}
   fireEffect: {fileID: 4050406411080310882, guid: 53a323b2909ea034a9fef0b954c7f7ce,
     type: 3}
   poisonColor: {r: 1, g: 0, b: 1, a: 1}

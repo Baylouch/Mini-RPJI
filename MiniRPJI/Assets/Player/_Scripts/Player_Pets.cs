@@ -38,6 +38,9 @@ public class Player_Pets : MonoBehaviour
     private bool petsUnlocked = false;
     public void SetPetsUnlocked(bool value)
     {
+        if (value == true)
+            Player_Success.instance.IncrementSuccessObjectiveByID(7);
+
         petsUnlocked = value;
     }
     public bool GetPetsUnlocked()
@@ -112,7 +115,8 @@ public class Player_Pets : MonoBehaviour
         // Set new pet
         playerPets[petIndex] = newPet;
 
-        UI_Player.instance.playerPetsUI.AddPetButton(newPet);
+        if (UI_Player.instance.playerPetsUI)
+            UI_Player.instance.playerPetsUI.AddPetButton(newPet);
 
     }
 
@@ -129,7 +133,7 @@ public class Player_Pets : MonoBehaviour
         currentPlayerPetGO = Instantiate(petToInvoke.petPrefab, petPosition, petToInvoke.petPrefab.transform.rotation);
         currentPlayerPet = petToInvoke;
 
-        if (UI_Player.instance && UI_Player.instance.playerPetsUI)
+        if (UI_Player.instance.playerPetsUI)
         {
             UI_Player.instance.playerPetsUI.SetPetButtonListener(petToInvoke);
         }
@@ -178,7 +182,7 @@ public class Player_Pets : MonoBehaviour
             currentPlayerPetGO = null;
             currentPlayerPet = null;
 
-            if (UI_Player.instance && UI_Player.instance.playerPetsUI)
+            if (UI_Player.instance.playerPetsUI)
             {
                 UI_Player.instance.playerPetsUI.SetPetButtonListener(tempPet);
             }

@@ -106,7 +106,7 @@ GameObject:
   - component: {fileID: 288359043972561436}
   - component: {fileID: 288359043972561441}
   m_Layer: 0
-  m_Name: Treasure Level 22
+  m_Name: Treasure Level 23
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -237,17 +237,17 @@ MonoBehaviour:
   uncommonItems: {fileID: 11400000, guid: 6c272500724b8104081f6ba802af4515, type: 2}
   rareItems: {fileID: 11400000, guid: 0cbdd841b62106d40ae9cf10ff02c2fe, type: 2}
   epicItems: {fileID: 11400000, guid: 1acde7ba8b104824f9fbd8db7962aa2b, type: 2}
-  commonItemDropRate: 80
-  uncommonItemDropRate: 60
-  rareItemDropRate: 40
-  epicItemDropRate: 5
+  commonItemDropRate: 65
+  uncommonItemDropRate: 20
+  rareItemDropRate: 10
+  epicItemDropRate: 1
   commonItemTryDropNumb: 2
   uncommonItemTryDropNumb: 2
-  rareItemTryDropNumb: 2
-  epicItemTryDropNumb: 2
+  rareItemTryDropNumb: 1
+  epicItemTryDropNumb: 1
   maxItemDropable: 5
   levelRange: 1
   usableDatabase: {fileID: 11400000, guid: 54b7a65e365544b428942cbaa70a4894, type: 2}
   usableDropRate: 50
-  usableTryDropNumb: 2
-  maxUsableDropable: 2
+  usableTryDropNumb: 5
+  maxUsableDropable: 5

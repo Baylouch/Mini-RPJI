@@ -137,7 +137,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2697681372940442320}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 43.06, y: 10, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2697681372544395448}
@@ -338,8 +338,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chasingDistance: 7.5
   damagedChasingDistance: 25
-  projectile: {fileID: 601498987779062885, guid: 0cf08f98b1f02f041b7c6b2ee2bf1e61,
-    type: 3}
+  projectiles:
+  - {fileID: 7121838919233661127, guid: ea4da6bbce73bf74ea7dcfeb9483d3fa, type: 3}
+  - {fileID: 7121838919233661127, guid: 6cd5b3d434b3e844ca57f90ccb2aa176, type: 3}
+  - {fileID: 7121838919233661127, guid: a745c0cb23f08d841bbf169581643842, type: 3}
+  - {fileID: 7121838919233661127, guid: cd13fd3ff80fcf94e8122270df122de7, type: 3}
+  - {fileID: 7121838919233661127, guid: f463109f208ad264aa6e12016c1a20b1, type: 3}
   firePoint: {fileID: 4403882005024472652}
   shootRange: 7
   timerBeforeShoot: 2.5
@@ -431,7 +435,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bad68f115af6bf34383ef46435629f1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slowColor: {r: 0, g: 0, b: 1, a: 1}
+  slowColor: {r: 0.0990566, g: 0.264151, b: 1, a: 1}
   fireEffect: {fileID: 4050406411080310882, guid: 53a323b2909ea034a9fef0b954c7f7ce,
     type: 3}
   poisonColor: {r: 1, g: 0, b: 1, a: 1}

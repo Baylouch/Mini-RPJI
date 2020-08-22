@@ -2,6 +2,8 @@
 
 public class Player_Energy : MonoBehaviour
 {
+    [HideInInspector] public bool freeEnergy = false;
+
     [SerializeField] private int totalEnergyPoints = 100; // This is the total energy points (item boost and energy stats included)
     public int GetTotalEnergyPoints()
     {
@@ -89,6 +91,11 @@ public class Player_Energy : MonoBehaviour
 
     public void SetCurrentEnergyPoints(float newEnergyPoints)
     {
+        if (freeEnergy)
+        {
+            return;
+        }
+
         int tempEnergy = Mathf.RoundToInt(newEnergyPoints);
 
         if (tempEnergy < 0)

@@ -386,8 +386,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chasingDistance: 7
   damagedChasingDistance: 25
-  projectile: {fileID: 4793382507794528828, guid: 3097460af00021d4cbd25f279bbd3a3c,
-    type: 3}
+  projectiles:
+  - {fileID: 4793382507794528828, guid: 09fe3d93424c37043add44f18a322cab, type: 3}
+  - {fileID: 4793382507794528828, guid: 67f184a935f4c894992a7f0fb690c1ca, type: 3}
   firePoint: {fileID: 3658932589352156550}
   shootRange: 6.5
   timerBeforeShoot: 2
@@ -439,20 +440,20 @@ MonoBehaviour:
   uncommonItems: {fileID: 11400000, guid: 6c272500724b8104081f6ba802af4515, type: 2}
   rareItems: {fileID: 11400000, guid: 0cbdd841b62106d40ae9cf10ff02c2fe, type: 2}
   epicItems: {fileID: 11400000, guid: 1acde7ba8b104824f9fbd8db7962aa2b, type: 2}
-  commonItemDropRate: 8
-  uncommonItemDropRate: 4
-  rareItemDropRate: 2
-  epicItemDropRate: 1
+  commonItemDropRate: 7
+  uncommonItemDropRate: 3
+  rareItemDropRate: 1
+  epicItemDropRate: 0
   commonItemTryDropNumb: 1
   uncommonItemTryDropNumb: 1
   rareItemTryDropNumb: 1
-  epicItemTryDropNumb: 1
-  maxItemDropable: 3
+  epicItemTryDropNumb: 0
+  maxItemDropable: 2
   levelRange: 1
   usableDatabase: {fileID: 11400000, guid: 54b7a65e365544b428942cbaa70a4894, type: 2}
-  usableDropRate: 40
-  usableTryDropNumb: 2
-  maxUsableDropable: 2
+  usableDropRate: 20
+  usableTryDropNumb: 1
+  maxUsableDropable: 1
 --- !u!114 &6279999047118188741
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -498,7 +499,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bad68f115af6bf34383ef46435629f1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slowColor: {r: 0, g: 0, b: 1, a: 1}
+  slowColor: {r: 0.0990566, g: 0.264151, b: 1, a: 1}
   fireEffect: {fileID: 4050406411080310882, guid: 53a323b2909ea034a9fef0b954c7f7ce,
     type: 3}
   poisonColor: {r: 1, g: 0, b: 1, a: 1}

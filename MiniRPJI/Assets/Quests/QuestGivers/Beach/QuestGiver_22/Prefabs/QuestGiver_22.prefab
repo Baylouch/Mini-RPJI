@@ -1514,8 +1514,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ab425f09432f4bd4c8055df12e534531, type: 2}
   rewardPosition: {fileID: 1056940074137747492}
   questLinkedItemSpawnPosition: {fileID: 9031010036771763880}
-  endDialogue: Je pense avoir compris le fonctionnement de cet engin. Il suffit de...
-    Et puis... Voila ! Tu peux essayer de l'utiliser maintenant si tu veux.
+  endDialogue: "Je pense avoir compris le fonctionnement de cet engin. Il suffit de...
+    Hmmm... Et puis... *Bruit d'explosion*. Erf... Je pense que je l'ai d\xE9truite..."
   dialoguePanel: {fileID: 1056940074725340645}
   dialogue: {fileID: 1056940074824934219}
   acceptButton: {fileID: 1056940074702795860}

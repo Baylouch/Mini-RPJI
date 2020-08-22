@@ -15,7 +15,7 @@ MonoBehaviour:
   questID: 41
   questTitle: Le roi obscur
   questDescription: "C'est ici la derni\xE8re partie de nos terres. La source du mal
-    provient d'ici, on peut le sentir... Trouve ce qu'il y a tout au bout et reviens
+    n'est pas loin, on peut le sentir... Trouve ce qu'il y a tout au bout et reviens
     vers moi avec des r\xE9ponses..."
   questSprite: {fileID: 8090712808859443928, guid: 82a6589da0eb3844b8cd8a1248a1a277,
     type: 3}

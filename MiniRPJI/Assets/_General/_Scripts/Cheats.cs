@@ -346,7 +346,9 @@ public class Cheats : MonoBehaviour
             Player_Inventory.instance.SetArmoryIndex((int)ArmoryPart.Chest, 508);
             Player_Inventory.instance.SetArmoryIndex((int)ArmoryPart.Bow, 509);
 
-            UI_Player.instance.playerInventoryUI.RefreshArmory();
+            if (UI_Player.instance.playerInventoryUI)
+                UI_Player.instance.playerInventoryUI.RefreshArmory();
+
             Player_Stats.instance.RefreshPlayerStats();
 
             for (int i = 0; i < UI_Teleporter.teleporterNumber; i++)
@@ -400,7 +402,9 @@ public class Cheats : MonoBehaviour
             Player_Inventory.instance.SetArmoryIndex(4, 240);
             Player_Inventory.instance.SetArmoryIndex(5, 241);
 
-            UI_Player.instance.playerInventoryUI.RefreshArmory();
+            if (UI_Player.instance.playerInventoryUI)
+                UI_Player.instance.playerInventoryUI.RefreshArmory();
+
             Player_Stats.instance.RefreshPlayerStats();
         }
 

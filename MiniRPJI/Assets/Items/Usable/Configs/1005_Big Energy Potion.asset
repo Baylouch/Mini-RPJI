@@ -15,7 +15,7 @@ MonoBehaviour:
   itemID: 1005
   itemName: Grande potion d'energie
   itemDescription: Restaure des points d'energie
-  itemSellPrice: 0
+  itemSellPrice: 50
   itemPrefab: {fileID: 1031920270776230509, guid: e12500d377f8996438e66b6133ac7f26,
     type: 3}
   prefabImage: {fileID: 21300000, guid: f65023889763c7644b5579f0b019da6b, type: 3}

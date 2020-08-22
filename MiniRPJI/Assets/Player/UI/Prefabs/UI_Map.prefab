@@ -247,6 +247,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameMapForest: {fileID: 21300000, guid: 1b343b44bd0aa754ea3c27aa20171ef9, type: 3}
   gameMapBeach: {fileID: 21300000, guid: 1702605291c765b40a98efc0de7a7116, type: 3}
+  gameMapVolcano: {fileID: 21300000, guid: 76f3e77374826584fbaf55bb3e19cf7b, type: 3}
   noMapText: {fileID: 1335986593421271555}
   gameMapGO: {fileID: 1335986593553506275}
   gameMapImage: {fileID: 1335986593553506273}

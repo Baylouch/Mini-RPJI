@@ -50,7 +50,8 @@ public class PetUnlockerMovement : MonoBehaviour
 
         seeker = GetComponent<Seeker>();
 
-        player = Player_Stats.instance.transform;
+        if (Player_Stats.instance)
+            player = Player_Stats.instance.transform;
 
         startSpeed = speed;
 
@@ -65,7 +66,7 @@ public class PetUnlockerMovement : MonoBehaviour
 
         if (target)
         {
-            if (Vector3.Distance(myRb.position, player.position) < 6f)
+            if (player && Vector3.Distance(myRb.position, player.position) < 6f)
             {
                 if (speed == startSpeed)
                 {
@@ -267,8 +268,8 @@ public class PetUnlockerMovement : MonoBehaviour
             {
                 // Go to the right
                 newPos = new Vector3(Random.Range(transform.position.x + 3, transform.position.x + 7),
-                                              Random.Range(transform.position.y + 3, transform.position.y - 3),
-                                              0f);
+                                     Random.Range(transform.position.y + 3, transform.position.y - 3),
+                                     0f);
 
             }
             else
@@ -292,8 +293,8 @@ public class PetUnlockerMovement : MonoBehaviour
             {
                 // Go bottom
                 newPos = new Vector3(Random.Range(transform.position.x - 3, transform.position.x + 3),
-                 Random.Range(transform.position.y - 3, transform.position.y - 7),
-                 0f);
+                                     Random.Range(transform.position.y - 3, transform.position.y - 7),
+                                     0f);
             }
         }
 

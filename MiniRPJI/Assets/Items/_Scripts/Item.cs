@@ -7,6 +7,10 @@ public class Item : Interactable
 
     [SerializeField] GameObject panelUI; // A UI Panel who act as a background for display the item's name. (Item's name text is a child of this panel)
 
+    [SerializeField] GameObject rareItemParticleEffect;
+    [SerializeField] GameObject epicItemParticleEffect;
+    [SerializeField] GameObject legendaryItemParticleEffect;
+
     bool used = false;
 
     private void Start()
@@ -17,43 +21,50 @@ public class Item : Interactable
         {
             panelUI.SetActive(false);
         }
+
+        if (itemConfig as EquipmentItem)
+        {
+            EquipmentItem currentConfig = itemConfig as EquipmentItem;
+
+            if (currentConfig.rarety == ItemRarety.Rare)
+            {
+                GameObject curEffect = Instantiate(rareItemParticleEffect, transform);
+            }
+            else if (currentConfig.rarety == ItemRarety.Epic)
+            {
+                GameObject curEffect = Instantiate(epicItemParticleEffect, transform);
+            }
+            else if (currentConfig.rarety == ItemRarety.Legendary)
+            {
+                GameObject curEffect = Instantiate(legendaryItemParticleEffect, transform);
+            }
+        }
     }
 
-    // TODO : For now, its manually here we activating the panelUI to display the item name when player trigger it.
-    // we must centralise all these kind of things into Player_Interactions later.
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.LeftAlt))
+        {
+            if (Player_Stats.instance)
+            {
+                if (Vector3.Distance(transform.position, Player_Stats.instance.transform.position) < 30f)
+                {
+                    DisplayItemName();
+                }
+            }
+        }
+
+        if (Input.GetKeyUp(KeyCode.LeftAlt))
+        {
+            HideItemName();
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.GetComponent<Player_Stats>())
         {
-            if (!panelUI.activeSelf)
-            {
-                panelUI.SetActive(true);
-                panelUI.GetComponentInChildren<Text>().text = itemConfig.itemName;
-
-                // If its an EquipmentItem, then display his name linked to this rarety color
-                if (itemConfig as EquipmentItem)
-                {
-                    EquipmentItem currentItem = itemConfig as EquipmentItem;
-                    switch (currentItem.rarety)
-                    {
-                        case ItemRarety.Common:
-                            panelUI.GetComponentInChildren<Text>().color = Color.white;
-                            break;
-                        case ItemRarety.Uncommon:
-                            panelUI.GetComponentInChildren<Text>().color = Color.cyan;
-                            break;
-                        case ItemRarety.Rare:
-                            panelUI.GetComponentInChildren<Text>().color = Color.yellow;
-                            break;
-                        case ItemRarety.Epic:
-                            panelUI.GetComponentInChildren<Text>().color = Color.magenta;
-                            break;
-                        case ItemRarety.Legendary:
-                            panelUI.GetComponentInChildren<Text>().color = Color.red; // TODO modify
-                            break;
-                    }
-                }
-            }
+            DisplayItemName();
         }
     }
 
@@ -61,9 +72,47 @@ public class Item : Interactable
     {
         if (collision.gameObject.GetComponent<Player_Stats>())
         {
-            if (panelUI.activeSelf)
+            HideItemName();
+        }
+    }
+
+    void HideItemName()
+    {
+        if (panelUI.activeSelf)
+        {
+            panelUI.SetActive(false);
+        }
+    }
+
+    void DisplayItemName()
+    {
+        if (!panelUI.activeSelf)
+        {
+            panelUI.SetActive(true);
+            panelUI.GetComponentInChildren<Text>().text = itemConfig.itemName;
+
+            // If its an EquipmentItem, then display his name linked to this rarety color
+            if (itemConfig as EquipmentItem)
             {
-                panelUI.SetActive(false);
+                EquipmentItem currentItem = itemConfig as EquipmentItem;
+                switch (currentItem.rarety)
+                {
+                    case ItemRarety.Common:
+                        panelUI.GetComponentInChildren<Text>().color = Color.white;
+                        break;
+                    case ItemRarety.Uncommon:
+                        panelUI.GetComponentInChildren<Text>().color = Color.cyan;
+                        break;
+                    case ItemRarety.Rare:
+                        panelUI.GetComponentInChildren<Text>().color = Color.yellow;
+                        break;
+                    case ItemRarety.Epic:
+                        panelUI.GetComponentInChildren<Text>().color = Color.magenta;
+                        break;
+                    case ItemRarety.Legendary:
+                        panelUI.GetComponentInChildren<Text>().color = Color.red; // TODO modify
+                        break;
+                }
             }
         }
     }

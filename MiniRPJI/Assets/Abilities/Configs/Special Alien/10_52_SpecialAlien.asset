@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca51243307a238c4596c518c409b92e9, type: 3}
+  m_Name: 10_52_SpecialAlien
+  m_EditorClassIdentifier: 
+  abilityID: 52
+  abilitySubID: 10
+  abilityLevel: 5
+  abilityName: Triple laser electrique
+  abilityShortDescription: Tir trois laser electrique
+  abilityLongDescription: Tir trois laser electrique. Peut paralyser les cibles.
+  abilitySprite: {fileID: 21300000, guid: 6dd5914d5261be74d9579fd8f7cbf992, type: 3}
+  abilityPrefab: {fileID: 1575213499018096060, guid: cc442feed7ab27341a5a5beeadb12eda,
+    type: 3}
+  abilityBonus: 50
+  abilityPower: 10
+  abilityTimer: 5
+  energyCost: 10
+  abilityType: 1
+  levelRequired: 1

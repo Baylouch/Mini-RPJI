@@ -14,17 +14,27 @@ public class AI_Enemy_Combat : MonoBehaviour
     public float chasingDistance = 2.5f; // Used in AI_Movement_Control to know when start chasing
     [SerializeField] float damagedChasingDistance = 10f;
     float initialChasingDistance;
+    float initialShootRange;
 
-    // if projectile set, enemy can distance attack
-    [SerializeField] private GameObject projectile;
+    // if projectiles set, enemy can distance attack
+    [SerializeField] private GameObject[] projectiles;
     [SerializeField] private Transform firePoint;
     public void SetFirePointRotation(float newRotation)
     {
-        if (firePoint.rotation.z != newRotation) // Not must, but can avoid sometimes to repeat rotation (not every time because of Quaternion, value is weird)
+        if (firePoint.rotation.eulerAngles.z != newRotation) // Not must, but can avoid sometimes to repeat rotation (not every time because of Quaternion, value is weird)
         {
             firePoint.rotation = Quaternion.Euler(new Vector3(0f, 0f, newRotation));
         }
     }
+    public Quaternion GetFirePointRotation()
+    {
+        return firePoint.rotation;
+    }
+    public float GetFirePointRotationZ()
+    {
+        return firePoint.rotation.eulerAngles.z;
+    }
+
     [SerializeField] private float shootRange = 3f;
     [SerializeField] private float timerBeforeShoot;
     float currentTimerBeforeShoot; 
@@ -70,8 +80,9 @@ public class AI_Enemy_Combat : MonoBehaviour
         ai_health = GetComponent<AI_Health>();
         ai_stats = GetComponent<AI_Stats>();
 
-        currentTimerBeforeShoot = 0f; 
+        currentTimerBeforeShoot = Random.Range(0f, timerBeforeShoot); 
         initialChasingDistance = chasingDistance;
+        initialShootRange = shootRange;
     }
 
     private void OnEnable()
@@ -97,6 +108,7 @@ public class AI_Enemy_Combat : MonoBehaviour
             if (chasingDistance != damagedChasingDistance)
             {
                 chasingDistance = damagedChasingDistance;
+                shootRange *= 2;
             }
         }
         else
@@ -104,6 +116,7 @@ public class AI_Enemy_Combat : MonoBehaviour
             if (chasingDistance != initialChasingDistance)
             {
                 chasingDistance = initialChasingDistance;
+                shootRange = initialShootRange;
             }
         }
 
@@ -165,7 +178,7 @@ public class AI_Enemy_Combat : MonoBehaviour
                 }
 
                 // If enemy got a projectile
-                if (projectile)
+                if (projectiles.Length >= 1)
                 {
                     // use timer to know when enemy is ready to shoot
                     if (currentTimerBeforeShoot >= 0f)
@@ -231,7 +244,7 @@ public class AI_Enemy_Combat : MonoBehaviour
         }
 
         // Play attack sound
-        if (attackSounds.Length >= 1)
+        if (player_combat && Vector3.Distance(transform.position, player_combat.transform.position) < 20f && attackSounds.Length >= 1)
         {
             Sound_Manager.instance.PlaySound(attackSounds[Random.Range(0, attackSounds.Length)]);
         }
@@ -338,13 +351,31 @@ public class AI_Enemy_Combat : MonoBehaviour
 
     public void Shoot()
     {
-        GameObject _projectile = Instantiate(projectile, firePoint.position, firePoint.rotation);
+        int _projectileIndex = Random.Range(0, projectiles.Length);
+
+        if (projectiles[_projectileIndex] == null)
+        {
+            Debug.Log("No projectile at index : " + _projectileIndex);
+            return;
+        }
+
+        GameObject _projectile = Instantiate(projectiles[_projectileIndex], firePoint.position, firePoint.rotation);
 
         Enemy_Projectile proj = _projectile.GetComponent<Enemy_Projectile>();
 
         if (proj != null)
         {
             proj.projectileDamage = GetProjectileDamage();
+
+            if (_projectile.GetComponent<Enemy_Research_Projectile>())
+            {
+                _projectile.GetComponent<Enemy_Research_Projectile>().theEnemyWhoLaunchTheProjectile = this;
+            }
+
+            if (_projectile.GetComponent<Enemy_Projectile_Movement>())
+            {
+                _projectile.GetComponent<Enemy_Projectile_Movement>().theEnemyWhoLaunchTheProjectile = this;
+            }
         }
         else
         {
@@ -355,6 +386,16 @@ public class AI_Enemy_Combat : MonoBehaviour
                     if (_projectile.transform.GetChild(i).GetComponent<Enemy_Projectile>())
                     {
                         _projectile.transform.GetChild(i).GetComponent<Enemy_Projectile>().projectileDamage = GetProjectileDamage();
+
+                        if (_projectile.transform.GetChild(i).GetComponent<Enemy_Research_Projectile>())
+                        {
+                            _projectile.transform.GetChild(i).GetComponent<Enemy_Research_Projectile>().theEnemyWhoLaunchTheProjectile = this;
+                        }
+
+                        if (_projectile.transform.GetChild(i).GetComponent<Enemy_Projectile_Movement>())
+                        {
+                            _projectile.transform.GetChild(i).GetComponent<Enemy_Projectile_Movement>().theEnemyWhoLaunchTheProjectile = this;
+                        }
                     }
                 }
             }

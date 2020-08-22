@@ -1,0 +1,230 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1598190957875913572
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1974968374759267931}
+  m_Layer: 0
+  m_Name: Double Circle Orange Fireball
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1974968374759267931
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1598190957875913572}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4104670931951611908}
+  - {fileID: 6230334463135302748}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5605981150755635098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3469535622588835310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f8443b85aad7e542a8277464abe3894, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  theEnemyWhoLaunchTheProjectile: {fileID: 0}
+  movementType: 2
+  intervalMovement: 0.5
+  emptyPrefabToApplyCircle: {fileID: 919512852428787324, guid: d192778d33ab1b8478682d55529838f2,
+    type: 3}
+--- !u!114 &2221875538961538125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6820248757224706486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f8443b85aad7e542a8277464abe3894, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  theEnemyWhoLaunchTheProjectile: {fileID: 0}
+  movementType: 2
+  intervalMovement: 0.5
+  emptyPrefabToApplyCircle: {fileID: 919512852428787324, guid: d192778d33ab1b8478682d55529838f2,
+    type: 3}
+--- !u!1001 &4070885040973371787
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1974968374759267931}
+    m_Modifications:
+    - target: {fileID: 601498987779062885, guid: 0cf08f98b1f02f041b7c6b2ee2bf1e61,
+        type: 3}
+      propertyPath: m_Name
+      value: Orange FireBall
+      objectReference: {fileID: 0}
+    - target: {fileID: 38289492891904399, guid: 0cf08f98b1f02f041b7c6b2ee2bf1e61,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 38289492891904399, guid: 0cf08f98b1f02f041b7c6b2ee2bf1e61,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 38289492891904399, guid: 0cf08f98b1f02f041b7c6b2ee2bf1e61,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 38289492891904399, guid: 0cf08f98b1f02f041b7c6b2ee2bf1e61,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 38289492891904399, guid: 0cf08f98b1f02f041b7c6b2ee2bf1e61,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 38289492891904399, guid: 0cf08f98b1f02f041b7c6b2ee2bf1e61,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.043619405
+      objectReference: {fileID: 0}
+    - target: {fileID: 38289492891904399, guid: 0cf08f98b1f02f041b7c6b2ee2bf1e61,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9990483
+      objectReference: {fileID: 0}
+    - target: {fileID: 38289492891904399, guid: 0cf08f98b1f02f041b7c6b2ee2bf1e61,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 38289492891904399, guid: 0cf08f98b1f02f041b7c6b2ee2bf1e61,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 38289492891904399, guid: 0cf08f98b1f02f041b7c6b2ee2bf1e61,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 38289492891904399, guid: 0cf08f98b1f02f041b7c6b2ee2bf1e61,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -5
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0cf08f98b1f02f041b7c6b2ee2bf1e61, type: 3}
+--- !u!1 &3469535622588835310 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 601498987779062885, guid: 0cf08f98b1f02f041b7c6b2ee2bf1e61,
+    type: 3}
+  m_PrefabInstance: {fileID: 4070885040973371787}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4104670931951611908 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 38289492891904399, guid: 0cf08f98b1f02f041b7c6b2ee2bf1e61,
+    type: 3}
+  m_PrefabInstance: {fileID: 4070885040973371787}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6268606303644315091
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1974968374759267931}
+    m_Modifications:
+    - target: {fileID: 601498987779062885, guid: 0cf08f98b1f02f041b7c6b2ee2bf1e61,
+        type: 3}
+      propertyPath: m_Name
+      value: Orange FireBall (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 38289492891904399, guid: 0cf08f98b1f02f041b7c6b2ee2bf1e61,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 38289492891904399, guid: 0cf08f98b1f02f041b7c6b2ee2bf1e61,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 38289492891904399, guid: 0cf08f98b1f02f041b7c6b2ee2bf1e61,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 38289492891904399, guid: 0cf08f98b1f02f041b7c6b2ee2bf1e61,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 38289492891904399, guid: 0cf08f98b1f02f041b7c6b2ee2bf1e61,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 38289492891904399, guid: 0cf08f98b1f02f041b7c6b2ee2bf1e61,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.043619405
+      objectReference: {fileID: 0}
+    - target: {fileID: 38289492891904399, guid: 0cf08f98b1f02f041b7c6b2ee2bf1e61,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9990483
+      objectReference: {fileID: 0}
+    - target: {fileID: 38289492891904399, guid: 0cf08f98b1f02f041b7c6b2ee2bf1e61,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 38289492891904399, guid: 0cf08f98b1f02f041b7c6b2ee2bf1e61,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 38289492891904399, guid: 0cf08f98b1f02f041b7c6b2ee2bf1e61,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 38289492891904399, guid: 0cf08f98b1f02f041b7c6b2ee2bf1e61,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 5
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0cf08f98b1f02f041b7c6b2ee2bf1e61, type: 3}
+--- !u!1 &6820248757224706486 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 601498987779062885, guid: 0cf08f98b1f02f041b7c6b2ee2bf1e61,
+    type: 3}
+  m_PrefabInstance: {fileID: 6268606303644315091}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &6230334463135302748 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 38289492891904399, guid: 0cf08f98b1f02f041b7c6b2ee2bf1e61,
+    type: 3}
+  m_PrefabInstance: {fileID: 6268606303644315091}
+  m_PrefabAsset: {fileID: 0}

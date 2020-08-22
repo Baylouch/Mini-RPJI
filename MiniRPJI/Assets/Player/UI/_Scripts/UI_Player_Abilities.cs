@@ -61,64 +61,142 @@ public class UI_Player_Abilities : MonoBehaviour
     {
         IsMouseOverAbilityButton();
 
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Player_Shortcuts.GetShortCuts() == 0)
+        {
+            // Process ZQSD Shortcuts
+            ProcessZQSDShortcuts();
+        }
+        else
+        {
+            // Process Arrows Shortcuts
+            ProcessARROWSShortcuts();
+        }
+    }
+
+    void ProcessZQSDShortcuts()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             // If we're displaying abilities description, we want to change the bind of the ability
             if (currentAbilityDescription)
             {
-                SetCurrentAbilityShortCut("F");
+                SetCurrentAbilityShortCut("1");
             }
             else // Else we want to use the bind, so change the current ability to the one we binded later on.
             {
-                UseAbilityShortCut("F");
+                UseAbilityShortCut("1");
             }
         }
-        if (Input.GetKeyDown(KeyCode.T))
+        if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             // If we're displaying abilities description, we want to change the bind of the ability
             if (currentAbilityDescription)
             {
-                SetCurrentAbilityShortCut("T");
+                SetCurrentAbilityShortCut("2");
             }
             else // Else we want to use the bind, so change the current ability to the one we binded later on.
             {
-                UseAbilityShortCut("T");
+                UseAbilityShortCut("2");
             }
         }
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             // If we're displaying abilities description, we want to change the bind of the ability
             if (currentAbilityDescription)
             {
-                SetCurrentAbilityShortCut("W");
+                SetCurrentAbilityShortCut("3");
             }
             else // Else we want to use the bind, so change the current ability to the one we binded later on.
             {
-                UseAbilityShortCut("W");
+                UseAbilityShortCut("3");
             }
         }
-        if (Input.GetKeyDown(KeyCode.X))
+        if (Input.GetKeyDown(KeyCode.Alpha4))
         {
             // If we're displaying abilities description, we want to change the bind of the ability
             if (currentAbilityDescription)
             {
-                SetCurrentAbilityShortCut("X");
+                SetCurrentAbilityShortCut("4");
             }
             else // Else we want to use the bind, so change the current ability to the one we binded later on.
             {
-                UseAbilityShortCut("X");
+                UseAbilityShortCut("4");
             }
         }
-        if (Input.GetKeyDown(KeyCode.C))
+        if (Input.GetKeyDown(KeyCode.Alpha5))
         {
             // If we're displaying abilities description, we want to change the bind of the ability
             if (currentAbilityDescription)
             {
-                SetCurrentAbilityShortCut("C");
+                SetCurrentAbilityShortCut("5");
             }
             else // Else we want to use the bind, so change the current ability to the one we binded later on.
             {
-                UseAbilityShortCut("C");
+                UseAbilityShortCut("5");
+            }
+        }
+    }
+
+    void ProcessARROWSShortcuts()
+    {
+        if (Input.GetKeyDown(KeyCode.Keypad1))
+        {
+            // If we're displaying abilities description, we want to change the bind of the ability
+            if (currentAbilityDescription)
+            {
+                SetCurrentAbilityShortCut("1");
+            }
+            else // Else we want to use the bind, so change the current ability to the one we binded later on.
+            {
+                UseAbilityShortCut("1");
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad2))
+        {
+            // If we're displaying abilities description, we want to change the bind of the ability
+            if (currentAbilityDescription)
+            {
+                SetCurrentAbilityShortCut("2");
+            }
+            else // Else we want to use the bind, so change the current ability to the one we binded later on.
+            {
+                UseAbilityShortCut("2");
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad3))
+        {
+            // If we're displaying abilities description, we want to change the bind of the ability
+            if (currentAbilityDescription)
+            {
+                SetCurrentAbilityShortCut("3");
+            }
+            else // Else we want to use the bind, so change the current ability to the one we binded later on.
+            {
+                UseAbilityShortCut("3");
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad4))
+        {
+            // If we're displaying abilities description, we want to change the bind of the ability
+            if (currentAbilityDescription)
+            {
+                SetCurrentAbilityShortCut("4");
+            }
+            else // Else we want to use the bind, so change the current ability to the one we binded later on.
+            {
+                UseAbilityShortCut("4");
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad5))
+        {
+            // If we're displaying abilities description, we want to change the bind of the ability
+            if (currentAbilityDescription)
+            {
+                SetCurrentAbilityShortCut("5");
+            }
+            else // Else we want to use the bind, so change the current ability to the one we binded later on.
+            {
+                UseAbilityShortCut("5");
             }
         }
     }

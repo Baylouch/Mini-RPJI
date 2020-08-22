@@ -40,6 +40,11 @@ public class UI_Player_Quest : MonoBehaviour
         if (questDisplayer.activeSelf)
             questDisplayer.SetActive(false);
 
+        if (quitButton)
+        {
+            quitButton.onClick.AddListener(() => UI_Player.instance.ToggleQuestMenu());
+        }
+
         // We check if there is a quest to set buttons
         if (Quests_Control.instance)
         {
@@ -54,18 +59,13 @@ public class UI_Player_Quest : MonoBehaviour
                     if (noQuestText.gameObject.activeSelf)
                         noQuestText.gameObject.SetActive(false);
 
-                    AddQuestButton(Quests_Control.instance.GetPlayerQuestByID(i).questConfig);
+                    AddQuestButton(Quests_Control.instance.GetPlayerQuestByIndex(i).questConfig);
                 }
                 else
                 {
                     return;
                 }
             }
-        }
-
-        if (quitButton)
-        {
-            quitButton.onClick.AddListener(() => UI_Player.instance.ToggleQuestMenu());
         }
     }
 

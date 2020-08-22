@@ -40,6 +40,9 @@ public class UI_Player_Pets : MonoBehaviour
         // To active/unactive noPetText
         if (Player_Pets.instance)
         {
+            if (!noPetText.gameObject.activeSelf)
+                noPetText.gameObject.SetActive(true);
+
             for (int i = 0; i < Player_Pets.instance.petsDataBase.pets.Length; i++)
             {
                 if (Player_Pets.instance.GetPlayerPetByIndex(i) != null)
@@ -47,12 +50,11 @@ public class UI_Player_Pets : MonoBehaviour
                     if (noPetText.gameObject.activeSelf)
                         noPetText.gameObject.SetActive(false);
 
-                    return;
+                    AddPetButton(Player_Pets.instance.GetPlayerPetByIndex(i));
                 }
             }
 
-            if (!noPetText.gameObject.activeSelf)
-                noPetText.gameObject.SetActive(true);
+
         }
     }
 

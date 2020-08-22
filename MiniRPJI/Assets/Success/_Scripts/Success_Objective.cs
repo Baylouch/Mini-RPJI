@@ -27,7 +27,7 @@ public class Success_Objective : MonoBehaviour
             Destroy(this);
         }
 
-        if (config.isDone)
+        if (config && config.isDone)
         {
             Destroy(this);
         }
@@ -35,7 +35,7 @@ public class Success_Objective : MonoBehaviour
 
     private void Update()
     {
-        if (config.isDone)
+        if (config && config.isDone)
         {
             Destroy(this);
         }

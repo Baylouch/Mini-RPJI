@@ -21,7 +21,7 @@ public class RememberEnemyData : MonoBehaviour
 
     public Vector3 spawnPosition;
 
-    float distanceToActivate = 20f;
+    float distanceToActivate = 27f;
 
     Transform playerTransform;
 

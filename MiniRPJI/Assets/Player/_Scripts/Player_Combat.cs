@@ -21,6 +21,10 @@ using UnityEngine.EventSystems;
 [RequireComponent(typeof(Player_Abilities))]
 public class Player_Combat : MonoBehaviour
 {
+    [HideInInspector] public bool specialAlienAttack = false; // To switch abilities when player has alien bonus
+
+    public bool playerCanCombat = true; // To make player not able to combat.
+
     public bool isInCombat = false; // Set in AI_Movement_Control
     public bool endingCombat = false; // Same as isInCombat
     [SerializeField] float timerBeforeEndCombat = 5f;
@@ -31,6 +35,8 @@ public class Player_Combat : MonoBehaviour
     Animator animator;
     AI_Health currentEnemy;
     Player_Abilities playerAbilities;
+
+    [SerializeField] Ability_Config[] specialAlienAbilities; // All alien's abilities are bow (ranged) one. So in attacks methods, it'll only affect abilityType.Bow.
 
     // Start is called before the first frame update
     void Start()
@@ -49,6 +55,21 @@ public class Player_Combat : MonoBehaviour
             return;
         }
 
+        if (playerCanCombat == false)
+            return;
+
+        if (Player_Shortcuts.GetShortCuts() == 0)
+        {
+            UseAttackWithMouse();
+        }
+        else
+        {
+            UseAttackWithKeyboard();
+        }
+    }
+
+    void UseAttackWithMouse()
+    {
         // If we're not attacking yet. (Bool isAttacking is reset in each combat animation's end.
         if (!animator.GetBool("isAttacking"))
         {
@@ -59,28 +80,47 @@ public class Player_Combat : MonoBehaviour
             }
 
             // Left clic input
-            if (Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.Alpha1))
+            if (Input.GetKeyDown(KeyCode.Mouse0))
             {
+                // Check for player bonus to unset before attack
+                if (GetComponent<Player_Bonus>())
+                {
+                    if (GetComponent<Player_Bonus>().GetCurrentPlayerBonus() == Bonus_Type.SportCar)
+                    {
+                        // Unset bonus
+                        GetComponent<Player_Bonus>().StopSportCarBonusNow();
+                    }
+                }
+
                 // Use Primary Ability
                 if (playerAbilities.GetPrimaryAbility() != null) // Check if there is a primary ability set (must be)
                 {
                     if (playerAbilities.GetPrimaryAbility().abilityType == AbilityType.Bow) // Check if its a Bow type (in this case we need a bow)
                     {
-                        if (Player_Inventory.instance.GetCurrentBow() != null) // Be sure player got a bow equiped
+                        if (specialAlienAttack == true)
                         {
-                            // Now we can use ability
-                            // First check if player got enough energy
-                            if (Player_Stats.instance.playerEnergy.GetCurrentEnergyPoints() >= playerAbilities.GetPrimaryAbility().energyCost)
-                            {
-                                StartCoroutine(UseBowAbility(playerAbilities.GetPrimaryAbility(), .3f));
-                            }
+                            Ability_Config abilityToUse = specialAlienAbilities[Random.Range(0, specialAlienAbilities.Length)];
+
+                            StartCoroutine(UseBowAbility(abilityToUse, .3f));
                         }
                         else
                         {
-                            //Debug.Log("No bow equiped. Impossible to use ability. (Ability ID : " + playerAbilities.GetPrimaryAbility().abilityID + ")");
-                            if (UI_Player_Informations.instance)
+                            if (Player_Inventory.instance.GetCurrentBow() != null) // Be sure player got a bow equiped
                             {
-                                UI_Player_Informations.instance.DisplayInformation("Il te faut un arc !");
+                                // Now we can use ability
+                                // First check if player got enough energy
+                                if (Player_Stats.instance.playerEnergy.GetCurrentEnergyPoints() >= playerAbilities.GetPrimaryAbility().energyCost)
+                                {
+                                    StartCoroutine(UseBowAbility(playerAbilities.GetPrimaryAbility(), .3f));
+                                }
+                            }
+                            else
+                            {
+                                //Debug.Log("No bow equiped. Impossible to use ability. (Ability ID : " + playerAbilities.GetPrimaryAbility().abilityID + ")");
+                                if (UI_Player_Informations.instance)
+                                {
+                                    UI_Player_Informations.instance.DisplayInformation("Il te faut un arc !");
+                                }
                             }
                         }
                     }
@@ -101,28 +141,47 @@ public class Player_Combat : MonoBehaviour
                 }
             }
             // Right clic input
-            else if (Input.GetKeyDown(KeyCode.Mouse1) || Input.GetKeyDown(KeyCode.Alpha2))
+            else if (Input.GetKeyDown(KeyCode.Mouse1))
             {
+                // Check for player bonus to unset before attack
+                if (GetComponent<Player_Bonus>())
+                {
+                    if (GetComponent<Player_Bonus>().GetCurrentPlayerBonus() == Bonus_Type.SportCar)
+                    {
+                        // Unset bonus
+                        GetComponent<Player_Bonus>().StopSportCarBonusNow();
+                    }
+                }
+
                 // Use Secondary Ability
                 if (playerAbilities.GetSecondaryAbility() != null) // Check if there is a primary ability set (must be)
                 {
                     if (playerAbilities.GetSecondaryAbility().abilityType == AbilityType.Bow) // Check if its a Bow type (in this case we need a bow)
                     {
-                        if (Player_Inventory.instance.GetCurrentBow() != null) // Be sure player got a bow equiped
+                        if (specialAlienAttack == true)
                         {
-                            // Now we can use ability
-                            // First check if player got enough energy
-                            if (Player_Stats.instance.playerEnergy.GetCurrentEnergyPoints() >= playerAbilities.GetSecondaryAbility().energyCost)
-                            {
-                                StartCoroutine(UseBowAbility(playerAbilities.GetSecondaryAbility(), .3f));
-                            }
+                            Ability_Config abilityToUse = specialAlienAbilities[Random.Range(0, specialAlienAbilities.Length)];
+
+                            StartCoroutine(UseBowAbility(abilityToUse, .3f));
                         }
                         else
                         {
-                            // Debug.Log("No bow equiped. Impossible to use ability. (Ability ID : " + playerAbilities.GetSecondaryAbility().abilityID + ")");
-                            if (UI_Player_Informations.instance)
+                            if (Player_Inventory.instance.GetCurrentBow() != null) // Be sure player got a bow equiped
                             {
-                                UI_Player_Informations.instance.DisplayInformation("Il te faut un arc !");
+                                // Now we can use ability
+                                // First check if player got enough energy
+                                if (Player_Stats.instance.playerEnergy.GetCurrentEnergyPoints() >= playerAbilities.GetSecondaryAbility().energyCost)
+                                {
+                                    StartCoroutine(UseBowAbility(playerAbilities.GetSecondaryAbility(), .3f));
+                                }
+                            }
+                            else
+                            {
+                                // Debug.Log("No bow equiped. Impossible to use ability. (Ability ID : " + playerAbilities.GetSecondaryAbility().abilityID + ")");
+                                if (UI_Player_Informations.instance)
+                                {
+                                    UI_Player_Informations.instance.DisplayInformation("Il te faut un arc !");
+                                }
                             }
                         }
                     }
@@ -140,7 +199,143 @@ public class Player_Combat : MonoBehaviour
                             StartCoroutine(UseOtherAbility(playerAbilities.GetSecondaryAbility(), 0f));
                         }
                     }
-                }              
+                }
+            }
+        }
+    }
+
+    void UseAttackWithKeyboard()
+    {
+        // If we're not attacking yet. (Bool isAttacking is reset in each combat animation's end.
+        if (!animator.GetBool("isAttacking"))
+        {
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                // TODO add a "powered shoot". Multiply arrow damage with a value between 1.0 - 1.2. ???
+                return;
+            }
+
+            // Left clic input
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                // Check for player bonus to unset before attack
+                if (GetComponent<Player_Bonus>())
+                {
+                    if (GetComponent<Player_Bonus>().GetCurrentPlayerBonus() == Bonus_Type.SportCar)
+                    {
+                        // Unset bonus
+                        GetComponent<Player_Bonus>().StopSportCarBonusNow();
+                    }
+                }
+
+                // Use Primary Ability
+                if (playerAbilities.GetPrimaryAbility() != null) // Check if there is a primary ability set (must be)
+                {
+                    if (playerAbilities.GetPrimaryAbility().abilityType == AbilityType.Bow) // Check if its a Bow type (in this case we need a bow)
+                    {
+                        if (specialAlienAttack == true)
+                        {
+                            Ability_Config abilityToUse = specialAlienAbilities[Random.Range(0, specialAlienAbilities.Length)];
+
+                            StartCoroutine(UseBowAbility(abilityToUse, .3f));
+                        }
+                        else
+                        {
+                            if (Player_Inventory.instance.GetCurrentBow() != null) // Be sure player got a bow equiped
+                            {
+                                // Now we can use ability
+                                // First check if player got enough energy
+                                if (Player_Stats.instance.playerEnergy.GetCurrentEnergyPoints() >= playerAbilities.GetPrimaryAbility().energyCost)
+                                {
+                                    StartCoroutine(UseBowAbility(playerAbilities.GetPrimaryAbility(), .3f));
+                                }
+                            }
+                            else
+                            {
+                                //Debug.Log("No bow equiped. Impossible to use ability. (Ability ID : " + playerAbilities.GetPrimaryAbility().abilityID + ")");
+                                if (UI_Player_Informations.instance)
+                                {
+                                    UI_Player_Informations.instance.DisplayInformation("Il te faut un arc !");
+                                }
+                            }
+                        }
+                    }
+                    else if (playerAbilities.GetPrimaryAbility().abilityType == AbilityType.Punch) // else its a punch ability type
+                    {
+                        if (Player_Stats.instance.playerEnergy.GetCurrentEnergyPoints() >= playerAbilities.GetPrimaryAbility().energyCost)
+                        {
+                            StartCoroutine(UsePunchAbility(playerAbilities.GetPrimaryAbility(), 0f));
+                        }
+                    }
+                    else // else its an other ability type
+                    {
+                        if (Player_Stats.instance.playerEnergy.GetCurrentEnergyPoints() >= playerAbilities.GetPrimaryAbility().energyCost)
+                        {
+                            StartCoroutine(UseOtherAbility(playerAbilities.GetPrimaryAbility(), 0f));
+                        }
+                    }
+                }
+            }
+            // Right clic input
+            else if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                // Check for player bonus to unset before attack
+                if (GetComponent<Player_Bonus>())
+                {
+                    if (GetComponent<Player_Bonus>().GetCurrentPlayerBonus() == Bonus_Type.SportCar)
+                    {
+                        // Unset bonus
+                        GetComponent<Player_Bonus>().StopSportCarBonusNow();
+                    }
+                }
+
+                // Use Secondary Ability
+                if (playerAbilities.GetSecondaryAbility() != null) // Check if there is a primary ability set (must be)
+                {
+                    if (playerAbilities.GetSecondaryAbility().abilityType == AbilityType.Bow) // Check if its a Bow type (in this case we need a bow)
+                    {
+                        if (specialAlienAttack == true)
+                        {
+                            Ability_Config abilityToUse = specialAlienAbilities[Random.Range(0, specialAlienAbilities.Length)];
+
+                            StartCoroutine(UseBowAbility(abilityToUse, .3f));
+                        }
+                        else
+                        {
+                            if (Player_Inventory.instance.GetCurrentBow() != null) // Be sure player got a bow equiped
+                            {
+                                // Now we can use ability
+                                // First check if player got enough energy
+                                if (Player_Stats.instance.playerEnergy.GetCurrentEnergyPoints() >= playerAbilities.GetSecondaryAbility().energyCost)
+                                {
+                                    StartCoroutine(UseBowAbility(playerAbilities.GetSecondaryAbility(), .3f));
+                                }
+                            }
+                            else
+                            {
+                                // Debug.Log("No bow equiped. Impossible to use ability. (Ability ID : " + playerAbilities.GetSecondaryAbility().abilityID + ")");
+                                if (UI_Player_Informations.instance)
+                                {
+                                    UI_Player_Informations.instance.DisplayInformation("Il te faut un arc !");
+                                }
+                            }
+                        }
+                    }
+                    else if (playerAbilities.GetSecondaryAbility().abilityType == AbilityType.Punch) // else its a punch ability type
+                    {
+                        if (Player_Stats.instance.playerEnergy.GetCurrentEnergyPoints() >= playerAbilities.GetSecondaryAbility().energyCost)
+                        {
+                            StartCoroutine(UsePunchAbility(playerAbilities.GetSecondaryAbility(), 0f));
+                        }
+                    }
+                    else // else its an other ability type
+                    {
+                        if (Player_Stats.instance.playerEnergy.GetCurrentEnergyPoints() >= playerAbilities.GetSecondaryAbility().energyCost)
+                        {
+                            StartCoroutine(UseOtherAbility(playerAbilities.GetSecondaryAbility(), 0f));
+                        }
+                    }
+                }
             }
         }
     }
@@ -152,7 +347,7 @@ public class Player_Combat : MonoBehaviour
 
         yield return new WaitForSeconds(_delay);
 
-        if (Player_Inventory.instance.GetCurrentBow()) // IF player got equiped bow (already check before using Shoot() in Update(), but we never sure enough)
+        if (Player_Inventory.instance.GetCurrentBow() || specialAlienAttack) // IF player got equiped bow (already check before using Shoot() in Update(), but we never sure enough). We bypass when player is a special alien (should not happen but if player got no bow but is in alien, we want him to be able to attack anyway).
         {
             // spawn ability's prefab, who represent a projectile
             GameObject _projectile = Instantiate(_ability.abilityPrefab, firePoint.position, firePoint.rotation);
@@ -362,16 +557,32 @@ public class Player_Combat : MonoBehaviour
 
         if (tempCritCondition) // Do critical strike (add 20% damage to the attack)
         {
-            float criticalAttack = Mathf.RoundToInt((Random.Range(Player_Stats.instance.GetCurrentMinDamage(), Player_Stats.instance.GetCurrentMaxDamage())));
-            criticalAttack = criticalAttack + criticalAttack * 0.2f;
-            return Mathf.RoundToInt(criticalAttack);
+            if (specialAlienAttack && Player_Inventory.instance.GetCurrentBow() == null)
+            {
+                float criticalAttack = Mathf.RoundToInt(Random.Range(30, 40));
+                criticalAttack = criticalAttack + criticalAttack * 0.2f;
+                return Mathf.RoundToInt(criticalAttack);
+            }
+            else
+            {
+                float criticalAttack = Mathf.RoundToInt((Random.Range(Player_Stats.instance.GetCurrentMinDamage(), Player_Stats.instance.GetCurrentMaxDamage())));
+                criticalAttack = criticalAttack + criticalAttack * 0.2f;
+                return Mathf.RoundToInt(criticalAttack);
+            }
         }
         else
         {
-            int currAttack = (Random.Range(Player_Stats.instance.GetCurrentMinDamage(), Player_Stats.instance.GetCurrentMaxDamage()));
-            return currAttack;
+            if (specialAlienAttack && Player_Inventory.instance.GetCurrentBow() == null)
+            {
+                int currAttack = Random.Range(30, 40);
+                return currAttack;
+            }
+            else
+            {
+                int currAttack = (Random.Range(Player_Stats.instance.GetCurrentMinDamage(), Player_Stats.instance.GetCurrentMaxDamage()));
+                return currAttack;
+            }
         }
-
     }
 
     // Bow damages

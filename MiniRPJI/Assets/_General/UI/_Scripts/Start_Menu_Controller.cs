@@ -18,6 +18,7 @@ public class Start_Menu_Controller : MonoBehaviour
             Destroy(UI_Player.instance.gameObject);
     }
 
+    // When player hit Start button
     public void StartGame()
     {
         if (Scenes_Control.instance)
@@ -26,6 +27,7 @@ public class Start_Menu_Controller : MonoBehaviour
         }
     }
 
+    // When player hit Load button
     public void LoadMenu()
     {
         if (Scenes_Control.instance)
@@ -34,6 +36,7 @@ public class Start_Menu_Controller : MonoBehaviour
         }
     }
 
+    // When player hit options button
     public void OptionsMenu()
     {
         if (Scenes_Control.instance)
@@ -42,6 +45,7 @@ public class Start_Menu_Controller : MonoBehaviour
         }
     }
 
+    // When player hit quit button
     public void QuitGame()
     {
         Application.Quit();       

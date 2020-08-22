@@ -885,8 +885,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chasingDistance: 8.5
   damagedChasingDistance: 25
-  projectile: {fileID: 4793382507794528828, guid: 576e83cc5e280c141abd04f06036bcd8,
-    type: 3}
+  projectiles:
+  - {fileID: 4793382507794528828, guid: 85e30ec99439df44cb975efddd97b8ee, type: 3}
   firePoint: {fileID: 4946718014812225513}
   shootRange: 7
   timerBeforeShoot: 2
@@ -978,7 +978,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bad68f115af6bf34383ef46435629f1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slowColor: {r: 0, g: 0, b: 1, a: 1}
+  slowColor: {r: 0.0990566, g: 0.264151, b: 1, a: 1}
   fireEffect: {fileID: 4050406411080310882, guid: 53a323b2909ea034a9fef0b954c7f7ce,
     type: 3}
   poisonColor: {r: 1, g: 0, b: 1, a: 1}

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 13_LittleAlienPurpleBlack
   m_EditorClassIdentifier: 
   petID: 13
-  petName: Petit Alien
+  petName: Petit Alien Violet
   petDescription: "Etrange petite cr\xE9ature d'origine inconnu, il n'en reste pas
     moins mignon !"
   petCategory: 2

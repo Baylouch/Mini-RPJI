@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   petID: 7
   petName: Perle
-  petDescription: "Adore jouer et faire des calins. Chien tr\xE8s ob\xE9issant."
+  petDescription: "Vous serez en s\xE9curit\xE9 avec Perle."
   petCategory: 1
   petSex: 0
   petSprite: {fileID: -5049811029399388026, guid: 1e35292c85aa80d439ecfbc2fe40a418,

@@ -234,21 +234,21 @@ public class Player_Health : MonoBehaviour, IDamageable
         }
 
         // Reduction of damage amount by % depending of our armor.
-        // Full calculation is : CurrentArmor * 0.05 = resultat (% of attack reduction)
+        // Full calculation is : resultat (% of attack reduction) = CurrentArmor * 0.05
         //                       resultat /= 100 to obtain like 0.05 to reduce attack by 5% for exemple
         //                       DamageTaken = TotalDmg - TotalDmg * resultat
 
         float percentageOfAttackReduction = Player_Stats.instance.GetArmor() * Player_Stats.instance.GetArmorMultiplier();
         percentageOfAttackReduction /= 100;
-        // Security for max attack reduction (60% of the attack max)
-        if (percentageOfAttackReduction > 0.60f)
+        // Security for max attack reduction (15% of the attack max)
+        if (percentageOfAttackReduction > 0.15f)
         {
-            percentageOfAttackReduction = 0.60f;
+            percentageOfAttackReduction = 0.15f;
         }
         float tempDamageAmount = amount - amount * percentageOfAttackReduction;
 
         // Display on the screen damage received
-        DisplayDamagedTextUI(amount);
+        DisplayDamagedTextUI(Mathf.RoundToInt(tempDamageAmount));
 
         float afterDamageHealthPoints = currentHealthPoints - tempDamageAmount;
 

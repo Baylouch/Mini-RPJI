@@ -9,7 +9,11 @@ public class Options_Menu_Controller : MonoBehaviour
     [SerializeField] Slider soundVolumeSlider;
     [SerializeField] Toggle toggleSound;
 
+    [SerializeField] Toggle toggleFullScreen;
+
     [SerializeField] GameObject CommandsPanel;
+    [SerializeField] GameObject ZQSDShortcutsPanel;
+    [SerializeField] GameObject ARROWSShortcutsPanel;
 
     private void Start()
     {
@@ -66,6 +70,18 @@ public class Options_Menu_Controller : MonoBehaviour
                 {
                     toggleSound.isOn = false;
                 }
+            }
+        }
+
+        if (toggleFullScreen)
+        {
+            if (Screen.fullScreen)
+            {
+                toggleFullScreen.isOn = true;
+            }
+            else
+            {
+                toggleFullScreen.isOn = false;
             }
         }
     }
@@ -125,7 +141,35 @@ public class Options_Menu_Controller : MonoBehaviour
 
     public void DisplayCommands(bool value)
     {
+        if (value == true)
+        {
+            if (Player_Shortcuts.GetShortCuts() == 0)
+            {
+                ZQSDShortcutsPanel.SetActive(true);
+                ARROWSShortcutsPanel.SetActive(false);
+            }
+            else
+            {
+                ZQSDShortcutsPanel.SetActive(false);
+                ARROWSShortcutsPanel.SetActive(true);
+            }
+        }
+
         CommandsPanel.SetActive(value);
+    }
+
+    public void SwitchShortCuts()
+    {
+        if (Player_Shortcuts.GetShortCuts() == 0)
+        {
+            Player_Shortcuts.SetShortCuts(1);
+        }
+        else
+        {
+            Player_Shortcuts.SetShortCuts(0);
+        }
+
+        DisplayCommands(true);
     }
 
     public void BackToMenu()
@@ -137,6 +181,20 @@ public class Options_Menu_Controller : MonoBehaviour
         else
         {
             Debug.Log("No level controller !");
+        }
+    }
+
+    public void ToggleFullScreen()
+    {
+        if (!Screen.fullScreen)
+        {
+            toggleFullScreen.isOn = true;
+            Screen.fullScreen = true;
+        }
+        else
+        {
+            toggleFullScreen.isOn = false;
+            Screen.fullScreen = false;
         }
     }
 }

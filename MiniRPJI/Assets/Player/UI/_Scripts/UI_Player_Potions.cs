@@ -335,7 +335,8 @@ public class UI_Player_Potions : MonoBehaviour
                     {
                         firstPotion = null;
                     }
-                    else
+
+                    if (item == secondPotion)
                     {
                         secondPotion = null;
                     }

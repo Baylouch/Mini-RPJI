@@ -19,7 +19,7 @@ public class MalusApplier : MonoBehaviour
 
     // In fire variables
     [Header("Fire Malus")]
-    [SerializeField] GameObject fireEffect; // A particle effect on player's body.
+    [SerializeField] GameObject fireEffect; // A particle effect on sprite.
 
     // Poisoned variables
     [Header("Poison Malus")]
@@ -33,10 +33,10 @@ public class MalusApplier : MonoBehaviour
 
     Coroutine TakeDamagePerSecondCoroutine; // To know what damageOverTime coroutine is currently using
     Coroutine malusCoroutine; // To know when AI is already on a malus.
-    MalusType currentMalus; // To know what is the current Malus on AI to disable it before got a new one.
+    MalusType currentMalus; // To know what is the current Malus to disable it before got a new one.
 
-    GameObject currentEffect; // The current effect on the AI. No cumulable.
-    float originalSpeed; // To know what's the AI speed at start. (When its got 0 malus on it)
+    GameObject currentEffect; // The current effect. No cumulable.
+    float originalSpeed; // To know what's the speed at start. (When its got 0 malus on it)
 
     IDamageable health;
     Player_Stats player_Stats;
@@ -78,7 +78,7 @@ public class MalusApplier : MonoBehaviour
     }
 
     // Method call from Enemy_Projectile to set a malus on the Player.
-    // bool takeDamage parameter exist because of overpower projectile. To inflict malus and damageovertime to ennemies but not projectile damage directly.
+    // bool takeDamage parameter exist because of overpower projectile. To inflict malus and damageovertime to ennemies but not projectile damage directly. (is now useless because no more overpower proj)
     public void SetMalus(MalusType type, int damageTaken, float malusTimer, float percentageChanceToApplyMalus, bool takeDamage = true)
     {
         // First before add a new Malus, verifity there is none already by checking malusCoroutine.
@@ -201,7 +201,7 @@ public class MalusApplier : MonoBehaviour
         if (health as Player_Health)
             player_Stats.SetSpeed(originalSpeed / 2);
         if (health as AI_Health)
-            ai_Stats.SetSpeed(originalSpeed / 2);
+            ai_Stats.SetSpeed(originalSpeed / 1.2f);
 
         currentMalus = MalusType.Slowed;
     }
@@ -314,7 +314,9 @@ public class MalusApplier : MonoBehaviour
         if (willApply == true)
         {
             if (health as Player_Health)
-                player_Stats.SetSpeed(0f);
+            {
+                GetComponent<Player_Movement>().canMove = false;
+            }
             if (health as AI_Health)
                 ai_Stats.SetSpeed(0f);
 
@@ -336,7 +338,10 @@ public class MalusApplier : MonoBehaviour
     void UnApplyElectric()
     {
         if (health as Player_Health)
-            player_Stats.SetSpeed(originalSpeed);
+        {
+            GetComponent<Player_Movement>().canMove = true;
+
+        }
         if (health as AI_Health)
             ai_Stats.SetSpeed(originalSpeed);
 

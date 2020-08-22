@@ -25,6 +25,9 @@ public class UI_Player_Menu : MonoBehaviour
     [SerializeField] Toggle toggleSound;
     [SerializeField] Toggle togglePopUp;
 
+    [SerializeField] GameObject ZQSDShortcutsPanel;
+    [SerializeField] GameObject ARROWSShortcutsPanel;
+
     [SerializeField] GameObject playerDataToSet;
 
     private void Start()
@@ -193,6 +196,17 @@ public class UI_Player_Menu : MonoBehaviour
 
     public void DisplayCommands()
     {
+        if (Player_Shortcuts.GetShortCuts() == 0)
+        {
+            ZQSDShortcutsPanel.SetActive(true);
+            ARROWSShortcutsPanel.SetActive(false);
+        }
+        else
+        {
+            ZQSDShortcutsPanel.SetActive(false);
+            ARROWSShortcutsPanel.SetActive(true);
+        }
+        
         commandsPanel.SetActive(true);
     }
 
@@ -338,6 +352,20 @@ public class UI_Player_Menu : MonoBehaviour
 
             UI_SuccessDisplayer.instance.TogglePopUp(value);
         }
+    }
+
+    public void SwitchShortCuts()
+    {
+        if (Player_Shortcuts.GetShortCuts() == 0)
+        {
+            Player_Shortcuts.SetShortCuts(1);
+        }
+        else
+        {
+            Player_Shortcuts.SetShortCuts(0);
+        }
+
+        DisplayCommands();
     }
 
     #endregion

@@ -180,21 +180,21 @@ public class UI_DisplayItemStats : MonoBehaviour
             statsPanelRect.sizeDelta = new Vector2(statsPanelRect.sizeDelta.x, statsPanelRect.sizeDelta.y + 30);
         }
 
-        if (item.itemSellPrice != 0)
-        {
-            GameObject descriptionText = Instantiate(itemDescription);
-
-            descriptionText.GetComponent<Text>().text = "Prix de vente : " + item.itemSellPrice.ToString();
-            descriptionText.transform.SetParent(statsPanelRect.transform);
-            descriptionText.GetComponent<RectTransform>().localScale = Vector3.one;
-            statsPanelRect.sizeDelta = new Vector2(statsPanelRect.sizeDelta.x, statsPanelRect.sizeDelta.y + 30);
-        }
-
         if (item.itemDescription != string.Empty)
         {
             GameObject descriptionText = Instantiate(itemDescription);
 
             descriptionText.GetComponent<Text>().text = "\"" + item.itemDescription + "\"";
+            descriptionText.transform.SetParent(statsPanelRect.transform);
+            descriptionText.GetComponent<RectTransform>().localScale = Vector3.one;
+            statsPanelRect.sizeDelta = new Vector2(statsPanelRect.sizeDelta.x, statsPanelRect.sizeDelta.y + 30);
+        }
+
+        if (item.itemSellPrice != 0)
+        {
+            GameObject descriptionText = Instantiate(itemDescription);
+
+            descriptionText.GetComponent<Text>().text = "Prix de vente : " + item.itemSellPrice.ToString();
             descriptionText.transform.SetParent(statsPanelRect.transform);
             descriptionText.GetComponent<RectTransform>().localScale = Vector3.one;
             statsPanelRect.sizeDelta = new Vector2(statsPanelRect.sizeDelta.x, statsPanelRect.sizeDelta.y + 30);
@@ -237,6 +237,16 @@ public class UI_DisplayItemStats : MonoBehaviour
             GameObject descriptionText = Instantiate(itemDescription);
 
             descriptionText.GetComponent<Text>().text = "\"" + item.itemDescription + "\"";
+            descriptionText.transform.SetParent(statsPanelRect.transform);
+            descriptionText.GetComponent<RectTransform>().localScale = Vector3.one;
+            statsPanelRect.sizeDelta = new Vector2(statsPanelRect.sizeDelta.x, statsPanelRect.sizeDelta.y + 30);
+        }
+
+        if (item.itemSellPrice != 0)
+        {
+            GameObject descriptionText = Instantiate(itemDescription);
+
+            descriptionText.GetComponent<Text>().text = "Prix de vente : " + item.itemSellPrice.ToString();
             descriptionText.transform.SetParent(statsPanelRect.transform);
             descriptionText.GetComponent<RectTransform>().localScale = Vector3.one;
             statsPanelRect.sizeDelta = new Vector2(statsPanelRect.sizeDelta.x, statsPanelRect.sizeDelta.y + 30);

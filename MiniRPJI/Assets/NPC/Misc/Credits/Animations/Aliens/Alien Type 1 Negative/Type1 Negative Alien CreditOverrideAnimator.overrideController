@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Type1 Negative Alien CreditOverrideAnimator
+  m_Controller: {fileID: 9100000, guid: e2e5187efcbc0004db370180919ce4fa, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 3653b45fc01c8a7479dbcc203b2febe8, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: a5718fc367f533b46904a843325749e1, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 393393f316798044387c7d3ea76a91f8, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: e8918bbff41a2db4997800d6a6ac0236, type: 2}

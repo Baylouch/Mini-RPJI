@@ -63,6 +63,16 @@ public class Player_Projectile : MonoBehaviour
                 }
 
                 Sound_Manager.instance.PlaySound(Sound_Manager.instance.asset.bowAttackLaser);
+
+                return;
+            }
+        }
+
+        if (FindObjectOfType<Player_Combat>())
+        {
+            if (FindObjectOfType<Player_Combat>().specialAlienAttack)
+            {
+                Sound_Manager.instance.PlaySound(Sound_Manager.instance.asset.bowAttackLaser);
                 return;
             }
         }
@@ -185,6 +195,15 @@ public class Player_Projectile : MonoBehaviour
                         if (Player_Stats.instance)
                         {
                             Player_Stats.instance.AddExperience(enemyStats.GetExperienceGain());
+                        }
+                    }
+
+                    if (GetComponent<Player_Research_Projectile>())
+                    {
+                        for (int i = 0; i < GetComponent<Player_Research_Projectile>().linkedProj.Length; i++)
+                        {
+                            if (GetComponent<Player_Research_Projectile>().linkedProj[i])
+                                GetComponent<Player_Research_Projectile>().linkedProj[i].SetTarget();
                         }
                     }
                 }

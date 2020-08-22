@@ -49,7 +49,7 @@ public class Player_Abilities : MonoBehaviour
             Debug.Log("Index out of range.");
     }
 
-    // Player can use "F", "T", "W", "X", "C" as shortcuts to fastly get access to an ability
+    // Player can use "1", "2", "3", "4", "5" as shortcuts to fastly get access to an ability
     // Each time player change a shortcut, the couple of arrays are checked to delete the precedent input using to apply on the right ability in the right array.
     // Index array are the same as player_AbilityConfigs
     [SerializeField] string[] primaryAbilityShortCuts = new string[totalPlayerAbilities]; // represent the primary ability shortcuts.

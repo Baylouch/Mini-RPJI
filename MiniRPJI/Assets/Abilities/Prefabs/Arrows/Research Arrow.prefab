@@ -233,7 +233,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   researchingTargetDistance: 15
   nextWaypointDistance: 0.5
-  stoppingDistance: 0
+  stoppingDistance: 0.1
 --- !u!114 &3876100259642011140
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -247,16 +247,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectileDamage: 0
+  projectilePower: 0
+  malusTimer: 0
   projectileType: 0
   projectileSpeed: 12
   timerBeforeDestroy: 5
-  malusTimer: 0
   percentageChanceToApplyMalus: 0
-  overPowerRange: 0
   impactEffect: {fileID: 372830238017699047, guid: 5d4a7229861940341ac54fbc22c72b61,
     type: 3}
-  overPowerEffect: {fileID: 0}
-  laserGfx: {fileID: 0}
+  laserGfx: {fileID: 21300000, guid: dc75b0ed2263683409bc7f164dad1ac3, type: 3}
 --- !u!114 &3278132471705833228
 MonoBehaviour:
   m_ObjectHideFlags: 0

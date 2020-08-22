@@ -5,10 +5,11 @@ public class UI_Map : MonoBehaviour
 {
     // Forest scenes range : 6 - 10
     // Beach scenes range : 16 - 21
+    // Volcano scenes range : 22 - 29
 
     [SerializeField] Sprite gameMapForest;
     [SerializeField] Sprite gameMapBeach;
-    //[SerializeField] Sprite gameMapVolcano;
+    [SerializeField] Sprite gameMapVolcano;
 
     [SerializeField] GameObject noMapText;
     [SerializeField] GameObject gameMapGO;
@@ -43,6 +44,13 @@ public class UI_Map : MonoBehaviour
                 // Display beach map
                 noMapText.SetActive(false);
                 gameMapImage.sprite = gameMapBeach;
+                gameMapGO.SetActive(true);
+            }
+            else if (Scenes_Control.instance.GetCurrentSceneBuildIndex() >= 22 && Scenes_Control.instance.GetCurrentSceneBuildIndex() <= 29)
+            {
+                // Display volcano map
+                noMapText.SetActive(false);
+                gameMapImage.sprite = gameMapVolcano;
                 gameMapGO.SetActive(true);
             }
             else

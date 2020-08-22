@@ -22,6 +22,7 @@ MonoBehaviour:
   teleportailSound: {fileID: 8300000, guid: bb0e9ab5482558745988fb0bbdbca668, type: 3}
   achievement: {fileID: 8300000, guid: a273d2fa1e205be42b8707e795d213d8, type: 3}
   questInteraction: {fileID: 8300000, guid: 163624943c6271f4388442d29a7269df, type: 3}
+  playerBonus: {fileID: 8300000, guid: 329386c25b4a8ab4ea01da088c2cb69a, type: 3}
   toggleUI: {fileID: 8300000, guid: 6d1f7404048995d419d6bca4d37b3126, type: 3}
   itemEquip: {fileID: 8300000, guid: ffe95bb8650c84c4fbfbc953c71bb7dc, type: 3}
   itemUnequip: {fileID: 8300000, guid: 4606d89adfcc4b34f93efd4701173460, type: 3}

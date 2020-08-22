@@ -13,7 +13,7 @@ using UnityEngine;
 [RequireComponent(typeof(AI_Stats))]
 public class ClearEnemy : MonoBehaviour
 {
-    float distanceToRecycle = 23f;
+    float distanceToRecycle = 30f;
 
     Transform playerTransform;
 

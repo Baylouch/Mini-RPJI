@@ -587,7 +587,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4386308604368877773}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7.2, y: -10, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4386308604498184869}
@@ -788,8 +788,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chasingDistance: 9
   damagedChasingDistance: 25
-  projectile: {fileID: 4671211435066016319, guid: c7a9084e903c35b489d1d542196a60d1,
-    type: 3}
+  projectiles:
+  - {fileID: 6986954627874455206, guid: 3d6ab8d96c347f84280b864b2a8171e5, type: 3}
+  - {fileID: 7465031740224588018, guid: 2541a86d0b629114bbdcdda5de5b2992, type: 3}
+  - {fileID: 6929127399501180944, guid: 3436929c828499244bc64a1d5a224357, type: 3}
+  - {fileID: 6180723930178635319, guid: 4d7e67743db20c346bcda37aa6033f83, type: 3}
   firePoint: {fileID: 2644424267300543569}
   shootRange: 7.5
   timerBeforeShoot: 2
@@ -852,7 +855,7 @@ MonoBehaviour:
   maxItemDropable: 4
   levelRange: 1
   usableDatabase: {fileID: 11400000, guid: 54b7a65e365544b428942cbaa70a4894, type: 2}
-  usableDropRate: 40
+  usableDropRate: 50
   usableTryDropNumb: 2
   maxUsableDropable: 2
 --- !u!114 &2533298640164630080
@@ -881,7 +884,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bad68f115af6bf34383ef46435629f1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slowColor: {r: 0, g: 0, b: 1, a: 1}
+  slowColor: {r: 0.0990566, g: 0.264151, b: 1, a: 1}
   fireEffect: {fileID: 4050406411080310882, guid: 53a323b2909ea034a9fef0b954c7f7ce,
     type: 3}
   poisonColor: {r: 1, g: 0, b: 1, a: 1}

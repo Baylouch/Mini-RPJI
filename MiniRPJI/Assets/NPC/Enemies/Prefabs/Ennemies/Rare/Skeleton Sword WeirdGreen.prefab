@@ -788,8 +788,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chasingDistance: 8
   damagedChasingDistance: 25
-  projectile: {fileID: 2476864194466352011, guid: 7ec026478e3ede24994d4613cd6de58b,
-    type: 3}
+  projectiles:
+  - {fileID: 2476864194466352011, guid: 7ec026478e3ede24994d4613cd6de58b, type: 3}
+  - {fileID: 1282570446192085534, guid: 4e2b47ecece6e014b8ecddc420d3b209, type: 3}
+  - {fileID: 6929127399501180944, guid: 3436929c828499244bc64a1d5a224357, type: 3}
+  - {fileID: 2881757163408350091, guid: a65e680635de11b47af3f33abe871cda, type: 3}
+  - {fileID: 4822624479685068489, guid: 4a36eb93bb597234a8d8a20c83fc7e61, type: 3}
   firePoint: {fileID: 219934658764258601}
   shootRange: 7
   timerBeforeShoot: 2.5
@@ -841,15 +845,15 @@ MonoBehaviour:
   uncommonItems: {fileID: 11400000, guid: 6c272500724b8104081f6ba802af4515, type: 2}
   rareItems: {fileID: 11400000, guid: 0cbdd841b62106d40ae9cf10ff02c2fe, type: 2}
   epicItems: {fileID: 11400000, guid: 1acde7ba8b104824f9fbd8db7962aa2b, type: 2}
-  commonItemDropRate: 10
-  uncommonItemDropRate: 5
-  rareItemDropRate: 3
-  epicItemDropRate: 1
-  commonItemTryDropNumb: 2
+  commonItemDropRate: 0
+  uncommonItemDropRate: 100
+  rareItemDropRate: 100
+  epicItemDropRate: 10
+  commonItemTryDropNumb: 0
   uncommonItemTryDropNumb: 2
-  rareItemTryDropNumb: 2
+  rareItemTryDropNumb: 1
   epicItemTryDropNumb: 2
-  maxItemDropable: 3
+  maxItemDropable: 5
   levelRange: 1
   usableDatabase: {fileID: 11400000, guid: 54b7a65e365544b428942cbaa70a4894, type: 2}
   usableDropRate: 40
@@ -881,7 +885,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bad68f115af6bf34383ef46435629f1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slowColor: {r: 0, g: 0, b: 1, a: 1}
+  slowColor: {r: 0.0990566, g: 0.264151, b: 1, a: 1}
   fireEffect: {fileID: 4050406411080310882, guid: 53a323b2909ea034a9fef0b954c7f7ce,
     type: 3}
   poisonColor: {r: 1, g: 0, b: 1, a: 1}

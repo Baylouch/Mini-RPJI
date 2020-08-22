@@ -9,10 +9,14 @@ using UnityEngine;
 public class Player_Movement : MonoBehaviour
 {
     public bool canMove = true;
+    public bool canDash = true;
+
+    [HideInInspector] public bool moveFaster = false;
+    [HideInInspector] public bool moveMoreFaster = false;
 
     [SerializeField] float dashSpeed = 40f;
     [SerializeField] float dashTime = .2f;
-    [SerializeField] float energyNeedToDash = 8f;
+    [SerializeField] float energyNeedToDash = 8f; // In percent
     [SerializeField] GameObject dashEffect;
 
     GameObject currentDashEffect;
@@ -45,23 +49,47 @@ public class Player_Movement : MonoBehaviour
         if (!canMove)
             return;
 
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (!canDash)
+            return;
+
+        if (Player_Shortcuts.GetShortCuts() == 0)
         {
-            if (Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.LeftArrow))
+            // Process Mouse dashing
+            if (Input.GetKey(KeyCode.LeftShift))
             {
-                if (!isDashing)
+                if (Input.GetKeyDown(KeyCode.Mouse0))
                 {
-                    if (Player_Stats.instance.playerEnergy.GetCurrentEnergyPoints() >= energyNeedToDash)
+                    if (!isDashing)
                     {
-                        isDashing = true;
-                        Player_Stats.instance.playerEnergy.SetCurrentEnergyPoints(Player_Stats.instance.playerEnergy.GetCurrentEnergyPoints() - energyNeedToDash);
+                        if (GetPlayerEnergyAsPercentage() >= energyNeedToDash)
+                        {
+                            isDashing = true;
+                            DecreasePlayerEnergy();
+                        }
+                    }
+                }
+            }
+        }
+        else
+        {
+            // Process Arrows dashing
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.LeftArrow))
+                {
+                    if (!isDashing)
+                    {
+                        if (GetPlayerEnergyAsPercentage() >= energyNeedToDash)
+                        {
+                            isDashing = true;
+                            DecreasePlayerEnergy();
+                        }
                     }
                 }
             }
         }
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
         if (!canMove)
@@ -81,7 +109,16 @@ public class Player_Movement : MonoBehaviour
 
         if (!animator.GetBool("isAttacking"))
         {
-            SimplePlayerMovement();
+            if (Player_Shortcuts.GetShortCuts() == 0)
+            {
+                // Process ZQSD movements
+                SimplePlayerZQSDMovement();
+            }
+            else
+            {
+                // Process Arrows movements
+                SimplePlayerARROWSMovement();
+            }
         }
         else
         {
@@ -90,6 +127,23 @@ public class Player_Movement : MonoBehaviour
                 myRb.velocity = Vector2.zero;
             }
         }
+    }
+
+    void DecreasePlayerEnergy()
+    {
+        float energyToDecrease = Mathf.Round(Player_Stats.instance.playerEnergy.GetTotalEnergyPoints() * (energyNeedToDash / 100));
+
+        Player_Stats.instance.playerEnergy.SetCurrentEnergyPoints(Player_Stats.instance.playerEnergy.GetCurrentEnergyPoints() - energyToDecrease);
+    }
+
+    // Return the current percentage of energy
+    float GetPlayerEnergyAsPercentage()
+    {
+        float currentEnergyPercentage = (float)Player_Stats.instance.playerEnergy.GetCurrentEnergyPoints() / Player_Stats.instance.playerEnergy.GetTotalEnergyPoints();
+
+        currentEnergyPercentage *= 100f;
+
+        return currentEnergyPercentage;
     }
 
     void AnimatorUpdate()
@@ -113,33 +167,88 @@ public class Player_Movement : MonoBehaviour
         }
     }
 
-    void SimplePlayerMovement()
+    void SimplePlayerZQSDMovement()
     {
         if (isDashing)
             return;
 
+        float movementSpeed = player_Stats.GetSpeed();
+
+        if (moveFaster)
+            movementSpeed *= 1.5f;
+
+        if (moveMoreFaster)
+            movementSpeed *= 3f;
+
         // Process normal movement
-        if (Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.UpArrow))
+        if (Input.GetKey(KeyCode.Z))
         {
-            myRb.velocity = new Vector2(0f, 1f) * player_Stats.GetSpeed();
+            myRb.velocity = new Vector2(0f, 1f) * movementSpeed;
             if (dashDirection != 1)
                 dashDirection = 1;
         }
-        else if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
+        else if (Input.GetKey(KeyCode.S))
         {
-            myRb.velocity = new Vector2(0f, -1f) * player_Stats.GetSpeed();
+            myRb.velocity = new Vector2(0f, -1f) * movementSpeed;
             if (dashDirection != 2)
                 dashDirection = 2;
         }
-        else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+        else if (Input.GetKey(KeyCode.D))
         {
-            myRb.velocity = new Vector2(1f, 0f) * player_Stats.GetSpeed();
+            myRb.velocity = new Vector2(1f, 0f) * movementSpeed;
             if (dashDirection != 3)
                 dashDirection = 3;
         }
-        else if (Input.GetKey(KeyCode.Q) || Input.GetKey(KeyCode.LeftArrow))
+        else if (Input.GetKey(KeyCode.Q))
         {
-            myRb.velocity = new Vector2(-1f, 0f) * player_Stats.GetSpeed();
+            myRb.velocity = new Vector2(-1f, 0f) * movementSpeed;
+            if (dashDirection != 4)
+                dashDirection = 4;
+        }
+        else
+        {
+            if (myRb.velocity != Vector2.zero)
+            {
+                myRb.velocity = Vector2.zero;
+            }
+        }
+    }
+
+    void SimplePlayerARROWSMovement()
+    {
+        if (isDashing)
+            return;
+
+        float movementSpeed = player_Stats.GetSpeed();
+
+        if (moveFaster)
+            movementSpeed *= 1.5f;
+
+        if (moveMoreFaster)
+            movementSpeed *= 3f;
+
+        // Process normal movement
+        if (Input.GetKey(KeyCode.UpArrow))
+        {
+            myRb.velocity = new Vector2(0f, 1f) * movementSpeed;
+            if (dashDirection != 1)
+                dashDirection = 1;
+        }
+        else if (Input.GetKey(KeyCode.DownArrow))
+        {
+            myRb.velocity = new Vector2(0f, -1f) * movementSpeed;
+            if (dashDirection != 2)
+                dashDirection = 2;
+        }
+        else if (Input.GetKey(KeyCode.RightArrow))
+        {
+            myRb.velocity = new Vector2(1f, 0f) * movementSpeed;
+            if (dashDirection != 3)
+                dashDirection = 3;
+        }
+        else if (Input.GetKey(KeyCode.LeftArrow))
+        {
+            myRb.velocity = new Vector2(-1f, 0f) * movementSpeed;
             if (dashDirection != 4)
                 dashDirection = 4;
         }

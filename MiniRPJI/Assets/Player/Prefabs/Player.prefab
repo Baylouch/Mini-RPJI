@@ -449,6 +449,7 @@ MonoBehaviour:
   beachPartExplored: 
   volcanoPartExplored: 
   successDatabase: {fileID: 11400000, guid: 2891ef58da00fa848b6b626894d256df, type: 2}
+  displayPopUp: 1
 --- !u!1 &1283454598
 GameObject:
   m_ObjectHideFlags: 0
@@ -990,6 +991,7 @@ GameObject:
   - component: {fileID: 882769571}
   - component: {fileID: 1337840066}
   - component: {fileID: 8797233774777249410}
+  - component: {fileID: 881611572}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -1069,7 +1071,7 @@ Animator:
   m_GameObject: {fileID: 7874364025698239459}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 4c1d5d518c1aacd41af02cbc1ba07ea9, type: 2}
+  m_Controller: {fileID: 22100000, guid: 890fc257dc33d094bb999bf528b98532, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1119,9 +1121,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canMove: 1
+  canDash: 1
+  moveFaster: 0
+  moveMoreFaster: 0
   dashSpeed: 58
   dashTime: 0.05
-  energyNeedToDash: 5
+  energyNeedToDash: 8
   dashEffect: {fileID: 4724881586850035680, guid: e07c23c7ffe1cab4491b81ccc09840b7,
     type: 3}
 --- !u!114 &2250115526518171777
@@ -1136,10 +1141,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3af97678c698ce746bbcfcbef515e94c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  specialAlienAttack: 0
   isInCombat: 0
   endingCombat: 0
   timerBeforeEndCombat: 5
   firePoint: {fileID: 696354655934323737}
+  specialAlienAbilities:
+  - {fileID: 11400000, guid: f6d637ad6a37f3547a91632c1ab73cd9, type: 2}
+  - {fileID: 11400000, guid: a0129dce912f4544b869f11eded02c69, type: 2}
+  - {fileID: 11400000, guid: 829cf91a9ecb0c0479dbf8bc1615cfe5, type: 2}
+  - {fileID: 11400000, guid: 177221b56f6874b43b0cad373b62d809, type: 2}
 --- !u!114 &8024586158939363690
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1198,7 +1209,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81ebcaffe0a060045926a04a5573bf66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalHealthPoints: 80
+  totalHealthPoints: 65
   healthRegenerationTimer: 2
   damageText: {fileID: 1463897701562130290, guid: cf441b61ed43ef44b9cae0f5013038a2,
     type: 3}
@@ -1218,7 +1229,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8346c52c7b25a944aa1690a01c213ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalEnergyPoints: 90
+  freeEnergy: 0
+  totalEnergyPoints: 75
   energyRegenerationTimer: 2
 --- !u!114 &1337840066
 MonoBehaviour:
@@ -1244,13 +1256,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bad68f115af6bf34383ef46435629f1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slowColor: {r: 0, g: 0, b: 1, a: 1}
+  slowColor: {r: 0.0990566, g: 0.264151, b: 1, a: 1}
   fireEffect: {fileID: 4050406411080310882, guid: 53a323b2909ea034a9fef0b954c7f7ce,
     type: 3}
   poisonColor: {r: 1, g: 0, b: 1, a: 1}
   electricEffect: {fileID: 4144859057491972, guid: 91d03a92bb3425f4186bc9844360af1c,
     type: 3}
   Env_Collider: {fileID: 196583246}
+--- !u!114 &881611572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7874364025698239459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10a18f540d9355a4c956eeb6f6ae1b90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseAnimator: {fileID: 22100000, guid: 890fc257dc33d094bb999bf528b98532, type: 2}
+  sportCarAnimator: {fileID: 22100000, guid: d016041d6510b8b4ab1db93b7f21fab4, type: 2}
+  specialAlienAnimator: {fileID: 22100000, guid: 67bba3d1a0aac624fb59bb1eb1de6d2f,
+    type: 2}
 --- !u!1 &8396921112244121463
 GameObject:
   m_ObjectHideFlags: 0

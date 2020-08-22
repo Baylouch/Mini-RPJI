@@ -182,10 +182,103 @@ public class ItemDroper : MonoBehaviour
                         Debug.Log("No usable item found for index : " + usableIndex);
                     }
                 }
+                else if (itemLevel > 15 && itemLevel <= 18)
+                {
+                    // Drop big pots
+                    usableIndex = Random.Range(6, 8); // 8 is exclusive because of int overload method.
+
+                    BaseItem itemToDrop = usableDatabase.items[usableIndex];
+
+                    if (itemToDrop != null)
+                    {
+                        // Set the item
+                        GameObject droppedGO = Instantiate(itemToDrop.itemPrefab, dropPose, Quaternion.identity);
+
+                        droppedGO.GetComponent<SpriteRenderer>().sprite = itemToDrop.prefabImage;
+                        droppedGO.GetComponent<Item>().itemConfig = itemToDrop;
+
+                        // Parent it to clean up hierarchy
+                        if (parentGameObject)
+                            droppedGO.transform.parent = parentGameObject;
+
+                        // Increment potionsDropped and check if we dropped the max amount of items.
+                        usableDropped++;
+                        if (usableDropped >= maxUsableDropable)
+                        {
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        Debug.Log("No usable item found for index : " + usableIndex);
+                    }
+                }
+                else if (itemLevel > 18 && itemLevel <= 22)
+                {
+                    // Drop big pots
+                    usableIndex = Random.Range(8, 10); // 10 is exclusive because of int overload method.
+
+                    BaseItem itemToDrop = usableDatabase.items[usableIndex];
+
+                    if (itemToDrop != null)
+                    {
+                        // Set the item
+                        GameObject droppedGO = Instantiate(itemToDrop.itemPrefab, dropPose, Quaternion.identity);
+
+                        droppedGO.GetComponent<SpriteRenderer>().sprite = itemToDrop.prefabImage;
+                        droppedGO.GetComponent<Item>().itemConfig = itemToDrop;
+
+                        // Parent it to clean up hierarchy
+                        if (parentGameObject)
+                            droppedGO.transform.parent = parentGameObject;
+
+                        // Increment potionsDropped and check if we dropped the max amount of items.
+                        usableDropped++;
+                        if (usableDropped >= maxUsableDropable)
+                        {
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        Debug.Log("No usable item found for index : " + usableIndex);
+                    }
+                }
+                else if (itemLevel > 22 && itemLevel <= 25)
+                {
+                    // Drop big pots
+                    usableIndex = Random.Range(10, 12); // 12 is exclusive because of int overload method.
+
+                    BaseItem itemToDrop = usableDatabase.items[usableIndex];
+
+                    if (itemToDrop != null)
+                    {
+                        // Set the item
+                        GameObject droppedGO = Instantiate(itemToDrop.itemPrefab, dropPose, Quaternion.identity);
+
+                        droppedGO.GetComponent<SpriteRenderer>().sprite = itemToDrop.prefabImage;
+                        droppedGO.GetComponent<Item>().itemConfig = itemToDrop;
+
+                        // Parent it to clean up hierarchy
+                        if (parentGameObject)
+                            droppedGO.transform.parent = parentGameObject;
+
+                        // Increment potionsDropped and check if we dropped the max amount of items.
+                        usableDropped++;
+                        if (usableDropped >= maxUsableDropable)
+                        {
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        Debug.Log("No usable item found for index : " + usableIndex);
+                    }
+                }
                 else
                 {
                     // Drop big pots while i create more pots
-                    usableIndex = Random.Range(4, 6); // 6 is exclusive because of int overload method.
+                    usableIndex = Random.Range(10, 12); // 6 is exclusive because of int overload method.
 
                     BaseItem itemToDrop = usableDatabase.items[usableIndex];
 

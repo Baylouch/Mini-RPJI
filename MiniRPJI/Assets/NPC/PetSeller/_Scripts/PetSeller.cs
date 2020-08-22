@@ -53,7 +53,8 @@ public class PetSeller : Interactable
     // Update is called once per frame
     void Update()
     {
-        IsMouseOverPetSellableButton();
+        if (Player_Stats.instance)
+            IsMouseOverPetSellableButton();
     }
 
     // Method to set the pet seller. It'll check for each sellable pets if player got the pet, sellable button doesnt be created and pet config is removed from 

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3045919636821083303}
   - component: {fileID: 7944905355261442965}
   m_Layer: 0
-  m_Name: Level Controller
+  m_Name: Scenes Control
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -43,3 +43,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55418469e7e38af4b9db8b55e0bcce6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameScenesLoaded: []
+  sceneTransitionCanvas: {fileID: 5912193088917215678, guid: c70f792391140294e9d2d8deb740e745,
+    type: 3}

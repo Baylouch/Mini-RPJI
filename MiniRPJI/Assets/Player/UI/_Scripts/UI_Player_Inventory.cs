@@ -236,7 +236,7 @@ public class UI_Player_Inventory : MonoBehaviour
             RemoveAllButtonsListeners();
 
             // Check if UI_Player_Bank is in use. If yes reset interactions parameters.
-            if (UI_Player.instance.playerBankUI.gameObject.activeSelf)
+            if (UI_Player.instance.playerBankUI)
             {
                 UI_Player.instance.playerBankUI.ResetInteractionsParameters();
             }

@@ -26,6 +26,8 @@ public class UI_Player : MonoBehaviour
         }
     }
 
+    public bool playerCanInteract = true; // To make player not able to open menus
+
     // Menus prefabs to instantiate
     [SerializeField] GameObject playerStatsUIGO;
     [SerializeField] GameObject playerInventoryUIGO;
@@ -76,6 +78,9 @@ public class UI_Player : MonoBehaviour
         {
             return;
         }
+
+        if (playerCanInteract == false)
+            return;
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -132,65 +137,6 @@ public class UI_Player : MonoBehaviour
             }
         }
 
-    }
-
-    void HideAllMenus()
-    {
-        if (gameOverUI != null)
-        {
-            Destroy(gameOverUI.gameObject);
-            gameOverUI = null;
-        }
-        if (playerInventoryUI != null)
-        {
-            Destroy(playerInventoryUI.gameObject);
-            playerInventoryUI = null;
-        }
-        if (playerStatsUI != null)
-        {
-            Destroy(playerStatsUI.gameObject);
-            playerStatsUI = null;
-        }
-        if (playerQuestUI != null)
-        {
-            Destroy(playerQuestUI.gameObject);
-            playerQuestUI = null;
-        }
-        if (playerMenu != null)
-        {
-            Destroy(playerMenu.gameObject);
-            playerMenu = null;
-        }
-        if (playerBankUI != null)
-        {
-            Destroy(playerBankUI.gameObject);
-            playerBankUI = null;
-        }
-        if (playerPetsUI != null)
-        {
-            Destroy(playerPetsUI.gameObject);
-            playerPetsUI = null;
-        }
-        if (mapUI != null)
-        {
-            Destroy(mapUI.gameObject);
-            mapUI = null;
-        }
-        if (playerAbilitiesUI != null)
-        {
-            Destroy(playerAbilitiesUI.gameObject);
-            playerAbilitiesUI = null;
-        }
-        if (successUI != null)
-        {
-            Destroy(successUI.gameObject);
-            successUI = null;
-        }
-
-        if (teleporterUI.gameObject.activeSelf)
-        {
-            teleporterUI.teleporterPanel.SetActive(false);
-        }
     }
 
     void HideLeftMenus()
@@ -253,6 +199,65 @@ public class UI_Player : MonoBehaviour
         {
             Destroy(successUI.gameObject);
             successUI = null;
+        }
+    }
+
+    public void HideAllMenus()
+    {
+        if (gameOverUI != null)
+        {
+            Destroy(gameOverUI.gameObject);
+            gameOverUI = null;
+        }
+        if (playerInventoryUI != null)
+        {
+            Destroy(playerInventoryUI.gameObject);
+            playerInventoryUI = null;
+        }
+        if (playerStatsUI != null)
+        {
+            Destroy(playerStatsUI.gameObject);
+            playerStatsUI = null;
+        }
+        if (playerQuestUI != null)
+        {
+            Destroy(playerQuestUI.gameObject);
+            playerQuestUI = null;
+        }
+        if (playerMenu != null)
+        {
+            Destroy(playerMenu.gameObject);
+            playerMenu = null;
+        }
+        if (playerBankUI != null)
+        {
+            Destroy(playerBankUI.gameObject);
+            playerBankUI = null;
+        }
+        if (playerPetsUI != null)
+        {
+            Destroy(playerPetsUI.gameObject);
+            playerPetsUI = null;
+        }
+        if (mapUI != null)
+        {
+            Destroy(mapUI.gameObject);
+            mapUI = null;
+        }
+        if (playerAbilitiesUI != null)
+        {
+            Destroy(playerAbilitiesUI.gameObject);
+            playerAbilitiesUI = null;
+        }
+        if (successUI != null)
+        {
+            Destroy(successUI.gameObject);
+            successUI = null;
+        }
+
+        if (teleporterUI.gameObject.activeSelf)
+        {
+            teleporterUI.teleporterPanel.SetActive(false);
         }
     }
 
@@ -448,6 +453,11 @@ public class UI_Player : MonoBehaviour
 
                 GameObject newPlayerBank = Instantiate(playerBankUIGO, transform);
                 playerBankUI = newPlayerBank.GetComponent<UI_Player_Bank>();
+
+                if (Sound_Manager.instance)
+                {
+                    Sound_Manager.instance.PlaySound(Sound_Manager.instance.asset.toggleUI);
+                }
             }
         }
         else

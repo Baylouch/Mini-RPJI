@@ -16,7 +16,7 @@ public class UI_GameOver : MonoBehaviour
             {
                 Player_Health playerHealth = FindObjectOfType<Player_Health>();
                 continueButton.onClick.AddListener(() => playerHealth.SetCurrentHealthPoints(playerHealth.GetTotalHealthPoints())); // Reset player health
-                continueButton.onClick.AddListener(() => Scenes_Control.instance.SwitchToLevel1Start()); // Tp player to level_1.
+                continueButton.onClick.AddListener(() => Scenes_Control.instance.SwitchPlayerToTheTown()); // Tp player to level_1.
                 continueButton.onClick.AddListener(() => playerHealth.gameObject.SetActive(true)); // Active player
                 continueButton.onClick.AddListener(() => FindObjectOfType<Player_Movement>().SetPlayerPosition(0)); // Set player position
                 continueButton.onClick.AddListener(() => Camera.main.transform.position = playerHealth.transform.position); // Set camera on the player

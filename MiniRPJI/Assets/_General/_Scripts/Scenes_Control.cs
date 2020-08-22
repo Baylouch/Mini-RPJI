@@ -14,6 +14,10 @@ public class Scenes_Control : MonoBehaviour
 {
     public static Scenes_Control instance;
 
+    public const int finalLevelBuildIndex = 30;
+
+    public const int creditSceneBuildIndex = 33;
+
     public const int levelTransitionBuildIndex = 3;
     public const int PlayerAndSettingsBuildIndex = 4; // Because of scenes organisation in build settings, we got our first level at index 4 (previous are menus)
     public const int TownLevelBuildIndex = 5;
@@ -22,6 +26,9 @@ public class Scenes_Control : MonoBehaviour
     public const int maxScenesLoaded = 5;
     public Scene[] gameScenesLoaded;
     private int gameScenesLoadedIndex = 0;
+
+    // Credit scene UI transition stuff
+    [SerializeField] GameObject sceneTransitionCanvas;
 
     private void Awake()
     {
@@ -40,10 +47,19 @@ public class Scenes_Control : MonoBehaviour
         gameScenesLoaded = new Scene[maxScenesLoaded];
     }
 
-    // This method is used everytime a game level is load to recycle scenes and avoid performances issues.
+    // TODO DELETE
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Y))
+        {
+            StartTransitionToCreditScene();
+        }
+    }
+
+    // This method is used everytime a game level is load to recycle scenes and avoid performances issues by limiting the maximum loaded game scenes.
     void CheckScenesLoaded(Scene newScene)
     {
-        Debug.Log("Scene cycle in progress...");
+        // Debug.Log("Scene cycle in progress...");
 
         if (gameScenesLoadedIndex >= maxScenesLoaded)
         {
@@ -60,19 +76,71 @@ public class Scenes_Control : MonoBehaviour
         gameScenesLoadedIndex++;
     }
 
+    // A way we can teleport player to the town level (when he's game over for instance).
+    public void SwitchPlayerToTheTown()
+    {
+        Scene levelFrom = SceneManager.GetActiveScene();
+        GameObject rootLevelFrom = levelFrom.GetRootGameObjects()[0]; // Because there is only one root gameobject per game level.
+        rootLevelFrom.SetActive(false);
+
+        Scene townScene = SceneManager.GetSceneByBuildIndex(TownLevelBuildIndex);
+        GameObject rootTownScene = townScene.GetRootGameObjects()[0];
+        rootTownScene.SetActive(true);
+
+        SceneManager.SetActiveScene(townScene);
+    }
+
+    // Used in Menu_Controller to simply change level by index
+    public void ChangeLevel(int levelIndex)
+    {
+        if (levelIndex < SceneManager.sceneCountInBuildSettings)
+        {
+            if (Music_Manager.instance)
+                Music_Manager.instance.ToggleGameOrMenuMusics(false); // Because we use this only in menus or for back to menus from games level
+
+            SceneManager.LoadScene(levelIndex);
+        }
+        else
+        {
+            Debug.Log("Index level is out of range. Watch Build settings.");
+        }
+    }
+
+    // Used in Menu_Controller to simply change level by name
+    public void ChangeLevel(string levelName)
+    {
+        if (SceneManager.GetSceneByName(levelName) != null)
+        {
+            if (Music_Manager.instance)
+                Music_Manager.instance.ToggleGameOrMenuMusics(false);
+
+            SceneManager.LoadScene(levelName);
+        }
+        else
+        {
+            Debug.Log("Unknown level name. Watch Build settings.");
+        }
+    }
+
+    public int GetCurrentSceneBuildIndex()
+    {
+        Scene currentScene = SceneManager.GetActiveScene();
+        return currentScene.buildIndex;
+    }
+
     public void LoadTownLevel()
     {
-        StartCoroutine(LoadTownLevelCoroutine());
+        StartCoroutine(LoadTownLevelFirstTime());
     }
 
     public void LaunchGame()
     {
-        StartCoroutine(LaunchGameCoroutine());
+        StartCoroutine(StartTheGame());
     }
 
     // Method to load the "Town Level" (the level when player enter into the game)
     // This method is use only when player load a game or when he starts the game from the Start Menu.
-    IEnumerator LoadTownLevelCoroutine()
+    IEnumerator LoadTownLevelFirstTime()
     {
         // First we must load the transition level where the player will wait for town level and settings to load
         AsyncOperation asyncTransitionLoad = SceneManager.LoadSceneAsync(levelTransitionBuildIndex, LoadSceneMode.Single);
@@ -120,6 +188,8 @@ public class Scenes_Control : MonoBehaviour
         GameObject rootObject = townScene.GetRootGameObjects()[0];
         rootObject.SetActive(false);
 
+        SceneManager.SetActiveScene(townScene);
+
         // Debug.Log("Player Settings and Town level are loaded.");
 
         // Now we can display "readyButton" to let player continue to the game
@@ -128,8 +198,8 @@ public class Scenes_Control : MonoBehaviour
         loadingBar.gameObject.SetActive(false);
     }
 
-    // Method to launch the game when Player settings and town are loaded
-    IEnumerator LaunchGameCoroutine()
+    // Method to start the game when Player settings and town are loaded
+    IEnumerator StartTheGame()
     {
         // Unload transition scene
         AsyncOperation unloadTransition = SceneManager.UnloadSceneAsync(levelTransitionBuildIndex);
@@ -175,7 +245,6 @@ public class Scenes_Control : MonoBehaviour
         if (!levelToGo.isLoaded)
         {
             StartCoroutine(LoadNewGameLevel(levelToGoBuildIndex, usedTeleportail));
-            return;
         }
         else
         {
@@ -209,6 +278,18 @@ public class Scenes_Control : MonoBehaviour
                 FindObjectOfType<PetMovement>().transform.position = FindObjectOfType<Player_Movement>().transform.position;
             }
         }
+
+        // Clean projectiles
+        Player_Projectile[] p_proj = FindObjectsOfType<Player_Projectile>();
+        for (int i = 0; i < p_proj.Length; i++)
+        {
+            Destroy(p_proj[i].gameObject);
+        }
+        Enemy_Projectile[] e_proj = FindObjectsOfType<Enemy_Projectile>();
+        for (int i = 0; i < e_proj.Length; i++)
+        {
+            Destroy(e_proj[i].gameObject);
+        }
     }
 
     // To load a new game level. Will put the player into transition scene while waiting.
@@ -241,6 +322,7 @@ public class Scenes_Control : MonoBehaviour
 
         // ************* AD HERE *********************
 
+
         // Load the new game level
         AsyncOperation levelAsyncLoad = SceneManager.LoadSceneAsync(levelToLoadBuildIndex, LoadSceneMode.Additive);
 
@@ -266,6 +348,11 @@ public class Scenes_Control : MonoBehaviour
         readyButton.onClick.AddListener(() => NewGameLevelReady(levelToLoadBuildIndex, levelFrom.buildIndex, usedTeleportail));
         readyButton.gameObject.SetActive(true);
         loadingBar.gameObject.SetActive(false);
+    }
+
+    public void NewGameLevelReady(int newGameLevelBuildIndex, int levelFromBuildIndex, bool usedTeleportail)
+    {
+        StartCoroutine(SetNewGameLevel(newGameLevelBuildIndex, levelFromBuildIndex, usedTeleportail));
     }
 
     IEnumerator SetNewGameLevel(int newGameLevelBuildIndex, int levelFromBuildIndex, bool usedTeleportail)
@@ -307,12 +394,6 @@ public class Scenes_Control : MonoBehaviour
             FindObjectOfType<PetMovement>().transform.position = FindObjectOfType<Player_Movement>().transform.position;
         }
 
-        // Active ennemies
-        if (FindObjectOfType<Player_Activator>())
-        {
-            FindObjectOfType<Player_Activator>().CheckForEnnemiesActivationNow();
-        }
-
         // Set player succes
         if (Player_Success.instance)
         {
@@ -323,61 +404,80 @@ public class Scenes_Control : MonoBehaviour
         }
     }
 
-    public void NewGameLevelReady(int newGameLevelBuildIndex, int levelFromBuildIndex, bool usedTeleportail)
+    // To transition to credit scene. Used in SendPlayerToCreditScene.cs who's attach on the last boss of the game and will be activated via AI_Health when he dies.
+    public void StartTransitionToCreditScene()
     {
-        StartCoroutine(SetNewGameLevel(newGameLevelBuildIndex, levelFromBuildIndex, usedTeleportail));
+        StartCoroutine(TransitionToCreditScene());
     }
 
-    // TODO find a way to move player to level 1 start position when needed. (In UI_GameOver for exemple.)
-    public void SwitchToLevel1Start()
+    IEnumerator TransitionToCreditScene()
     {
-        Scene levelFrom = SceneManager.GetActiveScene();
-        GameObject rootLevelFrom = levelFrom.GetRootGameObjects()[0]; // Because there is only one root gameobject per game level.
-        rootLevelFrom.SetActive(false);
+        // First, check if credit level isn't loaded. If not, load it. Else just return.
+        Scene creditLevel = SceneManager.GetSceneByBuildIndex(creditSceneBuildIndex);
 
-        Scene startScene = SceneManager.GetSceneByBuildIndex(TownLevelBuildIndex);
-        GameObject rootStartScene = startScene.GetRootGameObjects()[0];
-        rootStartScene.SetActive(true);
-
-        SceneManager.SetActiveScene(startScene);
-
-    }
-
-    // Used in Menu_Controller to simply change level by index
-    public void ChangeLevel(int levelIndex)
-    {
-        if (levelIndex < SceneManager.sceneCountInBuildSettings)
+        if (!creditLevel.isLoaded)
         {
-            if (Music_Manager.instance)
-                Music_Manager.instance.ToggleGameOrMenuMusics(false); // Because we use this only in menus or for back to menus from games level
+            // Start by making player not able to open the menus
+            if (UI_Player.instance)
+            {
+                UI_Player.instance.playerCanInteract = false;
+                UI_Player.instance.HideAllMenus();
+            }
 
-            SceneManager.LoadScene(levelIndex);
+            // Instantiate transition image
+            GameObject transitionCanvasInstance = Instantiate(sceneTransitionCanvas);
+
+            // Slow time
+            Time.timeScale = 0.5f;
+
+            yield return new WaitForSeconds(5f);
+
+            // Now disable the previous level
+            Scene levelFrom = SceneManager.GetActiveScene();
+            GameObject rootLevelFrom = levelFrom.GetRootGameObjects()[0]; // Because there is only one root gameobject per game level.
+            rootLevelFrom.SetActive(false);
+
+            // Load the credit level
+            AsyncOperation levelAsyncLoad = SceneManager.LoadSceneAsync(creditSceneBuildIndex, LoadSceneMode.Additive);
+
+            // Wait until loading is done
+            while (!levelAsyncLoad.isDone)
+            {
+                yield return null;
+            }
+
+            // Set the credit scene as the active one.
+            Scene loadedCreditScene = SceneManager.GetSceneByBuildIndex(creditSceneBuildIndex); // We must get a new reference to the scene once its loaded.
+
+            SceneManager.SetActiveScene(loadedCreditScene);
+
+            // Reset timescale
+            Time.timeScale = 1f;
+
+            // Place player
+            FindObjectOfType<Player_Movement>().SetPlayerPosition(5);
+
+            // Set pet's player position
+            if (FindObjectOfType<PetMovement>())
+            {
+                FindObjectOfType<PetMovement>().transform.position = FindObjectOfType<Player_Movement>().transform.position;
+            }
+
+            // TODO Play the success music
+
+            // We know there is a Animator attach to the children image of scene transition canvas
+            transitionCanvasInstance.GetComponentInChildren<Animator>().SetTrigger("FadeOut");
+
+            // TODO Add a button to skip the credit scene.
+
+            yield return new WaitForSeconds(5f);
+
+            Destroy(transitionCanvasInstance.gameObject);
         }
         else
         {
-            Debug.Log("Index level is out of range. Watch Build settings.");
+            yield return null;
         }
     }
 
-    // Used in Menu_Controller to simply change level by name
-    public void ChangeLevel(string levelName)
-    {
-        if (SceneManager.GetSceneByName(levelName) != null)
-        {
-            if (Music_Manager.instance)
-                Music_Manager.instance.ToggleGameOrMenuMusics(false);
-
-            SceneManager.LoadScene(levelName);
-        }
-        else
-        {
-            Debug.Log("Unknown level name. Watch Build settings.");
-        }
-    }
-
-    public int GetCurrentSceneBuildIndex()
-    {        
-        Scene currentScene = SceneManager.GetActiveScene();
-        return currentScene.buildIndex;
-    }
 }

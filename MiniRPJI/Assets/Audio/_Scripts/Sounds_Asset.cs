@@ -14,6 +14,7 @@ public class Sounds_Asset : ScriptableObject
     public AudioClip teleportailSound;
     public AudioClip achievement;
     public AudioClip questInteraction;
+    public AudioClip playerBonus;
 
     [Header("UI")]
     public AudioClip toggleUI;

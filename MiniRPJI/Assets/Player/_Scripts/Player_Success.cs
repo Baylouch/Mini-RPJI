@@ -23,17 +23,17 @@ public class Player_Success : MonoBehaviour
                                       // [2] = Part 3 (buildindex 8),       [3] = Part 4 (buildindex 9)      
                                       // [4] = Part 5 (buildindex 10),      [5] = Sublevel1_1 (buildindex 11)
                                       // [6] = Sublevel1_2 (buildindex 12), [7] = Sublevel2_1 (buildindex 13)
-                                      // [8] = Sublevel2_2 (buildindex 14), [9] = Sublevel2_3 (buildindex 15).  Length = 10
+                                      // [8] = Sublevel2_2 (buildindex 14), [9] = Sublevel2_3 (buildindex 15).   Length = 10
 
-    public bool[] beachPartExplored; // [0] = Part 1 (buildindex 16), [1] = Part 2 (buildindex 17)
-                                     // [2] = Part 3 (buildindex 18), [3] = Part 4 (buildindex 19)
-                                     // [4] = Part 5 (buildindex 20), [5] = Part 6 (buildindex 21).             Length = 6
+    public bool[] beachPartExplored;  // [0] = Part 1 (buildindex 16), [1] = Part 2 (buildindex 17)
+                                      // [2] = Part 3 (buildindex 18), [3] = Part 4 (buildindex 19)
+                                      // [4] = Part 5 (buildindex 20), [5] = Part 6 (buildindex 21).             Length = 6
 
     public bool[] volcanoPartExplored; // [0] = Part 1 (buildindex 22), [1] = Part 2 (buildindex 23)
                                        // [2] = Part 3 (buildindex 24), [3] = Part 4 (buildindex 25)
                                        // [4] = Part 5 (buildindex 26), [5] = Part 6 (buildindex 27)
                                        // [6] = Part 7 (buildindex 28), [7] = Part 8 (buildindex 29)
-                                       // [8] = Part Final (buildindex 30).                                     Length = 9
+                                       // [8] = Part Final (buildindex 30).                                      Length = 9
 
 
     public const int forestPartsLength = 10;
@@ -41,6 +41,8 @@ public class Player_Success : MonoBehaviour
     public const int volcanoPartsLength = 9;
 
     public SuccessDatabase successDatabase;
+
+    public bool displayPopUp = true; // To toggle for Game_Data_Control to not show popup when load player's data.
 
     private void Start()
     {
@@ -60,12 +62,6 @@ public class Player_Success : MonoBehaviour
         }
 
         successDatabase.GetSuccessByID(_successID).isDone = true;
-
-        // TODO Setup a button to player receive XP instead of giving him instantly when success is done.
-        if (Player_Stats.instance)
-        {
-            Player_Stats.instance.AddExperience(successDatabase.GetSuccessByID(_successID).xpReward);
-        }
     }
 
     public void SetSuccessObjective(int _successID, int _value)
@@ -113,6 +109,9 @@ public class Player_Success : MonoBehaviour
         }
 
         // Display relative pop up to this success
+        if (displayPopUp == false)
+            return;
+
         if (UI_SuccessDisplayer.instance && displaySuccessPopUp)
         {
             UI_SuccessDisplayer.instance.DisplaySuccessPopUp(_successID);

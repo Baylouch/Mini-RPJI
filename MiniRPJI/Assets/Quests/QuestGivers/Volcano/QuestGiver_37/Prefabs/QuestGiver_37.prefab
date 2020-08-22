@@ -77,8 +77,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b13a8e3c9257fc744bbedb49b51604c2, type: 2}
   rewardPosition: {fileID: 1168677682647704909}
   questLinkedItemSpawnPosition: {fileID: 1722629946351711889}
-  endDialogue: Certes tuer leur chef les a affaiblis, mais il y a encore beaucoup
-    de travail avant que nos terres ne redeviennent comme avant...
+  endDialogue: "C'est de se portail que viennent ces cr\xE9atures mal\xE9fiques. Prends
+    le si tu en as le courage... Mais attention, il y a peu de chance que tu reviennes
+    parmis nous ensuite..."
   dialoguePanel: {fileID: 4372710681228201442}
   dialogue: {fileID: 4090353998334275835}
   acceptButton: {fileID: 891105313805556524}

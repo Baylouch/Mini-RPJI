@@ -113,6 +113,12 @@ MonoBehaviour:
   interactionType: 0
   itemConfig: {fileID: 0}
   panelUI: {fileID: 8199721222478361983}
+  rareItemParticleEffect: {fileID: 1021780982320985488, guid: b92185569f4c7734691e0e086a5cf3a0,
+    type: 3}
+  epicItemParticleEffect: {fileID: 7574752522724663353, guid: e9f4e6b854baed148aefab1dfe0d97a1,
+    type: 3}
+  legendaryItemParticleEffect: {fileID: 1136586523303526632, guid: a524acda947481747926039493670eec,
+    type: 3}
 --- !u!1 &1893801050008275713
 GameObject:
   m_ObjectHideFlags: 0

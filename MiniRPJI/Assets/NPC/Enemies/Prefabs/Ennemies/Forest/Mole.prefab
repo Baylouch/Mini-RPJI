@@ -888,8 +888,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chasingDistance: 7
   damagedChasingDistance: 25
-  projectile: {fileID: 6052980135759029977, guid: 0e389b709426a364d80fe0668df63d67,
-    type: 3}
+  projectiles:
+  - {fileID: 6052980135759029977, guid: 0e389b709426a364d80fe0668df63d67, type: 3}
   firePoint: {fileID: 7340913647282457267}
   shootRange: 6.5
   timerBeforeShoot: 1.5
@@ -942,19 +942,19 @@ MonoBehaviour:
   rareItems: {fileID: 11400000, guid: 0cbdd841b62106d40ae9cf10ff02c2fe, type: 2}
   epicItems: {fileID: 11400000, guid: 1acde7ba8b104824f9fbd8db7962aa2b, type: 2}
   commonItemDropRate: 8
-  uncommonItemDropRate: 4
-  rareItemDropRate: 2
-  epicItemDropRate: 1
+  uncommonItemDropRate: 3
+  rareItemDropRate: 1
+  epicItemDropRate: 0
   commonItemTryDropNumb: 1
   uncommonItemTryDropNumb: 1
   rareItemTryDropNumb: 1
-  epicItemTryDropNumb: 1
-  maxItemDropable: 3
+  epicItemTryDropNumb: 0
+  maxItemDropable: 2
   levelRange: 1
   usableDatabase: {fileID: 11400000, guid: 54b7a65e365544b428942cbaa70a4894, type: 2}
-  usableDropRate: 40
-  usableTryDropNumb: 2
-  maxUsableDropable: 2
+  usableDropRate: 20
+  usableTryDropNumb: 1
+  maxUsableDropable: 1
 --- !u!114 &356288496
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1038,7 +1038,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bad68f115af6bf34383ef46435629f1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slowColor: {r: 0, g: 0, b: 1, a: 1}
+  slowColor: {r: 0.0990566, g: 0.264151, b: 1, a: 1}
   fireEffect: {fileID: 4050406411080310882, guid: 53a323b2909ea034a9fef0b954c7f7ce,
     type: 3}
   poisonColor: {r: 1, g: 0, b: 1, a: 1}

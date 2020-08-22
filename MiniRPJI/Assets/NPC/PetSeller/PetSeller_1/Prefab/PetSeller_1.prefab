@@ -1801,12 +1801,11 @@ MonoBehaviour:
   voice: 1
   petsToSell:
   - {fileID: 11400000, guid: 6a87b91ff1c5c8249922b5df38d794fe, type: 2}
-  - {fileID: 11400000, guid: 169f57d7efe3241488fc4c79e76c5c75, type: 2}
-  - {fileID: 11400000, guid: b418b45bd3abe2840bd3ef632c057a6e, type: 2}
   - {fileID: 11400000, guid: 8247e0bca35906f4e95149a3070df8d3, type: 2}
-  - {fileID: 11400000, guid: 2c1b5bcd934b94546b4d4c77b1ccf230, type: 2}
-  - {fileID: 11400000, guid: 1ca4d7be324b73340b6b219b4f0bd526, type: 2}
+  - {fileID: 11400000, guid: 3fbab09774c47c542b81610b0e4bcf08, type: 2}
+  - {fileID: 11400000, guid: 79a3b701d813748408ea884648f4a5d7, type: 2}
   - {fileID: 11400000, guid: 898591ae777a29e499bec38dabd92398, type: 2}
+  - {fileID: 11400000, guid: 1ca4d7be324b73340b6b219b4f0bd526, type: 2}
   globalPanel: {fileID: 3612360774651326920}
   petsList: {fileID: 2126232437335261492}
   buyButton: {fileID: 5774434800918867732}

@@ -287,7 +287,7 @@ public class Game_Data_Control : MonoBehaviour
 
         for (int i = 0; i < Player_Success.totalSuccess; i++)
         {
-            Success_Config currentConfig = Player_Success.instance.successDatabase.GetSuccessByID(0);
+            Success_Config currentConfig = Player_Success.instance.successDatabase.GetSuccessByID(i);
 
             data.playerSuccess.sucessObjectives[i] = Player_Success.instance.successObjectives[i];
 
@@ -339,6 +339,8 @@ public class Game_Data_Control : MonoBehaviour
             FileStream file = File.Open(Application.persistentDataPath + "/PlayerData" + saveIndex.ToString() + ".mrpji", FileMode.Open);
             PlayerData data = (PlayerData)bf.Deserialize(file);
             file.Close();
+
+            Player_Success.instance.displayPopUp = false; // To not show success pop up when setting data.
 
             // ************************************************************************************************
             // ********************************* PLAYER_STATS *************************************************
@@ -413,6 +415,9 @@ public class Game_Data_Control : MonoBehaviour
             }
 
             Player_Stats.instance.RefreshPlayerStats();
+
+            Player_Stats.instance.playerHealth.SetCurrentHealthPoints(Player_Stats.instance.playerHealth.GetTotalHealthPoints());
+            Player_Stats.instance.playerEnergy.SetCurrentEnergyPoints(Player_Stats.instance.playerEnergy.GetTotalEnergyPoints());
 
             // ************************************************************************************************
             // ********************************* PLAYER_QUESTS ************************************************
@@ -510,9 +515,10 @@ public class Game_Data_Control : MonoBehaviour
             // ************************************** SUCESS **************************************************
             // ************************************************************************************************
 
+
             for (int i = 0; i < Player_Success.totalSuccess; i++)
             {
-                Success_Config currentConfig = Player_Success.instance.successDatabase.GetSuccessByID(0);
+                Success_Config currentConfig = Player_Success.instance.successDatabase.GetSuccessByID(i);
 
                 Player_Success.instance.successObjectives[i] = data.playerSuccess.sucessObjectives[i];
 
@@ -548,6 +554,7 @@ public class Game_Data_Control : MonoBehaviour
                 Player_Success.instance.volcanoPartExplored[i] = data.playerSuccess.volcanoPartExplored[i];
             }
 
+            Player_Success.instance.displayPopUp = true;
 
             // ************************************************************************************************
             // ************************************************************************************************

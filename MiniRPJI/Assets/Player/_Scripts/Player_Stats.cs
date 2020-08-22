@@ -187,6 +187,7 @@ public class Player_Stats : MonoBehaviour
                 break;
             case 25: // Last level
                 totalLevelExp = 0;
+                currentExp = 0;
                 Player_Success.instance.IncrementSuccessObjectiveByID(17);
                 break;
         }
