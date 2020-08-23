@@ -71,7 +71,7 @@ GameObject:
   - component: {fileID: 7477777342368716260}
   - component: {fileID: 7477777342368716263}
   m_Layer: 0
-  m_Name: Bonus Spawner
+  m_Name: Bonus Spawner All
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -113,7 +113,7 @@ MonoBehaviour:
   - {fileID: 7189700068862344365, guid: 077420e30e188df4daed42d19b4c37df, type: 3}
   - {fileID: 7189700068862344365, guid: 4c5399e582d368a4db37f9560f0ce1a5, type: 3}
   bonusNumb: 2
-  spawnRate: 100
+  spawnRate: 60
 --- !u!1 &7477777343132034443
 GameObject:
   m_ObjectHideFlags: 0

@@ -28,6 +28,8 @@ public class Player_Movement : MonoBehaviour
     Player_Stats player_Stats;
     Rigidbody2D myRb;
     Animator animator;
+
+    bool controlPlayerWhileHeCantMove = false; // Simply to be able to control player while we tell to the script he can't move. (Because of myRb.velocity = Vector2.zero security when we apply canMove = false in FixedUpdate).
     
 
     // Start is called before the first frame update
@@ -92,14 +94,26 @@ public class Player_Movement : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (!canMove)
+        if (!canMove && !controlPlayerWhileHeCantMove)
         {
             if (myRb.velocity != Vector2.zero)
             {
                 myRb.velocity = Vector2.zero;
             }
 
+            controlPlayerWhileHeCantMove = true;
+
             return;
+        }
+
+        if (!canMove)
+        {
+            return;
+        }
+
+        if (canMove && controlPlayerWhileHeCantMove)
+        {
+            controlPlayerWhileHeCantMove = false;
         }
 
         if (isDashing)
@@ -416,5 +430,10 @@ public class Player_Movement : MonoBehaviour
         }
 
         Debug.LogWarning("There is no Teleport_Position_Level set for this teleportation index in this scene. MUST BE SET !");
+    }
+
+    public void SetPlayerVelocity(Vector2 vel)
+    {
+        myRb.velocity = vel;
     }
 }

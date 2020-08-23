@@ -430,7 +430,19 @@ public class Scenes_Control : MonoBehaviour
             // Slow time
             Time.timeScale = 0.5f;
 
-            yield return new WaitForSeconds(5f);
+            yield return new WaitForSeconds(3f);
+
+            Player_Combat player_combat = FindObjectOfType<Player_Combat>();
+            if (player_combat)
+            {
+                player_combat.playerCanCombat = false;
+            }
+
+            Player_Movement player_movement = FindObjectOfType<Player_Movement>();
+            if (player_movement)
+            {
+                player_movement.canMove = false;
+            }
 
             // Now disable the previous level
             Scene levelFrom = SceneManager.GetActiveScene();
@@ -455,7 +467,10 @@ public class Scenes_Control : MonoBehaviour
             Time.timeScale = 1f;
 
             // Place player
-            FindObjectOfType<Player_Movement>().SetPlayerPosition(5);
+            if (player_movement)
+            {
+                player_movement.SetPlayerPosition(5);
+            }
 
             // Set pet's player position
             if (FindObjectOfType<PetMovement>())
@@ -470,7 +485,14 @@ public class Scenes_Control : MonoBehaviour
 
             // TODO Add a button to skip the credit scene.
 
-            yield return new WaitForSeconds(5f);
+            yield return new WaitForSeconds(.5f);
+
+            if (player_movement)
+            {
+                player_movement.SetPlayerVelocity(new Vector2(1f, 0f) * Player_Stats.instance.GetSpeed());
+            }
+
+            yield return new WaitForSeconds(2f);
 
             Destroy(transitionCanvasInstance.gameObject);
         }
@@ -480,4 +502,62 @@ public class Scenes_Control : MonoBehaviour
         }
     }
 
+    // Method used on the continue button from the credit level.
+    public void SwitchPlayerToTownFromCredits()
+    {
+        StartCoroutine(SetPlayerToTownFromCredits());
+    }
+
+    IEnumerator SetPlayerToTownFromCredits()
+    {
+        // Instantiate transition image
+        GameObject transitionCanvasInstance = Instantiate(sceneTransitionCanvas);
+
+        // Slow time
+        Time.timeScale = 0.5f;
+
+        yield return new WaitForSeconds(3f);
+
+        Scene levelFrom = SceneManager.GetActiveScene();
+        GameObject rootLevelFrom = levelFrom.GetRootGameObjects()[0]; // Because there is only one root gameobject per game level.
+        rootLevelFrom.SetActive(false);
+
+        Scene townScene = SceneManager.GetSceneByBuildIndex(TownLevelBuildIndex);
+        GameObject rootTownScene = townScene.GetRootGameObjects()[0];
+        rootTownScene.SetActive(true);
+
+        SceneManager.SetActiveScene(townScene);
+
+        Player_Combat player_combat = FindObjectOfType<Player_Combat>();
+        if (player_combat)
+        {
+            player_combat.playerCanCombat = true;
+        }
+
+        Player_Movement player_movement = FindObjectOfType<Player_Movement>();
+        if (player_movement)
+        {
+            player_movement.SetPlayerPosition(0);
+            player_movement.canMove = true;
+        }
+
+        if (UI_Player.instance)
+        {
+            UI_Player.instance.playerCanInteract = true;
+        }
+
+        // Set pet's player position
+        if (FindObjectOfType<PetMovement>())
+        {
+            FindObjectOfType<PetMovement>().transform.position = FindObjectOfType<Player_Movement>().transform.position;
+        }
+
+        transitionCanvasInstance.GetComponentInChildren<Animator>().SetTrigger("FadeOut");
+
+        Time.timeScale = 1f;
+
+        yield return new WaitForSeconds(3f);
+
+        Destroy(transitionCanvasInstance.gameObject);
+    }
 }
