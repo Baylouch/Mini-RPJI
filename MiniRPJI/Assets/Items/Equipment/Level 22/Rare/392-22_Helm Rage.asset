@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 392-22_Helm Rage
   m_EditorClassIdentifier: 
   itemID: 392
-  itemName: Casque de Rage
+  itemName: Rage helmet
   itemDescription: 
   itemSellPrice: 740
   itemPrefab: {fileID: 4916301973116470330, guid: 17bcec922aaa11d4e9f8b1fcbbbd1c2a,

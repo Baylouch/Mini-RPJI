@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 350-20_Helm Warrior
   m_EditorClassIdentifier: 
   itemID: 350
-  itemName: Casque du Guerrier
+  itemName: Warrior's helmet
   itemDescription: 
   itemSellPrice: 390
   itemPrefab: {fileID: 4916301973116470330, guid: 17bcec922aaa11d4e9f8b1fcbbbd1c2a,

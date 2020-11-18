@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 21-1_Gloves Small
   m_EditorClassIdentifier: 
   itemID: 21
-  itemName: Petit gants
+  itemName: Small gloves
   itemDescription: 
   itemSellPrice: 25
   itemPrefab: {fileID: 1724247864129913130, guid: e844d7dd3bef667488cb5b47b1a5745d,
@@ -23,7 +23,6 @@ MonoBehaviour:
   stackableItem: 0
   armoryPart: 3
   rarety: 1
-  projectile: {fileID: 0}
   strength: 3
   agility: 0
   vitality: 2

@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: 24_GreenBone
   m_EditorClassIdentifier: 
   questID: 24
-  questTitle: Puissance verte
-  questDescription: "Excellent travail. Malheureusement je n'ai pas assez d'informations.
-    J'ai rep\xE9r\xE9 des squelettes verdatres au nord-est d'ici. Je pense que la
-    bas il y aura des r\xE9ponses."
+  questTitle: Green power
+  questDescription: Excellent work. Unfortunately I don't have enough information.
+    I spotted greenish skeletons northeast of here. I think there will be answers
+    there.
   questSprite: {fileID: 21300000, guid: 57727f16383c2964ca008bfd618bda0a, type: 3}
   totalQuestObjective: 10
   questDone: 0

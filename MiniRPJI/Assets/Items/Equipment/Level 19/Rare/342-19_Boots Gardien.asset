@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 342-19_Boots Gardien
   m_EditorClassIdentifier: 
   itemID: 342
-  itemName: Bottes du Gardien
+  itemName: Guardian boots
   itemDescription: 
   itemSellPrice: 590
   itemPrefab: {fileID: 733386610476664069, guid: b96066df95794664b8f0d0731932fbb8,

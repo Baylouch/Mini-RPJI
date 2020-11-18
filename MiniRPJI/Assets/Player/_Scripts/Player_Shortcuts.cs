@@ -2,7 +2,7 @@
 
 public static class Player_Shortcuts
 {
-    public const string shortcutsKey = "SHORTCUTS"; // 0 = zqsd shortcuts, 1 = directional arrows shortcuts.
+    public const string shortcutsKey = "SHORTCUTS"; // 0 = zqsd shortcuts, 1 = wasd shortcuts, 2 = directional arrows shortcuts.
 
     public static void SetShortCuts(int index)
     {
@@ -10,9 +10,13 @@ public static class Player_Shortcuts
         {
             PlayerPrefs.SetInt(shortcutsKey, 0);
         }
-        else
+        else if (index == 1)
         {
             PlayerPrefs.SetInt(shortcutsKey, 1);
+        }
+        else
+        {
+            PlayerPrefs.SetInt(shortcutsKey, 2);
         }
     }
 

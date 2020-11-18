@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 74-4_Pants Hunter
   m_EditorClassIdentifier: 
   itemID: 74
-  itemName: Pantalon de chasseur
+  itemName: Hunter pants
   itemDescription: 
   itemSellPrice: 105
   itemPrefab: {fileID: 7290006494410735304, guid: 6c58cf90d0d71f44b9d2a1b6ee9f5555,
@@ -23,7 +23,6 @@ MonoBehaviour:
   stackableItem: 0
   armoryPart: 2
   rarety: 2
-  projectile: {fileID: 0}
   strength: 5
   agility: 4
   vitality: 3

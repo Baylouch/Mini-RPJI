@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: 41_DarkKing
   m_EditorClassIdentifier: 
   questID: 41
-  questTitle: Le roi obscur
-  questDescription: "C'est ici la derni\xE8re partie de nos terres. La source du mal
-    n'est pas loin, on peut le sentir... Trouve ce qu'il y a tout au bout et reviens
-    vers moi avec des r\xE9ponses..."
+  questTitle: The dark king
+  questDescription: This is the last part of our land. The source of the evil is
+    not far away, you can feel it ... Find what is at the end and come back to me
+    with answers ...
   questSprite: {fileID: 8090712808859443928, guid: 82a6589da0eb3844b8cd8a1248a1a277,
     type: 3}
   totalQuestObjective: 1

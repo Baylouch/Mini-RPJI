@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 328-19_Pants Baleine
   m_EditorClassIdentifier: 
   itemID: 328
-  itemName: Pantalon de la Baleine
+  itemName: Whale pants
   itemDescription: 
   itemSellPrice: 200
   itemPrefab: {fileID: 7290006494410735304, guid: 6c58cf90d0d71f44b9d2a1b6ee9f5555,

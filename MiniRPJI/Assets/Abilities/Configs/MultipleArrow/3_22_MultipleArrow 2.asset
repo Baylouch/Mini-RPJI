@@ -15,9 +15,9 @@ MonoBehaviour:
   abilityID: 22
   abilitySubID: 3
   abilityLevel: 2
-  abilityName: Fleches multiple
-  abilityShortDescription: "Tir plusieurs fl\xE8ches"
-  abilityLongDescription: "Tir une salve de 3 fl\xE8ches."
+  abilityName: Multiple arrows
+  abilityShortDescription: Shoot multiple arrows
+  abilityLongDescription: Shoot a volley of 3 arrows.
   abilitySprite: {fileID: 21300000, guid: cc03a5223e231044582b40bd6f8fe80d, type: 3}
   abilityPrefab: {fileID: 5566053033925143653, guid: 9ea6828f0a141404289a4fb75bab86df,
     type: 3}
@@ -26,5 +26,4 @@ MonoBehaviour:
   abilityTimer: 0
   energyCost: 30
   abilityType: 1
-  abilityShortcut: 0
   levelRequired: 6

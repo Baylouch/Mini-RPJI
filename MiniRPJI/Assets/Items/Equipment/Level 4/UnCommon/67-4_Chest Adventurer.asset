@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 67-4_Chest Adventurer
   m_EditorClassIdentifier: 
   itemID: 67
-  itemName: Chemise d'aventurier
+  itemName: Adventurer shirt
   itemDescription: 
   itemSellPrice: 85
   itemPrefab: {fileID: 6105507112566103775, guid: 5b0990b01e9377340b8b0de20b0397b4,
@@ -23,7 +23,6 @@ MonoBehaviour:
   stackableItem: 0
   armoryPart: 1
   rarety: 1
-  projectile: {fileID: 0}
   strength: 1
   agility: 2
   vitality: 8

@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: 1104_SouthGemAcces
   m_EditorClassIdentifier: 
   itemID: 1104
-  itemName: "Gemme d'acc\xE8s sud"
-  itemDescription: "Elle est magnifique... Et plus lourde qu'il n'y para\xEEt."
+  itemName: South Access Gem
+  itemDescription: It is beautiful ... And heavier than it looks.
   itemSellPrice: 0
   itemPrefab: {fileID: 5362988514200447822, guid: f74283ae066239642aa09272c3292a8e,
     type: 3}

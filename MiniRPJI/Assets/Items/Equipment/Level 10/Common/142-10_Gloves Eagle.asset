@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 142-10_Gloves Eagle
   m_EditorClassIdentifier: 
   itemID: 142
-  itemName: Gants de l'aigle
+  itemName: Eagle gloves
   itemDescription: 
   itemSellPrice: 95
   itemPrefab: {fileID: 1724247864129913130, guid: e844d7dd3bef667488cb5b47b1a5745d,
@@ -23,7 +23,6 @@ MonoBehaviour:
   stackableItem: 0
   armoryPart: 3
   rarety: 0
-  projectile: {fileID: 0}
   strength: 8
   agility: 2
   vitality: 3

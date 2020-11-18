@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: 37_GreenAndPurpleGhosts
   m_EditorClassIdentifier: 
   questID: 37
-  questTitle: "Fant\xF4mes verts et violets"
-  questDescription: "Salut \xE0 toi, le consulat m'a envoy\xE9 ici afin d'exorciser
-    ces lieux remplis de fant\xF4mes. Ils sont plus puissant que je ne le pens\xE9...
-    J'ai une id\xE9e, et si on alliait nos force ? Il faudrait commencer par exorciser
-    ceux de couleure vert et violet. Surtout sois pr\xE9cis, il faut les eliminer
-    dans un certain ordre."
+  questTitle: Green and purple ghosts
+  questDescription: Hello to you, the consulate sent me here to exorcise these places
+    full of ghosts. They are more powerful than I thought ... I have an idea, what
+    if we combine our strengths? We should start by exorcising those of green and
+    purple color. Above all, be precise, you have to eliminate them in a certain
+    order.
   questSprite: {fileID: 21300000, guid: 1d7f7a83157e8ee47a99b2abd1bfe29d, type: 3}
   totalQuestObjective: 20
   questDone: 0

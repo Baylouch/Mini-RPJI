@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: 4_Pumpkin
   m_EditorClassIdentifier: 
   questID: 4
-  questTitle: Citrouilles
-  questDescription: "Chuut chuut ne fais pas de bruit. Regarde les monstres la bas,
-    ils ont vol\xE9s mes citrouilles pour se les mettre sur la t\xEAte... C'\xE9tait
-    toute ma r\xE9colte, maintenant je n'aurais plus d'argent, plus de maison... Si
-    seulement je pouvais r\xE9cup\xE9rer mes citrouilles..."
+  questTitle: Pumpkins
+  questDescription: Shhhhhhhh don't make a sound. Look at the monsters over there,
+    they stole my pumpkins to put them on their heads ... It was all my harvest,
+    now I would have no more money, no more house ... If only I could get back my
+    pumpkins ...
   questSprite: {fileID: 21300000, guid: ee38461764b4baa4499b50ce6249b971, type: 3}
   totalQuestObjective: 10
   questDone: 0

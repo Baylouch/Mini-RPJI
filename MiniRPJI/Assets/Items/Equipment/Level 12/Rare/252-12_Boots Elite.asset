@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 252-12_Boots Elite
   m_EditorClassIdentifier: 
   itemID: 252
-  itemName: Bottes d'Elite
+  itemName: Elite boots
   itemDescription: 
   itemSellPrice: 350
   itemPrefab: {fileID: 733386610476664069, guid: b96066df95794664b8f0d0731932fbb8,
@@ -23,7 +23,6 @@ MonoBehaviour:
   stackableItem: 0
   armoryPart: 4
   rarety: 2
-  projectile: {fileID: 0}
   strength: 0
   agility: 30
   vitality: 0

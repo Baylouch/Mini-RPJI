@@ -15,10 +15,10 @@ MonoBehaviour:
   abilityID: 30
   abilitySubID: 5
   abilityLevel: 2
-  abilityName: "Fleche \xE9lectrique"
-  abilityShortDescription: "Tir une fl\xE8che \xE9l\xE9ctrique"
-  abilityLongDescription: "Tir une fl\xE8che charg\xE9e d'\xE9l\xE9ctricit\xE9. Peut
-    parfois paralyser la cible."
+  abilityName: Electric arrow
+  abilityShortDescription: Shoot an electric arrow
+  abilityLongDescription: Shoot an arrow charged with electricity. Can sometimes
+    paralyze the target.
   abilitySprite: {fileID: 21300000, guid: 6dd5914d5261be74d9579fd8f7cbf992, type: 3}
   abilityPrefab: {fileID: 354750721926904560, guid: f55d5720431e34440b0bf5e48817fdb1,
     type: 3}
@@ -27,5 +27,4 @@ MonoBehaviour:
   abilityTimer: 3
   energyCost: 35
   abilityType: 1
-  abilityShortcut: 0
   levelRequired: 9

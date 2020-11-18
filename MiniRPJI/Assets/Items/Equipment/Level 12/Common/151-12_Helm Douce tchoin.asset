@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 151-12_Helm Douce tchoin
   m_EditorClassIdentifier: 
   itemID: 151
-  itemName: Chapeau de douce tchoin
+  itemName: Sweet Tchoin Hat
   itemDescription: 
   itemSellPrice: 125
   itemPrefab: {fileID: 4916301973116470330, guid: 17bcec922aaa11d4e9f8b1fcbbbd1c2a,
@@ -23,7 +23,6 @@ MonoBehaviour:
   stackableItem: 0
   armoryPart: 0
   rarety: 0
-  projectile: {fileID: 0}
   strength: 0
   agility: 10
   vitality: 5

@@ -13,16 +13,15 @@ MonoBehaviour:
   m_Name: 9_NorthAccessGem
   m_EditorClassIdentifier: 
   questID: 9
-  questTitle: "Gemme d'acc\xE8s nord"
-  questDescription: "Ah te voila, ce vieux crouton de la zone est m'a parl\xE9 de
-    toi, il \xE9t\xE9 s\xFBr que tu allais venir ici. La derni\xE8re zone de la foret
-    est au nord, mais pour y aller il faut r\xE9cuperer la gemme d'acc\xE8s. Elle
-    se trouve quelque part dans cette zone."
+  questTitle: North Access Gem
+  questDescription: "Ah there you are, this old crouton from the east zone told me
+    about you, he was sure you would come here. The last area of \u200B\u200Bthe
+    forest is to the north, but to get there you have to collect the access gem.
+    It's somewhere in this area."
   questSprite: {fileID: 21300000, guid: 3c9805506cdde8f44889fc034ab0097e, type: 3}
   totalQuestObjective: 1
   questDone: 0
   questReward: {fileID: 0}
-  questLinkedItem: {fileID: 0}
   questGOToSpawn: {fileID: 5362988514200447822, guid: f8fe9747694517048b5017eb2757920c,
     type: 3}
   xpAmount: 2500

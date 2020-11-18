@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: 22_AlienGear
   m_EditorClassIdentifier: 
   questID: 22
-  questTitle: "Mat\xE9riaux"
-  questDescription: "Excellent travail ! Je ne comprends pas tout mais il y a une
-    partie imag\xE9e, je pense comprendre d'o\xF9 vient le probl\xE8me de cette soucoupe.
-    Il me faudrait des mat\xE9riaux comme ceci. C'est un espece de \"depanne tout\"
-    qu'ils ont cr\xE9\xE9, je pense que certains aliens devraient en avoir sur eux.
-    Apr\xE8s, nous pourrons faire fonctionner la soucoupe j'en suis s\xFBr !"
+  questTitle: Materials
+  questDescription: Excellent work ! I don't understand everything but there is a
+    pictorial part, I think I understand where the problem with this saucer comes
+    from. I would need materials like this. It's a kind of "trouble-shoot" they've
+    created, I think some aliens should have some on them. After that, we can make
+    the saucer work, I'm sure!
   questSprite: {fileID: 21300000, guid: 042fae2dd68bce044b8fbd1f26724a2d, type: 3}
   totalQuestObjective: 15
   questDone: 0

@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: 1105_Bone
   m_EditorClassIdentifier: 
   itemID: 1105
-  itemName: Os
-  itemDescription: "Il y a encore de la chair accroch\xE9e..."
+  itemName: Bone
+  itemDescription: There is still flesh hanging on...
   itemSellPrice: 0
   itemPrefab: {fileID: 5362988514200447822, guid: ffbc7c39d52ece9408f9b60e1079f81e,
     type: 3}

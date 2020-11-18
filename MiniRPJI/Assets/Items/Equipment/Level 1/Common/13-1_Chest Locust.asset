@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 13-1_Chest Locust
   m_EditorClassIdentifier: 
   itemID: 13
-  itemName: Chemise du criquet
+  itemName: Locust shirt
   itemDescription: 
   itemSellPrice: 30
   itemPrefab: {fileID: 6105507112566103775, guid: 5b0990b01e9377340b8b0de20b0397b4,
@@ -23,7 +23,6 @@ MonoBehaviour:
   stackableItem: 0
   armoryPart: 1
   rarety: 0
-  projectile: {fileID: 0}
   strength: 0
   agility: 1
   vitality: 0

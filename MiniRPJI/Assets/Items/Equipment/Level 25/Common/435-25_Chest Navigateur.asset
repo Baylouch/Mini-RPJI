@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 435-25_Chest Navigateur
   m_EditorClassIdentifier: 
   itemID: 435
-  itemName: Armure de Navigateur
+  itemName: Navigator armor
   itemDescription: 
   itemSellPrice: 286
   itemPrefab: {fileID: 6105507112566103775, guid: 5b0990b01e9377340b8b0de20b0397b4,

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 450-25_Boots Necromancer
   m_EditorClassIdentifier: 
   itemID: 450
-  itemName: Bottes du Necromancien
+  itemName: Boots of the Necromancer
   itemDescription: 
   itemSellPrice: 1100
   itemPrefab: {fileID: 733386610476664069, guid: b96066df95794664b8f0d0731932fbb8,

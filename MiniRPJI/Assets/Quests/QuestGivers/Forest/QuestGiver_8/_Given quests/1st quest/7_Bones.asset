@@ -13,15 +13,14 @@ MonoBehaviour:
   m_Name: 7_Bones
   m_EditorClassIdentifier: 
   questID: 7
-  questTitle: De vieux os
-  questDescription: "Bien le bonjour mon bon ranger. Je suis Loret un viellard qu'on
-    a chass\xE9 du village... Depuis j'erre et j'essaye de survivre comme je le peux...
-    As-tu vu cette grotte au sud d'ici ? Un soir il y a eu un bruit assourdissant
-    venant de l\xE0 bas, et la grotte est apparu comme par magie. J'ai trouv\xE9 un
-    os pas tr\xE8s loin de celle-ci et j'ai remarqu\xE9 que les monstres ne m'attaqu\xE9
-    pas lorsque je le leur pointais au visage. Tu pourrais aider un pauvre vieux comme
-    moi et m'en ramener quelques-uns ? Tu m'aiderais beaucoup a finir mes vieux jours
-    plus sereinement."
+  questTitle: Old bones
+  questDescription: Hello my good ranger. I am Loret an old man who was chased out
+    of the village ... Since then I wander and I try to survive as I can ... Have
+    you seen this cave south of here? One evening there was a deafening noise coming
+    from there, and the cave appeared as if by magic. I found a bone not far from
+    it and noticed that the monsters didn't attack me when I pointed it in the face.
+    Could you help a poor old man like me and bring me some? You would help me a
+    lot to end my old days more calmly.
   questSprite: {fileID: -5161489949763356392, guid: 114c0f715e5069249a292780634da8ad,
     type: 3}
   totalQuestObjective: 10

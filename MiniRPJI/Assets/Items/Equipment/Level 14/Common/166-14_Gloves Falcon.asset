@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 166-14_Gloves Falcon
   m_EditorClassIdentifier: 
   itemID: 166
-  itemName: Gants du faucon
+  itemName: Falcon gloves
   itemDescription: 
   itemSellPrice: 145
   itemPrefab: {fileID: 1724247864129913130, guid: e844d7dd3bef667488cb5b47b1a5745d,
@@ -23,7 +23,6 @@ MonoBehaviour:
   stackableItem: 0
   armoryPart: 3
   rarety: 0
-  projectile: {fileID: 0}
   strength: 8
   agility: 10
   vitality: 0

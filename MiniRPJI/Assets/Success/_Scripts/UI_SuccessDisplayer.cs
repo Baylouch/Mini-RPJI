@@ -73,7 +73,7 @@ public class UI_SuccessDisplayer : MonoBehaviour
             elements.successTitle.text = curConfig.successTitle;
             if (curConfig.isDone)
             {
-                elements.successObjective.text = "Accompli !";
+                elements.successObjective.text = "Accomplished !";
                 elements.successImage.sprite = curConfig.successSprite;
             }
             else

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 388-22_Pants Nomade
   m_EditorClassIdentifier: 
   itemID: 388
-  itemName: Pantalon du Nomade
+  itemName: Nomad's pants
   itemDescription: 
   itemSellPrice: 455
   itemPrefab: {fileID: 7290006494410735304, guid: 6c58cf90d0d71f44b9d2a1b6ee9f5555,

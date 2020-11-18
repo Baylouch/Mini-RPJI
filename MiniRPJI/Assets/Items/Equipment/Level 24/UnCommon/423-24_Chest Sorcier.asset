@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 423-24_Chest Sorcier
   m_EditorClassIdentifier: 
   itemID: 423
-  itemName: Armure de Sorcier
+  itemName: Wizard armor
   itemDescription: 
   itemSellPrice: 520
   itemPrefab: {fileID: 6105507112566103775, guid: 5b0990b01e9377340b8b0de20b0397b4,

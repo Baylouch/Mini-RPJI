@@ -62,7 +62,7 @@ public class Player_Stats : MonoBehaviour
     private float strenghtMultiplier = .30f; // 30% of our strength is convert into damage
     private float agilityMultiplier = .25f; // 25% of our agility is convert into ranged damage
     private float vitalityMultiplier = 3.5f;
-    private float energyMultiplier = 2.5f;
+    private float energyMultiplier = 5f;
     private float armorMultiplier = .10f; // Used in Player_Health to reduce damage taken
 
     // TODO hideininspector
@@ -205,7 +205,7 @@ public class Player_Stats : MonoBehaviour
             UI_Player.instance.playerAbilitiesUI.RefreshAbilitiesUI();
 
         // Set new base player stats
-        baseStrength += 2; baseAgility += 2; baseVitality += 4; baseEnergy += 2; // See StatsBoard sheets for more information
+        baseStrength += 2; baseAgility += 2; baseVitality += 4; baseEnergy += 6; // See StatsBoard sheets for more information
         damageMin++; damageMax++;
 
         // Get track of the new stats

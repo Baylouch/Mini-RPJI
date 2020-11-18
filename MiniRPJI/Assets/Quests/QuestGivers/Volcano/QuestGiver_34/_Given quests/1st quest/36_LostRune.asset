@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: 36_LostRune
   m_EditorClassIdentifier: 
   questID: 36
-  questTitle: La rune perdue
-  questDescription: "J'ai perdu ma pr\xE9cieuse rune au combat au sud d'ici... J'en
-    ai besoin pour utiliser mes pouvoir magique, sans elle je ne peux pas y retourner...
-    Si tu m'aides je te donnerais un objet dont tu ne te passera plus !"
+  questTitle: The lost rune
+  questDescription: I lost my precious rune in battle south of here ... I need it
+    to use my magical powers, without it I can't go back ... If you help me I will
+    give you an item that you will not do without!
   questSprite: {fileID: 21300000, guid: b9a847102a75c8c429a8f749008df6c2, type: 3}
   totalQuestObjective: 1
   questDone: 0

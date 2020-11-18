@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: 23-1_Bow Small
   m_EditorClassIdentifier: 
   itemID: 23
-  itemName: Petit arc
-  itemDescription: Il est ridiculement petit
+  itemName: Small bow
+  itemDescription: It's ridiculously small.
   itemSellPrice: 45
   itemPrefab: {fileID: 4019101185777562141, guid: 79efe668507cf7f4ab3f34866358491f,
     type: 3}
@@ -23,8 +23,6 @@ MonoBehaviour:
   stackableItem: 0
   armoryPart: 5
   rarety: 1
-  projectile: {fileID: 6052980135759029977, guid: 77de479917db3204cae1bd43cf852001,
-    type: 3}
   strength: 0
   agility: 3
   vitality: 0

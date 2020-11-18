@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 61-4_Chest Snake
   m_EditorClassIdentifier: 
   itemID: 61
-  itemName: Chemise du serpent
+  itemName: Snake shirt
   itemDescription: 
   itemSellPrice: 50
   itemPrefab: {fileID: 6105507112566103775, guid: 5b0990b01e9377340b8b0de20b0397b4,
@@ -23,7 +23,6 @@ MonoBehaviour:
   stackableItem: 0
   armoryPart: 1
   rarety: 0
-  projectile: {fileID: 0}
   strength: 0
   agility: 1
   vitality: 5

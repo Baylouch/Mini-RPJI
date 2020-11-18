@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 260-14_Helm Devil
   m_EditorClassIdentifier: 
   itemID: 260
-  itemName: Casque du Demon
+  itemName: Devil helmet
   itemDescription: 
   itemSellPrice: 410
   itemPrefab: {fileID: 4916301973116470330, guid: 17bcec922aaa11d4e9f8b1fcbbbd1c2a,
@@ -23,7 +23,6 @@ MonoBehaviour:
   stackableItem: 0
   armoryPart: 0
   rarety: 2
-  projectile: {fileID: 0}
   strength: 15
   agility: 20
   vitality: 15

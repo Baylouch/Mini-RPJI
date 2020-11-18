@@ -13,6 +13,7 @@ public class Options_Menu_Controller : MonoBehaviour
 
     [SerializeField] GameObject CommandsPanel;
     [SerializeField] GameObject ZQSDShortcutsPanel;
+    [SerializeField] GameObject WASDShortcutsPanel;
     [SerializeField] GameObject ARROWSShortcutsPanel;
 
     private void Start()
@@ -83,6 +84,8 @@ public class Options_Menu_Controller : MonoBehaviour
             {
                 toggleFullScreen.isOn = false;
             }
+
+            toggleFullScreen.onValueChanged.AddListener( delegate { ToggleFullScreen(); } );
         }
     }
 
@@ -146,12 +149,20 @@ public class Options_Menu_Controller : MonoBehaviour
             if (Player_Shortcuts.GetShortCuts() == 0)
             {
                 ZQSDShortcutsPanel.SetActive(true);
+                WASDShortcutsPanel.SetActive(false);
+                ARROWSShortcutsPanel.SetActive(false);
+            }
+            else if (Player_Shortcuts.GetShortCuts() == 1)
+            {
+                WASDShortcutsPanel.SetActive(true);
+                ZQSDShortcutsPanel.SetActive(false);
                 ARROWSShortcutsPanel.SetActive(false);
             }
             else
             {
-                ZQSDShortcutsPanel.SetActive(false);
                 ARROWSShortcutsPanel.SetActive(true);
+                WASDShortcutsPanel.SetActive(false);
+                ZQSDShortcutsPanel.SetActive(false);
             }
         }
 
@@ -160,14 +171,14 @@ public class Options_Menu_Controller : MonoBehaviour
 
     public void SwitchShortCuts()
     {
-        if (Player_Shortcuts.GetShortCuts() == 0)
-        {
-            Player_Shortcuts.SetShortCuts(1);
-        }
-        else
-        {
-            Player_Shortcuts.SetShortCuts(0);
-        }
+        int currentShortCut = Player_Shortcuts.GetShortCuts();
+
+        currentShortCut++;
+
+        if (currentShortCut > 2)
+            currentShortCut = 0;
+
+        Player_Shortcuts.SetShortCuts(currentShortCut);
 
         DisplayCommands(true);
     }
@@ -188,12 +199,10 @@ public class Options_Menu_Controller : MonoBehaviour
     {
         if (!Screen.fullScreen)
         {
-            toggleFullScreen.isOn = true;
             Screen.fullScreen = true;
         }
         else
         {
-            toggleFullScreen.isOn = false;
             Screen.fullScreen = false;
         }
     }

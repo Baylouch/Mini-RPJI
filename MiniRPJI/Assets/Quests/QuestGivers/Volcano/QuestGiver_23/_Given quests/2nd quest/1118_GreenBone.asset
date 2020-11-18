@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: 1118_GreenBone
   m_EditorClassIdentifier: 
   itemID: 1118
-  itemName: Os verdatre
-  itemDescription: '...'
+  itemName: Bone verdatre
+  itemDescription: ...
   itemSellPrice: 0
   itemPrefab: {fileID: 5362988514200447822, guid: ac83621a1554d064f89e3c73adcaf146,
     type: 3}

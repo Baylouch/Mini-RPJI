@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 468-13_Boots Purificateur
   m_EditorClassIdentifier: 
   itemID: 468
-  itemName: Bottes du Purificateur
+  itemName: Boots of the Purifier
   itemDescription: 
   itemSellPrice: 600
   itemPrefab: {fileID: 733386610476664069, guid: b96066df95794664b8f0d0731932fbb8,

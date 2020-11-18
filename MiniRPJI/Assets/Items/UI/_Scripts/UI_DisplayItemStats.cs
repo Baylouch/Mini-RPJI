@@ -81,11 +81,11 @@ public class UI_DisplayItemStats : MonoBehaviour
             GameObject _damageText = Instantiate(statsNameAndPoints);
             if (item.damageMin > 0)
             {
-                _damageText.GetComponent<Text>().text = "Degats: <color=green>" + item.damageMin + "</color> - <color=green>" + item.damageMax + "</color>";
+                _damageText.GetComponent<Text>().text = "Damage: <color=green>" + item.damageMin + "</color> - <color=green>" + item.damageMax + "</color>";
             }
             else
             {
-                _damageText.GetComponent<Text>().text = "Degats: <color=red>" + item.damageMin + "</color> - <color=red>" + item.damageMax + "</color>";
+                _damageText.GetComponent<Text>().text = "Damage: <color=red>" + item.damageMin + "</color> - <color=red>" + item.damageMax + "</color>";
             }
             _damageText.transform.SetParent(statsPanelRect.transform);
             _damageText.GetComponent<RectTransform>().localScale = Vector3.one;
@@ -96,11 +96,11 @@ public class UI_DisplayItemStats : MonoBehaviour
             GameObject _rangedDamageText = Instantiate(statsNameAndPoints);
             if (item.rangedDamageMin > 0)
             {
-                _rangedDamageText.GetComponent<Text>().text = "Dgt Dist: <color=green>" + item.rangedDamageMin + "</color> - <color=green>" + item.rangedDamageMax + "</color>";
+                _rangedDamageText.GetComponent<Text>().text = "Ranged dmg: <color=green>" + item.rangedDamageMin + "</color> - <color=green>" + item.rangedDamageMax + "</color>";
             }
             else
             {
-                _rangedDamageText.GetComponent<Text>().text = "Dgt Dist: <color=red>" + item.rangedDamageMin + "</color> - <color=red>" + item.rangedDamageMax + "</color>";
+                _rangedDamageText.GetComponent<Text>().text = "Ranged dmg: <color=red>" + item.rangedDamageMin + "</color> - <color=red>" + item.rangedDamageMax + "</color>";
             }
             _rangedDamageText.transform.SetParent(statsPanelRect.transform);
             _rangedDamageText.GetComponent<RectTransform>().localScale = Vector3.one;
@@ -108,28 +108,28 @@ public class UI_DisplayItemStats : MonoBehaviour
         }
         if (item.healthpoints != 0)
         {
-            CreateItemStatsText("Vie", item.healthpoints);
+            CreateItemStatsText("Health", item.healthpoints);
         }
         if (item.armor != 0)
         {
-            CreateItemStatsText("Armure", item.armor);
+            CreateItemStatsText("Armor", item.armor);
         }
         if (item.strength != 0)
         {
-            CreateItemStatsText("Force", item.strength);
+            CreateItemStatsText("Strength", item.strength);
 
         }
         if (item.agility != 0)
         {
-            CreateItemStatsText("Agilité", item.agility);
+            CreateItemStatsText("Agility", item.agility);
         }
         if (item.vitality != 0)
         {
-            CreateItemStatsText("Vitalité", item.vitality);
+            CreateItemStatsText("Vitality", item.vitality);
         }
         if (item.energy != 0)
         {
-            CreateItemStatsText("Energie", item.energy);
+            CreateItemStatsText("Energy", item.energy);
         }
         if (item.criticalRate != 0)
         {
@@ -151,11 +151,11 @@ public class UI_DisplayItemStats : MonoBehaviour
             GameObject _rangedCriticalRateText = Instantiate(statsNameAndPoints);
             if (item.rangedCriticalRate > 0)
             {
-                _rangedCriticalRateText.GetComponent<Text>().text = "Crit. Dist: <color=green>" + item.rangedCriticalRate + "</color>%";
+                _rangedCriticalRateText.GetComponent<Text>().text = "Ranged crit: <color=green>" + item.rangedCriticalRate + "</color>%";
             }
             else
             {
-                _rangedCriticalRateText.GetComponent<Text>().text = "Crit. Dist: <color=red>" + item.rangedCriticalRate + "</color>%";
+                _rangedCriticalRateText.GetComponent<Text>().text = "Ranged crit: <color=red>" + item.rangedCriticalRate + "</color>%";
             }
             _rangedCriticalRateText.transform.SetParent(statsPanelRect.transform);
             _rangedCriticalRateText.GetComponent<RectTransform>().localScale = Vector3.one;
@@ -167,11 +167,11 @@ public class UI_DisplayItemStats : MonoBehaviour
                                                                      // Check if statsPoints is > or < to 0 for set green or red text
             if (Player_Stats.instance.GetCurrentLevel() >= item.levelRequired)
             {
-                _statsText.GetComponent<Text>().text = "Niveau requis : <color=green>" + item.levelRequired + "</color>"; // Set text with greend pts
+                _statsText.GetComponent<Text>().text = "Level required : <color=green>" + item.levelRequired + "</color>"; // Set text with greend pts
             }
             else
             {
-                _statsText.GetComponent<Text>().text = "Niveau requis : <color=red>" + item.levelRequired + "</color>"; // Set text with red pts
+                _statsText.GetComponent<Text>().text = "Level required : <color=red>" + item.levelRequired + "</color>"; // Set text with red pts
             }
 
             _statsText.transform.SetParent(statsPanelRect.transform); // Set hierarchy
@@ -194,7 +194,7 @@ public class UI_DisplayItemStats : MonoBehaviour
         {
             GameObject descriptionText = Instantiate(itemDescription);
 
-            descriptionText.GetComponent<Text>().text = "Prix de vente : " + item.itemSellPrice.ToString();
+            descriptionText.GetComponent<Text>().text = "Sell price : " + item.itemSellPrice.ToString();
             descriptionText.transform.SetParent(statsPanelRect.transform);
             descriptionText.GetComponent<RectTransform>().localScale = Vector3.one;
             statsPanelRect.sizeDelta = new Vector2(statsPanelRect.sizeDelta.x, statsPanelRect.sizeDelta.y + 30);
@@ -225,11 +225,11 @@ public class UI_DisplayItemStats : MonoBehaviour
 
         if (item.healthRegenerationPoints != 0)
         {
-            CreateItemStatsText("Vie", item.healthRegenerationPoints);
+            CreateItemStatsText("Health", item.healthRegenerationPoints);
         }
         if (item.energyRegenerationPoints != 0)
         {
-            CreateItemStatsText("Energie", item.energyRegenerationPoints);
+            CreateItemStatsText("Energy", item.energyRegenerationPoints);
         }
 
         if (item.itemDescription != string.Empty)
@@ -246,7 +246,7 @@ public class UI_DisplayItemStats : MonoBehaviour
         {
             GameObject descriptionText = Instantiate(itemDescription);
 
-            descriptionText.GetComponent<Text>().text = "Prix de vente : " + item.itemSellPrice.ToString();
+            descriptionText.GetComponent<Text>().text = "Sell price : " + item.itemSellPrice.ToString();
             descriptionText.transform.SetParent(statsPanelRect.transform);
             descriptionText.GetComponent<RectTransform>().localScale = Vector3.one;
             statsPanelRect.sizeDelta = new Vector2(statsPanelRect.sizeDelta.x, statsPanelRect.sizeDelta.y + 30);

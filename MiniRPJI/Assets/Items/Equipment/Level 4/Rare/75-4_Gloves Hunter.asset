@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 75-4_Gloves Hunter
   m_EditorClassIdentifier: 
   itemID: 75
-  itemName: Gants de chasseur
+  itemName: Hunter gloves
   itemDescription: 
   itemSellPrice: 99
   itemPrefab: {fileID: 1724247864129913130, guid: e844d7dd3bef667488cb5b47b1a5745d,
@@ -23,7 +23,6 @@ MonoBehaviour:
   stackableItem: 0
   armoryPart: 3
   rarety: 2
-  projectile: {fileID: 0}
   strength: 15
   agility: 0
   vitality: 1

@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: 1106_MonsterEye
   m_EditorClassIdentifier: 
   itemID: 1106
-  itemName: Oeil de monstre
-  itemDescription: La pupille me fixe...
+  itemName: Monster eye
+  itemDescription: The pupil stares at me...
   itemSellPrice: 0
   itemPrefab: {fileID: 5362988514200447822, guid: ca7c2fd90ae56df4e95c8633af4aa85e,
     type: 3}

@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: 15_PoorWine
   m_EditorClassIdentifier: 
   questID: 15
-  questTitle: Mon vin !
-  questDescription: "Non mais c'est pas possible ! Je me suis endormi un moment et
-    ma bouteille a disparue. Mais c'est pas possible ! O\xF9 elle est ! Rends toi
-    utile et aide moi a la retrouver !"
+  questTitle: My wine!
+  questDescription: No, but it's not possible! I fell asleep for a while and my bottle
+    disappeared. But it's not possible ! Where is she ! Make yourself useful and
+    help me find her!
   questSprite: {fileID: 21300000, guid: ea55e0ae186d59d41a0b270559045dd7, type: 3}
   totalQuestObjective: 1
   questDone: 0

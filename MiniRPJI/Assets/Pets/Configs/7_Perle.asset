@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   petID: 7
   petName: Perle
-  petDescription: "Vous serez en s\xE9curit\xE9 avec Perle."
+  petDescription: "You will be safe with Perle.\r"
   petCategory: 1
   petSex: 0
   petSprite: {fileID: -5049811029399388026, guid: 1e35292c85aa80d439ecfbc2fe40a418,

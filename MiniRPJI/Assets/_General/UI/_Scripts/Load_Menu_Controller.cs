@@ -12,6 +12,7 @@ public class Load_Menu_Controller : MonoBehaviour
     [SerializeField] Load_Button[] loadButtons;
 
     [SerializeField] GameObject confirmationUI;
+    [SerializeField] Text confirmationText;
     [SerializeField] Button loadSlotButton;
     [SerializeField] Button deleteSlotButton;
     [SerializeField] Button cancelButton;
@@ -72,6 +73,7 @@ public class Load_Menu_Controller : MonoBehaviour
         // Just a security
         HideConfirmationWindow();
 
+        confirmationText.text = "Modification on slot " + (saveIndex + 1).ToString();
         confirmationUI.SetActive(true);
 
         if (Scenes_Control.instance)

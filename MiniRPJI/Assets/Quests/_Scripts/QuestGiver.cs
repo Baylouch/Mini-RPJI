@@ -125,7 +125,7 @@ public class QuestGiver : Interactable
                 {
                     if (Player_Stats.instance.GetCurrentLevel() < questsToGive[i].levelRequired)
                     {
-                        SetDialogueUI("Reviens me voir quand tu sera niveau " + questsToGive[i].levelRequired + ".");
+                        SetDialogueUI("Come back to me when you'll be level " + questsToGive[i].levelRequired + ".");
                         return;
                     }
                 }
@@ -214,7 +214,7 @@ public class QuestGiver : Interactable
         if (!dialoguePanel.activeSelf)
             dialoguePanel.SetActive(true);
 
-        dialogue.text = "Vous avez terminer la quête " + questsToGive[questToGiveIndex].questTitle + ".\n\nVoila votre récompense!";
+        dialogue.text = "You accomplished the quest  \"" + questsToGive[questToGiveIndex].questTitle + "\".\n\n Here is your reward!";
         if (!dialogue.gameObject.activeSelf)
             dialogue.gameObject.SetActive(true);
 
@@ -232,7 +232,7 @@ public class QuestGiver : Interactable
         if (!dialoguePanel.activeSelf)
             dialoguePanel.SetActive(true);
 
-        dialogue.text = "Alors aventurier, comment avance la mission que je vous ai confié ?";
+        dialogue.text = "Hey traveler, how about the job that i gave to you ?";
         if (!dialogue.gameObject.activeSelf)
             dialogue.gameObject.SetActive(true);
 

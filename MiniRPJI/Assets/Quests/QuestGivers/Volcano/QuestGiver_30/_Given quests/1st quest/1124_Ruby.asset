@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: 1124_Ruby
   m_EditorClassIdentifier: 
   itemID: 1124
-  itemName: Rubis
-  itemDescription: D'un rouge ecarlate...
+  itemName: Ruby
+  itemDescription: Scarlet red...
   itemSellPrice: 0
   itemPrefab: {fileID: 5362988514200447822, guid: 7bbc0427760591a4e91f75d6352cb5fc,
     type: 3}

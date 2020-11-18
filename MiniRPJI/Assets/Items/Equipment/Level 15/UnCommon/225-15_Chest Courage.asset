@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 225-15_Chest Courage
   m_EditorClassIdentifier: 
   itemID: 225
-  itemName: Armure de courage
+  itemName: Armor of courage
   itemDescription: 
   itemSellPrice: 250
   itemPrefab: {fileID: 6105507112566103775, guid: 5b0990b01e9377340b8b0de20b0397b4,
@@ -23,7 +23,6 @@ MonoBehaviour:
   stackableItem: 0
   armoryPart: 1
   rarety: 1
-  projectile: {fileID: 0}
   strength: 0
   agility: 15
   vitality: 15

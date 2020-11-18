@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: 1003_Medium Energy Potion
   m_EditorClassIdentifier: 
   itemID: 1003
-  itemName: Potion d'energie moyenne
-  itemDescription: Restaure des points d'energie
+  itemName: Medium energy potion
+  itemDescription: Restores energy points
   itemSellPrice: 30
   itemPrefab: {fileID: 1031920270776230509, guid: e12500d377f8996438e66b6133ac7f26,
     type: 3}
@@ -22,4 +22,4 @@ MonoBehaviour:
   inventoryImage: {fileID: 21300000, guid: 1f97848f18817cc43ba66da5a2d0ccfa, type: 3}
   stackableItem: 1
   healthRegenerationPoints: 0
-  energyRegenerationPoints: 60
+  energyRegenerationPoints: 100

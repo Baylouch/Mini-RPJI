@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 303-17_Chest Silver
   m_EditorClassIdentifier: 
   itemID: 303
-  itemName: Armure en Argent
+  itemName: Silver armor
   itemDescription: 
   itemSellPrice: 500
   itemPrefab: {fileID: 6105507112566103775, guid: 5b0990b01e9377340b8b0de20b0397b4,

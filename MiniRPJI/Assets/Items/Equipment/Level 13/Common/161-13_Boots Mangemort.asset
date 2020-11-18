@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 161-13_Boots Mangemort
   m_EditorClassIdentifier: 
   itemID: 161
-  itemName: Bottes de mangemort
+  itemName: Death Eater boots
   itemDescription: 
   itemSellPrice: 130
   itemPrefab: {fileID: 733386610476664069, guid: b96066df95794664b8f0d0731932fbb8,
@@ -23,7 +23,6 @@ MonoBehaviour:
   stackableItem: 0
   armoryPart: 4
   rarety: 0
-  projectile: {fileID: 0}
   strength: 0
   agility: 9
   vitality: 0

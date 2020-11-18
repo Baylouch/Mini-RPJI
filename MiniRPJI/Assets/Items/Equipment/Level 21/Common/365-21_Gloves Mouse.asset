@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 365-21_Gloves Mouse
   m_EditorClassIdentifier: 
   itemID: 365
-  itemName: Gants de la Souris
+  itemName: Mouse gloves
   itemDescription: 
   itemSellPrice: 225
   itemPrefab: {fileID: 1724247864129913130, guid: e844d7dd3bef667488cb5b47b1a5745d,

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 366-21_Boots Mouse
   m_EditorClassIdentifier: 
   itemID: 366
-  itemName: Bottes de la Souris
+  itemName: Mouse boots
   itemDescription: 
   itemSellPrice: 220
   itemPrefab: {fileID: 733386610476664069, guid: b96066df95794664b8f0d0731932fbb8,

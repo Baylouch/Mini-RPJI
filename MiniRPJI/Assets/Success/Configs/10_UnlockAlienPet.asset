@@ -16,7 +16,8 @@ MonoBehaviour:
   successSprite: {fileID: -486633886358251829, guid: a7dfa991e33aadf42ab546bdff69ecbd,
     type: 3}
   successTitle: Mini Alien
-  successDescription: "D\xE9bloque un mini alien."
+  successDescription: Unlock a mini alien.
   isDone: 0
+  rewardGift: 0
   successObjective: 1
   xpReward: 20000

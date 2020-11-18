@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 441-25_Chest Prince
   m_EditorClassIdentifier: 
   itemID: 441
-  itemName: Armure de Prince
+  itemName: Prince armor
   itemDescription: 
   itemSellPrice: 570
   itemPrefab: {fileID: 6105507112566103775, guid: 5b0990b01e9377340b8b0de20b0397b4,

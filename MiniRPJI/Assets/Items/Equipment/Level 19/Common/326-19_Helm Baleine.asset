@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 326-19_Helm Baleine
   m_EditorClassIdentifier: 
   itemID: 326
-  itemName: Casque de la Baleine
+  itemName: Whale helmet
   itemDescription: 
   itemSellPrice: 200
   itemPrefab: {fileID: 4916301973116470330, guid: 17bcec922aaa11d4e9f8b1fcbbbd1c2a,

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 495-22_Gloves Alpha
   m_EditorClassIdentifier: 
   itemID: 495
-  itemName: Gants de l'Alpha
+  itemName: Alpha gloves
   itemDescription: 
   itemSellPrice: 1050
   itemPrefab: {fileID: 1724247864129913130, guid: e844d7dd3bef667488cb5b47b1a5745d,

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 293-17_Gloves Borne
   m_EditorClassIdentifier: 
   itemID: 293
-  itemName: Gants du Borne
+  itemName: One-eyed gloves
   itemDescription: 
   itemSellPrice: 185
   itemPrefab: {fileID: 1724247864129913130, guid: e844d7dd3bef667488cb5b47b1a5745d,

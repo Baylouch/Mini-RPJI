@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 337-19_Bow Rat
   m_EditorClassIdentifier: 
   itemID: 337
-  itemName: Arc du Rat
+  itemName: Rat bow
   itemDescription: 
   itemSellPrice: 380
   itemPrefab: {fileID: 4019101185777562141, guid: 79efe668507cf7f4ab3f34866358491f,

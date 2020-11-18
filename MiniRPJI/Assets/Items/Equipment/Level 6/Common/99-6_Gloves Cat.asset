@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 99-6_Gloves Cat
   m_EditorClassIdentifier: 
   itemID: 99
-  itemName: Gants du chat
+  itemName: Cat gloves
   itemDescription: 
   itemSellPrice: 65
   itemPrefab: {fileID: 1724247864129913130, guid: e844d7dd3bef667488cb5b47b1a5745d,
@@ -23,7 +23,6 @@ MonoBehaviour:
   stackableItem: 0
   armoryPart: 3
   rarety: 0
-  projectile: {fileID: 0}
   strength: 10
   agility: 0
   vitality: 0

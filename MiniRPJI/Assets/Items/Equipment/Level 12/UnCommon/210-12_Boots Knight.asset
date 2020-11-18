@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 210-12_Boots Knight
   m_EditorClassIdentifier: 
   itemID: 210
-  itemName: Bottes du Chevalier
+  itemName: Knight's boots
   itemDescription: 
   itemSellPrice: 205
   itemPrefab: {fileID: 733386610476664069, guid: b96066df95794664b8f0d0731932fbb8,
@@ -23,7 +23,6 @@ MonoBehaviour:
   stackableItem: 0
   armoryPart: 4
   rarety: 1
-  projectile: {fileID: 0}
   strength: 0
   agility: 5
   vitality: 0

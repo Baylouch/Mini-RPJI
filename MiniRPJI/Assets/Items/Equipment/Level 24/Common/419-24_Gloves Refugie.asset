@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 419-24_Gloves Refugie
   m_EditorClassIdentifier: 
   itemID: 419
-  itemName: Gants du Refuge
+  itemName: Refuge gloves
   itemDescription: 
   itemSellPrice: 244
   itemPrefab: {fileID: 1724247864129913130, guid: e844d7dd3bef667488cb5b47b1a5745d,

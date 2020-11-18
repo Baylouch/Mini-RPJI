@@ -3,7 +3,7 @@
  * Permet de mémoriser un enemy avec ses statistiques.
  * 
  * Ce script est utilisé lorsque le joueur est éloigné suffisemment d'un enemy, le gameObject et certaines stats seront mémorisées afin de pouvoir
- * détruire l'enemu dans le jeu et ne retenir qu'un petit ensemble de données.
+ * détruire l'ennemi dans le jeu et ne retenir qu'un petit ensemble de données.
  * 
  * Le but est d'économiser de la mémoire et de rendre le jeu plus performant.
  * 
@@ -21,9 +21,9 @@ public class RememberEnemyData : MonoBehaviour
 
     public Vector3 spawnPosition;
 
-    float distanceToActivate = 27f;
+    public float distanceToActivate = 27f; // We want it public to check via Enemy_Activator.cs on the player. Maybe create a getter, maybe f*** it.
 
-    Transform playerTransform;
+    //Transform playerTransform;
 
     bool isSet = false;
 
@@ -34,37 +34,40 @@ public class RememberEnemyData : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, 2f);
     }
 
+    // TODO DELETE
     // Start is called before the first frame update
-    void Start()
-    {
-        if (Player_Stats.instance)
-            playerTransform = Player_Stats.instance.transform;
+    //void Start()
+    //{
+    //    if (Player_Stats.instance)
+    //        playerTransform = Player_Stats.instance.transform;
 
-    }
+    //}
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (playerTransform == null)
-        {
-            if (Player_Stats.instance)
-                playerTransform = Player_Stats.instance.transform;
+    //// Update is called once per frame
+    //void Update()
+    //{
+    //    if (playerTransform == null)
+    //    {
+    //        if (Player_Stats.instance)
+    //            playerTransform = Player_Stats.instance.transform;
 
-            return;
-        }
+    //        return;
+    //    }
 
-        if (Vector3.Distance(transform.position, playerTransform.position) <= distanceToActivate)
-        {
-            // Respawn the enemy with registered stats
-            if (!isSet)
-            {
-                isSet = true;
-                RespawnEnemy();
-            }
-        }
-    }
+    //    // TODO Change it because when we got 30+ of this searching each frames it's cpu burning
+    //    if (Vector3.Distance(transform.position, playerTransform.position) <= distanceToActivate)
+    //    {
+    //        // Respawn the enemy with registered stats
+    //        if (!isSet)
+    //        {
+    //            isSet = true;
+    //            RespawnEnemy();
+    //        }
+    //    }
+    //}
 
-    void RespawnEnemy()
+    // This method is public because we want to acces via Enemy_Activator.cs on the player.
+    public void RespawnEnemy()
     {
         if (EnnemiesDataBaseGameObject.instance)
         {

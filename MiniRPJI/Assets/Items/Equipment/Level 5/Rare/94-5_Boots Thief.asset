@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 94-5_Boots Thief
   m_EditorClassIdentifier: 
   itemID: 94
-  itemName: Bottes du voleur
+  itemName: Thief boots
   itemDescription: 
   itemSellPrice: 99
   itemPrefab: {fileID: 733386610476664069, guid: b96066df95794664b8f0d0731932fbb8,
@@ -23,7 +23,6 @@ MonoBehaviour:
   stackableItem: 0
   armoryPart: 4
   rarety: 2
-  projectile: {fileID: 0}
   strength: 0
   agility: 2
   vitality: 5

@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: 14_LittleAlienIvory
   m_EditorClassIdentifier: 
   petID: 14
-  petName: Petit Alien en Ivoire
-  petDescription: Incroyable. Il ne devrait pas exister.
+  petName: Little Ivory Alien
+  petDescription: Unbelievable. It shouldn't exist.
   petCategory: 2
   petSex: 2
   petSprite: {fileID: -8215381979616408266, guid: c19224641d7abc049a6c2579f9cd24a7,

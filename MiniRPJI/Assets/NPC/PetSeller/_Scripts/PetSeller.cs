@@ -169,7 +169,7 @@ public class PetSeller : Interactable
 
         if (!textDialogue.gameObject.activeSelf)
         {
-            textDialogue.text = "Oui ? On se connait ?";
+            textDialogue.text = "Yes ? We know each other ?";
             textDialogue.gameObject.SetActive(true);
         }
 
@@ -262,11 +262,11 @@ public class PetSeller : Interactable
         // Pet Category
         if (config.petCategory == PetCategory.Cat)
         {
-            petCategory.text = "Chat ";
+            petCategory.text = "Cat ";
         }
         else if (config.petCategory == PetCategory.Dog)
         {
-            petCategory.text = "Chien ";
+            petCategory.text = "Dog ";
         }
         else if (config.petCategory == PetCategory.Alien)
         {
@@ -276,7 +276,7 @@ public class PetSeller : Interactable
         // Pet sex (added to the category text)
         if (config.petSex == PetSex.Female)
         {
-            petCategory.text += "Femelle";
+            petCategory.text += "Female";
         }
         else if (config.petSex == PetSex.Male)
         {
@@ -284,7 +284,7 @@ public class PetSeller : Interactable
         }
         else if (config.petSex == PetSex.Undefined)
         {
-            petCategory.text += "Indéfini";
+            petCategory.text += "Undefined";
         }
 
         petWeight.text = config.petWeight.ToString() + " kg";
@@ -379,7 +379,7 @@ public class PetSeller : Interactable
             else
             {
                 int amountNeeded = linkedPet.petPrice - Player_Inventory.instance.GetPlayerGold();
-                buyButton.onClick.AddListener(() => UI_Player_Informations.instance.DisplayInformation("Il te manque " + amountNeeded.ToString() + " pieces !"));
+                buyButton.onClick.AddListener(() => UI_Player_Informations.instance.DisplayInformation("You need " + amountNeeded.ToString() + " more gold !"));
             }
         }
 

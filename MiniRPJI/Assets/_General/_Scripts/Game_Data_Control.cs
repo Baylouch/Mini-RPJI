@@ -74,14 +74,7 @@ public class Game_Data_Control : MonoBehaviour
                 // If current item is a stackable one
                 if (Player_Inventory.instance.GetInventoryItem(i).stackableItem)
                 {
-                    // Get acces to the inventory slot by UI_Player_Inventory
-                    if (UI_Player.instance && UI_Player.instance.playerInventoryUI)
-                    {
-                        if (UI_Player.instance.playerInventoryUI.GetInventorySlotByIndex(i) != null)
-                        {
-                            data.playerInventory.inventoryItemsNumber[i] = UI_Player.instance.playerInventoryUI.GetInventorySlotByIndex(i).itemNumb;
-                        }
-                    }
+                    data.playerInventory.inventoryItemsNumber[i] = Player_Inventory.instance.inventoryItemsNumb[i];
                 }
             }
         }
@@ -448,8 +441,10 @@ public class Game_Data_Control : MonoBehaviour
             {
                 if (data.playerQuest.questsID[i] != -1)
                 {
-                    Quests_Control.instance.GetNewQuest(data.playerQuest.questsID[i]);
-                    Quests_Control.instance.GetPlayerQuestByIndex(i).currentQuestObjective = data.playerQuest.questsCurrentObjective[i];
+                    int currentID = data.playerQuest.questsID[i];
+
+                    Quests_Control.instance.GetNewQuest(currentID);
+                    Quests_Control.instance.GetPlayerQuestByID(currentID).currentQuestObjective = data.playerQuest.questsCurrentObjective[i];
                 }
             }
 

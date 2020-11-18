@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 504-25_Helm President
   m_EditorClassIdentifier: 
   itemID: 504
-  itemName: Casque de President
+  itemName: President's Helmet
   itemDescription: 
   itemSellPrice: 1350
   itemPrefab: {fileID: 4916301973116470330, guid: 17bcec922aaa11d4e9f8b1fcbbbd1c2a,

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 505-25_Boots President
   m_EditorClassIdentifier: 
   itemID: 505
-  itemName: Bottes de President
+  itemName: President's boots
   itemDescription: 
   itemSellPrice: 1300
   itemPrefab: {fileID: 733386610476664069, guid: b96066df95794664b8f0d0731932fbb8,

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 102-6_Helm Tree-man
   m_EditorClassIdentifier: 
   itemID: 102
-  itemName: Casque de l'homme-arbre
+  itemName: Helmet of the Treeman
   itemDescription: 
   itemSellPrice: 100
   itemPrefab: {fileID: 4916301973116470330, guid: 17bcec922aaa11d4e9f8b1fcbbbd1c2a,
@@ -23,7 +23,6 @@ MonoBehaviour:
   stackableItem: 0
   armoryPart: 0
   rarety: 1
-  projectile: {fileID: 0}
   strength: 0
   agility: 7
   vitality: 5

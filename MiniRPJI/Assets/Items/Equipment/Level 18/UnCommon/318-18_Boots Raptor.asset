@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 318-18_Boots Raptor
   m_EditorClassIdentifier: 
   itemID: 318
-  itemName: Bottes du Raptor
+  itemName: Raptor boots
   itemDescription: 
   itemSellPrice: 340
   itemPrefab: {fileID: 733386610476664069, guid: b96066df95794664b8f0d0731932fbb8,

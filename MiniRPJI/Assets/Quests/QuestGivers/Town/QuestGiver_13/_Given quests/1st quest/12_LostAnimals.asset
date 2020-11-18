@@ -13,16 +13,14 @@ MonoBehaviour:
   m_Name: 12_LostAnimals
   m_EditorClassIdentifier: 
   questID: 12
-  questTitle: Les animaux perdus
-  questDescription: "Bonjour monsieur, ma grand-m\xE8re m'avait confi\xE9 2 petits
-    chats et un chien que je devais garder mais je les ai perdus... Vous pouvez m'aider
-    a les retrouver s'il vous plait ??"
+  questTitle: Lost animals
+  questDescription: Hello sir, grandma gave me 2 little cats and a dog that I had
+    to keep but I lost them ... Can you help me find them please ??
   questSprite: {fileID: 524633085650608049, guid: 15af7f4a0651a994c93d96cd1f1c5cfb,
     type: 3}
   totalQuestObjective: 3
   questDone: 0
   questReward: {fileID: 0}
-  questLinkedItem: {fileID: 0}
   questGOToSpawn: {fileID: 8981756307836266751, guid: 55c441702431ae9478a4629af0372fef,
     type: 3}
   xpAmount: 2500

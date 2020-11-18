@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: 452-7_Chest Perfect
   m_EditorClassIdentifier: 
   itemID: 452
-  itemName: Chemise en parfait etat
-  itemDescription: Tellement confortable !
+  itemName: Shirt in perfect condition
+  itemDescription: So comfortable!
   itemSellPrice: 335
   itemPrefab: {fileID: 6105507112566103775, guid: 5b0990b01e9377340b8b0de20b0397b4,
     type: 3}

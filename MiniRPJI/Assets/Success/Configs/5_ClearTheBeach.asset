@@ -15,8 +15,8 @@ MonoBehaviour:
   successID: 5
   successSprite: {fileID: 4735074820392211118, guid: a7dfa991e33aadf42ab546bdff69ecbd,
     type: 3}
-  successTitle: Repousse les aliens
-  successDescription: Tue 50 aliens sur la plage.
+  successTitle: Repel the aliens
+  successDescription: Kill 50 aliens on the beach.
   isDone: 0
   rewardGift: 0
   successObjective: 50

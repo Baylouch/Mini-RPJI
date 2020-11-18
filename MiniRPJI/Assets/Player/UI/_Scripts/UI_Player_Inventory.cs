@@ -412,7 +412,7 @@ public class UI_Player_Inventory : MonoBehaviour
         {
             // Debug.Log("You have not the level required for this item.");
 
-            UI_Player_Informations.instance.DisplayInformation("Tu n'as pas le niveau requis.");
+            UI_Player_Informations.instance.DisplayInformation("You have not the required level.");
            
             return;
         }
@@ -475,7 +475,7 @@ public class UI_Player_Inventory : MonoBehaviour
             else // Else you can only remove it.
             {
                 // Debug.Log("No more slots in inventory !!!!");
-                UI_Player_Informations.instance.DisplayInformation("L'inventaire est plein.");
+                UI_Player_Informations.instance.DisplayInformation("Inventory's full.");
                 return;
             }
         }
@@ -566,7 +566,7 @@ public class UI_Player_Inventory : MonoBehaviour
                 }
                 else
                 {
-                    UI_Player_Informations.instance.DisplayInformation("La banque est pleine !");
+                    UI_Player_Informations.instance.DisplayInformation("The bank is full!");
                 }
             }           
         }

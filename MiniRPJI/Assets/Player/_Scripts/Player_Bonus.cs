@@ -41,6 +41,7 @@ public class Player_Bonus : MonoBehaviour
     {
         if (Player_Stats.instance && Player_Stats.instance.playerEnergy)
         {
+            Player_Stats.instance.playerEnergy.SetCurrentEnergyPoints(Player_Stats.instance.playerEnergy.GetTotalEnergyPoints());
             Player_Stats.instance.playerEnergy.freeEnergy = true;
             currentPlayerBonus = Bonus_Type.Energy;
         }

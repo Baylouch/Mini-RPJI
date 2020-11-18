@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: 20_AppleAddict
   m_EditorClassIdentifier: 
   questID: 20
-  questTitle: Les pommes
-  questDescription: "Salut, je m'appelle Lucio. Ma grande soeur ne veut plus me voir,
-    je sais pas pourquoi... Alors je tra\xEEne par ici, y'a beaucoup de pommes par
-    ici, tu savais ? Tu voudrais m'en rapporter quelques unes ? J'adore les pommes."
+  questTitle: Apples
+  questDescription: Hi, my name is Lucio. My big sister doesn't want to see me anymore,
+    I don't know why ... So I'm hanging out here, there are a lot of apples around
+    here, did you know? Would you like to bring me some? I love apples.
   questSprite: {fileID: 21300000, guid: c1d0e6764d9c5f8458571840fb1d57d3, type: 3}
   totalQuestObjective: 10
   questDone: 0

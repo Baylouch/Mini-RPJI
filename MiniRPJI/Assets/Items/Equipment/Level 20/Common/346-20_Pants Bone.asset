@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 346-20_Pants Bone
   m_EditorClassIdentifier: 
   itemID: 346
-  itemName: Pantalon en Os
+  itemName: Bone pants
   itemDescription: 
   itemSellPrice: 210
   itemPrefab: {fileID: 7290006494410735304, guid: 6c58cf90d0d71f44b9d2a1b6ee9f5555,

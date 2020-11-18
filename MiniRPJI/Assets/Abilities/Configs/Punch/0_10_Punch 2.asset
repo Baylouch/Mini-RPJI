@@ -16,9 +16,8 @@ MonoBehaviour:
   abilitySubID: 0
   abilityLevel: 2
   abilityName: Punch
-  abilityShortDescription: Un bon coup de poing
-  abilityLongDescription: "Ce coup de poing est si puissant qu'il propulse l'ennemi
-    en arri\xE8re."
+  abilityShortDescription: A good punch
+  abilityLongDescription: This punch is so powerful that it propels the enemy back.
   abilitySprite: {fileID: 21300000, guid: be05b24d7c1be704f9ad30dbab21ba1f, type: 3}
   abilityPrefab: {fileID: 8712131509357282460, guid: 1a787cd634ac59647b0a174935bfbc92,
     type: 3}
@@ -27,5 +26,4 @@ MonoBehaviour:
   abilityTimer: 0
   energyCost: 5
   abilityType: 0
-  abilityShortcut: 0
   levelRequired: 1

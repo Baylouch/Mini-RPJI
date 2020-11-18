@@ -1,7 +1,6 @@
 ﻿/* AI_Enemy.cs
+ * 
  * Gère les mouvements d'un ennemi via le system Pathfinding A*.
- * 
- * 
  * 
  * */
 

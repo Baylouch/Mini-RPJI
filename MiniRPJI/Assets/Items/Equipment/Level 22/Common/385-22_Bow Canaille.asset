@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 385-22_Bow Canaille
   m_EditorClassIdentifier: 
   itemID: 385
-  itemName: Arc de Canaille
+  itemName: Scoundrel bow
   itemDescription: 
   itemSellPrice: 260
   itemPrefab: {fileID: 4019101185777562141, guid: 79efe668507cf7f4ab3f34866358491f,

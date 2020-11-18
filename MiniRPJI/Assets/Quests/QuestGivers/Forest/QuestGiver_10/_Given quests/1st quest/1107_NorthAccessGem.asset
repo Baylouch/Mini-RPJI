@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: 1107_NorthAccessGem
   m_EditorClassIdentifier: 
   itemID: 1107
-  itemName: "Gemme d'acc\xE8s nord"
-  itemDescription: Son bleu est si profond...
+  itemName: North Access Gem
+  itemDescription: Its blue is so deep...
   itemSellPrice: 0
   itemPrefab: {fileID: 5362988514200447822, guid: f8fe9747694517048b5017eb2757920c,
     type: 3}

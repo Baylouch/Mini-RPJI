@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 213-13_Chest Viking
   m_EditorClassIdentifier: 
   itemID: 213
-  itemName: Armure de Viking
+  itemName: Viking armor
   itemDescription: 
   itemSellPrice: 220
   itemPrefab: {fileID: 6105507112566103775, guid: 5b0990b01e9377340b8b0de20b0397b4,
@@ -23,7 +23,6 @@ MonoBehaviour:
   stackableItem: 0
   armoryPart: 1
   rarety: 1
-  projectile: {fileID: 0}
   strength: 5
   agility: 5
   vitality: 15

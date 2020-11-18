@@ -16,7 +16,7 @@ public class Player_Movement : MonoBehaviour
 
     [SerializeField] float dashSpeed = 40f;
     [SerializeField] float dashTime = .2f;
-    [SerializeField] float energyNeedToDash = 8f; // In percent
+    [SerializeField] float energyNeedToDash = 5f; // In percent
     [SerializeField] GameObject dashEffect;
 
     GameObject currentDashEffect;
@@ -54,7 +54,7 @@ public class Player_Movement : MonoBehaviour
         if (!canDash)
             return;
 
-        if (Player_Shortcuts.GetShortCuts() == 0)
+        if (Player_Shortcuts.GetShortCuts() == 0 || Player_Shortcuts.GetShortCuts() == 1)
         {
             // Process Mouse dashing
             if (Input.GetKey(KeyCode.LeftShift))
@@ -127,6 +127,11 @@ public class Player_Movement : MonoBehaviour
             {
                 // Process ZQSD movements
                 SimplePlayerZQSDMovement();
+            }
+            else if (Player_Shortcuts.GetShortCuts() == 1)
+            {
+                // Process WASD movements
+                SimplePlayerWASDMovement();
             }
             else
             {
@@ -214,6 +219,53 @@ public class Player_Movement : MonoBehaviour
                 dashDirection = 3;
         }
         else if (Input.GetKey(KeyCode.Q))
+        {
+            myRb.velocity = new Vector2(-1f, 0f) * movementSpeed;
+            if (dashDirection != 4)
+                dashDirection = 4;
+        }
+        else
+        {
+            if (myRb.velocity != Vector2.zero)
+            {
+                myRb.velocity = Vector2.zero;
+            }
+        }
+    }
+
+    void SimplePlayerWASDMovement()
+    {
+        if (isDashing)
+            return;
+
+        float movementSpeed = player_Stats.GetSpeed();
+
+        if (moveFaster)
+            movementSpeed *= 1.5f;
+
+        if (moveMoreFaster)
+            movementSpeed *= 3f;
+
+        // Process normal movement
+        if (Input.GetKey(KeyCode.W))
+        {
+            myRb.velocity = new Vector2(0f, 1f) * movementSpeed;
+            if (dashDirection != 1)
+                dashDirection = 1;
+        }
+        else if (Input.GetKey(KeyCode.S))
+        {
+            myRb.velocity = new Vector2(0f, -1f) * movementSpeed;
+            if (dashDirection != 2)
+                dashDirection = 2;
+        }
+        else if (Input.GetKey(KeyCode.D))
+        {
+            myRb.velocity = new Vector2(1f, 0f) * movementSpeed;
+            if (dashDirection != 3)
+                dashDirection = 3;
+        }
+        else if (Input.GetKey(KeyCode.A))
         {
             myRb.velocity = new Vector2(-1f, 0f) * movementSpeed;
             if (dashDirection != 4)

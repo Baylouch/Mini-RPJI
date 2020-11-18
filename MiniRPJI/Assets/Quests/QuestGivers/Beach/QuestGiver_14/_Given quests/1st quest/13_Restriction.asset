@@ -13,13 +13,12 @@ MonoBehaviour:
   m_Name: 13_Restriction
   m_EditorClassIdentifier: 
   questID: 13
-  questTitle: Restreints
-  questDescription: "Salut, es-tu au courant ? Les aliens ont d\xE9barqu\xE9s ! Ils
-    sont pas si intelligent que \xE7a, mais dangereux oui ! Ils nous ont restreints
-    l'acc\xE8s aux deux premieres parties de cette zone. Si tu veux aller plus loin,
-    il faudra d'abord te rendre dans la partie 2 afin de trouver leur chef. Dirige
-    toi vers le Nord, prend le chemin qui se trouvera le plus \xE0 l'est. Continue
-    de marcher et prend l'entr\xE9e qui se trouvera le plus au sud."
+  questTitle: Restricted
+  questDescription: Hi, do you know? The aliens have landed! They are not that smart,
+    but dangerous yes! They restricted us access to the first two parts of this area.
+    If you want to go further, you will first have to go to part 2 to find their
+    leader. Head north, take the path that will be most east. Keep walking and take
+    the entrance that will be furthest south.
   questSprite: {fileID: 1808999691540107661, guid: 42de378fddc0f8e4bb6c728339301ec2,
     type: 3}
   totalQuestObjective: 1

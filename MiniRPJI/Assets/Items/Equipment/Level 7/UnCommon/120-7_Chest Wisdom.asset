@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 120-7_Chest Wisdom
   m_EditorClassIdentifier: 
   itemID: 120
-  itemName: Armure de sagesse
+  itemName: Armor of wisdom
   itemDescription: 
   itemSellPrice: 130
   itemPrefab: {fileID: 6105507112566103775, guid: 5b0990b01e9377340b8b0de20b0397b4,
@@ -23,7 +23,6 @@ MonoBehaviour:
   stackableItem: 0
   armoryPart: 1
   rarety: 1
-  projectile: {fileID: 0}
   strength: 0
   agility: 5
   vitality: 8

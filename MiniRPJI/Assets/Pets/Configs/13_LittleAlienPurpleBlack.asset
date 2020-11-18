@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: 13_LittleAlienPurpleBlack
   m_EditorClassIdentifier: 
   petID: 13
-  petName: Petit Alien Violet
-  petDescription: "Etrange petite cr\xE9ature d'origine inconnu, il n'en reste pas
-    moins mignon !"
+  petName: Little Purple Alien
+  petDescription: Strange little creature of unknown origin, He's so cute!
   petCategory: 2
   petSex: 2
   petSprite: {fileID: -3964438593568469139, guid: 6be9c84af5d9c184899a6a4f34bfc295,

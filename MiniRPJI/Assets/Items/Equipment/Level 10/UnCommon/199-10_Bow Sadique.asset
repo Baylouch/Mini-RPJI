@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 199-10_Bow Sadique
   m_EditorClassIdentifier: 
   itemID: 199
-  itemName: Arc du Sadique
+  itemName: Sadist's bow
   itemDescription: 
   itemSellPrice: 180
   itemPrefab: {fileID: 4019101185777562141, guid: 79efe668507cf7f4ab3f34866358491f,
@@ -23,8 +23,6 @@ MonoBehaviour:
   stackableItem: 0
   armoryPart: 5
   rarety: 1
-  projectile: {fileID: 6052980135759029977, guid: 77de479917db3204cae1bd43cf852001,
-    type: 3}
   strength: 21
   agility: 0
   vitality: 0

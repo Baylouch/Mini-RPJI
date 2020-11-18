@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 407-23_Gloves Error
   m_EditorClassIdentifier: 
   itemID: 407
-  itemName: Gants Erreur
+  itemName: Error gloves
   itemDescription: 
   itemSellPrice: 490
   itemPrefab: {fileID: 1724247864129913130, guid: e844d7dd3bef667488cb5b47b1a5745d,

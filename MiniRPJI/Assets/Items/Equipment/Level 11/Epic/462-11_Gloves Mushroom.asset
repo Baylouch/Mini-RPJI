@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 462-11_Gloves Mushroom
   m_EditorClassIdentifier: 
   itemID: 462
-  itemName: Gants Champignon
+  itemName: Mushroom gloves
   itemDescription: 
   itemSellPrice: 500
   itemPrefab: {fileID: 1724247864129913130, guid: e844d7dd3bef667488cb5b47b1a5745d,

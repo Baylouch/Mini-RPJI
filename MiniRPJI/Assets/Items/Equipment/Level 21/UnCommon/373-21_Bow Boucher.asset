@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 373-21_Bow Boucher
   m_EditorClassIdentifier: 
   itemID: 373
-  itemName: Arc du Boucher
+  itemName: Butcher's bow
   itemDescription: 
   itemSellPrice: 455
   itemPrefab: {fileID: 4019101185777562141, guid: 79efe668507cf7f4ab3f34866358491f,

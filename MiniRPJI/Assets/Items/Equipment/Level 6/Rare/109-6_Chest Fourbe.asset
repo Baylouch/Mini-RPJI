@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 109-6_Chest Fourbe
   m_EditorClassIdentifier: 
   itemID: 109
-  itemName: T-shirt de fourbe
+  itemName: Deceitful shirt
   itemDescription: 
   itemSellPrice: 180
   itemPrefab: {fileID: 6105507112566103775, guid: 5b0990b01e9377340b8b0de20b0397b4,
@@ -23,7 +23,6 @@ MonoBehaviour:
   stackableItem: 0
   armoryPart: 1
   rarety: 2
-  projectile: {fileID: 0}
   strength: 0
   agility: 10
   vitality: 10

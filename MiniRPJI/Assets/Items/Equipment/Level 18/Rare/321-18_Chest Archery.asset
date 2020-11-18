@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 321-18_Chest Archery
   m_EditorClassIdentifier: 
   itemID: 321
-  itemName: Armure de l'archer
+  itemName: Archer's armor
   itemDescription: 
   itemSellPrice: 530
   itemPrefab: {fileID: 6105507112566103775, guid: 5b0990b01e9377340b8b0de20b0397b4,

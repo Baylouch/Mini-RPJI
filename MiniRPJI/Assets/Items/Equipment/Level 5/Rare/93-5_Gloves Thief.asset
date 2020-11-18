@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 93-5_Gloves Thief
   m_EditorClassIdentifier: 
   itemID: 93
-  itemName: Gants du voleur
+  itemName: Thief gloves
   itemDescription: 
   itemSellPrice: 90
   itemPrefab: {fileID: 1724247864129913130, guid: e844d7dd3bef667488cb5b47b1a5745d,
@@ -23,7 +23,6 @@ MonoBehaviour:
   stackableItem: 0
   armoryPart: 3
   rarety: 2
-  projectile: {fileID: 0}
   strength: 15
   agility: 0
   vitality: 4

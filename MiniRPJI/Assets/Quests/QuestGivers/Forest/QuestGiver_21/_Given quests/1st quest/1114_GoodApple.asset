@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: 1114_GoodApple
   m_EditorClassIdentifier: 
   itemID: 1114
-  itemName: "D\xE9licieuse pomme"
-  itemDescription: "Juteuse et sucr\xE9e..."
+  itemName: Delicious apple
+  itemDescription: Juicy and sweet...
   itemSellPrice: 0
   itemPrefab: {fileID: 5362988514200447822, guid: d28fa214deb848746a22f513c84e73e7,
     type: 3}

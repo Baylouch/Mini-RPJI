@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 288-16_Boots Dechu
   m_EditorClassIdentifier: 
   itemID: 288
-  itemName: Bottes du Dechu
+  itemName: Fallen boots
   itemDescription: 
   itemSellPrice: 470
   itemPrefab: {fileID: 733386610476664069, guid: b96066df95794664b8f0d0731932fbb8,

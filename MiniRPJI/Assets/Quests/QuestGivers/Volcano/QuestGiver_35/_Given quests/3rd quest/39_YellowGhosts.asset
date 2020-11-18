@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: 39_YellowGhosts
   m_EditorClassIdentifier: 
   questID: 39
-  questTitle: "Fant\xF4mes jaunes"
-  questDescription: "Excellent ! Il ne reste plus que quelques fant\xF4mes jaunes
-    a exorciser."
+  questTitle: Yellow ghosts
+  questDescription: Excellent! There are only a few yellow ghosts left to exorcise.
   questSprite: {fileID: -6356739607934856663, guid: b4b15428180a2994eaf3d1dd97cd4c33,
     type: 3}
   totalQuestObjective: 5

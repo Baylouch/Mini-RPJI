@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: 1127_MagicRune
   m_EditorClassIdentifier: 
   itemID: 1127
-  itemName: Rune magique
-  itemDescription: "Une indescriptible force en \xE9mane..."
+  itemName: Magic rune
+  itemDescription: An indescribable force emanates from it...
   itemSellPrice: 0
   itemPrefab: {fileID: 5362988514200447822, guid: 31682f6918b5f0041831b670b0cac0fd,
     type: 3}

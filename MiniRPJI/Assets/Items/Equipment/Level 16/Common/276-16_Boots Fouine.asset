@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 276-16_Boots Fouine
   m_EditorClassIdentifier: 
   itemID: 276
-  itemName: Bottes de fouine
+  itemName: Weasel boots
   itemDescription: 
   itemSellPrice: 160
   itemPrefab: {fileID: 733386610476664069, guid: b96066df95794664b8f0d0731932fbb8,

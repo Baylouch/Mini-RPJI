@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: 1001_Small Energy Potion
   m_EditorClassIdentifier: 
   itemID: 1001
-  itemName: Petite potion d'energie
-  itemDescription: Restaure des points d'energie
+  itemName: Small energy potion
+  itemDescription: Restores energy points
   itemSellPrice: 15
   itemPrefab: {fileID: 1031920270776230509, guid: e12500d377f8996438e66b6133ac7f26,
     type: 3}
@@ -22,4 +22,4 @@ MonoBehaviour:
   inventoryImage: {fileID: 21300000, guid: 805736230f06ac449a72b0ecb951e522, type: 3}
   stackableItem: 1
   healthRegenerationPoints: 0
-  energyRegenerationPoints: 30
+  energyRegenerationPoints: 50

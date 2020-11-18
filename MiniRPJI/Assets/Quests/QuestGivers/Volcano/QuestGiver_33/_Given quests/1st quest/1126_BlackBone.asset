@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: 1126_BlackBone
   m_EditorClassIdentifier: 
   itemID: 1126
-  itemName: Os noir
-  itemDescription: '...'
+  itemName: Black bone
+  itemDescription: ...
   itemSellPrice: 0
   itemPrefab: {fileID: 5362988514200447822, guid: f30e149b600114d4fa8af1ef5338de3d,
     type: 3}

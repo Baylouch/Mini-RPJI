@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: 25_LostFriend
   m_EditorClassIdentifier: 
   questID: 25
-  questTitle: L'ami perdu
-  questDescription: J'ai perdu mon meilleur ami... Mes parents ne veulent pas que
-    j'aille plus loin parce que c'est trop dangeureux... Aide moi s'il te plait !
+  questTitle: The lost friend
+  questDescription: I lost my best friend ... My parents don't want me to go any
+    further because it's too dangerous ... Help me please!
   questSprite: {fileID: 524633085650608049, guid: 15af7f4a0651a994c93d96cd1f1c5cfb,
     type: 3}
   totalQuestObjective: 1

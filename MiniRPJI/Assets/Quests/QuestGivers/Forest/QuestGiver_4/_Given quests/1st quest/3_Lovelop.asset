@@ -13,11 +13,10 @@ MonoBehaviour:
   m_Name: 3_Lovelop
   m_EditorClassIdentifier: 
   questID: 3
-  questTitle: L'enveloppe
-  questDescription: "Salut ! J'\xE9tait en train de rentrer au village quand j'ai
-    remarqu\xE9 que j'avais perdu une enveloppe tr\xE8s importante ! Oh non... Qu'est-ce
-    que j'vais bien pouvoir faire ? Toi, tu pourrais m'aider ? J'ai du la laisser
-    tomber quand je chassais un peu plus au sud d'ici."
+  questTitle: The envelope
+  questDescription: Hello ! I was on my way back to the village when I noticed that
+    I had lost a very important envelope! Oh no ... what I wanna do? Could you help
+    me? I must have dropped her when I was hunting a little further south of here.
   questSprite: {fileID: 21300000, guid: 745c230e29c9393469cb614114618353, type: 3}
   totalQuestObjective: 1
   questDone: 0

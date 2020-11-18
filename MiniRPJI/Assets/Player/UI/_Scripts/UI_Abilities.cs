@@ -480,7 +480,7 @@ public class UI_Abilities : MonoBehaviour
                     abilityDamageParent.SetActive(false);
                     abilityHealthPointsParent.SetActive(true);
 
-                    int decoyHealthPoints = Player_Stats.instance.playerHealth.GetTotalHealthPoints() + abilityToDisplay.abilityBonus;
+                    int decoyHealthPoints = Mathf.RoundToInt(Player_Stats.instance.playerHealth.GetTotalHealthPoints() / 2f) + abilityToDisplay.abilityBonus;
 
                     abilityHealthPointsText.text = decoyHealthPoints.ToString();
                 }

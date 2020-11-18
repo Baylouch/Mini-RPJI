@@ -65,11 +65,24 @@ public class UI_Player_Potions : MonoBehaviour
     {
         IsMouseOverPotionButton();
 
-        if (Input.GetKeyDown(KeyCode.A))
+        if (Player_Shortcuts.GetShortCuts() == 0 || Player_Shortcuts.GetShortCuts() == 2) // Same for ZQSD and arrows 
         {
-            if (firstPotion != null)
+            if (Input.GetKeyDown(KeyCode.A))
             {
-                FastPotionUse(firstPotion);
+                if (firstPotion != null)
+                {
+                    FastPotionUse(firstPotion);
+                }
+            }
+        }
+        else
+        {
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                if (firstPotion != null)
+                {
+                    FastPotionUse(firstPotion);
+                }
             }
         }
 

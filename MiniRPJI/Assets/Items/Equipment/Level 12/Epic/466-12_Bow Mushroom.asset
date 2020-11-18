@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 466-12_Bow Mushroom
   m_EditorClassIdentifier: 
   itemID: 466
-  itemName: Arc Champignon
+  itemName: Mushroom bow
   itemDescription: 
   itemSellPrice: 580
   itemPrefab: {fileID: 4019101185777562141, guid: 79efe668507cf7f4ab3f34866358491f,

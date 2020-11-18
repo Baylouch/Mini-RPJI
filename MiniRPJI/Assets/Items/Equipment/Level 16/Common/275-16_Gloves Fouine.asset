@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 275-16_Gloves Fouine
   m_EditorClassIdentifier: 
   itemID: 275
-  itemName: Gants de fouine
+  itemName: Weasel gloves
   itemDescription: 
   itemSellPrice: 165
   itemPrefab: {fileID: 1724247864129913130, guid: e844d7dd3bef667488cb5b47b1a5745d,

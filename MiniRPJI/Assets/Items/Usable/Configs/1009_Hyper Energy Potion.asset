@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: 1009_Hyper Energy Potion
   m_EditorClassIdentifier: 
   itemID: 1009
-  itemName: Hyper potion d'energie
-  itemDescription: Restaure des points d'energie
+  itemName: Hyper energy potion
+  itemDescription: Restores energy points
   itemSellPrice: 90
   itemPrefab: {fileID: 1031920270776230509, guid: e12500d377f8996438e66b6133ac7f26,
     type: 3}
@@ -22,4 +22,4 @@ MonoBehaviour:
   inventoryImage: {fileID: 21300000, guid: d31b8bc3930a04941b27f3c55e408d24, type: 3}
   stackableItem: 1
   healthRegenerationPoints: 0
-  energyRegenerationPoints: 200
+  energyRegenerationPoints: 350

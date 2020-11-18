@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 64-4_Boots Snake
   m_EditorClassIdentifier: 
   itemID: 64
-  itemName: Bottes du serpent
+  itemName: Snake boots
   itemDescription: 
   itemSellPrice: 40
   itemPrefab: {fileID: 733386610476664069, guid: b96066df95794664b8f0d0731932fbb8,
@@ -23,7 +23,6 @@ MonoBehaviour:
   stackableItem: 0
   armoryPart: 4
   rarety: 0
-  projectile: {fileID: 0}
   strength: 0
   agility: 0
   vitality: 1

@@ -15,8 +15,9 @@ MonoBehaviour:
   successID: 9
   successSprite: {fileID: -9144985349146183414, guid: a7dfa991e33aadf42ab546bdff69ecbd,
     type: 3}
-  successTitle: "L'ami des b\xEAtes"
-  successDescription: "Ach\xE8te un chat et un chien."
+  successTitle: Animals friend
+  successDescription: Buy a cat and a dog.
   isDone: 0
+  rewardGift: 0
   successObjective: 2
   xpReward: 18000

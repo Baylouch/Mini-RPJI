@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 426-24_Boots Sorcier
   m_EditorClassIdentifier: 
   itemID: 426
-  itemName: Bottes de Sorcier
+  itemName: Wizard boots
   itemDescription: 
   itemSellPrice: 514
   itemPrefab: {fileID: 733386610476664069, guid: b96066df95794664b8f0d0731932fbb8,

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 439-25_Bow Navigateur
   m_EditorClassIdentifier: 
   itemID: 439
-  itemName: Arc de Navigateur
+  itemName: Navigator bow
   itemDescription: 
   itemSellPrice: 333
   itemPrefab: {fileID: 4019101185777562141, guid: 79efe668507cf7f4ab3f34866358491f,

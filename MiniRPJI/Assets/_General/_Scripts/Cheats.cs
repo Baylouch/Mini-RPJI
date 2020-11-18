@@ -16,20 +16,22 @@ using UnityEngine;
 
 public class Cheats : MonoBehaviour
 {
+    public static Cheats instance;
+
     // TODO Use upper char too ? -> GoLevelUpNoob instead of golevelupnoob
 
     public const int MaxCharByCheat = 20;
 
     // Const containing string representing cheat
-    public const string LevelUpCheat = "go level up noob"; // Give one level
-    public const string GetItemCheat = "pls give item "; // Space at end is very important, because after this space, player put number to get the linked item ID.
-    public const string GetAndValideQuest = "pls do quest "; // To get and valid a quest via its ID
-    public const string GetMoneyCheat = "give me poney"; // Give 1000 pieces
-    public const string GodMode = "i am the matrix"; // Player unvulnerable
-    public const string PowerRangerStyle = "i am force red !"; // Player reach level 10 and get rare items level 10
-    public const string FinishTheGame = "ok i am done$"; // End the game
+    public const string LevelUpCheat = "i a m n o o b"; // Give one level
+    public const string GetItemCheat = "pl$ g!ve item "; // Space at end is very important, because after this space, player put number to get the linked item ID.
+    public const string GetAndValideQuest = "pl$ d0 quest "; // To get and valid a quest via its ID
+    public const string GetMoneyCheat = "g!ve me $p o n e y$"; // Give 1000 pieces
+    public const string GodMode = "i am the ma tr!x ! !"; // Player unvulnerable
+    public const string PowerRangerStyle = "i am f0rc3 r3d !"; // Player reach level 10 and get rare items level 10
+    public const string FinishTheGame = "0k ! a m d0n3 $ ! $"; // End the game
 
-    public static Cheats instance;
+    public bool godModeActived = false; // To know in Player_Health if player can take damage or not.
 
     string playerInput;
 
@@ -42,8 +44,6 @@ public class Cheats : MonoBehaviour
     }
 
     bool controlKeyPressed = false;
-
-    public bool godModeActived = false; // To know in Player_Health if player can take damage or not.
 
     private void Awake()
     {
@@ -83,11 +83,11 @@ public class Cheats : MonoBehaviour
                 if (!cheatMode)
                 {
                     Debug.Log("Enter in cheat mode");
-                    cheatMode = true;
 
                     if (cheatsUI)
                     {
                         cheatsUI.UI.SetActive(true);
+                        cheatMode = true;
                     }
                     else
                     {
@@ -95,6 +95,7 @@ public class Cheats : MonoBehaviour
                         {
                             cheatsUI = FindObjectOfType<UI_Cheats>();
                             cheatsUI.UI.SetActive(true);
+                            cheatMode = true;
                         }
                         else
                         {

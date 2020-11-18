@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 319-18_Bow Raptor
   m_EditorClassIdentifier: 
   itemID: 319
-  itemName: Arc du Raptor
+  itemName: Raptor bow
   itemDescription: 
   itemSellPrice: 360
   itemPrefab: {fileID: 4019101185777562141, guid: 79efe668507cf7f4ab3f34866358491f,

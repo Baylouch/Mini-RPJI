@@ -39,10 +39,20 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3873722113408073318}
     m_Modifications:
-    - target: {fileID: 1995117090836660691, guid: 44f55226a0a160f4cb6711a888db7103,
+    - target: {fileID: 348455698288827883, guid: 44f55226a0a160f4cb6711a888db7103,
         type: 3}
-      propertyPath: m_Name
-      value: Research Laser
+      propertyPath: linkedProj.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 348455698288827883, guid: 44f55226a0a160f4cb6711a888db7103,
+        type: 3}
+      propertyPath: linkedProj.Array.data[0]
+      value: 
+      objectReference: {fileID: 6635230937435568659}
+    - target: {fileID: 348455698288827883, guid: 44f55226a0a160f4cb6711a888db7103,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1396371380571804729, guid: 44f55226a0a160f4cb6711a888db7103,
         type: 3}
@@ -99,20 +109,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 10
       objectReference: {fileID: 0}
-    - target: {fileID: 348455698288827883, guid: 44f55226a0a160f4cb6711a888db7103,
+    - target: {fileID: 1995117090836660691, guid: 44f55226a0a160f4cb6711a888db7103,
         type: 3}
-      propertyPath: linkedProj.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 348455698288827883, guid: 44f55226a0a160f4cb6711a888db7103,
-        type: 3}
-      propertyPath: linkedProj.Array.data[0]
-      value: 
-      objectReference: {fileID: 6635230937435568659}
-    - target: {fileID: 348455698288827883, guid: 44f55226a0a160f4cb6711a888db7103,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
+      propertyPath: m_Name
+      value: Research Laser
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 44f55226a0a160f4cb6711a888db7103, type: 3}
@@ -141,10 +141,20 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3873722113408073318}
     m_Modifications:
-    - target: {fileID: 1995117090836660691, guid: 44f55226a0a160f4cb6711a888db7103,
+    - target: {fileID: 348455698288827883, guid: 44f55226a0a160f4cb6711a888db7103,
         type: 3}
-      propertyPath: m_Name
-      value: Research Laser (1)
+      propertyPath: linkedProj.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 348455698288827883, guid: 44f55226a0a160f4cb6711a888db7103,
+        type: 3}
+      propertyPath: linkedProj.Array.data[0]
+      value: 
+      objectReference: {fileID: 4855728737901458946}
+    - target: {fileID: 749813742819877203, guid: 44f55226a0a160f4cb6711a888db7103,
+        type: 3}
+      propertyPath: projectileSpeed
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1396371380571804729, guid: 44f55226a0a160f4cb6711a888db7103,
         type: 3}
@@ -201,16 +211,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -10
       objectReference: {fileID: 0}
-    - target: {fileID: 348455698288827883, guid: 44f55226a0a160f4cb6711a888db7103,
+    - target: {fileID: 1995117090836660691, guid: 44f55226a0a160f4cb6711a888db7103,
         type: 3}
-      propertyPath: linkedProj.Array.size
-      value: 1
+      propertyPath: m_Name
+      value: Research Laser (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 348455698288827883, guid: 44f55226a0a160f4cb6711a888db7103,
-        type: 3}
-      propertyPath: linkedProj.Array.data[0]
-      value: 
-      objectReference: {fileID: 4855728737901458946}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 44f55226a0a160f4cb6711a888db7103, type: 3}
 --- !u!4 &5449370539115230145 stripped

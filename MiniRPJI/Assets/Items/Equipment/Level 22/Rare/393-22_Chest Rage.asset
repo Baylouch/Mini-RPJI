@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 393-22_Chest Rage
   m_EditorClassIdentifier: 
   itemID: 393
-  itemName: Armure de Rage
+  itemName: Rage armor
   itemDescription: 
   itemSellPrice: 750
   itemPrefab: {fileID: 6105507112566103775, guid: 5b0990b01e9377340b8b0de20b0397b4,

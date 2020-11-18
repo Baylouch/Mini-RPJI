@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 479-16_Pants Ranger
   m_EditorClassIdentifier: 
   itemID: 479
-  itemName: Pantalon de Ranger
+  itemName: Ranger pants
   itemDescription: 
   itemSellPrice: 777
   itemPrefab: {fileID: 7290006494410735304, guid: 6c58cf90d0d71f44b9d2a1b6ee9f5555,

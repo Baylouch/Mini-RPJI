@@ -15,8 +15,8 @@ MonoBehaviour:
   successID: 12
   successSprite: {fileID: 1110534395823397165, guid: a7dfa991e33aadf42ab546bdff69ecbd,
     type: 3}
-  successTitle: Explorateur
-  successDescription: Explore chaque zone de la plage.
+  successTitle: Explorer
+  successDescription: "Explore every area of \u200B\u200Bthe beach."
   isDone: 0
   rewardGift: 0
   successObjective: 6

@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: 1103_PumpkinHead
   m_EditorClassIdentifier: 
   itemID: 1103
-  itemName: "T\xEAte de citrouille"
-  itemDescription: "R\xE9pugnant..."
+  itemName: Pumpkin head
+  itemDescription: Repugnant...
   itemSellPrice: 0
   itemPrefab: {fileID: 5362988514200447822, guid: 0a171fa51d7d127469d510ee58732e77,
     type: 3}

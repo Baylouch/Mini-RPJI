@@ -5,8 +5,6 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-//public enum MalusType { None, Slowed, InFire, Poisoned, Electrified }; // Used to know what projectile type hurt AI from ApplyMalus coroutine.
-
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(AI_Stats))] // To get healthpoints & speed
 public class AI_Health : MonoBehaviour, IDamageable
@@ -48,6 +46,9 @@ public class AI_Health : MonoBehaviour, IDamageable
 
     float timeLastHit = 0f;
 
+    float originalAISpeed;
+    float increasedAISpeed;
+
     private void OnDisable()
     {
         StopAllCoroutines();
@@ -57,6 +58,16 @@ public class AI_Health : MonoBehaviour, IDamageable
             if (GetComponent<AI_Enemy_Movement>().enabled == false)
                 GetComponent<AI_Enemy_Movement>().enabled = true;
         }
+
+        // Correction to the bug when player dead and teleport to the town (so this is disable),
+        // the enemy still transparent and stay transparent while it takes damage so it reactive the Fade coroutines
+        // BUT i like the effect it made to be transparent. So correction is not use. (V1_1)
+        //if (rend.material.color.a != 1)
+        //{
+        //    Color c = rend.material.color;
+        //    c.a = 1;
+        //    rend.material.color = c;
+        //}
     }
 
     private void OnDestroy()
@@ -76,6 +87,9 @@ public class AI_Health : MonoBehaviour, IDamageable
         animator = GetComponent<Animator>();
         ai_stats = GetComponent<AI_Stats>();
         ai_MalusApplier = GetComponent<MalusApplier>();
+
+        originalAISpeed = ai_stats.GetSpeed();
+        increasedAISpeed = ai_stats.GetSpeed() + 1.5f;
     }
 
     // Update is called once per frame
@@ -90,6 +104,25 @@ public class AI_Health : MonoBehaviour, IDamageable
                 Die();
             }
             return;
+        }
+
+        // To increase speed a defined amount of time just after AI has been hit
+        if (Time.time < timeLastHit + 2f)
+        {
+            if (ai_MalusApplier && ai_MalusApplier.GetCurrentMalusType() == MalusType.Slowed)
+                return;
+
+            if (ai_stats.GetSpeed() != increasedAISpeed)
+            {
+                ai_stats.SetSpeed(increasedAISpeed);
+            }
+        }
+        else
+        {
+            if (ai_stats.GetSpeed() != originalAISpeed)
+            {
+                ai_stats.SetSpeed(originalAISpeed);
+            }
         }
 
         // To know when enemy get damaged
@@ -436,7 +469,7 @@ public class AI_Health : MonoBehaviour, IDamageable
             curRb.velocity = Vector2.zero;
         }
 
-        // Adding a mini delay to wait just a bit when enemy reach and of pushed pos to come back to the player.
+        // Adding a mini delay to wait just a bit when enemy reach the end of pushed pos to come back to the player.
         yield return new WaitForSeconds(.1f);
 
         _movement.hitted = false;

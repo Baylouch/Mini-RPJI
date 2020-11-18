@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 254-13_Helm Angel
   m_EditorClassIdentifier: 
   itemID: 254
-  itemName: Casque de l'Ange
+  itemName: Angel helmet
   itemDescription: 
   itemSellPrice: 380
   itemPrefab: {fileID: 4916301973116470330, guid: 17bcec922aaa11d4e9f8b1fcbbbd1c2a,
@@ -23,7 +23,6 @@ MonoBehaviour:
   stackableItem: 0
   armoryPart: 0
   rarety: 2
-  projectile: {fileID: 0}
   strength: 0
   agility: 30
   vitality: 20

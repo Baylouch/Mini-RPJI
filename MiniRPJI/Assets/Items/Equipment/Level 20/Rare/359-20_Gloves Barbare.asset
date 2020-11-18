@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 359-20_Gloves Barbare
   m_EditorClassIdentifier: 
   itemID: 359
-  itemName: Gants de Barbare
+  itemName: Barbarian gloves
   itemDescription: 
   itemSellPrice: 635
   itemPrefab: {fileID: 1724247864129913130, guid: e844d7dd3bef667488cb5b47b1a5745d,

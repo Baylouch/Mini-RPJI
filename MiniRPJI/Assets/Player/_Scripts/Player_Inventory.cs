@@ -205,10 +205,8 @@ public class Player_Inventory : MonoBehaviour
 
         inventoryItems[inventoryIndex] = itemDataBase.GetItemById(_itemID);
 
-        if (_itemNumb > 0)
-        {
-            inventoryItemsNumb[inventoryIndex] = _itemNumb;
-        }
+        inventoryItemsNumb[inventoryIndex] = _itemNumb;
+        
     }
 
     // used to set armory item (GameControl.cs)

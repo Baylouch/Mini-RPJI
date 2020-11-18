@@ -15,9 +15,9 @@ MonoBehaviour:
   abilityID: 42
   abilitySubID: 8
   abilityLevel: 2
-  abilityName: Fleche a tete chercheuse
-  abilityShortDescription: "Tir une fl\xE8che a t\xEAte chercheuse"
-  abilityLongDescription: "Tir une fl\xE8che qui poursuit l'ennemi le plus proche."
+  abilityName: Seeker arrow
+  abilityShortDescription: Shoot a seeker arrow
+  abilityLongDescription: Shoot an arrow that pursues the nearest enemy.
   abilitySprite: {fileID: 21300000, guid: fc4bf912c769e4b4dae75c0a32b6eed2, type: 3}
   abilityPrefab: {fileID: 2602349866283667076, guid: b064f77f154575f49aab2a0f69b028da,
     type: 3}
@@ -26,5 +26,4 @@ MonoBehaviour:
   abilityTimer: 0
   energyCost: 50
   abilityType: 1
-  abilityShortcut: 0
   levelRequired: 15

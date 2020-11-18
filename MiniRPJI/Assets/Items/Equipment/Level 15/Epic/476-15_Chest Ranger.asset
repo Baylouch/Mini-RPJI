@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 476-15_Chest Ranger
   m_EditorClassIdentifier: 
   itemID: 476
-  itemName: Armure de Ranger
+  itemName: Ranger armor
   itemDescription: 
   itemSellPrice: 715
   itemPrefab: {fileID: 6105507112566103775, guid: 5b0990b01e9377340b8b0de20b0397b4,

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 436-25_Pants Navigateur
   m_EditorClassIdentifier: 
   itemID: 436
-  itemName: Pantalon de Navigateur
+  itemName: Navigator pants
   itemDescription: 
   itemSellPrice: 280
   itemPrefab: {fileID: 7290006494410735304, guid: 6c58cf90d0d71f44b9d2a1b6ee9f5555,

@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: 4_LittleAlien
   m_EditorClassIdentifier: 
   petID: 4
-  petName: Petit Alien
-  petDescription: "Etrange petite cr\xE9ature d'origine inconnu, il n'en reste pas
-    moins mignon !"
+  petName: Little Alien
+  petDescription: Strange little creature of unknown origin, He's so cute!
   petCategory: 2
   petSex: 2
   petSprite: {fileID: 8539034440500839741, guid: 14b0ceea9a0e7c64c95d1d2cd00531d2,

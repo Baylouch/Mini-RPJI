@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 152-12_Chest Douce tchoin
   m_EditorClassIdentifier: 
   itemID: 152
-  itemName: T-shirt de Douce tchoin
+  itemName: Sweet Tchoin Shirt
   itemDescription: 
   itemSellPrice: 135
   itemPrefab: {fileID: 6105507112566103775, guid: 5b0990b01e9377340b8b0de20b0397b4,
@@ -23,7 +23,6 @@ MonoBehaviour:
   stackableItem: 0
   armoryPart: 1
   rarety: 0
-  projectile: {fileID: 0}
   strength: 0
   agility: 7
   vitality: 10

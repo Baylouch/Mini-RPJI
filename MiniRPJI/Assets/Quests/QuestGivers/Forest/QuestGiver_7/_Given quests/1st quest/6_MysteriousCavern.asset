@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: 6_MysteriousCavern
   m_EditorClassIdentifier: 
   questID: 6
-  questTitle: "La myst\xE9rieuse grotte"
-  questDescription: "C'est tr\xE8s \xE9trange, je viens m'entrainer par ici depuis
-    que je suis petit et cette grotte n'\xE9tait pas l\xE0 avant. J'entends des bruits
-    bisarres depuis tout \xE0 l'heure, il y a l'air d'y avoir des choses qui se passent
-    l\xE0-dedans. Tu veux bien aller jeter un coup d'oeil pour moi ?"
+  questTitle: The mysterious cave
+  questDescription: It's very strange, I have been training here since I was a child
+    and this cave was not there before. I've been hearing strange noises for a while
+    now, it looks like some shady stuff is going on in there. Will you go take a
+    look for me?
   questSprite: {fileID: -5161489949763356392, guid: 114c0f715e5069249a292780634da8ad,
     type: 3}
   totalQuestObjective: 1

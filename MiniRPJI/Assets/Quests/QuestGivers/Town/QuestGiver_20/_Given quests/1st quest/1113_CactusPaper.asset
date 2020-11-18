@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: 1113_CactusPaper
   m_EditorClassIdentifier: 
   itemID: 1113
-  itemName: Papier de cactus
-  itemDescription: Ca pique !
+  itemName: Cactus paper
+  itemDescription: It stings !
   itemSellPrice: 0
   itemPrefab: {fileID: 5362988514200447822, guid: 6f1dc8977ca1273479782b2d17b8cd6e,
     type: 3}

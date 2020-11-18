@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 157-13_Helm Mangemort
   m_EditorClassIdentifier: 
   itemID: 157
-  itemName: Casque de mangemort
+  itemName: Death Eater helmet
   itemDescription: 
   itemSellPrice: 140
   itemPrefab: {fileID: 4916301973116470330, guid: 17bcec922aaa11d4e9f8b1fcbbbd1c2a,
@@ -23,7 +23,6 @@ MonoBehaviour:
   stackableItem: 0
   armoryPart: 0
   rarety: 0
-  projectile: {fileID: 0}
   strength: 0
   agility: 12
   vitality: 3

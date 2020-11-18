@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 336-19_Boots Rat
   m_EditorClassIdentifier: 
   itemID: 336
-  itemName: Bottes du Rat
+  itemName: Rat boots
   itemDescription: 
   itemSellPrice: 370
   itemPrefab: {fileID: 733386610476664069, guid: b96066df95794664b8f0d0731932fbb8,

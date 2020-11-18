@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 384-22_Boots Canaille
   m_EditorClassIdentifier: 
   itemID: 384
-  itemName: Bottes de Canaille
+  itemName: Scoundrel boots
   itemDescription: 
   itemSellPrice: 235
   itemPrefab: {fileID: 733386610476664069, guid: b96066df95794664b8f0d0731932fbb8,

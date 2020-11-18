@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 251-12_Gloves Elite
   m_EditorClassIdentifier: 
   itemID: 251
-  itemName: Gants d'Elite
+  itemName: Elite gloves
   itemDescription: 
   itemSellPrice: 350
   itemPrefab: {fileID: 1724247864129913130, guid: e844d7dd3bef667488cb5b47b1a5745d,
@@ -23,7 +23,6 @@ MonoBehaviour:
   stackableItem: 0
   armoryPart: 3
   rarety: 2
-  projectile: {fileID: 0}
   strength: 40
   agility: 0
   vitality: 5

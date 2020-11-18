@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 351-20_Chest Warrior
   m_EditorClassIdentifier: 
   itemID: 351
-  itemName: Armure du Guerrier
+  itemName: Warrior's armor
   itemDescription: 
   itemSellPrice: 400
   itemPrefab: {fileID: 6105507112566103775, guid: 5b0990b01e9377340b8b0de20b0397b4,

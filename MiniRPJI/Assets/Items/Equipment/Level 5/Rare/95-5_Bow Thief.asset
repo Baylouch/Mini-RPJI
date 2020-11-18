@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 95-5_Bow Thief
   m_EditorClassIdentifier: 
   itemID: 95
-  itemName: Arc du voleur
+  itemName: Thief bow
   itemDescription: 
   itemSellPrice: 110
   itemPrefab: {fileID: 4019101185777562141, guid: 79efe668507cf7f4ab3f34866358491f,
@@ -23,8 +23,6 @@ MonoBehaviour:
   stackableItem: 0
   armoryPart: 5
   rarety: 2
-  projectile: {fileID: 6052980135759029977, guid: 77de479917db3204cae1bd43cf852001,
-    type: 3}
   strength: 0
   agility: 10
   vitality: 0

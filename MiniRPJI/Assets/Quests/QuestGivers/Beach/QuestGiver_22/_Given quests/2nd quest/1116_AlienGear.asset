@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: 1116_AlienGear
   m_EditorClassIdentifier: 
   itemID: 1116
-  itemName: "Mat\xE9riel alien"
-  itemDescription: "Ce mat\xE9riel a l'air robuste."
+  itemName: Alien material
+  itemDescription: This material looks sturdy.
   itemSellPrice: 0
   itemPrefab: {fileID: 5362988514200447822, guid: 3f180b053c5e712479550ce5c1145e1b,
     type: 3}

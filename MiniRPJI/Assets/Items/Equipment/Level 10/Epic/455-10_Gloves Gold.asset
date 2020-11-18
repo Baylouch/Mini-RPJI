@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: 455-10_Gloves Gold
   m_EditorClassIdentifier: 
   itemID: 455
-  itemName: Gants en or
-  itemDescription: Ils sont etincelent...
+  itemName: Gold gloves
+  itemDescription: They are sparkling...
   itemSellPrice: 440
   itemPrefab: {fileID: 1724247864129913130, guid: e844d7dd3bef667488cb5b47b1a5745d,
     type: 3}

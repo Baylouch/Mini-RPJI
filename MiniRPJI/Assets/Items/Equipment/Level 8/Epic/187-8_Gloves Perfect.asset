@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: 187-8_Gloves Perfect
   m_EditorClassIdentifier: 
   itemID: 187
-  itemName: Gants en parfait etat
-  itemDescription: Confortable et robuste.
+  itemName: Gloves in perfect condition
+  itemDescription: Comfortable and robust.
   itemSellPrice: 350
   itemPrefab: {fileID: 1724247864129913130, guid: e844d7dd3bef667488cb5b47b1a5745d,
     type: 3}
@@ -23,7 +23,6 @@ MonoBehaviour:
   stackableItem: 0
   armoryPart: 3
   rarety: 3
-  projectile: {fileID: 0}
   strength: 25
   agility: 0
   vitality: 15

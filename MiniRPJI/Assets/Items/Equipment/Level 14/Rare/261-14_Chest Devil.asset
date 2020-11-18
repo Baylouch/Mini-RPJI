@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 261-14_Chest Devil
   m_EditorClassIdentifier: 
   itemID: 261
-  itemName: Armure du Demon
+  itemName: Devil armor
   itemDescription: 
   itemSellPrice: 410
   itemPrefab: {fileID: 6105507112566103775, guid: 5b0990b01e9377340b8b0de20b0397b4,
@@ -23,7 +23,6 @@ MonoBehaviour:
   stackableItem: 0
   armoryPart: 1
   rarety: 2
-  projectile: {fileID: 0}
   strength: 0
   agility: 20
   vitality: 35

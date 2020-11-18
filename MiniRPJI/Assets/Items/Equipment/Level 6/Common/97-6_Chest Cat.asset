@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 97-6_Chest Cat
   m_EditorClassIdentifier: 
   itemID: 97
-  itemName: Chemise du chat
+  itemName: Cat shirt
   itemDescription: 
   itemSellPrice: 75
   itemPrefab: {fileID: 6105507112566103775, guid: 5b0990b01e9377340b8b0de20b0397b4,
@@ -23,7 +23,6 @@ MonoBehaviour:
   stackableItem: 0
   armoryPart: 1
   rarety: 0
-  projectile: {fileID: 0}
   strength: 2
   agility: 2
   vitality: 6

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 463-11_Boots Mushroom
   m_EditorClassIdentifier: 
   itemID: 463
-  itemName: Bottes Champignon
+  itemName: Mushroom boots
   itemDescription: 
   itemSellPrice: 500
   itemPrefab: {fileID: 733386610476664069, guid: b96066df95794664b8f0d0731932fbb8,

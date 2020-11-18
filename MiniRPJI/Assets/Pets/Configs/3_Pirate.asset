@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   petID: 3
   petName: Pirate
-  petDescription: "S'impose par sa pr\xE9stance de chat."
+  petDescription: Imposed by its presence of cat.
   petCategory: 0
   petSex: 1
   petSprite: {fileID: -5505462039982863634, guid: 763ea03b6ec3ea84c889dc67e2d2a25e,

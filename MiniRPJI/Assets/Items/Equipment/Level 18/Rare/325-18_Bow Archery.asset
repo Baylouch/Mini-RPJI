@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 325-18_Bow Archery
   m_EditorClassIdentifier: 
   itemID: 325
-  itemName: Arc de l'archer
+  itemName: Archer's bow
   itemDescription: 
   itemSellPrice: 550
   itemPrefab: {fileID: 4019101185777562141, guid: 79efe668507cf7f4ab3f34866358491f,

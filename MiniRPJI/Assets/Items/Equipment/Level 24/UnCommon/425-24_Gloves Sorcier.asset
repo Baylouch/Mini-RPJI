@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 425-24_Gloves Sorcier
   m_EditorClassIdentifier: 
   itemID: 425
-  itemName: Gants de Sorcier
+  itemName: Wizard gloves
   itemDescription: 
   itemSellPrice: 515
   itemPrefab: {fileID: 1724247864129913130, guid: e844d7dd3bef667488cb5b47b1a5745d,

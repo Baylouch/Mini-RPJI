@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 310-18_Pants Duck
   m_EditorClassIdentifier: 
   itemID: 310
-  itemName: Pantalon en peau de canard
+  itemName: Duck skin pants
   itemDescription: 
   itemSellPrice: 190
   itemPrefab: {fileID: 7290006494410735304, guid: 6c58cf90d0d71f44b9d2a1b6ee9f5555,

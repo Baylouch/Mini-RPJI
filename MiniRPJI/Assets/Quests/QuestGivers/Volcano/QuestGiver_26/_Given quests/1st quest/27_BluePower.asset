@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: 27_BluePower
   m_EditorClassIdentifier: 
   questID: 27
-  questTitle: Puissance bleue
-  questDescription: "Notre clan d'enchanteurs continue de rechercher la source des
-    \xE9tranges pouvoirs ressentis ici. Les monstres dans cette partie ont une apparence
-    bleuet\xE9e. Trouve d'o\xF9 vient leur facult\xE9s."
+  questTitle: Blue power
+  questDescription: Our clan of enchanters continues to seek the source of the strange
+    powers felt here. The monsters in this part have a bluish appearance. Find out
+    where their faculties come from.
   questSprite: {fileID: 21300000, guid: 7c317a7b1aef9e64e9ca3d82d64f843c, type: 3}
   totalQuestObjective: 10
   questDone: 0

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 482-17_Pants King
   m_EditorClassIdentifier: 
   itemID: 482
-  itemName: Pantalon du Roi
+  itemName: King's pants
   itemDescription: 
   itemSellPrice: 811
   itemPrefab: {fileID: 7290006494410735304, guid: 6c58cf90d0d71f44b9d2a1b6ee9f5555,

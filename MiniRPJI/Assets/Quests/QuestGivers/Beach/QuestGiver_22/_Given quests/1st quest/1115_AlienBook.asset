@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: 1115_AlienBook
   m_EditorClassIdentifier: 
   itemID: 1115
-  itemName: Mode d'emploi alien
-  itemDescription: C'est illisible...
+  itemName: Alien user manual
+  itemDescription: It's illegible...
   itemSellPrice: 0
   itemPrefab: {fileID: 5362988514200447822, guid: 635b033d1f7d1934a819d817c6cb82eb,
     type: 3}

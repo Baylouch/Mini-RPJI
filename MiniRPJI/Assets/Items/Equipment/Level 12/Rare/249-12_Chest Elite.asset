@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 249-12_Chest Elite
   m_EditorClassIdentifier: 
   itemID: 249
-  itemName: Armure d'Elite
+  itemName: Elite armor
   itemDescription: 
   itemSellPrice: 350
   itemPrefab: {fileID: 6105507112566103775, guid: 5b0990b01e9377340b8b0de20b0397b4,
@@ -23,7 +23,6 @@ MonoBehaviour:
   stackableItem: 0
   armoryPart: 1
   rarety: 2
-  projectile: {fileID: 0}
   strength: 10
   agility: 10
   vitality: 25

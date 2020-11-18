@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   petID: 5
   petName: Popi
-  petDescription: On l'appelle aussi "Croque-mollet".
+  petDescription: He's also called the "Foot-Biter".
   petCategory: 1
   petSex: 1
   petSprite: {fileID: -8542676398023535629, guid: 1190499089f6a3a4389dde09c2fd8f1d,

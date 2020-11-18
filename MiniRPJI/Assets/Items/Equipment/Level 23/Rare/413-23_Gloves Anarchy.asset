@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 413-23_Gloves Anarchy
   m_EditorClassIdentifier: 
   itemID: 413
-  itemName: Gants d'Anarchie
+  itemName: Anarchy gloves
   itemDescription: 
   itemSellPrice: 800
   itemPrefab: {fileID: 1724247864129913130, guid: e844d7dd3bef667488cb5b47b1a5745d,

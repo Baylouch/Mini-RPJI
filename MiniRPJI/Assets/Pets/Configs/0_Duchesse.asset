@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   petID: 0
   petName: Duchesse
-  petDescription: "Ce chat vient d'un milieu ais\xE9."
+  petDescription: This cat comes from a wealthy background.
   petCategory: 0
   petSex: 0
   petSprite: {fileID: 524633085650608049, guid: 15af7f4a0651a994c93d96cd1f1c5cfb,

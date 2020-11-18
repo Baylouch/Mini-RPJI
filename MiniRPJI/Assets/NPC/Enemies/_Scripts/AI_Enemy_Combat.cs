@@ -63,6 +63,8 @@ public class AI_Enemy_Combat : MonoBehaviour
 
     Player_Combat player_combat; // To use for determine if player is in combat (AI_Enemy_Movement.cs got this too)
 
+    public Ability_Decoy currentDecoy; // To know when a decoy is in game to search for it instead of player when is in range
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
@@ -328,13 +330,13 @@ public class AI_Enemy_Combat : MonoBehaviour
     // Method to check when player invoke a decoy. AI will target decoy until there is one.
     void CheckForPlayerDecoy()
     {
-        if (FindObjectOfType<Ability_Decoy>())
+        if (currentDecoy)
         {
-            float decoyDistance = Vector3.Distance(transform.position, FindObjectOfType<Ability_Decoy>().transform.position);
+            float decoyDistance = Vector3.Distance(transform.position, currentDecoy.transform.position);
 
             if (decoyDistance < 10f)
             {
-                target = FindObjectOfType<Ability_Decoy>().transform;
+                target = currentDecoy.transform;
             }
             else
             {
@@ -346,7 +348,7 @@ public class AI_Enemy_Combat : MonoBehaviour
                     }
                 }
             }
-        }        
+        }
     }
 
     public void Shoot()

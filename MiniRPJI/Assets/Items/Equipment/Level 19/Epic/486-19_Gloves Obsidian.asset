@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 486-19_Gloves Obsidian
   m_EditorClassIdentifier: 
   itemID: 486
-  itemName: Gants en obsidienne
+  itemName: Obsidian gloves
   itemDescription: 
   itemSellPrice: 900
   itemPrefab: {fileID: 1724247864129913130, guid: e844d7dd3bef667488cb5b47b1a5745d,

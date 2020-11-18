@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 396-22_Boots Rage
   m_EditorClassIdentifier: 
   itemID: 396
-  itemName: Bottes de Rage
+  itemName: Rage boots
   itemDescription: 
   itemSellPrice: 739
   itemPrefab: {fileID: 733386610476664069, guid: b96066df95794664b8f0d0731932fbb8,

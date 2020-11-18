@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 70-4_Boots Adventurer
   m_EditorClassIdentifier: 
   itemID: 70
-  itemName: Bottes d'aventurier
+  itemName: Adventurer boots
   itemDescription: 
   itemSellPrice: 80
   itemPrefab: {fileID: 733386610476664069, guid: b96066df95794664b8f0d0731932fbb8,
@@ -23,7 +23,6 @@ MonoBehaviour:
   stackableItem: 0
   armoryPart: 4
   rarety: 1
-  projectile: {fileID: 0}
   strength: 0
   agility: 0
   vitality: 1

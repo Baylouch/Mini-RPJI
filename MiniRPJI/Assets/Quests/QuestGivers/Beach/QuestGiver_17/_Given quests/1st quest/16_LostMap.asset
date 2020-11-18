@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: 16_LostMap
   m_EditorClassIdentifier: 
   questID: 16
-  questTitle: La carte
-  questDescription: "Ranger, j'ai besoin de toi. Nous ne pouvons pas nous rendre dans
-    la partie 4 pour l'instant, il nous faut cette satan\xE9e carte ! Il y a un groupe
-    cons\xE9quent d'aliens plus au sud d'ici, je suis pr\xEAt a parier qu'ils y cache
-    quelque chose. Trouve ce qu'il y a et ram\xE8ne moi la carte. Tu sera r\xE9compens\xE9."
+  questTitle: The map
+  questDescription: Tidy up, I need you. We can't make it to part 4 right now, we
+    need this damn map! There's a sizable group of aliens further north of here,
+    I'm willing to bet they're hiding something there. Find what's there and bring
+    me the map. You will be rewarded.
   questSprite: {fileID: 21300000, guid: 34102981c7e63b646b05313914b723a6, type: 3}
   totalQuestObjective: 1
   questDone: 0

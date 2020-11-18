@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 344-20_Helm Bone
   m_EditorClassIdentifier: 
   itemID: 344
-  itemName: Casque en Os
+  itemName: Bone helmet
   itemDescription: 
   itemSellPrice: 210
   itemPrefab: {fileID: 4916301973116470330, guid: 17bcec922aaa11d4e9f8b1fcbbbd1c2a,

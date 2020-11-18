@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 277-16_Bow Fouine
   m_EditorClassIdentifier: 
   itemID: 277
-  itemName: Arc de fouine
+  itemName: Weasel bow
   itemDescription: 
   itemSellPrice: 175
   itemPrefab: {fileID: 4019101185777562141, guid: 79efe668507cf7f4ab3f34866358491f,

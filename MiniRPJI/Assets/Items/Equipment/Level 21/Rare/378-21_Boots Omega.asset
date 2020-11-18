@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 378-21_Boots Omega
   m_EditorClassIdentifier: 
   itemID: 378
-  itemName: Bottes de l'Omega
+  itemName: Omega boots
   itemDescription: 
   itemSellPrice: 700
   itemPrefab: {fileID: 733386610476664069, guid: b96066df95794664b8f0d0731932fbb8,

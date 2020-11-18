@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 291-17_Chest Borne
   m_EditorClassIdentifier: 
   itemID: 291
-  itemName: Armure du Borne
+  itemName: One-eyed armor
   itemDescription: 
   itemSellPrice: 185
   itemPrefab: {fileID: 6105507112566103775, guid: 5b0990b01e9377340b8b0de20b0397b4,

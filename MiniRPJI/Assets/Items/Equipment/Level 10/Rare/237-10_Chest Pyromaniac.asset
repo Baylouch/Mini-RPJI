@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 237-10_Chest Pyromaniac
   m_EditorClassIdentifier: 
   itemID: 237
-  itemName: Armure de Pyromane
+  itemName: Pyromaniac armor
   itemDescription: 
   itemSellPrice: 290
   itemPrefab: {fileID: 6105507112566103775, guid: 5b0990b01e9377340b8b0de20b0397b4,
@@ -23,7 +23,6 @@ MonoBehaviour:
   stackableItem: 0
   armoryPart: 1
   rarety: 2
-  projectile: {fileID: 0}
   strength: 5
   agility: 10
   vitality: 20

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 411-23_Chest Anarchy
   m_EditorClassIdentifier: 
   itemID: 411
-  itemName: Armure d'Anarchie
+  itemName: Anarchy armor
   itemDescription: 
   itemSellPrice: 800
   itemPrefab: {fileID: 6105507112566103775, guid: 5b0990b01e9377340b8b0de20b0397b4,

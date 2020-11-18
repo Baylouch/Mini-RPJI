@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 343-19_Bow Gardien
   m_EditorClassIdentifier: 
   itemID: 343
-  itemName: Arc du Gardien
+  itemName: Guardian bow
   itemDescription: 
   itemSellPrice: 615
   itemPrefab: {fileID: 4019101185777562141, guid: 79efe668507cf7f4ab3f34866358491f,

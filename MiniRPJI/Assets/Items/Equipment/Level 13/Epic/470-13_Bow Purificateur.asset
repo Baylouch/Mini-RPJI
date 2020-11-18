@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 470-13_Bow Purificateur
   m_EditorClassIdentifier: 
   itemID: 470
-  itemName: Arc du Purificateur
+  itemName: Bow of the Purifier
   itemDescription: 
   itemSellPrice: 630
   itemPrefab: {fileID: 4019101185777562141, guid: 79efe668507cf7f4ab3f34866358491f,

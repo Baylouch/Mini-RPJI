@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 300-17_Boots Noble
   m_EditorClassIdentifier: 
   itemID: 300
-  itemName: Bottes de Noble
+  itemName: Noble boots
   itemDescription: 
   itemSellPrice: 280
   itemPrefab: {fileID: 733386610476664069, guid: b96066df95794664b8f0d0731932fbb8,

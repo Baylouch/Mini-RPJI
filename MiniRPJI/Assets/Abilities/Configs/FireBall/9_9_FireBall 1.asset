@@ -15,9 +15,9 @@ MonoBehaviour:
   abilityID: 9
   abilitySubID: 9
   abilityLevel: 1
-  abilityName: Boule de feu
-  abilityShortDescription: Tir une boule de feu
-  abilityLongDescription: Tir une boule de feu droit devant. Enflamme la cible.
+  abilityName: FireBall
+  abilityShortDescription: Shoot a fireball
+  abilityLongDescription: Shoot a fireball straight ahead. Ignite the target.
   abilitySprite: {fileID: 21300000, guid: a6fca08f9de1d2c42831676daba6fa33, type: 3}
   abilityPrefab: {fileID: 601498987779062885, guid: 46adec574127bb140ac578bdc175bfe0,
     type: 3}
@@ -26,5 +26,4 @@ MonoBehaviour:
   abilityTimer: 4
   energyCost: 50
   abilityType: 1
-  abilityShortcut: 0
   levelRequired: 15

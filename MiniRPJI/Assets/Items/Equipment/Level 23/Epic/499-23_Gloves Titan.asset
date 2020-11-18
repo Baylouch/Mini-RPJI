@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 499-23_Gloves Titan
   m_EditorClassIdentifier: 
   itemID: 499
-  itemName: Gants Titanesque
+  itemName: Titanic gloves
   itemDescription: 
   itemSellPrice: 1143
   itemPrefab: {fileID: 1724247864129913130, guid: e844d7dd3bef667488cb5b47b1a5745d,

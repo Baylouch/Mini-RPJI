@@ -47,15 +47,6 @@ public class Scenes_Control : MonoBehaviour
         gameScenesLoaded = new Scene[maxScenesLoaded];
     }
 
-    // TODO DELETE
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Y))
-        {
-            StartTransitionToCreditScene();
-        }
-    }
-
     // This method is used everytime a game level is load to recycle scenes and avoid performances issues by limiting the maximum loaded game scenes.
     void CheckScenesLoaded(Scene newScene)
     {
@@ -150,20 +141,26 @@ public class Scenes_Control : MonoBehaviour
             yield return null;
         }
 
+        TransitionInformationSetter transitionInfoSetter = FindObjectOfType<TransitionInformationSetter>();
+        if (transitionInfoSetter)
+        {
+            transitionInfoSetter.DisplayRandomInfoConfig();
+        }
+
         // Once we're in transition scene, we can search for loading bar and ready button.
         Loading_Bar loadingBar = GameObject.Find("LoadingBarCurrentLevel").GetComponent<Loading_Bar>();
         Button readyButton = GameObject.Find("ReadyButton").GetComponent<Button>();
         readyButton.gameObject.SetActive(false); // Set it unactive to not show before level is loaded.
 
         // Before loading Player and Settings scene, we make sure we havnt already got a player in scenes.
-        // (usefull when player want to load a game from a game level).
+        // (usefull when player want to load a game from a game level). so useless now ?
         if (Player_Stats.instance)
             Destroy(Player_Stats.instance.gameObject);
         if (UI_Player.instance)
             Destroy(UI_Player.instance.gameObject);
 
         // Now we're ready to load levels we need.
-        // So first we'll load the scene containing Player and Settings (Pathfinding etc...)
+        // So first we'll load the scene containing Player and Settings (etc...)
         AsyncOperation playerAndSettingsAsyncLoad = SceneManager.LoadSceneAsync(PlayerAndSettingsBuildIndex, LoadSceneMode.Additive);
 
         while (!playerAndSettingsAsyncLoad.isDone)
@@ -180,7 +177,7 @@ public class Scenes_Control : MonoBehaviour
             loadingBar.SetLoadingBar(townAsyncLoad.progress * 100);
             loadingBar.SetLoadingText(townAsyncLoad.progress * 100);
 
-            yield return null;
+            yield return new WaitForEndOfFrame();
         }
 
         // We need to disable the top hierarchy gameobject of town level until player click on ready button.
@@ -261,7 +258,7 @@ public class Scenes_Control : MonoBehaviour
             // Set the new scene as the active one.
             SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(levelToGoBuildIndex));
 
-            // If player used usedTeleportail to get into the scene, we must research the one is in the new scene the zone to tp player on it
+            // If player used usedTeleportail to get into the scene, we must research the one in the new scene to teleport player on it.
             if (usedTeleportail)
             {
                 FindObjectOfType<Player_Movement>().transform.position = FindObjectOfType<Teleportail>().transform.position;
@@ -307,6 +304,12 @@ public class Scenes_Control : MonoBehaviour
         Player_Stats.instance.gameObject.SetActive(false);
         UI_Player.instance.gameObject.SetActive(false);
 
+        TransitionInformationSetter transitionInfoSetter = FindObjectOfType<TransitionInformationSetter>();
+        if (transitionInfoSetter)
+        {
+            transitionInfoSetter.DisplayRandomInfoConfig();
+        }
+
         // Once we're in transition scene, we can search for loading bar and ready button.
         Loading_Bar loadingBar = GameObject.Find("LoadingBarCurrentLevel").GetComponent<Loading_Bar>();
         Button readyButton = GameObject.Find("ReadyButton").GetComponent<Button>();
@@ -333,7 +336,7 @@ public class Scenes_Control : MonoBehaviour
             loadingBar.SetLoadingBar(levelAsyncLoad.progress * 100);
             loadingBar.SetLoadingText(levelAsyncLoad.progress * 100);
 
-            yield return null;
+            yield return new WaitForEndOfFrame();
         }
 
         // Disable level to go
@@ -343,6 +346,14 @@ public class Scenes_Control : MonoBehaviour
 
         // Set scenes cycles
         CheckScenesLoaded(levelToGo);
+
+        // Check for unload ressources to optimize memory
+        AsyncOperation unloadingUselessRessources = Resources.UnloadUnusedAssets();
+
+        while (!unloadingUselessRessources.isDone)
+        {
+            yield return null;
+        }
 
         // Set the ready button to switch to the new game level
         readyButton.onClick.AddListener(() => NewGameLevelReady(levelToLoadBuildIndex, levelFrom.buildIndex, usedTeleportail));
@@ -489,7 +500,7 @@ public class Scenes_Control : MonoBehaviour
 
             if (player_movement)
             {
-                player_movement.SetPlayerVelocity(new Vector2(1f, 0f) * Player_Stats.instance.GetSpeed());
+                player_movement.SetPlayerVelocity(new Vector2(1f, 0f) * (Player_Stats.instance.GetSpeed() - 1f));
             }
 
             yield return new WaitForSeconds(2f);
@@ -517,6 +528,14 @@ public class Scenes_Control : MonoBehaviour
         Time.timeScale = 0.5f;
 
         yield return new WaitForSeconds(3f);
+
+        if (GameObject.Find("Sounds"))
+        {
+            for (int i = 0; i < GameObject.Find("Sounds").transform.childCount; i++)
+            {
+                Destroy(GameObject.Find("Sounds").transform.GetChild(i).gameObject);
+            }
+        }
 
         Scene levelFrom = SceneManager.GetActiveScene();
         GameObject rootLevelFrom = levelFrom.GetRootGameObjects()[0]; // Because there is only one root gameobject per game level.

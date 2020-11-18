@@ -77,7 +77,7 @@ public class UI_Player_Success : MonoBehaviour
 
         if (currentSuccess.isDone)
         {
-            successObjective.text = "Accompli";
+            successObjective.text = "Accomplished";
 
             if (currentSuccess.rewardGift)
             {

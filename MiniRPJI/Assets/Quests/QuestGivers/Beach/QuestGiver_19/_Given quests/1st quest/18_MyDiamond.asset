@@ -13,14 +13,13 @@ MonoBehaviour:
   m_Name: 18_MyDiamond
   m_EditorClassIdentifier: 
   questID: 18
-  questTitle: "Mon pr\xE9cieux"
-  questDescription: "Bonjour, je m'appelle Lucy. Je me trouve ici parce que je cherche
-    mon diamant... Tu l'as vu ? ... Si il est \xE0 moi ? Oui bien s\xFBr. Enfin...
-    Je l'ai m\xE9rit\xE9e c'est certain ! J'ai travaill\xE9 pendant des ann\xE9es
-    pour la famille royale. Et mon petit fr\xE8re a vol\xE9 une pomme un jour dans
-    les cuisines. Cet imb\xE9cile s'est fait prendre ! Le roi n'a rien voulu savoir
-    et nous devons nous \xE9stimer \"heureux\" qu'il ne lui ai pas coup\xE9 les mains...
-    Pfff... Bon tu vas m'aider ou pas ?"
+  questTitle: My precious
+  questDescription: Hello, my name is Lucy. I'm here because I'm looking for my diamond
+    ... Did you see it? ... If it's mine? Yes of course. Finally ... I deserved it
+    for sure! I worked for the royal family for years. And my little brother stole
+    an apple one day from the kitchens. This idiot got caught! The king did not want
+    to know anything and we must consider ourselves "happy" that he did not cut off
+    his hands ... Pfff ... Are you going to help me or not?
   questSprite: {fileID: 21300000, guid: 3faa68d4e2f05f04786133598667ac36, type: 3}
   totalQuestObjective: 1
   questDone: 0

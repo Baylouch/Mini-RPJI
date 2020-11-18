@@ -4,7 +4,6 @@
  * 
  * Prend pour cible l'ennemi le plus proche lors de sa création.
  * 
- * TODO Créer des projectiles ennemis a tête chercheuse aussi ?
  * 
  * */
 
@@ -17,7 +16,7 @@ using Pathfinding;
 [RequireComponent(typeof(Player_Projectile))]
 public class Player_Research_Projectile : MonoBehaviour
 {
-    public Player_Research_Projectile[] linkedProj;
+    public Player_Research_Projectile[] linkedProj; // For reset the target of the linked projectile when this one has hit
 
     // The distance maximum the arrow will search a target
     [SerializeField] float researchingTargetDistance = 15f;
@@ -84,53 +83,23 @@ public class Player_Research_Projectile : MonoBehaviour
     public void SetTarget()
     {
         // Find the closer enemy and set it as target
-        AI_Health[] aiHealth = FindObjectsOfType<AI_Health>(); // Search for all AI_Health in the scene to compare their distance.
+        AI_Health[] aiHealths = FindObjectsOfType<AI_Health>(); // Search for all AI_Health in the scene to compare their distance.
         Transform closerTarget = null;
 
-        if (aiHealth.Length > 1)
+        for (int i = 0; i < aiHealths.Length; i++)
         {
-            for (int i = 0; i < aiHealth.Length - 1; i++)
+            if (aiHealths[i] != null && Vector3.Distance(transform.position, aiHealths[i].transform.position) <= researchingTargetDistance)
             {
-                // if closerTarget == null we're at the first iteration
                 if (closerTarget == null)
                 {
-                    // Check if aiHealth[i] position is greater than the researchingTargetDistance
-                    if (aiHealth[i] != null && Vector3.Distance(transform.position, aiHealth[i].transform.position) > researchingTargetDistance)
-                    {
-                        // If its the case, just continue to go to the next iteration. Testing aiHealth[i + 1] is useless because we'll test it on the next iteration.
-                        // And if we pass trough this condition, aiHealth[i + 1] is out of researchingTargetDistance range so aiHealth[i] is closer and will be set as target.
-                        continue;
-                    }
-
-                    if (aiHealth[i + 1] != null && Vector3.Distance(transform.position, aiHealth[i].transform.position) > Vector3.Distance(transform.position, aiHealth[i + 1].transform.position))
-                    {
-                        closerTarget = aiHealth[i + 1].transform;
-                    }
-                    else
-                    {
-                        closerTarget = aiHealth[i].transform;
-                    }
-
-                    continue; // We set closerTarget, go to the next iteration to compare with next aiHealth
+                    closerTarget = aiHealths[i].transform;
                 }
-
-                // Check if aiHealth[i] isn't out of range, then compare it with closerTarget position to know if its closer or not.
-                if (Vector3.Distance(transform.position, aiHealth[i].transform.position) <= researchingTargetDistance)
+                else
                 {
-                    if (Vector3.Distance(transform.position, closerTarget.position) > Vector3.Distance(transform.position, aiHealth[i].transform.position))
+                    if (Vector3.Distance(transform.position, closerTarget.position) > Vector3.Distance(transform.position, aiHealths[i].transform.position))
                     {
-                        closerTarget = aiHealth[i].transform;
+                        closerTarget = aiHealths[i].transform;
                     }
-                }
-            }
-        }
-        else
-        {
-            if (aiHealth.Length > 0)
-            {
-                if (Vector3.Distance(transform.position, aiHealth[0].transform.position) <= researchingTargetDistance)
-                {
-                    closerTarget = aiHealth[0].transform;
                 }
             }
         }

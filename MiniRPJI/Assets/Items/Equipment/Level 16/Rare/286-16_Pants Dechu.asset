@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 286-16_Pants Dechu
   m_EditorClassIdentifier: 
   itemID: 286
-  itemName: Pantalon du Dechu
+  itemName: Fallen pants
   itemDescription: 
   itemSellPrice: 470
   itemPrefab: {fileID: 7290006494410735304, guid: 6c58cf90d0d71f44b9d2a1b6ee9f5555,

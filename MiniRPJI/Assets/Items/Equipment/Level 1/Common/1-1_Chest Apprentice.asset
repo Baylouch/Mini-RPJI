@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 1-1_Chest Apprentice
   m_EditorClassIdentifier: 
   itemID: 1
-  itemName: Chemise d'apprenti
+  itemName: Apprentice shirt
   itemDescription: 
   itemSellPrice: 30
   itemPrefab: {fileID: 6105507112566103775, guid: 5b0990b01e9377340b8b0de20b0397b4,
@@ -23,7 +23,6 @@ MonoBehaviour:
   stackableItem: 0
   armoryPart: 1
   rarety: 0
-  projectile: {fileID: 0}
   strength: 0
   agility: 0
   vitality: 3

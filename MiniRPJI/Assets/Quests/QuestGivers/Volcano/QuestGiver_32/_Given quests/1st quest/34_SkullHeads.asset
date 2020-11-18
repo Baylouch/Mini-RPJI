@@ -13,12 +13,11 @@ MonoBehaviour:
   m_Name: 34_SkullHeads
   m_EditorClassIdentifier: 
   questID: 34
-  questTitle: Le collectionneur
-  questDescription: "H\xE9 ! Je suis Arnone le collectionneur. J'expose mes collections
-    \xE0 travers le monde. Mais je suis aussi un aventurier ! Ma nouvelle collection
-    va s'appeler \"T\xEAte Vide\". Pour l'illustrer j'ai choisi de prendre des cr\xE2nes
-    des squelettes qu'il y a par ici. Je peux te r\xE9compenser si tu m'aides. T'es
-    d'accord ?"
+  questTitle: The collector
+  questDescription: Hey ! I am Arnone the collector. I exhibit my collections around
+    the world. But I am also an adventurer! My new collection will be called "Empty
+    Head". To illustrate it, I chose to take the skulls of the skeletons that are
+    around here. I can reward you if you help me. Do you agree?
   questSprite: {fileID: 21300000, guid: 587503b6015abc741ad5147fff8f4a06, type: 3}
   totalQuestObjective: 15
   questDone: 0

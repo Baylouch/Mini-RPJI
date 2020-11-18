@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 324-18_Boots Archery
   m_EditorClassIdentifier: 
   itemID: 324
-  itemName: Bottes de l'archer
+  itemName: Archer's boots
   itemDescription: 
   itemSellPrice: 530
   itemPrefab: {fileID: 733386610476664069, guid: b96066df95794664b8f0d0731932fbb8,

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 282-16_Boots Bronze
   m_EditorClassIdentifier: 
   itemID: 282
-  itemName: Bottes en Bronze
+  itemName: Bronze boots
   itemDescription: 
   itemSellPrice: 280
   itemPrefab: {fileID: 733386610476664069, guid: b96066df95794664b8f0d0731932fbb8,

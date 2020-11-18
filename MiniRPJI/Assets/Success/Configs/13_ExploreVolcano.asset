@@ -15,8 +15,8 @@ MonoBehaviour:
   successID: 13
   successSprite: {fileID: -3085063711383054021, guid: a7dfa991e33aadf42ab546bdff69ecbd,
     type: 3}
-  successTitle: Nomade
-  successDescription: Explore chaque zone du volcan.
+  successTitle: Nomadic
+  successDescription: "Explore each area of \u200B\u200Bthe volcano."
   isDone: 0
   rewardGift: 0
   successObjective: 9

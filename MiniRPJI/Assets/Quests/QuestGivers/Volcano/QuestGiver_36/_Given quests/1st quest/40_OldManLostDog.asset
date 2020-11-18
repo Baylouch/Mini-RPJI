@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   questID: 40
   questTitle: Mirabelle
-  questDescription: "Je suis arriv\xE9 jusqu'ici parce que je suis \xE0 la recherche
-    de ma chienne Mirabelle... Elle a disparue la semaine derni\xE8re, je n'ai pas
-    cess\xE9 de la chercher. Je suis pass\xE9 par la for\xEAt, la plage et me voil\xE0
-    ici... Je suis extenu\xE9... Si tu la vois tu peux me le dire s'il te plait ?"
+  questDescription: "I got here because I'm looking for my dog \u200B\u200BMirabelle
+    ... She disappeared last week, I haven't stopped looking for her. I went through
+    the forest, the beach and here I am ... I'm exhausted ... If you see her, can
+    you tell me please?"
   questSprite: {fileID: 7842624481175806839, guid: 2c9cd168c6159f14eb3675170a515319,
     type: 3}
   totalQuestObjective: 1

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 433-24_Bow Conqueror
   m_EditorClassIdentifier: 
   itemID: 433
-  itemName: Arc du Conquerant
+  itemName: Conqueror's bow
   itemDescription: 
   itemSellPrice: 999
   itemPrefab: {fileID: 4019101185777562141, guid: 79efe668507cf7f4ab3f34866358491f,

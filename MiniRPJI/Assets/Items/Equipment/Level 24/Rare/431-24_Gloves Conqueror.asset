@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 431-24_Gloves Conqueror
   m_EditorClassIdentifier: 
   itemID: 431
-  itemName: Gants du Conquerant
+  itemName: Conqueror's gloves
   itemDescription: 
   itemSellPrice: 800
   itemPrefab: {fileID: 1724247864129913130, guid: e844d7dd3bef667488cb5b47b1a5745d,

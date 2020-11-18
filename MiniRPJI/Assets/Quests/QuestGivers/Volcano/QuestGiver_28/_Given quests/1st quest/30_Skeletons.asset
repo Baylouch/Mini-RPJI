@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: 30_Skeletons
   m_EditorClassIdentifier: 
   questID: 30
-  questTitle: Squelettes
-  questDescription: "Oy, je suis Jessica. Tu sais ce qu'il n'y a plus ici ? Et bien
-    je vais te dire ce qu'il y a maintenant ! Des squelettes ! Partout o\xF9 je regarde
-    je vois des squelettes. Aide moi a les d\xE9cimer."
+  questTitle: Skeletons
+  questDescription: Oy, I'm Jessica. Do you know what's not here anymore? Well I'll
+    tell you what's going on now! Skeletons! Everywhere I look I see skeletons. Help
+    me decimate them.
   questSprite: {fileID: -7308292388938493882, guid: ca3fbfc26d4c35c4da00ce0c821e6a87,
     type: 3}
   totalQuestObjective: 100

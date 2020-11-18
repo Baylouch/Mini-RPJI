@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 140-10_Chest Eagle
   m_EditorClassIdentifier: 
   itemID: 140
-  itemName: Armure de l'aigle
+  itemName: Eagle armor
   itemDescription: 
   itemSellPrice: 115
   itemPrefab: {fileID: 6105507112566103775, guid: 5b0990b01e9377340b8b0de20b0397b4,
@@ -23,7 +23,6 @@ MonoBehaviour:
   stackableItem: 0
   armoryPart: 1
   rarety: 0
-  projectile: {fileID: 0}
   strength: 0
   agility: 3
   vitality: 10

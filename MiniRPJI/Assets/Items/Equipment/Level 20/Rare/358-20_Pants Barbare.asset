@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 358-20_Pants Barbare
   m_EditorClassIdentifier: 
   itemID: 358
-  itemName: Pantalon de Barbare
+  itemName: Barbarian pants
   itemDescription: 
   itemSellPrice: 645
   itemPrefab: {fileID: 7290006494410735304, guid: 6c58cf90d0d71f44b9d2a1b6ee9f5555,

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 215-13_Gloves Viking
   m_EditorClassIdentifier: 
   itemID: 215
-  itemName: Gants de Viking
+  itemName: Viking gloves
   itemDescription: 
   itemSellPrice: 220
   itemPrefab: {fileID: 1724247864129913130, guid: e844d7dd3bef667488cb5b47b1a5745d,
@@ -23,7 +23,6 @@ MonoBehaviour:
   stackableItem: 0
   armoryPart: 3
   rarety: 1
-  projectile: {fileID: 0}
   strength: 15
   agility: 3
   vitality: 9

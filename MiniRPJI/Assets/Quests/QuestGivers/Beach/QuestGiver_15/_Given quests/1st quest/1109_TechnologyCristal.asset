@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: 1109_TechnologyCristal
   m_EditorClassIdentifier: 
   itemID: 1109
-  itemName: Cristal de puissance
-  itemDescription: "Une grande puissance \xE9mane de ces cristaux..."
+  itemName: Power crystal
+  itemDescription: A great power emanates from these crystals...
   itemSellPrice: 0
   itemPrefab: {fileID: 5362988514200447822, guid: 6e9d9abc3b3722344b1d9201953987e4,
     type: 3}

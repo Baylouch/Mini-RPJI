@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 302-17_Helm Silver
   m_EditorClassIdentifier: 
   itemID: 302
-  itemName: Casque en Argent
+  itemName: Silver helmet
   itemDescription: 
   itemSellPrice: 500
   itemPrefab: {fileID: 4916301973116470330, guid: 17bcec922aaa11d4e9f8b1fcbbbd1c2a,

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 348-20_Boots Bone
   m_EditorClassIdentifier: 
   itemID: 348
-  itemName: Bottes en Os
+  itemName: Bone boots
   itemDescription: 
   itemSellPrice: 210
   itemPrefab: {fileID: 733386610476664069, guid: b96066df95794664b8f0d0731932fbb8,

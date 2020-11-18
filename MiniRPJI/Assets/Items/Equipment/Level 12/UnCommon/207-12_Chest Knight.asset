@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 207-12_Chest Knight
   m_EditorClassIdentifier: 
   itemID: 207
-  itemName: Armure du Chevalier
+  itemName: Knight's armor
   itemDescription: 
   itemSellPrice: 205
   itemPrefab: {fileID: 6105507112566103775, guid: 5b0990b01e9377340b8b0de20b0397b4,
@@ -23,7 +23,6 @@ MonoBehaviour:
   stackableItem: 0
   armoryPart: 1
   rarety: 1
-  projectile: {fileID: 0}
   strength: 0
   agility: 8
   vitality: 17

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 327-19_Chest Baleine
   m_EditorClassIdentifier: 
   itemID: 327
-  itemName: Armure de la Baleine
+  itemName: Whale armor
   itemDescription: 
   itemSellPrice: 205
   itemPrefab: {fileID: 6105507112566103775, guid: 5b0990b01e9377340b8b0de20b0397b4,

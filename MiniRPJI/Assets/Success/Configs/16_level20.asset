@@ -15,8 +15,8 @@ MonoBehaviour:
   successID: 16
   successSprite: {fileID: 5145503182690764587, guid: a7dfa991e33aadf42ab546bdff69ecbd,
     type: 3}
-  successTitle: Niveau 20
-  successDescription: Monte jusqu'au niveau 20.
+  successTitle: Level 20
+  successDescription: Pass level 20.
   isDone: 0
   rewardGift: 0
   successObjective: 1

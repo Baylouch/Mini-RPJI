@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 229-15_Bow Courage
   m_EditorClassIdentifier: 
   itemID: 229
-  itemName: Arc de courage
+  itemName: Bow of courage
   itemDescription: 
   itemSellPrice: 275
   itemPrefab: {fileID: 4019101185777562141, guid: 79efe668507cf7f4ab3f34866358491f,
@@ -23,8 +23,6 @@ MonoBehaviour:
   stackableItem: 0
   armoryPart: 5
   rarety: 1
-  projectile: {fileID: 6052980135759029977, guid: 77de479917db3204cae1bd43cf852001,
-    type: 3}
   strength: 0
   agility: 20
   vitality: 0

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 427-24_Bow Sorcier
   m_EditorClassIdentifier: 
   itemID: 427
-  itemName: Arc de Sorcier
+  itemName: Wizard bow
   itemDescription: 
   itemSellPrice: 550
   itemPrefab: {fileID: 4019101185777562141, guid: 79efe668507cf7f4ab3f34866358491f,

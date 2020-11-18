@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 397-22_Bow Rage
   m_EditorClassIdentifier: 
   itemID: 397
-  itemName: Arc de Rage
+  itemName: Rage bow
   itemDescription: 
   itemSellPrice: 780
   itemPrefab: {fileID: 4019101185777562141, guid: 79efe668507cf7f4ab3f34866358491f,

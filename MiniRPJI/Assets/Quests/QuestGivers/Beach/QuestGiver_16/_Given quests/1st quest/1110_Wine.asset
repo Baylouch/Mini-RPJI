@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: 1110_Wine
   m_EditorClassIdentifier: 
   itemID: 1110
-  itemName: Bouteille de vin
-  itemDescription: Du vin de premier prix.
+  itemName: Bottle of wine
+  itemDescription: First-rate wine.
   itemSellPrice: 0
   itemPrefab: {fileID: 5362988514200447822, guid: d3c1de31d4c18214a8a4ab577f1b2a2c,
     type: 3}

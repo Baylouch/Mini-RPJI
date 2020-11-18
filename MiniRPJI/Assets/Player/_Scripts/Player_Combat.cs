@@ -58,7 +58,7 @@ public class Player_Combat : MonoBehaviour
         if (playerCanCombat == false)
             return;
 
-        if (Player_Shortcuts.GetShortCuts() == 0)
+        if (Player_Shortcuts.GetShortCuts() == 0 || Player_Shortcuts.GetShortCuts() == 1) // Same for ZQSD and WASD here
         {
             UseAttackWithMouse();
         }
@@ -119,7 +119,7 @@ public class Player_Combat : MonoBehaviour
                                 //Debug.Log("No bow equiped. Impossible to use ability. (Ability ID : " + playerAbilities.GetPrimaryAbility().abilityID + ")");
                                 if (UI_Player_Informations.instance)
                                 {
-                                    UI_Player_Informations.instance.DisplayInformation("Il te faut un arc !");
+                                    UI_Player_Informations.instance.DisplayInformation("You need a bow !");
                                 }
                             }
                         }
@@ -180,7 +180,7 @@ public class Player_Combat : MonoBehaviour
                                 // Debug.Log("No bow equiped. Impossible to use ability. (Ability ID : " + playerAbilities.GetSecondaryAbility().abilityID + ")");
                                 if (UI_Player_Informations.instance)
                                 {
-                                    UI_Player_Informations.instance.DisplayInformation("Il te faut un arc !");
+                                    UI_Player_Informations.instance.DisplayInformation("You need a bow !");
                                 }
                             }
                         }
@@ -255,7 +255,7 @@ public class Player_Combat : MonoBehaviour
                                 //Debug.Log("No bow equiped. Impossible to use ability. (Ability ID : " + playerAbilities.GetPrimaryAbility().abilityID + ")");
                                 if (UI_Player_Informations.instance)
                                 {
-                                    UI_Player_Informations.instance.DisplayInformation("Il te faut un arc !");
+                                    UI_Player_Informations.instance.DisplayInformation("You need a bow !");
                                 }
                             }
                         }
@@ -316,7 +316,7 @@ public class Player_Combat : MonoBehaviour
                                 // Debug.Log("No bow equiped. Impossible to use ability. (Ability ID : " + playerAbilities.GetSecondaryAbility().abilityID + ")");
                                 if (UI_Player_Informations.instance)
                                 {
-                                    UI_Player_Informations.instance.DisplayInformation("Il te faut un arc !");
+                                    UI_Player_Informations.instance.DisplayInformation("You need a bow !");
                                 }
                             }
                         }
@@ -458,7 +458,7 @@ public class Player_Combat : MonoBehaviour
             if (_ability.abilitySubID == 7)
             {
                 // Set the healthpoints decoy_health component
-                int decoyHealthPoints = Player_Stats.instance.playerHealth.GetTotalHealthPoints() + _ability.abilityBonus;
+                int decoyHealthPoints = Mathf.RoundToInt(Player_Stats.instance.playerHealth.GetTotalHealthPoints() / 2f) + _ability.abilityBonus;
                 abilityPrefab.GetComponent<Decoy_Health>().SetTotalHealthPoints(decoyHealthPoints);
                 abilityPrefab.GetComponent<Decoy_Health>().SetCurrentHealthPoints(decoyHealthPoints);
             }
@@ -632,5 +632,6 @@ public class Player_Combat : MonoBehaviour
     public void ResetEndingCombatTimer()
     {
         currentTimerBeforeEndCombat = timerBeforeEndCombat;
+        
     }
 }

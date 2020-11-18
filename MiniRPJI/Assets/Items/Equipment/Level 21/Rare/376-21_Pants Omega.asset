@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 376-21_Pants Omega
   m_EditorClassIdentifier: 
   itemID: 376
-  itemName: Pantalon de l'Omega
+  itemName: Omega pants
   itemDescription: 
   itemSellPrice: 700
   itemPrefab: {fileID: 7290006494410735304, guid: 6c58cf90d0d71f44b9d2a1b6ee9f5555,

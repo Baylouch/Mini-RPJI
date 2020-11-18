@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 485-18_Bow King
   m_EditorClassIdentifier: 
   itemID: 485
-  itemName: Arc du Roi
+  itemName: King's bow
   itemDescription: 
   itemSellPrice: 885
   itemPrefab: {fileID: 4019101185777562141, guid: 79efe668507cf7f4ab3f34866358491f,

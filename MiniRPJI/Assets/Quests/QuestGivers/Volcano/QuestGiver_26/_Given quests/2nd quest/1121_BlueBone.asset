@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: 1121_BlueBone
   m_EditorClassIdentifier: 
   itemID: 1121
-  itemName: Os bleu
-  itemDescription: S'effrite dans mes mains...
+  itemName: Blue bone
+  itemDescription: It crumbles in my hands...
   itemSellPrice: 0
   itemPrefab: {fileID: 5362988514200447822, guid: ca28faf9f6f345b4a9f4af15a639d0f9,
     type: 3}

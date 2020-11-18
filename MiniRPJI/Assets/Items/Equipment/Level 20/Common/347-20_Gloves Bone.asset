@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 347-20_Gloves Bone
   m_EditorClassIdentifier: 
   itemID: 347
-  itemName: Gants en Os
+  itemName: Bone gloves
   itemDescription: 
   itemSellPrice: 215
   itemPrefab: {fileID: 1724247864129913130, guid: e844d7dd3bef667488cb5b47b1a5745d,

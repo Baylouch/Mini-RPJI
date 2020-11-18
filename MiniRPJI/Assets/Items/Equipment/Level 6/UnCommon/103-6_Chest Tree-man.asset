@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 103-6_Chest Tree-man
   m_EditorClassIdentifier: 
   itemID: 103
-  itemName: Chemise de l'homme-arbre
+  itemName: Treeman shirt
   itemDescription: 
   itemSellPrice: 115
   itemPrefab: {fileID: 6105507112566103775, guid: 5b0990b01e9377340b8b0de20b0397b4,
@@ -23,7 +23,6 @@ MonoBehaviour:
   stackableItem: 0
   armoryPart: 1
   rarety: 1
-  projectile: {fileID: 0}
   strength: 3
   agility: 3
   vitality: 7

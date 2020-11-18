@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 257-13_Gloves Angel
   m_EditorClassIdentifier: 
   itemID: 257
-  itemName: Gants de l'Ange
+  itemName: Angel gloves
   itemDescription: 
   itemSellPrice: 380
   itemPrefab: {fileID: 1724247864129913130, guid: e844d7dd3bef667488cb5b47b1a5745d,
@@ -23,7 +23,6 @@ MonoBehaviour:
   stackableItem: 0
   armoryPart: 3
   rarety: 2
-  projectile: {fileID: 0}
   strength: 50
   agility: 0
   vitality: 0

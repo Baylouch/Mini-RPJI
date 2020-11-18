@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 289-16_Bow Dechu
   m_EditorClassIdentifier: 
   itemID: 289
-  itemName: Arc du Dechu
+  itemName: Fallen bow
   itemDescription: 
   itemSellPrice: 470
   itemPrefab: {fileID: 4019101185777562141, guid: 79efe668507cf7f4ab3f34866358491f,

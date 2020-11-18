@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: 126-7_Boots Perfect
   m_EditorClassIdentifier: 
   itemID: 126
-  itemName: Bottes en parfait etat
-  itemDescription: Une lueur verte s'en degage...
+  itemName: Boots in perfect condition
+  itemDescription: A green glow emerges...
   itemSellPrice: 280
   itemPrefab: {fileID: 733386610476664069, guid: b96066df95794664b8f0d0731932fbb8,
     type: 3}
@@ -23,7 +23,6 @@ MonoBehaviour:
   stackableItem: 0
   armoryPart: 4
   rarety: 3
-  projectile: {fileID: 0}
   strength: 5
   agility: 5
   vitality: 5

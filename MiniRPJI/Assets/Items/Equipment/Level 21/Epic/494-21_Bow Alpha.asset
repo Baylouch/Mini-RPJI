@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 494-21_Bow Alpha
   m_EditorClassIdentifier: 
   itemID: 494
-  itemName: Arc de l'Alpha
+  itemName: Alpha bow
   itemDescription: 
   itemSellPrice: 1100
   itemPrefab: {fileID: 4019101185777562141, guid: 79efe668507cf7f4ab3f34866358491f,

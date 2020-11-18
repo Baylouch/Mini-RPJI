@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 312-18_Boots Duck
   m_EditorClassIdentifier: 
   itemID: 312
-  itemName: Bottes en peau de canard
+  itemName: Duck skin boots
   itemDescription: 
   itemSellPrice: 190
   itemPrefab: {fileID: 733386610476664069, guid: b96066df95794664b8f0d0731932fbb8,

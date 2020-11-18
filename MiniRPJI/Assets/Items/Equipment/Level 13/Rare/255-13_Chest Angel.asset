@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 255-13_Chest Angel
   m_EditorClassIdentifier: 
   itemID: 255
-  itemName: Armure de l'Ange
+  itemName: Angel armor
   itemDescription: 
   itemSellPrice: 380
   itemPrefab: {fileID: 6105507112566103775, guid: 5b0990b01e9377340b8b0de20b0397b4,
@@ -23,7 +23,6 @@ MonoBehaviour:
   stackableItem: 0
   armoryPart: 1
   rarety: 2
-  projectile: {fileID: 0}
   strength: 15
   agility: 15
   vitality: 20

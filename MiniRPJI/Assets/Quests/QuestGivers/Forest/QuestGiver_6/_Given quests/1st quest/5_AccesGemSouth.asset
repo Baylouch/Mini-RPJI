@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: 5_AccesGemSouth
   m_EditorClassIdentifier: 
   questID: 5
-  questTitle: Gemme d'acces
-  questDescription: "Ah, j'ai entendu parler de toi, tu es l'apprenti ranger n'est-ce
-    pas ? Tu as peut-\xEAtre remarqu\xE9 que les zones disponibles sont assez restreintes
-    pour le moment. C'est \xE0 cause des monstres, ils nous ont vol\xE9s des gemmes
-    magique permettant d'acc\xE9der \xE0 ces zones. J'ai ressenti la gemme d'acc\xE8s
-    du sud pas tr\xE8s loin d'ici. Tu peux m'aider a la retrouver ?"
+  questTitle: Access gem
+  questDescription: Ah, I heard about you, you are the apprentice ranger aren't you?
+    You may have noticed that the available areas are quite limited at the moment.
+    It is because of the monsters, they have stolen magic gems from us allowing access
+    to these areas. I felt the southern access gem not far from here. Can you help
+    me find her?
   questSprite: {fileID: 21300000, guid: 70e92df91699f664ab5bad7bf4723022, type: 3}
   totalQuestObjective: 1
   questDone: 1

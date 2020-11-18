@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 158-13_Chest Mangemort
   m_EditorClassIdentifier: 
   itemID: 158
-  itemName: Armure de mangemort
+  itemName: Death Eater armor
   itemDescription: 
   itemSellPrice: 145
   itemPrefab: {fileID: 6105507112566103775, guid: 5b0990b01e9377340b8b0de20b0397b4,
@@ -23,7 +23,6 @@ MonoBehaviour:
   stackableItem: 0
   armoryPart: 1
   rarety: 0
-  projectile: {fileID: 0}
   strength: 0
   agility: 0
   vitality: 19

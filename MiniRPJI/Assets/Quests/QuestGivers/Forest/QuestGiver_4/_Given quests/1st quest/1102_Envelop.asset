@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: 1102_Envelop
   m_EditorClassIdentifier: 
   itemID: 1102
-  itemName: Enveloppe
-  itemDescription: "Elle est parfum\xE9e"
+  itemName: Envelope
+  itemDescription: It's scented
   itemSellPrice: 0
   itemPrefab: {fileID: 5362988514200447822, guid: d48842311b0190646863a432d4682770,
     type: 3}

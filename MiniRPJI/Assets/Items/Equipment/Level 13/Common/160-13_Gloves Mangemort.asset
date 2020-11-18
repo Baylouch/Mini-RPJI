@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 160-13_Gloves Mangemort
   m_EditorClassIdentifier: 
   itemID: 160
-  itemName: Gants de mangemort
+  itemName: Death Eater gloves
   itemDescription: 
   itemSellPrice: 135
   itemPrefab: {fileID: 1724247864129913130, guid: e844d7dd3bef667488cb5b47b1a5745d,
@@ -23,7 +23,6 @@ MonoBehaviour:
   stackableItem: 0
   armoryPart: 3
   rarety: 0
-  projectile: {fileID: 0}
   strength: 10
   agility: 5
   vitality: 0

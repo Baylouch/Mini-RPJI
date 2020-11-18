@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 198-10_Boots Sadique
   m_EditorClassIdentifier: 
   itemID: 198
-  itemName: Bottes du Sadique
+  itemName: Sadist's boots
   itemDescription: 
   itemSellPrice: 175
   itemPrefab: {fileID: 733386610476664069, guid: b96066df95794664b8f0d0731932fbb8,
@@ -23,7 +23,6 @@ MonoBehaviour:
   stackableItem: 0
   armoryPart: 4
   rarety: 1
-  projectile: {fileID: 0}
   strength: 11
   agility: 0
   vitality: 0

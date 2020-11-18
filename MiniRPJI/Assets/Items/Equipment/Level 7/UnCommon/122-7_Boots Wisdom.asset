@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 122-7_Boots Wisdom
   m_EditorClassIdentifier: 
   itemID: 122
-  itemName: Bottes de sagesse
+  itemName: Boots of wisdom
   itemDescription: 
   itemSellPrice: 120
   itemPrefab: {fileID: 733386610476664069, guid: b96066df95794664b8f0d0731932fbb8,
@@ -23,7 +23,6 @@ MonoBehaviour:
   stackableItem: 0
   armoryPart: 4
   rarety: 1
-  projectile: {fileID: 0}
   strength: 0
   agility: 3
   vitality: 2

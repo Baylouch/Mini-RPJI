@@ -15,9 +15,9 @@ MonoBehaviour:
   abilityID: 35
   abilitySubID: 6
   abilityLevel: 3
-  abilityName: "Fleche empoisonn\xE9e"
-  abilityShortDescription: "Tir une fl\xE8che empoisonn\xE9e"
-  abilityLongDescription: "Tir une fl\xE8che enduit de poison. Empoisonne la cible."
+  abilityName: Poison arrow
+  abilityShortDescription: Shoot a poison arrow
+  abilityLongDescription: Shoot an arrow coated with poison. Poison the target.
   abilitySprite: {fileID: 21300000, guid: c727fda51f8451c4faeeff3b7e369052, type: 3}
   abilityPrefab: {fileID: 7654291037089040709, guid: b0cf44ee3b3ef024693aedd353f22422,
     type: 3}

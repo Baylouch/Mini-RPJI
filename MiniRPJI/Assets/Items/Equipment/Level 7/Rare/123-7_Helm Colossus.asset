@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 123-7_Helm Colossus
   m_EditorClassIdentifier: 
   itemID: 123
-  itemName: Casque de colosse
+  itemName: Colossus helmet
   itemDescription: 
   itemSellPrice: 180
   itemPrefab: {fileID: 4916301973116470330, guid: 17bcec922aaa11d4e9f8b1fcbbbd1c2a,
@@ -23,7 +23,6 @@ MonoBehaviour:
   stackableItem: 0
   armoryPart: 0
   rarety: 2
-  projectile: {fileID: 0}
   strength: 0
   agility: 15
   vitality: 10

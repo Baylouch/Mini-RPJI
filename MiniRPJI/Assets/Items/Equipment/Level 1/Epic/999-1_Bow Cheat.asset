@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemID: 999
   itemName: Nice Bow
-  itemDescription: Arc de pro
+  itemDescription: Pro bow
   itemSellPrice: 155
   itemPrefab: {fileID: 4019101185777562141, guid: 79efe668507cf7f4ab3f34866358491f,
     type: 3}

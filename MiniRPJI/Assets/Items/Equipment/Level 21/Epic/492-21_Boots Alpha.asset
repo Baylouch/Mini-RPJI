@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 492-21_Boots Alpha
   m_EditorClassIdentifier: 
   itemID: 492
-  itemName: Bottes de l'Alpha
+  itemName: Alpha boots
   itemDescription: 
   itemSellPrice: 1000
   itemPrefab: {fileID: 733386610476664069, guid: b96066df95794664b8f0d0731932fbb8,

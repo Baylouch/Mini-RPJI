@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 355-20_Bow Warrior
   m_EditorClassIdentifier: 
   itemID: 355
-  itemName: Arc du Guerrier
+  itemName: Warrior's bow
   itemDescription: 
   itemSellPrice: 380
   itemPrefab: {fileID: 4019101185777562141, guid: 79efe668507cf7f4ab3f34866358491f,

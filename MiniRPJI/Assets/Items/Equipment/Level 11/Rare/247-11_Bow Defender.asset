@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 247-11_Bow Defender
   m_EditorClassIdentifier: 
   itemID: 247
-  itemName: Arc du Defenseur
+  itemName: Defender's bow
   itemDescription: 
   itemSellPrice: 340
   itemPrefab: {fileID: 4019101185777562141, guid: 79efe668507cf7f4ab3f34866358491f,
@@ -23,8 +23,6 @@ MonoBehaviour:
   stackableItem: 0
   armoryPart: 5
   rarety: 2
-  projectile: {fileID: 6052980135759029977, guid: 77de479917db3204cae1bd43cf852001,
-    type: 3}
   strength: 0
   agility: 25
   vitality: 0

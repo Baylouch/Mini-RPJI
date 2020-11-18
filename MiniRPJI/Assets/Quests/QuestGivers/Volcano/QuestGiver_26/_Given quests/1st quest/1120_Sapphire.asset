@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: 1120_Sapphire
   m_EditorClassIdentifier: 
   itemID: 1120
-  itemName: Saphire
-  itemDescription: "Le ciel est la mer se m\xE9lange \xE0 l'int\xE9rieur..."
+  itemName: Sapphire
+  itemDescription: The sky and the sea mix inside...
   itemSellPrice: 0
   itemPrefab: {fileID: 5362988514200447822, guid: f053bf2c63b2722418efc44489dc8bd4,
     type: 3}

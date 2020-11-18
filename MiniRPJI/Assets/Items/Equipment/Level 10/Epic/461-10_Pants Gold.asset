@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 461-10_Pants Gold
   m_EditorClassIdentifier: 
   itemID: 461
-  itemName: Pantalon en or
+  itemName: Gold pants
   itemDescription: 
   itemSellPrice: 435
   itemPrefab: {fileID: 7290006494410735304, guid: 6c58cf90d0d71f44b9d2a1b6ee9f5555,

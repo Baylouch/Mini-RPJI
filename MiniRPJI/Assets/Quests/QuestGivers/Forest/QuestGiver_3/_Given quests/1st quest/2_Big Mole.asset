@@ -13,11 +13,12 @@ MonoBehaviour:
   m_Name: 2_Big Mole
   m_EditorClassIdentifier: 
   questID: 2
-  questTitle: La grosse taupe
-  questDescription: "Hey ! On m'a envoy\xE9 ici dans le but de tuer un monstre avant
-    qu'il ne gagne trop de terrain. J'ai essay\xE9 mais il est bien trop fort pour
-    moi... Tu pourrais voir ce que tu peux faire ? \nIl se trouve tout au fond de
-    la zone juste \xE0 c\xF4t\xE9."
+  questTitle: The big mole
+  questDescription: 'Hey! I was sent here for the purpose of killing a monster before
+    it gained too much ground. I tried but he''s way too strong for me ... Could
+    you see what you can do?
+
+    It is at the very end of the area next to me.'
   questSprite: {fileID: 21300000, guid: 7cefe9e9e8c984bbd9ff43235be8f54f, type: 3}
   totalQuestObjective: 1
   questDone: 0

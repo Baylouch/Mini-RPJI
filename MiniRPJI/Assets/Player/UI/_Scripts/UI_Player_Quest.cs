@@ -63,7 +63,7 @@ public class UI_Player_Quest : MonoBehaviour
                 }
                 else
                 {
-                    return;
+                    continue;
                 }
             }
         }
@@ -96,7 +96,7 @@ public class UI_Player_Quest : MonoBehaviour
 
         if (!Quests_Control.instance.GetPlayerQuestByID(questToDisplay.questID).IsQuestAccomplished())
         {
-            objective.text = "Objectif ";
+            objective.text = "Objective ";
             questObjective.text = questToDisplay.totalQuestObjective.ToString();
             currentQuestObjective.text = Quests_Control.instance.GetPlayerQuestByID(questToDisplay.questID).currentQuestObjective.ToString();
             // Because we disable them when objective is accomplished, we need to enable them when it's not.
@@ -107,7 +107,7 @@ public class UI_Player_Quest : MonoBehaviour
         }
         else
         {
-            objective.text = "Accompli ";
+            objective.text = "Accomplished ";
             questObjective.text = "";
             currentQuestObjective.text = "";
             // Because objective is parent of questObjective and currentQuestObjective text we can disable them from it
@@ -130,21 +130,24 @@ public class UI_Player_Quest : MonoBehaviour
             if (cur_QuestButton && cur_QuestButton.questLinkedID == linkedQuest.questID)
             {
                 Destroy(cur_QuestButton.gameObject);
+                break;
+            }
+        }
+
+        // We check if there is a quest remaining
+        for (int i = 0; i < Quests_Control.instance.questDataBase.quests.Length; i++)
+        {
+            if (Quests_Control.instance.GetPlayerQuestByIndex(i) != null)
+            {
+                if (noQuestText.gameObject.activeSelf)
+                    noQuestText.gameObject.SetActive(false);
+
                 return;
             }
         }
 
-        // We check if there is a quest at first index
-        if (Quests_Control.instance.GetPlayerQuestByIndex(0))
-        {
-            if (noQuestText.gameObject.activeSelf)
-                noQuestText.gameObject.SetActive(false);
-        }
-        else
-        {
-            if (!noQuestText.gameObject.activeSelf)
-                noQuestText.gameObject.SetActive(true);
-        }
+        if (!noQuestText.gameObject.activeSelf)
+            noQuestText.gameObject.SetActive(true);
     }
 
     public void CloseQuestDisplayer()

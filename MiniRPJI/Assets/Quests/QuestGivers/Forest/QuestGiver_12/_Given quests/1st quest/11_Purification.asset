@@ -14,10 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   questID: 11
   questTitle: Purification
-  questDescription: "Garde \xE0 vous soldat ! J'ai \xE9t\xE9 envoy\xE9 dans le coin
-    le plus recul\xE9 de la for\xEAt pour commencer la grande purification. Mon objectif
-    est de tuer tout les monstres croisant mon chemin. Tu veux te joindre \xE0 la
-    f\xEAte ?"
+  questDescription: Attention soldier! I was sent to the most remote corner of the
+    forest to begin the great cleansing. My goal is to kill all the monsters in my
+    path. Do you want to join in the fun?
   questSprite: {fileID: 21300000, guid: f507f03eb80bcbf49bb458bd6a54bd9a, type: 3}
   totalQuestObjective: 15
   questDone: 0

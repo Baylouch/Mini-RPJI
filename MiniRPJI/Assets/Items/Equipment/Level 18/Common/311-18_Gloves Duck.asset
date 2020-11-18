@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 311-18_Gloves Duck
   m_EditorClassIdentifier: 
   itemID: 311
-  itemName: Gants en peau de canard
+  itemName: Duck skin gloves
   itemDescription: 
   itemSellPrice: 185
   itemPrefab: {fileID: 1724247864129913130, guid: e844d7dd3bef667488cb5b47b1a5745d,

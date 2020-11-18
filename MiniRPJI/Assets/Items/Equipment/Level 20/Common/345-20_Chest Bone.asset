@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 345-20_Chest Bone
   m_EditorClassIdentifier: 
   itemID: 345
-  itemName: Armure en Os
+  itemName: Bone armor
   itemDescription: 
   itemSellPrice: 215
   itemPrefab: {fileID: 6105507112566103775, guid: 5b0990b01e9377340b8b0de20b0397b4,

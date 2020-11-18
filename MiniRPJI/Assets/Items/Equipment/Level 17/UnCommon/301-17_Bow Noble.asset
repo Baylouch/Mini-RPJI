@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 301-17_Bow Noble
   m_EditorClassIdentifier: 
   itemID: 301
-  itemName: Arc de Noble
+  itemName: Noble bow
   itemDescription: 
   itemSellPrice: 310
   itemPrefab: {fileID: 4019101185777562141, guid: 79efe668507cf7f4ab3f34866358491f,

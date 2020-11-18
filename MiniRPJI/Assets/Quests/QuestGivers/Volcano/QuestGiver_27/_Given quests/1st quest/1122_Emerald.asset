@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: 1122_Emerald
   m_EditorClassIdentifier: 
   itemID: 1122
-  itemName: Emeraude
-  itemDescription: Il y a un reflet indescriptible...
+  itemName: Emerald
+  itemDescription: There is an indescribable reflection...
   itemSellPrice: 0
   itemPrefab: {fileID: 5362988514200447822, guid: 63488f8f4b1a39f4482fd48b84e4051c,
     type: 3}

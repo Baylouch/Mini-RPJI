@@ -216,7 +216,7 @@ public class ItemSeller : Interactable
                 else
                 {
                     float amountNeeded = slots[indexSlot].item.itemSellPrice - Player_Inventory.instance.GetPlayerGold();
-                    buyButton.onClick.AddListener(() => UI_Player_Informations.instance.DisplayInformation("Il te manque " + amountNeeded.ToString() + " pieces !"));
+                    buyButton.onClick.AddListener(() => UI_Player_Informations.instance.DisplayInformation("You need " + amountNeeded.ToString() + " more gold !"));
                 }
             }
 

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 15-1_Gloves Locust
   m_EditorClassIdentifier: 
   itemID: 15
-  itemName: Gants du criquet
+  itemName: Locust gloves
   itemDescription: 
   itemSellPrice: 15
   itemPrefab: {fileID: 1724247864129913130, guid: e844d7dd3bef667488cb5b47b1a5745d,
@@ -23,7 +23,6 @@ MonoBehaviour:
   stackableItem: 0
   armoryPart: 3
   rarety: 0
-  projectile: {fileID: 0}
   strength: 1
   agility: 1
   vitality: 0

@@ -56,7 +56,13 @@ public class PetUnlockerMovement : MonoBehaviour
         startSpeed = speed;
 
         targetGO = new GameObject("PetUnlockerTarget");
+
+        if (GameObject.Find("Pets"))
+            targetGO.transform.parent = GameObject.Find("Pets").transform;
+
         target = targetGO.transform;
+
+        SetNewTargetPosition();
     }
 
     // Update is called once per frame

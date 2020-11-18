@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: 29_GreenPower
   m_EditorClassIdentifier: 
   questID: 29
-  questTitle: Puissance verte
-  questDescription: "Ah ! Ma soeur jumelle m'a parl\xE9e de toi. Elle a dit que tu
-    pourrais m'apporter des informations sur ces monstres vert."
+  questTitle: Green power
+  questDescription: Ah! My twin sister told me about you. She said you could bring
+    me some information on these green monsters.
   questSprite: {fileID: 21300000, guid: 1fe19ffae1abab0479d7d9716bcbbb9c, type: 3}
   totalQuestObjective: 10
   questDone: 0

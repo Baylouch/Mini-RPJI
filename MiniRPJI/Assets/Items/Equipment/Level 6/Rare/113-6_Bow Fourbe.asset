@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: 113-6_Bow Fourbe
   m_EditorClassIdentifier: 
   itemID: 113
-  itemName: Arc de fourbe
-  itemDescription: Fourberie
+  itemName: Deceitful bow
+  itemDescription: Deceit
   itemSellPrice: 200
   itemPrefab: {fileID: 4019101185777562141, guid: 79efe668507cf7f4ab3f34866358491f,
     type: 3}
@@ -23,8 +23,6 @@ MonoBehaviour:
   stackableItem: 0
   armoryPart: 5
   rarety: 2
-  projectile: {fileID: 6052980135759029977, guid: 77de479917db3204cae1bd43cf852001,
-    type: 3}
   strength: 0
   agility: 18
   vitality: 0

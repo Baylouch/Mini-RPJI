@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   petID: 11
   petName: Lilou
-  petDescription: "Vous \xEAtes Son animal de compagnie."
+  petDescription: You are Her pet.
   petCategory: 0
   petSex: 0
   petSprite: {fileID: -8214290587281571394, guid: cad7a00e5e81a2047ba7f855d845fb9f,

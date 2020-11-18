@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 420-24_Boots Refugie
   m_EditorClassIdentifier: 
   itemID: 420
-  itemName: Bottes du Refuge
+  itemName: Refuge boots
   itemDescription: 
   itemSellPrice: 260
   itemPrefab: {fileID: 733386610476664069, guid: b96066df95794664b8f0d0731932fbb8,

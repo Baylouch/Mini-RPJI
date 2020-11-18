@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 37-3_Chest Rabbit
   m_EditorClassIdentifier: 
   itemID: 37
-  itemName: Chemise du lapin
+  itemName: Rabbit shirt
   itemDescription: 
   itemSellPrice: 40
   itemPrefab: {fileID: 6105507112566103775, guid: 5b0990b01e9377340b8b0de20b0397b4,
@@ -23,7 +23,6 @@ MonoBehaviour:
   stackableItem: 0
   armoryPart: 1
   rarety: 0
-  projectile: {fileID: 0}
   strength: 0
   agility: 2
   vitality: 4

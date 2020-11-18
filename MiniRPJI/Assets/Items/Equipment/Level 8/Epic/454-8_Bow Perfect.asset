@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: 454-8_Bow Perfect
   m_EditorClassIdentifier: 
   itemID: 454
-  itemName: Arc en parfait etat
-  itemDescription: "Arc d'une qualit\xE9 sup\xE9rieure."
+  itemName: Bow in perfect condition
+  itemDescription: Bow of superior quality.
   itemSellPrice: 370
   itemPrefab: {fileID: 4019101185777562141, guid: 79efe668507cf7f4ab3f34866358491f,
     type: 3}

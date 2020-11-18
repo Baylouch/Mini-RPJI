@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 143-10_Boots Eagle
   m_EditorClassIdentifier: 
   itemID: 143
-  itemName: Bottes de l'aigle
+  itemName: Eagle boots
   itemDescription: 
   itemSellPrice: 105
   itemPrefab: {fileID: 733386610476664069, guid: b96066df95794664b8f0d0731932fbb8,
@@ -23,7 +23,6 @@ MonoBehaviour:
   stackableItem: 0
   armoryPart: 4
   rarety: 0
-  projectile: {fileID: 0}
   strength: 0
   agility: 5
   vitality: 0

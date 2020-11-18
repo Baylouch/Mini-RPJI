@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 239-10_Gloves Pyromaniac
   m_EditorClassIdentifier: 
   itemID: 239
-  itemName: Gants de Pyromane
+  itemName: Pyromaniac gloves
   itemDescription: 
   itemSellPrice: 290
   itemPrefab: {fileID: 1724247864129913130, guid: e844d7dd3bef667488cb5b47b1a5745d,
@@ -23,7 +23,6 @@ MonoBehaviour:
   stackableItem: 0
   armoryPart: 3
   rarety: 2
-  projectile: {fileID: 0}
   strength: 20
   agility: 16
   vitality: 0

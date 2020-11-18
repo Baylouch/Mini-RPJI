@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 307-17_Bow Silver
   m_EditorClassIdentifier: 
   itemID: 307
-  itemName: Arc en Argent
+  itemName: Silver bow
   itemDescription: 
   itemSellPrice: 520
   itemPrefab: {fileID: 4019101185777562141, guid: 79efe668507cf7f4ab3f34866358491f,

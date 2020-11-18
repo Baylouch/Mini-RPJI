@@ -15,9 +15,9 @@ MonoBehaviour:
   abilityID: 21
   abilitySubID: 2
   abilityLevel: 5
-  abilityName: Fleche de glace
-  abilityShortDescription: "Tir une fl\xE8che de glace"
-  abilityLongDescription: "Tir une fl\xE8che glac\xE9e ralentissant les ennemis."
+  abilityName: Ice arrow
+  abilityShortDescription: Shoot an ice arrow
+  abilityLongDescription: Shoot a frozen arrow slowing enemies.
   abilitySprite: {fileID: 21300000, guid: e50dcfd503ffd2e48bd17f6fd1913f52, type: 3}
   abilityPrefab: {fileID: 6052980135759029977, guid: b247c121159f8b24ebd8ded3f1d90b10,
     type: 3}

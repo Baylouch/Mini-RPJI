@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 218-14_Helm Invader
   m_EditorClassIdentifier: 
   itemID: 218
-  itemName: Casque d'envahisseur
+  itemName: Invader helmet
   itemDescription: 
   itemSellPrice: 235
   itemPrefab: {fileID: 4916301973116470330, guid: 17bcec922aaa11d4e9f8b1fcbbbd1c2a,
@@ -23,7 +23,6 @@ MonoBehaviour:
   stackableItem: 0
   armoryPart: 0
   rarety: 1
-  projectile: {fileID: 0}
   strength: 10
   agility: 10
   vitality: 10

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 270-15_Boots Dragon
   m_EditorClassIdentifier: 
   itemID: 270
-  itemName: Bottes de Dragon
+  itemName: Dragon boots
   itemDescription: 
   itemSellPrice: 440
   itemPrefab: {fileID: 733386610476664069, guid: b96066df95794664b8f0d0731932fbb8,
@@ -23,7 +23,6 @@ MonoBehaviour:
   stackableItem: 0
   armoryPart: 4
   rarety: 2
-  projectile: {fileID: 0}
   strength: 0
   agility: 25
   vitality: 0

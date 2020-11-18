@@ -15,8 +15,9 @@ MonoBehaviour:
   successID: 6
   successSprite: {fileID: 888643008759931579, guid: a7dfa991e33aadf42ab546bdff69ecbd,
     type: 3}
-  successTitle: Extermine les squelettes
-  successDescription: Tue 100 squelettes dans le niveau volcanique.
+  successTitle: Exterminate the skeletons
+  successDescription: Kill 100 Skeletons in the Volcanic Level.
   isDone: 0
+  rewardGift: 0
   successObjective: 100
   xpReward: 180000

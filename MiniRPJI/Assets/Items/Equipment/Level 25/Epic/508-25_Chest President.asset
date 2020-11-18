@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 508-25_Chest President
   m_EditorClassIdentifier: 
   itemID: 508
-  itemName: Armure de President
+  itemName: President's armor
   itemDescription: 
   itemSellPrice: 1400
   itemPrefab: {fileID: 6105507112566103775, guid: 5b0990b01e9377340b8b0de20b0397b4,

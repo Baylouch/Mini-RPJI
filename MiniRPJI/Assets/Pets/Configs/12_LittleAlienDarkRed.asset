@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: 12_LittleAlienDarkRed
   m_EditorClassIdentifier: 
   petID: 12
-  petName: Petit Alien Rouge
-  petDescription: "Etrange petite cr\xE9ature d'origine inconnu, il n'en reste pas
-    moins mignon !"
+  petName: Little Red Alien
+  petDescription: Strange little creature of unknown origin, He's so cute!
   petCategory: 2
   petSex: 2
   petSprite: {fileID: 187170088952521865, guid: 1f3b892a233a26a40ab6c1696706bef6,

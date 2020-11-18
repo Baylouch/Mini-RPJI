@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 459-9_Boots Gold
   m_EditorClassIdentifier: 
   itemID: 459
-  itemName: Bottes en or
+  itemName: Gold boots
   itemDescription: 
   itemSellPrice: 400
   itemPrefab: {fileID: 733386610476664069, guid: b96066df95794664b8f0d0731932fbb8,

@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: 1111_Map
   m_EditorClassIdentifier: 
   itemID: 1111
-  itemName: Carte perdue
-  itemDescription: Elle indique vraiment tout.
+  itemName: Lost map
+  itemDescription: It really says everything.
   itemSellPrice: 0
   itemPrefab: {fileID: 5362988514200447822, guid: 3d060772ad5839241a9e40d74d37cb47,
     type: 3}

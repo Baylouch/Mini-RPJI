@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 203-11_Gloves Savage
   m_EditorClassIdentifier: 
   itemID: 203
-  itemName: Gants du Sauvage
+  itemName: Savage's gloves
   itemDescription: 
   itemSellPrice: 190
   itemPrefab: {fileID: 1724247864129913130, guid: e844d7dd3bef667488cb5b47b1a5745d,
@@ -23,7 +23,6 @@ MonoBehaviour:
   stackableItem: 0
   armoryPart: 3
   rarety: 1
-  projectile: {fileID: 0}
   strength: 10
   agility: 2
   vitality: 10

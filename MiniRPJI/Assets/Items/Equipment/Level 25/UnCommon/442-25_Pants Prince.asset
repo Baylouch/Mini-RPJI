@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 442-25_Pants Prince
   m_EditorClassIdentifier: 
   itemID: 442
-  itemName: Pantalon de Prince
+  itemName: Prince pants
   itemDescription: 
   itemSellPrice: 560
   itemPrefab: {fileID: 7290006494410735304, guid: 6c58cf90d0d71f44b9d2a1b6ee9f5555,

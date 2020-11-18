@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 401-23_Gloves Caoutchouc
   m_EditorClassIdentifier: 
   itemID: 401
-  itemName: Gants en Caoutchouc
+  itemName: Rubber gloves
   itemDescription: 
   itemSellPrice: 244
   itemPrefab: {fileID: 1724247864129913130, guid: e844d7dd3bef667488cb5b47b1a5745d,

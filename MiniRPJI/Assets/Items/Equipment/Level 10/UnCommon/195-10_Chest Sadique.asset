@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 195-10_Chest Sadique
   m_EditorClassIdentifier: 
   itemID: 195
-  itemName: Armure du Sadique
+  itemName: Sadist's armor
   itemDescription: 
   itemSellPrice: 175
   itemPrefab: {fileID: 6105507112566103775, guid: 5b0990b01e9377340b8b0de20b0397b4,
@@ -23,7 +23,6 @@ MonoBehaviour:
   stackableItem: 0
   armoryPart: 1
   rarety: 1
-  projectile: {fileID: 0}
   strength: 10
   agility: 0
   vitality: 11

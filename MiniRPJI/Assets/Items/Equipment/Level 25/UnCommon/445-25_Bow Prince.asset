@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 445-25_Bow Prince
   m_EditorClassIdentifier: 
   itemID: 445
-  itemName: Arc de Prince
+  itemName: Prince bow
   itemDescription: 
   itemSellPrice: 631
   itemPrefab: {fileID: 4019101185777562141, guid: 79efe668507cf7f4ab3f34866358491f,

@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: 1006_Super Health Potion
   m_EditorClassIdentifier: 
   itemID: 1006
-  itemName: Super potion de vie
-  itemDescription: Restaure des points de vie
+  itemName: Super health potion
+  itemDescription: Restores health points
   itemSellPrice: 100
   itemPrefab: {fileID: 4777377678443712558, guid: 77774df01c1197f48bf16b089903d93d,
     type: 3}
   prefabImage: {fileID: 21300000, guid: 1d8f04a0e411d9e44bda76921cde0f2e, type: 3}
   inventoryImage: {fileID: 21300000, guid: 1d8f04a0e411d9e44bda76921cde0f2e, type: 3}
   stackableItem: 1
-  healthRegenerationPoints: 250
+  healthRegenerationPoints: 300
   energyRegenerationPoints: 0

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 370-21_Pants Boucher
   m_EditorClassIdentifier: 
   itemID: 370
-  itemName: Pantalon du Boucher
+  itemName: Butcher's pants
   itemDescription: 
   itemSellPrice: 425
   itemPrefab: {fileID: 7290006494410735304, guid: 6c58cf90d0d71f44b9d2a1b6ee9f5555,

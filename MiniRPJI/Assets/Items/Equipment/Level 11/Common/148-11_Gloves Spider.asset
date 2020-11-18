@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 148-11_Gloves Spider
   m_EditorClassIdentifier: 
   itemID: 148
-  itemName: Gants de l'araignee
+  itemName: Spider gloves
   itemDescription: 
   itemSellPrice: 105
   itemPrefab: {fileID: 1724247864129913130, guid: e844d7dd3bef667488cb5b47b1a5745d,
@@ -23,7 +23,6 @@ MonoBehaviour:
   stackableItem: 0
   armoryPart: 3
   rarety: 0
-  projectile: {fileID: 0}
   strength: 10
   agility: 6
   vitality: 0

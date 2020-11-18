@@ -53,30 +53,6 @@ public class Player_Intercations : MonoBehaviour
                     if (!interactableThing.GetIsInteracting())
                     {
                         interactableThing.Interact();
-
-                        //switch (interactableThing.interactionType)
-                        //{
-                        //    case PlayerInteractionType.Item:
-                        //        Item item = interactableThing.GetComponent<Item>();
-                        //        item.Interact();
-                        //        break;
-                        //    case PlayerInteractionType.ItemSeller:
-                        //        ItemSeller itemSeller = interactableThing.GetComponent<ItemSeller>();
-                        //        itemSeller.Interact();
-                        //        break;
-                        //    case PlayerInteractionType.QuestGiver:
-                        //        QuestGiver questGiver = interactableThing.GetComponent<QuestGiver>();
-                        //        questGiver.Interact();
-                        //        break;
-                        //        // Add PetSeller part
-                        //    case PlayerInteractionType.SubZoneTrigger:
-                        //        Sub_Zone_Trigger subZoneTrigger = interactableThing.GetComponent<Sub_Zone_Trigger>();
-                        //        subZoneTrigger.Interact();
-                        //        break;
-                        //    default:
-                        //        interactableThing.Interact();
-                        //        break;
-                        //}
                     }
 
                     interactionUI.ResetInteractionUI();
@@ -95,7 +71,7 @@ public class Player_Intercations : MonoBehaviour
         {
             if (!interactionSet)
             {
-                interactionUI.SetInteractionUI("Appuie sur E pour intéragir");
+                interactionUI.SetInteractionUI("Press E to interact");
                 interactableThing = collision.GetComponent<Interactable>();
                 interactionSet = true;
             }
@@ -107,28 +83,6 @@ public class Player_Intercations : MonoBehaviour
         if (collision.GetComponent<Interactable>())
         {
             collision.GetComponent<Interactable>().UnInteract();
-
-            //switch (collision.GetComponent<Interactable>().interactionType)
-            //{
-            //    case PlayerInteractionType.Item:
-            //        // Item doesnt require to use Uninteract method.
-            //        break;
-            //    case PlayerInteractionType.ItemSeller:
-            //        ItemSeller itemSeller = collision.GetComponent<ItemSeller>();
-            //        itemSeller.UnInteract();
-            //        break;
-            //    case PlayerInteractionType.QuestGiver:
-            //        QuestGiver questGiver = collision.GetComponent<QuestGiver>();
-            //        questGiver.UnInteract();
-            //        break;
-            //    // Add PetSeller part
-            //    case PlayerInteractionType.SubZoneTrigger:
-            //        // Dosnt require to use Uninteract method.
-            //        break;
-            //    default:
-            //        collision.GetComponent<Interactable>().UnInteract();
-            //        break;
-            //}
 
             interactionUI.ResetInteractionUI();
             interactableThing = null;

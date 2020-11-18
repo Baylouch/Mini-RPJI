@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: 1119_PurpleGel
   m_EditorClassIdentifier: 
   itemID: 1119
-  itemName: Gel violet
-  itemDescription: C'est visqueux...
+  itemName: Purple gel
+  itemDescription: It's viscous...
   itemSellPrice: 0
   itemPrefab: {fileID: 5362988514200447822, guid: acdea704f80957d43bac916ddf124bf7,
     type: 3}

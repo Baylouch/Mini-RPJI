@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 243-11_Chest Defender
   m_EditorClassIdentifier: 
   itemID: 243
-  itemName: Armure du Defenseur
+  itemName: Defender's armor
   itemDescription: 
   itemSellPrice: 320
   itemPrefab: {fileID: 6105507112566103775, guid: 5b0990b01e9377340b8b0de20b0397b4,
@@ -23,7 +23,6 @@ MonoBehaviour:
   stackableItem: 0
   armoryPart: 1
   rarety: 2
-  projectile: {fileID: 0}
   strength: 0
   agility: 0
   vitality: 40

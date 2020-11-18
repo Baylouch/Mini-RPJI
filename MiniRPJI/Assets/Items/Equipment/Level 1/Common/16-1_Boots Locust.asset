@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 16-1_Boots Locust
   m_EditorClassIdentifier: 
   itemID: 16
-  itemName: Bottes du criquet
+  itemName: Locust boots
   itemDescription: 
   itemSellPrice: 10
   itemPrefab: {fileID: 733386610476664069, guid: b96066df95794664b8f0d0731932fbb8,
@@ -23,7 +23,6 @@ MonoBehaviour:
   stackableItem: 0
   armoryPart: 4
   rarety: 0
-  projectile: {fileID: 0}
   strength: 1
   agility: 1
   vitality: 1

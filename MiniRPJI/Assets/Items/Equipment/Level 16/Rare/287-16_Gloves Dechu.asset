@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 287-16_Gloves Dechu
   m_EditorClassIdentifier: 
   itemID: 287
-  itemName: Gants du Dechu
+  itemName: Fallen gloves
   itemDescription: 
   itemSellPrice: 465
   itemPrefab: {fileID: 1724247864129913130, guid: e844d7dd3bef667488cb5b47b1a5745d,

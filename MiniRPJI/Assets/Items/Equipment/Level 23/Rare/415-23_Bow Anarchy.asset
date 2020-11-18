@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 415-23_Bow Anarchy
   m_EditorClassIdentifier: 
   itemID: 415
-  itemName: Arc d'Anarchie
+  itemName: Anarchy bow
   itemDescription: 
   itemSellPrice: 820
   itemPrefab: {fileID: 4019101185777562141, guid: 79efe668507cf7f4ab3f34866358491f,

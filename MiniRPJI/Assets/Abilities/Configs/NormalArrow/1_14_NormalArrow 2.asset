@@ -15,9 +15,9 @@ MonoBehaviour:
   abilityID: 14
   abilitySubID: 1
   abilityLevel: 2
-  abilityName: Fleche basique
-  abilityShortDescription: "Tir une fl\xE8che"
-  abilityLongDescription: "Tir une puissante fl\xE8che droit devant."
+  abilityName: Basic arrow
+  abilityShortDescription: Shoot an arrow
+  abilityLongDescription: Shoot a powerful arrow straight ahead.
   abilitySprite: {fileID: 21300000, guid: 4dcefe822b3d0bf478fad08988578db8, type: 3}
   abilityPrefab: {fileID: 6052980135759029977, guid: 77de479917db3204cae1bd43cf852001,
     type: 3}
@@ -26,5 +26,4 @@ MonoBehaviour:
   abilityTimer: 0
   energyCost: 15
   abilityType: 1
-  abilityShortcut: 0
   levelRequired: 1

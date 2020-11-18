@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 76-4_Boots Hunter
   m_EditorClassIdentifier: 
   itemID: 76
-  itemName: Bottes de chasseur
+  itemName: Hunter boots
   itemDescription: 
   itemSellPrice: 103
   itemPrefab: {fileID: 733386610476664069, guid: b96066df95794664b8f0d0731932fbb8,
@@ -23,7 +23,6 @@ MonoBehaviour:
   stackableItem: 0
   armoryPart: 4
   rarety: 2
-  projectile: {fileID: 0}
   strength: 0
   agility: 0
   vitality: 6

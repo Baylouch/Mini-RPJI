@@ -2,7 +2,7 @@
  * 
  * Permet de droper un ou plusieurs prefabs.
  * 
- * Exemple d'utilisation : Droper une abilitée, un animal de compagnie...
+ * Exemple d'utilisation : Droper une abilitée(ancien systeme avant arbre d'abilités), un animal de compagnie...
  * 
  * 
  * */

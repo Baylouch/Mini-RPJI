@@ -13,14 +13,13 @@ MonoBehaviour:
   m_Name: 21_AlienBook
   m_EditorClassIdentifier: 
   questID: 21
-  questTitle: Mode d'emploi
-  questDescription: "Que fais-tu ici ? Cet endroit est top secret ! Je suis membre
-    des forces secr\xE8tes du royaume. Bon si tu es arriv\xE9 l\xE0, tu es assez fort
-    pour que je te veuille \xE0 mes c\xF4t\xE9s. Il y a une soucoupe volante juste
-    \xE0 c\xF4t\xE9, les aliens ont l'air de l'avoir abandonn\xE9. Pourtant elle fait
-    du bruit et a l'air fonctionnelle. Si seulement on pouvait r\xE9cup\xE9rer un
-    document ou quelque chose nous permettant de comprendre comment l'utiliser...
-    Tu veux m'aider dans mes recherches ?"
+  questTitle: Manual
+  questDescription: What are you doing here ? This place is top secret! I am a member
+    of the kingdom's secret forces. Well if you got there, you're strong enough that
+    I want you by my side. We found a flying saucer, the aliens seem to have abandoned
+    it. Yet it makes noise and looks functional. If only we could retrieve a document
+    or something allowing us to understand how to use it ... You want to help me
+    in my research?
   questSprite: {fileID: 21300000, guid: 6b22156af64babe4f9bff6441c5b942f, type: 3}
   totalQuestObjective: 1
   questDone: 0

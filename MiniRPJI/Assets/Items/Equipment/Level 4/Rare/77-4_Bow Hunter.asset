@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: 77-4_Bow Hunter
   m_EditorClassIdentifier: 
   itemID: 77
-  itemName: Arc de chasseur
-  itemDescription: "Un arc rapide et pr\xE9cis"
+  itemName: Hunter bow
+  itemDescription: A fast and precise bow
   itemSellPrice: 120
   itemPrefab: {fileID: 4019101185777562141, guid: 79efe668507cf7f4ab3f34866358491f,
     type: 3}

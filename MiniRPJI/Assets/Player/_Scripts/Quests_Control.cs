@@ -23,8 +23,8 @@ public class Quests_Control : MonoBehaviour
 
     public QuestDataBase questDataBase; // The data base containing all the quests.
 
-    // In this little game, we'll never get more than 200 Quests. So we can set the array to 200 size, this will not cause any issue (memory) and will simplify a bit the code.
-    [SerializeField] Player_Quest[] playerQuests = new Player_Quest[200];
+    // In this little game, we'll never get more than 100 Quests. So we can set the array to 200 size, this will not cause any issue (memory) and will simplify a bit the code.
+    [SerializeField] Player_Quest[] playerQuests = new Player_Quest[100];
 
     private void Start()
     {
@@ -42,9 +42,11 @@ public class Quests_Control : MonoBehaviour
                 {
                     // Check if its link to the quest ID.
                     QuestItem questItem = (QuestItem)Player_Inventory.instance.GetInventoryItem(i);
+
                     if (_questID == questItem.questID)
                     {
                         Player_Inventory.instance.SetInventoryIndex(i, -1); // Delete item.
+
                         if (UI_Player.instance.playerInventoryUI)
                             UI_Player.instance.playerInventoryUI.RefreshInventory();
                     }

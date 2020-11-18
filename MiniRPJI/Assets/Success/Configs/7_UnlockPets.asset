@@ -15,8 +15,9 @@ MonoBehaviour:
   successID: 7
   successSprite: {fileID: 8584453007197953703, guid: a7dfa991e33aadf42ab546bdff69ecbd,
     type: 3}
-  successTitle: Compagnons
-  successDescription: "D\xE9bloque les animaux de compagnie."
+  successTitle: Companions
+  successDescription: Unlock pets.
   isDone: 0
+  rewardGift: 0
   successObjective: 1
   xpReward: 8000

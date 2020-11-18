@@ -38,7 +38,7 @@ public class Sub_Zone_Trigger : Interactable
                         // Tell player he can't enter while he's not levelRequired.
                         // Debug.Log("You must be lvl " + levelRequired + " to enter.");
 
-                        UI_Player_Informations.instance.DisplayInformation("Tu dois être niveau " + levelRequired + " !");
+                        UI_Player_Informations.instance.DisplayInformation("You must be level " + levelRequired + " !");
 
                         return;
                     }
@@ -56,7 +56,7 @@ public class Sub_Zone_Trigger : Interactable
 
                         QuestConfig questToAccomplish = Quests_Control.instance.questDataBase.GetQuestByID(questRequiredID);
 
-                        UI_Player_Informations.instance.DisplayInformation("Tu dois accomplir la quête \"" + questToAccomplish.questTitle + "\"");
+                        UI_Player_Informations.instance.DisplayInformation("You have to accomplish the quest \"" + questToAccomplish.questTitle + "\"");
 
                         return;
 
@@ -73,7 +73,7 @@ public class Sub_Zone_Trigger : Interactable
                         // Tell player he need a bow to enter.
                         // Debug.Log("You must have a bow.");
 
-                        UI_Player_Informations.instance.DisplayInformation("Il te faut un arc !");
+                        UI_Player_Informations.instance.DisplayInformation("You need a bow !");
 
                         return;
 

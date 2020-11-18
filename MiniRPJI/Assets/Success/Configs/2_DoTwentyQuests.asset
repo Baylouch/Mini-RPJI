@@ -15,8 +15,9 @@ MonoBehaviour:
   successID: 2
   successSprite: {fileID: 8112104569502735376, guid: a7dfa991e33aadf42ab546bdff69ecbd,
     type: 3}
-  successTitle: Le volontaire
-  successDescription: "Termine 20 qu\xEAtes."
+  successTitle: The volunteer
+  successDescription: Complete 20 quests.
   isDone: 0
+  rewardGift: 0
   successObjective: 20
   xpReward: 25000

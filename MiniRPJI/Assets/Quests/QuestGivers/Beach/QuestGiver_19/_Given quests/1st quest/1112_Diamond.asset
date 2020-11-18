@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: 1112_Diamond
   m_EditorClassIdentifier: 
   itemID: 1112
-  itemName: Diamant
-  itemDescription: Il est resplendissant.
+  itemName: Diamond
+  itemDescription: He is resplendent.
   itemSellPrice: 0
   itemPrefab: {fileID: 5362988514200447822, guid: 08a73c9e7dca01841b55270b28261007,
     type: 3}

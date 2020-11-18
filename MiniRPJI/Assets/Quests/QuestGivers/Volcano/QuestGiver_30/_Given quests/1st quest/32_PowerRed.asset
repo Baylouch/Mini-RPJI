@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: 32_PowerRed
   m_EditorClassIdentifier: 
   questID: 32
-  questTitle: Puissance rouge
-  questDescription: "Nous touchons au but, les puissances seront bient\xF4t rassembl\xE9es.
-    Il ne nous manque plus que les gemmes de puissance rouge."
+  questTitle: Red power
+  questDescription: We are reaching our goal, the powers will soon be gathered. All
+    we need is the Red Power Gems.
   questSprite: {fileID: 21300000, guid: 67d92be28ed43314bbaf848a1d873f6c, type: 3}
   totalQuestObjective: 15
   questDone: 0

@@ -26,6 +26,7 @@ public class UI_Player_Menu : MonoBehaviour
     [SerializeField] Toggle togglePopUp;
 
     [SerializeField] GameObject ZQSDShortcutsPanel;
+    [SerializeField] GameObject WASDShortcutsPanel;
     [SerializeField] GameObject ARROWSShortcutsPanel;
 
     [SerializeField] GameObject playerDataToSet;
@@ -116,12 +117,11 @@ public class UI_Player_Menu : MonoBehaviour
 
         confirmationUI.SetActive(true);
 
-        confirmationText.text = "Quitter le jeu ?";
+        confirmationText.text = "Quit the game ?";
 
         if (Scenes_Control.instance)
         {
             validationButton.onClick.AddListener(() => Scenes_Control.instance.ChangeLevel("Start_Menu"));
-           
         }
     }
 
@@ -132,7 +132,7 @@ public class UI_Player_Menu : MonoBehaviour
 
         confirmationUI.SetActive(true);
 
-        confirmationText.text = "Ecraser les données ?";
+        confirmationText.text = "Overwrite data ?";
         validationButton.onClick.AddListener(() => Game_Data_Control.data_instance.SavePlayerData(saveIndex));
         validationButton.onClick.AddListener(HideAndResetSaveSlots);
         validationButton.onClick.AddListener(HideConfirmationWindow);
@@ -145,7 +145,7 @@ public class UI_Player_Menu : MonoBehaviour
 
         confirmationUI.SetActive(true);
 
-        confirmationText.text = "Charger les données ?";
+        confirmationText.text = "Load data ?";
 
         if (Scenes_Control.instance)
         {
@@ -199,14 +199,22 @@ public class UI_Player_Menu : MonoBehaviour
         if (Player_Shortcuts.GetShortCuts() == 0)
         {
             ZQSDShortcutsPanel.SetActive(true);
+            WASDShortcutsPanel.SetActive(false);
+            ARROWSShortcutsPanel.SetActive(false);
+        }
+        else if (Player_Shortcuts.GetShortCuts() == 1)
+        {
+            WASDShortcutsPanel.SetActive(true);
+            ZQSDShortcutsPanel.SetActive(false);
             ARROWSShortcutsPanel.SetActive(false);
         }
         else
         {
-            ZQSDShortcutsPanel.SetActive(false);
             ARROWSShortcutsPanel.SetActive(true);
+            WASDShortcutsPanel.SetActive(false);
+            ZQSDShortcutsPanel.SetActive(false);
         }
-        
+
         commandsPanel.SetActive(true);
     }
 
@@ -356,14 +364,23 @@ public class UI_Player_Menu : MonoBehaviour
 
     public void SwitchShortCuts()
     {
-        if (Player_Shortcuts.GetShortCuts() == 0)
-        {
-            Player_Shortcuts.SetShortCuts(1);
-        }
-        else
-        {
-            Player_Shortcuts.SetShortCuts(0);
-        }
+        int currentShortCut = Player_Shortcuts.GetShortCuts();
+
+        currentShortCut++;
+
+        if (currentShortCut > 2)
+            currentShortCut = 0;
+
+        Player_Shortcuts.SetShortCuts(currentShortCut);
+
+        //if (Player_Shortcuts.GetShortCuts() == 0)
+        //{
+        //    Player_Shortcuts.SetShortCuts(1);
+        //}
+        //else
+        //{
+        //    Player_Shortcuts.SetShortCuts(0);
+        //}
 
         DisplayCommands();
     }

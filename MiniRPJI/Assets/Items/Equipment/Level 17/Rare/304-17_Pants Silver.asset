@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 304-17_Pants Silver
   m_EditorClassIdentifier: 
   itemID: 304
-  itemName: Pantalon en Argent
+  itemName: Silver pants
   itemDescription: 
   itemSellPrice: 500
   itemPrefab: {fileID: 7290006494410735304, guid: 6c58cf90d0d71f44b9d2a1b6ee9f5555,

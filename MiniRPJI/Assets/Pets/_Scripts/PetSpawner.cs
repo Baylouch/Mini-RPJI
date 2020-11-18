@@ -52,15 +52,15 @@ public class PetSpawner : MonoBehaviour
             GameObject currentPet = Instantiate(petToSpawn, spawnPos, Quaternion.identity);
 
             // Set in the hierarchy
+            // Because unity is a bit handicaped, we must create Pets folder direclty in the scene we want the pet to spawn.
+            // ELSE unity will create it in the transition scene lol. Nice.
             if (GameObject.Find("Pets"))
             {
                 currentPet.transform.parent = GameObject.Find("Pets").transform;
             }
             else
             {
-                GameObject petsFolder = new GameObject("Pets");
-                petsFolder.transform.position = Vector3.zero;
-                currentPet.transform.parent = GameObject.Find("Pets").transform;
+                Debug.Log("No Pets folder. Can't spawn a pet unlocker in this scene.");
             }
         }
 

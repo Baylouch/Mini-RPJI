@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 176-8_Chest Assassin
   m_EditorClassIdentifier: 
   itemID: 176
-  itemName: Armure de l'Assassin
+  itemName: Assassin's armor
   itemDescription: 
   itemSellPrice: 150
   itemPrefab: {fileID: 6105507112566103775, guid: 5b0990b01e9377340b8b0de20b0397b4,
@@ -23,7 +23,6 @@ MonoBehaviour:
   stackableItem: 0
   armoryPart: 1
   rarety: 1
-  projectile: {fileID: 0}
   strength: 2
   agility: 5
   vitality: 10

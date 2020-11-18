@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 356-20_Helm Barbare
   m_EditorClassIdentifier: 
   itemID: 356
-  itemName: Casque de Barbare
+  itemName: Barbarian helmet
   itemDescription: 
   itemSellPrice: 640
   itemPrefab: {fileID: 4916301973116470330, guid: 17bcec922aaa11d4e9f8b1fcbbbd1c2a,

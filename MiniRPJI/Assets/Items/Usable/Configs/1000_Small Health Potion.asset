@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: 1000_Small Health Potion
   m_EditorClassIdentifier: 
   itemID: 1000
-  itemName: Petite potion de vie
-  itemDescription: Restaure des points de vie
+  itemName: Small health potion
+  itemDescription: Restores health points
   itemSellPrice: 20
   itemPrefab: {fileID: 4777377678443712558, guid: 77774df01c1197f48bf16b089903d93d,
     type: 3}

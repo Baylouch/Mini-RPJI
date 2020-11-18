@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 188-9_Helm Violence
   m_EditorClassIdentifier: 
   itemID: 188
-  itemName: Casque de violence
+  itemName: Helmet of violence
   itemDescription: 
   itemSellPrice: 150
   itemPrefab: {fileID: 4916301973116470330, guid: 17bcec922aaa11d4e9f8b1fcbbbd1c2a,
@@ -23,7 +23,6 @@ MonoBehaviour:
   stackableItem: 0
   armoryPart: 0
   rarety: 1
-  projectile: {fileID: 0}
   strength: 7
   agility: 5
   vitality: 7

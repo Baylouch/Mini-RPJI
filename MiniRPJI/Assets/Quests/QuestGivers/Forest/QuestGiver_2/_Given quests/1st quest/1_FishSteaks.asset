@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: 1_FishSteaks
   m_EditorClassIdentifier: 
   questID: 1
-  questTitle: Voleur de poisson
-  questDescription: Ah bonjour... Pourriez-vous aider un viellard comme moi ? Tout
-    ces monstres autour de nous, il me vole tout mes poissons. Reprenez leur pour
-    moi, je saurai vous remercier.
+  questTitle: Fish thief
+  questDescription: Ah hello ... Could you help an old man like me? All these monsters
+    around us, they steal all my fish. Take them back for me, I will thank you.
   questSprite: {fileID: 21300000, guid: adf92f5459022124193e381473dbcce6, type: 3}
   totalQuestObjective: 10
   questDone: 0

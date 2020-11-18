@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 115-7_Chest Scorpio
   m_EditorClassIdentifier: 
   itemID: 115
-  itemName: Armure du scorpion
+  itemName: Scorpion armor
   itemDescription: 
   itemSellPrice: 85
   itemPrefab: {fileID: 6105507112566103775, guid: 5b0990b01e9377340b8b0de20b0397b4,
@@ -23,7 +23,6 @@ MonoBehaviour:
   stackableItem: 0
   armoryPart: 1
   rarety: 0
-  projectile: {fileID: 0}
   strength: 0
   agility: 0
   vitality: 10

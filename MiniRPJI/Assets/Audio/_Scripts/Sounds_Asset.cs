@@ -15,6 +15,7 @@ public class Sounds_Asset : ScriptableObject
     public AudioClip achievement;
     public AudioClip questInteraction;
     public AudioClip playerBonus;
+    public AudioClip fireWorks;
 
     [Header("UI")]
     public AudioClip toggleUI;

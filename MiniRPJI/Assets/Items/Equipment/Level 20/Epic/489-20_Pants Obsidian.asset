@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 489-20_Pants Obsidian
   m_EditorClassIdentifier: 
   itemID: 489
-  itemName: Pantalon en obsidienne
+  itemName: Obsidian pants
   itemDescription: 
   itemSellPrice: 811
   itemPrefab: {fileID: 7290006494410735304, guid: 6c58cf90d0d71f44b9d2a1b6ee9f5555,

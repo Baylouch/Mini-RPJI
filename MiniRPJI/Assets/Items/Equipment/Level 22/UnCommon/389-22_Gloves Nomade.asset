@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 389-22_Gloves Nomade
   m_EditorClassIdentifier: 
   itemID: 389
-  itemName: Gants du Nomade
+  itemName: Nomad's gloves
   itemDescription: 
   itemSellPrice: 450
   itemPrefab: {fileID: 1724247864129913130, guid: e844d7dd3bef667488cb5b47b1a5745d,

@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: 1002_Medium Health Potion
   m_EditorClassIdentifier: 
   itemID: 1002
-  itemName: Potion de vie moyenne
-  itemDescription: Restaure des points de vie
+  itemName: Medium health potion
+  itemDescription: Restores health points
   itemSellPrice: 40
   itemPrefab: {fileID: 4777377678443712558, guid: 77774df01c1197f48bf16b089903d93d,
     type: 3}

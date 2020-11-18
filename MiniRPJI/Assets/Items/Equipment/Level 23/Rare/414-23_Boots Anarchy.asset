@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 414-23_Boots Anarchy
   m_EditorClassIdentifier: 
   itemID: 414
-  itemName: Bottes d'Anarchie
+  itemName: Anarchy boots
   itemDescription: 
   itemSellPrice: 799
   itemPrefab: {fileID: 733386610476664069, guid: b96066df95794664b8f0d0731932fbb8,

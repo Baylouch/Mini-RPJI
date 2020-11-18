@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 26-2_Pants Gitan
   m_EditorClassIdentifier: 
   itemID: 26
-  itemName: Short de gitan
+  itemName: Gypsy pants
   itemDescription: 
   itemSellPrice: 25
   itemPrefab: {fileID: 7290006494410735304, guid: 6c58cf90d0d71f44b9d2a1b6ee9f5555,
@@ -23,7 +23,6 @@ MonoBehaviour:
   stackableItem: 0
   armoryPart: 2
   rarety: 0
-  projectile: {fileID: 0}
   strength: 1
   agility: 1
   vitality: 0

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 449-25_Gloves Necromancer
   m_EditorClassIdentifier: 
   itemID: 449
-  itemName: Gants du Necromancien
+  itemName: Gloves of the Necromancer
   itemDescription: 
   itemSellPrice: 1070
   itemPrefab: {fileID: 1724247864129913130, guid: e844d7dd3bef667488cb5b47b1a5745d,

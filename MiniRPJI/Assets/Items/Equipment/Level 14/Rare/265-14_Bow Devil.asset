@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: 265-14_Bow Devil
   m_EditorClassIdentifier: 
   itemID: 265
-  itemName: Arc du Demon
-  itemDescription: On peut entendre des hurlements en sortir...
+  itemName: Devil bow
+  itemDescription: You can hear screams coming out...
   itemSellPrice: 430
   itemPrefab: {fileID: 4019101185777562141, guid: 79efe668507cf7f4ab3f34866358491f,
     type: 3}
@@ -23,8 +23,6 @@ MonoBehaviour:
   stackableItem: 0
   armoryPart: 5
   rarety: 2
-  projectile: {fileID: 6052980135759029977, guid: 77de479917db3204cae1bd43cf852001,
-    type: 3}
   strength: 0
   agility: 35
   vitality: 0

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 196-10_Pants Sadique
   m_EditorClassIdentifier: 
   itemID: 196
-  itemName: Pantalon du Sadique
+  itemName: Sadist's pants
   itemDescription: 
   itemSellPrice: 175
   itemPrefab: {fileID: 7290006494410735304, guid: 6c58cf90d0d71f44b9d2a1b6ee9f5555,
@@ -23,7 +23,6 @@ MonoBehaviour:
   stackableItem: 0
   armoryPart: 2
   rarety: 1
-  projectile: {fileID: 0}
   strength: 15
   agility: 0
   vitality: 6

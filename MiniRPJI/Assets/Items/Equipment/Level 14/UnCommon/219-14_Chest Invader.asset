@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 219-14_Chest Invader
   m_EditorClassIdentifier: 
   itemID: 219
-  itemName: Armure d'envahisseur
+  itemName: Invader armor
   itemDescription: 
   itemSellPrice: 235
   itemPrefab: {fileID: 6105507112566103775, guid: 5b0990b01e9377340b8b0de20b0397b4,
@@ -23,7 +23,6 @@ MonoBehaviour:
   stackableItem: 0
   armoryPart: 1
   rarety: 1
-  projectile: {fileID: 0}
   strength: 5
   agility: 5
   vitality: 20

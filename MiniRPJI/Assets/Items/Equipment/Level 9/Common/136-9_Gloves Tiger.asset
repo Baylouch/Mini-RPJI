@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 136-9_Gloves Tiger
   m_EditorClassIdentifier: 
   itemID: 136
-  itemName: Gants du tigre
+  itemName: Tiger gloves
   itemDescription: 
   itemSellPrice: 85
   itemPrefab: {fileID: 1724247864129913130, guid: e844d7dd3bef667488cb5b47b1a5745d,
@@ -23,7 +23,6 @@ MonoBehaviour:
   stackableItem: 0
   armoryPart: 3
   rarety: 0
-  projectile: {fileID: 0}
   strength: 5
   agility: 0
   vitality: 3

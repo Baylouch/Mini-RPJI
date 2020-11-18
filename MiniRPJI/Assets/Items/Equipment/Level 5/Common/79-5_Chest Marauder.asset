@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 79-5_Chest Marauder
   m_EditorClassIdentifier: 
   itemID: 79
-  itemName: Chemise du maraudeur
+  itemName: Marauder shirt
   itemDescription: 
   itemSellPrice: 65
   itemPrefab: {fileID: 6105507112566103775, guid: 5b0990b01e9377340b8b0de20b0397b4,
@@ -23,7 +23,6 @@ MonoBehaviour:
   stackableItem: 0
   armoryPart: 1
   rarety: 0
-  projectile: {fileID: 0}
   strength: 3
   agility: 0
   vitality: 5

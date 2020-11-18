@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 383-22_Gloves Canaille
   m_EditorClassIdentifier: 
   itemID: 383
-  itemName: Gants de Canaille
+  itemName: Scoundrel gloves
   itemDescription: 
   itemSellPrice: 230
   itemPrefab: {fileID: 1724247864129913130, guid: e844d7dd3bef667488cb5b47b1a5745d,

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 329-19_Gloves Baleine
   m_EditorClassIdentifier: 
   itemID: 329
-  itemName: Gants de la Baleine
+  itemName: Whale gloves
   itemDescription: 
   itemSellPrice: 200
   itemPrefab: {fileID: 1724247864129913130, guid: e844d7dd3bef667488cb5b47b1a5745d,

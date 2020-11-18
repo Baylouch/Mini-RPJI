@@ -13,13 +13,12 @@ MonoBehaviour:
   m_Name: 17_BigAlien
   m_EditorClassIdentifier: 
   questID: 17
-  questTitle: Commandant Alien
-  questDescription: "Comme on se retrouve, j'\xE9tudie ce portail depuis un moment
-    maintenant. Je pense savoir pourquoi nous ne pouvons pas l'utiliser. Son energie
-    est r\xE9li\xE9e \xE0 une chose puissante... Peut-\xEAtre leur chef ? Je ne sais
-    pas... Quoi qu'il en soit, je peux sentir l'energie aller vers l'est d'ici. Trouve
-    ce qu'il y a la bas, et nous pourrons peut-\xEAtre d\xE9couvrir \xE0 quoi sert
-    ce portail."
+  questTitle: Alien Commander
+  questDescription: As we meet again, I've been studying this portal for a while
+    now. I think I know why we can't use it. His energy is related to a powerful
+    thing ... Maybe their leader? I don't know ... Anyway, I can feel the energy
+    going east from here. Find what is there, and we may be able to find out what
+    this portal is for.
   questSprite: {fileID: -3964438593568469139, guid: d51029d5ee6add347acfa22be41b790a,
     type: 3}
   totalQuestObjective: 1

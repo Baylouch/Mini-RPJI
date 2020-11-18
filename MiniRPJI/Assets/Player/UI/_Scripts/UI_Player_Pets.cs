@@ -104,11 +104,11 @@ public class UI_Player_Pets : MonoBehaviour
         // Pet Category
         if (config.petCategory == PetCategory.Cat)
         {
-            petCategory.text = "Chat ";
+            petCategory.text = "Cat ";
         }
         else if (config.petCategory == PetCategory.Dog)
         {
-            petCategory.text = "Chien ";
+            petCategory.text = "Dog ";
         }
         else if (config.petCategory == PetCategory.Alien)
         {
@@ -118,7 +118,7 @@ public class UI_Player_Pets : MonoBehaviour
         // Pet sex (added to the category text)
         if (config.petSex == PetSex.Female)
         {
-            petCategory.text += "Femelle";
+            petCategory.text += "Female";
         }
         else if (config.petSex == PetSex.Male)
         {
@@ -126,7 +126,7 @@ public class UI_Player_Pets : MonoBehaviour
         }
         else if (config.petSex == PetSex.Undefined)
         {
-            petCategory.text += "Indéfini";
+            petCategory.text += "Undefined";
         }
 
         petWeight.text = config.petWeight.ToString() + " kg";

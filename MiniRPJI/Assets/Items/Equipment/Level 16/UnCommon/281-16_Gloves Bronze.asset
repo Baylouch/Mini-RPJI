@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 281-16_Gloves Bronze
   m_EditorClassIdentifier: 
   itemID: 281
-  itemName: Gants en Bronze
+  itemName: Bronze gloves
   itemDescription: 
   itemSellPrice: 250
   itemPrefab: {fileID: 1724247864129913130, guid: e844d7dd3bef667488cb5b47b1a5745d,

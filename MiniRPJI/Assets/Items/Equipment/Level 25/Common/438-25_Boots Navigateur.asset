@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 438-25_Boots Navigateur
   m_EditorClassIdentifier: 
   itemID: 438
-  itemName: Bottes de Navigateur
+  itemName: Navigator boots
   itemDescription: 
   itemSellPrice: 300
   itemPrefab: {fileID: 733386610476664069, guid: b96066df95794664b8f0d0731932fbb8,

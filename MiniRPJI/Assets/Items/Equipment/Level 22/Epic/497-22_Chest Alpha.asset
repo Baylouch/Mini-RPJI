@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 497-22_Chest Alpha
   m_EditorClassIdentifier: 
   itemID: 497
-  itemName: Armure de l'Alpha
+  itemName: Alpha armor
   itemDescription: 
   itemSellPrice: 1099
   itemPrefab: {fileID: 6105507112566103775, guid: 5b0990b01e9377340b8b0de20b0397b4,

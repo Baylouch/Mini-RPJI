@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 145-11_Helm Spider
   m_EditorClassIdentifier: 
   itemID: 145
-  itemName: Casque de l'araignee
+  itemName: Spider helmet
   itemDescription: 
   itemSellPrice: 110
   itemPrefab: {fileID: 4916301973116470330, guid: 17bcec922aaa11d4e9f8b1fcbbbd1c2a,
@@ -23,7 +23,6 @@ MonoBehaviour:
   stackableItem: 0
   armoryPart: 0
   rarety: 0
-  projectile: {fileID: 0}
   strength: 0
   agility: 6
   vitality: 5

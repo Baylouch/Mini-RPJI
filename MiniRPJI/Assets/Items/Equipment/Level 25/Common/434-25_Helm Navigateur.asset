@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 434-25_Helm Navigateur
   m_EditorClassIdentifier: 
   itemID: 434
-  itemName: Casque de Navigateur
+  itemName: Navigator helmet
   itemDescription: 
   itemSellPrice: 260
   itemPrefab: {fileID: 4916301973116470330, guid: 17bcec922aaa11d4e9f8b1fcbbbd1c2a,

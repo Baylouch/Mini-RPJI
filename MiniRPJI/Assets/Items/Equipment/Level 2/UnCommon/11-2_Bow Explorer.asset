@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 11-2_Bow Explorer
   m_EditorClassIdentifier: 
   itemID: 11
-  itemName: Arc d'explorateur
+  itemName: Explorer bow
   itemDescription: 
   itemSellPrice: 59
   itemPrefab: {fileID: 4019101185777562141, guid: 79efe668507cf7f4ab3f34866358491f,
@@ -23,8 +23,6 @@ MonoBehaviour:
   stackableItem: 0
   armoryPart: 5
   rarety: 1
-  projectile: {fileID: 6052980135759029977, guid: 77de479917db3204cae1bd43cf852001,
-    type: 3}
   strength: 0
   agility: 5
   vitality: 0

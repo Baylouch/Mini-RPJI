@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 9101871561591324399}
   - component: {fileID: -4091872539523850867}
   m_Layer: 18
-  m_Name: ZigZag Green Laser 1
+  m_Name: Triangle Green Laser
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -87,7 +87,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectileDamage: 0
   projectileType: 3
-  projectileSpeed: 10
+  projectileSpeed: 14
   timerBeforeDestroy: 5
   malusTimer: 4
   percentageChanceToApplyMalus: 100
@@ -109,6 +109,7 @@ MonoBehaviour:
   theEnemyWhoLaunchTheProjectile: {fileID: 0}
   movementType: 1
   intervalMovement: 0.3
+  emptyPrefabToApplyCircle: {fileID: 0}
 --- !u!1 &3894808125289916678
 GameObject:
   m_ObjectHideFlags: 0
@@ -4802,7 +4803,7 @@ ParticleSystem:
 --- !u!199 &1192243752966158999
 ParticleSystemRenderer:
   serializedVersion: 6
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -4814,6 +4815,7 @@ ParticleSystemRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -4826,6 +4828,7 @@ ParticleSystemRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -4907,6 +4910,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -4918,6 +4922,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0

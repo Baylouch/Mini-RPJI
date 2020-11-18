@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   petID: 6
   petName: Ariston
-  petDescription: "Pelage impeccable, comportement irr\xE9prochable."
+  petDescription: Impeccable coat, impeccable behavior.
   petCategory: 1
   petSex: 1
   petSprite: {fileID: 7842624481175806839, guid: 2c9cd168c6159f14eb3675170a515319,

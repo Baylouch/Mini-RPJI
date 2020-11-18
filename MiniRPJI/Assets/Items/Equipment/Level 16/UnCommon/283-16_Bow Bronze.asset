@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 283-16_Bow Bronze
   m_EditorClassIdentifier: 
   itemID: 283
-  itemName: Arc en Bronze
+  itemName: Bronze bow
   itemDescription: 
   itemSellPrice: 290
   itemPrefab: {fileID: 4019101185777562141, guid: 79efe668507cf7f4ab3f34866358491f,

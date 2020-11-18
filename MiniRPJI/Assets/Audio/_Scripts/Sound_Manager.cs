@@ -221,7 +221,12 @@ public class Sound_Manager : MonoBehaviour
         if (GameObject.Find("Sounds"))
         {
             newSound.transform.parent = GameObject.Find("Sounds").transform;
+        }
+        else
+        {
+            GameObject newSoundHierarchy = new GameObject("Sounds");
 
+            newSound.transform.parent = newSoundHierarchy.transform;
         }
 
         if (soundPosition)

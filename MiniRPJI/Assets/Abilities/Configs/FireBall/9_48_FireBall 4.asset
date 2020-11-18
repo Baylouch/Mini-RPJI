@@ -16,8 +16,8 @@ MonoBehaviour:
   abilitySubID: 9
   abilityLevel: 4
   abilityName: Boule de feu
-  abilityShortDescription: Tir deux boules de feu
-  abilityLongDescription: Tir deux boules de feu droit devant. Enflamme la cible.
+  abilityShortDescription: Shoot two fireballs
+  abilityLongDescription: Shoot two fireballs straight ahead. Ignite the target.
   abilitySprite: {fileID: 21300000, guid: a6fca08f9de1d2c42831676daba6fa33, type: 3}
   abilityPrefab: {fileID: 6869843948142806190, guid: 644427cfaf6077a4d9faacc056a67478,
     type: 3}

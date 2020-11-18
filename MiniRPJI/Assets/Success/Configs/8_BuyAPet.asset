@@ -15,8 +15,9 @@ MonoBehaviour:
   successID: 8
   successSprite: {fileID: -6925736988876312048, guid: a7dfa991e33aadf42ab546bdff69ecbd,
     type: 3}
-  successTitle: Dresseur
-  successDescription: "Ach\xE8te un animal de compagnie."
+  successTitle: Trainer
+  successDescription: Buy a pet.
   isDone: 0
+  rewardGift: 0
   successObjective: 1
   xpReward: 10000

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 390-22_Boots Nomade
   m_EditorClassIdentifier: 
   itemID: 390
-  itemName: Bottes du Nomade
+  itemName: Nomad's boots
   itemDescription: 
   itemSellPrice: 450
   itemPrefab: {fileID: 733386610476664069, guid: b96066df95794664b8f0d0731932fbb8,

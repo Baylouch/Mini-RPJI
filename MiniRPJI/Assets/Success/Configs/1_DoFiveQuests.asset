@@ -15,8 +15,9 @@ MonoBehaviour:
   successID: 1
   successSprite: {fileID: -1063981972097863259, guid: a7dfa991e33aadf42ab546bdff69ecbd,
     type: 3}
-  successTitle: Apprenti
-  successDescription: "Termine 5 qu\xEAtes."
+  successTitle: Apprentice
+  successDescription: Complete 5 quests.
   isDone: 0
+  rewardGift: 0
   successObjective: 5
   xpReward: 1500

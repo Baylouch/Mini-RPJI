@@ -15,8 +15,8 @@ MonoBehaviour:
   successID: 3
   successSprite: {fileID: -1640308189553233289, guid: a7dfa991e33aadf42ab546bdff69ecbd,
     type: 3}
-  successTitle: "Le h\xE9ros"
-  successDescription: "Termine 40 qu\xEAtes."
+  successTitle: The hero
+  successDescription: Complete 40 quests.
   isDone: 0
   rewardGift: 0
   successObjective: 40

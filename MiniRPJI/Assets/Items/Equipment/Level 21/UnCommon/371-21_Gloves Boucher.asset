@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 371-21_Gloves Boucher
   m_EditorClassIdentifier: 
   itemID: 371
-  itemName: Gants du Boucher
+  itemName: Butcher's gloves
   itemDescription: 
   itemSellPrice: 430
   itemPrefab: {fileID: 1724247864129913130, guid: e844d7dd3bef667488cb5b47b1a5745d,

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 460-10_Chest Gold
   m_EditorClassIdentifier: 
   itemID: 452
-  itemName: Armure en or
+  itemName: Gold armor
   itemDescription: 
   itemSellPrice: 450
   itemPrefab: {fileID: 6105507112566103775, guid: 5b0990b01e9377340b8b0de20b0397b4,

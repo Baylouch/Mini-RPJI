@@ -23,6 +23,7 @@ MonoBehaviour:
   achievement: {fileID: 8300000, guid: a273d2fa1e205be42b8707e795d213d8, type: 3}
   questInteraction: {fileID: 8300000, guid: 163624943c6271f4388442d29a7269df, type: 3}
   playerBonus: {fileID: 8300000, guid: 329386c25b4a8ab4ea01da088c2cb69a, type: 3}
+  fireWorks: {fileID: 8300000, guid: 406a00071f9735542a58b99bb7f79427, type: 3}
   toggleUI: {fileID: 8300000, guid: 6d1f7404048995d419d6bca4d37b3126, type: 3}
   itemEquip: {fileID: 8300000, guid: ffe95bb8650c84c4fbfbc953c71bb7dc, type: 3}
   itemUnequip: {fileID: 8300000, guid: 4606d89adfcc4b34f93efd4701173460, type: 3}
@@ -44,7 +45,7 @@ MonoBehaviour:
   playerDash: {fileID: 8300000, guid: 58c325653010a054e9776eca65aa1be6, type: 3}
   catInvoke: {fileID: 8300000, guid: 2137ef033a02bb24dad5fd13dab5bba1, type: 3}
   dogInvoke: {fileID: 8300000, guid: 0a440c4fd5e647d468bf033b1a7e59f8, type: 3}
-  alienInvoke: {fileID: 0}
+  alienInvoke: {fileID: 8300000, guid: 329386c25b4a8ab4ea01da088c2cb69a, type: 3}
   karenGreetings:
   - {fileID: 8300000, guid: 96ad776c15c234c4cb5cef4dee588846, type: 3}
   - {fileID: 8300000, guid: 15a22b65b9335b247b4a58b3a14f2c7c, type: 3}

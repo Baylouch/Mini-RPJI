@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: 28_BlueBone
   m_EditorClassIdentifier: 
   questID: 28
-  questTitle: Ossements du ciel
-  questDescription: "Tr\xE8s bien, tr\xE8s bien... As-tu remarqu\xE9 les squelettes
-    bleus qui se masse dans cette partie ? Si tu pouvais me ramener quelques ossements
-    j'en serais ravie !"
+  questTitle: Bones of the sky
+  questDescription: Very good, very good ... Have you noticed the blue skeletons
+    massing in this part? If you could bring me some bones I'd love to!
   questSprite: {fileID: 21300000, guid: 4620400fe9fd0464d97ea5fd8cfe8445, type: 3}
   totalQuestObjective: 10
   questDone: 0

@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: 1008_Hyper Health Potion
   m_EditorClassIdentifier: 
   itemID: 1008
-  itemName: Hyper potion de vie
-  itemDescription: Restaure des points de vie
+  itemName: Hyper health potion
+  itemDescription: Restores health points
   itemSellPrice: 130
   itemPrefab: {fileID: 4777377678443712558, guid: 77774df01c1197f48bf16b089903d93d,
     type: 3}
   prefabImage: {fileID: 21300000, guid: d8a32dec5735048418a9e50e412b6d0a, type: 3}
   inventoryImage: {fileID: 21300000, guid: d8a32dec5735048418a9e50e412b6d0a, type: 3}
   stackableItem: 1
-  healthRegenerationPoints: 350
+  healthRegenerationPoints: 400
   energyRegenerationPoints: 0

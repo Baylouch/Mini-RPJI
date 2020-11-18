@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 405-23_Chest Error
   m_EditorClassIdentifier: 
   itemID: 405
-  itemName: Armure Erreur
+  itemName: Error armor
   itemDescription: 
   itemSellPrice: 490
   itemPrefab: {fileID: 6105507112566103775, guid: 5b0990b01e9377340b8b0de20b0397b4,

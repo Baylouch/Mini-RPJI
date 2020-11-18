@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: 1108_LostBook
   m_EditorClassIdentifier: 
   itemID: 1108
-  itemName: Livre perdu
-  itemDescription: "Des pages ont \xE9t\xE9 d\xE9vor\xE9es..."
+  itemName: Lost book
+  itemDescription: Pages have been devoured...
   itemSellPrice: 0
   itemPrefab: {fileID: 5362988514200447822, guid: 6f12ffc9894102b4fac2011614a14ea6,
     type: 3}

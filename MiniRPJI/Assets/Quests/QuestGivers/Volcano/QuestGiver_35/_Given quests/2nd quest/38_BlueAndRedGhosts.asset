@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: 38_BlueAndRedGhosts
   m_EditorClassIdentifier: 
   questID: 38
-  questTitle: "Fant\xF4mes bleus et rouges"
-  questDescription: "Tu as fait du beau travail. L'\xE9tape suivante c'est les fant\xF4mes
-    bleus et rouges."
+  questTitle: Blue and red ghosts
+  questDescription: You did a great job. The next step is the blue and red ghosts.
   questSprite: {fileID: 21300000, guid: 2334980d5ce9cc344b0e476109ce5ddb, type: 3}
   totalQuestObjective: 20
   questDone: 0

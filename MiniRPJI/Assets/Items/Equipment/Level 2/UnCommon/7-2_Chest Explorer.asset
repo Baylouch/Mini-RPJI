@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 7-2_Chest Explorer
   m_EditorClassIdentifier: 
   itemID: 7
-  itemName: Chemise d'explorateur
+  itemName: Explorer shirt
   itemDescription: 
   itemSellPrice: 55
   itemPrefab: {fileID: 6105507112566103775, guid: 5b0990b01e9377340b8b0de20b0397b4,
@@ -23,7 +23,6 @@ MonoBehaviour:
   stackableItem: 0
   armoryPart: 1
   rarety: 1
-  projectile: {fileID: 0}
   strength: 2
   agility: 0
   vitality: 5

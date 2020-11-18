@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 292-17_Pants Borne
   m_EditorClassIdentifier: 
   itemID: 292
-  itemName: Pantalon du Borne
+  itemName: One-eyed pants
   itemDescription: 
   itemSellPrice: 180
   itemPrefab: {fileID: 7290006494410735304, guid: 6c58cf90d0d71f44b9d2a1b6ee9f5555,

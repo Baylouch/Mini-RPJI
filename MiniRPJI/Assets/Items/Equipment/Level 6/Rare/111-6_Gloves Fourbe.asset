@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 111-6_Gloves Fourbe
   m_EditorClassIdentifier: 
   itemID: 111
-  itemName: Gants de fourbe
+  itemName: Deceitful gloves
   itemDescription: 
   itemSellPrice: 160
   itemPrefab: {fileID: 1724247864129913130, guid: e844d7dd3bef667488cb5b47b1a5745d,
@@ -23,7 +23,6 @@ MonoBehaviour:
   stackableItem: 0
   armoryPart: 3
   rarety: 2
-  projectile: {fileID: 0}
   strength: 10
   agility: 5
   vitality: 0

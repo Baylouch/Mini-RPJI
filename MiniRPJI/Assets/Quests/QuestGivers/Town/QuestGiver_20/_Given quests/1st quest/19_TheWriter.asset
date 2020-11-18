@@ -13,12 +13,11 @@ MonoBehaviour:
   m_Name: 19_TheWriter
   m_EditorClassIdentifier: 
   questID: 19
-  questTitle: "L'\xE9crivain"
-  questDescription: "Bonjour, je suis \xE9crivain. Je suis en train de terminer un
-    thriller palpitant sur des aliens, mais je suis coinc\xE9. Je n'ai plus de papier
-    pour \xE9crire... J'ai toujours \xE9cris avec du papier de cactus, ce papier d'arbre
-    banale ne me conviens pas. Tu peux m'en procurer ? Il me reste environ 15 pages
-    a \xE9crire."
+  questTitle: The writer
+  questDescription: Hello, I am a writer. I'm wrapping up a thrilling alien thriller,
+    but I'm stuck. I have no more paper to write on ... I have always written with
+    cactus paper, this banal tree paper does not suit me. Can you get some? I have
+    about 15 pages left to write.
   questSprite: {fileID: 21300000, guid: 615ecf391b0ba0b40a9c3882ac5e6afc, type: 3}
   totalQuestObjective: 15
   questDone: 0

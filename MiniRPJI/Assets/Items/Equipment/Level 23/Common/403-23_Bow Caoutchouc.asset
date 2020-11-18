@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 403-23_Bow Caoutchouc
   m_EditorClassIdentifier: 
   itemID: 403
-  itemName: Arc en Caoutchouc
+  itemName: Rubber bow
   itemDescription: 
   itemSellPrice: 275
   itemPrefab: {fileID: 4019101185777562141, guid: 79efe668507cf7f4ab3f34866358491f,

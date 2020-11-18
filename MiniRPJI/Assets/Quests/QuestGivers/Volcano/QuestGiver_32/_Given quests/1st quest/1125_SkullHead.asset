@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: 1125_SkullHead
   m_EditorClassIdentifier: 
   itemID: 1125
-  itemName: "Cr\xE2ne"
-  itemDescription: '...'
+  itemName: Skull
+  itemDescription: ...
   itemSellPrice: 0
   itemPrefab: {fileID: 5362988514200447822, guid: ac870165932ebb64799f65dc1d4b6028,
     type: 3}

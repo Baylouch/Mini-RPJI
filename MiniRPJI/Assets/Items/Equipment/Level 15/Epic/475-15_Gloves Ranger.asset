@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 475-15_Gloves Ranger
   m_EditorClassIdentifier: 
   itemID: 475
-  itemName: Gants de Ranger
+  itemName: Ranger gloves
   itemDescription: 
   itemSellPrice: 700
   itemPrefab: {fileID: 1724247864129913130, guid: e844d7dd3bef667488cb5b47b1a5745d,

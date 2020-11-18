@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 421-24_Bow Refugie
   m_EditorClassIdentifier: 
   itemID: 421
-  itemName: Arc du Refuge
+  itemName: Refuge bow
   itemDescription: 
   itemSellPrice: 290
   itemPrefab: {fileID: 4019101185777562141, guid: 79efe668507cf7f4ab3f34866358491f,

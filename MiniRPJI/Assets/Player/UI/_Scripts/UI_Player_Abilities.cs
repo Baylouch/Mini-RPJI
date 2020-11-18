@@ -61,9 +61,9 @@ public class UI_Player_Abilities : MonoBehaviour
     {
         IsMouseOverAbilityButton();
 
-        if (Player_Shortcuts.GetShortCuts() == 0)
+        if (Player_Shortcuts.GetShortCuts() == 0 || Player_Shortcuts.GetShortCuts() == 1)
         {
-            // Process ZQSD Shortcuts
+            // Process ZQSD and WASD Shortcuts (they've the same inputs here)
             ProcessZQSDShortcuts();
         }
         else
@@ -338,7 +338,7 @@ public class UI_Player_Abilities : MonoBehaviour
 
                 currentDescriptionPanel.transform.GetChild(0).GetComponent<Text>().text = abilityToDisplay.abilityName;
                 currentDescriptionPanel.transform.GetChild(1).GetComponent<Text>().text = abilityToDisplay.abilityShortDescription;
-                currentDescriptionPanel.transform.GetChild(2).GetComponent<Text>().text = "Energie : " + abilityToDisplay.energyCost;
+                currentDescriptionPanel.transform.GetChild(2).GetComponent<Text>().text = "Energy : " + abilityToDisplay.energyCost;
 
 
             }
@@ -346,7 +346,7 @@ public class UI_Player_Abilities : MonoBehaviour
             {
                 currentDescriptionPanel.transform.GetChild(0).GetComponent<Text>().text = abilityToDisplay.abilityName;
                 currentDescriptionPanel.transform.GetChild(1).GetComponent<Text>().text = abilityToDisplay.abilityShortDescription;
-                currentDescriptionPanel.transform.GetChild(2).GetComponent<Text>().text = "Energie : " + abilityToDisplay.energyCost;
+                currentDescriptionPanel.transform.GetChild(2).GetComponent<Text>().text = "Energy : " + abilityToDisplay.energyCost;
             }
         }
         else

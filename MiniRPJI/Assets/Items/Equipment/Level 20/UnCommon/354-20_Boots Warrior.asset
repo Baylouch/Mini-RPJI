@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 354-20_Boots Warrior
   m_EditorClassIdentifier: 
   itemID: 354
-  itemName: Bottes du Guerrier
+  itemName: Warrior's boots
   itemDescription: 
   itemSellPrice: 399
   itemPrefab: {fileID: 733386610476664069, guid: b96066df95794664b8f0d0731932fbb8,

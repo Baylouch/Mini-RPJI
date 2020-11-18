@@ -15,8 +15,8 @@ MonoBehaviour:
   successID: 11
   successSprite: {fileID: -7634628290253779960, guid: a7dfa991e33aadf42ab546bdff69ecbd,
     type: 3}
-  successTitle: Voyageur
-  successDescription: "Explore chaque zone de la for\xEAt."
+  successTitle: Traveler
+  successDescription: "Explore each area of \u200B\u200Bthe forest."
   isDone: 0
   rewardGift: 0
   successObjective: 10

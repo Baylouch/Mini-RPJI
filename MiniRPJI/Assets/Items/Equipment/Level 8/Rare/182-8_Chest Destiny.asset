@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 182-8_Chest Destiny
   m_EditorClassIdentifier: 
   itemID: 182
-  itemName: Armure du destin
+  itemName: Destiny armor
   itemDescription: 
   itemSellPrice: 230
   itemPrefab: {fileID: 6105507112566103775, guid: 5b0990b01e9377340b8b0de20b0397b4,
@@ -23,7 +23,6 @@ MonoBehaviour:
   stackableItem: 0
   armoryPart: 1
   rarety: 2
-  projectile: {fileID: 0}
   strength: 5
   agility: 10
   vitality: 13

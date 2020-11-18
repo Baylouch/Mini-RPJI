@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 361-20_Bow Barbare
   m_EditorClassIdentifier: 
   itemID: 361
-  itemName: Arc de Barbare
+  itemName: Barbarian bow
   itemDescription: 
   itemSellPrice: 666
   itemPrefab: {fileID: 4019101185777562141, guid: 79efe668507cf7f4ab3f34866358491f,

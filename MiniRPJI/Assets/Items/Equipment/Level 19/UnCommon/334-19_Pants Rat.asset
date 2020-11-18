@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 334-19_Pants Rat
   m_EditorClassIdentifier: 
   itemID: 334
-  itemName: Pantalon du Rat
+  itemName: Rat pants
   itemDescription: 
   itemSellPrice: 370
   itemPrefab: {fileID: 7290006494410735304, guid: 6c58cf90d0d71f44b9d2a1b6ee9f5555,

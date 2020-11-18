@@ -15,8 +15,9 @@ MonoBehaviour:
   successID: 4
   successSprite: {fileID: -1265532750122534292, guid: a7dfa991e33aadf42ab546bdff69ecbd,
     type: 3}
-  successTitle: "Purifie la for\xEAt"
-  successDescription: "Tue 20 monstres dans la for\xEAt."
+  successTitle: Purify the forest
+  successDescription: Kill 20 monsters in the forest.
   isDone: 0
+  rewardGift: 0
   successObjective: 20
   xpReward: 1000

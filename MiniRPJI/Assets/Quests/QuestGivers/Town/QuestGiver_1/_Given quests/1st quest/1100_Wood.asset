@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: 1100_Wood
   m_EditorClassIdentifier: 
   itemID: 1100
-  itemName: Bout de bois
-  itemDescription: "Ce bois n'a pas l'air tr\xE8s r\xE9sistant..."
+  itemName: Piece of wood
+  itemDescription: This wood does not seem very resistant...
   itemSellPrice: 0
   itemPrefab: {fileID: 5362988514200447822, guid: cc850132036271142b289363783319f0,
     type: 3}

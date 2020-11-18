@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 509-25_Bow President
   m_EditorClassIdentifier: 
   itemID: 509
-  itemName: Arc de President
+  itemName: President's bow
   itemDescription: 
   itemSellPrice: 1599
   itemPrefab: {fileID: 4019101185777562141, guid: 79efe668507cf7f4ab3f34866358491f,

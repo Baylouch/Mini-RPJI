@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: 1117_Topaz
   m_EditorClassIdentifier: 
   itemID: 1117
-  itemName: Topaze
-  itemDescription: "Cette pierre semble sp\xE9ciale..."
+  itemName: Topaz
+  itemDescription: This stone looks special...
   itemSellPrice: 0
   itemPrefab: {fileID: 5362988514200447822, guid: a248990feb55c1940aa51bfada8c9a93,
     type: 3}

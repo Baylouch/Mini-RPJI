@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: 1004_Big Health Potion
   m_EditorClassIdentifier: 
   itemID: 1004
-  itemName: Grande potion de vie
-  itemDescription: Restaure des points de vie
+  itemName: Big health potion
+  itemDescription: Restores health points
   itemSellPrice: 70
   itemPrefab: {fileID: 4777377678443712558, guid: 77774df01c1197f48bf16b089903d93d,
     type: 3}
   prefabImage: {fileID: 21300000, guid: 7b3876a2b72c44540a4bbd5aaba9e506, type: 3}
   inventoryImage: {fileID: 21300000, guid: 7b3876a2b72c44540a4bbd5aaba9e506, type: 3}
   stackableItem: 1
-  healthRegenerationPoints: 150
+  healthRegenerationPoints: 200
   energyRegenerationPoints: 0

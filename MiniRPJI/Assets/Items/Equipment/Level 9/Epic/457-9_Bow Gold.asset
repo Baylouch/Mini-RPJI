@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 457-9_Bow Gold
   m_EditorClassIdentifier: 
   itemID: 457
-  itemName: Arc en or
+  itemName: Gold bow
   itemDescription: 
   itemSellPrice: 420
   itemPrefab: {fileID: 4019101185777562141, guid: 79efe668507cf7f4ab3f34866358491f,

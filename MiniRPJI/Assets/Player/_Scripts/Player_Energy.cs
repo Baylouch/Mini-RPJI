@@ -28,7 +28,7 @@ public class Player_Energy : MonoBehaviour
 
     [SerializeField] float energyRegenerationTimer = 2f;
     float currentRegenerationTimer;
-    float regenerationMultiplier = 0.12f; // We regenerate 12% of our total energy
+    float regenerationMultiplier = 0.18f; // We regenerate 18% of our total energy
 
     // Start is called before the first frame update
     void Start()

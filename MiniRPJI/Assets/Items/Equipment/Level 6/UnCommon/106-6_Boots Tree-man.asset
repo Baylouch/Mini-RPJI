@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 106-6_Boots Tree-man
   m_EditorClassIdentifier: 
   itemID: 106
-  itemName: Bottes de l'homme-arbre
+  itemName: Treeman boots
   itemDescription: 
   itemSellPrice: 95
   itemPrefab: {fileID: 733386610476664069, guid: b96066df95794664b8f0d0731932fbb8,
@@ -23,7 +23,6 @@ MonoBehaviour:
   stackableItem: 0
   armoryPart: 4
   rarety: 1
-  projectile: {fileID: 0}
   strength: 3
   agility: 0
   vitality: 5

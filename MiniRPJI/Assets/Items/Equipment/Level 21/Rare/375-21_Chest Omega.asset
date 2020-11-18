@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 375-21_Chest Omega
   m_EditorClassIdentifier: 
   itemID: 375
-  itemName: Armure de l'Omega
+  itemName: Omega armor
   itemDescription: 
   itemSellPrice: 705
   itemPrefab: {fileID: 6105507112566103775, guid: 5b0990b01e9377340b8b0de20b0397b4,

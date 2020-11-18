@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 313-18_Bow Duck
   m_EditorClassIdentifier: 
   itemID: 313
-  itemName: Arc en os de canard
+  itemName: Duck skin bow
   itemDescription: 
   itemSellPrice: 175
   itemPrefab: {fileID: 4019101185777562141, guid: 79efe668507cf7f4ab3f34866358491f,

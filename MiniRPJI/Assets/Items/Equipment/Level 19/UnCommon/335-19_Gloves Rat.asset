@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 335-19_Gloves Rat
   m_EditorClassIdentifier: 
   itemID: 335
-  itemName: Gants du Rat
+  itemName: Rat gloves
   itemDescription: 
   itemSellPrice: 370
   itemPrefab: {fileID: 1724247864129913130, guid: e844d7dd3bef667488cb5b47b1a5745d,

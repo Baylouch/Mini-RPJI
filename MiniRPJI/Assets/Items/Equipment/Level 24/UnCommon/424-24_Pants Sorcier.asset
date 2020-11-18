@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 424-24_Pants Sorcier
   m_EditorClassIdentifier: 
   itemID: 424
-  itemName: Pantalon de Sorcier
+  itemName: Wizard pants
   itemDescription: 
   itemSellPrice: 499
   itemPrefab: {fileID: 7290006494410735304, guid: 6c58cf90d0d71f44b9d2a1b6ee9f5555,

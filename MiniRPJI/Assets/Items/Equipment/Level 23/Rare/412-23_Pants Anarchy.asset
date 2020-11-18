@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 412-23_Pants Anarchy
   m_EditorClassIdentifier: 
   itemID: 412
-  itemName: Pantalon d'Anarchie
+  itemName: Anarchy pants
   itemDescription: 
   itemSellPrice: 790
   itemPrefab: {fileID: 7290006494410735304, guid: 6c58cf90d0d71f44b9d2a1b6ee9f5555,

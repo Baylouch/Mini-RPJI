@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 382-22_Pants Canaille
   m_EditorClassIdentifier: 
   itemID: 382
-  itemName: Pantalon de Canaille
+  itemName: Scoundrel pants
   itemDescription: 
   itemSellPrice: 235
   itemPrefab: {fileID: 7290006494410735304, guid: 6c58cf90d0d71f44b9d2a1b6ee9f5555,

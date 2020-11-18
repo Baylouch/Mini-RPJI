@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 369-21_Chest Boucher
   m_EditorClassIdentifier: 
   itemID: 369
-  itemName: Armure du Boucher
+  itemName: Butcher's armor
   itemDescription: 
   itemSellPrice: 430
   itemPrefab: {fileID: 6105507112566103775, guid: 5b0990b01e9377340b8b0de20b0397b4,

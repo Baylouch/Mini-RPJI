@@ -13,10 +13,12 @@ MonoBehaviour:
   m_Name: 0_FindABow
   m_EditorClassIdentifier: 
   questID: 0
-  questTitle: Trouve un arc
-  questDescription: "Bienvenue dans notre village, j'ai cru comprendre que tu voulais
-    nous aider ? Cependant un ranger sans arc n'est pas tr\xE8s utile...\nJ'ai une
-    id\xE9e ! Rapportes moi 3 bout de bois, je t'en frabriquerais un."
+  questTitle: Find a bow
+  questDescription: 'Welcome to our village, I understood that you wanted to help
+    us? However, a ranger without a bow is not very useful ...
+
+    I have an idea
+    ! Bring me 3 pieces of wood, I''ll make you one.'
   questSprite: {fileID: 21300000, guid: 0e1ccb64303778e4081913a6d9cca677, type: 3}
   totalQuestObjective: 3
   questDone: 1

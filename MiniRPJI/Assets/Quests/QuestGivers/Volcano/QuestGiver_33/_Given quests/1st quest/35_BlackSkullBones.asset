@@ -13,12 +13,11 @@ MonoBehaviour:
   m_Name: 35_BlackSkullBones
   m_EditorClassIdentifier: 
   questID: 35
-  questTitle: Les squelettes noirs
-  questDescription: "Plus on s'enfonce dans le volcan et plus il y a de squelettes
-    noirs... Ils sont plus redoutable que les blancs, ils sont plus rapide et plus
-    fort. Leurs ossements sont imbib\xE9s de magie... Je les r\xE9cup\xE8re pour accomplir
-    un rituel demandant une tr\xE8s grande puissance. Si tu peux m'aider a en r\xE9cuperer
-    je t'en dirais d'avantage."
+  questTitle: Black skeletons
+  questDescription: The deeper you go into the volcano and the more black skeletons
+    there are ... They are more formidable than the whites, they are faster and stronger.
+    Their bones are soaked in magic ... I collect them to perform a ritual requiring
+    great power. If you can help me get some I will tell you more.
   questSprite: {fileID: 21300000, guid: 2f19877c144c2684eb99024cc360985e, type: 3}
   totalQuestObjective: 30
   questDone: 0

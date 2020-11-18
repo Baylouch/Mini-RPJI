@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 9-2_Gloves Explorer
   m_EditorClassIdentifier: 
   itemID: 9
-  itemName: Gants d'explorateur
+  itemName: Explorer's gloves
   itemDescription: 
   itemSellPrice: 40
   itemPrefab: {fileID: 1724247864129913130, guid: e844d7dd3bef667488cb5b47b1a5745d,
@@ -23,7 +23,6 @@ MonoBehaviour:
   stackableItem: 0
   armoryPart: 3
   rarety: 1
-  projectile: {fileID: 0}
   strength: 4
   agility: 0
   vitality: 3

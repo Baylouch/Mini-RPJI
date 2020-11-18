@@ -110,7 +110,7 @@ public class Item : Interactable
                         panelUI.GetComponentInChildren<Text>().color = Color.magenta;
                         break;
                     case ItemRarety.Legendary:
-                        panelUI.GetComponentInChildren<Text>().color = Color.red; // TODO modify
+                        panelUI.GetComponentInChildren<Text>().color = Color.red; // TODO modify color ?
                         break;
                 }
             }

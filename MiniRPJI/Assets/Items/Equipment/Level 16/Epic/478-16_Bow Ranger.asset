@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 478-16_Bow Ranger
   m_EditorClassIdentifier: 
   itemID: 478
-  itemName: Arc de Ranger
+  itemName: Ranger bow
   itemDescription: 
   itemSellPrice: 799
   itemPrefab: {fileID: 4019101185777562141, guid: 79efe668507cf7f4ab3f34866358491f,
