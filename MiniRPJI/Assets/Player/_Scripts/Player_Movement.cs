@@ -123,21 +123,21 @@ public class Player_Movement : MonoBehaviour
 
         if (!animator.GetBool("isAttacking"))
         {
-            if (Player_Shortcuts.GetShortCuts() == 0)
-            {
-                // Process ZQSD movements
-                SimplePlayerZQSDMovement();
-            }
-            else if (Player_Shortcuts.GetShortCuts() == 1)
-            {
-                // Process WASD movements
-                SimplePlayerWASDMovement();
-            }
-            else
-            {
-                // Process Arrows movements
-                SimplePlayerARROWSMovement();
-            }
+            //if (Player_Shortcuts.GetShortCuts() == 0)
+            //{
+            //    // Process ZQSD movements
+            //    SimplePlayerZQSDMovement();
+            //}
+            //else if (Player_Shortcuts.GetShortCuts() == 1)
+            //{
+            //    // Process WASD movements
+            //    SimplePlayerWASDMovement();
+            //}
+            //else
+            //{
+            //    // Process Arrows movements
+            //    SimplePlayerARROWSMovement();
+            //}
         }
         else
         {
@@ -487,5 +487,97 @@ public class Player_Movement : MonoBehaviour
     public void SetPlayerVelocity(Vector2 vel)
     {
         myRb.velocity = vel;
+    }
+
+    public void ProcessUpperMove()
+    {
+        if (isDashing)
+            return;
+
+        float movementSpeed = player_Stats.GetSpeed();
+
+        if (moveFaster)
+            movementSpeed *= 1.5f;
+
+        if (moveMoreFaster)
+            movementSpeed *= 3f;
+
+        myRb.velocity = new Vector2(0f, 1f) * movementSpeed;
+        if (dashDirection != 1)
+            dashDirection = 1;
+    }
+
+    public void ProcessDownMove()
+    {
+        if (isDashing)
+            return;
+
+        float movementSpeed = player_Stats.GetSpeed();
+
+        if (moveFaster)
+            movementSpeed *= 1.5f;
+
+        if (moveMoreFaster)
+            movementSpeed *= 3f;
+
+        myRb.velocity = new Vector2(0f, -1f) * movementSpeed;
+        if (dashDirection != 2)
+            dashDirection = 2;
+    }
+
+    public void ProcessLeftMove()
+    {
+        if (isDashing)
+            return;
+
+        float movementSpeed = player_Stats.GetSpeed();
+
+        if (moveFaster)
+            movementSpeed *= 1.5f;
+
+        if (moveMoreFaster)
+            movementSpeed *= 3f;
+
+        myRb.velocity = new Vector2(-1f, 0f) * movementSpeed;
+        if (dashDirection != 4)
+            dashDirection = 4;
+    }
+
+    public void ProcessRightMove()
+    {
+        if (isDashing)
+            return;
+
+        float movementSpeed = player_Stats.GetSpeed();
+
+        if (moveFaster)
+            movementSpeed *= 1.5f;
+
+        if (moveMoreFaster)
+            movementSpeed *= 3f;
+
+        myRb.velocity = new Vector2(1f, 0f) * movementSpeed;
+        if (dashDirection != 3)
+            dashDirection = 3;
+    }
+
+    public void ProcessDashing()
+    {
+        if (!isDashing)
+        {
+            if (GetPlayerEnergyAsPercentage() >= energyNeedToDash)
+            {
+                isDashing = true;
+                DecreasePlayerEnergy();
+            }
+        }
+    }
+
+    public void StopMove()
+    {
+        if (myRb.velocity != Vector2.zero)
+        {
+            myRb.velocity = Vector2.zero;
+        }
     }
 }

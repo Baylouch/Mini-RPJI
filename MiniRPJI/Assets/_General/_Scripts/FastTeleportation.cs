@@ -31,11 +31,6 @@ public class FastTeleportation : Interactable
             FindObjectOfType<PetMovement>().transform.position = FindObjectOfType<Player_Movement>().transform.position;
         }
 
-        if (FindObjectOfType<Player_Activator>())
-        {
-            FindObjectOfType<Player_Activator>().CheckForEnnemiesActivationNow();
-        }
-
         if (Sound_Manager.instance)
         {
             Sound_Manager.instance.PlaySound(Sound_Manager.instance.asset.teleportSound);

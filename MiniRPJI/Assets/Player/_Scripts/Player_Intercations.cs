@@ -71,7 +71,7 @@ public class Player_Intercations : MonoBehaviour
         {
             if (!interactionSet)
             {
-                interactionUI.SetInteractionUI("Press E to interact");
+                interactionUI.SetInteractionUI("Press to interact");
                 interactableThing = collision.GetComponent<Interactable>();
                 interactionSet = true;
             }
@@ -89,4 +89,36 @@ public class Player_Intercations : MonoBehaviour
             interactionSet = false;
         }
     }
+
+// ANDROID ADAPTATION
+/* OLD CODE WAS :
+    // The way interactableThing is used here was because i tought it needed to get the final type of Interactable to use the right
+    // Interact() method and not the one from Interactable script. After days, i added the None, and realize you can use the "final" Interact() method
+    // even if you got the object as a "Interactable" and not "Item" for instance.
+    // So todo, use only Interactable component to use Interact() and UnInteract() methods
+    private void Update()
+    {
+        if (interactionSet)
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                if (interactableThing)
+                {
+                    if (!interactableThing.GetIsInteracting())
+                    {
+                        interactableThing.Interact();
+                    }
+
+                    interactionUI.ResetInteractionUI();
+                    interactableThing = null;
+                    interactionSet = false;
+                }
+            }
+        }
+    }
+*/
+
+
+
+
 }

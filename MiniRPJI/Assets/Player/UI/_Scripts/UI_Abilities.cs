@@ -400,7 +400,7 @@ public class UI_Abilities : MonoBehaviour
             }
         }
 
-        // We need all levels of the ability in a array. We know all abilities got 5 levels.
+        // We need all levels of the ability in an array. We know all abilities got 5 levels.
         Ability_Config[] abilityLevels = new Ability_Config[5];
         int abilityLevelsIndex = 0;
 
